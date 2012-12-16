@@ -1,14 +1,12 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
- * Description of Personas
+ * La clase personas realiza todas las llamadas a la base de datos requeridas para agregar, leer, modificar y eliminar
+ * registros de personas.
  *
- * @author Nacho
+ * @author Ignacio Cabrera
  */
 class Personas {
     //put your code here
