@@ -9,7 +9,22 @@
  * @author Ignacio Cabrera
  */
 class Personas {
-    //put your code here
+    
+    private $rut;
+    
+    
+    public function Agregar_Persona(){
+        
+        
+    }
+     public function Eliminar_Persona(){
+        
+        
+    }
+     public function Modificar_Persona(){
+        
+        
+    }
 }
 
 ?>
