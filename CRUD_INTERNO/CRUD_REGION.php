@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Remel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -70,6 +70,18 @@
 			document.getElementById("respuesta_region").innerHTML = return_data;
                         document.getElementById("nombre_region").value="";
                         document.getElementById("numero_region").value="";
+                        function delay(milisegundos)
+                              {
+                    for(i=0;i<=milisegundos;i++)
+                {
+                    setTimeout('return 0',1);
+
+                    }
+                    
+                    delay(1000);
+                    
+                    document.getElementById("respuesta_region").innerHTML =" ";
+}
                              
 	    }
     }
@@ -139,7 +151,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="row-fluid offset3" style="">
+        <div class="row-fluid offset2" style="">
       <!--/Contenido cuerpo principal comienza aquí-->
      
       <div class="row">
@@ -156,7 +168,7 @@
       <input type="text" id="numero_region" placeholder="N° Región">
     </div>
       <br>
-        <button id="agregar_region" class="btn btn-large btn-primary offset3" type="button"> Agregar Nueva Región</button>
+        <button id="agregar_region" class="btn btn-large btn-primary offset2" type="button"> Agregar Nueva Región</button>
         <span id="respuesta_region"></span>
   </div>
 
