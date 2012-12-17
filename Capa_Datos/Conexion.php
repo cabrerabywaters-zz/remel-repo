@@ -39,16 +39,16 @@ if (!$this->con)
   }
      else{
          
-         echo "wenaaaaaaa" ;
+        
          $var=   mysql_select_db($this->base_de_datos);
               if(!$var) 
               {
-                  echo "no hemos podido conectar con la base de datos";
+                  echo "No hemos podido conectar con la base de datos";
                   
               }
               else{
                   
-                  echo "conectado correctamente a la base de datos";
+                  
               }
      }   
   
@@ -64,7 +64,12 @@ if (!$this->con)
      
      if($a){
          
-         echo"desconectado";
+       
+         
+     }
+     else
+     {
+         echo"La conexion no ha sido desconectada correctamente";
          
      }
     }

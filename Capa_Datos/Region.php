@@ -29,14 +29,17 @@ class Region {
         $con = new ConexionDB("localhost", "root", "", "BD_REMEL");
        
        $con->conectar();
+       
+      $nombre_region = mysql_real_escape_string($this->nombre_region);
+      $numero_region= mysql_real_escape_string($this->numero_region);
       
       
-      $query= mysql_query("INSERT INTO Regiones(Nombre,Numero) VALUES ('$this->nombre_region','$this->numero_region')");
+      $query= mysql_query("INSERT INTO Regiones(Nombre,Numero) VALUES ('$nombre_region','$numero_region')");
       
       if($query)
       {
           
-          echo "query hecho con exito";
+          echo "Region $this->nombre_region Agregada con exito";
          
       }
       else
