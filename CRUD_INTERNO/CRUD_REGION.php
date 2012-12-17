@@ -17,6 +17,11 @@
       }
       .sidebar-nav {
         padding: 9px 0;
+      
+      }
+      #contenido{
+          
+          background-color: red;
       }
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -34,6 +39,15 @@
      <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
      <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
      <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
+     
+     <script type="text/javascript">                                         
+   $(document).ready(function() {
+   $('#demo, #demo2, #demo3').collapse({
+  toggle: true
+      })
+ });                                     
+ </script>
+     
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -44,95 +58,92 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+            
+            
+          <a class="brand" href="#">REMEL EDICION</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              Registrado como: <a href="#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#about">ACERCA DE </a></li>
+              <li><a href="#contact">Contacto</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-
+      
+      
+        
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
+      <div class="row-fluid"style="">
+        <div class="span3" style="">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo">
+                Regiones
+                </button>
+ 
+           <div id="demo" class="collapse in" style="colapse: true"> <li class="active"><a href="#">Nueva Región</a></li> </div>
+            
+              
+            
+             <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo2">
+  Provincia
+</button>
+             <div id="demo2" class="collapse in"> <li class="active"><a href="#">Nueva Provincia</a></li> </div>
+             
+    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo3">
+  Comuna
+</button>
+             <div id="demo3" class="collapse in"> <li class="active"><a href="#">Nueva Comuna</a></li> </div>
+             
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-          </div>
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
+        <div class="row-fluid offset3" style="">
+      <!--/Contenido cuerpo principal comienza aquí-->
+     
+      <div class="row">
+          
+      <form class="form-horizontal">
+          <br>
+  <div class="control-group">
+    
+    <div class="controls">
+      <input type="text" id="inputEmail" placeholder="Región">
+    </div>
+      <br>
+       <div class="controls">
+      <input type="password" id="inputPassword" placeholder="N° Región">
+    </div>
+      <br>
+        <button class="btn btn-large btn-primary offset3" type="button">Agregar</button>
+  </div>
+
+ 
+       </form>
+         
+      </div>
+           
+      </div>
+       
           </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
+        
+          
         </div><!--/span-->
-      </div><!--/row-->
+          
+  
 
       <hr>
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Remel 2012</p>
       </footer>
 
-    </div><!--/.fluid-container-->
+    
 
     <!-- Le javascript
     ================================================== -->
