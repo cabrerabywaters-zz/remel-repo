@@ -113,14 +113,14 @@
   <div class="control-group">
     
     <div class="controls">
-      <input type="text" id="inputEmail" placeholder="Región">
+      <input type="text" id="nombre_region" placeholder="Región">
     </div>
       <br>
        <div class="controls">
-      <input type="password" id="inputPassword" placeholder="N° Región">
+      <input type="text" id="numero_region" placeholder="N° Región">
     </div>
       <br>
-        <button class="btn btn-large btn-primary offset3" type="button">Agregar</button>
+        <button id="agregar_region" class="btn btn-large btn-primary offset3" type="button"> Agregar Nueva Región</button>
   </div>
 
  
