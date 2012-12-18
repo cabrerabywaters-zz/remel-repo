@@ -57,6 +57,7 @@ class Tratamiento_GES {
 
         $con->conectar();
 
+        //terminar despues con ajax
         $query = mysql_query("UPDATE Tratamiento_GES 
                               SET Nombre = '$nombre_tratamiento_ges', Descrpicion = '$descripcion_tratamiento_ges'
                               WHERE idTratamiento_GES = ''");
