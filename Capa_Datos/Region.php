@@ -26,8 +26,8 @@ class Region {
           
     public function Agregar_Regiones(){
         
-        $con = new ConexionDB("localhost", "root", "", "BD_REMEL");
-       
+        $con = new ConexionDB();
+     
        $con->conectar();
        
       $nombre_region = mysql_real_escape_string($this->nombre_region);
