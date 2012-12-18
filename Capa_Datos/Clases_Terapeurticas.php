@@ -4,7 +4,7 @@
 
 
 
-/**
+/*
  * La clase Clases_Terapeurticas realiza todas las llamadas a la base de datos requeridas para agregar, leer, modificar y eliminar
  * registros de Clases_Terapeurticas.
  *
@@ -20,14 +20,16 @@ class Clases_Terapeurticas {
     private $nombre_de_clase_terapeurtica;
     
     
-    public function Clases_Terapeurticas($id_de_clase_terapeurtica,$nombre_de_clase_terapeurtica){
+    public function Clases_Terapeurticas()
+            {
         
         $this->nombre_clase_terepeurtica=$nombre_clase_terapeurtica;
         $this->id_clase_terapeurtica=$id_clase_terapeurtica;
     }
       
           
-    public function Agregar_Clases_Terapeurticas(){
+    public function Agregar_Clases_Terapeurticas()
+     {
         
         $con = new ConexionDB();
      
@@ -37,7 +39,7 @@ class Clases_Terapeurticas {
       $ID_Clases_Terapeurticas= mysql_real_escape_string($this->ID);
       
       
-      $query= mysql_query("INSERT INTO clases_terapeurticas(idClase_Terapeurtica,Nombre) VALUES ('$id_clase_terapeurtica','$nombre_clase_terapeurtica')");
+      $query= mysql_query("INSERT INTO clases_terapeurticas(Nombre,idClase_Terapeurtica) VALUES ('$nombre_clase_terapeurtica','$id_clase_terapeurtica')");
       
       if($query)
       {
@@ -51,9 +53,10 @@ class Clases_Terapeurticas {
          
           
       }
+      $con->desconectar();
     }
-          public function Eliminar_Clases_Terapeurticas()
-                  {
+    public function Eliminar_Clases_Terapeurticas()
+     {
           
         
         $con = new ConexionDB();
@@ -87,9 +90,10 @@ WHERE clases_terapeurticas.idClase_Terapeurtica = $nombre_Clases_Terapeurticas;
          
           
       }
-                  }
-      public function Actualizar_Clases_Terapeurticas()
-                  {
+      $con->desconectar();
+                  }                  
+    public function Actualizar_Clases_Terapeurticas()
+     {
           
         
         $con = new ConexionDB();
@@ -99,10 +103,8 @@ WHERE clases_terapeurticas.idClase_Terapeurtica = $nombre_Clases_Terapeurticas;
       $nombre_Clases_Terapeurticas = mysql_real_escape_string($this->Nombre);
       $ID_Clases_Terapeurticas= mysql_real_escape_string($this->ID);
       
-      // falta por completar
-      
       $query= mysql_query("UPDATE  clases_terapeurticas 
-SET  Nombre =  'valores a cambiar' 
+SET  Nombre =  $nombre_Clases_Terapeurticas 
 WHERE  clases_terapeurticas.idClase_Terapeurtica = $ID_Clases_Terapeurticas;
 ;
 ");
@@ -125,8 +127,38 @@ WHERE  clases_terapeurticas.idClase_Terapeurtica = $ID_Clases_Terapeurticas;
         
       
     }
-     
+    public function Seleccionar_Clases_terapeurticas() 
+         
+            {        
+        $con = new ConexionDB(); 
+        
+       $con->conectar();      
+       
+      $nombre_Clases_Terapeurticas = mysql_real_escape_string($this->Nombre);
+      $ID_Clases_Terapeurticas= mysql_real_escape_string($this->ID);
+      
+      $query= mysql_query("SELECT idClase_Terapeurtica, Nombre 
+          FROM  clases_terapeurticas 
+          WHERE  idClase_Terapeurtica = $ID_Clases_Terapeurticas 
+              OR  Nombre LIKE  '$nombre_Clases_Terapeurticas'");
+      
+      
+      
+      if($query)
+      {
+          
+          echo "Clase Terapeurtica $this->nombre_clase_terapeurtica Seleccionada con exito";
+         
+      }
+      else
+      {
+          die('Error: ' . mysql_error());
+         
+          
+      }     
+      $con->desconectar();      
+            }
 }
 
-?>
+
 ?>
