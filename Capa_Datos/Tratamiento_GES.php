@@ -44,7 +44,7 @@ class Tratamiento_GES {
 
         if ($query) {
 
-            echo "Tratamiento_GES $this->nombre_tratamiento_ges Agregado con exito";
+            echo "Tratamiento_GES eliminado con exito";
         } else {
             die('Error: ' . mysql_error());
         }
@@ -52,7 +52,7 @@ class Tratamiento_GES {
         $con->desconectar();
     }
 
-    public function Modificar_Persona() {
+    public function Modificar_Tratamiento_GES() {
         $con = new ConexionDB();
 
         $con->conectar();
@@ -64,7 +64,7 @@ class Tratamiento_GES {
 
         if ($query) {
 
-            echo "Tratamiento_GES $this->nombre_tratamiento_ges Agregado con exito";
+            echo "Tratamiento_GES $this->nombre_tratamiento_ges modificado con exito";
         } else {
             die('Error: ' . mysql_error());
         }
@@ -73,7 +73,4 @@ class Tratamiento_GES {
     }
 
 }
-?>
-
-
 ?>
