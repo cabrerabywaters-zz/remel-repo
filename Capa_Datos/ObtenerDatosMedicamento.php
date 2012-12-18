@@ -6,11 +6,12 @@ include "Conexion.php";
 $conexion = new ConexionDB();
 $conexion->conectar();
 //fin conexion BDD
-//medicamento pedido
-$medicamento;
+
+//id del medicamento pedido
+$idMedicamento;
 
 //funcion de ver medicamentos segun medicamento seleccionado
-function ConsultaVerMedicamentos($medicamento) {
+function ObtenerDatosMedicamento($idMedicamento) {
 
     //consulta de escalares de tabla Medicamentos (nombre, laboratorio, contraindicaciones, etc)
     $consultaEscalar = mysql_query(
@@ -31,7 +32,8 @@ function ConsultaVerMedicamentos($medicamento) {
             and Presentaciones.id_Presentacion = Medicamentos.id_Presentacion
             and Medicamentos.idMedicamento = Contraindicaciones_Diagnosticos.idMedicamento
             and Medicamentos.idMedicamento = Contraindicaciones_Alergias.idMedicamento
-            and Medicamentos.idMedicamento = Contraindicaciones_Condiciones.idMedicamento"
+            and Medicamentos.idMedicamento = Contraindicaciones_Condiciones.idMedicamento
+            and Medicamentos.idMedicamento = '$idMedicamento'"
             );
     
     //consulta de principios activos del medicamento
@@ -41,8 +43,8 @@ function ConsultaVerMedicamentos($medicamento) {
             from Princio_Activo, Medicamentos, Medicamentos_has_Princio_Activo
 
             where Medicamentos.idMedicamento = Medicamentos_has_Princio_Activo.idMedicamento
-            and Medicamentos_has_Princio_Activo.idPrincio_Activo = Princio_Activo.idPrincio_activo"
+            and Medicamentos_has_Princio_Activo.idPrincio_Activo = Princio_Activo.idPrincio_activo
+            and Medicamentos.idMedicamento = '$idMedicamento'"
             );
 }
-
 ?>
