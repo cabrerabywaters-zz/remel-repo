@@ -9,7 +9,7 @@ if($nombre!="" and $numero!="")
 {
 
  $region= new Region($nombre,$numero);
-$region->Agregar_Regiones();
+$region->AgregarRegiones();
 }
  else {
  echo "<h5>* Faltan campos por completar</h5>"  ;

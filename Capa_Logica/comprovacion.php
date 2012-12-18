@@ -1,59 +1,65 @@
 <?php
+
 /**
  * Esta Clase tiene algunos de las funciones comunes para validacion de campos y seguridad de datos.
  *
  * @author Ignacio Cabrera
  */
+class Comprobacion {
 
-class COMPROBACION {
+// Se definen los valores de la base de datos como constantes
+DEFINE ('DBUSER', 'mysqladm');
+DEFINE ('DBPW', 'Turtle2Dove');
+DEFINE ('DBHOST', 'localhost');
+DEFINE ('DBNAME', 'hamdb');
 
-            
-            // Se definen los valores de la base de datos como constantes
-            DEFINE ('DBUSER', 'mysqladm');
-            DEFINE ('DBPW', 'Turtle2Dove');
-            DEFINE ('DBHOST', 'localhost');
-            DEFINE ('DBNAME', 'hamdb');
+if ($dbc = mysql_connect (DBHOST, DBUSER, DBPW)) {
 
-            if ($dbc = mysql_connect (DBHOST, DBUSER, DBPW)) {
+if (!mysql_select_db (DBNAME)) { // If it can't select the database.
 
-            if (!mysql_select_db (DBNAME)) { // If it can't select the database.
+trigger_error("Could not select the database!<br />");
 
-            trigger_error("Could not select the database!<br />");
+exit();
 
-            exit();
+}
 
-            }
+} else {
 
-            } else {
+trigger_error("Could not connect to MySQL!<br /> ");
 
-            trigger_error("Could not connect to MySQL!<br /> ");
+exit();
 
-            exit();
+}
 
-            }
 
-            
-            
-            function escapar_caracteres ($dato) {
 
-            /**
-             *Permite escapar todos los caracteres maliciosos de una variable $dato dada. 
-             */
-                if (function_exists('mysql_real_escape_string')) {
-            global $dbc; // Need the connection.
-            $dato = mysql_real_escape_string (trim($dato), $dbc);
-            $dato = strip_tags($dato);
-            } else {
-            $dato = mysql_escape_string (trim($dato));
-            $dato = strip_tags($dato);
-            }
-            return $dato;
+function EscaparCaracteres ($dato) {
 
-            }
-          ?>
+/**
+ * Permite escapar todos los caracteres maliciosos de una variable $dato dada. 
+ */
+if (function_exists('mysql_real_escape_string')) {
+global $dbc; // Need the connection.
+$dato = mysql_real_escape_string (trim($dato), $dbc);
+$dato = strip_tags($dato);
+} else {
+$dato = mysql_escape_string (trim($dato));
+$dato = strip_tags($dato);
+}
+return $dato;
+
+
+}
+}
+
+?>
+
+ <?php
+ /*
+
             regular expresion
 
-            <?php
+           
             require_once("./includes/confighamdb.php");
 
             if (isset($_POST['submitted'])) { // Handle the form.
@@ -193,6 +199,6 @@ class COMPROBACION {
             echo '<p><font color="red" size="+1″>Please enter a valid password!</font></p>';
 
             }
-
+*/
            ?>
 
