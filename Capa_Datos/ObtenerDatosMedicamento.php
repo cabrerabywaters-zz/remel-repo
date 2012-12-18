@@ -46,5 +46,6 @@ function ObtenerDatosMedicamento($idMedicamento) {
             and Medicamentos_has_Princio_Activo.idPrincio_Activo = Princio_Activo.idPrincio_activo
             and Medicamentos.idMedicamento = '$idMedicamento'"
             );
+    $conexion->desconectar();
 }
 ?>
