@@ -70,18 +70,7 @@
 			document.getElementById("respuesta_region").innerHTML = return_data;
                         document.getElementById("nombre_region").value="";
                         document.getElementById("numero_region").value="";
-                        function delay(milisegundos)
-                              {
-                    for(i=0;i<=milisegundos;i++)
-                {
-                    setTimeout('return 0',1);
-
-                    }
-                    
-                    delay(1000);
-                    
-                    document.getElementById("respuesta_region").innerHTML =" ";
-}
+          
                              
 	    }
     }
