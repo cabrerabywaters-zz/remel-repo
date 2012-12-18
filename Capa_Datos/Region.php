@@ -8,63 +8,61 @@
  *
  * @author Ignacio Cabrera
  */
-  require_once 'Conexion.php';
+require_once 'interfazDatos.php';
 
 class Region {
     // Se declaran las variables que se utilizarán, nombre y número de región
-     private $nombre_region;
-    private $numero_region;
+    private $_datos;
+    private $_id;
     
-    public function Region($nombre_region,$numero_region){
-        
-        // Se apuntan las variables a los constructores de la clase
-        $this->nombre_region=$nombre_region;
-        $this->numero_region=$numero_region;
+    /**
+    * Instanciacion
+    **/
+    public function Region($id){
+       	// Se apuntan las variables a los constructores de la clase
+    	$this->_id=$id;
     }
       
-          
-    public function AgregarRegiones(){
-        
-        // se Instancia la clase conexión con la base de datos definida en Conexion.php
-        $con = new ConexionDB();
-         $con->ConexionDB();
-        
-        // Se Utiliza la funcion conectar de Conexion.php
-       $con->conectar();
-       
-       
-       // Se  "Limpian" los datos que pueda contener la variable region y nombre 
-      $nombre_region = mysql_real_escape_string($this->nombre_region);
-      $numero_region= mysql_real_escape_string($this->numero_region);
-      
-      
-      $query= mysql_query("INSERT INTO Regiones(Nombre,Numero) VALUES ('$nombre_region','$numero_region')");
-      
-      if($query)
-      {
-          
-          echo "Region $this->nombre_region Agregada con exito";
-         
-      }
-      else
-      {
-          die('Error: ' . mysql_error());
-         
-          
-      }
-      
-      $con->desconectar();
-        
-      
+    /**
+    * Metodo para agregar funciones a la tabla
+    * @param array $datos Vienen del controlador
+    **/      
+    public static function Agregar($datos){
+    	$queryString = QueryStringAgregar($datos,"Regiones");
+    	$query = CallQuery($queryString);
     }
-     public function Eliminar_Regio(){
-        
-        
+
+    /**
+    * Metodo para agregar funciones a la tabla
+    **/
+    public function BorrarPorId(){
+	$queryString = QueryStringBorrarPorId("Regiones","idRegion",$_id);
+	$query = CallQuery($queryString);
+    }        
+    
+    /**
+    * Metodo para agregar funciones a la tabla
+    * @param array $datos Vienen del controlador
+    **/
+    public function Actualizar($datos){
+	// Frase WHERE
+	$where = "WHERE ...";
+	$queryString = QueryStringActualizar($where,$datos,"Regiones");
+	$query = CallQuery($queryString);
     }
-     public function Modificar_Persona(){
-        
-        
+    
+    /**
+    * Metodo para agregar funciones a la tabla
+    * @param array $atributosASeleccionar Vienen del controlador
+    **/
+    public function Seleccionar($atributosASeleccionar){
+        // Frase WHERE
+	$where = "WHERE ...";
+	$queryString = QueryStringSeleccionar($where,$atributosASeleccionar,"Regiones");
+	$query = CallQuery($queryString);
+	//TODO: Falta el proceso de llenado de populado del objeto
     }
 }
+
 
 ?>
