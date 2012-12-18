@@ -22,7 +22,8 @@ class Tratamiento_GES {
         $descripcion_tratamiento_ges = mysql_real_escape_string($this->descripcion_tratamiento_ges);
 
 
-        $query = mysql_query("INSERT INTO Tratamiento_GES(Nombre,Descripcion) VALUES ('$nombre_tratamiento_ges','$descripcion_tratamiento_ges')");
+        $query = mysql_query("INSERT INTO Tratamiento_GES(Descripcion,Nombre)
+                              VALUES ('$descripcion_tratamiento_ges','$nombre_tratamiento_ges')");
 
         if ($query) {
 
