@@ -4,13 +4,14 @@
  * 
  * Clase que recibe datos de la tabla  
  *
+ * @author todos
  */
 require_once 'interfazDatos.php';
 
-class TipoInstituciones {
+class TipoInstitucion {
 
-    const nombreTabla = "Tipos_Instituciones";
-    const nombreIdTabla = "idTipos_Instituciones";
+    static $nombreTabla = "Tipo_Instituciones";
+    const nombreIdTabla = "idTipo_Institucion";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -20,7 +21,7 @@ class TipoInstituciones {
      * Constructor
      * @param string $id Id de la instancia de la entidad que esta siendo referenciada
      * */
-    public function TipoInstituciones($id) {
+    public function TiposInstituciones($id) {
         // Se apuntan las variables a los constructores de la clase
         $this->_id = $id;
     }
@@ -30,7 +31,7 @@ class TipoInstituciones {
      * @param array $datos Vienen del controlador
      * */
     public static function Agregar($datos) {
-        $queryString = QueryStringAgregar($datos, nombreTabla);
+        $queryString = QueryStringAgregar($datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -38,7 +39,7 @@ class TipoInstituciones {
      * Metodo para agregar funciones a la tabla
      * */
     public function BorrarPorId() {
-        $queryString = QueryStringBorrarPorId(nombreTabla, nombreIdTabla, $_id);
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, nombreIdTabla, $_id);
         $query = CallQuery($queryString);
     }
 
@@ -48,7 +49,7 @@ class TipoInstituciones {
      * */
     public function Actualizar($datos) {
         $where = "WHERE " . nombreIdTabla . " = '$id'";
-        $queryString = QueryStringActualizar($where, $datos, nombreTabla);
+        $queryString = QueryStringActualizar($where, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -58,11 +59,10 @@ class TipoInstituciones {
      * @param array $where Frase Where que es indicada por el controlador
      * */
     public static function Seleccionar($atributosASeleccionar, $where) {
-        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
     }
-
 }
 
 ?>

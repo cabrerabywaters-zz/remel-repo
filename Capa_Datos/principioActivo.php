@@ -1,28 +1,37 @@
 <?php
 
+/**
+ * 
+ * Clase que recibe datos de la tabla  
+ *
+ * @author todos
+ */
 require_once 'interfazDatos.php';
 
-/**
- * Clase que representa y realiza todos los metodos de insercion, modificacion, seleccion y eliminacion en la tabla Principio Activo
- * @property string $_nombrePrincipioActivo
- * */
 class PrincipioActivo {
 
-    const nombreTabla = "Princio_Activo";
-    const nombreIdTabla = "idPrincio_Activo";
+    static $nombreTabla = "Principio_Activo";
+    const nombreIdTabla = "idPrincipio_Activo";
 
+    //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
     private $_id;
 
-    //Instanciacion 
-
-    public function principioActivo($id) {
-
+    /**
+     * Constructor
+     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
+     * */
+    public function PrincipioActivo($id) {
+        // Se apuntan las variables a los constructores de la clase
         $this->_id = $id;
     }
 
+    /**
+     * Metodo estatico para agregar funciones a la tabla
+     * @param array $datos Vienen del controlador
+     * */
     public static function Agregar($datos) {
-        $queryString = QueryStringAgregar($datos, nombreTabla);
+        $queryString = QueryStringAgregar($datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -30,7 +39,7 @@ class PrincipioActivo {
      * Metodo para agregar funciones a la tabla
      * */
     public function BorrarPorId() {
-        $queryString = QueryStringBorrarPorId(nombreTabla, nombreIdTabla, $_id);
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, nombreIdTabla, $_id);
         $query = CallQuery($queryString);
     }
 
@@ -40,7 +49,7 @@ class PrincipioActivo {
      * */
     public function Actualizar($datos) {
         $where = "WHERE " . nombreIdTabla . " = '$id'";
-        $queryString = QueryStringActualizar($where, $datos, nombreTabla);
+        $queryString = QueryStringActualizar($where, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -50,9 +59,10 @@ class PrincipioActivo {
      * @param array $where Frase Where que es indicada por el controlador
      * */
     public static function Seleccionar($atributosASeleccionar, $where) {
-        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
     }
-
 }
+
+?>

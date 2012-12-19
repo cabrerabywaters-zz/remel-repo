@@ -21,7 +21,7 @@ class Region {
      * Constructor
      * @param string $id Id de la instancia de la entidad que esta siendo referenciada
      * */
-    public function Region($id) {
+    public function Regiones($id) {
         // Se apuntan las variables a los constructores de la clase
         $this->_id = $id;
     }
