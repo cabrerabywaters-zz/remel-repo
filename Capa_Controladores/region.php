@@ -1,20 +1,43 @@
 <?php 
 
-require_once '../Capa_Datos/Region.php';
+require_once '../Capa_Datos/region.php';
 
-$nombre= $_POST['nombre_region'];
-$numero= $_POST['numero_region'];
-
-if($nombre!="" and $numero!="")
-{
-
- $region= new Region($nombre,$numero);
-$region->AgregarRegiones();
+/**
+* Funciones controladores CRUD
+* @author Germán Oviedo
+**/
+function Creacion(){
+	$datosCreacion = array(
+				array('Nombre',$_POST['nombre_region']),
+				array('Numero',$_POST['numero_region'])
+				);
+	Region::Agregar($datosCreacion);	
 }
- else {
- echo "<h5>* Faltan campos por completar</h5>"  ;
-}
- 
 
-  
-?>
+function Eliminacion(){
+	$regionABorrar = new Region($_POST['idRegion']);
+	$regionABorrar->BorrarPorId();
+}
+
+function Actualizar(){
+	$datosActualizacion = array(
+				array('Nombre',$_POST['nombre_region']),
+				array('Numero',$_POST['numero_region']
+				);
+
+	$regionACrear = new Region($_POST['idRegion']);
+	$regionAActualizar->($datosActualizacion);
+}
+
+function SeleccionarTodas(){
+	$atributosASeleccionar = array(
+					'Nombre', 
+					'Numero'
+					);
+	$where = "";
+	Region::Seleccionar($atributosASeleccionar,$where);
+}
+
+//TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
+
+

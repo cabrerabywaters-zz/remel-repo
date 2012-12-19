@@ -10,8 +10,8 @@ require_once 'interfazDatos.php';
 
 class Region {
 
-    const nombreTabla = "Regiones";
-    const nombreIdTabla = "idRegion";
+    static const nombreTabla = "Regiones";
+    static const nombreIdTabla = "idRegion";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -58,12 +58,11 @@ class Region {
      * @param array $atributosASeleccionar Vienen del controlador
      * @param array $where Frase Where que es indicada por el controlador
      * */
-    public function Seleccionar($atributosASeleccionar, $where) {
+    public static function Seleccionar($atributosASeleccionar, $where) {
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
     }
-
 }
 
 ?>
