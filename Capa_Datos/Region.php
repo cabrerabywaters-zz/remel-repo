@@ -3,20 +3,24 @@
 
 
 /**
- * La clase personas realiza todas las llamadas a la base de datos requeridas para agregar, leer, modificar y eliminar
- * registros de personas.
+ * 
+ * Clase que 
  *
  * @author Ignacio Cabrera
  */
 require_once 'interfazDatos.php';
 
 class Region {
-    // Se declaran las variables que se utilizarán, nombre y número de región
+    const nombreTabla = "Regiones";
+    const nombreIdTabla = "idRegion";
+
+    //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
     private $_id;
     
     /**
-    * Instanciacion
+    * Constructor
+    * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
     public function Region($id){
        	// Se apuntan las variables a los constructores de la clase
@@ -24,11 +28,11 @@ class Region {
     }
       
     /**
-    * Metodo para agregar funciones a la tabla
+    * Metodo estatico para agregar funciones a la tabla
     * @param array $datos Vienen del controlador
     **/      
     public static function Agregar($datos){
-    	$queryString = QueryStringAgregar($datos,"Regiones");
+    	$queryString = QueryStringAgregar($datos,nombreTabla);
     	$query = CallQuery($queryString);
     }
 
@@ -36,7 +40,7 @@ class Region {
     * Metodo para agregar funciones a la tabla
     **/
     public function BorrarPorId(){
-	$queryString = QueryStringBorrarPorId("Regiones","idRegion",$_id);
+	$queryString = QueryStringBorrarPorId(nombreTabla,nombreIdTabla,$_id);
 	$query = CallQuery($queryString);
     }        
     
@@ -45,20 +49,18 @@ class Region {
     * @param array $datos Vienen del controlador
     **/
     public function Actualizar($datos){
-	// Frase WHERE
-	$where = "WHERE ...";
-	$queryString = QueryStringActualizar($where,$datos,"Regiones");
-	$query = CallQuery($queryString);
+	$where = "WHERE";
+	$queryString = QueryStringActualizar($where,$datos,nombreTabla);
+	$query = CallQuery($queryString;
     }
     
     /**
     * Metodo para agregar funciones a la tabla
     * @param array $atributosASeleccionar Vienen del controlador
+    * @param array $where Frase Where que es indicada por el controlador
     **/
-    public function Seleccionar($atributosASeleccionar){
-        // Frase WHERE
-	$where = "WHERE ...";
-	$queryString = QueryStringSeleccionar($where,$atributosASeleccionar,"Regiones");
+    public function Seleccionar($atributosASeleccionar,$where){
+	$queryString = QueryStringSeleccionar($where,$atributosASeleccionar,nombreTabla);
 	$query = CallQuery($queryString);
 	//TODO: Falta el proceso de llenado de populado del objeto
     }
