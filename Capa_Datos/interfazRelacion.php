@@ -8,6 +8,7 @@
  * créditos a Germán Oviedo por funciones originales de interfazDatos.php
  * * */
 require_once 'Conexion.php';
+include "CallQuery.php";
 
 function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreTabla) {
     $selectString = "SELECT";
