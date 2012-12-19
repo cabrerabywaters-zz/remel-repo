@@ -23,7 +23,7 @@ function Creacion(){
 * Funcion de eliminacion
 **/
 function Eliminacion(){
-	$regionABorrar = new Region($_POST['idRegion']);
+	$regionABorrar = new Region('2');
 	$regionABorrar->BorrarPorId();
 }
 
@@ -32,8 +32,8 @@ function Eliminacion(){
 **/
 function Actualizar(){
 	$datosActualizacion = array(
-				'Nombre' => 'perro',
-				'Numero' => '2'
+				'Nombre' => $_POST['nombre_region'],
+				'Numero' => $_POST['numero_region']
 				);
 
 	//$regionACrear = new Region($_POST['idRegion']);
@@ -58,4 +58,4 @@ function SeleccionarTodas(){
 
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
 
-Actualizar();
+Eliminacion();

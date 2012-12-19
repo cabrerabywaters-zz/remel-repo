@@ -63,10 +63,14 @@ function QueryStringBorrarPorId($nombreTabla,$nombreId,$id){
 
 function QueryStringActualizar($where, $datos, $nombreTabla){
 	$updateString = "UPDATE $nombreTabla SET ";
+	$final = count($datos);
+	$i = 0;
 	foreach ($datos as $atributo=>$valor){
-		$updateString = $updateString.$atributo."='".$valor."' ";
+		$updateString = $updateString.$atributo."='".$valor."'";
+		if($i < $final - 1) $updateString = $updateString.",";
+		$i++;
 	}
-	$updateString = $updateString.$where;
+	$updateString = $updateString." ".$where;
 	var_dump($updateString);
 	return $updateString;	
 }
