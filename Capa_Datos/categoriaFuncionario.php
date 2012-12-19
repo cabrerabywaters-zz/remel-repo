@@ -6,13 +6,13 @@
  * 
  * Clase que recibe datos de la tabla  
  *
- * @author Leonardo Hidalgo
+ * @author German Oviedo 
  */
 require_once 'interfazDatos.php';
 
-class SubEspecialidades {
-    const nombreTabla = "Alergias";
-    const nombreIdTabla = "idAlergia";
+class CategoriaFuncionario {
+    const nombreTabla = "Categorias_Funcionarios";
+    const nombreIdTabla = "idCategoria_Funcionario";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -22,7 +22,7 @@ class SubEspecialidades {
     * Constructor
     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
-    public function Alergia($id){
+    public function CategoriaFuncionario($id){
        	// Se apuntan las variables a los constructores de la clase
     	$this->_id=$id;
     }
@@ -59,7 +59,7 @@ class SubEspecialidades {
     * @param array $atributosASeleccionar Vienen del controlador
     * @param array $where Frase Where que es indicada por el controlador
     **/
-    public function Seleccionar($atributosASeleccionar,$where){
+    public static function Seleccionar($atributosASeleccionar,$where){
 	$queryString = QueryStringSeleccionar($where,$atributosASeleccionar,nombreTabla);
 	$query = CallQuery($queryString);
 	//TODO: Falta el proceso de llenado de populado del objeto

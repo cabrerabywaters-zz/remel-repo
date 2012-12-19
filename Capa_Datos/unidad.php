@@ -10,9 +10,9 @@
  */
 require_once 'interfazDatos.php';
 
-class Unidade {
+class Unidad {
     const nombreTabla = "Unidades";
-    const nombreIdTabla = "idUnidade";
+    const nombreIdTabla = "idUnidad";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -22,7 +22,7 @@ class Unidade {
     * Constructor
     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
-    public function Unidade($id){
+    public function Unidad($id){
        	// Se apuntan las variables a los constructores de la clase
     	$this->_id=$id;
     }
@@ -59,7 +59,7 @@ class Unidade {
     * @param array $atributosASeleccionar Vienen del controlador
     * @param array $where Frase Where que es indicada por el controlador
     **/
-    public function Seleccionar($atributosASeleccionar,$where){
+    public static function Seleccionar($atributosASeleccionar,$where){
 	$queryString = QueryStringSeleccionar($where,$atributosASeleccionar,nombreTabla);
 	$query = CallQuery($queryString);
 	//TODO: Falta el proceso de llenado de populado del objeto
