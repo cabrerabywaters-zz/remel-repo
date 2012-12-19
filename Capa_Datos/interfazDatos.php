@@ -67,6 +67,7 @@ function QueryStringActualizar($where, $datos, $nombreTabla){
 		$updateString = $updateString.$atributo."='".$valor."' ";
 	}
 	$updateString = $updateString.$where;
+	var_dump($updateString);
 	return $updateString;	
 }
 

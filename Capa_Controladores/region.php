@@ -4,7 +4,12 @@ require_once '../Capa_Datos/region.php';
 
 /**
 * Funciones controladores CRUD
+* 
 * @author Germán Oviedo
+**/
+
+/**
+* Funcion de creacion 
 **/
 function Creacion(){
 	$datosCreacion = array(
@@ -14,21 +19,33 @@ function Creacion(){
 	Region::Agregar($datosCreacion);	
 }
 
+/**
+* Funcion de eliminacion
+**/
 function Eliminacion(){
 	$regionABorrar = new Region($_POST['idRegion']);
 	$regionABorrar->BorrarPorId();
 }
 
+/**
+* Funcion de actualizar
+**/
 function Actualizar(){
 	$datosActualizacion = array(
-				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])
+				'Nombre' => 'perro',
+				'Numero' => '2'
 				);
 
-	$regionACrear = new Region($_POST['idRegion']);
+	//$regionACrear = new Region($_POST['idRegion']);
+	$regionAActualizar = new Region('2');
+	var_dump($regionAActualizar);
 	$regionAActualizar->Actualizar($datosActualizacion);
 }
 
+/**
+* Funcion de seleccionar todas las lineas
+* @returns array $resultados Array con las filas
+**/
 function SeleccionarTodas(){
 	$atributosASeleccionar = array(
 					'Nombre',
@@ -41,4 +58,4 @@ function SeleccionarTodas(){
 
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
 
-var_dump(SeleccionarTodas());
+Actualizar();

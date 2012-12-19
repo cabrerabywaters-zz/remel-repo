@@ -21,7 +21,7 @@ class Region {
      * Constructor
      * @param string $id Id de la instancia de la entidad que esta siendo referenciada
      * */
-    public function Regiones($id) {
+    public function __construct($id) {	
         // Se apuntan las variables a los constructores de la clase
         $this->_id = $id;
     }
@@ -39,7 +39,7 @@ class Region {
      * Metodo para agregar funciones a la tabla
      * */
     public function BorrarPorId() {
-        $queryString = QueryStringBorrarPorId(self::$nombreTabla, nombreIdTabla, $_id);
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
 
@@ -48,7 +48,7 @@ class Region {
      * @param array $datos Vienen del controlador
      * */
     public function Actualizar($datos) {
-        $where = "WHERE " . nombreIdTabla . " = '$id'";
+        $where = "WHERE " . self::nombreIdTabla . " = '$this->_id'";
         $queryString = QueryStringActualizar($where, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
