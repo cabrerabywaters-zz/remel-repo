@@ -24,7 +24,7 @@ class R_AlergiaPaciente {
     }
 
     public function BorrarPorIdRelacion() {
-        $queryString = QueryStringBorrarPorIdRelacion($nombreTabla, $nombreDeIds, $_id);
+        $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreDeIds, $_id);
         $query = CallQueryRelacion($queryString);
     }
     
