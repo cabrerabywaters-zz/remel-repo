@@ -7,7 +7,6 @@
 * @autor: German Oviedo 
 ***/
 
-require_once 'Conexion.php';
 
 /**
 * Funcion que crea el string para la query de Seleccionar
@@ -24,7 +23,7 @@ function QueryStringSeleccionar($where,$atributosASeleccionar,$nombreTabla){
 /**
 * Funcion que crea el string para la query de Crear
 **/
-function QueryStringCrear($datos, $nombreTabla){
+function QueryStringAgregar($datos, $nombreTabla){
 	$insertString = "INSERT INTO $nombreTabla";
 
 	$atributos = "(";
@@ -68,19 +67,22 @@ function QueryStringActualizar($where, $datos, $nombreTabla){
 	return $updateString;	
 }
 
-function CallQuery($queryString, $nombreTabla){
-		$con = new ConexionDB();
-       		$con->ConexionDB();
-	
-		$query = mysql_query($queryString);
-                if($query){
-                        echo "Principio Activo agregado con exito";
-                }
-                else{
-                        die('Error: ' . mysql_error());
-                }
+function CallQuery($queryString){
+		include('dbconfig.php');
+		$mysqlCon = new mysqli($servidor,$nombre_usuario,$contrasena,$base_de_datos);
 
-		$con->desconectar();
-		return $query;
+		if($mysqlCon->errno) {
+			printf("Conexion fallida: %s\n", $mysqli->connect_error);
+			exit();
+		}
+		
+		if($result = $mysqliCon->query($queryString)){
+			$mysqlCon->close();
+			return $result;
+		}     
+		else{
+			$mysqlCon->close();
+			return $false;
+		}  
 }
 

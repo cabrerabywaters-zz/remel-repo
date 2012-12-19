@@ -8,8 +8,8 @@ require_once '../Capa_Datos/region.php';
 **/
 function Creacion(){
 	$datosCreacion = array(
-				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])
+				array('Nombre','Antofagasta'),
+				array('Numero','2')
 				);
 	Region::Agregar($datosCreacion);	
 }
@@ -22,11 +22,11 @@ function Eliminacion(){
 function Actualizar(){
 	$datosActualizacion = array(
 				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region']
+				array('Numero',$_POST['numero_region'])
 				);
 
 	$regionACrear = new Region($_POST['idRegion']);
-	$regionAActualizar->($datosActualizacion);
+	$regionAActualizar->Actualizar($datosActualizacion);
 }
 
 function SeleccionarTodas(){
@@ -40,4 +40,4 @@ function SeleccionarTodas(){
 
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
 
-
+Creacion();

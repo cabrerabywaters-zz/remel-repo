@@ -10,8 +10,8 @@ require_once 'interfazDatos.php';
 
 class Region {
 
-    static const nombreTabla = "Regiones";
-    static const nombreIdTabla = "idRegion";
+    static $nombreTabla = "Regiones";
+    const nombreIdTabla = "idRegion";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -31,7 +31,7 @@ class Region {
      * @param array $datos Vienen del controlador
      * */
     public static function Agregar($datos) {
-        $queryString = QueryStringAgregar($datos, nombreTabla);
+        $queryString = QueryStringAgregar($datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -39,7 +39,7 @@ class Region {
      * Metodo para agregar funciones a la tabla
      * */
     public function BorrarPorId() {
-        $queryString = QueryStringBorrarPorId(nombreTabla, nombreIdTabla, $_id);
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, nombreIdTabla, $_id);
         $query = CallQuery($queryString);
     }
 
@@ -49,7 +49,7 @@ class Region {
      * */
     public function Actualizar($datos) {
         $where = "WHERE " . nombreIdTabla . " = '$id'";
-        $queryString = QueryStringActualizar($where, $datos, nombreTabla);
+        $queryString = QueryStringActualizar($where, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -59,7 +59,7 @@ class Region {
      * @param array $where Frase Where que es indicada por el controlador
      * */
     public static function Seleccionar($atributosASeleccionar, $where) {
-        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
     }
