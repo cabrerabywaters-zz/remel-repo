@@ -1,42 +1,58 @@
 <?php
 
-require_once 'Conexion.php';
+require_once 'interfazDatos.php';
 
 /**
-*Clase que representa y realiza todos los metodos de insercion, modificacion, seleccion y eliminacion en la tabla Principio Activo
-*@property string $_nombrePrincipioActivo
-**/
-
+ * Clase que representa y realiza todos los metodos de insercion, modificacion, seleccion y eliminacion en la tabla Principio Activo
+ * @property string $_nombrePrincipioActivo
+ * */
 class PrincipioActivo {
 
-	private $_nombrePrincipioActivo;
-	
-	/** Constructor para nombre a crear 
-	*@param string $nombrePrincipioActivo
-	**/
-	public function PrincipioActivo($nombrePrincipioActivo){
-		$this->_nombrePrincipioActivo = $nombrePrincipioActivo;
-	}	
-	
-	/** Constructor cuando no hay 
-	**/
-	public function PrincipioActivo(){
-		//Hacer nada
-	}
-	
-	public function AgregarPrincipioActivo(){
-		$nombrePrincipioActivo = mysql_real_escape_string($this->_nombrePrincipioActivo);
-	
-	$query = mysql_query("INSERT INTO Principio_Activo(Nombre) VALUES ('$nombrePrincipioActivo')");
+    const nombreTabla = "Princio_Activo";
+    const nombreIdTabla = "idPrincio_Activo";
 
-	if($query){
-		echo "Principio Activo agregado con exito";
-	}
-	else{
-	die('Error: ' . mysql_error());
-}
-	}
+    private $_datos;
+    private $_id;
 
-	public function BuscarPorNombre(){
-	}
+    //Instanciacion 
+
+    public function principioActivo($id) {
+
+        $this->_id = $id;
+    }
+
+    public static function Agregar($datos) {
+        $queryString = QueryStringAgregar($datos, nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    /**
+     * Metodo para agregar funciones a la tabla
+     * */
+    public function BorrarPorId() {
+        $queryString = QueryStringBorrarPorId(nombreTabla, nombreIdTabla, $_id);
+        $query = CallQuery($queryString);
+    }
+
+    /**
+     * Metodo para agregar funciones a la tabla
+     * @param array $datos Vienen del controlador
+     * */
+    public function Actualizar($datos) {
+        $where = "WHERE " . nombreIdTabla . " = '$id'";
+        $queryString = QueryStringActualizar($where, $datos, nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    /**
+     * Metodo para agregar funciones a la tabla
+     * @param array $atributosASeleccionar Vienen del controlador
+     * @param array $where Frase Where que es indicada por el controlador
+     * */
+    public function Seleccionar($atributosASeleccionar, $where) {
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
+        $query = CallQuery($queryString);
+        //TODO: Falta el proceso de llenado de populado del objeto
+    }
+
 }

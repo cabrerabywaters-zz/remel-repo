@@ -4,6 +4,9 @@ require_once 'interfazDatos.php';
 
 class Condiciones {
 
+    const nombreTabla = "Condiciones";
+    const nombreIdTabla = "idCondiciones";
+
     private $_datos;
     private $_id;
 
@@ -15,26 +18,35 @@ class Condiciones {
     }
 
     public static function Agregar($datos) {
-        $queryString = QueryStringAgregar($datos, "Condiciones");
+        $queryString = QueryStringAgregar($datos, nombreTabla);
         $query = CallQuery($queryString);
     }
 
+    /**
+     * Metodo para agregar funciones a la tabla
+     * */
     public function BorrarPorId() {
-        $queryString = QueryStringBorrarPorId("Condiciones", "idCondiciones", $_id);
+        $queryString = QueryStringBorrarPorId(nombreTabla, nombreIdTabla, $_id);
         $query = CallQuery($queryString);
     }
 
+    /**
+     * Metodo para agregar funciones a la tabla
+     * @param array $datos Vienen del controlador
+     * */
     public function Actualizar($datos) {
-        // Frase WHERE
-        $where = "WHERE ...";
-        $queryString = QueryStringActualizar($where, $datos, "Condiciones");
+        $where = "WHERE " . nombreIdTabla . " = '$id'";
+        $queryString = QueryStringActualizar($where, $datos, nombreTabla);
         $query = CallQuery($queryString);
     }
 
-    public function Seleccionar($atributosASeleccionar) {
-        // Frase WHERE
-        $where = "WHERE ...";
-        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, "Condiciones");
+    /**
+     * Metodo para agregar funciones a la tabla
+     * @param array $atributosASeleccionar Vienen del controlador
+     * @param array $where Frase Where que es indicada por el controlador
+     * */
+    public function Seleccionar($atributosASeleccionar, $where) {
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
     }

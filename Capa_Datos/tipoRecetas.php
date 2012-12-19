@@ -17,7 +17,7 @@ class TiposRecetas {
 
     //Instanciacion 
 
-    public function principioActivo($id) {
+    public function TipoRecetas($id) {
 
         $this->_id = $id;
     }
