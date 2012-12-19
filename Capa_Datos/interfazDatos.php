@@ -7,17 +7,19 @@
 * @autor: German Oviedo 
 ***/
 
-include "CallQuery.php";
+include "callQuery.php";
 
 /**
 * Funcion que crea el string para la query de Seleccionar
 **/
 function QueryStringSeleccionar($where,$atributosASeleccionar,$nombreTabla){
-	$selectString = "SELECT";
-	foreach($atributosASeleccionar as $nombreAtributo){
-		$selectString = $selectString." ".$nombreAtributo;
+	$selectString = "SELECT ";
+	for($i = 0; $i < count($atributosASeleccionar); $i++){
+		$selectString = $selectString.$atributosASeleccionar[$i];
+		if ($i != count($atributosASeleccionar) - 1) $selectString = $selectString.",";
 	} 
-	$selectString = selectString." FROM $nombreTabla $where";
+	$selectString = $selectString." FROM $nombreTabla $where";
+	echo $selectString;
 	return $selectString;
 } 
 

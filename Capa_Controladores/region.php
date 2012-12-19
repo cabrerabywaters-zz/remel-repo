@@ -31,13 +31,14 @@ function Actualizar(){
 
 function SeleccionarTodas(){
 	$atributosASeleccionar = array(
-					'Nombre', 
+					'Nombre',
 					'Numero'
 					);
 	$where = "";
-	Region::Seleccionar($atributosASeleccionar,$where);
+	$resultados = Region::Seleccionar($atributosASeleccionar,$where);
+	return $resultados;
 }
 
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
 
-Creacion();
+var_dump(SeleccionarTodas());
