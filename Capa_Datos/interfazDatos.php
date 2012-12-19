@@ -32,7 +32,7 @@ function QueryStringCrear($datos, $nombreTabla){
 
 	for($i = 0; $i < count($datos); $i++){
 		$atributos = $atributos.$datos[$i][0];
-		$valores = $valores.$datos[$i][1];
+		$valores = "'".$valores.$datos[$i][1]."'";
 		if($i != count($datos) - 1){
 			$atributos = $atributos.",";
 			$valores = $valores.",";
