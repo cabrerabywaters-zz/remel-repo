@@ -3,6 +3,8 @@
 /*
  * Clase para crear relaciones entre tablas a partir de sus IDs 
  * @ author Leonardo Hidalgo
+ * 
+ * Falta Completar
  */
 require_once 'interfazDatos.php';
 
