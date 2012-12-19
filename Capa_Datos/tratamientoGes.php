@@ -45,7 +45,7 @@ class Tratamiento_GES {
      * @param array $atributosASeleccionar Vienen del controlador
      * @param array $where Frase Where que es indicada por el controlador
      * */
-    public function Seleccionar($atributosASeleccionar, $where) {
+    public static function Seleccionar($atributosASeleccionar, $where) {
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto

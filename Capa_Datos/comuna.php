@@ -1,29 +1,37 @@
 <?php
 
+
+
+ /**
+ * 
+ * Clase que recibe datos de la tabla  
+ *
+ * @author German Oviedo 
+ */
 require_once 'interfazDatos.php';
 
-/**
-*Clase que representa y realiza todos los metodos de insercion, modificacion, seleccion y eliminacion en la tabla Principio Activo
-*@property string $_nombrePrincipioActivo
-**/
+class Comuna {
+    const nombreTabla = "Comunas";
+    const nombreIdTabla = "idComuna";
 
-class TiposRecetas {
-
-    const nombreTabla = "Tipos_Recetas";
-    const nombreIdTabla = "idTipos_Recetas";
-    
+    //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
     private $_id;
-
-    //Instanciacion 
-
-    public function TipoRecetas($id) {
-
-        $this->_id = $id;
+    
+    /**
+    * Constructor
+    * @param string $id Id de la instancia de la entidad que esta siendo referenciada
+    **/
+    public function Comuna($id){
+       	// Se apuntan las variables a los constructores de la clase
+    	$this->_id=$id;
     }
-    
-    
-	public static function Agregar($datos){
+      
+    /**
+    * Metodo estatico para agregar funciones a la tabla
+    * @param array $datos Vienen del controlador
+    **/      
+    public static function Agregar($datos){
     	$queryString = QueryStringAgregar($datos,nombreTabla);
     	$query = CallQuery($queryString);
     }
@@ -51,9 +59,12 @@ class TiposRecetas {
     * @param array $atributosASeleccionar Vienen del controlador
     * @param array $where Frase Where que es indicada por el controlador
     **/
-    public function Seleccionar($atributosASeleccionar,$where){
+    public static unction Seleccionar($atributosASeleccionar,$where){
 	$queryString = QueryStringSeleccionar($where,$atributosASeleccionar,nombreTabla);
 	$query = CallQuery($queryString);
 	//TODO: Falta el proceso de llenado de populado del objeto
     }
 }
+
+
+?>
