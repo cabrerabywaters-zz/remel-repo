@@ -1,76 +1,44 @@
 <?php
-require_once 'Conexion.php';
+
+require_once 'interfazDatos.php';
 
 class Tratamiento_GES {
 
-    private $nombre_tratamiento_ges;
-    private $descripcion_tratamiento_ges;
+    private $_datos;
+    private $_id;
 
-    public function Tratamiento_GES($nombre_tratamiento_ges, $descripcion_tratamiento_ges) {
+    //Instanciacion 
 
-        $this->nombre_tratamiento_ges = $nombre_tratamiento_ges;
-        $this->descripcion_tratamiento_ges = $descripcion_tratamiento_ges;
+    public function Tratamiento_GES($id) {
+
+        $this->_id = $id;
     }
 
-    public function Agregar_Tratamiento_GES() {
-
-        $con = new ConexionDB();
-
-        $con->conectar();
-
-        $nombre_tratamiento_ges = mysql_real_escape_string($this->nombre_tratamiento_ges);
-        $descripcion_tratamiento_ges = mysql_real_escape_string($this->descripcion_tratamiento_ges);
-
-
-        $query = mysql_query("INSERT INTO Tratamiento_GES(Descripcion,Nombre)
-                              VALUES ('$descripcion_tratamiento_ges','$nombre_tratamiento_ges')");
-
-        if ($query) {
-
-            echo "Tratamiento_GES $this->nombre_tratamiento_ges Agregado con exito";
-        } else {
-            die('Error: ' . mysql_error());
-        }
-
-        $con->desconectar();
+    public static function Agregar($datos) {
+        $queryString = QueryStringAgregar($datos, "Tratamiento_GES");
+        $query = CallQuery($queryString);
     }
 
-    public function Eliminar_Tratamiento_GES() {
-        $con = new ConexionDB();
-
-        $con->conectar();
-        //terminar despues con ajax
-        $query = mysql_query("DELETE FROM Tratamiento_GES(Nombre,Descripcion) WHERE idTratamiento_GES = ''");
-
-        if ($query) {
-
-            echo "Tratamiento_GES eliminado con exito";
-        } else {
-            die('Error: ' . mysql_error());
-        }
-
-        $con->desconectar();
+    public function BorrarPorId() {
+        $queryString = QueryStringBorrarPorId("Tratamiento_GES", "idTratamiento_GES", $_id);
+        $query = CallQuery($queryString);
     }
 
-    public function Modificar_Tratamiento_GES() {
-        $con = new ConexionDB();
+    public function Actualizar($datos) {
+        // Frase WHERE
+        $where = "WHERE ...";
+        $queryString = QueryStringActualizar($where, $datos, "Tratamiento_GES");
+        $query = CallQuery($queryString);
+    }
 
-        $con->conectar();
-
-        //terminar despues con ajax
-        $query = mysql_query("UPDATE Tratamiento_GES 
-                              SET Nombre = '$nombre_tratamiento_ges', Descrpicion = '$descripcion_tratamiento_ges'
-                              WHERE idTratamiento_GES = ''");
-
-        if ($query) {
-
-            echo "Tratamiento_GES $this->nombre_tratamiento_ges modificado con exito";
-        } else {
-            die('Error: ' . mysql_error());
-        }
-
-        $con->desconectar();
+    public function Seleccionar($atributosASeleccionar) {
+        // Frase WHERE
+        $where = "WHERE ...";
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, "Tratamiento_GES");
+        $query = CallQuery($queryString);
+        //TODO: Falta el proceso de llenado de populado del objeto
     }
 
 }
+
 ?>

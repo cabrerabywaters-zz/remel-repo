@@ -1,73 +1,42 @@
 <?php
-require_once 'Conexion.php';
+
+require_once 'interfazDatos.php';
 
 class Alergias {
 
-    private $descripcion_alergias;
+    private $_datos;
+    private $_id;
 
-    public function Alergias($descripcion_alergias) {
+    public function Alergias($id) {
 
-        $this->descripcion_alergias = $descripcion_alergias;
+        $this->_id = $id;
     }
 
-    public function Agregar_Alergias() {
-
-        $con = new ConexionDB();
-
-        $con->conectar();
-
-        $descripcion_alergias = mysql_real_escape_string($this->descripcion_alergias);
-
-
-        $query = mysql_query("INSERT INTO Alergias(Descripcion)
-                              VALUES ('$descripcion_alergias')");
-
-        if ($query) {
-
-            echo "Alergia $this->descripcion_alergias Agregada con exito";
-        } else {
-            die('Error: ' . mysql_error());
-        }
-
-        $con->desconectar();
+    public static function Agregar($datos) {
+        $queryString = QueryStringAgregar($datos, "Alergias");
+        $query = CallQuery($queryString);
     }
 
-    public function Eliminar_Alergias() {
-        $con = new ConexionDB();
-
-        $con->conectar();
-        //terminar despues con ajax
-        $query = mysql_query("DELETE FROM Alergias(Descripcion) WHERE idAlergias = ''");
-
-        if ($query) {
-
-            echo "Alergia eliminada con exito";
-        } else {
-            die('Error: ' . mysql_error());
-        }
-
-        $con->desconectar();
+    public function BorrarPorId() {
+        $queryString = QueryStringBorrarPorId("Alergias", "idAlergias", $_id);
+        $query = CallQuery($queryString);
     }
 
-    public function Modificar_Alergias() {
-        $con = new ConexionDB();
+    public function Actualizar($datos) {
+        // Frase WHERE
+        $where = "WHERE ...";
+        $queryString = QueryStringActualizar($where, $datos, "Alergias");
+        $query = CallQuery($queryString);
+    }
 
-        $con->conectar();
-
-        //terminar despues con ajax
-        $query = mysql_query("UPDATE Tratamiento_GES 
-                              SET Descrpicion = '$descripcion_alergias'
-                              WHERE idAlergias = ''");
-
-        if ($query) {
-
-            echo "Alergia $this->descripcion_alergias Agregada con exito";
-        } else {
-            die('Error: ' . mysql_error());
-        }
-
-        $con->desconectar();
+    public function Seleccionar($atributosASeleccionar) {
+        // Frase WHERE
+        $where = "WHERE ...";
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, "Alergias");
+        $query = CallQuery($queryString);
+        //TODO: Falta el proceso de llenado de populado del objeto
     }
 
 }
+
 ?>
