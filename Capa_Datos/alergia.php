@@ -10,9 +10,9 @@
  */
 require_once 'interfazDatos.php';
 
-class Region {
-    const nombreTabla = "Regiones";
-    const nombreIdTabla = "idRegion";
+class Alergia {
+    const nombreTabla = "Alergias";
+    const nombreIdTabla = "idAlergia";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -22,7 +22,7 @@ class Region {
     * Constructor
     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
-    public function Region($id){
+    public function Alergia($id){
        	// Se apuntan las variables a los constructores de la clase
     	$this->_id=$id;
     }

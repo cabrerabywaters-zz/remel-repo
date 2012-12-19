@@ -4,15 +4,15 @@
 
  /**
  * 
- * Clase que recibe datos de una tabla representada abajo 
+ * Clase que recibe datos de la tabla  
  *
- * @author Ignacio Cabrera
- **/
+ * @author German Oviedo 
+ */
 require_once 'interfazDatos.php';
 
-class Alergia {
-    const nombreTabla = "Alergias";
-    const nombreIdTabla = "idAlergia";
+class Especialidad {
+    const nombreTabla = "Especialidades";
+    const nombreIdTabla = "idEspecialidad";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -22,7 +22,7 @@ class Alergia {
     * Constructor
     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
-    public function Alergia($id){
+    public function Especialidad($id){
        	// Se apuntan las variables a los constructores de la clase
     	$this->_id=$id;
     }
@@ -49,9 +49,9 @@ class Alergia {
     * @param array $datos Vienen del controlador
     **/
     public function Actualizar($datos){
-	$where = "WHERE";
+	$where = "WHERE ".nombreIdTabla." = '$id'";
 	$queryString = QueryStringActualizar($where,$datos,nombreTabla);
-	$query = CallQuery($queryString;
+	$query = CallQuery($queryString);
     }
     
     /**
