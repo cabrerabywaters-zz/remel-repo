@@ -8,8 +8,8 @@ require_once '../Capa_Datos/region.php';
 **/
 function Creacion(){
 	$datosCreacion = array(
-				array('Nombre','Antofagasta'),
-				array('Numero','2')
+				array('Nombre',$_POST['nombre_region']),
+				array('Numero',$_POST['numero_region'])
 				);
 	Region::Agregar($datosCreacion);	
 }
