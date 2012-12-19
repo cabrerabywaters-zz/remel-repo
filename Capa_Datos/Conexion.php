@@ -26,9 +26,9 @@ class ConexionDB {
         
          // Se retiran datos desde el archivo Config.php
          
-	require_once('Config.php');
+	include('Config.php');
       
-        $this->servidor = $servidor ;
+        $this->servidor = $servidor;
         $this->nombre_usuario = $nombre_usuario ;
         $this->contrasena = $contrasena ;
         $this->base_de_datos = $base_de_datos;
