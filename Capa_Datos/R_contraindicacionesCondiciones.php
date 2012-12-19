@@ -6,6 +6,7 @@
  */
 
 require_once 'interfazRelacion.php';
+include "../Capa_Datos/CallQuery.php";
 
 class R_contraindicacionesCondiciones {
 
@@ -22,12 +23,12 @@ class R_contraindicacionesCondiciones {
 
     public static function CrearRelacion($id,$datos) {
         $queryString = QueryStringCrearRelacion($id,$datos, self::$nombreTabla);
-        $query = CallQueryRelacion($queryString);
+        $query = CallQuery($queryString);
     }
 
     public function BorrarPorIdRelacion() {
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreDeIds, $_id);
-        $query = CallQueryRelacion($queryString);
+        $query = CallQuery($queryString);
     }
     
     
