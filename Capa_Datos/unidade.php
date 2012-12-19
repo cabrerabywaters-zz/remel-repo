@@ -6,7 +6,7 @@
  * 
  * Clase que recibe datos de la tabla  
  *
- * @author German Oviedo 
+ * @author Leonardo Hidalgo
  */
 require_once 'interfazDatos.php';
 

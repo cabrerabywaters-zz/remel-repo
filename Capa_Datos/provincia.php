@@ -10,7 +10,7 @@
  */
 require_once 'interfazDatos.php';
 
-class Proviancia {
+class Provincia {
     const nombreTabla = "Provincias";
     const nombreIdTabla = "idProvincia";
 
