@@ -4,13 +4,13 @@
  * Clase para crear relaciones entre tablas a partir de sus IDs 
  * @ author José-Fco. González
  */
-require_once 'interfazDatos.php';
+require_once 'interfazRelacion.php';
 
 class R_AlergiaPaciente {
 
-    const nombreTablaUno = "Alergias";
-    const nombreTablaDos = "Pacientes";
-    const nombreDeIds = array('Alergia_idAlergia', 'Paciente_idPaciente');
+    static $nombreTabla = 'Alergia_has_Paciente';
+    static $nombreTablasRelacionadas = array('Alergias','Pacientes');
+    static $nombreDeIds = array('Alergia_idAlergia', 'Paciente_idPaciente');
 
     private $_id;
 
@@ -19,13 +19,13 @@ class R_AlergiaPaciente {
     }
 
     public static function CrearRelacion($id) {
-        $queryString = QueryStringCrearRelacion($id, nombreTabla);
+        $queryString = QueryStringCrearRelacion($id, self::$nombreTabla);
         $query = CallQueryRelacion($queryString);
     }
 
     public function BorrarPorIdRelacion() {
-        $queryString = QueryStringBorrarPorIdRelacion(nombreTabla, nombreDeIds, $_id);
-        $query = CallQueryrelacion($queryString);
+        $queryString = QueryStringBorrarPorIdRelacion($nombreTabla, $nombreDeIds, $_id);
+        $query = CallQueryRelacion($queryString);
     }
     
     
