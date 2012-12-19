@@ -38,12 +38,13 @@ function QueryStringCrear($datos, $nombreTabla){
 			$valores = $valores.",";
 		}
 	}
+
 	$atributos = $atributos.")";
 	$valores = $valores.")";
 	
 	$insertString = "$insertString $atributos VALUES $valores";
 
-	return $insertString.")";
+	return $insertString;
 }
 
 /**
