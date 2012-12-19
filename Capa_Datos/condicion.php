@@ -2,7 +2,7 @@
 
 require_once 'interfazDatos.php';
 
-class Condiciones {
+class Condicion {
 
     const nombreTabla = "Condiciones";
     const nombreIdTabla = "idCondiciones";
@@ -12,7 +12,7 @@ class Condiciones {
 
     //Instanciacion 
 
-    public function Condiciones($id) {
+    public function Condicion($id) {
 
         $this->_id = $id;
     }
@@ -45,7 +45,7 @@ class Condiciones {
      * @param array $atributosASeleccionar Vienen del controlador
      * @param array $where Frase Where que es indicada por el controlador
      * */
-    public function Seleccionar($atributosASeleccionar, $where) {
+    public static function Seleccionar($atributosASeleccionar, $where) {
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
