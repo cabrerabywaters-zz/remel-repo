@@ -61,7 +61,7 @@ class TipoInstitucion {
     public static function Seleccionar($atributosASeleccionar, $where) {
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
         $query = CallQuery($queryString);
-        //TODO: Falta el proceso de llenado de populado del objeto
+        var_dump($result);$resultArray = array();while($fila = $result->fetch_assoc()) {$resultArray[] = $fila;}return $resultArray;
     }
 }
 
