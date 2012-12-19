@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../Capa_Datos/region.php';
+require_once '../Capa_Datos/provincia.php';
 
 /**
 * Funciones controladores CRUD
@@ -8,31 +8,31 @@ require_once '../Capa_Datos/region.php';
 **/
 function Creacion(){
 	$datosCreacion = array(
-				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])
+				array('Nombre',$_POST['nombre_provincia']),
+				array('Regiones_idRegion',$_POST['idRegion'])
 				);
 	Region::Agregar($datosCreacion);	
 }
 
 function Eliminacion(){
-	$regionABorrar = new Region($_POST['idRegion']);
+	$regionABorrar = new Provincia($_POST['idProvincia']);
 	$regionABorrar->BorrarPorId();
 }
 
 function Actualizar(){
 	$datosActualizacion = array(
 				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region']
+				array('Regiones_idRegion',$_POST['idRegion']);
 				);
 
-	$regionACrear = new Region($_POST['idRegion']);
+	$regionACrear = new Provincia($_POST['idProvincia']);
 	$regionAActualizar->($datosActualizacion);
 }
 
 function SeleccionarTodas(){
 	$atributosASeleccionar = array(
 					'Nombre', 
-					'Numero'
+					'Regiones_idRegion'
 					);
 	$where = "";
 	Region::Seleccionar($atributosASeleccionar,$where);
