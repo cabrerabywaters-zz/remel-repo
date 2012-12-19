@@ -56,7 +56,7 @@
     // Se crean las variables que serán enviadas
     
     // url de la página a la cual se enviarán las vairables
-    var url = "registro_region.php";
+    var url = "../Capa_Controladores/region.php";
     var nombre = document.getElementById("nombre_region").value;
     var numero = document.getElementById("numero_region").value;
     var vars = "nombre_region="+nombre+"&numero_region="+numero;

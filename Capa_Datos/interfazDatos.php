@@ -76,7 +76,7 @@ function CallQuery($queryString){
 			exit();
 		}
 		
-		if($result = $mysqliCon->query($queryString)){
+		if($result = $mysqlCon->query($queryString)){
 			$mysqlCon->close();
 			return $result;
 		}     
