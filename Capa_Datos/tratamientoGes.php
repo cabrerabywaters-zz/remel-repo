@@ -4,6 +4,9 @@ require_once 'interfazDatos.php';
 
 class Tratamiento_GES {
 
+    const nombreTabla = "Tratamiento_GES";
+    const nombreIdTabla = "idTratamiento_GES";
+
     private $_datos;
     private $_id;
 
@@ -15,26 +18,35 @@ class Tratamiento_GES {
     }
 
     public static function Agregar($datos) {
-        $queryString = QueryStringAgregar($datos, "Tratamiento_GES");
+        $queryString = QueryStringAgregar($datos, nombreTabla);
         $query = CallQuery($queryString);
     }
 
+    /**
+     * Metodo para agregar funciones a la tabla
+     * */
     public function BorrarPorId() {
-        $queryString = QueryStringBorrarPorId("Tratamiento_GES", "idTratamiento_GES", $_id);
+        $queryString = QueryStringBorrarPorId(nombreTabla, nombreIdTabla, $_id);
         $query = CallQuery($queryString);
     }
 
+    /**
+     * Metodo para agregar funciones a la tabla
+     * @param array $datos Vienen del controlador
+     * */
     public function Actualizar($datos) {
-        // Frase WHERE
-        $where = "WHERE ...";
-        $queryString = QueryStringActualizar($where, $datos, "Tratamiento_GES");
+        $where = "WHERE " . nombreIdTabla . " = '$id'";
+        $queryString = QueryStringActualizar($where, $datos, nombreTabla);
         $query = CallQuery($queryString);
     }
 
-    public function Seleccionar($atributosASeleccionar) {
-        // Frase WHERE
-        $where = "WHERE ...";
-        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, "Tratamiento_GES");
+    /**
+     * Metodo para agregar funciones a la tabla
+     * @param array $atributosASeleccionar Vienen del controlador
+     * @param array $where Frase Where que es indicada por el controlador
+     * */
+    public function Seleccionar($atributosASeleccionar, $where) {
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, nombreTabla);
         $query = CallQuery($queryString);
         //TODO: Falta el proceso de llenado de populado del objeto
     }

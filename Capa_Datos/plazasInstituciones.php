@@ -7,10 +7,10 @@
  */
 require_once 'interfazDatos.php';
 
-class TipoInstituciones {
+class PlazasInstituciones {
 
-    const nombreTabla = "Tipos_Instituciones";
-    const nombreIdTabla = "idTipos_Instituciones";
+    const nombreTabla = "Plazas_Instituciones";
+    const nombreIdTabla = "idPlazas_Instituciones";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -20,7 +20,7 @@ class TipoInstituciones {
      * Constructor
      * @param string $id Id de la instancia de la entidad que esta siendo referenciada
      * */
-    public function TipoInstituciones($id) {
+    public function PlazasInstituciones($id) {
         // Se apuntan las variables a los constructores de la clase
         $this->_id = $id;
     }
@@ -66,3 +66,4 @@ class TipoInstituciones {
 }
 
 ?>
+
