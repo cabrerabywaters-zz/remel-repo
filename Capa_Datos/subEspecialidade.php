@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 
  /**
@@ -15,9 +10,9 @@
  */
 require_once 'interfazDatos.php';
 
-class Tipo {
-    const nombreTabla = "Tipo";
-    const nombreIdTabla = "idTipo";
+class Alergia {
+    const nombreTabla = "Alergias";
+    const nombreIdTabla = "idAlergia";
 
     //Array de datos y string (o array, si es necesario) de IDs.
     private $_datos;
@@ -27,7 +22,7 @@ class Tipo {
     * Constructor
     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
-    public function Tipo($id){
+    public function Alergia($id){
        	// Se apuntan las variables a los constructores de la clase
     	$this->_id=$id;
     }
@@ -70,4 +65,6 @@ class Tipo {
 	//TODO: Falta el proceso de llenado de populado del objeto
     }
 }
+
+
 ?>

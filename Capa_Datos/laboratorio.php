@@ -10,7 +10,7 @@
  */
 require_once 'interfazDatos.php';
 
-class Laboratorio  {
+class Laboratorio {
     const nombreTabla = "Laboratorios";
     const nombreIdTabla = "RUT";
 
@@ -68,3 +68,4 @@ class Laboratorio  {
 
 
 ?>
+
