@@ -18,27 +18,45 @@ function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreT
     return $selectString;
 }
 
-function QueryStringCrearRelacion($id, $nombreTabla){
-	$insertString = "INSERT INTO $nombreTabla";
+function QueryStringCrearRelacion($id, $datos, $nombreTabla) {
+    $insertString = "INSERT INTO $nombreTabla";
 
-	$atributos = "(";
-	$valores = "(";
+    $atributos = "(";
+    $valores = "(";
 
-	for($i = 0; $i < count($id); $i++){
-		$atributos = $atributos.$id[$i][0];
-		$valores = $valores."'".$id[$i][1]."'";
-		if($i != count($id) - 1){
-			$atributos = $atributos.",";
-			$valores = $valores.",";
-		}
-	}
+    if ($datos == null) {
+        for ($i = 0; $i < count($id); $i++) {
+            $atributos = $atributos . $id[$i][0];
+            $valores = $valores . "'" . $id[$i][1] . "'";
+            if ($i != count($id) - 1) {
+                $atributos = $atributos . ",";
+                $valores = $valores . ",";
+            }
+        }
+    } else {
+        $totalAtributos = count($id) + count($datos);
+        for ($i = 0; $i < count($id); $i++) {
+            $atributos = $atributos . $id[$i][0];
+            $valores = $valores . "'" . $id[$i][1] . "'";
+            $atributos = $atributos . ",";
+            $valores = $valores . ",";
+        }
+        for ($i = 0; $i < count($datos); $i++) {
+            $atributos = $atributos . $datos[$i][0];
+            $valores = $valores . "'" . $datos[$i][1] . "'";
 
-	$atributos = $atributos.")";
-	$valores = $valores.")";
-	
-	$insertString = "$insertString $atributos VALUES $valores";
-        echo $insertString;
-	return $insertString;
+            if ($i != count($datos) - 1) {
+                $atributos = $atributos . ",";
+                $valores = $valores . ",";
+            }
+        }
+    }
+    $atributos = $atributos . ")";
+    $valores = $valores . ")";
+
+    $insertString = "$insertString $atributos VALUES $valores";
+    echo $insertString;
+    return $insertString;
 }
 
 function QueryStringBorrarPorIdRelacion($nombreTabla, $nombreId, $id) {
@@ -55,16 +73,18 @@ function QueryStringBorrarPorIdRelacion($nombreTabla, $nombreId, $id) {
     }
     return $deleteString;
 }
+
 /*
-function QueryStringActualizarRelacion($where, $id, $nombreTabla) {
-    $updateString = "UPDATE $nombreTabla SET ";
-    foreach ($id as $identificador => $valor) {
-        $updateString = $updateString . $identificador . "='" . $valor . "' ";
-    }
-    $updateString = $updateString . $where;
-    return $updateString;
-}
-*/
+  function QueryStringActualizarRelacion($where, $id, $nombreTabla) {
+  $updateString = "UPDATE $nombreTabla SET ";
+  foreach ($id as $identificador => $valor) {
+  $updateString = $updateString . $identificador . "='" . $valor . "' ";
+  }
+  $updateString = $updateString . $where;
+  return $updateString;
+  }
+ */
+
 function CallQueryRelacion($queryString) {
     $con = new ConexionDB();
     $con->ConexionDB();
