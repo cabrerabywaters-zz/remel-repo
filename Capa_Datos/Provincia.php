@@ -10,7 +10,7 @@
  */
 require_once 'interfazDatos.php';
 
-class Alergia {
+class Proviancia {
     const nombreTabla = "Provincias";
     const nombreIdTabla = "idProvincia";
 
@@ -22,7 +22,7 @@ class Alergia {
     * Constructor
     * @param string $id Id de la instancia de la entidad que esta siendo referenciada
     **/
-    public function Alergia($id){
+    public function Provincia($id){
        	// Se apuntan las variables a los constructores de la clase
     	$this->_id=$id;
     }
