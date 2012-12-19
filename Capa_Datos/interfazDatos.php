@@ -25,16 +25,24 @@ function QueryStringSeleccionar($where,$atributosASeleccionar,$nombreTabla){
 * Funcion que crea el string para la query de Crear
 **/
 function QueryStringCrear($datos, $nombreTabla){
-	$insertString = "INSERT INTO $nombreTabla (";
+	$insertString = "INSERT INTO $nombreTabla";
+
+	$atributos = "(";
+	$valores = "(";
+
 	for($i = 0; $i < count($datos); $i++){
-		$insertString = $insertString.$datos[$i][0];
-		if($i != count($datos) - 1) $insertString = $insertString.",";
+		$atributos = $atributos.$datos[$i][0];
+		$valores = $valores.$datos[$i][1];
+		if($i != count($datos) - 1){
+			$atributos = $atributos.",";
+			$valores = $valores.",";
+		}
 	}
-	$insertString = $insertString.") VALUES (";
-	for($i = 0; $i < count($datos); $i++){
-                $insertString = $insertString.$datos[$i][1];
-		if($i != count($datos) - 1) $insertString = $insertString.",";
-        }
+	$atributos = $atributos.")";
+	$valores = $valores.")";
+	
+	$insertString = "$insertString $atributos VALUES $valores";
+
 	return $insertString.")";
 }
 
