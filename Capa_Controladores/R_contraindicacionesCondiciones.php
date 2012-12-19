@@ -16,7 +16,7 @@ function Creacion() {
     
 }
 function Eliminacion(){
-	$relacionABorrar = new R_AlergiaPaciente($_POST['id_Alergia'],$_POST['id_Paciente']);
+	$relacionABorrar = new R_AlergiaPaciente($_POST['id_Condiciones'],$_POST['id_Medicamento']);
 	$relacionABorrar->BorrarPorIdRelacion();
 }
 
