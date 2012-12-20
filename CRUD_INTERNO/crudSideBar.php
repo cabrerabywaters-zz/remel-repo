@@ -7,28 +7,54 @@
  */
 
 $tablasDB = array(); //arreglo con las vistas de la DB
+
 $tablasDB['Usuarios'] =
 array( // arreglo con indice de tabla => nombreArchivo
-    'Personas'=>'editarPersona.php',
-    'Funcionarios'=>'editarFuncionario.php',
-    'Pinpass'=>'editarpinPass.php',
-    'Etnias'=>'editarEtnias.php',
-    'Previsiones'=>'editarPrevisiones.php',
-    'Especialidades'=>'editarEspecialidades.php',
-    'Pinpass'=>'pinPass.php',
-    'SubEspecialidads'=>'editarSubEspecialidades.php');
+    'Personas'=>'#',
+    'Funcionarios'=>'#',
+    'Pinpass'=>'#',
+    'Etnias'=>'#',
+    'Previsiones'=>'#',
+    'Especialidades'=>'#',
+    'Pinpass'=>'#',
+    'SubEspecialidads'=>'#');
+
 $tablasDB['InformacionPacientes']=
 array( // arreglo con indice de tabla => nombreArchivo
-    'TratamientoGes'=>'tratamientoGes',
-    'TratamientoGesPaciente'=>'tratamientoGesPaciente.php',
-    'Alergias'=>'alergias.php',
-    'AlergiasPaciente'=>'alergiasPaciente.php',
-    'Condiciones'=>'condiciones.php',    
-    'CondicionesPaciente'=>'pinPass.php',);
-$tablasDB['Ubicacion']=array();
-$tablasDB['Core']=array();
-$tablasDB['Vademecum']=array();
-$tablasDB['Logica']=array();
+    'TratamientoGes'=>'#',
+    'TratamientoGesPaciente'=>'#',
+    'Alergias'=>'#',
+    'AlergiasPaciente'=>'#',
+    'Condiciones'=>'#',    
+    'CondicionesPaciente'=>'#');
+
+$tablasDB['Ubicacion']=
+array( // arreglo con indice de tabla => nombreArchivo
+    'TipoInstituciones'=>'#',
+    'PlazasInstitucion'=>'#',
+    'Regiones'=>'#',
+    'Provincias'=>'#',
+    'Comunas'=>'#');
+
+$tablasDB['Core']=
+array(
+    'TiposRecetas'=>'#'
+);
+
+$tablasDB['Vademecum']=
+array(
+    'ClasesTerapeuticas'=>'#',
+    'SubClasesTerapeuticas'=>'#',
+    'Laboratorios'=>'#',
+    'Presentaciones'=>'#',
+    'Unidades'=>'#',
+    'PrincipiosActivos'=>'#',
+);
+
+$tablasDB['Logica']=
+array(
+   
+);
 
 ?>
 <div class="span2"> <!--Sidebar content-->
