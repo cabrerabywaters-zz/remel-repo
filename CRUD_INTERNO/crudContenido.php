@@ -13,7 +13,7 @@
    
     <div class="span10" id="contenido">
 
-<?php
+<?php // aqui se incluye el formulario o la vista correspondiente
 include "vistaEjemplo.php";
 visualizacionTabla($arreglo);
 ?>
