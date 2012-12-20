@@ -5,6 +5,20 @@
  * nuevo elemento
  * @author: Cesar Gonzalez
  */
+?>
+<div class="row-fluid">
+    <div class="span8 offset1" id="menu-contenido"><!-- menu por tabla-->
+        <a class="btn btn-inverse">Agregar nuevo</a>
+   </div><!-- fin div menu por tabla-->
+   
+    <div class="span10" id="contenido">
+        
+ 
+
+
+<?php
 include "vistaEjemplo.php";
 visualizacionTabla($arreglo);
 ?>
+    </div>
+</div>
