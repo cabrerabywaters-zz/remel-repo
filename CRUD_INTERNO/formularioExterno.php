@@ -4,8 +4,23 @@ tablas de manera externa<br>
 @author Leonardo Hidalgo */
 
 //areglo de ejmplo para el archivo
-$arreglo=array(array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4));
-// funcion que agarra el arreglo y lo transforma en lo que se necesita
+$arreglo=array(
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
+    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4));
+
+/**
+ * Función para crear un formulario a partir de los n campos que tenga una tabla
+ * se debe entregar el arreglo con los select
+ * 
+ */
 function creacionFormularios($arreglo)
 { // igualacion de el primer array a una variable para usarla mas adelante
 	$array=$arreglo[0];
@@ -14,16 +29,7 @@ function creacionFormularios($arreglo)
   // se recorre el arreglo
 	foreach ($array as $dato => $valor)
 	{
-    
-	
-	/************************************************
-	 ************************************************
-	 *******************terminar con ajax************
-	 ************************************************
-	 ************************************************/
-	 
-	 
-	echo "<div class='control-group'>";
+    	echo "<div class='control-group'>";
 	// es el label que muestra datos
     echo"<label class='control-label'>".ucfirst($dato)."</label>";
 	
@@ -40,9 +46,9 @@ function creacionFormularios($arreglo)
     echo"<div class='controls'>";
       // es el boton en si con su respectivo formato
       echo"<button type='submit' class='btn'>Agregar</button>";
-    echo"</div>";
-  echo"</div>";
-echo"</div>";
+    echo"</div><!-- cierre div controls->";
+  echo"</div><!-- cierre div control-group";
+echo"</div><!--cierre div horizontal-group-->";
 
 }
 ?>
