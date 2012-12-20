@@ -8,21 +8,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<?php
-include 'estilosBootstrap.php'; // archivo de estilos Bootstrap
-?>
-  
-    <script type="text/javascript" src="/js/verificacion.js"></script>
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="../css/bootstrap.css" rel="stylesheet"> <!-- Estilo css de bootstrap -->
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    
     <script type="text/javascript">                                         
     $(document).ready(function() {
       // para que los acordiones inicien colapsados
     $('.accordion-body').collapse({
-   
-  toggle: true
+     toggle: true
       })
         }); //end ready
     </script>
