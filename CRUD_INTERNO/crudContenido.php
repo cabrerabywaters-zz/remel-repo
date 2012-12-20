@@ -30,6 +30,6 @@ require 'formularioExterno.php'; // funcion que crea el formulario de un arreglo
 visualizacionTabla($arreglo);
 creacionFormularios($arreglo);
 ?>
-        <script ref="text/javascript" src="js/validarFormExterno.js"></script>  
+        <script ref="text/javascript" src="../js/validarFormExterno.js"></script>  
     </div>
 </div>
