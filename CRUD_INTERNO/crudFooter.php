@@ -5,8 +5,6 @@
  * @author: Cesar Gonzalez
  */
 ?>
-</div>
- 
 <footer>
     &copy;Remel 2012
 </footer>
