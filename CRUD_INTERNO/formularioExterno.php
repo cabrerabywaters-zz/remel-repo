@@ -1,20 +1,9 @@
 <?php
-/* el archivo sirve para poder agregar datos a las tablas de esten de manera suelta en la BBDD<br>
-tablas de manera externa<br>
-@author Leonardo Hidalgo */
-
-//areglo de ejmplo para el archivo
-$arreglo=array(
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4),
-    array('nombre'=>1,'id'=>2,'fecha'=>3,'dias'=>4));
+/**
+ *  el archivo sirve para poder agregar datos a las tablas de esten de manera suelta en la BBDD
+ * tablas de manera externa
+ * @author Leonardo Hidalgo 
+ */
 
 /**
  * Función para crear un formulario a partir de los n campos que tenga una tabla
@@ -23,9 +12,9 @@ $arreglo=array(
  */
 function creacionFormularios($arreglo)
 { // igualacion de el primer array a una variable para usarla mas adelante
-	$array=$arreglo[0];
+	$array= $arreglo[0];
 // se abre el bootstap para la creacion del formulario
-	echo "<div class='form-horizontal'>";
+	echo "<form class='form-horizontal' id='formulario'>";
   // se recorre el arreglo
 	foreach ($array as $dato => $valor)
 	{
@@ -45,10 +34,10 @@ function creacionFormularios($arreglo)
   // es el tipo de boton que se asigna
     echo"<div class='controls'>";
       // es el boton en si con su respectivo formato
-      echo"<button type='submit' class='btn'>Agregar</button>";
+      echo"<button type='submit' class='btn btn-inverse' id='agregar'>Agregar</button>";
     echo"</div><!-- cierre div controls->";
   echo"</div><!-- cierre div control-group";
-echo"</div><!--cierre div horizontal-group-->";
+echo"</form><!--cierre div horizontal-group-->";
 
 }
 ?>
