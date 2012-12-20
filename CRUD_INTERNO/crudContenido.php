@@ -5,4 +5,6 @@
  * nuevo elemento
  * @author: Cesar Gonzalez
  */
+include "vistaEjemplo.php";
+visualizacionTabla($arreglo);
 ?>
