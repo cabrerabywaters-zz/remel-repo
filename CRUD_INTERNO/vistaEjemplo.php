@@ -1,4 +1,3 @@
-
 <?php
 /*
 este archivo esta echo para que se inserte dentro del crud
@@ -6,7 +5,9 @@ este archivo esta echo para que se inserte dentro del crud
 */
 // este es un arreglo de ejemplo
 $arreglo=array(array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4),array("nombre"=>1,"id"=>2,"fecha"=>3,"dias"=>4));
-
+// funcion que generara las tablas en el crud , requiere la variable arreglo que es la que proviene desde el servidor 
+function visualizacionTabla($arreglo)
+{
 // esto es lo que le da inicio a la tabla
 echo "<table class='table table-hover'>";
 
@@ -47,4 +48,6 @@ foreach ($arreglo as $datos)
 }
 //se cierra la tabla
 echo "</table>";
+
+}
 ?>
