@@ -11,8 +11,7 @@
 <?php
 include 'estilosBootstrap.php'; // archivo de estilos Bootstrap
 ?>
-  </head>
-    
+  
     <script type="text/javascript" src="/js/verificacion.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
