@@ -17,7 +17,7 @@ array( // arreglo con indice de tabla => nombreArchivo
     'Previsiones'=>'#',
     'Especialidades'=>'#',
     'Pinpass'=>'#',
-    'SubEspecialidads'=>'#');
+    'SubEspecialidades'=>'#');
 
 $tablasDB['InformacionPacientes']=
 array( // arreglo con indice de tabla => nombreArchivo

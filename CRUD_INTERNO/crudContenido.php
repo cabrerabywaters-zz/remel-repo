@@ -12,9 +12,6 @@
    </div><!-- fin div menu por tabla-->
    
     <div class="span10" id="contenido">
-        
- 
-
 
 <?php
 include "vistaEjemplo.php";
