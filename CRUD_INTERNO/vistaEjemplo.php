@@ -27,10 +27,12 @@ echo"</tr>";
 
 
 // se vuelve a crear ordenar los arreglos nuevamente
+$contador=0;
 foreach ($arreglo as $datos)
 {
 	// va creando filas por cada arreglo que contenga la variable
-	echo"<tr>";
+	echo"<tr id='$contador'>";
+	$contador++;
 	
 // se ordenan los arreglos internos
 	foreach ($datos as $dato=>$valor)
@@ -39,7 +41,16 @@ foreach ($arreglo as $datos)
 		
 	}
 	// genera el lapiz
-	echo"<td><i class='icon-pencil'></i></td>";
+	?><td><i class='icon-pencil' "></i></td>
+	
+	<script>
+    $("i").click(function () {
+      $(this).slideUp();
+      
+    });
+   
+    
+</script><?php 
 	// genera la x 
 	echo"<td><i class='icon-remove'></i></td>";
 	//cierra las fila
