@@ -60,24 +60,18 @@ array(
 <div class="span2"> <!--Sidebar content-->
             <div class="accordion" id="accordion2">
 <?php
+echo "<div id='accordion'>";
 foreach($tablasDB as $vista=>$tablas){
-    echo "<div class='accordion-group'><!-- $vista-->
-                    <div class='accordion-heading'>
-                        <a class='btn btn-primary btn-block' data-toggle='collapse' data-parent='#accordion2' href='#$vista'>
-                        <i class='icon-arrow-down'></i>$vista
-                        </a>
-                    </div>
-                    <div id='$vista' class='accordion-body collapse in'>
-                    <div class='accordion-inner'>";
+     echo "<h3 class='btn btn-primary btn-block'>$vista</h3><!-- $vista-->       
+            <div>";
     foreach($tablas as $tabla=>$pagina){
-        echo "<a class='btn btn-block btn-small' data-parent='#accordion2' href='#'>
-                            $tabla
-                        </a>";
+        echo "<a class='btn btn-block btn-small'>$tabla</a>
+        ";
     }
-    echo "</div>
-                    </div>
-                </div><!-- end $vista-->";
+    echo "</div><!-- end $vista -->
+          ";
 }
+echo "</div>";
    ?>             
             </div>
     </div><!-- end sidebar -->
