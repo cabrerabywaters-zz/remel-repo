@@ -8,7 +8,7 @@
 ?>
 <div class="row-fluid">
     <div class="span8 offset1" id="menu-contenido"><!-- menu por tabla-->
-        <a class="btn btn-inverse" id='agregar-nuevo'>Agregar nuevo</a>
+        <a href="#myModal" role="button" class="btn btn-inverse" data-toggle="modal">Agregar Nuevo</a>
    </div><!-- fin div menu por tabla-->
    
     <div class="span10" id="contenido">
@@ -28,8 +28,24 @@ require "vistaEjemplo.php"; //funcion que crea la vista de un arreglo
 require 'formularioExterno.php'; // funcion que crea el formulario de un arreglo
 
 visualizacionTabla($arreglo);
-creacionFormularios($arreglo);
+
 ?>
+        <!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Agregar nuevo Elemento</h3>
+  </div>
+  <div class="modal-body">
+    <?php
+    creacionFormularios($arreglo);
+    ?>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+    <a class='btn btn-inverse' id='agregar'>Agregar</a>
+  </div>
+</div>
         <script ref="text/javascript" src="../js/crudValidarFormExterno.js"></script>  
     </div>
 </div>
