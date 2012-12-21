@@ -18,15 +18,26 @@ function creacionFormularios($arreglo)
             <form class='form-horizontal' id='formulario'>";
   // se recorre el arreglo
 	foreach ($array as $dato => $valor)
-	{
+	{ 
+            if($dato != 'fecha'){
     	echo "
             <div class='control-group' id='$dato'>
             <label name='$dato' class='control-label'>".ucfirst($dato)."</label>
                 <div class='controls' id='$dato-control'>
-                <input type='text'  name ='$dato' placeholder='".ucfirst($dato)."' id='inputError'>
+                <input type='text'  name ='$dato' placeholder='".ucfirst($dato)."'>
                 </div>
               </div>";
 	 }
+         else{
+         echo "
+            <div class='control-group' id='$dato'>
+            <label name='$dato' class='control-label'>".ucfirst($dato)."</label>
+                <div class='controls' id='$dato-control'>
+                <input type='text'  name ='$dato' placeholder='".ucfirst($dato)."' id='datepicker'>
+                </div>
+              </div>";    
+         }
+         }
 	 // es la division que permite la cracion del boton
   echo "
       </form><!-- cierre div horizontal-group-->";
