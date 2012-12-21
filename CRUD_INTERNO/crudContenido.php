@@ -42,6 +42,7 @@ visualizacionTabla($arreglo);
     ?>
   </div>
   <div class="modal-footer">
+      <div class="span1 offset3" id="status"></div> <!-- en este div va la respuesta del ajax --> 
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
     <a class='btn btn-inverse' id='agregar'>Agregar</a>
   </div>
