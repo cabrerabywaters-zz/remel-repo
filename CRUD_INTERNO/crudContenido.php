@@ -8,7 +8,7 @@
 ?>
 <div class="row-fluid">
     <div class="span8 offset1" id="menu-contenido"><!-- menu por tabla-->
-        <a class="btn btn-inverse">Agregar nuevo</a>
+        <a class="btn btn-inverse" id='agregar-nuevo'>Agregar nuevo</a>
    </div><!-- fin div menu por tabla-->
    
     <div class="span10" id="contenido">
@@ -30,6 +30,6 @@ require 'formularioExterno.php'; // funcion que crea el formulario de un arreglo
 visualizacionTabla($arreglo);
 creacionFormularios($arreglo);
 ?>
-        <script ref="text/javascript" src="../js/validarFormExterno.js"></script>  
+        <script ref="text/javascript" src="../js/crudValidarFormExterno.js"></script>  
     </div>
 </div>
