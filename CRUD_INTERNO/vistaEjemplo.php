@@ -41,16 +41,12 @@ foreach ($arreglo as $datos)
 		
 	}
 	// genera el lapiz
-	?><td><i class='icon-pencil' "></i></td>
+	?><td><a class='icon-pencil'
+	href="#"
+	target="v"
+	onclick="window.open('', 'v', 'width=300,height=200');" ></a></td>
 	
-	<script>
-    $("i").click(function () {
-      $(this).slideUp();
-      
-    });
-   
-    
-</script><?php 
+	<?php 
 	// genera la x 
 	echo"<td><i class='icon-remove'></i></td>";
 	//cierra las fila
