@@ -5,13 +5,17 @@
  */  
 
 $(document).ready(function(){
-    $('#agregar').click(function(){
-        
-        var datos = $('#formulario').serializeArray(); // se crea el arreglo datos con los elementos del formulario
-   
-        $(datos).each(function(){ // se itera para cada elemento del arreglo
-            alert($(this));
-        });// end each
+    $('#agregar-nuevo').click(function(){
+        // get all the inputs into an array.
+    var $inputs = $('#formulario :input');
+
+    // not sure if you wanted this, but I thought I'd add it.
+    // get an associative array of just the values.
+    var values = {}; // definicion del arreglo values
+    $inputs.each(function() { 
+        values[this.name] = $(this).val();// agarra cada input y lo guarda en el arreglo
+        });//end each
 
     });// end click
 });//end ready
+    
