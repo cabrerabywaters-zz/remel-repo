@@ -38,6 +38,9 @@ visualizacionTabla($arreglo);
   </div>
   <div class="modal-body">
     <?php
+    /**
+     * Esta función genera un formulario con los indices de cada columna de una tabla de bbdd
+     */
     creacionFormularios($arreglo);
     ?>
   </div>
@@ -45,8 +48,9 @@ visualizacionTabla($arreglo);
       <div class="span1 offset3" id="status"></div> <!-- en este div va la respuesta del ajax --> 
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
     <a class='btn btn-inverse' id='agregar'>Agregar</a>
-  </div>
-</div>
+  </div><!-- end modal-footer -->
         <script ref="text/javascript" src="../js/crudValidarFormExterno.js"></script>  
+  </div><!-- end Modal -->
+        
     </div>
 </div>
