@@ -5,7 +5,10 @@
  */  
 
 $(document).ready(function(){
+    
     $('#agregar').click(function(){
+    $('#status').html(""); //limpio el espacio de status    
+    
             // get all the inputs into an array.
     var $inputs = $('#formulario :input');
         //creacion de la variable para enviar via post
@@ -29,21 +32,26 @@ $(document).ready(function(){
         else{ // se vuelve a la normalidad el campo
             
         $('input[name="'+indice+'"]').parent().parent().attr('class','control-group');
-        $('input[name="'+indice+'"]').attr('id',indice);
+            if(indice == "fecha"){
+                $('input[name="'+indice+'"]').attr('id',"datepicker");
+            }
+            else{
+                 $('input[name="'+indice+'"]').attr('id',indice);
+            }
         $('input[name="'+indice+'"]').attr('placeholder',indice);
         }    
  
     });//end each
 
     if(errores == 0 && envio !=""){ // si no hay errores en el formulario y el envio no está vacío
-    alert('está todo ok!!');    
+      
 
     //Se crea el objeto XMLHttpRequest 
     var hr = new XMLHttpRequest();
     // Se crean las variables que serán enviadas
     
     // url de la página a la cual se enviarán las vairables
-    var url = "../Capa_Controladores/region.php"; 
+    var url = "../Capa_Controladores/controladorPruebas.php"; 
     envio = envio+'var=dondeEstoy'; // SE DEBE AGREGAR UNA VARIABLE QUE INDIQUE EN QUE SECCION ESTOY
     //envio final por POST
     hr.open("POST", url, true);
@@ -52,17 +60,17 @@ $(document).ready(function(){
     // Access the onreadystatechange event for the XMLHttpRequest object
     hr.onreadystatechange = function() {
 	    if(hr.readyState == 4 && hr.status == 200) {
-		    var return_data = hr.responseText;
-			// hay que traspasar el elmento respuesta
-                        // hay que borrar los campos
-                        // hay que cerrar el div
-          
-                             
-	    }
+		    var return_data = hr.responseText;//traspasar el elmento respuesta
+                        $('#status').html(return_data);
+                        $inputs.each(function() {// hay que borrar los campos
+                        $(this).val(""); 
+                        });//end each
+              }
     }
+    
     // Send the data to PHP now... and wait for response to update the status div
     hr.send(envio); // Actually execute the request
-    
+    $('#status').html("<div class='progress progress-striped active'><div class='bar' style='width:100%;'>Procesando...</div></div>");
     
     
     }
