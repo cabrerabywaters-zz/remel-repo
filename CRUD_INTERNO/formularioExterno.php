@@ -19,23 +19,27 @@ function creacionFormularios($arreglo)
   // se recorre el arreglo
 	foreach ($array as $dato => $valor)
 	{ 
-            if($dato != 'fecha'){
-    	echo "
-            <div class='control-group' id='$dato'>
-            <label name='$dato' class='control-label'>".ucfirst($dato)."</label>
-                <div class='controls' id='$dato-control'>
-                <input type='text'  name ='$dato' placeholder='".ucfirst($dato)."'>
-                </div>
-              </div>";
+         if($dato == 'id'){
+          
 	 }
+         elseif($dato == 'fecha'){
+            echo "
+                 <div class='control-group' id='$dato'>
+                <label name='$dato' class='control-label'>".ucfirst($dato)."</label>
+                    <div class='controls' id='$dato-control'>
+                        <input type='text'  name ='$dato' placeholder='".ucfirst($dato)."' id='datepicker'>
+                    </div>
+                </div>";    
+         }
          else{
-         echo "
-            <div class='control-group' id='$dato'>
-            <label name='$dato' class='control-label'>".ucfirst($dato)."</label>
-                <div class='controls' id='$dato-control'>
-                <input type='text'  name ='$dato' placeholder='".ucfirst($dato)."' id='datepicker'>
-                </div>
-              </div>";    
+             echo "
+                <div class='control-group' id='$dato'>
+                <label name='$dato' class='control-label'>".ucfirst($dato)."</label>
+                    <div class='controls' id='$dato-control'>
+                        <input type='text' name='$dato' placeholder='".ucfirst($dato)."'>
+                    </div>
+                </div>";
+             
          }
          }
 	 // es la division que permite la cracion del boton
