@@ -20,7 +20,7 @@ $(document).ready(function(){
      
         envio = envio+indice+"="+valor+'&'; // se arma la direccion de envío de AJAX
         
-        if(this.value == ""){ // se verifica que el input no esté vacío
+        if(this.value == "" && this.value!="fecha"){ // se verifica que el input no esté vacío
         // se cambia las caracteristicas del div donde está el input
         $('input[name="'+indice+'"]').parent().parent().attr('class','control-group error'); // se cambia la clase del div donde está a c
         //error
@@ -33,7 +33,7 @@ $(document).ready(function(){
             
         $('input[name="'+indice+'"]').parent().parent().attr('class','control-group');
             if(indice == "fecha"){
-                $('input[name="'+indice+'"]').attr('id',"datepicker");
+                $('input[name="fecha"]').attr('id',"datepicker");
             }
             else{
                  $('input[name="'+indice+'"]').attr('id',indice);
