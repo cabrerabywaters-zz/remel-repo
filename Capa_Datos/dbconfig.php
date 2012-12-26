@@ -8,6 +8,6 @@ DEFINE ('baseDeDatos', 'BD_REMEL');
 */
 $servidor = 'localhost';
 $nombre_usuario = 'root';
-$contrasena = 'pepito.P789';
+$contrasena = '';
 $base_de_datos = 'BD_REMEL';
 
