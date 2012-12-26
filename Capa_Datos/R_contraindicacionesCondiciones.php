@@ -31,7 +31,7 @@ class R_contraindicacionesCondiciones {
         $query = CallQuery($queryString);
     }
     
-    public static function ActualizarRelacion(){
+    public static function ActualizarRelacion($datos){
         $where = "WHERE ";
         for($i=0;$i<count($_id);$i++){
             $where = $where . self::$nombreDeIds[$i] . " = ".$this->_id[$i];
@@ -39,7 +39,7 @@ class R_contraindicacionesCondiciones {
                 $where = $where . " AND ";
             }
         }
-        $queryString = QueryStringActualizarRelacion($where, $_id, self::$nombreTabla);
+        $queryString = QueryStringActualizarRelacion($where, $_id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
     

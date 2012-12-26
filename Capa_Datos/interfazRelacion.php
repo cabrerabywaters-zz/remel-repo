@@ -74,10 +74,21 @@ function QueryStringBorrarPorIdRelacion($nombreTabla, $nombreId, $id) {
     return $deleteString;
 }
 
-function QueryStringActualizarRelacion($where, $id, $nombreTabla) {
+function QueryStringActualizarRelacion($where, $id, $datos, $nombreTabla) {
     $updateString = "UPDATE $nombreTabla SET ";
-    foreach ($id as $identificador => $valor) {
+    foreach ($datos as $identificador => $valor) {
         $updateString = $updateString . $identificador . "='" . $valor . "' ";
+    }
+    $where = "WHERE ";
+    $condicionId = array();
+    foreach ($id as $identificador => $valor) {
+        $condicionId[] = $identificador . "='" . $valor . "' ";
+    }
+    for($i=0;$i<count($condicionId);$i++){
+        $where = $where . $condicionId[$i];
+        if ($i + 1 != count($condicionId)){
+            $where = $where . " AND ";
+        }
     }
     $updateString = $updateString . $where;
     return $updateString;
