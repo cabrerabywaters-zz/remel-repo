@@ -58,12 +58,15 @@ class Region {
      * @param array $atributosASeleccionar Vienen del controlador
      * @param array $where Frase Where que es indicada por el controlador
      * */
-    public static function Seleccionar($atributosASeleccionar, $where) {
+    public static function Seleccionar($atributosASeleccionar, $where, $limit = 0, $offset = 0) {
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	if($limit != 0){
+		$queryString = $queryString." LIMIT $limit";
+	}
+	if($offset != 0){
+		$queryString = $queryString." OFFSET $offset ";
+	}
         $result = CallQuery($queryString);
-        
-	var_dump($result);
-
 	$resultArray = array();
 	while($fila = $result->fetch_assoc()) {
 		$resultArray[] = $fila;
@@ -73,3 +76,4 @@ class Region {
 }
 
 ?>
+

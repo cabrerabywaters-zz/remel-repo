@@ -34,11 +34,10 @@ function Actualizacion(){
 	$datosActualizacion = array(
 				'Nombre' => $_POST['nombre_region'],
 				'Numero' => $_POST['numero_region']
-w				);
+				);
 
 	//$regionACrear = new Region($_POST['idRegion']);
 	$regionAActualizar = new Region($_POST['id']);
-	var_dump($regionAActualizar);
 	$regionAActualizar->Actualizar($datosActualizacion);
 }
 
@@ -46,14 +45,15 @@ w				);
 * Funcion de seleccionar todas las lineas
 * @returns array $resultados Array con las filas
 **/
-function Seleccion(){
+function Seleccion($limit = 0, $offset = 0){
 	$atributosASeleccionar = array(
 					'Nombre',
 					'Numero'
 					);
 	$where = "";
-	$resultados = Region::Seleccionar($atributosASeleccionar,$where);
+	$resultados = Region::Seleccionar($atributosASeleccionar,$where, $limit, $offset);
 	return $resultados;
 }
 
+var_dump(Seleccion(5,1));
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
