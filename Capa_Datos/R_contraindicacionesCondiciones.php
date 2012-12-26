@@ -6,14 +6,14 @@
  */
 
 require_once 'interfazRelacion.php';
-include "../Capa_Datos/CallQuery.php";
+include "CallQuery.php";
 
 class R_contraindicacionesCondiciones {
 
     static $nombreTabla = 'Contraindicaciones_Condiciones';
     static $nombreTablasRelacionadas = array('Condiciones','Medicamentos');
     static $nombreDeIds = array('Condiciones_idCondiciones', 'Medicamentos_idMedicamento');
-    static $nombreAtrbutos = array('Descripcion');
+    static $nombreAtributos = array('Descripcion');
 
     private $_id;
 
@@ -26,8 +26,20 @@ class R_contraindicacionesCondiciones {
         $query = CallQuery($queryString);
     }
 
-    public function BorrarPorIdRelacion() {
+    public static function BorrarPorIdRelacion() {
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreDeIds, $_id);
+        $query = CallQuery($queryString);
+    }
+    
+    public static function ActualizarRelacion(){
+        $where = "WHERE ";
+        for($i=0;$i<count($_id);$i++){
+            $where = $where . self::$nombreDeIds[$i] . " = ".$this->_id[$i];
+            if($i+1!=count($_id)){
+                $where = $where . " AND ";
+            }
+        }
+        $queryString = QueryStringActualizarRelacion($where, $_id, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
     

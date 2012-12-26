@@ -7,7 +7,6 @@
  * @ author José-Fco. González
  * créditos a Germán Oviedo por funciones originales de interfazDatos.php
  * * */
-
 include "callQuery.php";
 
 function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreTabla) {
@@ -75,16 +74,14 @@ function QueryStringBorrarPorIdRelacion($nombreTabla, $nombreId, $id) {
     return $deleteString;
 }
 
-/*
-  function QueryStringActualizarRelacion($where, $id, $nombreTabla) {
-  $updateString = "UPDATE $nombreTabla SET ";
-  foreach ($id as $identificador => $valor) {
-  $updateString = $updateString . $identificador . "='" . $valor . "' ";
-  }
-  $updateString = $updateString . $where;
-  return $updateString;
-  }
- */
+function QueryStringActualizarRelacion($where, $id, $nombreTabla) {
+    $updateString = "UPDATE $nombreTabla SET ";
+    foreach ($id as $identificador => $valor) {
+        $updateString = $updateString . $identificador . "='" . $valor . "' ";
+    }
+    $updateString = $updateString . $where;
+    return $updateString;
+}
 
 function CallQueryRelacion($queryString) {
     $con = new ConexionDB();
