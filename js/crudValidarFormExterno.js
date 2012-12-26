@@ -5,7 +5,7 @@
  */  
 
 $(document).ready(function(){
-    
+   
     $('#agregar').click(function(){
     $('#status').html(""); //limpio el espacio de status    
     
@@ -52,7 +52,10 @@ $(document).ready(function(){
     
     // url de la página a la cual se enviarán las vairables
     var url = "../Capa_Controladores/controladorPruebas.php"; 
-    envio = envio+'var=dondeEstoy'; // SE DEBE AGREGAR UNA VARIABLE QUE INDIQUE EN QUE SECCION ESTOY
+    var ubicacion = "Regiones";
+    var accion = 3;// se obtiene la accion (3 por agregar a la bbdd)
+    envio = envio+'ubicacion='+ubicacion+'&accion='+accion; // SE DEBE AGREGAR UNA VARIABLE QUE INDIQUE EN QUE SECCION ESTOY
+    alert(envio);
     //envio final por POST
     hr.open("POST", url, true);
     // Set content type header information for sending url encoded variables in the request

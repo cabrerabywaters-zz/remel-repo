@@ -19,6 +19,7 @@
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" language="javascript" src="../js/jquery.js"></script>
     <script type="text/javascript">                                         
    $(document).ready(function() {
         $( "#accordion" ).accordion({
