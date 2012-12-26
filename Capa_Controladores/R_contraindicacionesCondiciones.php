@@ -5,7 +5,8 @@ require_once '../Capa_Datos/R_contraindicacionesCondiciones.php';
 function Creacion() {
     $idCreacion = array(
         array('Condiciones_idCondiciones', $_POST['id_Condiciones']),
-        array('Medicamentos_idMedicamento', $_POST['id_Medicamento'])
+        array('Medicamentos_idMedicamento', $_POST['id_Medicamento']),
+        array('Descripcion', $_POST['Descripcion'])
     );
     $atributosCreacion = array(
         array('Descripcion', $_POST['desc'])
@@ -16,17 +17,18 @@ function Creacion() {
     
 }
 function Eliminacion(){
-	$relacionABorrar = new R_AlergiaPaciente($_POST['id_Condiciones'],$_POST['id_Medicamento']);
+	$relacionABorrar = new R_contraindicacionesCondiciones($_POST['id_Condiciones'],$_POST['id_Medicamento'],$_POST['Descripcion']);
 	$relacionABorrar->BorrarPorIdRelacion();
 }
 
 function Actualizar(){
 	$datosActualizacion = array(
-				array('Nombre',$_POST['id_Alergia']),
-				array('Numero',$_POST['numero_region'])
+				array('Condiciones_idCondiciones',$_POST['id_Condiciones']),
+				array('Medicamentos_idMedicamento',$_POST['id_Medicamento']),
+                                array('Descripcion',$_POST['Descripcion'])
 				);
 
-	$regionACrear = new Region($_POST['idRegion']);
-	$regionAActualizar->Actualizar($datosActualizacion);
+	$relacionAActualizar = new R_contraindicacionesCondiciones($_POST['idRegion']);
+	$relacionAActualizar->ActualizarRelacion($datosActualizacion);
 }
 ?>
