@@ -23,21 +23,21 @@ function Creacion(){
 * Funcion de eliminacion
 **/
 function Eliminacion(){
-	$regionABorrar = new Region('2');
+	$regionABorrar = new Region($_POST['id']);
 	$regionABorrar->BorrarPorId();
 }
 
 /**
 * Funcion de actualizar
 **/
-function Actualizar(){
+function Actualizacion(){
 	$datosActualizacion = array(
 				'Nombre' => $_POST['nombre_region'],
 				'Numero' => $_POST['numero_region']
-				);
+w				);
 
 	//$regionACrear = new Region($_POST['idRegion']);
-	$regionAActualizar = new Region('2');
+	$regionAActualizar = new Region($_POST['id']);
 	var_dump($regionAActualizar);
 	$regionAActualizar->Actualizar($datosActualizacion);
 }
@@ -46,7 +46,7 @@ function Actualizar(){
 * Funcion de seleccionar todas las lineas
 * @returns array $resultados Array con las filas
 **/
-function SeleccionarTodas(){
+function Seleccion(){
 	$atributosASeleccionar = array(
 					'Nombre',
 					'Numero'
@@ -57,5 +57,3 @@ function SeleccionarTodas(){
 }
 
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
-
-Eliminacion();
