@@ -10,11 +10,11 @@ $tablasDB = array(); //arreglo con las vistas de la DB
 
 $tablasDB['Usuarios'] =
 array( // arreglo con indice de tabla => nombreArchivo
-    'Personas'=>'#',
-    'Funcionarios'=>'#',
-    'Pinpass'=>'#',
-    'Etnias'=>'#',
-    'Previsiones'=>'#',
+    'Personas'=>'Personas',
+    'Funcionarios'=>'Funcionarios',
+    'Pinpass'=>'Pinpass',
+    'Etnias'=>'Etnias',
+    'Previsiones'=>'Previsiones',
     'Especialidades'=>'#',
     'Pinpass'=>'#',
     'SubEspecialidades'=>'#');
@@ -32,7 +32,7 @@ $tablasDB['Ubicacion']=
 array( // arreglo con indice de tabla => nombreArchivo
     'TipoInstituciones'=>'#',
     'PlazasInstitucion'=>'#',
-    'Regiones'=>'#',
+    'Regiones'=>'regiones',
     'Provincias'=>'#',
     'Comunas'=>'#');
 
@@ -65,7 +65,7 @@ foreach($tablasDB as $vista=>$tablas){
      echo "<h3 class='btn btn-primary btn-block'>$vista</h3><!-- $vista-->       
             <div>";
     foreach($tablas as $tabla=>$pagina){
-        echo "<a class='btn btn-block btn-small'>$tabla</a>
+        echo "<a class='btn btn-block btn-small' id='$pagina'>$tabla</a>
         ";
     }
     echo "</div><!-- end $vista -->
