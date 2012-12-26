@@ -7,6 +7,9 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <!-- Le JS -->
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/jquery.tools.min.js"></script>
         <!-- Le styles -->
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,16 +60,20 @@
 
         <div class="container-fluid">
 
-            <div class="form-signin">
+            <form class="form-signin" action="session.php" id="myform">
+                <fieldset>
                 <h2 class="form-signin-heading"><center>Bienvenido</center>  <center> a Remel</center> </h2>
-                <input type="text" class="input-block-level" placeholder="Rut" id="rut">
-                <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass">
+                <input type="text" class="input-block-level" placeholder="Rut" id="rut" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" required="required" name="rutUsuario">
+                <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" required="required" name="passUsuario">
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Recordarme
                 </label>
-                <button class="btn btn-large btn-warning" onclick="validar()"><strong>Ingresar</strong></button>
-            </div>
+                <button class="btn btn-large btn-warning" type="submit"><strong>Ingresar</strong></button>
+                </fieldset>
+            </form>
+            
 
+            
             <script type="text/javascript">
                 //validacion del rut ingresado
                 function verificarRut( Objeto )
@@ -134,20 +141,8 @@
                         //alert('El Rut Ingresado es Correcto!')
                         return true;
                     }
-                }
-
-                //funcion de validacion del usuario
-                function validar(){
-                   var permiso = false; 
-                   if (pass.value == null || rut.value == null){
-                       alert('rellene los campos');
-                   }
-                   else{
-                       
-                   }
-                }
-                
-                
+                }                       
+                $("#usuario").validator();
     
             </script>
 
