@@ -9,11 +9,9 @@ este archivo esta echo para que se inserte dentro del crud
 
 function visualizacionTabla($arreglo)
 {	
-			
-echo "<table>";
-echo"<tr><td>";
-echo'<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">';
-
+		
+echo'<button class="btn btn-inverse"><a href="" role="button"class="editor_create">Create new record</a></button>';
+echo'<table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">';
 echo"<thead>";
 echo "<tr>";
 // se iguala solo el arreglo primario para obtener los nombres de las tablas
@@ -21,15 +19,16 @@ $encabezado=$arreglo[0];
 // se ordena los nombres en un foreach
 foreach ($encabezado as $dato=> $valor)
 {
+	$a=count($encabezado);
+	$b=100/$a=count($encabezado);
 // se muestra el encabezado de la tabla
-echo"<th>".$dato."</th>";
+echo"<th width='".$b."%'>".$dato."</th>";
 
 }
 //cierra la fila 
 echo "</tr>";
 echo"</thead>";
-
-	echo"<tbody>";
+echo"<tbody>";
    
 		// se vuelve a crear ordenar los arreglos nuevamente
 $contador=0;
@@ -52,6 +51,25 @@ foreach ($arreglo as $datos)
 
 		
 	echo"</tbody>";
+	?>
+	<tfoot>
+		<tr>
+			<th>Browser</th>
+			<th>Rendering engine</th>
+			<th>Platform(s)</th>
+			<th>CSS grade</th>
+			<th>Admin</th>
+		</tr>
+	</tfoot>
+</table>
+<?php } ?>
+<?php
+			
+
+
+
+
+	
 	echo"<tfoot>";
 echo "<tr>";
 // se iguala solo el arreglo primario para obtener los nombres de las tablas
@@ -68,38 +86,9 @@ echo "</tr>";
 echo"</tfoot>";
    
 
- echo"</table>";
- echo "</td><td>";
- echo "<br /><br /><br />
- <table class='display' id='example'>
- <thead>
- <tr>
- <th>Borrar</th>
- </tr>
- </thead>
- <tbody>";
- for($i=0;$i<$contador;$i++)
- {
- echo"<tr>";
- 
 
-echo"<td><center><i class='icon-remove' id=$i></i></center></td>";
 
- echo"</tr>";
-  }
-  echo"
-</tbody>
-<tfoot>
-<tr>
-<th>Borrar</th>
-</tr>
-</tfoot>
-</table>
-</td>
-</tr>
-</table>";
-
-}?>
+?>
 			
 			<style type="text/css">
 				@import "../css/shCore.css";
