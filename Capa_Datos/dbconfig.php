@@ -6,8 +6,8 @@ DEFINE ('contrasena', '');
 DEFINE ('baseDeDatos', 'BD_REMEL');
 
 */
-$servidor = 'localhost';
+$servidor = '200.54.168.133';
 $nombre_usuario = 'root';
-$contrasena = '';
+$contrasena = 'pepito.P789';
 $base_de_datos = 'BD_REMEL';
 
