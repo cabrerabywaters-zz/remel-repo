@@ -3,7 +3,7 @@ $(document).ready(function() {
 				var oTable = $('#example').dataTable();
 				
 				/* Apply the jEditable handlers to the table */
-				oTable.$('td').editable( '../examples_support/editable_ajax.php', {
+				oTable.$('td').editable( '../CRUD_INTERNO/vistaEjemplo_ajax.php', {
 					"callback": function( sValue, y ) {
 						var aPos = oTable.fnGetPosition( this );
 						oTable.fnUpdate( sValue, aPos[0], aPos[1] );

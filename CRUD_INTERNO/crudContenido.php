@@ -28,7 +28,7 @@ require "vistaEjemplo.php"; //funcion que crea la vista de un arreglo
 require 'formularioExterno.php'; // funcion que crea el formulario de un arreglo
 
 
-?>
+visualizacionTabla($arreglo)?>
 
     Si ve este mensaje haga click en alguna tabla de la barra de la izquierda    
     </div><!-- cierre del contenido!-->

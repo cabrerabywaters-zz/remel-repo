@@ -32,9 +32,8 @@
     
 		<script type="text/javascript" language="javascript" src="../js/jquery.jeditable.js"></script>
 		<script type="text/javascript" language="javascript" src="../js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf-8" src="../js/ajaxTabla.js">
-			
-		</script>
+        <script type="text/javascript" charset="utf-8" src="../js/ajaxTabla.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../js/vistaEjemplo_ajax.php"></script>
     <!-- estilos para la tabla-->
     	<style type="text/css" title="currentStyle">
 			@import "../css/demo_page.css";
