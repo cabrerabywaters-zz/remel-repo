@@ -60,7 +60,7 @@
 
         <div class="container-fluid">
 
-            <form class="form-signin" action="session.php" id="myform">
+            <form class="form-signin" action="session.php" id="myform" method='post'>
                 <fieldset>
                 <h2 class="form-signin-heading"><center>Bienvenido</center>  <center> a Remel</center> </h2>
                 <input type="text" class="input-block-level" placeholder="Rut" id="rut" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" required="required" name="rutUsuario">
