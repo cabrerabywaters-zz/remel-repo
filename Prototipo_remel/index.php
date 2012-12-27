@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -147,14 +153,14 @@
 		function enviar(){
 			var postData = $("#usuario").serialize();
 			$.ajax({ url: 'ajax/verificarPassUsuario.php',
-         		data: postData,
-         		type: 'post',
-         		success: function(output) {
-                		if(output == '1') {
-					window.location.href = "comprobadorDoctor.php";
-				}
-                  }
-});
+         			data: postData,
+         			type: 'post',
+         			success: function(output) {
+                				if(output == '1') {
+							window.location.href = "comprobadorDoctor.php";
+						}
+                  			}
+				});
 		}
 		    
             </script>

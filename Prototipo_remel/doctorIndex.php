@@ -8,6 +8,7 @@
     <meta name="author" content="">
       <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="../js/jquery.tools.min.js"></script>
             <script src="bootstrap_js/js/bootstrap-modal.js"></script>
              <script src="bootstrap_js/js/bootstrap-collapse.js"></script>
             
@@ -102,6 +103,7 @@ color:white}
         <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
         <button class="btn btn-large btn-block " type="button">Ver historial de Atenciones</button>
         <button class="btn btn-large btn-block" type="button">Otros</button>
+	<a href="logout.php" role="button" class="btn btn-large btn-block btn-warning">Logout</a>
       </form>
 
     </div> <!-- /container -->
@@ -117,27 +119,26 @@ color:white}
   </div>
   <div class="modal-body">
       <strong><p>Ingrese el Rut del Paciente</p></strong>
-    <form class="form-search" id="busqueda">
+    <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
   <div class="input-append">
-    <input type="text" class="span2 search-query" name="RUN">
-    <button type="button" class="btn btn" onclick="enviar()" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
+    <input type="text" class="span2 search-query" name="RUN" required="required" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
+    <button class="btn btn" type="submit "data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
     
    
-    <div id="informacion" class="collapse" > <span id="info" class="badge badge-info">  <a  href="#collapseTwo" id="atenderPaciente">Placeholder</a></span></div>
+    <br><div id="informacion" class="collapse" ><span id="info" class="badge badge-info"><a  href="#collapseTwo" id="atenderPaciente">Placeholder</a></span></div>
   </div>
     </form>
     
       <div id="clave" class="collapse" >
-	<form id="verificacionClave">
+	<form id="verificacionClave" action="javascript:verificarClave()" method="post">
 		<strong>Ingrese Clave :</strong> <center> 
-		<input type="text" name="clave" placeholder="Ingrese Clave Del Paciente"></center> </div>
+		<input type="text" name="clave" required="required" placeholder="Ingrese Clave Del Paciente"></center> </div>
 		<input type="hidden" name="hID" value=""/>
 		<input type="hidden" name="hRUN" value=""/>
-    	</form>
-  </div>
+  	</div>
   <div class="modal-footer">
+	<button class="btn" type="submit"><strong>Ingresar</strong></button></form>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <a href="javascript:verificarClave()" role="button" class="btn btn-warning">Atender Paciente</a>
   </div>
   
 
@@ -149,6 +150,9 @@ color:white}
 
   </body>
   <script>
+	$("busqueda").validator();
+	$("verificacionClave").validator();
+
 	function enviar(){
                         var postData = $("#busqueda").serialize();
                         $.ajax({ url: 'ajax/jsonPaciente.php',
@@ -169,10 +173,10 @@ color:white}
                         data: postData,
                         type: 'post',
                         success: function(output) {
-					alert(output);
                                         if(output == 1){
 						window.location.href = "atencionPaciente.php";
 					}
+					else{ alert("Clave incorrecta"); }
                                 }
                         });
         }	

@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+var_dump($_SESSION);
+
+?>
+
+
 <!--
 To change this template, choose Tools | Templates
 and open the template in the editor.
@@ -18,7 +26,7 @@ and open the template in the editor.
        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
         
        body {
