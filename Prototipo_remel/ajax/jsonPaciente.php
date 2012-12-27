@@ -3,7 +3,10 @@
 include(dirname(__FILE__)."/../../Capa_Controladores/paciente.php");
 include(dirname(__FILE__)."/../../Capa_Controladores/persona.php");
 
-$run = $_POST['RUN'];
+$rut = $_POST['RUN'];
+ $rut2=str_replace(".","",$rut);//elimina puntos del rut
+    $rut3=str_replace("-","",$rut2);//elimina guiones del rut
+    $run=$rut3; //iguala la variable final a la variable inicial
 
 $array1 = PacienteSeleccionIdPorRUN($run);
 $array2 = PersonaSeleccionNombrePorRUN($run);

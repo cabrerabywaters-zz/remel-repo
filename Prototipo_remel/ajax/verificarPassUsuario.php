@@ -5,6 +5,11 @@
 	session_unset();
 
 	$rut = $_POST['rutUsuario'];
+	
+    $rut2=str_replace(".","",$rut);//elimina puntos del rut
+    $rut3=str_replace("-","",$rut2);//elimina guiones del rut
+    $rut=$rut3; //iguala la variable final a la variable inicial
+
 	$pass = md5($_POST['passUsuario']);
 
 	$queryString = "SELECT * FROM Personas WHERE RUN = '$rut' AND Clave = '$pass';";
