@@ -32,7 +32,7 @@ $tablasDB['Ubicacion']=
 array( // arreglo con indice de tabla => nombreArchivo
     'TipoInstituciones'=>'#',
     'PlazasInstitucion'=>'#',
-    'Regiones'=>'regiones',
+    'Regiones'=>'Regiones',
     'Provincias'=>'#',
     'Comunas'=>'#');
 
