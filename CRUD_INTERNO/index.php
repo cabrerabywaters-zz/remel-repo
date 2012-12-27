@@ -11,7 +11,7 @@ include 'crudSideBar.php';
 ?>
     
       
-    <div class="row-fluid span8" id="contenido"><!--Body content-->
+    <div class="row-fluid span8" id="body-contet"><!--Body content-->
 <?php
 include 'crudContenido.php';
 ?>

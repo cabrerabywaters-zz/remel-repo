@@ -65,7 +65,7 @@ foreach($tablasDB as $vista=>$tablas){
      echo "<h3 class='btn btn-primary btn-block'>$vista</h3><!-- $vista-->       
             <div>";
     foreach($tablas as $tabla=>$pagina){
-        echo "<a class='btn btn-block btn-small' id='$pagina'>$tabla</a>
+        echo "<a class='btn btn-block btn-small' href='$pagina'>$tabla</a>
         ";
     }
     echo "</div><!-- end $vista -->

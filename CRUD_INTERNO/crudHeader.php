@@ -26,8 +26,13 @@
             collapsible: true
         });
         $('#datepicker').datepicker();
+        
     }); // end ready
-    
+    /*
+     * Variable global ubicacion para determinar en que seccion se encuentra
+     */
+    var ubicacion = 'personas'; // asigno la vista predeterminada a personas (variable global ubicacion)
+    var accion = 0; // asigno la accion predeterminada a ver listado (0)
     </script>
     <!-- scripts de la datetable -->
 	<script type="text/javascript" language="javascript" src="../js/jquery.jeditable.js"></script>
