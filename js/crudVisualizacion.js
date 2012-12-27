@@ -10,7 +10,9 @@ $(document).ready(function(){
         evento.preventDefault();
         tabla = $(this).attr('href'); // asigno la tabla al boton seleccionado
         accion = 0; //asigno la accion predeterminada de mostrar los elementos de la tabla
-        $("#contenido").load("../Capa_Controladores/controladorPruebas.php", {Tabla: tabla, Accion: accion});
+        $("#contenido").load("../Capa_Controladores/filtroJsControlador.php", {Tabla: tabla, Accion: accion}, function(){
+            
+        });
               
           
         
