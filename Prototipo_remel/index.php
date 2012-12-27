@@ -69,8 +69,8 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
             <form class="form-signin" id="usuario" method="post" action="javascript:enviar()">
                 <fieldset>
                 <h2 class="form-signin-heading"><center>Bienvenido</center>  <center> a Remel</center> </h2>
-                <input type="text" class="input-block-level" placeholder="Rut" id="rut" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" required="required" name="rutUsuario">
-                <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" required="required" name="passUsuario">
+                <input type="text" class="input-block-level" placeholder="Rut" id="rut" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" name="rutUsuario">
+                <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" name="passUsuario">
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Recordarme
                 </label>
@@ -148,7 +148,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                         return true;
                     }
                 }                       
-                $("#usuario").validator();
+                $("usuario").validator();
 		
 		function enviar(){
 			var postData = $("#usuario").serialize();
