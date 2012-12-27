@@ -159,6 +159,9 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                 				if(output == '1') {
 							window.location.href = "comprobadorDoctor.php";
 						}
+						else{
+							alert("Contrasena incorrecta");
+						}
                   			}
 				});
 		}
