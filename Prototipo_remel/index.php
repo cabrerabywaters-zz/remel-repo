@@ -75,6 +75,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                     <input type="checkbox" value="remember-me"> Recordarme
                 </label>
                 <button class="btn btn-large btn-warning" type="submit"><strong>Ingresar</strong></button>
+                <p><span id="mensaje"></span></p>
                 </fieldset>
             </form>
             
@@ -92,7 +93,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                         largo = crut.length;
                         if ( largo <2 )
                         {
-                            alert('rut inválido')
+                             $('#mensaje').html("El rut ingresado no es válido");
                             Objeto.focus()
                             return false;
                         }
@@ -140,7 +141,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                         }
                         if ( dvr != dv.toLowerCase() )
                         {
-                            alert('El Rut Ingreso es Invalido')
+                            $('#mensaje').html("El rut ingresado no es válido");
                             Objeto.focus();
                             return false;
                         }
@@ -160,7 +161,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
 							window.location.href = "comprobadorDoctor.php";
 						}
 						else{
-							alert("Contrasena incorrecta");
+							$('#mensaje').html("Nombre de Usuario o Constraseña Incorrecto");
 						}
                   			}
 				});

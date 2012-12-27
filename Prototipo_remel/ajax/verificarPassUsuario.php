@@ -22,13 +22,13 @@
 		$queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
                 $res = CallQuery($queryString);
                 if($res->num_rows == 1){
-                        $_SESSION['idPacienteLog'] = $res->fetch_row()[0];
+                        $_SESSION['idPacienteLog'] = $res->fetch_row();
                 }
 
 		$queryString = "SELECT idMedico FROM Medicos WHERE Personas_RUN = '$rut';";
 		$res = CallQuery($queryString);
 		if($res->num_rows == 1){
-			$_SESSION['idMedicoLog'] = $res->fetch_row()[0];
+			$_SESSION['idMedicoLog'] = $res->fetch_row();
 		}
 		echo "1";
 	}
