@@ -148,7 +148,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                         return true;
                     }
                 }                       
-                $("usuario").validator();
+                $("#usuario").validator();
 		
 		function enviar(){
 			var postData = $("#usuario").serialize();
