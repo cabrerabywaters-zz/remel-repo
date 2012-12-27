@@ -23,5 +23,4 @@ $mac=substr($mycom,($pmac+36),17); // Get Physical Address
 
 $_SESSION['mac'] = $mac;
 
-
 ?>
