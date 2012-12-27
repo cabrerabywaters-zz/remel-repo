@@ -19,7 +19,7 @@
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <script type="text/javascript" language="javascript" src="../js/jquery.min.js"></script>
+    
     <script type="text/javascript">                                         
    $(document).ready(function() {
         $( "#accordion" ).accordion({
@@ -27,19 +27,20 @@
         });
         $('#datepicker').datepicker();
     }); // end ready
-    <!-- scripts de la datetable -->
-    </script>
     
-		<script type="text/javascript" language="javascript" src="../js/jquery.jeditable.js"></script>
-		<script type="text/javascript" language="javascript" src="../js/jquery.dataTables.js"></script>
+    </script>
+    <!-- scripts de la datetable -->
+	<script type="text/javascript" language="javascript" src="../js/jquery.jeditable.js"></script>
+	<script type="text/javascript" language="javascript" src="../js/jquery.dataTables.js"></script>
         <script type="text/javascript" charset="utf-8" src="../js/ajaxTabla.js"></script>
-        <script type="text/javascript" charset="utf-8" src="../js/vistaEjemplo_ajax.php"></script>
+        
     <!-- estilos para la tabla-->
     	<style type="text/css" title="currentStyle">
 			@import "../css/demo_page.css";
 			@import "../css/demo_table.css";
-		</style>
+	</style>
         
     
 </head>
 <body>
+<!-- comienzo del cuerpo del crud -->
