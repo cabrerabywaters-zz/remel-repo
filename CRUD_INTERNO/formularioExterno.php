@@ -46,5 +46,4 @@ function creacionFormularios($arreglo)
   echo "
       </form><!-- cierre div horizontal-group-->";
 }
-
 ?>
