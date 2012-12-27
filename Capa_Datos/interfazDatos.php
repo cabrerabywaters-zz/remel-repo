@@ -19,7 +19,6 @@ function QueryStringSeleccionar($where,$atributosASeleccionar,$nombreTabla){
 		if ($i != count($atributosASeleccionar) - 1) $selectString = $selectString.",";
 	} 
 	$selectString = $selectString." FROM $nombreTabla $where";
-	echo $selectString;
 	return $selectString;
 } 
 
@@ -71,7 +70,6 @@ function QueryStringActualizar($where, $datos, $nombreTabla){
 		$i++;
 	}
 	$updateString = $updateString." ".$where;
-	var_dump($updateString);
 	return $updateString;	
 }
 

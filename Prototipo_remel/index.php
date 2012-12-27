@@ -146,12 +146,12 @@
 		
 		function enviar(){
 			var postData = $("#usuario").serialize();
-			$.ajax({ url: '../Capa_Datos/verificacion.php',
+			$.ajax({ url: 'ajax/verificarPassUsuario.php',
          		data: postData,
          		type: 'post',
          		success: function(output) {
                 		if(output == '1') {
-					window.location.href = "comprobador.php";
+					window.location.href = "comprobadorDoctor.php";
 				}
                   }
 });

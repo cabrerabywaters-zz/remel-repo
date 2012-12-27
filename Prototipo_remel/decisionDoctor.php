@@ -52,7 +52,7 @@
 
     <div class="container-fluid">
 
-      <form class="form-signin" action="doctor_principal.php">
+      <form class="form-signin" action="doctorIndex.php" method="post">
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
          <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
         <button class="btn btn-large btn-block btn-warning" type="submit">Ingresar como Médico</button>
