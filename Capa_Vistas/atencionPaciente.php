@@ -17,15 +17,10 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         
-        
+        <script src="../js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <style type="text/css">
         
@@ -80,23 +75,7 @@ color:white}
         
     </style><!-- fin estilo de la pagina -->
     
-        <script>
-$(document).ready(function(){
-    $("#info").click(function(){ //evento al seleccionar unelemento
-        $('#info').removeClass('badge badge-info'); 
-        $('#info').addClass('badge badge-important');
-    });// end click 
-  
-    $("#info2").click(function(){ 
-        $('#info2').removeClass('badge badge-info'); 
-        $('#info2').addClass('badge badge-important');
-    }); //end click
-  
-  
-  
-  
- });
-                 </script>
+
     
     
     
