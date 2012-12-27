@@ -7,7 +7,7 @@
 ?>
 Recibido el siguiente dato:
 <br>
-Nombre: <?php echo $_POST["nombre"];?>
+ubicacion: <?php echo $_POST["Tabla"];?>
 <br>
-Edad: <?php echo $_POST["edad"];?>
+accion: <?php echo $_POST["Accion"];?>
 
