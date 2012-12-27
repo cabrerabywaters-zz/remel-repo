@@ -1,13 +1,13 @@
 <?php
-
+$arreglo = array();
 	switch($_POST['Tabla']){
 		case 'Regiones':
-			include('region.php');
+			include('../Capa_Controladores/region.php');
 	}
 
 	switch($_POST['Accion']){
 		case 0:	
-			Seleccion();
+			$arreglo = Seleccion(); // traspasa los datos al arreglo
 		case 1:
 			Eliminacion();
 		case 2:
