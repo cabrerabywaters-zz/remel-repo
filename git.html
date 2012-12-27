@@ -1,0 +1,35 @@
+<html>
+<head>
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<a href="javascript:gitstatus()">Git Status</a><br>
+<a href="javascript:gitpull()">Git Pull</a><br>
+<p id="output"></p>
+
+<script type="text/javascript">
+function gitstatus(){
+                        var postData = null;
+                        $.ajax({ url: 'gitstatus.php',
+                        data: postData,
+                        type: 'post',
+                        success: function(output) {
+                                $("#output").text(output);                                                      }
+
+                        });
+                }
+function gitpull(){
+                        var postData = null;
+                        $.ajax({ url: 'gitpull.php',
+                        data: postData,
+                        type: 'post',
+                        success: function(output) {
+                                $("#output").text(output);                                                      }
+
+                        });
+                }
+</script>
+
+</body>
+
+</html>

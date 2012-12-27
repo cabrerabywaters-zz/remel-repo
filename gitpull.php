@@ -1,0 +1,5 @@
+<?php
+
+passthru("git pull");
+
+?>
