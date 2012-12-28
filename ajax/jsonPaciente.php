@@ -7,7 +7,7 @@ include "../Capa_Controladores/paciente.php";
 
 
 $rut = $_POST['RUN'];
-echo $rut; 
+//echo $rut; 
  $rut2=str_replace(".","",$rut);//elimina puntos del rut
     $rut3=str_replace("-","",$rut2);//elimina guiones del rut
     $run=$rut3; //iguala la variable final a la variable inicial
