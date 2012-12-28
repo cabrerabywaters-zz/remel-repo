@@ -159,7 +159,6 @@ color:white}
                         data: postData,
                         type: 'post',
                         success: function(output) {
-                                        alert(output);
 					var data = jQuery.parseJSON(output);
 					nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
 					$("#atenderPaciente").text(nombre);
