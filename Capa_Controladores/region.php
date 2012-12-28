@@ -55,5 +55,4 @@ function Seleccion($limit = 0, $offset = 0){
 	return $resultados;
 }
 
-var_dump(Seleccion(5,1));
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
