@@ -1,6 +1,6 @@
 <?php
-	include(dirname(__FILE__)."/../../Capa_Datos/callQuery.php");
-
+	//include(dirname(__FILE__)."/../../Capa_Datos/callQuery.php");
+        include '../Capa_Datos/callQuery.php';
 	session_start();
 	session_unset();
 
