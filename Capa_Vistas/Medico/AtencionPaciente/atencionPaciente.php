@@ -1,7 +1,10 @@
 <?php
 
-session_start();
-var_dump($_SESSION);
+include '../../../sessionCheck.php';
+
+iniciarCookie();
+verificarIP();
+
 
 ?>
 

@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+include '../../sessionCheck.php';
+
+iniciarCookie();
+verificarIP();
+?>
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
