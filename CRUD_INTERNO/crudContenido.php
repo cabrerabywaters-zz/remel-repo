@@ -43,24 +43,6 @@ visualizacionTabla($arreglo);
     <h3 id="myModalLabel">Agregar nuevo Elemento</h3>
   </div>
   <div class="modal-body" id="modal-body">
-       <script>
-      
-      
-      $(document).ready(function(){
-          
-         
-         $('#accordion a').click(function(evento){
-        evento.preventDefault(); //prevengo que el link funcione
-        tabla = $(this).attr('href'); // asigno la tabla al boton seleccionado
-        accion = 0; //asigno la accion predeterminada de mostrar los elementos de la tabla
-        $('#myModalLabel').html('Agregar elemento a '+tabla);
-        $("#modal-body").load("../Capa_Controladores/controladorPruebas.php", {Tabla: tabla, Accion: accion});
-          // AQUI SE DEBE MANDAR LA INFORMACION VIA AJAX AL ARCHIVO CORRESPONDIENTE PARA QUE SEA PROCESADA
-          // Y SE MUESTRE EL FORMULARIO CORRESPONDIENTE EN EL DIV "MODAL-BODY"
-          
-      });
-       </script>
-
   </div>
   <div class="modal-footer">
       <div class="span8" id="status"></div> <!-- en este div va la respuesta del ajax --> 
