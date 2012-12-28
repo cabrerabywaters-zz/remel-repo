@@ -86,8 +86,8 @@ color:white}
         <div class="container-fluid">
             
             <div class="row-fluid" style="background-color: #B6DEDB"> <!--div superior-->
-                <div class="span3"> <img src="imgs/dr-house.jpg" style="width:30%" ></div>
-                <div class="span3 pull-right"> <img src="imgs/sabina.jpg" style="width:35%" ></div>
+                <div class="span3"> <img src="../imgs/dr-house.jpg" style="width:30%" ></div>
+                <div class="span3 pull-right"> <img src="../imgs/sabina.jpg" style="width:35%" ></div>
             </div><!-- cierre div superior-->
             
             <div class="tabbable-fluid"> 
