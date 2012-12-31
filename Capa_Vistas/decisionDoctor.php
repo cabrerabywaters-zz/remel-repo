@@ -67,8 +67,8 @@ verificarIP();
         
         <button class="btn btn-large btn-block btn-warning" type="button" data-toggle="collapse" data-target="#institucion">Ingresar como Médico</button>
             <div id="institucion" class="collapse in">
-                <a class="btn btn-large" type="submit">Institucion 1</a>
-                <a class="btn btn-large" type="submit">Institucion 2</a>
+                <a class="btn btn-block" type="submit">Institucion 1</a>
+                <a class="btn btn-block" type="submit">Institucion 2</a>
             </div>
         <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
       </form>
