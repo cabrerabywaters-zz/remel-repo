@@ -55,7 +55,6 @@ function QueryStringCrearRelacion($id, $datos, $nombreTabla) {
     $valores = $valores . ")";
 
     $insertString = "$insertString $atributos VALUES $valores";
-    echo $insertString;
     return $insertString;
 }
 

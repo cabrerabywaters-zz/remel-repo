@@ -10,7 +10,7 @@ function Creacion() {
     $atributosCreacion = array(
         array('Descripcion', $_POST['desc'])
     );
-    if ($_POST['id_Condiciones'] != '') {
+    if ($_POST['id_Condiciones'] != '' && $_POST['id_Medicamento']) {
         R_contraindicacionesCondiciones::CrearRelacion($idCreacion,$atributosCreacion);
     }
     
