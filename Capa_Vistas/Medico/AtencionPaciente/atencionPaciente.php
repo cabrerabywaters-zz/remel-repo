@@ -10,7 +10,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 
 ?>
   <div class="tab-content"><!-- contenido del panel 1-->
-    <div class="tab-pane active" id="tabHistorial"><!-- tab Historial-->
+    <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
       
         <div class="accordion" id="accordion2">
   <div class="accordion-group">
@@ -40,7 +40,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 </div>
     </div><!-- Fin tab historial-->
     
-    <div class="tab-pane" id="tabConsulta"><!-- tab Diagnostico-->
+    <div class="tab-pane img-rounded" id="tabConsulta"><!-- tab Diagnostico-->
       
               <div class="accordion" id="accordion3">
   <div class="accordion-group">
