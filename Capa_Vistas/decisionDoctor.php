@@ -63,11 +63,19 @@ verificarIP();
 
       <form class="form-signin" action="Medico/doctorIndex.php" method="post">
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
-         <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
-        <button class="btn btn-large btn-block btn-warning" type="submit">Ingresar como Médico</button>
+        <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
+        
+        <button class="btn btn-large btn-block btn-warning" type="button" data-toggle="collapse" data-target="#institucion">Ingresar como Médico</button>
+            <div id="institucion" class="collapse in">
+                <a class="btn btn-large" type="submit">Institucion 1</a>
+                <a class="btn btn-large" type="submit">Institucion 2</a>
+            </div>
         <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
       </form>
+        
 
+ 
+        
     </div> <!-- /container -->
 
 
