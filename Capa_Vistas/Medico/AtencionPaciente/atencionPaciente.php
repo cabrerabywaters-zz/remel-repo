@@ -6,136 +6,11 @@ iniciarCookie();
 verificarIP();
 
 
+include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
+
 ?>
-
-
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
-        <link href="../../../css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="../../../css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="../../../css/bootstrap.css" rel="stylesheet">
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        
-        
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/bootstrap.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <style type="text/css">
-        
-       body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #CDD9AE;
-      }
-        
-        ul.nav, .nav{
-            
-             background: whitesmoke;
-        }
-        .tabbable-fluid{
-            
-           
-        }
-        .tab-content{
-            
-            
-        }
-        .tab-pane
-        {
-            
-            
-            background-color: #B6DEDB;
-            
-        }
-        
-        
-         .modal{
-          
-           border: 5px solid #DCF1EF;
-      }
-     .modal-header, .modal-footer{
-           
-           background-color: #CDD9AE;
-      }
-      .modal-body{
-          background-color: #B6DEDB;
-          border: 3px solid #DCF1EF;
-      }
-        
-        
-        
-         .modal-body a:link {text-decoration: none;
-      color:white}
-.modal-body a:visited {text-decoration: none;
-color:white}
-.modal-body a:active {text-decoration: none;
-color:white}
-        
-    </style><!-- fin estilo de la pagina -->
-    
-        <script>
-$(document).ready(function(){
-    $("#info").click(function(){ //evento al seleccionar unelemento
-        $('#info').removeClass('badge badge-info'); 
-        $('#info').addClass('badge badge-important');
-    });// end click 
-  
-    $("#info2").click(function(){ 
-        $('#info2').removeClass('badge badge-info'); 
-        $('#info2').addClass('badge badge-important');
-    }); //end click
-  
-  
-  
-  
- });
-                 </script>
-    
-    
-    
-    </head>
-    <body>
-        
-        <div class="container-fluid">
-            
-            <div class="row-fluid" style="background-color: #B6DEDB"> <!--div superior-->
-                <div class="span3"> <img src="../../../imgs/dr-house.jpg" style="width:30%" ></div>
-                <div class="span3 offset6"> <img src="../../../imgs/sabina.jpg" style="width:35%" ></div>
-            </div><!-- cierre div superior-->
-            
-    <div class="tabbable-fluid"> 
-  <ul class="nav nav-tabs"><!-- barra de navegacion -->
-    <li class="active"><a href="#tab1" data-toggle="tab">Historial</a></li>
-    <li><a href="#tab2" data-toggle="tab">Consulta</a></li>
-    <li class="dropdown">
-    <a class="dropdown-toggle"
-       data-toggle="dropdown"
-       href="#">
-        Opciones
-        <b class="caret"></b>
-      </a>
-    <ul class="dropdown-menu">
-      <!-- links -->
-      <li><a href="#">Favoritos</a></li>
-      <li><a href="#">Imprimir Receta</a></li>
-    </ul>
-  </li>
-    
-  </ul><!-- aquí termina lo que hay en la barra navegacion-->
-  
-  
   <div class="tab-content"><!-- contenido del panel 1-->
-    <div class="tab-pane active" id="tab1"><!-- tab Historial-->
+    <div class="tab-pane active" id="tabHistorial"><!-- tab Historial-->
       
         <div class="accordion" id="accordion2">
   <div class="accordion-group">
@@ -165,7 +40,7 @@ $(document).ready(function(){
 </div>
     </div><!-- Fin tab historial-->
     
-    <div class="tab-pane" id="tab2"><!-- tab Diagnostico-->
+    <div class="tab-pane" id="tabConsulta"><!-- tab Diagnostico-->
       
               <div class="accordion" id="accordion3">
   <div class="accordion-group">

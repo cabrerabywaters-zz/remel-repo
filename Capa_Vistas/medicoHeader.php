@@ -1,11 +1,3 @@
-<?php
-
-session_start();
-var_dump($_SESSION);
-
-?>
-
-
 <!--
 To change this template, choose Tools | Templates
 and open the template in the editor.
@@ -16,16 +8,13 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
-        <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="../css/bootstrap.css" rel="stylesheet">
-        
-        
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        <script src="../js/bootstrap.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-    <style type="text/css">
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+        
+        <style type="text/css">
         
        body {
         padding-top: 40px;
@@ -86,8 +75,8 @@ color:white}
         <div class="container-fluid">
             
             <div class="row-fluid" style="background-color: #B6DEDB"> <!--div superior-->
-                <div class="span3"> <img src="../imgs/dr-house.jpg" style="width:30%" ></div>
-                <div class="span3 pull-right"> <img src="../imgs/sabina.jpg" style="width:35%" ></div>
+                <div class="span3"> <img src="../imgs/dr-house.jpg" style="width:35%; height: 100%" ></div>
+                <div class="span3 pull-right"> <img src="../imgs/sabina.jpg" style="width:35%; height: 100%" ></div>
             </div><!-- cierre div superior-->
             
             <div class="tabbable-fluid"> 
@@ -105,4 +94,15 @@ color:white}
                             <li><a href="#">Imprimir Receta</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown pull-right">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Volver <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <!-- links -->
+                        <li><a href="../doctorIndex.php">Volver al menu</a></li>
+                        <li><a href="../logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul><!-- aquí termina lo que hay en la barra navegacion-->
