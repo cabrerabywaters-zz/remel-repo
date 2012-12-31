@@ -75,8 +75,23 @@ color:white}
         <div class="container-fluid">
             
             <div class="row-fluid" style="background-color: #B6DEDB"> <!--div superior-->
-                <div class="span3"> <img src="../imgs/dr-house.jpg" style="width:35%; height: 100%" ></div>
-                <div class="span3 pull-right"> <img src="../imgs/sabina.jpg" style="width:35%; height: 100%" ></div>
+                <div class="span3 img-rounded" style="background-color: #DCF1EF">
+                    <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
+                    <blockquote class="pull-left">
+                        <p>
+                            
+                        Mi Informacion:<br> 
+                        Dr. Gregory House
+                        </p>
+                    </blockquote>
+                </div>
+                <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
+                    <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
+                    <blockquote>
+                    Información del paciente:<br>
+                    Sr. Sabina
+                    </blockquote>
+                </div>
             </div><!-- cierre div superior-->
             
             <div class="tabbable-fluid"> 
