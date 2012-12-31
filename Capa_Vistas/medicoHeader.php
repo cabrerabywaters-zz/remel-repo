@@ -74,21 +74,23 @@ color:white}
         
         <div class="container-fluid">
             
-            <div class="row-fluid" style="background-color: #B6DEDB"> <!--div superior-->
+            <div class="row-fluid img-rounded" style="background-color: #B6DEDB"> <!--div superior-->
                 <div class="span3 img-rounded" style="background-color: #DCF1EF">
                     <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
-                    <blockquote class="pull-left">
-                        <p>
-                            
-                        Mi Informacion:<br> 
-                        Dr. Gregory House
-                        </p>
+                    <blockquote>
+                    <strong>Mi Informacion:<br></strong> 
+                    Dr. Gregory House
                     </blockquote>
                 </div>
+                
+                <div class="img-rounded span6" style=" background-color: #DCF1EF">
+                    <center><h2> Institucion</h2></center>
+                </div>
+                
                 <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
-                    Información del paciente:<br>
+                    <strong>Paciente:<br></strong>
                     Sr. Sabina
                     </blockquote>
                 </div>
@@ -96,10 +98,10 @@ color:white}
             
             <div class="tabbable-fluid"> 
                 
-                <ul class="nav nav-tabs"><!-- barra de navegacion -->
-                    <li class="active"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
+                <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
+                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
                     <li><a href="#tabConsulta" data-toggle="tab">Consulta</a></li>
-                    <li class="dropdown">
+                    <li class="dropdown img-rounded">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Opciones <b class="caret"></b>
                         </a>
