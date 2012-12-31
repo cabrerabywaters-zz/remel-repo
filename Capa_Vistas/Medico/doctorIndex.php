@@ -111,7 +111,8 @@ color:white}
         <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
         <button class="btn btn-large btn-block " type="button">Ver historial de Atenciones</button>
         <button class="btn btn-large btn-block" type="button">Otros</button>
-	<a href="logout.php" role="button" class="btn btn-large btn-block btn-warning">Logout</a>
+        <a href="../decisionDoctor.php" class="btn btn-large btn-block btn-warning" role="button">Cambiar insitucion</a>
+	<a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Logout</a>
       </form>
 
     </div> <!-- /container -->

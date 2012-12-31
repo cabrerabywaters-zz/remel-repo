@@ -53,8 +53,23 @@ verificarIP();
 
     </style>
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" rel="text/javascript"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('button[data-toggle="collapse"]').click(function(){
+            if($('button[data-toggle="collapse"] i').hasClass('icon-chevron-down icon-white'))
+            {
+                $('button[data-toggle="collapse"] i').removeClass();
+                $('button[data-toggle="collapse"] i').addClass('icon-chevron-up icon-white');}
+            else{
+                $('button[data-toggle="collapse"] i').removeClass();
+                $('button[data-toggle="collapse"] i').addClass('icon-chevron-down icon-white');}
+            
+        }); //end click
+    }); // end ready
+    
+    </script>  
   </head>
 
   <body>
@@ -65,10 +80,10 @@ verificarIP();
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
         <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
         
-        <button class="btn btn-large btn-block btn-warning" type="button" data-toggle="collapse" data-target="#institucion">Ingresar como Médico</button>
-            <div id="institucion" class="collapse in">
-                <a class="btn btn-block" type="submit">Institucion 1</a>
-                <a class="btn btn-block" type="submit">Institucion 2</a>
+        <button type="button" class="btn btn-warning btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
+            <div id="demo" class="collapse" data-parent="#ingresoMedico">
+                <button class="btn btn-block" type="submit">Institucion 1</button>
+                <button class="btn btn-block" type="submit">Institucion 2</button>
             </div>
         <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
       </form>
