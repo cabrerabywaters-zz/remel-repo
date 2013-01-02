@@ -78,11 +78,13 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
         $( "#diagnosticos" ).autocomplete({
             source: function( request, response ) {
                 $.ajax({
-                    url: "autocompleteDiagnostico.php",
+                    url: "../../../ajax/autocompleteDiagnostico.php",
                     data: {
                         name_startsWith: request.term
                     },
+		    type: "post",
                     success: function( data ) {
+			alert(data);
                         response( $.map( data.geonames, function( item ) {
                             return {
                                 label: item.name,
@@ -199,7 +201,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       <strong><p>Paracetamol</p></strong>
       <div class="span3"> <img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
       <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
-     
+    
       
             <p>Cantidad: </p>
        <input type="text" placeholder="Indique Cantidad">
