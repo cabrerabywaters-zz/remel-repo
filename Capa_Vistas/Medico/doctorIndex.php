@@ -16,9 +16,8 @@ verificarIP();
     <meta name="author" content="">
       <link href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="../../js/jquery.tools.min.js"></script>
-            <script src="../../bootstrap_js/js/bootstrap-modal.js"></script>
-             <script src="../../bootstrap_js/js/bootstrap-collapse.js"></script>
+	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
             
              <script>
                $(document).ready(function(){

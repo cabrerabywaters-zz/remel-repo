@@ -35,9 +35,9 @@
     var accion = 0; // asigno la accion predeterminada a ver listado (0)
     </script>
     <!-- scripts de la datetable -->
-	<script type="text/javascript" language="javascript" src="../js/jquery.jeditable.js"></script>
-	<script type="text/javascript" language="javascript" src="../js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf-8" src="../js/ajaxTabla.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.jeditable.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/ajaxTabla.js"></script>
         
     <!-- estilos para la tabla-->
     	<style type="text/css" title="currentStyle">

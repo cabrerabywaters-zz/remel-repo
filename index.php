@@ -12,13 +12,11 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-
-        <!-- Le JS -->
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+        <!-- le js -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <!-- Le styles -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <style type="text/css">
             body {
                 padding-top: 40px;
@@ -57,7 +55,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
 
 
         </style>
-        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        
 
 
     </head>

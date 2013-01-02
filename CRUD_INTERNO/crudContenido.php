@@ -12,7 +12,7 @@
     </div><!-- fin div menu por tabla-->
    
     <div class="span10" id="contenido">
-    <script ref="text/javascript" src="../js/crudVisualizacion.js"></script>   
+    <script ref="text/javascript" src="js/crudVisualizacion.js"></script>   
 <?php 
 // aqui se incluye el formulario o la vista correspondiente
 // este es un arreglo de ejemplo
@@ -49,7 +49,7 @@ visualizacionTabla($arreglo);
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="cerrar">Cerrar</button>
     <a class='btn btn-inverse' id='agregar'>Agregar</a>
   </div><!-- end modal-footer -->
-        <script ref="text/javascript" src="../js/crudValidarFormExterno.js"></script>  
+        <script ref="text/javascript" src="js/crudValidarFormExterno.js/"></script>  
   </div><!-- end Modal -->
 
 </div>

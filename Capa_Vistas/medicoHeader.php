@@ -7,21 +7,10 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
-        
+        <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-        
-        <style> 
-        /* Estilos de cargando de la barra respectiva*/
-        .ui-autocomplete-loading {
-        background: white url('../../img/ui-anim_basic_16x16.gif') right center no-repeat;
-            }
-        </style>
-
-
         <?php
 		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín","Apellido" => "Sabina","Fecha" => "22-06-1990","Sexo" =>"M","Peso" =>"68.00",		
 		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche",	
@@ -69,7 +58,19 @@ and open the template in the editor.
     });
     </script>
     
+     
+        <!-- fin script js externos -->
         
+        <!-- styles -->
+        
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
+        <style> 
+        /* Estilos de cargando de la barra respectiva*/
+        .ui-autocomplete-loading {
+        background: white url('../../img/ui-anim_basic_16x16.gif') right center no-repeat;
+            }
+        </style>
         <style type="text/css">
         
        body {

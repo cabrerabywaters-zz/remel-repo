@@ -65,17 +65,30 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
             <form class="form-search">
             <div class="input-append"> <!-- buscador inline con autocomplete -->
                
-            <input type="text" class="span2 search-query" id="diagnosticos">
+            <input type="text" class="span2 search-query" id="diagnostico">
             <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
             
                 <script>
     $(function() {
+        /**
+         * esta función genera el autocomplete para el campo de diagnostico (input)
+         * al seleccionar y escribir 2 letras se ejecuta el ajax
+         * busca en la base de datos en el archivo autocompleteDiagnostico.php
+         * el jSon correspondiente a las coincidencias
+         * 
+         * Funcion select que ejecutará una accion cuando se devuelva
+         */
         function log( message ) {
+            /**
+             * Funcion log
+             *      Recibe: message -> string de mensaje
+             *      Retorna: agrega el mensaje en el div con id = "log"
+             **/
             $( "<div>" ).text( message ).prependTo( "#log" );
             $( "#log" ).scrollTop( 0 );
         }
  
-        $( "#diagnosticos" ).autocomplete({
+        $( "#diagnostico" ).autocomplete({
             source: function( request, response ) {
                 $.ajax({
                     url: "../../../ajax/autocompleteDiagnostico.php",
@@ -95,6 +108,13 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
                 });
             },
             minLength: 2,
+            /**
+            * ESTA FUNCION ES LA QUE REALIZA LA ACCION UNA VEZ ESTÁ SELECCIONADO
+            * ALGUNO DE LOS ELEMENTOS MOSTRADOS
+            * ---------
+            * en este caso se muestra de forma simple
+            * (cambiar esto segun como se quieran mostrar los datos)
+             */
             select: function( event, ui ) {
                 log( ui.item ?
                     "Selected: " + ui.item.label :
@@ -165,63 +185,44 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 </div>
         
         
-        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Información del Paciente</h3>
-  </div>
-  <div class="modal-body">
-      <strong><p>Resfrio Común</p></strong>
-      <div class="span3"> <img src="../../../imgs/resfriado.jpg" style="width:30%" ></div>
-      <p>El resfriado común, catarro, resfrío o romadizo es una enfermedad infecciosa viral leve del sistema respiratorio superior que afecta a personas de todas las edades, altamente contagiosa, causada fundamentalmente por rinovirus y coronavirus.</p>
-      <p>Comentario: </p>
-     <center> <textarea rows="2" style="width:90%"></textarea></center>
-   
-    
-     
-    
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Diagnosticar</a>
-
-  </div>
-  
-    
-    
-</div>
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- popup informacion diagnostico -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Información del Paciente</h3>
+            </div>
+            <div class="modal-body">
+                <strong><p>Resfrio Común</p></strong>
+                <div class="span3"> <img src="../../../imgs/resfriado.jpg" style="width:30%" ></div>
+                <p>El resfriado común, catarro, resfrío o romadizo es una enfermedad infecciosa viral leve del sistema respiratorio superior que afecta a personas de todas las edades, altamente contagiosa, causada fundamentalmente por rinovirus y coronavirus.</p>
+                <p>Comentario: </p>
+                <center> <textarea rows="2" style="width:90%"></textarea></center>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Diagnosticar</a>
+            </div>
+        </div><!-- fin popup informacion diagnostico -->
         
         
-           <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Información del Medicamento</h3>
-  </div>
-  <div class="modal-body">
-      <strong><p>Paracetamol</p></strong>
-      <div class="span3"> <img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
-      <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
-    
-      
-            <p>Cantidad: </p>
-       <input type="text" placeholder="Indique Cantidad">
-      
-      <p>Comentario: </p>
-     <center> <textarea rows="2" style="width:90%"></textarea></center>
- 
-     
-     
-    
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Recetar</a>
-
-  </div>
-  
-    
-    
-</div>
+        <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Información del Medicamento</h3>
+            </div>
+            <div class="modal-body">
+                <strong><p>Paracetamol</p></strong>
+                <div class="span3"> <img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
+                <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
+                <p>Cantidad: </p>
+                <input type="text" placeholder="Indique Cantidad">
+                <p>Comentario: </p>
+                <center> <textarea rows="2" style="width:90%"></textarea></center>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Recetar</a>
+            </div>
+        </div>
         
         
         
