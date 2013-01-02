@@ -137,8 +137,8 @@ color:white}
                 <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
-                    <strong>Paciente:<br></strong>
-                    <?php 
+                    <strong>Paciente:<br></strong><table>
+                    <tr><td><?php 
 					if($paciente['Sexo']=="M")
 					{
 					echo " Sr. ".$paciente['Apellido']." ";	
@@ -147,7 +147,8 @@ color:white}
 					{
 						echo " Sra. ".$paciente['Apellido']."";
 					}
-					?>
+					?></td></tr><tr><td>
+                     <?php echo $paciente['RUT']; ?></td></tr></table>
                     </blockquote>
                 </div>
             </div><!-- cierre div superior-->

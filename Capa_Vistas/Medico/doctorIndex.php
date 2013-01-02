@@ -130,18 +130,18 @@ color:white}
       <strong><p>Ingrese el Rut del Paciente</p></strong>
     <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
   <div class="input-append">
-    <input type="text" class="span2 search-query" name="RUN" required="required" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
+    <input type="text" class="span2 search-query" name="RUN" required="required"  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
     <button class="btn btn" type="submit "data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
     
    
-    <br><div id="informacion" class="collapse" ><span id="info" class="badge badge-info"><a  href="#collapseTwo" id="atenderPaciente">Placeholder</a></span></div>
+    <br><div id="informacion" class="collapse" ><span id="info" class="badge badge-info"><a  href="#collapseTwo" id="atenderPaciente"></a></span></div>
   </div>
     </form>
     
       <div id="clave" class="collapse" >
 	<form id="verificacionClave" action="javascript:verificarClave()" method="post">
 		<strong>Ingrese Clave :</strong> <center> 
-		<input type="text" name="clave" required="required" placeholder="Ingrese Clave Del Paciente"></center> </div>
+		<input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> </div>
 		<input type="hidden" name="hID" value=""/>
 		<input type="hidden" name="hRUN" value=""/>
   	</div>
