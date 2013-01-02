@@ -43,8 +43,8 @@ $busquedaMedicamentos = CallQuery($queryStringMedicamentos);
 if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
     //primer if de resultado: alergias
     if($busquedaAlergias){
-        $resultadoAlegias = array();
-        foreach ($resultAlergias as $assoc -> $value){
+        $resultadoAlergias = array();
+        foreach ($resultadoAlergias as $assoc -> $value){
             $resultadoAlergias[$value] = 'SELECT Descripcion FROM Alergias 
                                           WHERE idAlergia = '.$value.'';     
         }
@@ -52,7 +52,7 @@ if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
     //segundo if de resultado: condiciones
     if($busquedaCondiciones){
         $resultadoCondiciones = array();
-        foreach ($resultAlergias as $assoc -> $value){
+        foreach ($resultadoCondiciones as $assoc -> $value){
             $resultadoCondiciones[$value] = 'SELECT Nombre FROM Condiciones 
                                              WHERE idCondiciones = '.$value.'';     
         }
@@ -65,6 +65,10 @@ if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
                                               WHERE idMedicamento = '.$value.'';
         }
     }
+    //con los arreglos anteriores se tienen todas las contraindicaciones que presenta el medicamento
+    //a continuación la alerta de componentes
+    //IMPORTANTE: no existe relación alguna entre los componentes y las contraindicaciones, por lo que no se puede mostrar.
+    //Atento a futuros cambios
 }
 
 //falta hacer la magia de mostrar las alergias de manera bonita
