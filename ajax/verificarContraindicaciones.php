@@ -52,6 +52,7 @@ if ($busquedaAlergias || $resultCondiciones){
         }
     }
 }
+
 //falta hacer la magia de mostrar las alergias de manera bonita
 //y obtener las cantidades de las contraindicaciones en los medicamentos
 ?>
