@@ -5,7 +5,7 @@ include '../Capa_Datos/callQuery.php';
 session_start();
 
 $idPaciente = $_SESSION['idPaciente'];
-$idMedicamento;
+$idMedicamento = 1;
 
 //query de alergias del paciente
 $queryStringAlergias = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Paciente, Alergia_has_Paciente 
@@ -34,6 +34,9 @@ $queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento FROM Medicamentos,
                             WHERE ('.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento
                             OR '.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento1)
                             AND '.$idMedicamento.' = Medicamentos.idMedicamento';
+
+//diagnosticos queda para despues por complejidad
+//$queryStringDiagnosticos = 'SELECT '
 
 $busquedaAlergias = CallQuery($queryStringAlergias);
 $busquedaCondiciones = CallQuery($queryStringCondiciones);
@@ -65,6 +68,10 @@ if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
                                               WHERE idMedicamento = '.$value.'';
         }
     }
+    vardump($resultadoAlergias);
+    vardump($resultadoCondiciones);
+    vardump($resultadoMedicamentos);
+    
     //con los arreglos anteriores se tienen todas las contraindicaciones que presenta el medicamento
     //a continuación la alerta de componentes
     //IMPORTANTE: no existe relación alguna entre los componentes y las contraindicaciones, por lo que no se puede mostrar.
