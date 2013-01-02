@@ -10,9 +10,18 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 
 ?>
   <div class="tab-content"><!-- contenido del panel 1-->
-    <div class="tab-pane active" id="tabHistorial"><!-- tab Historial-->
+    <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
       
         <div class="accordion" id="accordion2">
+        <!-- despliega el rut -->
+        <form class="form-horizontal">
+        <div class="control-group">
+    <label class="control-label" for="Rut">RUT</label>
+    <div class="controls">
+      <input type="text" id="Rut" value=<?php echo $paciente['RUT']; ?> disabled>
+    </div>
+  </div>
+  </form>
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
@@ -21,11 +30,15 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseOne" class="accordion-body collapse">
       <div class="accordion-inner">
-        Aqui irá el contenido con la infor del paciente
+          <?php 
+		  // muestra los detalles de paciente
+		  include ("informacionPaciente.php"); 
+          mostrarPaciente($paciente); ?>
       </div>
     </div>
   </div>
   <div class="accordion-group">
+  
     <div class="accordion-heading">
       <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
         Información Médica
@@ -33,16 +46,20 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-        Aquí irá la información Médica
+          <?php 
+		  //muestra alergias y condiciones del paciente
+		  include ("informacionMedica.php"); 
+          mostrarAlergias($alergias);
+          mostrarCondiciones($condiciones); ?>
       </div>
     </div>
   </div>
 </div>
     </div><!-- Fin tab historial-->
     
-    <div class="tab-pane" id="tabConsulta"><!-- tab Diagnostico-->
-      
-              <div class="accordion" id="accordion3">
+    <div class="tab-pane img-rounded" id="tabConsulta"><!-- tab consulta-->
+
+<div class="accordion" id="accordion3"><!-- accordion diagnostico-->
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
@@ -50,18 +67,31 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       </a>
     </div>
     <div id="collapseOne1" class="accordion-body collapse">
-      <div class="accordion-inner">
-        <div class="modal-body">
-      <strong><p>Ingrese nombre del diagnóstico</p></strong>
-    <form class="form-search">
-  <div class="input-append">
-    <input type="text" class="span2 search-query">
-    <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
-    
+        <div class="accordion-inner">
+            
+            <div class="modal-body">
+            <strong><p>Ingrese nombre del diagnóstico</p></strong>
+            <form class="form-search">
+            <div class="input-append">
+            <input type="text" class="span2 search-query" id="diagnosticos">
+            <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
+            
+            <script>
+                $(document).ready(function(){
+                var diagnosticos = $.getScript("getDiagnosticos.php"); // se traspasa el arreglo Json obtenido en getDiagnosticos.php via ajax
+                $("#diagnostios").autocomplete({ source: diagnosticos }); // se crea el autocomplete con opciones el diagnostico
+                // que aparezca en el 
+                
+                }); //end ready
+            </script>
+            
+            
+            
+            </div>
    
-    <div id="informacion" class="collapse" > <span id="info" class="badge badge-info">  <a  href="#myModal" role="button"   data-toggle="modal"> Resfrio común </a></span></div>
-  </div>
-    </form>
+            <div id="informacion" class="collapse" > <span id="info" class="badge badge-info">  <a  href="#myModal" role="button"   data-toggle="modal"> Resfrio común </a></span></div>
+          
+            </form>
     
    
     
@@ -77,12 +107,12 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseTwo2" class="accordion-body collapse">
       <div class="accordion-inner">
-         <div class="modal-body">
+         <div class="modal-body img-rounded">
       <strong><p>Ingrese nombre del medicamento</p></strong>
     <form class="form-search">
   <div class="input-append">
-    <input type="text" class="span2 search-query">
-    <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
+    <input type="text" id="Recetas" class="span2 search-query">
+    <button type="button" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
     
    
     <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" role="button"   data-toggle="modal"> Paracetamol </a></span></div>
@@ -95,13 +125,13 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       </div>
     </div>
   </div>
-</div><!-- Fin del Acordeon-->
+</div><!-- accordion diagnostico-->
         
         
         
         
         
-    </div><!-- Fin del tab diagnostico-->
+    </div><!-- Fin del tab consulta-->
     
   </div>
   </div>

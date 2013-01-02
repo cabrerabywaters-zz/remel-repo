@@ -2,8 +2,8 @@
 
 //include(dirname(__FILE__)."../Capa_Controladores/paciente.php");
 //include(dirname(__FILE__)."../Capa_Controladores/persona.php");
-include "../Capa_Controladores/persona.php";
-include "../Capa_Controladores/paciente.php";
+include dirname(__FILE__)."/../Capa_Controladores/persona.php";
+include dirname(__FILE__)."/../Capa_Controladores/paciente.php";
 
 
 $rut = $_POST['RUN'];

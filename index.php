@@ -86,6 +86,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                 function verificarRut( Objeto )
                 {
                     var tmpstr = "";
+                     $('#mensaje').html("");
                     var intlargo = Objeto.value
                     if (intlargo.length> 0)
                     {
@@ -93,7 +94,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                         largo = crut.length;
                         if ( largo <2 )
                         {
-                             $('#mensaje').html("El rut ingresado no es válido");
+                             $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
                             Objeto.focus()
                             return false;
                         }
@@ -141,7 +142,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
                         }
                         if ( dvr != dv.toLowerCase() )
                         {
-                            $('#mensaje').html("El rut ingresado no es válido");
+                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
                             Objeto.focus();
                             return false;
                         }
@@ -161,7 +162,7 @@ if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
 							window.location.href = "comprobadorDoctor.php";
 						}
 						else{
-							$('#mensaje').html("Nombre de Usuario o Constraseña Incorrecto");
+							$('#mensaje').html("<span style='color: red'>Nombre de Usuario o Constraseña Incorrecto </span>");
 						}
                   			}
 				});

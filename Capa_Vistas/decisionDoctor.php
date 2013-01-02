@@ -56,6 +56,10 @@ verificarIP();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" rel="text/javascript"></script>
     <script src="../js/bootstrap.js"></script>
     <script>
+        /**
+         * funcion que al hacer click en el boton del acordeon cambia el icono
+         * de la flecha
+         */
     $(document).ready(function(){
         $('button[data-toggle="collapse"]').click(function(){
             if($('button[data-toggle="collapse"] i').hasClass('icon-chevron-down icon-white'))

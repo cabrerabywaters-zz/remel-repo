@@ -1,7 +1,6 @@
 <?php 
 
 require_once(dirname(__FILE__).'/../Capa_Datos/paciente.php');
-require_once '/../Capa_Datos/paciente.php';
 
 /**
 * Funciones controladores CRUD
