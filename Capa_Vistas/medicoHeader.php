@@ -15,6 +15,9 @@ and open the template in the editor.
         
 
         <?php
+		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín Sabina","Fecha" => "22-06-1990","Sexo" =>"M","Peso" =>"68.00",		
+		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche",	
+		"Telefono1" =>"(074) - 823680","Telefono2" =>"(09) - 92348235","Telefono3" =>"","Isapre" => "Consalud");
 		 $alergias=array();
 		 $condiciones=array();
 		 $alergias1=array("agua","aceite","miel","polen","trigo");

@@ -13,6 +13,15 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
       
         <div class="accordion" id="accordion2">
+        <!-- despliega el rut -->
+        <form class="form-horizontal">
+        <div class="control-group">
+    <label class="control-label" for="Rut">RUT</label>
+    <div class="controls">
+      <input type="text" id="Rut" value=<?php echo $paciente['RUT']; ?> disabled>
+    </div>
+  </div>
+  </form>
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
@@ -21,11 +30,15 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseOne" class="accordion-body collapse">
       <div class="accordion-inner">
-        Aqui irá el contenido con la infor del paciente
+          <?php 
+		  // muestra los detalles de paciente
+		  include ("informacionPaciente.php"); 
+          mostrarPaciente($paciente); ?>
       </div>
     </div>
   </div>
   <div class="accordion-group">
+  
     <div class="accordion-heading">
       <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
         Información Médica
@@ -33,7 +46,9 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-          <?php include ("informacionMedica.php"); 
+          <?php 
+		  //muestra alergias y condiciones del paciente
+		  include ("informacionMedica.php"); 
           mostrarAlergias($alergias);
           mostrarCondiciones($condiciones); ?>
       </div>
