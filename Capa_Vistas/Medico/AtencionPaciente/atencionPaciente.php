@@ -33,7 +33,9 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-        Aquí irá la información Médica
+          <?php include ("informacionMedica.php"); 
+          mostrarAlergias($alergias);
+          mostrarCondiciones($condiciones); ?>
       </div>
     </div>
   </div>
@@ -94,7 +96,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       <strong><p>Ingrese nombre del medicamento</p></strong>
     <form class="form-search">
   <div class="input-append">
-    <input type="text" class="span2 search-query">
+    <input type="text" id="Recetas" class="span2 search-query">
     <button type="button" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
     
    

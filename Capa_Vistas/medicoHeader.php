@@ -3,8 +3,7 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html>
-    <head>
+<html><head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
@@ -13,6 +12,51 @@ and open the template in the editor.
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+        
+
+        <?php
+		 $alergias=array();
+		 $condiciones=array();
+		 $alergias1=array("agua","aceite","miel","polen","trigo");
+		$condiciones1=array("agua","aceite","miel","polen","trigo");
+		$recetas=array("agua","aceite","miel","polen","trigo");
+		?>
+        
+<script>
+    $(function() {
+		
+        var Alergias = [ <?php
+		foreach ($alergias1 as $dato)
+		{
+			echo'"'; echo $dato; echo'"'; echo",";
+		}
+		?>
+        ];
+		var Condiciones = [
+		<?php foreach ($condiciones1 as $dato)
+		{
+			echo'"'; echo $dato; echo'"'; echo",";
+		}?>
+		];
+			var Recetas = [
+		<?php foreach ($recetas as $dato)
+		{
+			echo'"'; echo $dato; echo'"'; echo",";
+		}?>
+		 ];
+        $( "#Condiciones" ).autocomplete({
+            source: Condiciones
+        });
+		 $( "#Recetas" ).autocomplete({
+            source: Recetas
+        });
+		 $( "#Alergias" ).autocomplete({
+            source: Alergias
+        });
+		
+    });
+    </script>
+    
         
         <style type="text/css">
         
