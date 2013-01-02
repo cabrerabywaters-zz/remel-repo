@@ -4,7 +4,7 @@
  
 <form class="form-inline">
   <div class="control-group">
-    <label class="control-label" for="Nombre">Nombre <input class="span5" type="text" id="Nombre" value="<?php echo $paciente['Nombre']; ?>" disabled></label>
+    <label class="control-label" for="Nombre">Nombre <input class="span5" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido']." "; ?>" disabled></label>
   </div>
   <div class="control-group">
   <label class="control-label" for="Fecha">Fecha de Nacimiento  <input type="datetime" class="uneditable-input" id="Fecha" value="<?php echo $paciente['Fecha']; ?>" disabled></label>

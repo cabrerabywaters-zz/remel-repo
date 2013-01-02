@@ -35,6 +35,7 @@ verificarIP();
   
  });
                  </script>
+                
     <!-- Le styles -->
     <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
     
@@ -130,7 +131,7 @@ color:white}
       <strong><p>Ingrese el Rut del Paciente</p></strong>
     <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
   <div class="input-append">
-    <input type="text" class="span2 search-query" name="RUN" required="required"  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
+    <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
     <button class="btn btn" type="submit "data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
     
    
@@ -147,9 +148,9 @@ color:white}
   	</div>
   <div class="modal-footer">
 	<button class="btn" type="submit"><strong>Ingresar</strong></button></form>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn"  data-dismiss="modal" aria-hidden="true" type="reset" >Cancelar</button>
   </div>
-  
+
 
     
     
@@ -158,6 +159,7 @@ color:white}
 
 
   </body>
+
   <script>
 	$("busqueda").validator();
 	$("verificacionClave").validator();
@@ -190,5 +192,7 @@ color:white}
                                 }
                         });
         }	
-  </script>
+		// funcion que se encarga de limpiar el formulario tras apretar el boton cancelar
+
+</script>
 </html>

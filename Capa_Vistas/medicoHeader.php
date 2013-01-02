@@ -26,11 +26,12 @@ and open the template in the editor.
 		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín","Apellido" => "Sabina","Fecha" => "22-06-1990","Sexo" =>"M","Peso" =>"68.00",		
 		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche",	
 		"Telefono1" =>"(074) - 823680","Telefono2" =>"(09) - 92348235","Telefono3" =>"","Isapre" => "Consalud");
-		 $alergias=array();
-		 $condiciones=array();
+		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
+		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Alcoholico","Drogadicto"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
 		$recetas=array("agua","aceite","miel","polen","trigo");
+                $institucion=array("Rut"=>"123456","Nombre" => "Hospital Regional Rancagua","..." => "...")
 		?>
         
 <script>
@@ -139,7 +140,7 @@ color:white}
                 </div>
                 
                 <div class="img-rounded span6" style=" background-color: #DCF1EF">
-                    <center><h2> Institucion</h2></center>
+                    <center><h2><?php echo $institucion['Nombre']; ?></h2></center>
                 </div>
                 
                 <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
