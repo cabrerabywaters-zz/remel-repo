@@ -2,17 +2,25 @@
 {
  ?>
  
-<form class="form-horizontal">
+<form class="form-inline">
+
   <div class="control-group">
     <label class="control-label" for="Nombre">Nombre</label>
     <div class="controls">
       <input class="span5" type="text" id="Nombre" value="<?php echo $paciente['Nombre']; ?>" disabled>
     </div>
   </div>
+
   <div class="control-group">
     <label class="control-label" for="Fecha">Fecha de Nacimiento</label>
     <div class="controls">
       <input type="datetime" class="uneditable-input" id="Fecha" value="<?php echo $paciente['Fecha']; ?>" disabled>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="Sexo">Sexo</label>
+    <div class="controls">
+      <input type="text" class="span1" id="Sexo" value="<?php echo $paciente['Sexo']; ?>" disabled>
     </div>
   </div>
   <div class="control-group">
@@ -21,12 +29,14 @@
       <input type="text" class="span1" id="Peso" value="<?php echo $paciente['Peso']; ?>">
     </div>
   </div> 
+
   <div class="control-group">
     <label class="control-label" for="Direccion">Dirección</label>
     <div class="controls">
       <input type="text" class="span5" id="Direccion" value="<?php echo $paciente['Direccion']; ?>">
     </div>
   </div>
+
   <div class="control-group">
     <label class="control-label" for="Comuna">Comuna</label>
     <div class="controls">
@@ -45,6 +55,7 @@
       <input type="text" class="span1" id="Pais" value="<?php echo $paciente['Pais']; ?>">
     </div>
   </div>
+
   <div class="control-group">
     <label class="control-label" for="Nacionalidad">Nacionalidad</label>
     <div class="controls">
@@ -57,18 +68,24 @@
       <input type="text" class="span2" id="Etnia" value="<?php echo $paciente['Etnia']; ?>" disabled>
     </div>
   </div>
+
   <div class="control-group">
     <label class="control-label" for="Telefono1 Telefono2 Telefono3">Telefonos</label>
     <div class="controls">
       <input type="text" class="span2" id="Telefono1" value="<?php echo $paciente['Telefono1']; ?>">
     </div>
+    </div>
+    <div class="control-group">
     <div class="controls">
       <input type="text" class="span2" id="Telefono2" value="<?php echo $paciente['Telefono2']; ?>">
     </div>
+    </div>
+    <div class="control-group">
     <div class="controls">
       <input type="text" class="span2" id="Tlefono3" value="<?php echo $paciente['Telefono3']; ?>">
     </div>
   </div>
+
   <div class="control-group">
     <label class="control-label" for="Isapre">Isapre</label>
     <div class="controls">

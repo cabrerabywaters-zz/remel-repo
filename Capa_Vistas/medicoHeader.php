@@ -15,7 +15,7 @@ and open the template in the editor.
         
 
         <?php
-		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín Sabina","Fecha" => "22-06-1990","Sexo" =>"M","Peso" =>"68.00",		
+		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín","Apellido" => "Sabina","Fecha" => "22-06-1990","Sexo" =>"M","Peso" =>"68.00",		
 		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche",	
 		"Telefono1" =>"(074) - 823680","Telefono2" =>"(09) - 92348235","Telefono3" =>"","Isapre" => "Consalud");
 		 $alergias=array();
@@ -138,7 +138,16 @@ color:white}
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
                     <strong>Paciente:<br></strong>
-                    Sr. Sabina
+                    <?php 
+					if($paciente['Sexo']=="M")
+					{
+					echo " Sr. ".$paciente['Apellido']." ";	
+					}
+					else
+					{
+						echo " Sra. ".$paciente['Apellido']."";
+					}
+					?>
                     </blockquote>
                 </div>
             </div><!-- cierre div superior-->
