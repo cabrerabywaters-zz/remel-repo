@@ -157,8 +157,11 @@ color:white}
 					{
 						echo " Sra. ".$paciente['Apellido']."";
 					}
-					?></td></tr><tr><td>
-                     <?php echo $paciente['RUT']; ?></td></tr></table>
+				echo '</td></tr><tr><td>';
+                                       $cadena=$_SESSION['RUTPaciente'];
+                  include("Medico/AtencionPaciente/recomponerRUT.php");
+                     echo $resultado; ?></td></tr></table>
+
                     </blockquote>
                 </div>
             </div><!-- cierre div superior-->
