@@ -15,18 +15,18 @@ function Creacion(){
 }
 
 function Eliminacion(){
-	$regionABorrar = new Comuna($_POST['idComuna']);
-	$regionABorrar->BorrarPorId();
+	$omunaABorrar = new Comuna($_POST['idComuna']);
+	$ComunaABorrar->BorrarPorId();
 }
 
 function Actualizar(){
 	$datosActualizacion = array(
 				array('Nombre',$_POST['nombre_comuna']),
 				array('Provincias_idProvincia',$_POST['idProvincia']
-				);
+				));
 
-	$regionACrear = new Comuna($_POST['idComuna']);
-	$regionAActualizar->($datosActualizacion);
+	$comunaACrear = new Comuna($_POST['idComuna']);
+	$comunaAActualizar -> ($datosActualizacion);
 }
 
 function SeleccionarTodas(){

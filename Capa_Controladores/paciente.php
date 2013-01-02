@@ -13,18 +13,18 @@ require_once(dirname(__FILE__).'/../Capa_Datos/paciente.php');
 **/
 function PacienteCreacion(){
 	$datosCreacion = array(
-				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])
+				array('Nombre',$_POST['nombre_Paciente']),
+				array('Numero',$_POST['numero_Paciente'])
 				);
-	Region::Agregar($datosCreacion);	
+	Paciente::Agregar($datosCreacion);	
 }
 
 /**
 * Funcion de eliminacion
 **/
 function PacienteEliminacion(){
-	$regionABorrar = new Region($_POST['id']);
-	$regionABorrar->BorrarPorId();
+	$PacienteABorrar = new Paciente($_POST['id']);
+	$PacienteABorrar->BorrarPorId();
 }
 
 /**
@@ -32,13 +32,13 @@ function PacienteEliminacion(){
 **/
 function PacienteActualizacion(){
 	$datosActualizacion = array(
-				'Nombre' => $_POST['nombre_region'],
-				'Numero' => $_POST['numero_region']
+				'Nombre' => $_POST['nombre_Paciente'],
+				'Numero' => $_POST['numero_Paciente']
 				);
 
-	//$regionACrear = new Region($_POST['idRegion']);
-	$regionAActualizar = new Region($_POST['id']);
-	$regionAActualizar->Actualizar($datosActualizacion);
+	//$PacienteACrear = new Paciente($_POST['idPaciente']);
+	$PacienteAActualizar = new Paciente($_POST['id']);
+	$PacienteAActualizar->Actualizar($datosActualizacion);
 }
 
 /**

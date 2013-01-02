@@ -14,18 +14,18 @@ require_once(dirname(__FILE__).'/../Capa_Datos/persona.php');
 **/
 function PersonaCreacion(){
 	$datosCreacion = array(
-				array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])
+				array('Nombre',$_POST['nombre_Persona']),
+				array('Numero',$_POST['numero_Persona'])
 				);
-	Region::Agregar($datosCreacion);	
+	Persona::Agregar($datosCreacion);	
 }
 
 /**
 * Funcion de eliminacion
 **/
 function PersonaEliminacion(){
-	$regionABorrar = new Region($_POST['id']);
-	$regionABorrar->BorrarPorId();
+	$PersonaABorrar = new Persona($_POST['id']);
+	$PersonaABorrar->BorrarPorId();
 }
 
 /**
@@ -33,13 +33,13 @@ function PersonaEliminacion(){
 **/
 function PersonaActualizacion(){
 	$datosActualizacion = array(
-				'Nombre' => $_POST['nombre_region'],
-				'Numero' => $_POST['numero_region']
+				'Nombre' => $_POST['nombre_Persona'],
+				'Numero' => $_POST['numero_Persona']
 				);
 
-	//$regionACrear = new Region($_POST['idRegion']);
-	$regionAActualizar = new Region($_POST['id']);
-	$regionAActualizar->Actualizar($datosActualizacion);
+	//$PersonaACrear = new Persona($_POST['idPersona']);
+	$PersonaAActualizar = new Persona($_POST['id']);
+	$PersonaAActualizar->Actualizar($datosActualizacion);
 }
 
 /**
