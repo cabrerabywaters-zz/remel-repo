@@ -69,26 +69,17 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
             <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
             
                 <script>
-    $(function() { 
-        /**
-         * funcion que genera el auto complete al div diagnosticos a partir
-         * de un json obtenido vía ajax al script getdiagnosticos
-         */
-        
+    $(function() {
         function log( message ) {
-            $("<div>").text( message ).prependTo("#log");
-            $("#log").scrollTop( 0 );
+            $( "<div>" ).text( message ).prependTo( "#log" );
+            $( "#log" ).scrollTop( 0 );
         }
  
-        $("#diagnosticos").autocomplete({
+        $( "#diagnosticos" ).autocomplete({
             source: function( request, response ) {
                 $.ajax({
-                    url: "../../../ajax/autocompleteDiagnostico.php",
-                    dataType: "jsonp",
+                    url: "autocompleteDiagnostico.php",
                     data: {
-                        featureClass: "P",
-                        style: "full",
-                        maxRows: 5,
                         name_startsWith: request.term
                     },
                     success: function( data ) {
@@ -98,8 +89,8 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
                                 value: item.name
                             }
                         }));
-                    } //function (data)
-                }); // ajax
+                    }
+                });
             },
             minLength: 2,
             select: function( event, ui ) {
@@ -115,6 +106,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
             }
         });
     });
+
     </script>
 
             
