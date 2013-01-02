@@ -8,7 +8,9 @@
 	
     $rut2=str_replace(".","",$rut);//elimina puntos del rut
     $rut3=str_replace("-","",$rut2);//elimina guiones del rut
-    $rut=$rut3; //iguala la variable final a la variable inicial
+    $rut4=str_replace("k","0",$rut3);//elimina las K y las reemplaza por 0
+   
+    $rut=$rut4; //iguala la variable final a la variable inicial
 
 	$pass = md5($_POST['passUsuario']);
 
