@@ -63,24 +63,66 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
             <div class="modal-body">
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
             <form class="form-search">
-            <div class="input-append">
+            <div class="input-append"> <!-- buscador inline con autocomplete -->
+               
             <input type="text" class="span2 search-query" id="diagnosticos">
             <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
             
-            <script>
-                $(document).ready(function(){
-                var diagnosticos = $.getScript("getDiagnosticos.php"); // se traspasa el arreglo Json obtenido en getDiagnosticos.php via ajax
-                $("#diagnostios").autocomplete({ source: diagnosticos }); // se crea el autocomplete con opciones el diagnostico
-                // que aparezca en el 
-                
-                }); //end ready
-            </script>
+                <script>
+    $(function() { 
+        /**
+         * funcion que genera el auto complete al div diagnosticos a partir
+         * de un json obtenido vía ajax al script getdiagnosticos
+         */
+        
+        function log( message ) {
+            $("<div>").text( message ).prependTo("#log");
+            $("#log").scrollTop( 0 );
+        }
+ 
+        $("#diagnosticos").autocomplete({
+            source: function( request, response ) {
+                $.ajax({
+                    url: "../../../ajax/autocompleteDiagnostico.php",
+                    dataType: "jsonp",
+                    data: {
+                        featureClass: "P",
+                        style: "full",
+                        maxRows: 5,
+                        name_startsWith: request.term
+                    },
+                    success: function( data ) {
+                        response( $.map( data.geonames, function( item ) {
+                            return {
+                                label: item.name,
+                                value: item.name
+                            }
+                        }));
+                    } //function (data)
+                }); // ajax
+            },
+            minLength: 2,
+            select: function( event, ui ) {
+                log( ui.item ?
+                    "Selected: " + ui.item.label :
+                    "Nothing selected, input was " + this.value);
+            },
+            open: function() {
+                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+            },
+            close: function() {
+                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+            }
+        });
+    });
+    </script>
+
             
             
             
             </div>
    
-            <div id="informacion" class="collapse" > <span id="info" class="badge badge-info">  <a  href="#myModal" role="button"   data-toggle="modal"> Resfrio común </a></span></div>
+            <div id="log" class="collapse" > </div> <!-- div donde se mostraran los diagnosticos obtenidos -->
           
             </form>
     
