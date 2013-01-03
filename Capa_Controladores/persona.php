@@ -1,6 +1,6 @@
 <?php 
 
-include('../Capa_Datos/generadorStringQuery.php');
+include_once('../Capa_Datos/generadorStringQuery.php');
 
 class Persona {
 
@@ -96,7 +96,7 @@ class Persona {
      * y actualiza con datos nuevos, la id y los datos vienen
      * por POST desde AJAX
      */
-    private function Actualizar() {
+    private static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
                                 array('Direccion_idDireccion',$_POST['idDireccion']),
@@ -110,6 +110,17 @@ class Persona {
         $query = CallQuery($queryString);
     }
 
+    public static function VerificarClave($rut, $pass){
+	$pass = md5($pass);
+	$queryString = "SELECT * FROM Personas WHERE RUN = '$rut' AND Clave = '$pass';";
+        if(CallQuery($queryString)->num_rows != 1){
+                return false;
+        }
+	else return true;	
+    }
+
+    public static function VerificarPIN(){
+    }
 }
 
 ?>

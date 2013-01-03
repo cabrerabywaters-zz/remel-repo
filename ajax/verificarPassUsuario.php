@@ -1,37 +1,31 @@
 <?php
-	//include(dirname(__FILE__)."/../../Capa_Datos/callQuery.php");
-        include '../Capa_Datos/callQuery.php';
+	include_once('utilidades.php');
+        include_once('../Capa_Controladores/persona.php');
+	include_once('../Capa_Controladores/medico.php');
+	include_once('../Capa_Controladores/paciente.php');
+	
 	session_start();
 	session_unset();
 
-	$rut = $_POST['rutUsuario'];
-	
-    $rut2=str_replace(".","",$rut);//elimina puntos del rut
-    $rut3=str_replace("-","",$rut2);//elimina guiones del rut
-    $rut4=str_replace("k","0",$rut3);//elimina las K y las reemplaza por 0
-   
-    $rut=$rut4; //iguala la variable final a la variable inicial
-
-	$pass = md5($_POST['passUsuario']);
-
-	$queryString = "SELECT * FROM Personas WHERE RUN = '$rut' AND Clave = '$pass';";
-	if(CallQuery($queryString)->num_rows != 1){
+	$rut = validadorRUT($_POST['rutUsuario']);
+	$pass = $_POST['passUsuario'];
+		
+	if(!Persona::VerificarClave($rut,$pass)){
 		echo "0";
 	}
 	else{
 		$_SESSION['RUT'] = $rut;
 
-		$queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
-                $res = CallQuery($queryString);
-                if($res->num_rows == 1){
-                        $_SESSION['idPacienteLog'] = $res->fetch_row();
+		$idPaciente = Paciente::EncontrarPaciente($rut);
+                if($idPaciente != false){
+                        $_SESSION['idPacienteLog'] = $idPaciente;
                 }
 
-		$queryString = "SELECT idMedico FROM Medicos WHERE Personas_RUN = '$rut';";
-		$res = CallQuery($queryString);
-		if($res->num_rows == 1){
-			$_SESSION['idMedicoLog'] = $res->fetch_row();
-		}
+		$idMedico = Medico::EncontrarMedico($rut);
+                if($idMedico != false){
+                        $_SESSION['idMedicoLog'] = $idMedico;
+                }
+
 		echo "1";
 	}
 ?>

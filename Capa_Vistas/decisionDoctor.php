@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 
-include '../sessionCheck.php';
+include '../ajax/sessionCheck.php';
 
 iniciarCookie();
 verificarIP();

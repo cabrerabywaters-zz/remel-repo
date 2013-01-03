@@ -1,7 +1,6 @@
 <?php 
 
-include('../Capa_Datos/llamarQuery.php');
-include('../Capa_Datos/generadorStringQuery.php');
+include_once('../Capa_Datos/generadorStringQuery.php');
 
 class Medico {
 
@@ -35,7 +34,7 @@ class Medico {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    private static function BorrarPorId() {
+    public static function BorrarPorId() {
         $id = $_POST['id'];
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
@@ -53,7 +52,7 @@ class Medico {
      * @param int $offset
      * @returns array $resultArray
      */
-    private static function Seleccionar($where, $limit = 0, $offset = 0) {
+    public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
 					'Medicocol',
                                         'Direccion_Consulta',
@@ -89,7 +88,7 @@ class Medico {
      * y actualiza con datos nuevos, la id y los datos vienen
      * por POST desde AJAX
      */
-    private function Actualizar() {
+    public function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
                                 array('Medicocol',$_POST['medico_col']),
@@ -104,7 +103,14 @@ class Medico {
         $query = CallQuery($queryString);
     }
 
-
+    public function EncontrarMedico($rut) {
+        $queryString = "SELECT idMedico FROM Medicos WHERE Personas_RUN = '$rut';";
+        $res = CallQuery($queryString);
+        if($res->num_rows == 1){
+                return $res->fetch_row();
+        }
+        else return false;
+    }
 }
 
 ?>
