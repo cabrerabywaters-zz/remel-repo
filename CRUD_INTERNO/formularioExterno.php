@@ -19,7 +19,7 @@ function creacionFormularios($arreglo)
   // se recorre el arreglo
 	foreach ($array as $dato => $valor)
 	{ 
-         if($dato == 'id'){
+         if($dato[0].$dato[1] == 'id'){
           
 	 }
          elseif($dato == 'fecha'){
