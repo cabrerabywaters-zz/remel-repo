@@ -1,6 +1,6 @@
 <?php 
 
-include_once('../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class Expendedor {
 
