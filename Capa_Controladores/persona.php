@@ -111,25 +111,6 @@ class Condicion {
         $query = CallQuery($queryString);
     }
 
-
-<<<<<<< HEAD
-=======
-function PersonaSeleccionNombrePorRUN($run){
-	$atributosASeleccionar = array(
-					'Nombre',
-					'Apellido_Paterno',
-					'Apellido_Materno',
-					'RUN',
-					'Direccion_idDireccion',
-					'sexo',
-					'n_celular',
-					'Fecha_Nac',
-					'n_fijo'
-					);
-	$where = "WHERE RUN = '$run'";
-	$resultado = Persona::Seleccionar($atributosASeleccionar, $where);
-	return $resultado;
->>>>>>> 8c29be510abee9e60415e54127d1ed016f607d9f
 }
 
 ?>
