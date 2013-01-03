@@ -14,7 +14,7 @@ verificarIP();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-      <link href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+      
         <script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
@@ -36,7 +36,7 @@ verificarIP();
                  </script>
                 
     <!-- Le styles -->
-    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     
     <style type="text/css">
       body {
@@ -92,7 +92,6 @@ a:active {text-decoration: none;
 color:white}
 
     </style>
-    <link href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
       
   </head>
