@@ -1,58 +1,61 @@
 <?php 
 
-require_once '../Capa_Datos/condicion.php';
+include('../Capa_Datos/callQuery.php');
 
-/**
-* Funciones controladores CRUD
-* 
-* @author Germán Oviedo
-**/
+class Condicion {
 
-/**
-* Funcion de creacion 
-**/
-function Creacion(){
-	$datosCreacion = array(
-				array('idCondiciones',$_POST['id_condiciones']),
-				array('Nombre',$_POST['nombre'])
-				);
-	Condicion::Agregar($datosCreacion);	
-}
+    static $nombreTabla = "Condiciones";
+    static $nombreIdTabla = "idCondiciones";
 
-/**
-* Funcion de eliminacion
-**/
-function Eliminacion(){
-	$condicionABorrar = new Condicion($_POST['id']);
-	$condicionABorrar->BorrarPorId();
-}
+    public static function Insertar($datosCreacion) {
+    	$datosCreacion = array(
+							array('Nombre',$_POST['nombre'])
+						);
 
-/**
-* Funcion de actualizar
-**/
-function Actualizacion(){
-	$datosActualizacion = array(
-				'idCondiciones' => $_POST['id_condiciones'],
+        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    private static function BorrarPorId($id) {
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+        $query = CallQuery($queryString);
+    }
+
+    private static function Seleccionar($where, $limit = 0, $offset = 0) {
+    	$atributosASeleccionar = array(
+									'idCondiciones',
+									'Nombre'
+									);
+
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+
+	    if($limit != 0){
+	       $queryString = $queryString." LIMIT $limit";
+	    }
+	    if($offset != 0){
+		  $queryString = $queryString." OFFSET $offset ";
+	    }
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+
+    private function Actualizar() {
+    	$id = $_POST['id_condiciones'];
+    	$datosActualizacion = array(
 				'Nombre' => $_POST['nombre']
 				);
 
-	//$regionACrear = new Region($_POST['idRegion']);
-	$condicionAActualizar = new Condicion($_POST['id']);
-	$condicionAActualizar->Actualizar($datosActualizacion);
+        $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
+        $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+
 }
 
-/**
-* Funcion de seleccionar todas las lineas
-* @returns array $resultados Array con las filas
-**/
-function Seleccion($limit = 0, $offset = 0){
-	$atributosASeleccionar = array(
-					'idCondiciones',
-					'Nombre'
-					);
-	$where = "";
-	$resultados = Condicion::Seleccionar($atributosASeleccionar,$where, $limit, $offset);
-	return $resultados;
-}
-
-//TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
+?>
