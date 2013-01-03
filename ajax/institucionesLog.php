@@ -1,6 +1,6 @@
 <?php
 
-include_once('../Capa_Controladores/medicosHasInstituciones.php');
+include_once(dirname(__FILE__).'/Capa_Controladores/medicosHasInstituciones.php');
 
 session_start();
 

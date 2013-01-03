@@ -1,9 +1,9 @@
 <?php
-	include_once('utilidades.php');
-        include_once('../Capa_Controladores/persona.php');
-	include_once('../Capa_Controladores/medico.php');
-	include_once('../Capa_Controladores/paciente.php');
-	include_once('../Capa_Controladores/medicosHasInstituciones.php');
+	include_once(dirname(__FILE__).'/utilidades.php');
+        include_once(dirname(__FILE__).'/../Capa_Controladores/persona.php');
+	include_once(dirname(__FILE__).'/../Capa_Controladores/medico.php');
+	include_once(dirname(__FILE__).'/../Capa_Controladores/paciente.php');
+	include_once(dirname(__FILE__).'/../Capa_Controladores/medicosHasInstituciones.php');
 	
 	session_start();
 	session_unset();

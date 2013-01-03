@@ -1,5 +1,5 @@
 <?php
-        include_once("../Capa_Controladores/persona.php");
+        include_once(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 	session_start();
 
 	$codigo = $_POST['clave'];

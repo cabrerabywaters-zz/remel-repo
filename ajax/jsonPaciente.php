@@ -2,7 +2,7 @@
 
 include_once(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
-include_once("utilidades.php");
+include_once(dirname(__FILE__)."/utilidades.php");
 
 $rut = validadorRUT($_POST['RUN']);
 

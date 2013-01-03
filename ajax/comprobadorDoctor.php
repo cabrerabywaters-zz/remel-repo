@@ -1,6 +1,6 @@
 <?php
 
-include 'sessionCheck.php';
+include_once(dirname(__FILE__).'/sessionCheck.php');
 
 iniciarCookie();
 verificarIP();
