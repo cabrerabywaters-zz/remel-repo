@@ -21,15 +21,27 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
             body {
                 padding-top: 40px;
                 padding-bottom: 40px;
-                background-color: #CDD9AE;
+                background-color: #efefc8;
             }
 
             .form-signin {
+                
+                font-style:italic;
+
+                 font-weight:bold;
+
+                 font-size:2em;
+
+                 font-color:#ffffff;
+
+               font-family: 'Courier New', Courier, monospace;
+
+               
                 max-width: 300px;
                 padding: 19px 29px 29px;
                 margin: 0 auto 20px;
-                background-color: #B6DEDB;
-                border: 3px solid #DCF1EF;
+                background-color: #fafaf0;
+                border: 3px solid #efdcc8;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
                 border-radius: 5px;
@@ -66,13 +78,13 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
 
             <form class="form-signin" id="usuario" method="post" action="javascript:enviar()">
                 <fieldset>
-                <h2 class="form-signin-heading"><center>Bienvenido</center>  <center> a Remel</center> </h2>
+                <h2 class="form-signin-heading"><center>REMEL</center>  </h2>
                 <input type="text" class="input-block-level" placeholder="Rut" id="rut" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" name="rutUsuario">
                 <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" name="passUsuario">
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Recordarme
                 </label>
-                <button class="btn btn-large btn-warning" type="submit"><strong>Ingresar</strong></button>
+             <center>   <button class="btn btn-large" type="submit"><strong>Ingresar</strong></button></center>
                 <p><span id="mensaje"></span></p>
                 </fieldset>
             </form>

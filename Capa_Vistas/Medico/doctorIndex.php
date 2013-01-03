@@ -127,17 +127,14 @@ color:white}
         <div class="modal-body">
             <strong><p>Ingrese el Rut del Paciente</p></strong>
             <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
-            <div class="input-append">
-            <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
-            <button class="btn btn" type="submit">Buscar</button><br><br>
-    
-            <div id="informacion" class="atender">
+                <div class="input-append">
+                <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
+                <button class="btn btn" type="submit">Buscar</button><br><br>
+                </div>
+            </form>
+            <div id="atender" class="atender">
                 <!-- aqui se muestra el paciente obtenido -->
             </div>
-            
-            </div>
-            </form>
-    
             <div id="clave" class="collapse" >
             <form id="verificacionClave" action="javascript:verificarClave()" method="post">
             <strong>Ingrese Clave :</strong> <center> 
@@ -163,13 +160,14 @@ color:white}
 
 	function enviar(){
                         var postData = $("#busqueda").serialize();
-                        $.ajax({ url: '../../ajax/jsonPaciente.php',
+                        $.ajax({ 
+                        url: '../../ajax/jsonPaciente.php',
                         data: postData,
                         type: 'post',
                         success: function(output) {
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
-                                    $("#atender").html("<span id='info' class='badge badge-info'><a  href='#clave' id='atenderPaciente'>"+nombre+"</a></span>");
+                                    $("#atender").html(nombre);
                                     $('input[name=hID]').val(data['idPaciente']);
                                     $('input[name=hRUN]').val(data['RUN']);
                                 }
