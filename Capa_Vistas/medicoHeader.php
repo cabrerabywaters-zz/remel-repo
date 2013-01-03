@@ -10,11 +10,11 @@ and open the template in the editor.
         <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
-		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín","Apellido" => "Sabina","Fecha" => "22-06-1990","Sexo" =>"M","Peso" =>"68.00",		
-		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche",	
-		"Telefono1" =>"(074) - 823680","Telefono2" =>"(09) - 92348235","Telefono3" =>"","Isapre" => "Consalud");
+		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín","Apellido_Paterno" => "Sabina","Apellido_Materno" => "Perez","Fecha_Nac" => "22-06-1990","Sexo" =>"1","Peso" =>"68.00",		
+		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche","Altura" => 198,	
+		"N_Celular" =>"(074) - 823680","N_Fijo" =>"(09) - 92348235","Isapre" => "Consalud");
 		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
@@ -63,7 +63,7 @@ and open the template in the editor.
         
         <!-- styles -->
         
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
         <style> 
         /* Estilos de cargando de la barra respectiva*/
@@ -149,18 +149,18 @@ color:white}
                     <blockquote>
                     <strong>Paciente:<br></strong><table>
                     <tr><td><?php 
-					if($paciente['Sexo']=="M")
+					if($paciente['Sexo']=="1")
 					{
-					echo " Sr. ".$paciente['Apellido']." ";	
+					echo " Sr. ".$paciente['Apellido_Paterno']." ";	
 					}
 					else
 					{
 						echo " Sra. ".$paciente['Apellido']."";
 					}
 				echo '</td></tr><tr><td>';
-                                       $cadena=$_SESSION['RUTPaciente'];
+                                      /* $cadena=$_SESSION['RUTPaciente'];
                   include("Medico/AtencionPaciente/recomponerRUT.php");
-                     echo $resultado; ?></td></tr></table>
+                     echo $resultado; */?></td></tr></table>
 
                     </blockquote>
                 </div>

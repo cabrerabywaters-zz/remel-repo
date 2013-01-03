@@ -1,6 +1,6 @@
 <?php
 
-include '../../../sessionCheck.php';
+include '../../../ajax/sessionCheck.php';
 
 iniciarCookie();
 verificarIP();
@@ -10,6 +10,10 @@ print_r($_SESSION);
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
 
 ?>
+<div class="input-append">
+  <input class="span2" id="appendedInputButtons" type="text">
+  <button class="btn" type="button">Search</button>
+</div>
   <div class="tab-content"><!-- contenido del panel 1-->
     <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
       
@@ -22,9 +26,9 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseOne" class="accordion-body collapse">
       <div class="accordion-inner">
-          <?php /*
+          <?php 
 		  // muestra los detalles de paciente
-		  include ("informacionPaciente.php"); */ ?>
+		  include ("informacionPaciente.php"); ?>
       </div>
     </div>
   </div>
