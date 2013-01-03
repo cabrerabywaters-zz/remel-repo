@@ -1,11 +1,12 @@
 <?php 
 
-include('../Capa_Datos/callQuery.php');
+include('../Capa_Datos/llamarQuery.php');
+include('../Capa_Datos/generadorStringQuery.php');
 
 class Condicion {
 
     static $nombreTabla = "Condiciones";
-    static $nombreIdTabla = "idCondiciones";
+    static $nombreIdTabla = "idCondiciones";    
 
     public static function Insertar($datosCreacion) {
     	$datosCreacion = array(
