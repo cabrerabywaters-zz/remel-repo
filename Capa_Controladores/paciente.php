@@ -101,6 +101,15 @@ class Paciente {
         }
 	else return false;
     }
+
+    public static function EncontrarPacienteAssoc($rut) {
+        $queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
+        $res = CallQuery($queryString);
+        if($res->num_rows == 1){
+                return $res->fetch_assoc();
+        }
+        else return false;
+    }
 }
 
 ?>

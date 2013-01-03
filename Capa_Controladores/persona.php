@@ -123,9 +123,18 @@ class Persona {
 	$pin = md5($pin);
 	$queryString = "SELECT RUN FROM Personas WHERE RUN = '$rut' AND Codigo_Seguridad = '$pin';";
         if(CallQuery($queryString)->num_rows != 1){
-                return true;
+                return false;
         }
-	else return false;
+	else return true;
+    }
+    
+   public static function BuscarNombre($rut){
+        $queryString = "SELECT Nombre, Apellido_Paterno, Apellido_Materno, RUN FROM Personas WHERE RUN = '$rut';";
+	$query = CallQuery($queryString);
+        if($query->num_rows == 1){
+                return $query->fetch_assoc(); 
+        }
+        else return false;
     }
 }
 

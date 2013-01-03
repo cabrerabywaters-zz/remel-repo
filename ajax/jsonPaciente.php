@@ -1,21 +1,15 @@
 <?php
 
-//include(dirname(__FILE__)."../Capa_Controladores/paciente.php");
-//include(dirname(__FILE__)."../Capa_Controladores/persona.php");
-include dirname(__FILE__)."/../Capa_Controladores/persona.php";
-include dirname(__FILE__)."/../Capa_Controladores/paciente.php";
+include_once(dirname(__FILE__)."/../Capa_Controladores/persona.php");
+include_once(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
+include_once("utilidades.php");
 
+$rut = validadorRUT($_POST['RUN']);
 
-$rut = $_POST['RUN'];
-//echo $rut; 
-$rut2=str_replace(".","",$rut);//elimina puntos del rut
-$rut3=str_replace("-","",$rut2);//elimina guiones del rut
-$run=$rut3; //iguala la variable final a la variable inicial
+$array1 = Paciente::EncontrarPacienteAssoc($rut);
+$array2 = Persona::BuscarNombre($rut);
 
-$array1 = PacienteSeleccionIdPorRUN($run);
-$array2 = PersonaSeleccionNombrePorRUN($run);
-
-$arrayFinal = array_merge($array1[0], $array2[0]);
+$arrayFinal = array_merge($array1, $array2);
 echo json_encode($arrayFinal);
 
 ?>
