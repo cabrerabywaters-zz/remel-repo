@@ -106,7 +106,10 @@ verificarIP();
                 */
                 $(document).ready(function(){
                     $("#demo button").click(function(){
-                       var postData = $(this).attr('idinstitucion');
+                       var postData = { //JSON con la info de la institucion que se envia
+                           'idinstitucion': $(this).attr('idinstitucion'),
+                           'nombre': $(this).html()
+                       };
                        
 			$.ajax({ url: 'ajax/institucionLog.php',
          			data: postData,
