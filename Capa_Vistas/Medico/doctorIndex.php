@@ -19,22 +19,7 @@ verificarIP();
 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
             
-             <script>
-               $(document).ready(function(){
-  $("#info").click(function(){ 
-       
-       $('#info').removeClass('badge badge-info'); 
-       $('#clave').collapse('show')
-  $('#info').addClass('badge badge-important');
- 
-
-  }); 
-  
-  
-  
- });
-                 </script>
-                
+           
     <!-- Le styles -->
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     
@@ -146,7 +131,7 @@ color:white}
   	</div>
         <div class="modal-footer">
             <button class="btn" type="submit"><strong>Ingresar</strong></button></form>
-            <button class="btn"  data-dismiss="modal" aria-hidden="true" type="reset" >Cancelar</button>
+            <button class="btn"  data-dismiss="modal" aria-hidden="true" type="reset" data-toggle='collapse'>Cancelar</button>
         </div>
     </div>
     
@@ -167,7 +152,7 @@ color:white}
                         success: function(output) {
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
-                                    $("#atender").html("<a class='label label-info' data-toggle='collapse' href='#clave'>"+nombre+"</a>");
+                                    $("#atender").html("<a class='label label-info' data-toggle='collapse' data-target='#clave'>"+nombre+"</a>");
                                     $('input[name=hID]').val(data['idPaciente']);
                                     $('input[name=hRUN]').val(data['RUN']);
                                 }
@@ -192,6 +177,18 @@ color:white}
                                 }
                         });
         }// funcion que se encarga de limpiar el formulario tras apretar el boton cancelar
-
+        $('#myModal').on("hidden",function(){
+            $('#myModal input').each(function(){
+                $(this).val("");
+            });
+            
+            //elimino mensajes de error
+            $('#mensaje').html("");
+            //escondo el div de clave
+            $('#clave').collapse('hide');           
+            //se elimina el paciente buscado anteriormente
+            $('#atender').html("");
+        }); //end on
+        
 </script>
 </html>
