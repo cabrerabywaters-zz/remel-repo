@@ -1,67 +1,100 @@
 <?php 
 
-require_once(dirname(__FILE__).'/../Capa_Datos/paciente.php');
+include('../Capa_Datos/llamarQuery.php');
+include('../Capa_Datos/generadorStringQuery.php');
 
-/**
-* Funciones controladores CRUD
-* 
-* @author Germán Oviedo
-**/
+class Condicion {
 
-/**
-* Funcion de creacion 
-**/
-function PacienteCreacion(){
-	$datosCreacion = array(
-				array('Nombre',$_POST['nombre_Paciente']),
-				array('Numero',$_POST['numero_Paciente'])
+    static $nombreTabla = "Pacientes";
+    static $nombreIdTabla = "idPaciente";
+    
+    
+    /**
+     * Insertar
+     * 
+     * Inserta una nueva entrada
+     * 
+     */
+    public static function Insertar() {
+    	$datosCreacion = array(
+                                array('Fecha_Ultima_Actualizacion',$_POST['fecha_ultima_actualizacion']),
+                                array('Nacionalidad',$_POST['nacionalidad']),
+                                array('Peso',$_POST['peso']),
+                                array('Etnias',$_POST['idEtnias'])                  
+           );
+
+        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    /**
+     * BorrarPorId
+     * 
+     * Borra una entrada segun su id, pasada por POST.
+     */
+    private static function BorrarPorId() {
+        $id = $_POST['id'];
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+        $query = CallQuery($queryString);
+    }
+    
+    /**
+     * Seleccionar
+     * 
+     * Esta funcion selecciona todas las entradas de una tabla
+     * con respecto a una condicion dada. Tambien es posible
+     * entregar un limite y un offset.
+     * 
+     * @param string $where
+     * @param int $limit
+     * @param int $offset
+     * @returns array $resultArray
+     */
+    private static function Seleccionar($where, $limit = 0, $offset = 0) {
+    	$atributosASeleccionar = array(
+				'Fecha_Ultima_Actualizacion',
+                                'Nacionalidad',
+                                'Peso',
+                                'Etnias'
+									);
+
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+
+	    if($limit != 0){
+	       $queryString = $queryString." LIMIT $limit";
+	    }
+	    if($offset != 0){
+		  $queryString = $queryString." OFFSET $offset ";
+	    }
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+    
+    /**
+     * Actualizar
+     * 
+     * Esta funcion toma una id de una entrada existente
+     * y actualiza con datos nuevos, la id y los datos vienen
+     * por POST desde AJAX
+     */
+    private function Actualizar() {
+    	$id = $_POST['id_condiciones'];
+    	$datosActualizacion = array(
+                                array('Nacionalidad',$_POST['nacionalidad']),
+                                array('Peso',$_POST['peso']),
 				);
-	Paciente::Agregar($datosCreacion);	
+
+        $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
+        $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+
 }
 
-/**
-* Funcion de eliminacion
-**/
-function PacienteEliminacion(){
-	$PacienteABorrar = new Paciente($_POST['id']);
-	$PacienteABorrar->BorrarPorId();
-}
-
-/**
-* Funcion de actualizar
-**/
-function PacienteActualizacion(){
-	$datosActualizacion = array(
-				'Nombre' => $_POST['nombre_Paciente'],
-				'Numero' => $_POST['numero_Paciente']
-				);
-
-	//$PacienteACrear = new Paciente($_POST['idPaciente']);
-	$PacienteAActualizar = new Paciente($_POST['id']);
-	$PacienteAActualizar->Actualizar($datosActualizacion);
-}
-
-/**
-* Funcion de seleccionar todas las lineas
-* @returns array $resultados Array con las filas
-**/
-function PacienteSeleccion($limit = 0, $offset = 0){
-	$atributosASeleccionar = array(
-					'Nombre',
-					'Numero'
-					);
-	$where = "";
-	$resultados = Paciente::Seleccionar($atributosASeleccionar,$where, $limit, $offset);
-	return $resultados;
-}
-
-function PacienteSeleccionIdPorRUN($run){
-	$atributosASeleccionar = array(
-					'idPaciente',
-					);
-	$where = "WHERE Personas_RUN = '$run'";
-	$resultado = Paciente::Seleccionar($atributosASeleccionar, $where);
-	return $resultado;
-}
-
-//TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD
+?>

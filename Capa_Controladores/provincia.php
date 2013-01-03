@@ -25,7 +25,7 @@ function Actualizar(){
 				array('Regiones_idRegion',$_POST['idRegion'])
 				);
 
-	$provinciaAActualizar = new provincia($_POST['idProvincia']);
+	$provinciaAActualizar = new Provincia($_POST['idProvincia']);
 	$provinciaAActualizar ->Actualizar($datosActualizacion);
 }
 
@@ -35,7 +35,7 @@ function SeleccionarTodas(){
 					'Regiones_idRegion'
 					);
 	$where = "";
-	Region::Seleccionar($atributosASeleccionar,$where);
+	Provincia::Seleccionar($atributosASeleccionar,$where);
 }
 
 //TODO: MUCHAS MAS FUNCIONES, DEPENDIENDO DE LA ENTIDAD

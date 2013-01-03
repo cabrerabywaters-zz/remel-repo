@@ -13,7 +13,6 @@ require_once '../Capa_Datos/alergia.php';
 **/
 function Creacion(){
 	$datosCreacion = array(
-				array('idAlergia',$_POST['id_alergia']),
 				array('Descripcion',$_POST['descripcion_alergia'])
 				);
 	Alergia::Agregar($datosCreacion);	
@@ -32,7 +31,6 @@ function Eliminacion(){
 **/
 function Actualizacion(){
 	$datosActualizacion = array(
-				'idAlergia' => $_POST['id_alergia'],
 				'Descripcion' => $_POST['descripcion_alergia']
 				);
 
@@ -47,7 +45,6 @@ function Actualizacion(){
 **/
 function Seleccion($limit = 0, $offset = 0){
 	$atributosASeleccionar = array(
-					'idAlergia',
 					'Descripcion'
 					);
 	$where = "";
