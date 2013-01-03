@@ -17,7 +17,7 @@ verificarIP();
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -54,7 +54,7 @@ verificarIP();
     </style>
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" rel="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
     <script>
         /**
          * funcion que al hacer click en el boton del acordeon cambia el icono
