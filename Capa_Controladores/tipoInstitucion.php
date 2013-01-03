@@ -2,10 +2,10 @@
 
 include_once('../Capa_Datos/generadorStringQuery.php');
 
-class PlazaInstitucion {
+class TipoInstitucion {
 
-    static $nombreTabla = "Plazas_Instituciones";
-    static $nombreIdTabla = "idPlaza";    
+    static $nombreTabla = "Tipos_Instituciones";
+    static $nombreIdTabla = "idTipo_Institucion";    
     
     /**
      * Insertar
@@ -15,13 +15,7 @@ class PlazaInstitucion {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_plaza_institucion']),
-                                array('Telefono',$_POST['telefono']),
-                                array('Direccion_idDireccion',$_POST['idDireccion']),
-                                array('RUN_Administrador',$_POST['run_administrador']),
-                                array('Email_Administrador',$_POST['email_administrador']),
-                                array('Plaza_Institucioncol',$_POST['plaza_institucioncol']),
-                                array('Instituciones_RUT',$_POST['RUT'])
+                                array('Nombre',$_POST['nombre_tipo_institucion'])
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -53,13 +47,7 @@ class PlazaInstitucion {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Direccion_idDireccion',
-                                        'RUN_Administrador',
-                                        'Email_Administrador',
-                                        'Telefono',
-                                        'Tipo_Institucion_idTipo_Institucion',
-                                        'Fecha_creacion_REMEL'
+                                        'Nombre'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -89,10 +77,7 @@ class PlazaInstitucion {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_plaza_institucion']),
-                                array('Telefono',$_POST['telefono']),
-                                array('Email_Administrador',$_POST['email_administrador']),
-                                array('Plaza_Institucioncol',$_POST['plaza_institucioncol'])
+                                array('Nombre',$_POST['nombre_plaza_institucion'])
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
