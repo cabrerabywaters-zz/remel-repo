@@ -78,7 +78,7 @@ color:white}
 		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche","Altura" => 198,	
 		"N_Celular" =>"(074) - 823680","N_Fijo" =>"(09) - 92348235","Isapre" => "Consalud");
 		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
-		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador"));
+		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
 		$recetas=array("agua","aceite","miel","polen","trigo");
@@ -220,9 +220,9 @@ color:white}
 						echo " Sra. ".$paciente['Apellido']."";
 					}
 				echo '</td></tr><tr><td>';
-                                      /* $cadena=$_SESSION['RUTPaciente'];
+                                       $cadena=$_SESSION['RUTPaciente'];
                   include("Medico/AtencionPaciente/recomponerRUT.php");
-                     echo $resultado; */?></td></tr></table>
+                     echo $resultado; ?></td></tr></table>
 
                     </blockquote>
                 </div>

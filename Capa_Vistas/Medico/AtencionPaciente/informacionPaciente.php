@@ -1,5 +1,18 @@
+<?php 
+include("../../../Capa_Controladores/persona.php");
+include("../../../Capa_Controladores/paciente.php");
 
- 
+
+$rut = $_SESSION['RUTPaciente'];
+echo $rut;
+$array1 = Paciente::EncontrarPacienteAssoc($rut);
+$array2 = Persona::BuscarNombre($rut);
+
+$arrayFinal = array_merge($array1, $array2); 
+echo $arrayFinal;
+print_r($arrayFinal);
+print_r($rut);?>
+
 <form class="form-inline">
   <div class="control-group">
     <label class="control-label" for="Nombre">Nombre <input class="span5" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
@@ -30,7 +43,7 @@
   <div class="control-group">
     <label class="control-label" for="Isapre">Isapre  <input type="text" class="span2" id="Isapre" value="<?php echo $paciente['Isapre']; ?>" disabled></label>
   </div>
-</form>
+</form> 
 
 
 
