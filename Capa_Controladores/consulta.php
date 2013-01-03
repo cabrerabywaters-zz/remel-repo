@@ -2,10 +2,10 @@
 
 include_once('../Capa_Datos/generadorStringQuery.php');
 
-class Provincia {
+class Consulta  {
 
-    static $nombreTabla = "Provincias";
-    static $nombreIdTabla = "idProvincia";    
+    static $nombreTabla = "Consulta";
+    static $nombreIdTabla = "Id_consulta";    
     
     /**
      * Insertar
@@ -15,9 +15,14 @@ class Provincia {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_provincia']),
-				array('Regiones_idRegion',$_POST['idRegion'])
-            );
+                                array('Fecha','NOW()'),
+                                array('Hora','NOW()'),
+                                array('Medicos_idMedico',$_POST['idMedico']),
+                                array('Medicos_Personas_RUN',$_POST['Personas_RUN']),
+                                array('Pacientes_idPaciente',$_POST['idPaciente']),
+                                array('Pacientes_Personas_RUN',$_POST['Personas_RUN']),
+                                array('Plaza_Instituciones_idPlaza',$_POST['idPlaza'])
+                                );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -49,7 +54,12 @@ class Provincia {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Nombre',
-                                        'Regiones_idRegion'
+                                        'Direccion_idDireccion',
+                                        'RUN_Administrador',
+                                        'Email_Administrador',
+                                        'Telefono',
+                                        'Tipo_Institucion_idTipo_Institucion',
+                                        'Fecha_creacion_REMEL'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -79,8 +89,9 @@ class Provincia {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_provincia']),
-				      );
+                                array('Fecha','NOW()'),
+                                array('Hora','NOW()'),
+                               	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);

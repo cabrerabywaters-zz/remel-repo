@@ -2,10 +2,10 @@
 
 include_once('../Capa_Datos/generadorStringQuery.php');
 
-class Provincia {
+class Diagnostico {
 
-    static $nombreTabla = "Provincias";
-    static $nombreIdTabla = "idProvincia";    
+    static $nombreTabla = "Diagnosticos";
+    static $nombreIdTabla = "idDiagnostico";    
     
     /**
      * Insertar
@@ -15,9 +15,12 @@ class Provincia {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_provincia']),
-				array('Regiones_idRegion',$_POST['idRegion'])
-            );
+                                array('Nombre',$_POST['nombre_diagnostico']),
+                                array('Codigo_Snom',$_POST['codigo_snom']),
+                                array('Tipo_Diagnostico',$_POST['idTipo']),
+                                array('Es_Ges',$_POST['es_ges']),
+                                array('Codigo_Cie',$_POST['codigo_cie']),
+                                );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -49,7 +52,10 @@ class Provincia {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Nombre',
-                                        'Regiones_idRegion'
+                                        'Codigo_Snom',
+                                        'Tipo_Diganostico',
+                                        'Es_Ges',
+                                        'Codigo_Cie'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -79,8 +85,12 @@ class Provincia {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_provincia']),
-				      );
+                                array('Nombre',$_POST['nombre_diagnostico']),
+                                array('Codigo_Snom',$_POST['codigo_snom']),
+                                array('Tipo_Diagnostico',$_POST['idTipo']),
+                                array('Es_Ges',$_POST['es_ges']),
+                                array('Codigo_Cie',$_POST['codigo_cie']),
+                               );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);

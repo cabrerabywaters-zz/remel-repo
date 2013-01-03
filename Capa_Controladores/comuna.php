@@ -80,8 +80,7 @@ class Comuna {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
                                 array('Nombre',$_POST['nombre']),
-                               array('Provincias_idProvincia',$_POST['id_provincia'])
-            );
+                                     );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
