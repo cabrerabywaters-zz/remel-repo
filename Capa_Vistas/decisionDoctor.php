@@ -92,12 +92,13 @@ verificarIP();
                  * de sesion instituciones (contiene todas las instituciones de 
                  * el medico conectado
                  */
-                foreach($_SESSION['instituciones'] as $id => $institucion){
-                   echo "<button class='btn btn-block' idinstitucion ='$id'>$institucion</button>"; 
+                foreach($_SESSION['instituciones'] as $institucion){
+			$idInstitucion = $institucion['RUT'];
+			$nombreInstitucion = $institucion['Nombre'];
+                   echo "<button class='btn btn-block' idInstitucion='$idInstitucion'>$nombreInstitucion</button>"; 
                  };
                 ?>
-                <button class="btn btn-block" type="submit" idinstitucion ="999">Institucion 1</button>
-                <button class="btn btn-block" type="submit" idinstitucion ="998">Institucion 2</button>
+                <button class="btn btn-block" type="submit" idinstitucion ="-1">Particular</button>
                 <script>
                 /**
                  * script que envía el valor de la institucion seleccionada

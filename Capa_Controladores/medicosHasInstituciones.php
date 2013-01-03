@@ -1,7 +1,7 @@
 <?php
 
-include_once('../Capa_Datos/generadorStringQuery.php');
-include_once('institucion.php');
+include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__).'/institucion.php');
 
 class MedicosHasInstituciones{
 
