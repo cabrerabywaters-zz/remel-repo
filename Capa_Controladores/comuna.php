@@ -15,8 +15,8 @@ function Creacion(){
 }
 
 function Eliminacion(){
-	$omunaABorrar = new Comuna($_POST['idComuna']);
-	$ComunaABorrar->BorrarPorId();
+	$comunaABorrar = new Comuna($_POST['idComuna']);
+	$comunaABorrar->BorrarPorId();
 }
 
 function Actualizar(){
@@ -25,8 +25,8 @@ function Actualizar(){
 				array('Provincias_idProvincia',$_POST['idProvincia']
 				));
 
-	$comunaACrear = new Comuna($_POST['idComuna']);
-	$comunaAActualizar -> ($datosActualizacion);
+	$comunaAActualizar = new Comuna($_POST['idComuna']);
+	$comunaAActualizar ->Actualizar($datosActualizacion);
 }
 
 function SeleccionarTodas(){

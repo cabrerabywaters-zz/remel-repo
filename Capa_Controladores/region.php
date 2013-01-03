@@ -23,7 +23,7 @@ function Creacion(){
 * Funcion de eliminacion
 **/
 function Eliminacion(){
-	$regionABorrar = new Region($_POST['id']);
+	$regionABorrar = new Region($_POST['idRegion']);
 	$regionABorrar->BorrarPorId();
 }
 
@@ -37,7 +37,7 @@ function Actualizacion(){
 				);
 
 	//$regionACrear = new Region($_POST['idRegion']);
-	$regionAActualizar = new Region($_POST['id']);
+	$regionAActualizar = new Region($_POST['idRegion']);
 	$regionAActualizar->Actualizar($datosActualizacion);
 }
 
