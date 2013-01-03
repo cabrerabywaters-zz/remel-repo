@@ -34,9 +34,14 @@
 				} 
 				echo' </tbody>
             </table>
-            </tr></td><tfoot><tr><td> <div class="input-append">
-  <input class="span2" id="Alergias" type="text">
-  <button class="btn" type="button">Search</button></div></td></tr></tfoot></table>';
+            </tr></td><tfoot><tr><td> 
+			<form class="form-search">
+			<div class="input-append">
+  				<input class="span2" id="Alergias" type="text">
+ 				 <button class="btn" type="button">Search</button>
+  			</div>
+			</form>
+  </td></tr></tfoot></table>';
 
 
   echo '</div>';
@@ -81,9 +86,11 @@ echo'
                 </tbody>
             </table>
             </tr></td><tfoot><tr><td> 
+			<form class="form-search">
 			<div class="input-append">
   				<input class="span2" id="Condiciones" type="text">
-  				<button class="btn" type="button">Search</button></div></td></tr>	
+  				<button class="btn" type="button">Search</button></div>
+				</form></td></tr>	
 				</tfoot></table>
 			</div> 
   </div>';
