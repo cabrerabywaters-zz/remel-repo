@@ -6,7 +6,69 @@ and open the template in the editor.
 <html><head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
+        <title></title><!-- styles -->
+        
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
+        <style> 
+        /* Estilos de cargando de la barra respectiva*/
+        .ui-autocomplete-loading {
+        background: white url('../../img/ui-anim_basic_16x16.gif') right center no-repeat;
+            }
+        </style>
+        <style type="text/css">
+        
+       body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #CDD9AE;
+      }
+        
+        ul.nav, .nav{
+            
+             background: whitesmoke;
+        }
+        .tabbable-fluid{
+            
+           
+        }
+        .tab-content{
+            
+            
+        }
+        .tab-pane
+        {
+            
+            
+            background-color: #B6DEDB;
+            
+        }
+        
+        
+         .modal{
+          
+           border: 5px solid #DCF1EF;
+      }
+     .modal-header, .modal-footer{
+           
+           background-color: #CDD9AE;
+      }
+      .modal-body{
+          background-color: #B6DEDB;
+          border: 3px solid #DCF1EF;
+      }
+        
+        
+        
+         .modal-body a:link {text-decoration: none;
+      color:white}
+.modal-body a:visited {text-decoration: none;
+color:white}
+.modal-body a:active {text-decoration: none;
+color:white}
+        
+    </style><!-- fin estilo de la pagina -->
+  
         <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
