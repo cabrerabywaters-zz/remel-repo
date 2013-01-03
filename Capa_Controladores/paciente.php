@@ -95,6 +95,21 @@ class Condicion {
     }
 
 
+<<<<<<< HEAD
+=======
+function PacienteSeleccionIdPorRUN($run){
+	$atributosASeleccionar = array(
+					'idPaciente',
+					'Fecha_Ultima_Actualizacion',
+					'Nacionalidad',
+					'Peso',
+					'Etnias_idEtnias',
+					'altura'
+					);
+	$where = "WHERE Personas_RUN = '$run'";
+	$resultado = Paciente::Seleccionar($atributosASeleccionar, $where);
+	return $resultado;
+>>>>>>> 8c29be510abee9e60415e54127d1ed016f607d9f
 }
 
 ?>

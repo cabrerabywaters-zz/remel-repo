@@ -86,8 +86,56 @@ verificarIP();
         
         <button type="button" class="btn btn-warning btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
             <div id="demo" class="collapse" data-parent="#ingresoMedico">
-                <button class="btn btn-block" type="submit">Institucion 1</button>
-                <button class="btn btn-block" type="submit">Institucion 2</button>
+                <?php
+                /**
+                 * genero el listado de las instituciones desde el arreglo
+                 * de sesion instituciones (contiene todas las instituciones de 
+                 * el medico conectado
+                 */
+                foreach($_SESSION['instituciones'] as $id => $institucion){
+                   echo "<button class='btn btn-block' idinstitucion ='$id'>$institucion</button>"; 
+                 };
+                ?>
+                <button class="btn btn-block" type="submit" idinstitucion ="999">Institucion 1</button>
+                <button class="btn btn-block" type="submit" idinstitucion ="998">Institucion 2</button>
+                <script>
+                /**
+                 * script que envía el valor de la institucion seleccionada
+                 * al archivo institucionLog.php para ser guardado en la 
+                 * $_SESSION['institucionLog']
+                */
+                $(document).ready(function(){
+                    $("#demo button").click(function(){
+                       var postData = { //JSON con la info de la institucion que se envia
+                           'idinstitucion': $(this).attr('idinstitucion'),
+                           'nombre': $(this).html()
+                       };
+                       
+			$.ajax({ url: 'ajax/institucionLog.php',
+         			data: postData,
+         			type: 'post',
+         			success: function(output) {
+                                    /**
+                                     * funcion que verifica el output de la consulta
+                                     * si es 1 re-dirige a la pagina correspondiente
+                                     * si es 0 muestra que la institucion no está bien seleccionada
+                                     */
+                				if(output == '1') {
+							window.location.href = "Medico/doctorIndex.php";
+						}
+						else{
+							$('#mensaje').html("<span class='alert alert-error'>No se guardó la Institucion en la sesion!</span>");
+						}
+                  			}
+				}); // end ajax
+		 
+                        
+                    });//end click
+                    
+                }); // end ready
+            
+                </script>
+                <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
             </div>
         <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
       </form>
