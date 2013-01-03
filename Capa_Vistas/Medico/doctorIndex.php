@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include '../../sessionCheck.php';
+include '../../ajax/sessionCheck.php';
 
 iniciarCookie();
 verificarIP();
@@ -129,11 +129,12 @@ color:white}
             <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
             <div class="input-append">
             <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
-            <button class="btn btn" type="submit "data-toggle="collapse" data-target="#informacion">Buscar</button><br><br>
+            <button class="btn btn" type="submit">Buscar</button><br><br>
     
-            <div id="informacion" class="collapse" >
-                <span id="info" class="badge badge-info"><a  href="#collapseTwo" id="atenderPaciente"></a></span>
+            <div id="informacion" class="atender">
+                <!-- aqui se muestra el paciente obtenido -->
             </div>
+            
             </div>
             </form>
     
@@ -141,6 +142,7 @@ color:white}
             <form id="verificacionClave" action="javascript:verificarClave()" method="post">
             <strong>Ingrese Clave :</strong> <center> 
             <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> 
+            <div id="mensaje"></div>
             </div>
             <input type="hidden" name="hID" value=""/>
             <input type="hidden" name="hRUN" value=""/>
@@ -167,7 +169,7 @@ color:white}
                         success: function(output) {
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
-                                    $("#atenderPaciente").text(nombre);
+                                    $("#atender").html("<span id='info' class='badge badge-info'><a  href='#clave' id='atenderPaciente'>"+nombre+"</a></span>");
                                     $('input[name=hID]').val(data['idPaciente']);
                                     $('input[name=hRUN]').val(data['RUN']);
                                 }
@@ -183,11 +185,12 @@ color:white}
                         data: postData,
                         type: 'post',
                         success: function(output) {
-                                        if(output == 1){
+                                        if(output == 1){// redireccion a atencionPaciente
+                                            
 						window.location.href = "AtencionPaciente/atencionPaciente.php";
 					}
 					else{ //mensaje de error
-                                            $("#clave").append("<div class='alert alert-error'>La Clave no es correcta</div>)"); }
+                                            $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>"); }
                                 }
                         });
         }// funcion que se encarga de limpiar el formulario tras apretar el boton cancelar
