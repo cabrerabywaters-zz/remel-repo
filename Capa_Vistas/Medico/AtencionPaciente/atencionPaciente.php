@@ -10,10 +10,8 @@ print_r($_SESSION);
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
 
 ?>
-<div class="input-append">
-  <input class="span2" id="appendedInputButtons" type="text">
-  <button class="btn" type="button">Search</button>
-</div>
+
+
   <div class="tab-content"><!-- contenido del panel 1-->
     <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
       
@@ -185,7 +183,8 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div><!-- Fin del tab consulta-->
     
   </div>
-  </div>
+  </div><!-- fin contenido del panel-->
+</div>
 </div>
         
         
@@ -228,7 +227,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
             </div>
         </div>
         
-        
+       
         
         
     </body>

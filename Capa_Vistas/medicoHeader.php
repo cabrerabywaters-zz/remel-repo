@@ -182,7 +182,7 @@ color:white}
                         </ul>
                     </li>
                     <li class="dropdown pull-right">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Volver <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">

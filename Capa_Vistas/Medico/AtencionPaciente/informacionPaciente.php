@@ -9,14 +9,17 @@
     <label class="control-label" for="Sexo">Sexo  <input type="text" class="span1" id="Sexo" value="<?php echo $paciente['Sexo']; ?>" disabled></label>
     <label class="control-label" for="Peso">Peso <input type="text" class="span1" id="Peso" value="<?php echo $paciente['Peso']; ?>"></label>
   </div>
+    <div class="control-group">
+    <label class="control-label" for="Pais">Pais <input type="text" class="span1" id="Pais" value="Chile" disabled></label>
+    <label class="control-label" for="Region">Region <input type="text" class="input-small inline" id="Region" value="<?php echo $paciente['Region']; ?>"></label>
+    <label class="control-label" for="Comuna">Comuna  <input type="text" class="input-small inline" id="Comuna" value="<?php echo $paciente['Comuna']; ?>"></label>
+    
+    
+  </div>
   <div class="control-group">
     <label class="control-label" for="Direccion">Dirección  <input type="text" class="span5" id="Direccion" value="<?php echo $paciente['Direccion']; ?>"></label>
   </div>
-  <div class="control-group">
-    <label class="control-label" for="Comuna">Comuna  <input type="text" class="input-small inline" id="Comuna" value="<?php echo $paciente['Comuna']; ?>"></label>
-    <label class="control-label" for="Region">Region <input type="text" class="input-small inline" id="Region" value="<?php echo $paciente['Region']; ?>"></label>
-    <label class="control-label" for="Pais">Pais <input type="text" class="span1" id="Pais" value="Chile" disabled></label>
-  </div>
+
   <div class="control-group">
     <label class="control-label" for="Nacionalidad">Nacionalidad  <input type="text" class="span2" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
     <label class="control-label" for="Etnia">Etnia  <input type="text" class="span2" id="Etnia" value="<?php echo $paciente['Etnia']; ?>" disabled></label>
