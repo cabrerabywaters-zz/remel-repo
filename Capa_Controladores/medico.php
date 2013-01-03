@@ -3,7 +3,7 @@
 include('../Capa_Datos/llamarQuery.php');
 include('../Capa_Datos/generadorStringQuery.php');
 
-class Condicion {
+class Medico {
 
     static $nombreTabla = "Medicos";
     static $nombreIdTabla = "idMedico";    

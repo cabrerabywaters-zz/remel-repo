@@ -2,7 +2,7 @@
 
 include('../Capa_Datos/generadorStringQuery.php');
 
-class Condicion {
+class Persona {
 
     static $nombreTabla = "Personas";
     static $nombreIdTabla = "RUN";    

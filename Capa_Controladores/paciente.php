@@ -1,9 +1,8 @@
 <?php 
 
-include('../Capa_Datos/llamarQuery.php');
 include('../Capa_Datos/generadorStringQuery.php');
 
-class Condicion {
+class Paciente {
 
     static $nombreTabla = "Pacientes";
     static $nombreIdTabla = "idPaciente";
