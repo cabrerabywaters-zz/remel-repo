@@ -119,7 +119,13 @@ class Persona {
 	else return true;	
     }
 
-    public static function VerificarPIN(){
+    public static function VerificarPIN($rut,$pin){
+	$pin = md5($pin);
+	$queryString = "SELECT RUN FROM Personas WHERE RUN = '$rut' AND Codigo_Seguridad = '$pin';";
+        if(CallQuery($queryString)->num_rows != 1){
+                return true;
+        }
+	else return false;
     }
 }
 

@@ -1,14 +1,12 @@
 <?php
-	//include(dirname(__FILE__)."/../../Capa_Datos/callQuery.php");
-        include "../Capa_Datos/callQuery.php";
+        include_once("../Capa_Controladores/persona.php");
 	session_start();
 
 	$codigo = $_POST['clave'];
 	$rut = $_POST['hRUN'];
 	$id = $_POST['hID'];	
 
-	$queryString = "SELECT Nombre FROM Personas WHERE RUN = '$rut' AND Codigo_Seguridad = '$codigo';";
-	if(CallQuery($queryString)->num_rows != 1){
+	if(!Persona::VerificarPIN($rut,$codigo)){
 		echo "0";
 	}
 	else{
