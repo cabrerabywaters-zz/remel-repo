@@ -157,7 +157,7 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
          			type: 'post',
          			success: function(output) {
                 				if(output == '1') {
-							window.location.href = "comprobadorDoctor.php";
+							window.location.href = "ajax/comprobadorDoctor.php";
 						}
 						else{
 							$('#mensaje').html("<span style='color: red'>Nombre de Usuario o Constraseña Incorrecto </span>");
