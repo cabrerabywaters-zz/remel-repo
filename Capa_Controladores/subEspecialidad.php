@@ -2,10 +2,10 @@
 
 include_once('../Capa_Datos/generadorStringQuery.php');
 
-class Comuna {
+class SubEspecialidad {
 
-    static $nombreTabla = "Comunas";
-    static $nombreIdTabla = "idComuna";    
+    static $nombreTabla = "SubEspecialidades";
+    static $nombreIdTabla = "idSubEspecialidad";    
     
     /**
      * Insertar
@@ -15,8 +15,7 @@ class Comuna {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                           array('Nombre',$_POST['nombre']),
-                               array('Provincias_idProvincia',$_POST['id_provincia'])
+                                array('Nombre',$_POST['nombre_sub_especialidad']),
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -49,7 +48,6 @@ class Comuna {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Nombre',
-                                        'Provincias_idProvincia'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -79,9 +77,8 @@ class Comuna {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre']),
-                               array('Provincias_idProvincia',$_POST['id_provincia'])
-            );
+                                array('Nombre',$_POST['nombre_sub_especialidad']),
+                );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
@@ -91,4 +88,3 @@ class Comuna {
 }
 
 ?>
-
