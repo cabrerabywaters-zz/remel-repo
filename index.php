@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(!empty($_SESSION)) header("Location: comprobadorDoctor.php");
+if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
 ?>
 
 <!DOCTYPE html>

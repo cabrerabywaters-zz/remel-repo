@@ -8,7 +8,7 @@
 ?>
 <div class="row-fluid">
     <div class="span8 offset1" id="menu-contenido"><!-- menu por tabla-->
-        <a href="#myModal" role="button" class="btn btn-inverse" data-toggle="modal">Agregar Nuevo</a>
+        <a href="#myModal" role="button" class="btn btn-inverse" data-toggle="modal" id="nuevo">Agregar Nuevo</a>
     </div><!-- fin div menu por tabla-->
    
     <div class="span10" id="contenido">
@@ -49,7 +49,7 @@ visualizacionTabla($arreglo);
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="cerrar">Cerrar</button>
     <a class='btn btn-inverse' id='agregar'>Agregar</a>
   </div><!-- end modal-footer -->
-        <script ref="text/javascript" src="js/crudValidarFormExterno.js/"></script>  
+        <script ref="text/javascript" src="js/crudValidarFormExterno.js"></script>  
   </div><!-- end Modal -->
 
 </div>

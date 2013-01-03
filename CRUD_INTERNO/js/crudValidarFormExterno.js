@@ -19,7 +19,7 @@ $(document).ready(function(){
         var valor = $(this).val(); // valor del elemento
      
         envio = envio+indice+"="+valor+'&'; // se arma la direccion de envío de AJAX
-        
+                
         if(this.value == "" && this.value!="fecha"){ // se verifica que el input no esté vacío
         // se cambia las caracteristicas del div donde está el input
         $('input[name="'+indice+'"]').parent().parent().attr('class','control-group error'); // se cambia la clase del div donde está a c
@@ -42,7 +42,7 @@ $(document).ready(function(){
         }    
  
     });//end each
-
+alert('errores: '+errores+' envio: '+envio+' Accion: '+accion+' Tabla:'+ubicacion);
     if(errores == 0 && envio !=""){ // si no hay errores en el formulario y el envio no está vacío
       
 
@@ -51,10 +51,10 @@ $(document).ready(function(){
     // Se crean las variables que serán enviadas
     
     // url de la página a la cual se enviarán las vairables
-    var url = "../Capa_Controladores/controladorPruebas.php"; 
-    var ubicacion = "Regiones";
+    var url = "../Capa_Controladores/seleccionarControlador.php"; 
     var accion = 3;// se obtiene la accion (3 por agregar a la bbdd)
-    envio = envio+'ubicacion='+ubicacion+'&accion='+accion; // SE DEBE AGREGAR UNA VARIABLE QUE INDIQUE EN QUE SECCION ESTOY
+    envio = envio+'Tabla='+ubicacion+'&Accion='+accion; // SE DEBE AGREGAR UNA VARIABLE QUE INDIQUE EN QUE SECCION ESTOY
+    alert(envio);
     //envio final por POST
     hr.open("POST", url, true);
     // Set content type header information for sending url encoded variables in the request
