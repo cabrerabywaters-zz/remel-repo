@@ -81,7 +81,7 @@ class Paciente {
      * y actualiza con datos nuevos, la id y los datos vienen
      * por POST desde AJAX
      */
-    public function Actualizar() {
+    public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
                                 array('Nacionalidad',$_POST['nacionalidad']),
@@ -93,7 +93,7 @@ class Paciente {
         $query = CallQuery($queryString);
     }
     
-    public function EncontrarPaciente($rut) {
+    public static function EncontrarPaciente($rut) {
 	$queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
         $res = CallQuery($queryString);
         if($res->num_rows == 1){
