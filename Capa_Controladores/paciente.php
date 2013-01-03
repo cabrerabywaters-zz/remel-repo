@@ -58,6 +58,11 @@ function PacienteSeleccion($limit = 0, $offset = 0){
 function PacienteSeleccionIdPorRUN($run){
 	$atributosASeleccionar = array(
 					'idPaciente',
+					'Fecha_Ultima_Actualizacion',
+					'Nacionalidad',
+					'Peso',
+					'Etnias_idEtnias',
+					'altura'
 					);
 	$where = "WHERE Personas_RUN = '$run'";
 	$resultado = Paciente::Seleccionar($atributosASeleccionar, $where);

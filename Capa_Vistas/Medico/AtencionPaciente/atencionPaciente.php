@@ -4,6 +4,7 @@ include '../../../sessionCheck.php';
 
 iniciarCookie();
 verificarIP();
+print_r($_SESSION);
 
 
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
@@ -21,10 +22,9 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     </div>
     <div id="collapseOne" class="accordion-body collapse">
       <div class="accordion-inner">
-          <?php 
+          <?php /*
 		  // muestra los detalles de paciente
-		  include ("informacionPaciente.php"); 
-          mostrarPaciente($paciente); ?>
+		  include ("informacionPaciente.php"); */ ?>
       </div>
     </div>
   </div>

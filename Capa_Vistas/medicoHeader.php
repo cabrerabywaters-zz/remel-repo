@@ -16,7 +16,7 @@ and open the template in the editor.
 		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche",	
 		"Telefono1" =>"(074) - 823680","Telefono2" =>"(09) - 92348235","Telefono3" =>"","Isapre" => "Consalud");
 		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
-		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Alcoholico","Drogadicto"));
+		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
 		$recetas=array("agua","aceite","miel","polen","trigo");

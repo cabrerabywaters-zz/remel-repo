@@ -61,7 +61,12 @@ function PersonaSeleccionNombrePorRUN($run){
 					'Nombre',
 					'Apellido_Paterno',
 					'Apellido_Materno',
-					'RUN'
+					'RUN',
+					'Direccion_idDireccion',
+					'sexo',
+					'n_celular',
+					'Fecha_Nac',
+					'n_fijo'
 					);
 	$where = "WHERE RUN = '$run'";
 	$resultado = Persona::Seleccionar($atributosASeleccionar, $where);
