@@ -95,10 +95,8 @@ class Condicion {
                                 array('Medicocol',$_POST['medico_col']),
                                 array('Direccion_Consulta',$_POST['id_consulta']),
                                 array('Correo_Medico',$_POST['correo_medico']),
-                                array('Codigo_Registro_SS',$_POST['codigo_registro_ss']),
-                                array('Codigo_Registro_CM',$_POST['codigo_registro_cm']),
                                 array('Medicocol1',$_POST['medico_col_1']),
-                                array('Fecha_ultima_edicion',$_POST['fecha_ultima_edicion'])
+                                array('Fecha_ultima_edicion',"NOW()")
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
