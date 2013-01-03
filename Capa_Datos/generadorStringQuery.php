@@ -7,7 +7,7 @@
 * @autor: German Oviedo 
 ***/
 
-include "callQuery.php";
+include "llamarQuery.php";
 
 /**
 * Funcion que crea el string para la query de Seleccionar
