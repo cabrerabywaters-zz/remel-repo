@@ -75,12 +75,13 @@ color:white}
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
+        
+       
 		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
 		$recetas=array("agua","aceite","miel","polen","trigo");
-                $institucion=array("Rut"=>"123456","Nombre" => "Hospital Regional Rancagua","..." => "...");
 				// consulta a la base de datos del usuario
 				include(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
@@ -90,6 +91,7 @@ color:white}
 				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
+				include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
 				$RUTMedico=$_SESSION['RUT'];
 				$RUTPaciente = $_SESSION['RUTPaciente'];
 				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
@@ -116,7 +118,12 @@ color:white}
 				$prevision=$paciente2['Prevision_rut'];
 				$prevision=Prevision::Seleccionar("WHERE rut = '$prevision'");
 				$prevision=$prevision[0];
+				$alergia=1;
+				$alergia=Alergia::Seleccionar("WHERE idAlergia = '$alergia'");
+				$alergia=$alergia[0];
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
+				
+				
 				
 				
 				 // fin de la consulta llevar a ajax
@@ -248,12 +255,83 @@ color:white}
                 </div>
                 
                 <div class="img-rounded span6" style=" background-color: #DCF1EF">
-                    <center><h2><?php echo $institucion['Nombre']; ?></h2></center>
+                    <center><h2><?php 
+					$institucion=$_SESSION['institucionLog']; 
+					echo $institucion[1];					
+					 ?></h2></center>
                 </div>
                 
                 <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
+                     <script type="text/javascript">
+                //validacion del rut ingresado
+                function verificarRut( Objeto )
+                {
+                    var tmpstr = "";
+                     $('#mensaje').html("");
+                    var intlargo = Objeto.value
+                    if (intlargo.length> 0)
+                    {
+                        crut = Objeto.value
+                        largo = crut.length;
+                        for ( i=0; i <crut.length ; i++ )
+                        if ( crut.charAt(i) != ' ' && crut.charAt(i) != '.' && crut.charAt(i) != '-' )
+                        {
+                            tmpstr = tmpstr + crut.charAt(i);
+                        }
+                        rut = tmpstr;
+                        crut=tmpstr;
+                        largo = crut.length;
+	
+                        if ( largo> 2 )
+                            rut = crut.substring(0, largo - 1);
+                        else
+                            rut = crut.charAt(0);
+	
+                        dv = crut.charAt(largo-1);
+	
+                        if ( rut == null || dv == null )
+                            return 0;
+	
+                        var dvr = '0';
+                        suma = 0;
+                        mul  = 2;
+	
+                        for (i= rut.length-1 ; i>= 0; i--)
+                        {
+                            suma = suma + rut.charAt(i) * mul;
+                            if (mul == 7)
+                                mul = 2;
+                            else
+                                mul++;
+                        }
+	
+                        res = suma % 11;
+                        if (res==1)
+                            dvr = 'k';
+                        else if (res==0)
+                            dvr = '0';
+                        else
+                        {
+                            dvi = 11-res;
+                            dvr = dvi + "";
+                        }
+                        if ( dvr != dv.toLowerCase() )
+                        {
+                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
+                            Objeto.focus();
+                            return false;
+                        }
+                        //alert('El Rut Ingresado es Correcto!')
+                        return true;
+                    }
+                }                       
+                $("usuario").validator();
+		
+		
+		    
+            </script>
                     <strong>Paciente:<br></strong><table>
                     <tr><td><?php 
 					if($paciente['Sexo']=="1")
