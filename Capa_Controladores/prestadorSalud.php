@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Funcionario {
+    class PrestadorSalud  {
 
-    static $nombreTabla = "Funcionarios";
-    static $nombreIdTabla = "idFuncionario";    
+    static $nombreTabla = "Prestadores_Salud";
+    static $nombreIdTabla = "idPrestadores_Salud";    
     
     /**
      * Insertar
@@ -15,11 +15,13 @@ class Funcionario {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Telefono',$_POST['telefono_funcionario']),
-                                array('Categoria_Funcionario_idCategoria_Funcionario',$_POST['idCategoria_Funcionario']),
-                                array('Fecha_creacion_REMEL','NOW()'),
-                                array('Fecha_ultima_edicion','NOW()')
-                                      );
+                                array('Fecha','NOW()'),
+                                array('Hora','NOW()'),
+                                array('Medicos_idMedico',$_POST['idMedico']),
+                                array('Pacientes_idPaciente',$_POST['idPaciente']),
+                                array('Prestadores_Salud_idPrestadores_Salud',$_POST['idPrestadores_Salud']),
+                                array('Prestadores_Salud_Plazas_Instituciones_idPlaza',$_POST['Plazas_Instituciones_idPlaza'])
+                                );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -50,10 +52,12 @@ class Funcionario {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Telefono',
-                                        'Categoria_Funcionario_idCategoria_Funcionario',
-                                        'Fecha_creacion_REMEL',
-                                        'Fecha_ultima_edicion'
+                                'Fecha',
+                                'Hora',
+                                'Medicos_idMedico',
+                                'Pacientes_idPaciente',
+                                'Prestadores_Salud_idPrestadores_Salud',
+                                'Prestadores_Salud_Plazas_Instituciones_idPlaza'
             );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -83,10 +87,9 @@ class Funcionario {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Telefono',$_POST['telefono_funcionario']),
-                                array('Fecha_creacion_REMEL','NOW()'),
-                                array('Fecha_ultima_edicion','NOW()')
-                                	);
+                                array('Fecha','NOW()'),
+                                array('Hora','NOW()'),
+                               	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
