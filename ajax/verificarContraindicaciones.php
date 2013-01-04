@@ -1,10 +1,11 @@
 <?php
 
-include '../Capa_Datos/callQuery.php';
+include '../Capa_Datos/llamarQuery.php';
 
 session_start();
 
-$idPaciente = $_SESSION['idPaciente'];
+//$idPaciente = $_SESSION['idPaciente'];
+$idPaciente = 5;
 $idMedicamento = 1;
 //obtener idMedicamento de algun lado
 
@@ -43,6 +44,10 @@ $busquedaAlergias = CallQuery($queryStringAlergias);
 $busquedaCondiciones = CallQuery($queryStringCondiciones);
 $busquedaMedicamentos = CallQuery($queryStringMedicamentos);
 
+var_dump($busquedaAlergias);
+var_dump($busquedaCondiciones);
+echo '<br>';
+
 //primer if, verifica si alguno de los resultados es positivo, de ser así, continua:
 if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
     //primer if de resultado: alergias
@@ -69,11 +74,10 @@ if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
                                               WHERE idMedicamento = '.$value.'';
         }
     }
-    vardump($resultadoAlergias);
-    vardump($resultadoCondiciones);
-    vardump($resultadoMedicamentos);
-    echo json_encode(array('message_you_want' => 'your message here'));
-    
+    var_dump($resultadoAlergias);
+    var_dump($resultadoCondiciones);
+    var_dump($resultadoMedicamentos);
+    //echo 'poto';
     //con los arreglos anteriores se tienen todas las contraindicaciones que presenta el medicamento
     //a continuación la alerta de componentes
     //IMPORTANTE: no existe relación alguna entre los componentes y las contraindicaciones, por lo que no se puede mostrar.
