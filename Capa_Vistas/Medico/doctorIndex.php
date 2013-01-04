@@ -69,12 +69,7 @@ verificarIP();
           border: 3px solid #DCF1EF;
       }
       
-      a:link {text-decoration: none;
-      color:white}
-a:visited {text-decoration: none;
-color:white}
-a:active {text-decoration: none;
-color:white}
+      
 
     </style>
 
@@ -89,12 +84,12 @@ color:white}
         <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
          <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
         <!-- Button to trigger modal -->
-        <a href="#myModal" role="button" class="btn btn-large btn-block btn-warning" data-toggle="modal">Recetar</a>
+        <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
         <button class="btn btn-large btn-block" type="button">Ver Pacientes Atendidos</button>
         <button class="btn btn-large btn-block " type="button">Consultar medicamentos</button>
         <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
         <button class="btn btn-large btn-block" type="button">Otros</button>
-        <a href="../decisionDoctor.php" class="btn btn-large btn-block btn-warning" role="button">Cambiar insitucion</a>
+        <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
 	<a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
       </form>
 
