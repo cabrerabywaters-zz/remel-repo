@@ -17,7 +17,7 @@ y el popup que muestra el detalle del medicamento
                 <div class="input-append">
                     <input type="text" id="Recetas" class="span2 search-query">
                     <button type="button" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
-                    <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" role="button" data-toggle="modal"> Paracetamol </a></span></div>
+                    <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" id='ID' data-toggle="modal"> Paracetamol </a></span></div>
                 </div>
             </form>
         </div>
@@ -46,20 +46,13 @@ y el popup que muestra el detalle del medicamento
 
 <!--JS de funcion verificacion de contraindicaciones-->
 <script>
-    alert('poto');
     //var postData = $("#myModal2").serialize();
-    var postData = 'poto';
-    $('a[href=#myModal2]').click(  
+    //var postData = 'poto';
+    $('#ID').click(
     function(){
-        $.ajax({
-            dataType: 'json',
-            url: '../../../ajax/verificarContraindicaciones.php',
-            data: postData,
-            type: post,
-            success: function(output){
-                $('#myModalLabel').alert(output.message);
-            }
-            }
-            )
+        //alert('algo')
+        //var algo = $.post('../../../ajax/verificarContraindicaciones.php',postData)
+        $('#myModalLabel').load('../../../ajax/verificarContraindicaciones.php')
     }
+)
 </script>
