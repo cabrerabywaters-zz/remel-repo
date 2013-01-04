@@ -79,12 +79,15 @@ verificarIP();
   <body>
 
     <div class="container-fluid">
+        <?php 
+        echo var_dump($_SESSION['instituciones_doctor']);
+        ?>
 
       <form class="form-signin" action="Medico/doctorIndex.php" method="post">
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
         <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
         
-        <button type="button" class="btn btn-warning btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
+        <button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
             <div id="demo" class="collapse" data-parent="#ingresoMedico">
                 <?php
                 /**
@@ -92,11 +95,17 @@ verificarIP();
                  * de sesion instituciones (contiene todas las instituciones de 
                  * el medico conectado
                  */
-                foreach($_SESSION['instituciones'] as $institucion){
-			$idInstitucion = $institucion['RUT'];
-			$nombreInstitucion = $institucion['Nombre'];
+                
+              if( isset($_SESSION['instituciones_doctor'])== "true" ){
+                  
+                 foreach($_SESSION['instituciones_doctor'] as $institucion){
+                 $idInstitucion = $institucion['RUT'];
+                 $nombreInstitucion = $institucion['Nombre'];
                    echo "<button class='btn btn-block' idInstitucion='$idInstitucion'>$nombreInstitucion</button>"; 
                  };
+                 
+              }
+             
                 ?>
                 <button class="btn btn-block" type="submit" idinstitucion ="-1">Particular</button>
                 <script>
@@ -112,7 +121,7 @@ verificarIP();
                            'nombre': $(this).html()
                        };
                        
-			$.ajax({ url: 'ajax/institucionLog.php',
+			$.ajax({ url: 'ajax/institucionesLog.php',
          			data: postData,
          			type: 'post',
          			success: function(output) {
