@@ -86,12 +86,18 @@ color:white}
 				include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 				$RUTMedico=$_SESSION['RUT'];
 				$RUTPaciente = $_SESSION['RUTPaciente'];
-				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'")[0];
+				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
+                                
+                               $medico = $medico[0];
 				
 
-				$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'")[0];
+				$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'");
+                                
+                                $paciente1 =$paciente1[0];
 
-				$paciente2 = Persona::Seleccionar("WHERE RUN = '$RUTPaciente'")[0];
+				$paciente2 = Persona::Seleccionar("WHERE RUN = '$RUTPaciente'");
+                                
+                                $paciente2 = $paciente2[0];
 
 				$paciente = array_merge($paciente1, $paciente2);
 				/***************************************/ // fin de la consulta llevar a ajax
