@@ -79,10 +79,7 @@ verificarIP();
   <body>
 
     <div class="container-fluid">
-        <?php 
-        echo var_dump($_SESSION['instituciones_doctor']);
-        ?>
-
+       
       <form class="form-signin" action="Medico/doctorIndex.php" method="post">
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
         <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
