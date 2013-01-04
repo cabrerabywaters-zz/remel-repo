@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class TratamientoGES {
+class ComposicionMedicamento {
 
-    static $nombreTabla = "Tratamiento_GES";
-    static $nombreIdTabla = "idTratamiento_GES";    
+    static $nombreTabla = "Composicion_Medicamento";
+    static $nombreIdTabla = "Medicamentos_idMedicamento";    
     
     /**
      * Insertar
@@ -15,9 +15,9 @@ class TratamientoGES {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-            array('Nombre',$_POST['nombre_tratamiento_ges']),
-            array('Descripcion',$_POST['descripcion_tratamiento_ges'])
-            );
+                                array('Cantidad',$_POST['cantidad']),
+                                array('Unidades_idUnidade',$_POST['idUnidade']),
+                                      );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -48,9 +48,10 @@ class TratamientoGES {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Descripcion'
-      );
+                                    'Cantidad',
+                                    'Unidades_idUnidade'
+                              
+                                    );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
@@ -77,11 +78,11 @@ class TratamientoGES {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['medicamentos_id_medicamento'];
     	$datosActualizacion = array(
-                               array('Nombre',$_POST['nombre_tratamiento_ges']),
-                               array('Descripcion',$_POST['descripcion_tratamiento_ges'])
-               );
+                                array('Cantidad',$_POST['cantidad'])
+                               );
+
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
