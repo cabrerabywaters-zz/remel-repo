@@ -18,8 +18,8 @@
   </div>
     <div class="control-group">
     <label class="control-label" for="Pais">Pais <input type="text" class="span1" id="Pais" value="Chile" disabled></label>
-    <label class="control-label" for="Region">Region <input type="text" class="input-small inline" id="Region" value="<?php echo $paciente['Region']; ?>"></label>
-    <label class="control-label" for="Comuna">Comuna  <input type="text" class="input-small inline" id="Comuna" value="<?php echo $paciente['Comuna']; ?>"></label>
+    <label class="control-label" for="Region">Region <input type="text" class="span2 inline" id="Region" value="<?php echo $region['Nombre']; ?>"></label>
+    <label class="control-label" for="Comuna">Comuna  <input type="text" class="span2 inline" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
     
     
   </div>

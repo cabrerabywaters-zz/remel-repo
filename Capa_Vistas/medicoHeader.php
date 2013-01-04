@@ -85,24 +85,32 @@ color:white}
 				include(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/direccion.php");
+				include(dirname(__FILE__)."/../Capa_Controladores/comuna.php");
+				include(dirname(__FILE__)."/../Capa_Controladores/provincia.php");
+				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
 				$direccion = Direccion::Seleccionar("WHERE idDireccion = '4'");
 				
 				$RUTMedico=$_SESSION['RUT'];
 				$RUTPaciente = $_SESSION['RUTPaciente'];
 				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
+				$medico = $medico[0];
 				$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'");
+				$paciente1 =$paciente1[0]; 
 				$paciente2 = Persona::Seleccionar("WHERE RUN = '$RUTPaciente'");
 				$paciente2 = $paciente2[0];
 				$direccion=$paciente2['Direccion_idDireccion'];
-
 				$direccion = Direccion::Seleccionar("WHERE idDireccion = '$direccion'"); 
-				
-				
-				 				$medico = $medico[0];
-								$direccion = $direccion[0];
-                                $paciente1 =$paciente1[0];     
-								
-								
+				$direccion = $direccion[0];
+				$comuna=$direccion['Comuna_idComuna'];
+				$comuna = Comuna::Seleccionar("WHERE idComuna = '$comuna'"); 
+				$comuna=$comuna[0];
+				$provincia=$comuna['Provincias_idProvincia'];
+				$provincia = Provincia::Seleccionar("WHERE idProvincia = '$provincia'"); 
+				$provincia=$provincia[0];
+				$region=$provincia['Regiones_idRegion'];
+				$region = Region::Seleccionar("WHERE idRegion = '$region'"); 
+				$region=$region[0];
+				print_r($region);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				 // fin de la consulta llevar a ajax
 				 
