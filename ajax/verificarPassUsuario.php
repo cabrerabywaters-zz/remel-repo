@@ -17,12 +17,12 @@
 	else{
 		$_SESSION['RUT'] = $rut;
 
-		$idPaciente = Paciente::EncontrarPaciente($rut)[0];
+		$idPaciente = Paciente::EncontrarPaciente($rut);
                 if($idPaciente != false){
                         $_SESSION['idPacienteLog'] = $idPaciente;
                 }
 
-		$idMedico = Medico::EncontrarMedico($rut)[0];
+		$idMedico = Medico::EncontrarMedico($rut);
                 if($idMedico != false){
                         $_SESSION['idMedicoLog'] = $idMedico;
 			$_SESSION['instituciones'] = MedicosHasInstituciones::InstitucionesPorID($idMedico);
