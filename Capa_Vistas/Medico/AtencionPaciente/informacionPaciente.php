@@ -29,13 +29,13 @@
 
   <div class="control-group">
     <label class="control-label" for="Nacionalidad">Nacionalidad  <input type="text" class="span2" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
-    <label class="control-label" for="Etnia">Etnia  <input type="text" class="span2" id="Etnia" value="<?php echo $paciente['Etnia']; ?>" disabled></label>
+    <label class="control-label" for="Etnia">Etnia  <input type="text" class="span2" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
   </div>
   <div class="control-group">
     <label class="control-label" for="N_Celular N_Fijo">Telefonos  <input type="text" class="span2" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  <input type="text" class="span2" id="N_Fijo" value="<?php echo $paciente['N_Fijo']; ?>">  </label>
   </div>
   <div class="control-group">
-    <label class="control-label" for="Isapre">Isapre  <input type="text" class="span2" id="Isapre" value="<?php echo $paciente['Isapre']; ?>" disabled></label>
+    <label class="control-label" for="Isapre">Isapre  <input type="text" class="span2" id="Isapre" value="<?php echo $prevision['Nombre']; ?>" disabled></label>
   </div>
 </form> 
 

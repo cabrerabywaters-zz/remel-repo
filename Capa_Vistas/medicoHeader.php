@@ -88,8 +88,8 @@ color:white}
 				include(dirname(__FILE__)."/../Capa_Controladores/comuna.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/provincia.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
-				$direccion = Direccion::Seleccionar("WHERE idDireccion = '4'");
-				
+				include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
+				include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
 				$RUTMedico=$_SESSION['RUT'];
 				$RUTPaciente = $_SESSION['RUTPaciente'];
 				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
@@ -110,8 +110,15 @@ color:white}
 				$region=$provincia['Regiones_idRegion'];
 				$region = Region::Seleccionar("WHERE idRegion = '$region'"); 
 				$region=$region[0];
-				print_r($region);
+				$etnia=$paciente1['Etnias_idEtnias'];
+				$etnia = Etnia::Seleccionar("WHERE idEtnias = '$etnia'"); 
+				$etnia=$etnia[0];
+				$prevision=$paciente2['Prevision_rut'];
+				$prevision=Prevision::Seleccionar("WHERE rut = '$prevision'");
+				$prevision=$prevision[0];
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
+				
+				
 				 // fin de la consulta llevar a ajax
 				 
 			/*****************************funcion que corta el string del nombre */
