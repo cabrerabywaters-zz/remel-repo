@@ -44,12 +44,7 @@
 		    type: "post",
                     success: function( data ) {
 			alert(data);
-                        response( $.map( data.geonames, function( item ) {
-                            return {
-                                label: item.name,
-                                value: item.name
-                            }
-                        }));
+                        response(data);
                     }
                 });
             },
