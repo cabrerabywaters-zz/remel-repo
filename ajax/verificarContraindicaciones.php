@@ -6,6 +6,7 @@ session_start();
 
 $idPaciente = $_SESSION['idPaciente'];
 $idMedicamento = 1;
+//obtener idMedicamento de algun lado
 
 //query de alergias del paciente
 $queryStringAlergias = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Paciente, Alergia_has_Paciente 
