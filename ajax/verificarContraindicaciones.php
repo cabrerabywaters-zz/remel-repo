@@ -10,16 +10,29 @@ $idMedicamento = 1;
 //obtener idMedicamento de algun lado
 
 //query de alergias del paciente
-$queryStringAlergias = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Paciente, Alergia_has_Paciente 
-                        WHERE '.$idPaciente.' = Alergias_has_Paciente.idPaciente
-                        AND '.$idPaciente.' = Pacientes.idPaciente
-                            
-                        IN (
-                        
-                        SELECT Alergia_has_Paciente.Alergias_idAlergia as ID FROM Medicamentos, Contraindicaciones_Alergias
-                        WHERE '.$idMedicamento.' = Contraindicaciones_Alergias.Medicamentos_idMedicamento
-                        AND '.$idMedicamento.' = Medicamentos.idMedicamento)';
+$queryStringAlergiasPaciente = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Pacientes, Alergia_has_Paciente 
+                                WHERE '.$idPaciente.' = Alergia_has_Paciente.Paciente_idPaciente
+                                AND '.$idPaciente.' = Pacientes.idPaciente';
 
+$queryStringAlergiasMedicamento = 'SELECT Contraindicaciones_Alergias.Alergias_idAlergia as ID FROM Medicamentos, Contraindicaciones_Alergias
+                                   WHERE '.$idMedicamento.' = Contraindicaciones_Alergias.Medicamentos_idMedicamento
+                                   AND '.$idMedicamento.' = Medicamentos.idMedicamento';
+/*
+var_dump(callQuery($queryStringAlergiasPaciente));
+echo '</br>';
+var_dump(callQuery($queryStringAlergiasMedicamento));
+*/
+$busquedaAlergias;
+
+if ($queryStringAlergiasMedicamento != false && $queryStringAlergiasPaciente != false){
+    
+}
+
+
+
+
+
+//hacer una consulta para paciente y medicamento, luego comparar por logica (for)
 
 //$queryStringAlergias = 'SELECT * FROM Alergias';
 
@@ -45,11 +58,11 @@ $queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento FROM Medicamentos,
 $busquedaAlergias = CallQuery($queryStringAlergias);
 $busquedaCondiciones = CallQuery($queryStringCondiciones);
 $busquedaMedicamentos = CallQuery($queryStringMedicamentos);
-
+/*
 var_dump($busquedaAlergias);
 var_dump($busquedaCondiciones);
 echo '<br>';
-
+*/
 //primer if, verifica si alguno de los resultados es positivo, de ser así, continua:
 if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
     //primer if de resultado: alergias
@@ -76,9 +89,6 @@ if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
                                               WHERE idMedicamento = '.$value.'';
         }
     }
-    var_dump($resultadoAlergias);
-    var_dump($resultadoCondiciones);
-    var_dump($resultadoMedicamentos);
     //echo 'poto';
     //con los arreglos anteriores se tienen todas las contraindicaciones que presenta el medicamento
     //a continuación la alerta de componentes
