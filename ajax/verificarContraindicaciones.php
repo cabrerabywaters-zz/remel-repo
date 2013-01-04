@@ -72,6 +72,7 @@ if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
     vardump($resultadoAlergias);
     vardump($resultadoCondiciones);
     vardump($resultadoMedicamentos);
+    echo json_encode(array('message_you_want' => 'your message here'));
     
     //con los arreglos anteriores se tienen todas las contraindicaciones que presenta el medicamento
     //a continuación la alerta de componentes
