@@ -80,7 +80,7 @@ verificarIP();
 
     <div class="container-fluid">
        
-      <form class="form-signin" action="Medico/doctorIndex.php" method="post">
+      <form class="form-signin" >
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
         <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
         
@@ -94,34 +94,37 @@ verificarIP();
                  */
                 
               if( isset($_SESSION['instituciones_doctor'])== "true" ){
-                  
+                 echo '<div id=contenedor_instituciones>';
                  foreach($_SESSION['instituciones_doctor'] as $institucion){
                  $idInstitucion = $institucion['RUT'];
                  $nombreInstitucion = $institucion['Nombre'];
-                   echo "<button class='btn btn-block' idInstitucion='$idInstitucion'>$nombreInstitucion</button>"; 
+                   echo "<button class='btn btn-block' type='button' idInstitucion='$idInstitucion'>$nombreInstitucion</button>"; 
                  };
-                 
+                echo ' </div>';
               }
              
                 ?>
-                <button class="btn btn-block" type="submit" idinstitucion ="-1">Particular</button>
+                <button class="btn btn-block" idinstitucion ="-1">Particular</button>
                 <script>
                 /**
                  * script que envía el valor de la institucion seleccionada
-                 * al archivo institucionLog.php para ser guardado en la 
+                 * al archivo institucionesLog.php para ser guardado en la 
                  * $_SESSION['institucionLog']
                 */
                 $(document).ready(function(){
-                    $("#demo button").click(function(){
+                    $("#contenedor_instituciones button").click(function(){
+                        
                        var postData = { //JSON con la info de la institucion que se envia
                            'idinstitucion': $(this).attr('idinstitucion'),
                            'nombre': $(this).html()
                        };
                        
-			$.ajax({ url: 'ajax/institucionesLog.php',
+			        
+                                $.ajax({ url: '../ajax/institucionesLog.php',
          			data: postData,
          			type: 'post',
          			success: function(output) {
+                                    
                                     /**
                                      * funcion que verifica el output de la consulta
                                      * si es 1 re-dirige a la pagina correspondiente
@@ -131,25 +134,26 @@ verificarIP();
 							window.location.href = "Medico/doctorIndex.php";
 						}
 						else{
-							$('#mensaje').html("<span class='alert alert-error'>No se guardó la Institucion en la sesion!</span>");
+							$('#mensaje').html("<span style='color: red'>No se guardó la Institucion en la sesion!</span>");
 						}
                   			}
-				}); // end ajax
-		 
-                        
-                    });//end click
+				});//fin ajax
+                                
+                             
+                    });//fin click
                     
-                }); // end ready
+                }); // fin ready
             
                 </script>
-                <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
+                
             </div>
         <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
+        
+         <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
       </form>
         
 
  
-        
     </div> <!-- /container -->
 
 
