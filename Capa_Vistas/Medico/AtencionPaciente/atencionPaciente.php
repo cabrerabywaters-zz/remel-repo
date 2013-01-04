@@ -4,25 +4,12 @@ include '../../../ajax/sessionCheck.php';
 
 iniciarCookie();
 verificarIP();
-print_r($_SESSION);
 
 
 
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
 
-/*******************************************************/ // consulta a la base de datos del usuario
-include(dirname(__FILE__)."/../../../Capa_Controladores/paciente.php");
-include(dirname(__FILE__)."/../../../Capa_Controladores/persona.php");
-$RUTMedico=$_SESSION['RUT'];
-$RUTPaciente = $_SESSION['RUTPaciente'];
-$medico = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTMedico'")[0];
 
-$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'")[0];
-
-$paciente2 = Persona::Seleccionar("WHERE RUN = '$RUTPaciente'")[0];
-
-$paciente = array_merge($paciente1, $paciente2);
-/***************************************/ // fin de la consulta llevar a ajax
 ?>
 
 
