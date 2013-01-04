@@ -98,18 +98,25 @@ class Diagnostico {
     }
 
     public static function BuscarDiagnosticoLike($nombre) {
-       
+  
+       $diagnosticos = array();
         $queryString = 'SELECT Nombre
 
                         FROM Diagnosticos
 
-                        WHERE Nombre LIKE %'.$nombre.'%
+                        WHERE Nombre LIKE "%'.$nombre.'%"
 
                         ORDER BY Nombre
 
-                        LIMIT 5';
-        $query = CallQuery($queryString);
-        return $query;
+                        LIMIT 5;';
+        
+        $resultado = CallQuery($queryString);
+        
+        while($row = $resultado->fetch_assoc()){
+		$diagnosticos[] = "'".$row['Nombre']."'";
+	}
+        return $diagnosticos ;
+        
     }
 
 }
