@@ -54,7 +54,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     <div class="tab-pane img-rounded" id="tabConsulta"><!-- tab consulta-->
 
 <div class="accordion" id="accordion3"><!-- accordion diagnostico-->
-  <div class="accordion-group">
+  <div class="accordion-group"><!-- accordion diagnostico-->
     <div class="accordion-heading">
       <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
         Diagnóstico
@@ -149,31 +149,8 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       </div>
     </div>
   </div>
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
-        Receta
-      </a>
-    </div>
-    <div id="collapseTwo2" class="accordion-body collapse">
-      <div class="accordion-inner">
-         <div class="modal-body img-rounded">
-      <strong><p>Ingrese nombre del medicamento</p></strong>
-    <form class="form-search">
-  <div class="input-append">
-    <input type="text" id="Recetas" class="span2 search-query">
-    <button type="button" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
-    
-   
-    <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" role="button"   data-toggle="modal"> Paracetamol </a></span></div>
-  </div>
-    </form>
-    
-   
-    
-  </div>
-      </div>
-    </div>
+  <div class="accordion-group"><!--accordion receta  -->
+    <?php include('moduloReceta.php'); ?>
   </div>
 </div><!-- accordion diagnostico-->
         
