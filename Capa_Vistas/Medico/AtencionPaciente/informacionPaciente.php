@@ -24,7 +24,7 @@
     
   </div>
   <div class="control-group">
-    <label class="control-label" for="Direccion">Dirección  <input type="text" class="span5" id="Direccion" value="<?php echo $paciente['Direccion']; ?>"></label>
+    <label class="control-label" for="Direccion">Dirección  <input type="text" class="span5" id="Direccion" value="<?php echo "".$paciente['Calle']." ".$paciente['Numero']." "; ?>"></label>
   </div>
 
   <div class="control-group">
