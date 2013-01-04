@@ -242,7 +242,7 @@ color:white}
     </head>
     <body>
         
-        <div class="container-fluid">
+        <div class="container-fluid"><!-- contenedor general -->
             
             <div class="row-fluid img-rounded" style="background-color: #B6DEDB"> <!--div superior-->
                 <div class="span3 img-rounded" style="background-color: #DCF1EF">
@@ -350,7 +350,7 @@ color:white}
                 </div>
             </div><!-- cierre div superior-->
             
-            <div class="tabbable-fluid"> 
+            <div class="tabbable-fluid"><!-- div contenido --> 
                 
                 <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
