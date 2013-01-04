@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class TratamientoGES {
+class Presentacion {
 
-    static $nombreTabla = "Tratamiento_GES";
-    static $nombreIdTabla = "idTratamiento_GES";    
+    static $nombreTabla = "Presentaciones";
+    static $nombreIdTabla = "idPresentacion";    
     
     /**
      * Insertar
@@ -15,9 +15,8 @@ class TratamientoGES {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-            array('Nombre',$_POST['nombre_tratamiento_ges']),
-            array('Descripcion',$_POST['descripcion_tratamiento_ges'])
-            );
+                                array('Descripcion',$_POST['descripcion_presentacion']),
+                                      );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -48,8 +47,7 @@ class TratamientoGES {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Descripcion'
+                                        'Descripcion',
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -77,11 +75,11 @@ class TratamientoGES {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_presentacion'];
     	$datosActualizacion = array(
-                               array('Nombre',$_POST['nombre_tratamiento_ges']),
-                               array('Descripcion',$_POST['descripcion_tratamiento_ges'])
-               );
+                                array('Descripcion',$_POST['descripcion_presentacion']),
+                );
+
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
