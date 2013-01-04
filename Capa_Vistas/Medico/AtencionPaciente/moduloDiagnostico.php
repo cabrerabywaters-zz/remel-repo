@@ -6,7 +6,7 @@
     <div id="collapseOne1" class="accordion-body collapse">
         <div class="accordion-inner">
             
-            <div class="modal-body">
+            <div class="span5 offset1 modal-body img-rounded">
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
             <form class="form-search">
             <div class="input-append"> <!-- buscador inline con autocomplete -->
@@ -22,7 +22,6 @@
          * busca en la base de datos en el archivo autocompleteDiagnostico.php
          * el jSon correspondiente a las coincidencias
          * 
-         * Funcion select que ejecutará una accion cuando se devuelva
          */
         function log( message ) {
             /**
@@ -42,9 +41,13 @@
                         name_startsWith: request.term
                     },
 		    type: "post",
-                    success: function( data ) {
-			alert(data);
-                        response(data);
+                    success:  function( data ) {
+                        response( $.map( data, function( item ) {
+                            return {
+                                label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+                                value: item.name
+                            }
+                        }));
                     }
                 });
             },
@@ -77,13 +80,18 @@
             
             </div>
    
-            <div id="log" class="collapse" > </div> <!-- div donde se mostraran los diagnosticos obtenidos -->
-          
+            
             </form>
     
    
     
   </div>
+            <div id="log" class="modal-body span5 img-rounded">
+               <strong><p>Diagnosticos seleccionados:</p></strong> 
+            </div> <!-- div donde se mostraran los diagnosticos obtenidos -->
+            
+            
+            
       </div>
     </div>
 

@@ -9,7 +9,7 @@
 function mostrarAlergias($alergias){ 
     echo'
   <div class="row">
-  <div class="span5" id="alergias">
+  <div class="span5 offset1 modal-body img-rounded" id="alergias">
   <table>
    <thead>
                      <tr>
@@ -46,14 +46,15 @@ function mostrarAlergias($alergias){
 			<form class="form-search">
 			<div class="input-append">
   				<input class="span2" id="Alergias" type="text">
- 				 <button class="btn" type="button">Search</button>
+ 				 <button class="btn" type="button">Buscar alergía</button>
   			</div>
 			</form>
   </td></tr></tfoot></table></div>';
 }
   
 function mostrarCondiciones($condiciones){  
-    echo'<div class="span5 offset2">
+    echo'
+         <div class="span5 modal-body img-rounded">
   <table>
    <thead>
                      <tr>
@@ -91,7 +92,7 @@ echo'
 			<form class="form-search">
 			<div class="input-append">
   				<input class="span2" id="Condiciones" type="text">
-  				<button class="btn" type="button">Search</button></div>
+  				<button class="btn" type="button">Buscar condicion</button></div>
 				</form></td></tr>	
 				</tfoot></table>
 			</div> 

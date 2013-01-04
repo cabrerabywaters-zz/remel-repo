@@ -100,7 +100,7 @@ class Diagnostico {
     public static function BuscarDiagnosticoLike($nombre) {
   
        $diagnosticos = array();
-        $queryString = 'SELECT Nombre
+        $queryString = 'SELECT Id, Nombre
 
                         FROM Diagnosticos
 
