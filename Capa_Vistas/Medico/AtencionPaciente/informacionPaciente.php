@@ -7,7 +7,6 @@
   <div class="accordion-inner">
     <form class="form-inline">
     
-        <div class="modal-body img-rounded">
     <div class="control-group">
     <label class="control-label" for="Nombre">Nombre <input class="span5" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
     </div>
@@ -50,7 +49,6 @@
     </div>
     
     </form> 
-</div>
   </div>
   </div>
 
