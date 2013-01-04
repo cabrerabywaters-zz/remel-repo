@@ -27,15 +27,15 @@ verificarIP();
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #CDD9AE;
+        background-color: #efefc8;
       }
 
       .form-signin {
         max-width: 300px;
         padding: 19px 29px 29px;
         margin: 0 auto 20px;
-       background-color: #B6DEDB;
-        border: 3px solid #DCF1EF;
+       background-color: #fafaf0;
+        border: 3px solid #efdcc8;
         -webkit-border-radius: 5px;
            -moz-border-radius: 5px;
                 border-radius: 5px;

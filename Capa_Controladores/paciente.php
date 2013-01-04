@@ -72,7 +72,7 @@ class Paciente {
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
-	    return $resultArray[0];
+	    return $resultArray;
     }
     
     /**
