@@ -3,10 +3,10 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
-class ContraindicacionCondicion  {
+class ContraindicacionDiagnostico  {
 
-    static $nombreTabla = "Contraindicaciones_Condiciones";
-    static $nombreIdTabla = "Condiciones_idCondiciones";
+    static $nombreTabla = "Contraindicaciones_Diagnosticos";
+    static $nombreIdTabla = "Diagnosticos_idDiagnostico";
     static $nombreIdTabla1 = "Medicamentos_idMedicamento";
     
     /**
@@ -16,7 +16,7 @@ class ContraindicacionCondicion  {
      * 
      */
     public static function Insertar() {
-    	$id1 = $_POST['Condiciones_idCondiciones'];
+    	$id1 = $_POST['Diagnosticos_idDiagnostico'];
         $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
         $datos = array(
@@ -32,7 +32,7 @@ class ContraindicacionCondicion  {
      * Borra una entrada segun su id, pasada por POST.
      */
     public static function BorrarPorId() {
-        $id1 = $_POST['Condiciones_idCondiciones'];
+        $id1 = $_POST['Diagnosticos_idDiagnostico'];
         $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
         
@@ -84,7 +84,7 @@ class ContraindicacionCondicion  {
      * por POST desde AJAX
      */
    public static function Actualizar() {
-    	$id1 = $_POST['Condiciones_idCondiciones'];
+    	$id1 = $_POST['Diagnosticos_idDiagnostico'];
         $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
         
