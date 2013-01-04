@@ -91,3 +91,22 @@
   </div>
       </div>
     </div>
+
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- popup informacion diagnostico -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Información del Paciente</h3>
+            </div>
+            <div class="modal-body">
+                <strong><p>Resfrio Común</p></strong>
+                <div class="span3"> <img src="../../../imgs/resfriado.jpg" style="width:30%" ></div>
+                <p>El resfriado común, catarro, resfrío o romadizo es una enfermedad infecciosa viral leve del sistema respiratorio superior que afecta a personas de todas las edades, altamente contagiosa, causada fundamentalmente por rinovirus y coronavirus.</p>
+                <p>Comentario: </p>
+                <center> <textarea rows="2" style="width:90%"></textarea></center>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Diagnosticar</a>
+            </div>
+        </div><!-- fin popup informacion diagnostico -->
+    
