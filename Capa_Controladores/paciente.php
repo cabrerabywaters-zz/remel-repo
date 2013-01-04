@@ -111,6 +111,22 @@ class Paciente {
         }
         else return false;
     }
+	 public static function R_AlergiaPaciente($idPaciente) {
+    	$queryString="SELECT Nombre
+FROM Pacientes, Paciente_has_Condiciones, Condiciones
+WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
+AND Condiciones.idCondiciones = Condiciones_idcondiciones
+AND Pacientes.idPaciente=".$idPaciente."";
+
+      
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
 }
 
 ?>
