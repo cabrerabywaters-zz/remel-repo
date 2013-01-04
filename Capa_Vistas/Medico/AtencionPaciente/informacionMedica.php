@@ -1,5 +1,13 @@
-<?php function mostrarAlergias($alergias)
-  { echo'
+    <div class="accordion-heading">
+      <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        Información Médica Registrada
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+<?php 
+function mostrarAlergias($alergias){ 
+    echo'
   <div class="row">
   <div class="span5" id="alergias">
   <table>
@@ -41,17 +49,11 @@
  				 <button class="btn" type="button">Search</button>
   			</div>
 			</form>
-  </td></tr></tfoot></table>';
-
-
-  echo '</div>';
-  ?>
- 
-  <?php
-  }
-  function mostrarCondiciones($condiciones)
-  {
-  echo'<div class="span5 offset2">
+  </td></tr></tfoot></table></div>';
+}
+  
+function mostrarCondiciones($condiciones){  
+    echo'<div class="span5 offset2">
   <table>
    <thead>
                      <tr>
@@ -94,4 +96,9 @@ echo'
 				</tfoot></table>
 			</div> 
   </div>';
-  } ?>
+  } 
+
+          mostrarAlergias($alergias);
+          mostrarCondiciones($condiciones); ?>
+      </div>
+    </div>

@@ -127,7 +127,7 @@ verificarIP();
   	</div>
         <div class="modal-footer">
             <button class="btn" type="submit"><strong>Ingresar</strong></button></form>
-            <button class="btn"  data-dismiss="modal" aria-hidden="true" type="reset" data-toggle='collapse'>Cancelar</button>
+            <button class="btn"  id="reset" data-dismiss="modal" aria-hidden="true" type="reset" data-toggle='collapse'>Cancelar</button>
         </div>
     </div>
     
@@ -148,7 +148,7 @@ verificarIP();
                         success: function(output) {
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
-                                    $("#atender").html("<a class='label label-info' data-toggle='collapse' data-target='#clave'>"+nombre+"</a>");
+                                    $("#atender").html("<a class='label label-info' data-toggle='collapse' data-target='#clave' id='"+data['Nombre']+"'>"+nombre+"</a>");
                                     $('input[name=hID]').val(data['idPaciente']);
                                     $('input[name=hRUN]').val(data['RUN']);
                                 }
@@ -173,7 +173,7 @@ verificarIP();
                                 }
                         });
         }// funcion que se encarga de limpiar el formulario tras apretar el boton cancelar
-        $('#myModal').on("hidden",function(){
+        $('#reset').click(function(){
             $('#myModal input').each(function(){
                 $(this).val("");
             });
@@ -181,10 +181,10 @@ verificarIP();
             //elimino mensajes de error
             $('#mensaje').html("");
             //escondo el div de clave
-            $('#clave').collapse('hide');           
+            $('#clave').collapse('hide');          
             //se elimina el paciente buscado anteriormente
             $('#atender').html("");
-        }); //end on
+        }); //end click
         
 </script>
 </html>

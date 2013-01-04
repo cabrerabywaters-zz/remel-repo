@@ -77,7 +77,7 @@ color:white}
         <?php
         
        
-		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
+		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
@@ -91,7 +91,6 @@ color:white}
 				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
 				$RUTMedico=$_SESSION['RUT'];
 				$RUTPaciente = $_SESSION['RUTPaciente'];
 				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
@@ -118,9 +117,9 @@ color:white}
 				$prevision=$paciente2['Prevision_rut'];
 				$prevision=Prevision::Seleccionar("WHERE rut = '$prevision'");
 				$prevision=$prevision[0];
-				$alergia=1;
-				$alergia=Alergia::Seleccionar("WHERE idAlergia = '$alergia'");
-				$alergia=$alergia[0];
+				print_r($paciente1);
+				$alergias = Paciente::R_AlergiaPaciente(5);
+				print_r($alergias);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				
 				
@@ -243,7 +242,7 @@ color:white}
     </head>
     <body>
         
-        <div class="container-fluid">
+        <div class="container-fluid"><!-- contenedor general -->
             
             <div class="row-fluid img-rounded" style="background-color: #B6DEDB"> <!--div superior-->
                 <div class="span3 img-rounded" style="background-color: #DCF1EF">
@@ -351,7 +350,7 @@ color:white}
                 </div>
             </div><!-- cierre div superior-->
             
-            <div class="tabbable-fluid"> 
+            <div class="tabbable-fluid"><!-- div contenido --> 
                 
                 <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
