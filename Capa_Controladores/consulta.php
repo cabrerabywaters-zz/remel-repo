@@ -26,6 +26,11 @@ class Consulta  {
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    public static function InsertarAlternativo($fecha, $hora, $idMedico, $idPaciente, $idPrestadorSalud, $idPlaza){
+        $queryString = 'INSERT INTO '.self::$nombreTabla.' (Fecha, Hora, Medicos_idMedico, Pacientes_idPaciente, Prestadores_Salud_idPrestadores_Salud, Prestadores_Salud_Plazos_Instituciones_idPlaza
+                        VALUES ('.$fecha.','.$hora.','.$idMedico.','.$idPrestadorSalud.','.$idPlaza.')';
+        $query = CallQuery($queryString);
+    }
 
     /**
      * BorrarPorId
