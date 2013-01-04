@@ -5,7 +5,7 @@ include '../Capa_Datos/llamarQuery.php';
 session_start();
 
 //$idPaciente = $_SESSION['idPaciente'];
-$idPaciente = 5;
+$idPaciente = 7;
 $idMedicamento = 1;
 //obtener idMedicamento de algun lado
 
@@ -14,12 +14,14 @@ $queryStringAlergias = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM
                         WHERE '.$idPaciente.' = Alergias_has_Paciente.idPaciente
                         AND '.$idPaciente.' = Pacientes.idPaciente
                             
-                        INTERSECT
+                        IN (
                         
                         SELECT Alergia_has_Paciente.Alergias_idAlergia as ID FROM Medicamentos, Contraindicaciones_Alergias
                         WHERE '.$idMedicamento.' = Contraindicaciones_Alergias.Medicamentos_idMedicamento
-                        AND '.$idMedicamento.' = Medicamentos.idMedicamento';
+                        AND '.$idMedicamento.' = Medicamentos.idMedicamento)';
 
+
+//$queryStringAlergias = 'SELECT * FROM Alergias';
 
 //query de condiciones del paciente
 $queryStringCondiciones = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Paciente, Paciente_has_Condiciones
