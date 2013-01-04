@@ -19,7 +19,8 @@ class Paciente {
                                 array('Fecha_Ultima_Actualizacion',$_POST['fecha_ultima_actualizacion']),
                                 array('Nacionalidad',$_POST['nacionalidad']),
                                 array('Peso',$_POST['peso']),
-                                array('Etnias',$_POST['idEtnias'])                  
+                                array('Etnias',$_POST['idEtnias']),                  
+                                array('altura',$_POST['altura'])                  
            );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -55,7 +56,7 @@ class Paciente {
                                 'Nacionalidad',
                                 'Peso',
                                 'Etnias_idEtnias',
-								'Altura'
+								'altura'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -83,10 +84,11 @@ class Paciente {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_paciente'];
     	$datosActualizacion = array(
                                 array('Nacionalidad',$_POST['nacionalidad']),
                                 array('Peso',$_POST['peso']),
+                                array('altura',$_POST['altura'])  
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

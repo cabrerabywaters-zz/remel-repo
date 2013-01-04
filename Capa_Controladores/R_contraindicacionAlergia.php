@@ -19,10 +19,8 @@ class ContraindicacionAlergia  {
     	$id1 = $_POST['Alergias_idAlergia'];
         $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
-        $datos = array(
-                            array('Descripcion',$_POST['descripcion'])
-                                      );
-        $queryString = QueryStringCrearRelacion($id, $datos, self::$nombreTabla);
+       
+        $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -87,13 +85,10 @@ class ContraindicacionAlergia  {
     	$id1 = $_POST['Alergias_idAlergia'];
         $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
-        
-        $datos = array(                      	
-                             array('Descripcion',$_POST['descripcion'])
-                      	);
+     
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
-        $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
+        $queryString = QueryStringActualizarRelacion($where, $id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
         
     }

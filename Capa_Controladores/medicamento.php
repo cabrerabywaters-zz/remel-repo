@@ -30,8 +30,8 @@ class Medicamento  {
                                 array('Observacion',$_POST['observacion']),
                                 array('Presentaciones_idPresentacion',$_POST['idUnidade']),
                                 array('Descripcion_consumo_idDescripcion_consumo',$_POST['idDescripcion_consumo']),
-                                array('retenido',$_POST['retenido'])                              
-            
+                                array('retenido',$_POST['retenido']),
+                                array('Ean13',$_POST['ean13'])
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -80,7 +80,8 @@ class Medicamento  {
                                         'Presentaciones_idPresentacion',
                                         'Unidades_idUnidade',
                                         'Descripcion_consumo_idDescripcion_consumo',
-                                        'retenido'
+                                        'retenido',
+                                        'Ean13'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -121,7 +122,8 @@ class Medicamento  {
                                 array('Fecha_Autorizacion_ISP','NOW()'),
                                 array('Fecha_Prox_Renovacion_ISP',$_POST['fecha_prox_renovacion_isp']),
                                 array('Observacion',$_POST['observacion']),
-                                array('retenido',$_POST['retenido'])   
+                                array('retenido',$_POST['retenido']),
+                                array('Ean13',$_POST['ean13']) 
             );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
