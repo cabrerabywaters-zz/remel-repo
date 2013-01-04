@@ -79,8 +79,8 @@ verificarIP();
   <body>
 
     <div class="container-fluid">
-       
-      <form class="form-signin" action="atendiendo_paciente.php">
+      
+        <form class="form-signin" action="atendiendo_paciente.php">
          
         <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
          <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>

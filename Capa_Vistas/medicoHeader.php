@@ -75,6 +75,8 @@ color:white}
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
+        
+       
 		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
