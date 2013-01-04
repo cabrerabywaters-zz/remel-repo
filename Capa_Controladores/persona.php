@@ -56,9 +56,9 @@ class Persona {
      * @param int $offset
      * @returns array $resultArray
      */
-    private static function Seleccionar($where, $limit = 0, $offset = 0) {
+    public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-									'Nombre',
+																		'Nombre',
                                                                         'Apellido_Paterno',
                                                                         'Apellido_Materno',
                                                                         'Direccion_idDireccion',
@@ -69,7 +69,8 @@ class Persona {
                                                                         'Codigo_Seguridad',
                                                                         'Email',
                                                                         'N_Celular',
-                                                                        'Fecha_creacion_REMEL'
+                                                                        'Fecha_creacion_REMEL',
+																		'N_Fijo'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -86,7 +87,7 @@ class Persona {
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
-	    return $resultArray;
+	    return $resultArray[0];
     }
     
     /**

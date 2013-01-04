@@ -7,7 +7,19 @@ verificarIP();
 print_r($_SESSION);
 
 
+
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
+
+
+include(dirname(__FILE__)."/../../../Capa_Controladores/paciente.php");
+include(dirname(__FILE__)."/../../../Capa_Controladores/persona.php");
+$RUTMedico=$_SESSION['RUT'];
+$RUTPaciente = $_SESSION['RUTPaciente'];
+$array1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTMedico'");
+$array1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTpaciente'");
+$array2 = Persona::Seleccionar("WHERE RUN = '$rutpaciente'");
+$arrayFinal = array_merge($array1, $array2);
+print_r($arrayFinal);
 
 ?>
 

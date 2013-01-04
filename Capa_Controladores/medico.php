@@ -54,12 +54,12 @@ class Medico {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-					'Medicocol',
+										'Medicocol',
                                         'Direccion_Consulta',
                                         'Correo_Medico',
                                         'Codigo_Registro_SS',
                                         'Codigo_Registro_CM',
-                                        'Fecha_Inscripcion',
+                                        'Fecha_Inscripcion_REMEL',
                                         'Medicocol1',
                                         'Fecha_ultima_edicion'
 									);
@@ -78,7 +78,7 @@ class Medico {
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
-	    return $resultArray;
+	    return $resultArray[0];
     }
     
     /**

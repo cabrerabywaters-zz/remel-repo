@@ -51,14 +51,15 @@ class Paciente {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-				'Fecha_Ultima_Actualizacion',
+								'Fecha_Ultima_Actualizacion',
                                 'Nacionalidad',
                                 'Peso',
-                                'Etnias'
+                                'Etnias_idEtnias',
+								'Altura'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
-
+	
 	    if($limit != 0){
 	       $queryString = $queryString." LIMIT $limit";
 	    }
@@ -71,7 +72,7 @@ class Paciente {
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
-	    return $resultArray;
+	    return $resultArray[0];
     }
     
     /**
