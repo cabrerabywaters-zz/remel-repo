@@ -3,10 +3,10 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
-class TratamientoGesHasPaciente {
+class TratamientoGesHasPaciente  {
 
     static $nombreTabla = "Tratamiento_GES_has_Paciente";
-    static $nombreIdTabla = "Tratamiento_GES_idTratamiento_GES"; 
+    static $nombreIdTabla = "Tratamiento_GES_idTratamiento_GES";
     static $nombreIdTabla1 = "Paciente_idPaciente";
     
     /**
@@ -16,14 +16,11 @@ class TratamientoGesHasPaciente {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-                            array('Nombre',$_POST['nombre_region']),
-                            array('Numero',$_POST['numero_region'])
-                                      );
-        
-        QueryStringCrearRelacion($id, $datos, $nombreTabla);
-
-        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+    	$id1 = $_POST['Tratamiento_GES_idTratamiento_GES'];
+        $id2 = $_POST['Paciente_idPaciente'];
+        $id = array($id1,$id2);
+       
+        $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -33,11 +30,29 @@ class TratamientoGesHasPaciente {
      * Borra una entrada segun su id, pasada por POST.
      */
     public static function BorrarPorId() {
-        $id = $_POST['id'];
-        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+        $id1 = $_POST['Tratamiento_GES_idTratamiento_GES'];
+        $id2 = $_POST['Paciente_idPaciente'];
+        $id = array($id1,$id2);
+        
+        $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
+        
+        $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
         $query = CallQuery($queryString);
     }
     
+    /**
+     * Seleccionar
+     * 
+     * Esta funcion selecciona todas las entradas de una tabla
+     * con respecto a una condicion dada. Tambien es posible
+     * entregar un limite y un offset.
+     * 
+     * @param string $where
+     * @param int $limit
+     * @param int $offset
+     * @returns array $resultArray
+     */
+  
     
     /**
      * Actualizar
@@ -46,15 +61,16 @@ class TratamientoGesHasPaciente {
      * y actualiza con datos nuevos, la id y los datos vienen
      * por POST desde AJAX
      */
-    public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
-    	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])    );
+   public static function Actualizar() {
+    	$id1 = $_POST['Tratamiento_GES_idTratamiento_GES'];
+        $id2 = $_POST['Paciente_idPaciente'];
+        $id = array($id1,$id2);
+        
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
-        $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
+        $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
+        
     }
 
 }

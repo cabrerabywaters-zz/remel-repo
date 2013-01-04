@@ -21,6 +21,7 @@ class MedicosHasInstituciones{
 	
 	return Institucion::BuscarNombreArrayRUT($rutInstituciones);	
 
+     
     }
 
 }

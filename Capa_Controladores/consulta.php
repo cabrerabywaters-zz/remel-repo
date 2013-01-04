@@ -18,10 +18,9 @@ class Consulta  {
                                 array('Fecha','NOW()'),
                                 array('Hora','NOW()'),
                                 array('Medicos_idMedico',$_POST['idMedico']),
-                                array('Medicos_Personas_RUN',$_POST['Personas_RUN']),
                                 array('Pacientes_idPaciente',$_POST['idPaciente']),
-                                array('Pacientes_Personas_RUN',$_POST['Personas_RUN']),
-                                array('Plaza_Instituciones_idPlaza',$_POST['idPlaza'])
+                                array('Prestadores_Salud_idPrestadores_Salud',$_POST['idPrestadores_Salud']),
+                                array('Prestadores_Salud_Plazas_Instituciones_idPlaza',$_POST['idPlaza'])
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -53,14 +52,13 @@ class Consulta  {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Direccion_idDireccion',
-                                        'RUN_Administrador',
-                                        'Email_Administrador',
-                                        'Telefono',
-                                        'Tipo_Institucion_idTipo_Institucion',
-                                        'Fecha_creacion_REMEL'
-      );
+                                'Fecha',
+                                'Hora',
+                                'Medicos_idMedico',
+                                'Pacientes_idPaciente',
+                                'Prestadores_Salud_idPrestadores_Salud',
+                                'Prestadores_Salud_Plazas_Instituciones_idPlaza'
+            );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
