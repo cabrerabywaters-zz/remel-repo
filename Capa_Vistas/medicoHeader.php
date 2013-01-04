@@ -100,8 +100,16 @@ color:white}
                                 $paciente2 = $paciente2[0];
 
 				$paciente = array_merge($paciente1, $paciente2);
-				/***************************************/ // fin de la consulta llevar a ajax
-		?>
+				 // fin de la consulta llevar a ajax
+				 
+			/*****************************funcion que corta el string del nombre */
+			
+			$pos = strpos($medico['Nombre']," ");
+			$largo=strlen($medico['Nombre']);
+			$corte=$largo - $pos+1;
+			$medico['Nombre'] = substr($medico['Nombre'], 0, $corte);
+?>
+
         
 <script>
     $(function() {
@@ -215,15 +223,8 @@ color:white}
                 <div class="span3 img-rounded" style="background-color: #DCF1EF">
                     <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
                     <blockquote>
-                    <strong>Mi Informacion:<br></strong> 
-                   <?php if($medico['Sexo']=="1")
-					{
-					echo " Dr. ".$medico['Apellido_Paterno']." ";	
-					}
-					else
-					{
-						echo " Dra. ".$medico['Apellido_Paterno']."";
-					 }?>
+                    <strong>Informacion Medico:<br></strong> 
+                   <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
                     </blockquote>
                 </div>
                 
@@ -238,11 +239,11 @@ color:white}
                     <tr><td><?php 
 					if($paciente['Sexo']=="1")
 					{
-					echo " Sr. ".$paciente['Apellido_Paterno']." ";	
+					echo " Sr.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ";	
 					}
 					else
 					{
-						echo " Sra. ".$paciente['Apellido_Paterno']."";
+						echo " Sra.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']."";
 					}
 				echo '</td></tr><tr><td>';
                                        $cadena=$_SESSION['RUTPaciente'];
