@@ -97,8 +97,8 @@ class Diagnostico {
         $query = CallQuery($queryString);
     }
 
-    public static function BuscarDiagnosticoLike() {
-        $nombre = $_POST['nombre'];
+    public static function BuscarDiagnosticoLike($nombre) {
+       
         $queryString = 'SELECT Nombre
 
                         FROM Diagnosticos
