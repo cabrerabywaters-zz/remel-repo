@@ -12,6 +12,7 @@
 	else{
 		$_SESSION['RUTPaciente'] = $rut;
 		$_SESSION['idPaciente'] = $id; 
+                $_SESSION['fechaConsulta']= date("Y-m-d H:i:s"); 
 	
 		echo "1";
 	}

@@ -1,28 +1,34 @@
 <?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
-include_once(dirname(__FILE__).'/institucion.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/institucion.php');
 
-class MedicosHasInstituciones{
-
+class MedicosHasPlazasInstituciones {
 
     static $nombreTabla = "Medicos";
-    
-    public static function InstitucionesPorID($id){
-	$rutInstituciones = array();
 
-	$queryString = "SELECT Institucion_RUT FROM Medicos_has_Instituciones WHERE Medico_idMedico = '$id';";
+    public static function PlazasPorIDMedico($idMedico) {
+        
 
-	$resultado = CallQuery($queryString);
+        $queryString = "Select idPlaza, Nombre from 
+                Plazas_Instituciones where idPlaza in  (Select id_plaza_institucion  from 
+                Medico_has_Plaza_Institucion where id_medico='".$idMedico ."' 
+                    and id_plaza_institucion   in   (Select 
+                                Plazas_Instituciones_idPlaza  from Prestadores_Salud ));";
 
-	while($row = $resultado->fetch_assoc()){
-		$rutInstituciones[] = "'".$row['Institucion_RUT']."'";
+        $resultado = CallQuery($queryString);
+
+                
+        while($row = $resultado->fetch_assoc()){
+		$instituciones[] = $row;
+                
 	}
-	
-	return Institucion::BuscarNombreArrayRUT($rutInstituciones);	
 
-     
+	return $instituciones;
     }
+        
+        
+    
 
 }
 

@@ -15,13 +15,19 @@ class HistorialMedico  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar() {
-    	$id1 = $_POST['Diagnosticos_idDiagnostico'];
-        $id2 = $_POST['Consulta_Id_consulta'];
-        $id = array($id1,$id2);
+    public static function Insertar($idDiagnostico,$idConsulta) {
+    	
+        $id = array($idDiagnostico,$idConsulta);
        
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
+        if($query){
+            
+            return true;
+                    }
+                    else{
+                        return false;
+                    }
     }
 
     /**

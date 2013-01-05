@@ -7,12 +7,18 @@
         <div class="accordion-inner">
             
             <div class="modal-body">
+                
+                <?php echo  $_SESSION['fechaConsulta'];
+                
+                echo '<br>'.$_SESSION['idPaciente'];
+                echo '<br>'.$_SESSION['idMedicoLog'][0];
+                ?>
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
             <form class="form-search" id="buscar_diagnostico" method="post">
             <div class="input-append"> <!-- buscador inline con autocomplete -->
                
             <input type="text" class="span2 search-query" id="diagnostico" name="diagnostico">
-            <input type="submit" id="boton_diagnostico" onClick="javascript:enviar_diagnostico()" class="btn btn" data-target="#myModal"  data-toggle="modal">Buscar</button>  <br>
+            <input type="submit" id="boton_diagnostico" onClick="javascript:enviar_diagnostico()" class="btn btn" data-target="#myModal"  data-toggle="modal" value="Añadir">  <br>
             
                 <script>
     $(function() {
@@ -85,16 +91,16 @@
      function enviar_diagnostico(){
                         var postData = $("#buscar_diagnostico").serialize();
                         $.ajax({ 
-                        url: '../../ajax/diagnosticarPaciente.php',
+                        url: '../../../ajax/diagnosticarPaciente.php',
                         data: postData,
                         type: 'post',
                         success: function(output) {
-                                 /*   var data = jQuery.parseJSON(output);*/
-                                      $('#myModalLabel').html(output) ;                             
+                                    var data = jQuery.parseJSON(output);
+                                       $('#myModalLabel').html(data['idDiagnostico']) ;                         
                                 }
 
                   	});// end ajax
-                         
+                          
      }
     </script>
 
@@ -116,18 +122,24 @@
   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- popup informacion diagnostico -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Información del Paciente</h3>
+                <h3 id="myModalLabel">El Diagnóstico No Existe</h3>
             </div>
             <div class="modal-body">
-                <strong><p>Resfrio Común</p></strong>
-                <div class="span3"> <img src="../../../imgs/resfriado.jpg" style="width:30%" ></div>
-                <p>El resfriado común, catarro, resfrío o romadizo es una enfermedad infecciosa viral leve del sistema respiratorio superior que afecta a personas de todas las edades, altamente contagiosa, causada fundamentalmente por rinovirus y coronavirus.</p>
+                <strong><p></p></strong>
+                <div class="span3" id="imagenDiagnostico"> </div>
+                <p></p>
                 <p>Comentario: </p>
                 <center> <textarea rows="2" style="width:90%"></textarea></center>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-                <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Diagnosticar</a>
+                <button class="btn" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
+                <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true" id="diagnoticar_modal">Diagnosticar</a>
             </div>
         </div><!-- fin popup informacion diagnostico -->
-    
+        <script>
+            $("#cancelar_modal").click(function() {
+      $('#myModalLabel').html('El Diagnóstico No Existe');
+      $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
+});
+            
+            </script>
