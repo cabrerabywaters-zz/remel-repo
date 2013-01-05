@@ -112,10 +112,7 @@ class Diagnostico {
         
         $resultado = CallQuery($queryString);
         
-        while($row = $resultado->fetch_assoc()){
-		$diagnosticos[] = "'".$row['Nombre']."'";
-	}
-        return $diagnosticos ;
+       return $resultado->fetch_assoc();
         
     }
 

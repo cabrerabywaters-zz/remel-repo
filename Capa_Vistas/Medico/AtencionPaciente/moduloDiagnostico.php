@@ -8,11 +8,11 @@
             
             <div class="modal-body">
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
-            <form class="form-search">
+            <form class="form-search" id="buscar_diagnostico" method="post">
             <div class="input-append"> <!-- buscador inline con autocomplete -->
                
-            <input type="text" class="span2 search-query" id="diagnostico">
-            <button type="button" class="btn btn" data-toggle="collapse" data-target="#informacion">Buscar</button>  <br>
+            <input type="text" class="span2 search-query" id="diagnostico" name="diagnostico">
+            <input type="submit" id="boton_diagnostico" onClick="javascript:enviar_diagnostico()" class="btn btn" data-target="#myModal"  data-toggle="modal">Buscar</button>  <br>
             
                 <script>
     $(function() {
@@ -42,10 +42,18 @@
                         name_startsWith: request.term
                     },
 		    type: "post",
-                    success: function( data ) {
-			alert(data);
-                        response(data);
+                     success: function( data ) {
+                         
+                         var output = jQuery.parseJSON(data);
+                       
+                        response( $.map( output, function( item ) {
+                            return {
+                                label: item
+                               // value: item.Nombre
+                            }
+                        }));
                     }
+                    
                 });
             },
             minLength: 2,
@@ -68,8 +76,26 @@
                 $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
             }
         });
+        
+        
+     
     });
+    
+    
+     function enviar_diagnostico(){
+                        var postData = $("#buscar_diagnostico").serialize();
+                        $.ajax({ 
+                        url: '../../ajax/diagnosticarPaciente.php',
+                        data: postData,
+                        type: 'post',
+                        success: function(output) {
+                                 /*   var data = jQuery.parseJSON(output);*/
+                                      $('#myModalLabel').html(output) ;                             
+                                }
 
+                  	});// end ajax
+                         
+     }
     </script>
 
             

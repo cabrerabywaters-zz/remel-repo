@@ -122,12 +122,12 @@ verificarIP();
             <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> 
             <div id="mensaje"></div>
             </div>
-            <input type="hidden" name="hID" value=""/>
+            <input type="hidden"  name="hID" value=""/>
             <input type="hidden" name="hRUN" value=""/>
   	</div>
         <div class="modal-footer">
             <button class="btn" type="submit"><strong>Ingresar</strong></button></form>
-            <button class="btn"  id="reset" data-dismiss="modal" aria-hidden="true" type="reset" data-toggle='collapse'>Cancelar</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         </div>
     </div>
     
@@ -172,19 +172,9 @@ verificarIP();
                                             $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>"); }
                                 }
                         });
-        }// funcion que se encarga de limpiar el formulario tras apretar el boton cancelar
-        $('#reset').click(function(){
-            $('#myModal input').each(function(){
-                $(this).val("");
-            });
-            
-            //elimino mensajes de error
-            $('#mensaje').html("");
-            //escondo el div de clave
-            $('#clave').collapse('hide');          
-            //se elimina el paciente buscado anteriormente
-            $('#atender').html("");
-        }); //end click
-        
+        }
+       
+       
+       
 </script>
 </html>
