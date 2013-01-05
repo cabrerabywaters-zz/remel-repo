@@ -7,11 +7,12 @@
         <div class="accordion-inner">
             
             <div class="modal-body">
-                
-                <?php echo  $_SESSION['fechaConsulta'];
-                
-                echo '<br>'.$_SESSION['idPaciente'];
-                echo '<br>'.$_SESSION['idMedicoLog'][0];
+                <?php
+                echo 'prestador'. $_SESSION['prestadores_salud'].
+                      '<br>fecha'.  $_SESSION['fechaConsulta'].
+                      '<br>medico'.  $_SESSION['idMedicoLog'][0].
+                       '<br>paciente'. $_SESSION['idPaciente'].
+                       '<br>plaza'. $_SESSION['institucionLog'][0];
                 ?>
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
             <form class="form-search" id="buscar_diagnostico" method="post">

@@ -16,7 +16,6 @@ class Consulta  {
     public static function Insertar() {
     	$datosCreacion = array(
                                 array('Fecha','NOW()'),
-                                array('Hora','NOW()'),
                                 array('Medicos_idMedico',$_POST['idMedico']),
                                 array('Pacientes_idPaciente',$_POST['idPaciente']),
                                 array('Prestadores_Salud_idPrestadores_Salud',$_POST['idPrestadores_Salud']),
@@ -26,10 +25,11 @@ class Consulta  {
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-    public static function InsertarAlternativo($fecha, $hora, $idMedico, $idPaciente, $idPrestadorSalud, $idPlaza){
-        $queryString = 'INSERT INTO '.self::$nombreTabla.' (Fecha, Hora, Medicos_idMedico, Pacientes_idPaciente, Prestadores_Salud_idPrestadores_Salud, Prestadores_Salud_Plazos_Instituciones_idPlaza
-                        VALUES ('.$fecha.','.$hora.','.$idMedico.','.$idPrestadorSalud.','.$idPlaza.')';
+    public static function InsertarAlternativo($fecha, $idMedico, $idPaciente, $idPrestadorSalud, $idPlaza){
+        $queryString = 'INSERT INTO '.self::$nombreTabla.' (Fecha, Medicos_idMedico, Pacientes_idPaciente, Prestadores_Salud_idPrestadores_Salud, Prestadores_Salud_Plazas_Instituciones_idPlaza)
+                        VALUES ("'.$fecha.'","'.$idMedico.'","'.$idPaciente.'","'.$idPrestadorSalud.'","'.$idPlaza.'")';
         $query = CallQuery($queryString);
+       
     }
 
     /**

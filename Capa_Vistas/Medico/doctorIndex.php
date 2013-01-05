@@ -83,6 +83,7 @@ verificarIP();
         <form class="form-signin" action="atendiendo_paciente.php">
          
         <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
+        <h5 class="form-signin-heading"><center>Atendiendo en: <?php echo $_SESSION['institucionLog'][1] ?></center>   </h5>
          <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
         <!-- Button to trigger modal -->
         <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
@@ -168,9 +169,15 @@ verificarIP();
                                             
 						window.location.href = "AtencionPaciente/atencionPaciente.php";
 					}
-					else{ //mensaje de error
+					else if(output == 0){ //mensaje de error
                                             $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>"); }
-                                }
+                                else
+                                    {    
+                                    
+                                $("#mensaje").html(output);
+                            }
+                            
+                        }
                         });
         }
        

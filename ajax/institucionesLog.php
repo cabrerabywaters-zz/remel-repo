@@ -9,8 +9,6 @@ session_start();
  $_SESSION['institucionLog'][0]= $id_plaza_log;
  $_SESSION['institucionLog'][1]= $nombre_institucion_log;
 
- //LA INSTITUCION NO SIRVE DE NADA SIN LA INSTITUCION PLAZA
- 
  
  if(isset($_SESSION['institucionLog'])==true){
      
