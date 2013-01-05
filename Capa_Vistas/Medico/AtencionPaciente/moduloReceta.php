@@ -5,7 +5,7 @@ incluyendo el buscador predictivo de medicamento
 y el popup que muestra el detalle del medicamento
 -->
 <div class="accordion-heading">
-    <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
+    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
         Receta
     </a>
 </div>

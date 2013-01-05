@@ -58,15 +58,15 @@ verificarIP();
       
       .modal{
           
-           border: 5px solid #DCF1EF;
+           border: 5px solid #efdcc8;
       }
      .modal-header, .modal-footer{
            
-           background-color: #CDD9AE;
+           background-color: #efefc8;
       }
-      .modal-body{
-          background-color: #B6DEDB;
-          border: 3px solid #DCF1EF;
+      .modal-body{#fafaf0;
+          background-color:#fafaf0;
+          border: 3px solid #efdcc8;
       }
       
       

@@ -1,5 +1,6 @@
-  <div class="accordion-heading">
-  <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+  
+<div class="accordion-heading">
+  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
   Información Personal del Paciente
   </a>
   </div>

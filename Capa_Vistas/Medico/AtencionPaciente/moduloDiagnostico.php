@@ -1,5 +1,5 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
         Diagnóstico
       </a>
     </div>
@@ -7,14 +7,7 @@
         <div class="accordion-inner">
             
             <div class="modal-body">
-                <?php
-                echo 'prestador'. $_SESSION['prestadores_salud'].
-                      '<br>fecha'.  $_SESSION['fechaConsulta'].
-                      '<br>medico'.  $_SESSION['idMedicoLog'][0].
-                       '<br>paciente'. $_SESSION['idPaciente'].
-                       '<br>plaza'. $_SESSION['institucionLog'][0];
-                ?>
-            <strong><p>Ingrese nombre del diagnóstico</p></strong>
+               <strong><p>Ingrese nombre del diagnóstico</p></strong>
             <form class="form-search" id="buscar_diagnostico" method="post">
             <div class="input-append"> <!-- buscador inline con autocomplete -->
                

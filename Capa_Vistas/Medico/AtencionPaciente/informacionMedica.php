@@ -1,5 +1,5 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
         Información Médica Registrada
       </a>
     </div>
