@@ -76,6 +76,7 @@ color:white}
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
         
+       /// definitivamente esto no va aca!!
        
 		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
@@ -117,9 +118,9 @@ color:white}
 				$prevision=$paciente2['Prevision_rut'];
 				$prevision=Prevision::Seleccionar("WHERE rut = '$prevision'");
 				$prevision=$prevision[0];
-				print_r($paciente1);
+				//print_r($paciente1);
 				$alergias = Paciente::R_AlergiaPaciente(5);
-				print_r($alergias);
+				//print_r($alergias);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				
 				
