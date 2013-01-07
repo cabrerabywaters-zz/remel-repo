@@ -84,6 +84,21 @@ class Alergia {
         $query = CallQuery($queryString);
     }
 
+    public static function BuscarAlergiaLike($nombre) {
+
+      		        $queryString = 'SELECT Descripcion, idAlergia
+
+                        FROM Alergia
+
+                        WHERE Descripcion LIKE "% $nombre %"
+
+                        ORDER BY Nombre
+
+                        LIMIT 5;';
+
+        $resultado = CallQuery($queryString);
+   }	     
+ 
 }
 
 ?>
