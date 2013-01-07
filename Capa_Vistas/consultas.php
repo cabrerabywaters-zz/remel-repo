@@ -3,8 +3,7 @@
        
 		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		// $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
-		 $alergias1=array("agua","aceite","miel","polen","trigo");
-		$condiciones1=array("agua","aceite","miel","polen","trigo");
+		// autocompletar de recetas
 		$recetas=array("agua","aceite","miel","polen","trigo");
 				// consulta a la base de datos del usuario
 				include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
