@@ -18,15 +18,15 @@ $queryStringAlergiasMedicamento = 'SELECT Contraindicaciones_Alergias.Alergias_i
                                    AND '.$idMedicamento.' = Medicamentos.idMedicamento';
 
 //query de condiciones del paciente
-$queryStringCondicionesPaciente = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Paciente, Paciente_has_Condiciones
+$queryStringCondicionesPaciente = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Pacientes, Paciente_has_Condiciones
                                    WHERE '.$idPaciente.' = Paciente_has_Condiciones.Paciente_idPaciente
                                    AND '.$idPaciente.' = Pacientes.idPaciente';
 //query de contraindicaciones a condiciones del medicamento                                                      
 $queryStringCondicionesMedicamento = 'SELECT Contraindicaciones_Condiciones.Condiciones_idCondiciones as ID FROM Medicamentos, Contraindicaciones_Condiciones
-                                      WHERE '.$idMedicamento.' = Contraindicaciones_Condiciones.Condiciones_idCondiciones
+                                      WHERE '.$idMedicamento.' = Contraindicaciones_Condiciones.Medicamentos_idmedicamento
                                       AND '.$idMedicamento.' = Medicamentos.idMedicamento';
 
-
+//query de contraindicaciones a otros medicamentos
 $queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento FROM Medicamentos, Contraindicaciones_Medicamentos 
                             WHERE ('.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento
                             OR '.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento1)
@@ -52,6 +52,14 @@ while($row = $busquedaAlergiasMedicamento->fetch_array()){
 }
 
 $idCondiciones = array();
+while($row = $busquedaCondicionesMedicamento->fetch_array()){
+    while($fila = $busquedaCondicionesPaciente->fetch_array()){
+        if ($row['ID'] == $fila ['ID']){
+            $idCondiciones[] = $row['ID'];
+            break;
+        }
+    }
+}
 
 if ($queryStringAlergiasMedicamento != false && $queryStringAlergiasPaciente != false){
 
