@@ -84,16 +84,22 @@ color:white}
     $(function() {
 		
         var Alergias = [ <?php
-		foreach ($alergias1 as $dato)
+		foreach ($alergias1 as $cantidad)
 		{
+			foreach($cantidad as $dato)
+			{
 			echo'"'; echo $dato; echo'"'; echo",";
+			}
 		}
 		?>
         ];
 		var Condiciones = [
-		<?php foreach ($condiciones1 as $dato)
+		<?php foreach ($condiciones1 as $cantidad)
 		{
+			foreach($cantidad as $dato)
+			{
 			echo'"'; echo $dato; echo'"'; echo",";
+			}
 		}?>
 		];
 			var Recetas = [

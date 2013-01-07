@@ -7,6 +7,8 @@
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
 		$recetas=array("agua","aceite","miel","polen","trigo");
 				// consulta a la base de datos del usuario
+				include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
+				include(dirname(__FILE__)."/../Capa_Controladores/condicion.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/direccion.php");
@@ -45,6 +47,10 @@
 				$condiciones = Paciente::R_CondicionPaciente($idPaciente);
 				$alergias = Paciente::R_AlergiaPaciente($idPaciente);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
+				$condiciones1=Condicion::Seleccionar('');
+				print_r($condiciones1);
+				$alergias1=Alergia::Seleccionar('');
+				print_r($alergias1);
 				
 				
 				
