@@ -6,7 +6,7 @@ include '../ajax/sessionCheck.php';
 iniciarCookie();
 verificarIP();
 
-print_r($_SESSION);
+var_dump($_SESSION);
 ?>
 <html lang="en">
   <head>
