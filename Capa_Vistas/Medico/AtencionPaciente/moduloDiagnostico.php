@@ -123,7 +123,7 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- popup informacion diagnostico -->
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">El Diagnóstico No Existe</h3>
+        <h3 id="myModalLabel">Debe seleccionar un Diagnóstico</h3>
 
     </div>
     <div class="modal-body">
@@ -149,7 +149,7 @@
 
 
                 <p>Comentario: </p>
-                <center> <textarea rows="2" style="width:90%"></textarea></center>
+                <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%"></textarea></center>
                 <span id="mensaje"></span>
                 </div>
                 <div class="modal-footer">
@@ -160,8 +160,11 @@
                 </div><!-- fin popup informacion diagnostico -->
                 <script>
                     $("#cancelar_modal").click(function() {
-                        $('#myModalLabel').html('El Diagnóstico no es Válido');
+                        $('#myModalLabel').html('Debe Escojer un Diagnóstico');
                         $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
+                        $('select>option:eq(0)').attr('selected', true);
+                        $('#diagnostico').val('');
+                        $('#comentario_diagnostico').val('');
                     });
                     
                     
@@ -171,7 +174,7 @@
                         var id_diagnostico= $('#id_diagnostico').html();
                         var id_consulta = $('#consulta').html();
         
-			var id_tipo = $('#diagnostico').val();
+			var id_tipo = document.getElementById('tipo_diagnostico').value ;
                         
                         $.ajax({ url: '../../../ajax/agregarHistorialMedico.php',
                             data: { diagnostico: id_diagnostico, consulta:  id_consulta, tipo: id_tipo },
@@ -180,11 +183,12 @@
                                 if(output == '1') {
                                     $('#myModal').modal('hide');
                                     $('#diagnostico').val('');
-                                   
-                                   
+                                    $('select>option:eq(0)').attr('selected', true);
+                                  $('#comentario_diagnostico').val('');
+                                 
                                 }
                                 else{
-                                    $('#mensaje').html("<span style='color: red'>El diagnóstico no fue insertado </span>");
+                                    $('#mensaje').html("<span style='color: red'>No se puedo insertar el disgnóstico</span>");
                                 }
                             }
                         });

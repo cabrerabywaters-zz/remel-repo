@@ -8,6 +8,8 @@ $diagnostico = $_REQUEST['diagnostico'];
 $consulta = $_REQUEST['consulta'];
 $tipo_diag = $_REQUEST['tipo'];
 
+
+
    $insertar =HistorialMedico::Insertar($diagnostico, $consulta, $tipo_diag);
 if($insertar=TRUE)
 {
