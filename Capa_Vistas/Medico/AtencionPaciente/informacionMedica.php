@@ -102,3 +102,48 @@ echo'
           mostrarCondiciones($condiciones); ?>
       </div>
     </div>
+<script>
+$( "#Condiciones" ).autocomplete({
+                                source: function( request, response ) {
+                                    $.ajax({
+                                        url: "../../../ajax/autocompleteDiagnostico.php",
+                                        data: {
+                                            name_startsWith: request.term
+                                        },
+                                        type: "post",
+                                        success: function( data ) {
+                         
+                        
+                                            var output = jQuery.parseJSON(data);
+                       
+                                            response( $.map( output, function( item ) {
+                                                return {
+                                                    label: item
+                                                    // value: item.Nombre
+                                                }
+                                            }));
+                                        }
+                    
+                                    });
+                                },
+                                minLength: 2,
+                                /**
+                                 * ESTA FUNCION ES LA QUE REALIZA LA ACCION UNA VEZ ESTÁ SELECCIONADO
+                                 * ALGUNO DE LOS ELEMENTOS MOSTRADOS
+                                 * ---------
+                                 * en este caso se muestra de forma simple
+                                 * (cambiar esto segun como se quieran mostrar los datos)
+                                 */
+                                select: function( event, ui ) {
+                                    log( ui.item ?
+                                        "Selected: " + ui.item.label :
+                                        "Nothing selected, input was " + this.value);
+                                },
+                                open: function() {
+                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                                },
+                                close: function() {
+                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                                }
+                            });
+</script>
