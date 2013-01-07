@@ -22,15 +22,15 @@ verificarIP();
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #CDD9AE;
+        background-color: #efefc8;
       }
 
       .form-signin {
         max-width: 300px;
         padding: 19px 29px 29px;
         margin: 0 auto 20px;
-        background-color: #B6DEDB;
-        border: 3px solid #DCF1EF;
+        background-color: #fafaf0;
+        border: 3px solid #efdcc8;
         -webkit-border-radius: 5px;
            -moz-border-radius: 5px;
                 border-radius: 5px;
@@ -79,12 +79,12 @@ verificarIP();
   <body>
 
     <div class="container-fluid">
-
-      <form class="form-signin" action="Medico/doctorIndex.php" method="post">
+       
+      <form class="form-signin" >
         <h2 class="form-signin-heading"><center>Ingresar</center>   </h2>
         <h5 class="form-signin-heading"><center>Seleccione como desea ingresar</center>   </h5>
         
-        <button type="button" class="btn btn-warning btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
+        <button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
             <div id="demo" class="collapse" data-parent="#ingresoMedico">
                 <?php
                 /**
@@ -92,30 +92,39 @@ verificarIP();
                  * de sesion instituciones (contiene todas las instituciones de 
                  * el medico conectado
                  */
-                foreach($_SESSION['instituciones'] as $institucion){
-			$idInstitucion = $institucion['RUT'];
-			$nombreInstitucion = $institucion['Nombre'];
-                   echo "<button class='btn btn-block' idInstitucion='$idInstitucion'>$nombreInstitucion</button>"; 
+                
+              if( isset($_SESSION['instituciones_doctor'])== "true" ){
+                 echo '<div id=contenedor_instituciones>';
+                 foreach($_SESSION['instituciones_doctor'] as $institucion){
+                 $idPlaza = $institucion['idPlaza'];
+                 $nombreInstitucion = $institucion['Nombre'];
+                   echo "<button class='btn btn-block' type='button' idPlaza='$idPlaza'>$nombreInstitucion</button>"; 
                  };
+                echo ' </div>';
+              }
+             
                 ?>
-                <button class="btn btn-block" type="submit" idinstitucion ="-1">Particular</button>
+                
                 <script>
                 /**
                  * script que envía el valor de la institucion seleccionada
-                 * al archivo institucionLog.php para ser guardado en la 
+                 * al archivo institucionesLog.php para ser guardado en la 
                  * $_SESSION['institucionLog']
                 */
                 $(document).ready(function(){
-                    $("#demo button").click(function(){
+                    $("#contenedor_instituciones button").click(function(){
+                        
                        var postData = { //JSON con la info de la institucion que se envia
-                           'idinstitucion': $(this).attr('idinstitucion'),
+                           'idPlaza': $(this).attr('idPlaza'),
                            'nombre': $(this).html()
                        };
                        
-			$.ajax({ url: 'ajax/institucionLog.php',
+			        
+                                $.ajax({ url: '../ajax/institucionesLog.php',
          			data: postData,
          			type: 'post',
          			success: function(output) {
+                                    
                                     /**
                                      * funcion que verifica el output de la consulta
                                      * si es 1 re-dirige a la pagina correspondiente
@@ -125,25 +134,26 @@ verificarIP();
 							window.location.href = "Medico/doctorIndex.php";
 						}
 						else{
-							$('#mensaje').html("<span class='alert alert-error'>No se guardó la Institucion en la sesion!</span>");
+							$('#mensaje').html("<span style='color: red'>No se guardó la Institucion en la sesion!</span>");
 						}
                   			}
-				}); // end ajax
-		 
-                        
-                    });//end click
+				});//fin ajax
+                                
+                             
+                    });//fin click
                     
-                }); // end ready
+                }); // fin ready
             
                 </script>
-                <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
+                
             </div>
         <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
+        
+         <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
       </form>
         
 
  
-        
     </div> <!-- /container -->
 
 

@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Diagnostico {
 
     static $nombreTabla = "Diagnosticos";
-    static $nombreIdTabla = "idDiagnostico";    
-    
+    static $nombreIdTabla = "idDiagnostico";
+
     /**
      * Insertar
      * 
@@ -14,13 +14,13 @@ class Diagnostico {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_diagnostico']),
-                                array('Codigo_Snom',$_POST['codigo_snom']),
-                                array('Tipo_Diagnostico',$_POST['idTipo']),
-                                array('Es_Ges',$_POST['es_ges']),
-                                array('Codigo_Cie',$_POST['codigo_cie']),
-                                );
+        $datosCreacion = array(
+            array('Nombre', $_POST['nombre_diagnostico']),
+            array('Codigo_Snom', $_POST['codigo_snom']),
+            array('Tipo_Diagnostico', $_POST['idTipo']),
+            array('Es_Ges', $_POST['es_ges']),
+            array('Codigo_Cie', $_POST['codigo_cie']),
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -36,7 +36,7 @@ class Diagnostico {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -50,31 +50,30 @@ class Diagnostico {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Codigo_Snom',
-                                        'Tipo_Diganostico',
-                                        'Es_Ges',
-                                        'Codigo_Cie'
-      );
+        $atributosASeleccionar = array(
+            'Nombre',
+            'Codigo_Snom',
+            'Es_Ges',
+            'Codigo_Cie'
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -83,19 +82,57 @@ class Diagnostico {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
-    	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_diagnostico']),
-                                array('Codigo_Snom',$_POST['codigo_snom']),
-                                array('Tipo_Diagnostico',$_POST['idTipo']),
-                                array('Es_Ges',$_POST['es_ges']),
-                                array('Codigo_Cie',$_POST['codigo_cie']),
-                               );
+        $id = $_POST['id_condiciones'];
+        $datosActualizacion = array(
+            array('Nombre', $_POST['nombre_diagnostico']),
+            array('Codigo_Snom', $_POST['codigo_snom']),
+            array('Tipo_Diagnostico', $_POST['idTipo']),
+            array('Es_Ges', $_POST['es_ges']),
+            array('Codigo_Cie', $_POST['codigo_cie']),
+        );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+
+    public static function BuscarDiagnosticoLike($nombre) {
+
+        $diagnosticos = array();
+        $queryString = 'SELECT Nombre
+
+                        FROM Diagnosticos
+
+                        WHERE Nombre LIKE "%' . $nombre . '%"
+
+                        ORDER BY Nombre
+
+                        LIMIT 5;';
+
+        $resultado = CallQuery($queryString);
+
+        return $resultado->fetch_assoc();
+    }
+
+    public static function BuscarDiagnosticoExacto($nombre) {
+
+        $diagnosticos = array();
+        $queryString = 'SELECT Nombre, idDiagnostico
+
+                        FROM Diagnosticos
+
+                        WHERE Nombre = "' . $nombre . '"
+
+                        ORDER BY Nombre
+
+                        LIMIT 5;';
+
+        $resultado = CallQuery($queryString);
+
+
+            return $resultado->fetch_assoc();
+        
+     }
 
 }
 

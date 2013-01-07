@@ -2,6 +2,7 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <!DOCTYPE html>
 <html><head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +22,7 @@ and open the template in the editor.
        body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #CDD9AE;
+        background-color: #efefc8
       }
         
         ul.nav, .nav{
@@ -40,22 +41,22 @@ and open the template in the editor.
         {
             
             
-            background-color: #B6DEDB;
+            background-color: #fafaf0;
             
         }
         
         
          .modal{
           
-           border: 5px solid #DCF1EF;
+           border: 5px solid #efdcc8;
       }
      .modal-header, .modal-footer{
            
-           background-color: #CDD9AE;
+           background-color: #fafaf0;
       }
       .modal-body{
-          background-color: #B6DEDB;
-          border: 3px solid #DCF1EF;
+          background-color: #fafaf0;
+          border: 3px solid #efdcc8;
       }
         
         
@@ -74,16 +75,10 @@ color:white}
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
-		$paciente=array("RUT" => "9.175.614-5","Nombre" => "Joaquín","Apellido_Paterno" => "Sabina","Apellido_Materno" => "Perez","Fecha_Nac" => "22-06-1990","Sexo" =>"1","Peso" =>"68.00",		
-		"Direccion" => "Los Manzanos #34","Comuna" => "Santa Cruz","Region" => "IV","Pais" => "Chile","Nacionalidad" => "Chilena", "Etnia" => "Mapuche","Altura" => 198,	
-		"N_Celular" =>"(074) - 823680","N_Fijo" =>"(09) - 92348235","Isapre" => "Consalud");
-		 $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
-		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
-		 $alergias1=array("agua","aceite","miel","polen","trigo");
-		$condiciones1=array("agua","aceite","miel","polen","trigo");
-		$recetas=array("agua","aceite","miel","polen","trigo");
-                $institucion=array("Rut"=>"123456","Nombre" => "Hospital Regional Rancagua","..." => "...")
-		?>
+        // donde estan ubicadas las variables que se despliegan en la base del proyecto
+      include(dirname(__FILE__)."/consultas.php");
+?>
+
         
 <script>
     $(function() {
@@ -138,7 +133,7 @@ color:white}
        body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #CDD9AE;
+        background-color: #efefc8;
       }
         
         ul.nav, .nav{
@@ -157,22 +152,22 @@ color:white}
         {
             
             
-            background-color: #B6DEDB;
+            background-color: #fafaf0;
             
         }
         
         
          .modal{
           
-           border: 5px solid #DCF1EF;
+           border: 5px solid #efdcc8;
       }
      .modal-header, .modal-footer{
            
-           background-color: #CDD9AE;
+           background-color: #efefc8;
       }
       .modal-body{
-          background-color: #B6DEDB;
-          border: 3px solid #DCF1EF;
+          background-color: #fafaf0;
+          border: 3px solid #efdcc8;
       }
         
         
@@ -191,33 +186,109 @@ color:white}
     </head>
     <body>
         
-        <div class="container-fluid">
+        <div class="container-fluid"><!-- contenedor general -->
             
-            <div class="row-fluid img-rounded" style="background-color: #B6DEDB"> <!--div superior-->
-                <div class="span3 img-rounded" style="background-color: #DCF1EF">
+            <div class="row-fluid img-rounded" style="background-color: #fafaf0"> <!--div superior-->
+                <div class="span3 img-rounded" style="background-color: #efdcc8">
                     <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
                     <blockquote>
-                    <strong>Mi Informacion:<br></strong> 
-                    Dr. Gregory House
+                    <strong>Informacion Medico:<br></strong> 
+                   <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
                     </blockquote>
                 </div>
                 
-                <div class="img-rounded span6" style=" background-color: #DCF1EF">
-                    <center><h2><?php echo $institucion['Nombre']; ?></h2></center>
+                <div class="img-rounded span6" style=" background-color:#efdcc8">
+                    <center><h2><?php 
+					$institucion=$_SESSION['institucionLog']; 
+					echo $institucion[1];					
+					
+                    
+                     echo   '<br> Consulta N° <span id="consulta">'.$_SESSION['idConsulta'].'</span>'; 
+                                         ?>
+                            </h2>
+                    </center>
                 </div>
                 
-                <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
+                <div class="span3 pull-right img-rounded" style=" background-color: #efdcc8">
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
+                     <script type="text/javascript">
+                //validacion del rut ingresado
+                function verificarRut( Objeto )
+                {
+                    var tmpstr = "";
+                     $('#mensaje').html("");
+                    var intlargo = Objeto.value
+                    if (intlargo.length> 0)
+                    {
+                        crut = Objeto.value
+                        largo = crut.length;
+                        for ( i=0; i <crut.length ; i++ )
+                        if ( crut.charAt(i) != ' ' && crut.charAt(i) != '.' && crut.charAt(i) != '-' )
+                        {
+                            tmpstr = tmpstr + crut.charAt(i);
+                        }
+                        rut = tmpstr;
+                        crut=tmpstr;
+                        largo = crut.length;
+	
+                        if ( largo> 2 )
+                            rut = crut.substring(0, largo - 1);
+                        else
+                            rut = crut.charAt(0);
+	
+                        dv = crut.charAt(largo-1);
+	
+                        if ( rut == null || dv == null )
+                            return 0;
+	
+                        var dvr = '0';
+                        suma = 0;
+                        mul  = 2;
+	
+                        for (i= rut.length-1 ; i>= 0; i--)
+                        {
+                            suma = suma + rut.charAt(i) * mul;
+                            if (mul == 7)
+                                mul = 2;
+                            else
+                                mul++;
+                        }
+	
+                        res = suma % 11;
+                        if (res==1)
+                            dvr = 'k';
+                        else if (res==0)
+                            dvr = '0';
+                        else
+                        {
+                            dvi = 11-res;
+                            dvr = dvi + "";
+                        }
+                        if ( dvr != dv.toLowerCase() )
+                        {
+                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
+                            Objeto.focus();
+                            return false;
+                        }
+                        //alert('El Rut Ingresado es Correcto!')
+                        return true;
+                    }
+                }                       
+                $("usuario").validator();
+		
+		
+		    
+            </script>
                     <strong>Paciente:<br></strong><table>
                     <tr><td><?php 
 					if($paciente['Sexo']=="1")
 					{
-					echo " Sr. ".$paciente['Apellido_Paterno']." ";	
+					echo " Sr.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ";	
 					}
 					else
 					{
-						echo " Sra. ".$paciente['Apellido']."";
+						echo " Sra.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']."";
 					}
 				echo '</td></tr><tr><td>';
                                        $cadena=$_SESSION['RUTPaciente'];
@@ -228,11 +299,11 @@ color:white}
                 </div>
             </div><!-- cierre div superior-->
             
-            <div class="tabbable-fluid"> 
+            <div class="tabbable-fluid"><!-- div contenido --> 
                 
                 <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
-                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
-                    <li><a href="#tabConsulta" data-toggle="tab">Consulta</a></li>
+                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
+                    <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
                     <li class="dropdown img-rounded">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Opciones <b class="caret"></b>

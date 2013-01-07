@@ -1,33 +1,103 @@
-<?php
+<?php 
 
-require_once '../Capa_Datos/R_contraindicacionesCondiciones.php';
+include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
-function Creacion() {
-    $idCreacion = array(
-        array('Condiciones_idCondiciones', $_POST['id_Condiciones']),
-        array('Medicamentos_idMedicamento', $_POST['id_Medicamento'])
-    );
-    $atributosCreacion = array(
-        array('Descripcion', $_POST['desc'])
-    );
-    if ($_POST['id_Condiciones'] != '' && $_POST['id_Medicamento']) {
-        R_contraindicacionesCondiciones::CrearRelacion($idCreacion,$atributosCreacion);
+class ContraindicacionCondicion  {
+
+    static $nombreTabla = "Contraindicaciones_Condiciones";
+    static $nombreIdTabla = "Condiciones_idCondiciones";
+    static $nombreIdTabla1 = "Medicamentos_idMedicamento";
+    
+    /**
+     * Insertar
+     * 
+     * Inserta una nueva entrada
+     * 
+     */
+    public static function Insertar() {
+    	$id1 = $_POST['Condiciones_idCondiciones'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
+        $id = array($id1,$id2);
+        $datos = array(
+                            array('Descripcion',$_POST['descripcion'])
+                                      );
+        $queryString = QueryStringCrearRelacion($id, $datos, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    /**
+     * BorrarPorId
+     * 
+     * Borra una entrada segun su id, pasada por POST.
+     */
+    public static function BorrarPorId() {
+        $id1 = $_POST['Condiciones_idCondiciones'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
+        $id = array($id1,$id2);
+        
+        $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
+        
+        $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
+        $query = CallQuery($queryString);
     }
     
-}
-function Eliminacion(){
-	$relacionABorrar = new R_contraindicacionesCondiciones($_POST['id_Condiciones'],$_POST['id_Medicamento'],$_POST['Descripcion']);
-	$relacionABorrar->BorrarPorIdRelacion();
+    /**
+     * Seleccionar
+     * 
+     * Esta funcion selecciona todas las entradas de una tabla
+     * con respecto a una condicion dada. Tambien es posible
+     * entregar un limite y un offset.
+     * 
+     * @param string $where
+     * @param int $limit
+     * @param int $offset
+     * @returns array $resultArray
+     */
+    public static function Seleccionar($where, $limit = 0, $offset = 0) {
+    	$atributosASeleccionar = array(
+                                        'Descripcion'
+      );
+        
+        $queryString = QueryStringSeleccionarRelacion($where, $atributosASeleccionar, self::$nombreTabla);
+
+	    if($limit != 0){
+	       $queryString = $queryString." LIMIT $limit";
+	    }
+	    if($offset != 0){
+		  $queryString = $queryString." OFFSET $offset ";
+	    }
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+    
+    /**
+     * Actualizar
+     * 
+     * Esta funcion toma una id de una entrada existente
+     * y actualiza con datos nuevos, la id y los datos vienen
+     * por POST desde AJAX
+     */
+   public static function Actualizar() {
+    	$id1 = $_POST['Condiciones_idCondiciones'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
+        $id = array($id1,$id2);
+        
+        $datos = array(                      	
+                             array('Descripcion',$_POST['descripcion'])
+                      	);
+
+        $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
+        $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
+        $query = CallQuery($queryString);
+        
+    }
+
 }
 
-function Actualizar(){
-	$datosActualizacion = array(
-				array('Condiciones_idCondiciones',$_POST['id_Condiciones']),
-				array('Medicamentos_idMedicamento',$_POST['id_Medicamento']),
-                                array('Descripcion',$_POST['Descripcion'])
-				);
-
-	$relacionAActualizar = new R_contraindicacionesCondiciones($_POST['id_Condiciones'],$_POST['id_Medicamentos']);
-	$relacionAActualizar->ActualizarRelacion($datosActualizacion);
-}
 ?>

@@ -16,6 +16,9 @@ class Funcionario {
     public static function Insertar() {
     	$datosCreacion = array(
                                 array('Telefono',$_POST['telefono_funcionario']),
+                                array('Categoria_Funcionario_idCategoria_Funcionario',$_POST['idCategoria_Funcionario']),
+                                array('Fecha_creacion_REMEL','NOW()'),
+                                array('Fecha_ultima_edicion','NOW()')
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -47,7 +50,10 @@ class Funcionario {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                       'Telefono'
+                                        'Telefono',
+                                        'Categoria_Funcionario_idCategoria_Funcionario',
+                                        'Fecha_creacion_REMEL',
+                                        'Fecha_ultima_edicion'
             );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -78,6 +84,8 @@ class Funcionario {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
                                 array('Telefono',$_POST['telefono_funcionario']),
+                                array('Fecha_creacion_REMEL','NOW()'),
+                                array('Fecha_ultima_edicion','NOW()')
                                 	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

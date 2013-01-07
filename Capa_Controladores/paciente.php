@@ -19,7 +19,8 @@ class Paciente {
                                 array('Fecha_Ultima_Actualizacion',$_POST['fecha_ultima_actualizacion']),
                                 array('Nacionalidad',$_POST['nacionalidad']),
                                 array('Peso',$_POST['peso']),
-                                array('Etnias',$_POST['idEtnias'])                  
+                                array('Etnias',$_POST['idEtnias']),                  
+                                array('altura',$_POST['altura'])                  
            );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -51,14 +52,16 @@ class Paciente {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-				'Fecha_Ultima_Actualizacion',
+								'idPaciente',
+								'Fecha_Ultima_Actualizacion',
                                 'Nacionalidad',
                                 'Peso',
-                                'Etnias'
+                                'Etnias_idEtnias',
+								'altura'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
-
+	
 	    if($limit != 0){
 	       $queryString = $queryString." LIMIT $limit";
 	    }
@@ -82,10 +85,11 @@ class Paciente {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_paciente'];
     	$datosActualizacion = array(
                                 array('Nacionalidad',$_POST['nacionalidad']),
                                 array('Peso',$_POST['peso']),
+                                array('altura',$_POST['altura'])  
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
@@ -109,6 +113,38 @@ class Paciente {
                 return $res->fetch_assoc();
         }
         else return false;
+    }
+	 public static function R_AlergiaPaciente($idPaciente) {
+    	$queryString="SELECT Descripcion
+FROM Pacientes, Alergia_has_Paciente, Alergias
+WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
+AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
+AND Pacientes.idPaciente =".$idPaciente."";
+
+      
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+	public static function R_CondicionPaciente($idPaciente) {
+    	$queryString="SELECT Nombre
+FROM Pacientes, Paciente_has_Condiciones, Condiciones
+WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
+AND Condiciones.idCondiciones = Condiciones_idcondiciones
+AND Pacientes.idPaciente=".$idPaciente."";
+
+      
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
     }
 }
 

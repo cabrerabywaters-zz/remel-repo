@@ -21,12 +21,13 @@ class Persona {
                                 array('Direccion_idDireccion',$_POST['idDireccion']),
                                 array('Fecha_Nac',$_POST['fecha_nac']),
                                 array('Prevision_rut',$_POST['rut']),
-                                array('Sexo',$_POST['sexo']),
+                                array('sexo',$_POST['sexo']),
                                 array('Clave',$_POST['clave']),
                                 array('Codigo_Seguridad',$_POST['codigo_seguridad']),
-                                array('Email',$_POST['email']),
-                                array('N_celular',$_POST['n_celular']),
-                                array('Fecha_creacion_REMEL',$_POST['fecha_creacion_remel'])
+                                array('email',$_POST['email']),
+                                array('n_celular',$_POST['n_celular']),
+                                array('Fecha_creacion_REMEL','NOW()'),
+                                array('n_fijo',$_POST['n_fijo'])
 						);
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -56,9 +57,9 @@ class Persona {
      * @param int $offset
      * @returns array $resultArray
      */
-    private static function Seleccionar($where, $limit = 0, $offset = 0) {
+    public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-									'Nombre',
+																		'Nombre',
                                                                         'Apellido_Paterno',
                                                                         'Apellido_Materno',
                                                                         'Direccion_idDireccion',
@@ -69,7 +70,8 @@ class Persona {
                                                                         'Codigo_Seguridad',
                                                                         'Email',
                                                                         'N_Celular',
-                                                                        'Fecha_creacion_REMEL'
+                                                                        'Fecha_creacion_REMEL',
+                                                                        'n_fijo'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -97,12 +99,14 @@ class Persona {
      * por POST desde AJAX
      */
     private static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_persona'];
     	$datosActualizacion = array(
                                 array('Direccion_idDireccion',$_POST['idDireccion']),
                                 array('Clave',$_POST['clave']),
                                 array('Email',$_POST['email']),
-                                array('N_celular',$_POST['n_celular'])
+                                array('N_celular',$_POST['n_celular']),
+                                array('Fecha_creacion_REMEL','NOW()'),
+                                array('n_fijo',$_POST['n_fijo'])
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
