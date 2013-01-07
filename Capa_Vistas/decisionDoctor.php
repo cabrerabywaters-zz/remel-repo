@@ -6,7 +6,7 @@ include '../ajax/sessionCheck.php';
 iniciarCookie();
 verificarIP();
 
-
+print_r($_SESSION);
 ?>
 <html lang="en">
   <head>
@@ -123,8 +123,7 @@ verificarIP();
                                 $.ajax({ url: '../ajax/institucionesLog.php',
          			data: postData,
          			type: 'post',
-         			success: function(output) {
-                                    
+         			success: function(output) {                          
                                     /**
                                      * funcion que verifica el output de la consulta
                                      * si es 1 re-dirige a la pagina correspondiente
