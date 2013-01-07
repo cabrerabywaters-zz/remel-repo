@@ -79,7 +79,7 @@ color:white}
        /// definitivamente esto no va aca!!
        
 		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
-		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
+		 $alergias=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
 		 $alergias1=array("agua","aceite","miel","polen","trigo");
 		$condiciones1=array("agua","aceite","miel","polen","trigo");
 		$recetas=array("agua","aceite","miel","polen","trigo");
@@ -118,11 +118,11 @@ color:white}
 				$prevision=$paciente2['Prevision_rut'];
 				$prevision=Prevision::Seleccionar("WHERE rut = '$prevision'");
 				$prevision=$prevision[0];
-				//print_r($paciente1);
-				$alergias = Paciente::R_AlergiaPaciente(5);
-				//print_r($alergias);
+				$idPaciente=$paciente1['idPaciente'];
+				$condiciones = Paciente::R_CondicionPaciente($idPaciente);
+				print_r($condiciones);
+				$alergias = Paciente::R_AlergiaPaciente($idPaciente);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
-				
 				
 				
 				

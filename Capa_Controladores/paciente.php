@@ -52,6 +52,7 @@ class Paciente {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
+								'idPaciente',
 								'Fecha_Ultima_Actualizacion',
                                 'Nacionalidad',
                                 'Peso',
@@ -114,6 +115,22 @@ class Paciente {
         else return false;
     }
 	 public static function R_AlergiaPaciente($idPaciente) {
+    	$queryString="SELECT Descripcion
+FROM Pacientes, Alergia_has_Paciente, Alergias
+WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
+AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
+AND Pacientes.idPaciente =".$idPaciente."";
+
+      
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+	public static function R_CondicionPaciente($idPaciente) {
     	$queryString="SELECT Nombre
 FROM Pacientes, Paciente_has_Condiciones, Condiciones
 WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
