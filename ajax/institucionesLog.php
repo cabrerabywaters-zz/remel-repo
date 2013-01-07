@@ -1,21 +1,9 @@
 <?php
 
-include_once(dirname(__FILE__).'/../Capa_Controladores/medicosHasPlazasInstituciones.php');
+ session_start();
 
-session_start();
-
-$instituciones =  MedicosHasPlazasInstituciones::PlazasPorIDMedico($_SESSION['idMedicoLog']);
-
-echo json_encode($instituciones);
-?>
-
-<?php
-
-
-//session_start();
-
- $id_plaza_log = $_SESSION[0]['idPlaza'];
- $nombre_institucion_log = $_SESSION[0]['Nombre'];
+ $id_plaza_log = $_POST['idPlaza'];
+ $nombre_institucion_log = $_POST['Nombre'];
  //print_r($_SESSION['idMedicoLog'][0]);
  $_SESSION['institucionLog'][0]= $id_plaza_log;
  $_SESSION['institucionLog'][1]= $nombre_institucion_log;
@@ -30,10 +18,5 @@ echo json_encode($instituciones);
      echo '0';
      
  }
-
-
-//echo json_encode($instituciones);
-
-
 
 ?>
