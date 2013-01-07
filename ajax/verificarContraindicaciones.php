@@ -27,7 +27,7 @@ $queryStringCondicionesMedicamento = 'SELECT Contraindicaciones_Condiciones.Cond
                                       AND '.$idMedicamento.' = Medicamentos.idMedicamento';
 
 //query de contraindicaciones a otros medicamentos
-$queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento FROM Medicamentos, Contraindicaciones_Medicamentos 
+$queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento as ID FROM Medicamentos, Contraindicaciones_Medicamentos 
                             WHERE ('.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento
                             OR '.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento1)
                             AND '.$idMedicamento.' = Medicamentos.idMedicamento';
@@ -60,43 +60,36 @@ while($row = $busquedaCondicionesMedicamento->fetch_array()){
         }
     }
 }
-
-if ($queryStringAlergiasMedicamento != false && $queryStringAlergiasPaciente != false){
-
+$idMedicamentos = array();
+while($row = $busquedaMedicamentos->fetch_array()){
+    $idMedicamentos[] = $row['ID'];
 }
 
+//guarda el nombre de las alergias
+$nombreAlergias = array();
+for ($i=0;$i<count($idAlergias);$i++){
+    $queryString = 'SELECT Descripcion as Text FROM Alergias WHERE idAlergia = '.$idAlergias[$i].';';
+    $result = CallQuery($queryString);
+    $fila = $result->fetch_array();
+    $nombreAlergias[] = $fila['Text'];
+}
+
+$nombreCondiciones = array();
+for ($i=0;$i<count($idCondiciones);$i++){
+    $queryString = 'SELECT Nombre as Text FROM Condiciones WHERE idCondiciones = '.$idCondiciones[$i].';';
+    $result = CallQuery($queryString);
+    $fila = $result->fetch_array();
+    $nombreCondiciones[] = $fila['Text'];
+}
+
+$nombreMedicamentos = array();
+for ($i=0;$i<count($idMedicamentos);$i++){
+    $queryString = 'SELECT Nombre_Comercial as Nombre FROM Medicamentos WHERE idMedicamento = '.$idMedicamentos[$i].';';
+    $result = CallQuery($queryString);
+    $fila = $result->fetch_array();
+    $nombreMedicamentos[] = $fila['Nombre'];
+}
 //primer if, verifica si alguno de los resultados es positivo, de ser así, continua:
-if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
-    //primer if de resultado: alergias
-    if($busquedaAlergias){
-        $resultadoAlergias = array();
-        foreach ($resultadoAlergias as $assoc -> $value){
-            $resultadoAlergias[$value] = 'SELECT Descripcion FROM Alergias 
-                                          WHERE idAlergia = '.$value.'';     
-        }
-    }
-    //segundo if de resultado: condiciones
-    if($busquedaCondiciones){
-        $resultadoCondiciones = array();
-        foreach ($resultadoCondiciones as $assoc -> $value){
-            $resultadoCondiciones[$value] = 'SELECT Nombre FROM Condiciones 
-                                             WHERE idCondiciones = '.$value.'';     
-        }
-    }
-    //tercer if de resultado: medicamentos
-    if($busquedaMedicamentos){
-        $resultadoMedicamentos = array();
-        foreach ($resultadoMedicamentos as $assoc -> $value){
-            $resultadoMedicamentos[$value] = 'SELECT Nombre_Comercial FROM Medicamentos 
-                                              WHERE idMedicamento = '.$value.'';
-        }
-    }
-    //echo 'poto';
-    //con los arreglos anteriores se tienen todas las contraindicaciones que presenta el medicamento
-    //a continuación la alerta de componentes
-    //IMPORTANTE: no existe relación alguna entre los componentes y las contraindicaciones, por lo que no se puede mostrar.
-    //Atento a futuros cambios
-}
 
 //falta hacer la magia de mostrar las alergias de manera bonita
 //y obtener las cantidades de las contraindicaciones en los medicamentos
