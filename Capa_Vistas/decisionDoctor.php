@@ -93,9 +93,9 @@ verificarIP();
                  * el medico conectado
                  */
                 
-              if( isset($_SESSION['instituciones_doctor'])== "true" ){
+              if( isset($_SESSION['instituciones'])== "true" ){
                  echo '<div id=contenedor_instituciones>';
-                 foreach($_SESSION['instituciones_doctor'] as $institucion){
+                 foreach($_SESSION['instituciones'] as $institucion){
                  $idPlaza = $institucion['idPlaza'];
                  $nombreInstitucion = $institucion['Nombre'];
                    echo "<button class='btn btn-block' type='button' idPlaza='$idPlaza'>$nombreInstitucion</button>"; 

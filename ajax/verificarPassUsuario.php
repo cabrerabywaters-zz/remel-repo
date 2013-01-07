@@ -3,13 +3,17 @@
         include_once(dirname(__FILE__).'/../Capa_Controladores/persona.php');
 	include_once(dirname(__FILE__).'/../Capa_Controladores/medico.php');
 	include_once(dirname(__FILE__).'/../Capa_Controladores/paciente.php');
-	include_once(dirname(__FILE__).'/../Capa_Controladores/medicosHasInstituciones.php');
+	include_once(dirname(__FILE__).'/../Capa_Controladores/medicosHasPlazasInstituciones.php');
 	
 	session_start();
 	session_unset();
+	
+	$rut = "177004871";
+	$pass = "1234";
 
-	$rut = validadorRUT($_POST['rutUsuario']);
-	$pass = $_POST['passUsuario'];
+
+//	$rut = validadorRUT($_POST['rutUsuario']);
+//	$pass = $_POST['passUsuario'];
 	
 	if(!Persona::VerificarClave($rut,$pass)){
 		echo "0";
@@ -25,7 +29,7 @@
 		$idMedico = Medico::EncontrarMedico($rut);
                 if($idMedico != false){
                         $_SESSION['idMedicoLog'] = $idMedico;
-			$_SESSION['instituciones'] = MedicosHasInstituciones::InstitucionesPorID($idMedico);
+			$_SESSION['instituciones'] = MedicosHasPlazasInstituciones::PlazasPorIDMedico($idMedico);
                 }
 
 		echo "1";
