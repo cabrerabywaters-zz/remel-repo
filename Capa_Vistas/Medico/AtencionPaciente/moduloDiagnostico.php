@@ -4,7 +4,7 @@
       </a>
     </div>
     <div id="collapseOne1" class="accordion-body collapse">
-        <div class="accordion-inner">
+        <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
             
             <div class="modal-body">
                <strong><p>Ingrese nombre del diagnóstico</p></strong>
@@ -90,7 +90,7 @@
                         type: 'post',
                         success: function(output) {
                                     var data = jQuery.parseJSON(output);
-                                       $('#myModalLabel').html(data['idDiagnostico']) ;                         
+                                       $('#myModalLabel').html(data['Nombre']);                         
                                 }
 
                   	});// end ajax
