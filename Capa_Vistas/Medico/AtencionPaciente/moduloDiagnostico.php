@@ -1,17 +1,5 @@
-<<<<<<< HEAD
-<div class="accordion-heading">
-    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
-        Diagnosticar
-    </a>
-</div>
-<div id="collapseOne1" class="accordion-body collapse">
-    <div class="accordion-inner">
 
-        <div class="modal-body">
-
-            <strong><p>Ingrese nombre del diagnóstico</p></strong>
-=======
-    <div class="accordion-heading">
+  <div class="accordion-heading">
       <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
         Diagnóstico
       </a>
@@ -21,7 +9,7 @@
             
             <div class="modal-body">
                <strong><p>Ingrese nombre del diagnóstico</p></strong>
->>>>>>> a89b552d1cd3cf4791e6cb9f38c49ea7cbe18408
+
             <form class="form-search" id="buscar_diagnostico" method="post">
                 <div class="input-append"> <!-- buscador inline con autocomplete -->
 
