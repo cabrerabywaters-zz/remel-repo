@@ -1,10 +1,9 @@
 
-<?php /// definitivamente esto no va aca!!
+<?php
        
 		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
 		// $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
-		 $alergias1=array("agua","aceite","miel","polen","trigo");
-		$condiciones1=array("agua","aceite","miel","polen","trigo");
+		// autocompletar de recetas
 		$recetas=array("agua","aceite","miel","polen","trigo");
 				// consulta a la base de datos del usuario
 				include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
@@ -48,11 +47,7 @@
 				$alergias = Paciente::R_AlergiaPaciente($idPaciente);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				$condiciones1=Condicion::Seleccionar('');
-				print_r($condiciones1);
-				$alergias1=Alergia::Seleccionar('');
-				print_r($alergias1);
-				
-				
+				$alergias1=Alergia::Seleccionar('');			
 				
 				 // fin de la consulta llevar a ajax
 				 

@@ -15,7 +15,7 @@ y el popup que muestra el detalle del medicamento
             <strong><p>Ingrese nombre del medicamento</p></strong>
             <form class="form-search">
                 <div class="input-append">
-                    <input type="text" id="Recetas" class="span2 search-query">
+                    <input type="text" id="Medicamentos" class="span2 search-query">
                     <button type="button" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
                     <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" id='ID' data-toggle="modal"> Paracetamol </a></span></div>
                 </div>
@@ -54,5 +54,50 @@ y el popup que muestra el detalle del medicamento
         //var algo = $.post('../../../ajax/verificarContraindicaciones.php',postData)
         $('#myModalLabel').load('../../../ajax/verificarContraindicaciones.php')
     }
-)
+);
+    
+    
+    $( "#Medicamentos" ).autocomplete({
+                                source: function( request, response ) {
+                                    $.ajax({
+                                        url: "../../../ajax/autocompleteMedicamento.php",
+                                        data: {
+                                            name_startsWith: request.term
+                                        },
+                                        type: "post",
+                                        success: function( data ) {
+                         
+                        
+                                            var output = jQuery.parseJSON(data);
+                       
+                                            response( $.map( output, function( item ) {
+                                                return {
+                                                    label: item
+                                                    // value: item.Nombre
+                                                }
+                                            }));
+                                        }
+                    
+                                    });
+                                },
+                                minLength: 2,
+                                /**
+                                 * ESTA FUNCION ES LA QUE REALIZA LA ACCION UNA VEZ ESTÁ SELECCIONADO
+                                 * ALGUNO DE LOS ELEMENTOS MOSTRADOS
+                                 * ---------
+                                 * en este caso se muestra de forma simple
+                                 * (cambiar esto segun como se quieran mostrar los datos)
+                                 */
+                                select: function( event, ui ) {
+                                    log( ui.item ?
+                                        "Selected: " + ui.item.label :
+                                        "Nothing selected, input was " + this.value);
+                                },
+                                open: function() {
+                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                                },
+                                close: function() {
+                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                                }
+                            });
 </script>

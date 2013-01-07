@@ -1,27 +1,25 @@
-<<<<<<< HEAD
 <?php
 
-include_once(dirname(__FILE__).'/Capa_Controladores/medicosHasInstituciones.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/medicosHasPlazasInstituciones.php');
 
 session_start();
 
-$instituciones =  MedicosHasInstituciones::InstitucionesPorID($_SESSION['idMedicoLog']);
+$instituciones =  MedicosHasPlazasInstituciones::PlazasPorIDMedico($_SESSION['idMedicoLog']);
 
 echo json_encode($instituciones);
-
 ?>
-=======
+
 <?php
 
 
-session_start();
+//session_start();
 
- $id_plaza_log = $_REQUEST['idPlaza'];
- $nombre_institucion_log = $_REQUEST['nombre'];
- 
+print_r($_SESSION);
+ $id_plaza_log = $_SESSION[0]['idPlaza'];
+ $nombre_institucion_log = $_SESSION[0]['Nombre'];
+ //print_r($_SESSION['idMedicoLog'][0]);
  $_SESSION['institucionLog'][0]= $id_plaza_log;
  $_SESSION['institucionLog'][1]= $nombre_institucion_log;
-
  
  if(isset($_SESSION['institucionLog'])==true){
      
@@ -40,4 +38,3 @@ session_start();
 
 
 ?>
->>>>>>> fc68623a5574b6b25c3f5b3b8d905eed54594d58

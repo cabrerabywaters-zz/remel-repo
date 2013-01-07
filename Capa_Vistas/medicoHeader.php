@@ -76,7 +76,7 @@ color:white}
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
         // donde estan ubicadas las variables que se despliegan en la base del proyecto
-      include(dirname(__FILE__)."/consultas.php");
+      include(dirname(__FILE__)."/informacionPaciente.php");
 ?>
 
         
