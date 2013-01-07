@@ -1,5 +1,6 @@
-  <div class="accordion-heading">
-  <a class="btn btn-large btn-block btn-warning" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+  
+<div class="accordion-heading">
+  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
   Información Personal del Paciente
   </a>
   </div>
@@ -7,7 +8,6 @@
   <div class="accordion-inner">
     <form class="form-inline">
     
-        <div class="modal-body img-rounded">
     <div class="control-group">
     <label class="control-label" for="Nombre">Nombre <input class="span5" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
     </div>
@@ -50,7 +50,6 @@
     </div>
     
     </form> 
-</div>
   </div>
   </div>
 

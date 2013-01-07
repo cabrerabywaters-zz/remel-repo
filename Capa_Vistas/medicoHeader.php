@@ -22,7 +22,7 @@ and open the template in the editor.
        body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #efefc8;
+        background-color: #efefc8
       }
         
         ul.nav, .nav{
@@ -41,7 +41,7 @@ and open the template in the editor.
         {
             
             
-            background-color: #B6DEDB;
+            background-color: #fafaf0;
             
         }
         
@@ -52,7 +52,7 @@ and open the template in the editor.
       }
      .modal-header, .modal-footer{
            
-           background-color: #efefc8;
+           background-color: #fafaf0;
       }
       .modal-body{
           background-color: #fafaf0;
@@ -75,64 +75,8 @@ color:white}
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
-        
-       
-		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
-		 $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
-		 $alergias1=array("agua","aceite","miel","polen","trigo");
-		$condiciones1=array("agua","aceite","miel","polen","trigo");
-		$recetas=array("agua","aceite","miel","polen","trigo");
-				// consulta a la base de datos del usuario
-				include(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/direccion.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/comuna.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/provincia.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
-				include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
-				$RUTMedico=$_SESSION['RUT'];
-				$RUTPaciente = $_SESSION['RUTPaciente'];
-				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
-				$medico = $medico[0];
-				$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'");
-				$paciente1 =$paciente1[0]; 
-				$paciente2 = Persona::Seleccionar("WHERE RUN = '$RUTPaciente'");
-				$paciente2 = $paciente2[0];
-				$direccion=$paciente2['Direccion_idDireccion'];
-				$direccion = Direccion::Seleccionar("WHERE idDireccion = '$direccion'"); 
-				$direccion = $direccion[0];
-				$comuna=$direccion['Comuna_idComuna'];
-				$comuna = Comuna::Seleccionar("WHERE idComuna = '$comuna'"); 
-				$comuna=$comuna[0];
-				$provincia=$comuna['Provincias_idProvincia'];
-				$provincia = Provincia::Seleccionar("WHERE idProvincia = '$provincia'"); 
-				$provincia=$provincia[0];
-				$region=$provincia['Regiones_idRegion'];
-				$region = Region::Seleccionar("WHERE idRegion = '$region'"); 
-				$region=$region[0];
-				$etnia=$paciente1['Etnias_idEtnias'];
-				$etnia = Etnia::Seleccionar("WHERE idEtnias = '$etnia'"); 
-				$etnia=$etnia[0];
-				$prevision=$paciente2['Prevision_rut'];
-				$prevision=Prevision::Seleccionar("WHERE rut = '$prevision'");
-				$prevision=$prevision[0];
-				print_r($paciente1);
-				$alergias = Paciente::R_AlergiaPaciente(5);
-				print_r($alergias);
-				$paciente = array_merge($paciente1, $paciente2, $direccion);
-				
-				
-				
-				
-				 // fin de la consulta llevar a ajax
-				 
-			/*****************************funcion que corta el string del nombre */
-			
-			$pos = strpos($medico['Nombre']," ");
-			$largo=strlen($medico['Nombre']);
-			$corte=$largo - $pos+1;
-			$medico['Nombre'] = substr($medico['Nombre'], 0, $corte);
+        // donde estan ubicadas las variables que se despliegan en la base del proyecto
+      include(dirname(__FILE__)."/consultas.php");
 ?>
 
         
@@ -189,7 +133,7 @@ color:white}
        body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #CDD9AE;
+        background-color: #efefc8;
       }
         
         ul.nav, .nav{
@@ -208,22 +152,22 @@ color:white}
         {
             
             
-            background-color: #B6DEDB;
+            background-color: #fafaf0;
             
         }
         
         
          .modal{
           
-           border: 5px solid #DCF1EF;
+           border: 5px solid #efdcc8;
       }
      .modal-header, .modal-footer{
            
-           background-color: #CDD9AE;
+           background-color: #efefc8;
       }
       .modal-body{
-          background-color: #B6DEDB;
-          border: 3px solid #DCF1EF;
+          background-color: #fafaf0;
+          border: 3px solid #efdcc8;
       }
         
         
@@ -244,8 +188,8 @@ color:white}
         
         <div class="container-fluid"><!-- contenedor general -->
             
-            <div class="row-fluid img-rounded" style="background-color: #B6DEDB"> <!--div superior-->
-                <div class="span3 img-rounded" style="background-color: #DCF1EF">
+            <div class="row-fluid img-rounded" style="background-color: #fafaf0"> <!--div superior-->
+                <div class="span3 img-rounded" style="background-color: #efdcc8">
                     <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
                     <blockquote>
                     <strong>Informacion Medico:<br></strong> 
@@ -253,14 +197,19 @@ color:white}
                     </blockquote>
                 </div>
                 
-                <div class="img-rounded span6" style=" background-color: #DCF1EF">
+                <div class="img-rounded span6" style=" background-color:#efdcc8">
                     <center><h2><?php 
 					$institucion=$_SESSION['institucionLog']; 
 					echo $institucion[1];					
-					 ?></h2></center>
+					
+                    
+                     echo   '<br> Consulta N° <span id="consulta">'.$_SESSION['idConsulta'].'</span>'; 
+                                         ?>
+                            </h2>
+                    </center>
                 </div>
                 
-                <div class="span3 pull-right img-rounded" style=" background-color: #DCF1EF">
+                <div class="span3 pull-right img-rounded" style=" background-color: #efdcc8">
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
                      <script type="text/javascript">
@@ -353,8 +302,8 @@ color:white}
             <div class="tabbable-fluid"><!-- div contenido --> 
                 
                 <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
-                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
-                    <li><a href="#tabConsulta" data-toggle="tab">Consulta</a></li>
+                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
+                    <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
                     <li class="dropdown img-rounded">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Opciones <b class="caret"></b>

@@ -7,7 +7,7 @@
  * @ author José-Fco. González
  * créditos a Germán Oviedo por funciones originales de interfazDatos.php
  * * */
-include_once(dirname(__FILE__).'llamarQuery.php');
+include_once(dirname(__FILE__).'/llamarQuery.php');
 
 function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreTabla) {
     $selectString = "SELECT";

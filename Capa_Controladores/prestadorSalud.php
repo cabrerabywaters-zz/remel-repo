@@ -77,6 +77,38 @@ include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 	    return $resultArray;
     }
     
+    //esta funcion la pongo solo por mientras ya que no me corre la funcion de arriba!!
+    //Hay que cambiarla y luego modificar el llamado en la pagina verificarClavePaciente.php
+    
+      public static function obtenerPrestadorconPlaza($idPlaza) {
+        
+
+        $queryString = "Select idPrestadores_Salud  from 
+            Prestadores_Salud where 
+            Plazas_Instituciones_idPlaza='".$idPlaza."';";
+
+        $resultado = CallQuery($queryString);
+
+                
+        while($row = $resultado->fetch_assoc()){
+		$prestador[] = $row;
+                
+	}
+
+	
+         foreach ($prestador as $prestadores){
+                    
+                    $prestador_logeado = $prestadores['idPrestadores_Salud'];
+                }
+        
+           return $prestador_logeado;
+    }
+    
+    
+    
+    
+    
+    
     /**
      * Actualizar
      * 

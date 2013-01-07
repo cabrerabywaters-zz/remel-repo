@@ -98,26 +98,42 @@ class Diagnostico {
     }
 
     public static function BuscarDiagnosticoLike($nombre) {
-  
-       $diagnosticos = array();
-        $queryString = 'SELECT Id, Nombre
+
+        $diagnosticos = array();
+        $queryString = 'SELECT Nombre
 
                         FROM Diagnosticos
 
-                        WHERE Nombre LIKE "%'.$nombre.'%"
+                        WHERE Nombre LIKE "%' . $nombre . '%"
 
                         ORDER BY Nombre
 
                         LIMIT 5;';
-        
+
         $resultado = CallQuery($queryString);
-        
-        while($row = $resultado->fetch_assoc()){
-		$diagnosticos[] = "'".$row['Nombre']."'";
-	}
-        return $diagnosticos ;
-        
+
+        return $resultado->fetch_assoc();
     }
+
+    public static function BuscarDiagnosticoExacto($nombre) {
+
+        $diagnosticos = array();
+        $queryString = 'SELECT Nombre, idDiagnostico
+
+                        FROM Diagnosticos
+
+                        WHERE Nombre = "' . $nombre . '"
+
+                        ORDER BY Nombre
+
+                        LIMIT 5;';
+
+        $resultado = CallQuery($queryString);
+
+
+            return $resultado->fetch_assoc();
+        
+     }
 
 }
 

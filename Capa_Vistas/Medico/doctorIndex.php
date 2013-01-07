@@ -58,15 +58,15 @@ verificarIP();
       
       .modal{
           
-           border: 5px solid #DCF1EF;
+           border: 5px solid #efdcc8;
       }
      .modal-header, .modal-footer{
            
-           background-color: #CDD9AE;
+           background-color: #efefc8;
       }
-      .modal-body{
-          background-color: #B6DEDB;
-          border: 3px solid #DCF1EF;
+      .modal-body{#fafaf0;
+          background-color:#fafaf0;
+          border: 3px solid #efdcc8;
       }
       
       
@@ -83,14 +83,14 @@ verificarIP();
         <form class="form-signin" action="atendiendo_paciente.php">
          
         <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
+        <h5 class="form-signin-heading"><center>Atendiendo en: <?php echo $_SESSION['institucionLog'][1] ?></center>   </h5>
          <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
         <!-- Button to trigger modal -->
         <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
         <button class="btn btn-large btn-block" type="button">Ver Pacientes Atendidos</button>
         <button class="btn btn-large btn-block " type="button">Consultar medicamentos</button>
         <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
-        <button class="btn btn-large btn-block" type="button">Otros</button>
-        <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
+                <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
 	<a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
       </form>
 
@@ -122,12 +122,12 @@ verificarIP();
             <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> 
             <div id="mensaje"></div>
             </div>
-            <input type="hidden" name="hID" value=""/>
+            <input type="hidden"  name="hID" value=""/>
             <input type="hidden" name="hRUN" value=""/>
   	</div>
         <div class="modal-footer">
             <button class="btn" type="submit"><strong>Ingresar</strong></button></form>
-            <button class="btn"  id="reset" data-dismiss="modal" aria-hidden="true" type="reset" data-toggle='collapse'>Cancelar</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         </div>
     </div>
     
@@ -168,23 +168,19 @@ verificarIP();
                                             
 						window.location.href = "AtencionPaciente/atencionPaciente.php";
 					}
-					else{ //mensaje de error
+					else if(output == 0){ //mensaje de error
                                             $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>"); }
-                                }
+                                else
+                                    {    
+                                    
+                                $("#mensaje").html(output);
+                            }
+                            
+                        }
                         });
-        }// funcion que se encarga de limpiar el formulario tras apretar el boton cancelar
-        $('#reset').click(function(){
-            $('#myModal input').each(function(){
-                $(this).val("");
-            });
-            
-            //elimino mensajes de error
-            $('#mensaje').html("");
-            //escondo el div de clave
-            $('#clave').collapse('hide');          
-            //se elimina el paciente buscado anteriormente
-            $('#atender').html("");
-        }); //end click
-        
+        }
+       
+       
+       
 </script>
 </html>

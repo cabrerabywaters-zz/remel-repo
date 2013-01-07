@@ -96,15 +96,15 @@ verificarIP();
               if( isset($_SESSION['instituciones_doctor'])== "true" ){
                  echo '<div id=contenedor_instituciones>';
                  foreach($_SESSION['instituciones_doctor'] as $institucion){
-                 $idInstitucion = $institucion['RUT'];
+                 $idPlaza = $institucion['idPlaza'];
                  $nombreInstitucion = $institucion['Nombre'];
-                   echo "<button class='btn btn-block' type='button' idInstitucion='$idInstitucion'>$nombreInstitucion</button>"; 
+                   echo "<button class='btn btn-block' type='button' idPlaza='$idPlaza'>$nombreInstitucion</button>"; 
                  };
                 echo ' </div>';
               }
              
                 ?>
-                <button class="btn btn-block" idinstitucion ="-1">Particular</button>
+                
                 <script>
                 /**
                  * script que envía el valor de la institucion seleccionada
@@ -115,7 +115,7 @@ verificarIP();
                     $("#contenedor_instituciones button").click(function(){
                         
                        var postData = { //JSON con la info de la institucion que se envia
-                           'idinstitucion': $(this).attr('idinstitucion'),
+                           'idPlaza': $(this).attr('idPlaza'),
                            'nombre': $(this).html()
                        };
                        
