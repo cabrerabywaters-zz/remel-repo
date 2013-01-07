@@ -14,7 +14,6 @@ echo json_encode($instituciones);
 
 //session_start();
 
-print_r($_SESSION);
  $id_plaza_log = $_SESSION[0]['idPlaza'];
  $nombre_institucion_log = $_SESSION[0]['Nombre'];
  //print_r($_SESSION['idMedicoLog'][0]);
