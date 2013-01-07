@@ -4,56 +4,41 @@ include '../Capa_Datos/llamarQuery.php';
 
 session_start();
 
-//$idPaciente = $_SESSION['idPaciente'];
-$idPaciente = 7;
+$idPaciente = $_SESSION['idPacienteLog'][0];
 $idMedicamento = 1;
 //obtener idMedicamento de algun lado
 
 //query de alergias del paciente
 $queryStringAlergiasPaciente = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Pacientes, Alergia_has_Paciente 
-                                WHERE '.$idPaciente.' = Alergia_has_Paciente.Paciente_idPaciente
-                                AND '.$idPaciente.' = Pacientes.idPaciente';
-
+                                WHERE '."$idPaciente".' = Alergia_has_Paciente.Paciente_idPaciente
+                                AND '."$idPaciente".' = Pacientes.idPaciente';
+//query de contraindicaciones a alergias del medicamento
 $queryStringAlergiasMedicamento = 'SELECT Contraindicaciones_Alergias.Alergias_idAlergia as ID FROM Medicamentos, Contraindicaciones_Alergias
                                    WHERE '.$idMedicamento.' = Contraindicaciones_Alergias.Medicamentos_idMedicamento
                                    AND '.$idMedicamento.' = Medicamentos.idMedicamento';
-/*
-var_dump(callQuery($queryStringAlergiasPaciente));
-echo '</br>';
-var_dump(callQuery($queryStringAlergiasMedicamento));
-*/
-$busquedaAlergias;
-
-if ($queryStringAlergiasMedicamento != false && $queryStringAlergiasPaciente != false){
-    
-}
-
-
-
-
-
-//hacer una consulta para paciente y medicamento, luego comparar por logica (for)
-
-//$queryStringAlergias = 'SELECT * FROM Alergias';
 
 //query de condiciones del paciente
-$queryStringCondiciones = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Paciente, Paciente_has_Condiciones
-                           WHERE '.$idPaciente.' = Paciente_has_Condiciones.Paciente_idPaciente
-                           AND '.$idPaciente.' = Pacientes.idPaciente
-                           
-                           INTERSECT
-                           
-                           SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Medicamentos, Contraindicaciones_Condiciones
-                           WHERE '.$idMedicamento.' = Contraindicaciones_Condiciones.Condiciones_idCondiciones
-                           AND '.$idMedicamento.' = Medicamentos.idMedicamento';
+$queryStringCondicionesPaciente = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Paciente, Paciente_has_Condiciones
+                                   WHERE '.$idPaciente.' = Paciente_has_Condiciones.Paciente_idPaciente
+                                   AND '.$idPaciente.' = Pacientes.idPaciente';
+//query de contraindicaciones a condiciones del medicamento                                                      
+$queryStringCondicionesMedicamento = 'SELECT Contraindicaciones_Condiciones.Condiciones_idCondiciones as ID FROM Medicamentos, Contraindicaciones_Condiciones
+                                      WHERE '.$idMedicamento.' = Contraindicaciones_Condiciones.Condiciones_idCondiciones
+                                      AND '.$idMedicamento.' = Medicamentos.idMedicamento';
+
 
 $queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento FROM Medicamentos, Contraindicaciones_Medicamentos 
                             WHERE ('.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento
                             OR '.$idMedicamento.' = Contraindicaciones_Medicamentos.Medicamentos_idMedicamento1)
                             AND '.$idMedicamento.' = Medicamentos.idMedicamento';
 
-//diagnosticos queda para despues por complejidad
-//$queryStringDiagnosticos = 'SELECT '
+$busquedaAlergiasPaciente = CallQuery($queryStringAlergiasPaciente);
+$busquedaAlergiasMedicamento = CallQuery($queryStringAlergiasMedicamento);
+
+if ($queryStringAlergiasMedicamento != false && $queryStringAlergiasPaciente != false){
+
+}
+
 
 $busquedaAlergias = CallQuery($queryStringAlergias);
 $busquedaCondiciones = CallQuery($queryStringCondiciones);
