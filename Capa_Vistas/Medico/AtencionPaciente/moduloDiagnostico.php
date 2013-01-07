@@ -95,8 +95,9 @@
                                 success: function(output) {
                                     var data = jQuery.parseJSON(output);
 
-                                    $('#myModalLabel').html(data['Nombre']) ; 
-                                    $('#id_diagnostico').html(data['idDiagnostico']);
+                                    $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
+                                    $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
+                                    //
 
                                 }
 
@@ -119,8 +120,8 @@
         </div>
     </div>
 </div>
-
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- popup informacion diagnostico -->
+<!-- popup informacion diagnostico -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Debe seleccionar un Diagnóstico</h3>
