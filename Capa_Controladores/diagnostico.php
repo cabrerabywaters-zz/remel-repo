@@ -51,6 +51,7 @@ class Diagnostico {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
         $atributosASeleccionar = array(
+	    'idDiagnostico'
             'Nombre',
             'Codigo_Snom',
             'Es_Ges',
