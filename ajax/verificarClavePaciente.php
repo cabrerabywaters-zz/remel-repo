@@ -26,6 +26,8 @@
                 $_SESSION['prestadores_salud']= $prestadores;
                   
                include_once('../Capa_Controladores/consulta.php');
+               
+               //insertamos la nueva consulta
         
                Consulta::InsertarAlternativo($_SESSION['fechaConsulta'],$_SESSION['idMedicoLog'][0], $_SESSION['idPaciente'], $prestadores, $_SESSION['institucionLog'][0]);
                 
