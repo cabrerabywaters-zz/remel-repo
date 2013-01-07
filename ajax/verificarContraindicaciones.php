@@ -35,19 +35,28 @@ $queryStringMedicamentos = 'SELECT Medicamentos.idMedicamento FROM Medicamentos,
 $busquedaAlergiasPaciente = CallQuery($queryStringAlergiasPaciente);
 $busquedaAlergiasMedicamento = CallQuery($queryStringAlergiasMedicamento);
 
+$busquedaCondicionesPaciente = CallQuery($queryStringCondicionesPaciente);
+$busquedaCondicionesMedicamento = CallQuery($queryStringCondicionesMedicamento);
+
+$busquedaMedicamentos = CallQuery($queryStringMedicamentos);
+
+$idAlergias = array();
+while($row = $busquedaAlergiasMedicamento->fetch_array()){
+//echo $row['ID'];
+    while($fila = $busquedaAlergiasPaciente->fetch_array()){
+        if ($row['ID'] == $fila ['ID']){
+            $idAlergias[] = $row['ID'];
+            break;
+        }
+    }
+}
+
+$idCondiciones = array();
+
 if ($queryStringAlergiasMedicamento != false && $queryStringAlergiasPaciente != false){
 
 }
 
-
-$busquedaAlergias = CallQuery($queryStringAlergias);
-$busquedaCondiciones = CallQuery($queryStringCondiciones);
-$busquedaMedicamentos = CallQuery($queryStringMedicamentos);
-/*
-var_dump($busquedaAlergias);
-var_dump($busquedaCondiciones);
-echo '<br>';
-*/
 //primer if, verifica si alguno de los resultados es positivo, de ser así, continua:
 if ($busquedaAlergias || $busquedaCondiciones || $busquedaMedicamentos){
     //primer if de resultado: alergias
