@@ -46,7 +46,7 @@ function mostrarAlergias($alergias){
 			<form class="form-search">
 			<div class="input-append">
   				<input class="span2" id="Alergias" type="text">
- 				 <button class="btn" type="button">Search</button>
+ 				 <button class="btn" type="button">Añadir</button>
   			</div>
 			</form>
   </td></tr></tfoot></table></div>';
@@ -91,7 +91,7 @@ echo'
 			<form class="form-search">
 			<div class="input-append">
   				<input class="span2" id="Condiciones" type="text">
-  				<button class="btn" type="button">Search</button></div>
+  				<button class="btn" type="button">Añadir</button></div>
 				</form></td></tr>	
 				</tfoot></table>
 			</div> 

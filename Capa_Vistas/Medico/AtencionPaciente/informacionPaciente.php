@@ -23,7 +23,7 @@
 	echo "Femenino";	
 	}; ?>" disabled></label>
     <label class="control-label" for="Peso">Peso <input type="text" class="span1" id="Peso" value="<?php echo $paciente['Peso']; ?>"></label>
-    <label class="control-label" for="Altura">Altura <input type="text" class="span1" id="Altura" value="<?php echo $paciente['Altura']; ?>"></label>
+    <label class="control-label" for="Altura">Altura <input type="text" class="span1" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
     </div>
     
     <div class="control-group">
@@ -42,7 +42,7 @@
     </div>
         
     <div class="control-group">
-    <label class="control-label" for="N_Celular N_Fijo">Telefonos  <input type="text" class="span2" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  <input type="text" class="span2" id="N_Fijo" value="<?php echo $paciente['N_Fijo']; ?>">  </label>
+    <label class="control-label" for="N_Celular N_Fijo">Telefonos  <input type="text" class="span2" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  <input type="text" class="span2" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
     </div>
     
     <div class="control-group">

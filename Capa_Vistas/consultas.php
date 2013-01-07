@@ -48,11 +48,7 @@
 				$alergias = Paciente::R_AlergiaPaciente($idPaciente);
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				$condiciones1=Condicion::Seleccionar('');
-				print_r($condiciones1);
-				$alergias1=Alergia::Seleccionar('');
-				print_r($alergias1);
-				
-				
+				$alergias1=Alergia::Seleccionar('');			
 				
 				 // fin de la consulta llevar a ajax
 				 
