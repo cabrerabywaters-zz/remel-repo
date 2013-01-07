@@ -11,6 +11,7 @@ and open the template in the editor.
         
         <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
+        
         <style> 
         /* Estilos de cargando de la barra respectiva*/
         .ui-autocomplete-loading {
@@ -72,6 +73,7 @@ color:white}
   
         <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
         <?php
