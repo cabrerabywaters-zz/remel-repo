@@ -1,14 +1,15 @@
 
-  <div class="accordion-heading">
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
+<div class="accordion-heading">
+    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
         Diagnóstico
-      </a>
-    </div>
-    <div id="collapseOne1" class="accordion-body collapse">
-        <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
-            
-            <div class="modal-body">
-               <strong><p>Ingrese nombre del diagnóstico</p></strong>
+    </a>
+</div>
+<div id="collapseOne1" class="accordion-body collapse">
+    <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
+
+        <div class="modal-body">
+
+            <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
             <form class="form-search" id="buscar_diagnostico" method="post">
                 <div class="input-append"> <!-- buscador inline con autocomplete -->
@@ -94,7 +95,8 @@
                                 success: function(output) {
                                     var data = jQuery.parseJSON(output);
 
-                                    $('#myModalLabel').html(data['Nombre']) ;                         
+                                    $('#myModalLabel').html(data['Nombre']) ; 
+                                    $('#id_diagnostico').html(data['idDiagnostico']);
 
                                 }
 
@@ -122,40 +124,72 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">El Diagnóstico No Existe</h3>
+
     </div>
     <div class="modal-body">
         <strong><p></p></strong>
         <div class="span3" id="imagenDiagnostico"> </div>
+        <span id="id_diagnostico" style="display:none"></span>
+
         <p></p>
-        <select>
-             <option value="0" selected="selected">Escoja un valor...</option>
-              <?php 
-               include_once('../../../Capa_Controladores/tipo.php');
-             
-              $tipos_diagnosticos = Tipo::Seleccionar('');
-               
-              foreach ($tipos_diagnosticos as $tipo){
-                  
-                  echo'<option>'.$tipo['Nombre'].'</option>';
-              }         
-              
+        <select id="tipo_diagnostico">
+            <option value="0" selected="selected">Escoja un tipo...</option>
+            <?php
+            include_once('../../../Capa_Controladores/tipo.php');
+
+            $tipos_diagnosticos = Tipo::Seleccionar('');
+
+            foreach ($tipos_diagnosticos as $tipo) {
+
+                echo'<option value="'.$tipo['idTipo'].'">' . $tipo['Nombre'] . '</option>';
+            }
             ?>
             <select>
 
-        
 
-        <p>Comentario: </p>
-        <center> <textarea rows="2" style="width:90%"></textarea></center>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
-        <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true" id="diagnoticar_modal">Diagnosticar</a>
-    </div>
-</div><!-- fin popup informacion diagnostico -->
-<script>
-    $("#cancelar_modal").click(function() {
-        $('#myModalLabel').html('El Diagnóstico no es Válido');
-        $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
-    });
+
+                <p>Comentario: </p>
+                <center> <textarea rows="2" style="width:90%"></textarea></center>
+                <span id="mensaje"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info"  id="diagnoticar_modal">Diagnosticar</a>
+                        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
+
+                </div>
+                </div><!-- fin popup informacion diagnostico -->
+                <script>
+                    $("#cancelar_modal").click(function() {
+                        $('#myModalLabel').html('El Diagnóstico no es Válido');
+                        $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
+                    });
+                    
+                    
+                    $("#diagnoticar_modal").click(function() {
+                     
+        
+                        var id_diagnostico= $('#id_diagnostico').html();
+                        var id_consulta = $('#consulta').html();
+        
+			var id_tipo = $('#diagnostico').val();
+                        
+                        $.ajax({ url: '../../../ajax/agregarHistorialMedico.php',
+                            data: { diagnostico: id_diagnostico, consulta:  id_consulta, tipo: id_tipo },
+                            type: 'post',
+                            success: function(output) {
+                                if(output == '1') {
+                                    $('#myModal').modal('hide');
+                                    $('#diagnostico').val('');
+                                   
+                                   
+                                }
+                                else{
+                                    $('#mensaje').html("<span style='color: red'>El diagnóstico no fue insertado </span>");
+                                }
+                            }
+                        });
+                    });
+				
+    
             
-</script>
+                </script>

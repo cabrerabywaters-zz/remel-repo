@@ -57,6 +57,7 @@ class Consulta  {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
+                                
                                 'Fecha',
                                 'Hora',
                                 'Medicos_idMedico',
@@ -81,6 +82,31 @@ class Consulta  {
 	    }
 	    return $resultArray;
     }
+    
+    // lo generé de forma rapida para salir del problema, hay que hacerlo de manera correcta con el 
+    //seleccionar query que está arriba de este
+     public static function SeleccionarID($idMedico,$idPaciente,$fecha,$idPrestador,$idPlaza) {
+    	
+
+       $queryString="Select Id_consulta from Consulta Where Medicos_idMedico =".$idMedico." 
+           and Pacientes_idPaciente=".$idPaciente." and  
+               Fecha='".$fecha."'  and 
+                   Prestadores_Salud_idPrestadores_Salud=".$idPrestador." and 
+                       Prestadores_Salud_Plazas_Instituciones_idPlaza=".$idPlaza." LIMIT 1;";
+       
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+    
+    
+    
+    
+    
+    
     
     /**
      * Actualizar

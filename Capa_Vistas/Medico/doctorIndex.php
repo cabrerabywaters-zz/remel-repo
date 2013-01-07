@@ -90,8 +90,7 @@ verificarIP();
         <button class="btn btn-large btn-block" type="button">Ver Pacientes Atendidos</button>
         <button class="btn btn-large btn-block " type="button">Consultar medicamentos</button>
         <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
-        <button class="btn btn-large btn-block" type="button">Otros</button>
-        <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
+                <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
 	<a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
       </form>
 

@@ -15,11 +15,11 @@ class HistorialMedico  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idDiagnostico,$idConsulta) {
+    public static function Insertar($idDiagnostico,$idConsulta,$tipo) {
     	
-        $id = array($idDiagnostico,$idConsulta);
+        
        
-        $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
+        $queryString ='Insert into Historiales_medicos(Diagnosticos_idDiagnostico,Consulta_Id_consulta,tipo_diagnostico) Values("'.$idDiagnostico.'","'.$idConsulta.'","'.$tipo.'");' ;
         $query = CallQuery($queryString);
         if($query){
             
@@ -30,6 +30,8 @@ class HistorialMedico  {
                     }
     }
 
+    
+    
     /**
      * BorrarPorId
      * 

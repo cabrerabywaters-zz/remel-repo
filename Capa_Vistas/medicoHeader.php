@@ -258,7 +258,12 @@ color:white}
                     <center><h2><?php 
 					$institucion=$_SESSION['institucionLog']; 
 					echo $institucion[1];					
-					 ?></h2></center>
+					
+                    
+                     echo   '<br> Consulta N° <span id="consulta">'.$_SESSION['idConsulta'].'</span>'; 
+                                         ?>
+                            </h2>
+                    </center>
                 </div>
                 
                 <div class="span3 pull-right img-rounded" style=" background-color: #efdcc8">
@@ -354,8 +359,8 @@ color:white}
             <div class="tabbable-fluid"><!-- div contenido --> 
                 
                 <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
-                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial</a></li>
-                    <li><a href="#tabConsulta" data-toggle="tab">Consulta</a></li>
+                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
+                    <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
                     <li class="dropdown img-rounded">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Opciones <b class="caret"></b>

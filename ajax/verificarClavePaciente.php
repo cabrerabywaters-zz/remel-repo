@@ -30,9 +30,19 @@
                //insertamos la nueva consulta
         
                Consulta::InsertarAlternativo($_SESSION['fechaConsulta'],$_SESSION['idMedicoLog'][0], $_SESSION['idPaciente'], $prestadores, $_SESSION['institucionLog'][0]);
-                
+                // buscamos el id de la consulta insertada y lo guardamos como session para poder utilizarlo para agregar
+               // nuevos diagnosticos o medicamenentos
        
-                echo "1";
+               
+             $id_consulta = Consulta::SeleccionarID($_SESSION['idMedicoLog'][0],  $_SESSION['idPaciente'], $_SESSION['fechaConsulta'], $prestadores, $_SESSION['institucionLog'][0]);
+               
+             foreach ($id_consulta as $idc)
+             {
+                 $_SESSION['idConsulta']= $idc['Id_consulta'];
+             }
+             
+             
+             echo "1";
                 
                 
            
