@@ -157,12 +157,13 @@
                 </div>
                 
                 <div class="img-rounded span6" style=" background-color:white">
-                    <center><h2><?php echo "Dr.<br> ".$paciente['Nombre']." ".$paciente['Apellido_Paterno'];?>
+                    <center><h2><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?>
                             </h2>
                     </center>
                 </div>
             </div>
     </div>
+    <? echo 'semen';?>
 
 
 
