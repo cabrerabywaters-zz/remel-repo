@@ -23,7 +23,7 @@ y el popup que muestra el detalle del medicamento
         </div>
         
         
-        <a class="btn btn-warning span2 offset5"><strong><br>Emitir Receta<br></strong><br></a>
+        <a class="btn btn-warning span2 offset5"><strong><br><i class="icon-check icon-white"></i> Emitir Receta<br></strong><br></a>
     </div>
 </div>
 
