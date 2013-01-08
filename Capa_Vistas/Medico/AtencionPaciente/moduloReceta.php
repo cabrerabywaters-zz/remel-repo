@@ -46,17 +46,7 @@ y el popup que muestra el detalle del medicamento
 
 <!--JS de funcion verificacion de contraindicaciones-->
 <script>
-    //var postData = $("#myModal2").serialize();
-    //var postData = 'poto';
-    $('#ID').click(
-    function(){
-        //alert('algo')
-        //var algo = $.post('../../../ajax/verificarContraindicaciones.php',postData)
-        $('#myModalLabel').load('../../../ajax/verificarContraindicaciones.php')
-    }
-);
-    
-    
+   
     $( "#Medicamentos" ).autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
