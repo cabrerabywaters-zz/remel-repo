@@ -132,21 +132,20 @@ class Medicamento  {
     }
 
     public static function BuscarMedicamentoLike($nombre) {
-	$like = "%' . $nombre . '%";
-        $queryString = 'SELECT Nombre
+	$like = "'%$nombre%'";
+        $queryString = "SELECT Nombre_Comercial
 
-                        FROM Diagnosticos
+                        FROM Medicamentos
 
                         WHERE Nombre_Comercial LIKE $like 
 			
 			OR Nombre_Generico LIKE $like 
 
-                        ORDER BY Nombre
+                        ORDER BY Nombre_Comercial
 
-                        LIMIT 5;';
+                        LIMIT 5;";
 
         $resultado = CallQuery($queryString);
-
         return $resultado->fetch_assoc();
     }
 
