@@ -15,7 +15,7 @@
                 <div class="input-append"> <!-- buscador inline con autocomplete -->
 
                     <input type="text" class="span2 search-query" id="diagnostico" name="diagnostico">
-                    <input type="submit" id="boton_diagnostico" onClick="javascript:enviar_diagnostico()" class="btn btn" data-target="#myModal"  data-toggle="modal" value="Añadir">  <br>
+                    <input type="submit" id="boton_diagnostico" class="btn" data-target="#myModal"  data-toggle="modal" value="Añadir" disabled>  <br>
 
                     <script>
                         $(function() {
@@ -46,6 +46,7 @@
                                         },
                                         type: "post",
                                         success: function( data ) {
+                                            $('#boton_diagnostico').removeAttr('disabled');
                          
                         
                                             var output = jQuery.parseJSON(data);
@@ -86,7 +87,14 @@
                         });
     
     
-                        function enviar_diagnostico(){
+                        $('#boton_diagnostico').click(function(){
+                        /**
+                         * funcion que envía el id del diagnostico y retorna el json 
+                         * con todos los atributos para rellenar el popup
+                         **/
+                           
+                           if( $("#diagnostico").val() == "" ){ }
+                           else{
                             var postData = $("#buscar_diagnostico").serialize();
                             $.ajax({ 
                                 url: '../../../ajax/diagnosticarPaciente.php',
@@ -94,16 +102,18 @@
                                 type: 'post',
                                 success: function(output) {
                                     var data = jQuery.parseJSON(output);
-
+                                     // se hace enable al boton_diagnostico                                                  
                                     $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
                                     $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
-                                    //
-
+                                    //resto de la informacion que se busca desplegar en el popup
+                                    
                                 }
+                           
 
                             });// end ajax
+                           }
                           
-                        }
+                        });
                     </script>
 
 
@@ -111,7 +121,7 @@
 
                 </div>
 
-                <div id="log" class="collapse" > </div> <!-- div donde se mostraran los diagnosticos obtenidos -->
+                <div id="log_diagnostico" class="collapse" > </div> <!-- div donde se mostraran los diagnosticos obtenidos -->
 
             </form>
 
@@ -120,6 +130,7 @@
         </div>
     </div>
 </div>
+
 <!-- popup informacion diagnostico -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
@@ -129,7 +140,9 @@
     </div>
     <div class="modal-body">
         <strong><p></p></strong>
-        <div class="span3" id="imagenDiagnostico"> </div>
+        <div class="span3" id="imagenDiagnostico">
+        <img src="#" class="img-rounded" width="100px" height="100px">
+        </div>
         <span id="id_diagnostico" style="display:none"></span>
 
         <p></p>
@@ -145,8 +158,13 @@
                 echo'<option value="'.$tipo['idTipo'].'">' . $tipo['Nombre'] . '</option>';
             }
             ?>
-            <select>
-
+        <select>
+            Patología notificada como GES?
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" class="btn">Si</button>
+                <button type="button" class="btn">No</button>
+            </div>
+            <p></p>
 
 
                 <p>Comentario: </p>
@@ -154,42 +172,57 @@
                 <span id="mensaje"></span>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-info"  id="diagnoticar_modal">Diagnosticar</a>
+                    <button class="btn btn-info"  id="guardar_diagnostico">Diagnosticar</a>
                         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
 
                 </div>
                 </div><!-- fin popup informacion diagnostico -->
                 <script>
                     $("#cancelar_modal").click(function() {
+                        /**
+                         * funcion que maneja el popup cuando se hace click
+                         * en el boton canelar
+                         * 
+                         */
                         $('#myModalLabel').html('Debe Escojer un Diagnóstico');
                         $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
                         $('select>option:eq(0)').attr('selected', true);
                         $('#diagnostico').val('');
                         $('#comentario_diagnostico').val('');
+                        $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                     });
                     
                     
-                    $("#diagnoticar_modal").click(function() {
-                     
-        
+                    $("#guardar_diagnostico").click(function() {
+                            /**
+                             * funcion que guarda el diagnostico correspondiente
+                             * en la bbdd al hacer click en "diagnosticar"
+                             * agrega el pill en la seccion log_diagnostico
+                             */
+                        var nombre_diagnostico = $('#myModalLabel');    
                         var id_diagnostico= $('#id_diagnostico').html();
                         var id_consulta = $('#consulta').html();
-        
-			var id_tipo = document.getElementById('tipo_diagnostico').value ;
+                        var id_tipo = $('#tipo_diagnostico').val();
                         
                         $.ajax({ url: '../../../ajax/agregarHistorialMedico.php',
                             data: { diagnostico: id_diagnostico, consulta:  id_consulta, tipo: id_tipo },
                             type: 'post',
                             success: function(output) {
                                 if(output == '1') {
-                                    $('#myModal').modal('hide');
-                                    $('#diagnostico').val('');
-                                    $('select>option:eq(0)').attr('selected', true);
-                                  $('#comentario_diagnostico').val('');
+                                    $('#myModal').modal('hide'); //se esconde el modal
+                                    $('#diagnostico').val(''); // se borra el buscador
+                                    $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
+                                    $('#comentario_diagnostico').val(''); // se borra el comentario
+                                    
+                                    //se agrega el pill correspondiente al div "log_diagnostico"
+                                    
+                                    
+                                    $('#log_diagnostico').html()
+                                    
                                  
                                 }
                                 else{
-                                    $('#mensaje').html("<span style='color: red'>No se puedo insertar el disgnóstico</span>");
+                                    $('#mensaje').html("<span style='color: red'>No se pudo insertar el disgnóstico</span>");
                                 }
                             }
                         });
