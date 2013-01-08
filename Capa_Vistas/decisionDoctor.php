@@ -22,7 +22,7 @@ var_dump($_SESSION);
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #efefc8;
+        background-color: white;
       }
 
       .form-signin {

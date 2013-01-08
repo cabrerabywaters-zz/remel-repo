@@ -21,7 +21,7 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
             body {
                 padding-top: 40px;
                 padding-bottom: 40px;
-                background-color: #efefc8;
+                background-color: white;
             }
 
             .form-signin {
@@ -41,7 +41,7 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
                 padding: 19px 29px 29px;
                 margin: 0 auto 20px;
                 background-color: #fafaf0;
-                border: 3px solid #efdcc8;
+                border: 3px solid #5eaded;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
                 border-radius: 5px;

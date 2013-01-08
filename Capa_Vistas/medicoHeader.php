@@ -23,7 +23,7 @@ and open the template in the editor.
        body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #efefc8
+        background-color: white;
       }
         
         ul.nav, .nav{
@@ -42,7 +42,7 @@ and open the template in the editor.
         {
             
             
-            background-color: #fafaf0;
+            background-color: white;
             
         }
         
@@ -53,10 +53,10 @@ and open the template in the editor.
       }
      .modal-header, .modal-footer{
            
-           background-color: #fafaf0;
+           background-color: whitesmoke;
       }
       .modal-body{
-          background-color: #fafaf0;
+          background-color: white;
           border: 3px solid #efdcc8;
       }
         
@@ -139,9 +139,9 @@ color:white}
         <style type="text/css">
         
        body {
-        padding-top: 40px;
+        padding-top: 10px;
         padding-bottom: 40px;
-        background-color: #efefc8;
+        background-color: white;
       }
         
         ul.nav, .nav{
@@ -160,7 +160,7 @@ color:white}
         {
             
             
-            background-color: #fafaf0;
+            background-color: whitesmoke;
             
         }
         
@@ -171,10 +171,10 @@ color:white}
       }
      .modal-header, .modal-footer{
            
-           background-color: #efefc8;
+           background-color: whitesmoke;
       }
       .modal-body{
-          background-color: #fafaf0;
+          background-color: white;
           border: 3px solid #efdcc8;
       }
         
@@ -196,8 +196,8 @@ color:white}
         
         <div class="container-fluid"><!-- contenedor general -->
             
-            <div class="row-fluid img-rounded" style="background-color: #fafaf0"> <!--div superior-->
-                <div class="span3 img-rounded" style="background-color: #efdcc8">
+            <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
+                <div class="span3 img-rounded" style="background-color: whitesmoke">
                     <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
                     <blockquote>
                     <strong>Informacion Medico:<br></strong> 
@@ -205,7 +205,7 @@ color:white}
                     </blockquote>
                 </div>
                 
-                <div class="img-rounded span6" style=" background-color:#efdcc8">
+                <div class="img-rounded span6" style=" background-color:white">
                     <center><h2><?php 
 					$institucion=$_SESSION['institucionLog']; 
 					echo $institucion[1];					
@@ -217,7 +217,7 @@ color:white}
                     </center>
                 </div>
                 
-                <div class="span3 pull-right img-rounded" style=" background-color: #efdcc8">
+                <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke">
                     <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
                     <blockquote>
                      <script type="text/javascript">
@@ -309,27 +309,27 @@ color:white}
             
             <div class="tabbable-fluid"><!-- div contenido --> 
                 
-                <ul class="nav nav-tabs img-rounded"><!-- barra de navegacion -->
+                <ul class="nav nav-tabs img-rounded" style="background: rgb(242,245,246); /* Old browsers */
+background: -moz-linear-gradient(45deg,  rgba(242,245,246,1) 0%, rgba(227,234,237,1) 37%, rgba(200,215,220,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(242,245,246,1)), color-stop(37%,rgba(227,234,237,1)), color-stop(100%,rgba(200,215,220,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* IE10+ */
+background: linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+"><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
                     <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
-                    <li class="dropdown img-rounded">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Opciones <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                        <!-- links -->
-                            <li><a href="#">Favoritos</a></li>
-                            <li><a href="#">Imprimir Receta</a></li>
-                        </ul>
-                    </li>
+                      <li><a href="#" data-toggle="tab">Favoritos</a></li>
+                      <li><a href="#" data-toggle="tab">Imprimir Receta</a></li>
                     <li class="dropdown pull-right">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Volver <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                         <!-- links -->
-                        <li><a href="../doctorIndex.php">Volver al menu</a></li>
-                        <li><a href="../logout.php">Logout</a></li>
+                        <li><a href="../doctorIndex.php">Volver al Menú</a></li>
+                        <li><a href="../logout.php">Salir</a></li>
                         </ul>
                     </li>
                     

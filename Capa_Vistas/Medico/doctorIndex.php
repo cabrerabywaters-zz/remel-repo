@@ -27,7 +27,7 @@ verificarIP();
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #efefc8;
+        background-color: white;
       }
 
       .form-signin {
@@ -62,10 +62,10 @@ verificarIP();
       }
      .modal-header, .modal-footer{
            
-           background-color: #efefc8;
+           background-color: white;
       }
       .modal-body{#fafaf0;
-          background-color:#fafaf0;
+          background-color: whitesmoke;
           border: 3px solid #efdcc8;
       }
       
