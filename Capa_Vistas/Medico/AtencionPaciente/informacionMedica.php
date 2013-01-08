@@ -30,7 +30,7 @@ function mostrarAlergias($alergias){
 					}
 					
 					echo"<td rowspan='".$contador."'>
-					$datos</td></tr>";
+					</td></tr>";
 					
 					foreach($dato as $valor)
 					{
@@ -74,7 +74,7 @@ function mostrarCondiciones($condiciones){
 					}
 					
 					echo"<td rowspan='".$contador."'>
-					$datos</td></tr>";
+						</td></tr>";
 					
 					foreach($dato as $valor)
 					{
