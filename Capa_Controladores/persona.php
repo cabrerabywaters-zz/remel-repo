@@ -71,7 +71,8 @@ class Persona {
                                                                         'Email',
                                                                         'N_Celular',
                                                                         'Fecha_creacion_REMEL',
-                                                                        'n_fijo'
+                                                                        'n_fijo',
+																		'Foto'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
