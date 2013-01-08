@@ -144,7 +144,7 @@ verificarIP();
                 </script>
                 
             </div>
-        <button class="btn btn-large btn-block" type="button">Ingresar como Paciente</button>
+        <button class="btn btn-large btn-block" onClick="redireccionar()" type="button">Ingresar como Paciente</button>
         
          <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
       </form>
@@ -157,3 +157,10 @@ verificarIP();
 
   </body>
 </html>
+<script language="javascript">
+    
+    function redireccionar(){
+        top.location = '/remel-repo/Capa_Vistas/Paciente/paginaPaciente.php';
+    }
+    
+</script>
