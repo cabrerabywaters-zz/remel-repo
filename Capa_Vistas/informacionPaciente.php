@@ -44,7 +44,7 @@
 				$prevision=$prevision[0];
 				$idPaciente=$paciente1['idPaciente'];
 				$condiciones = Paciente::R_CondicionPaciente($idPaciente);
-				$alergias = Paciente::R_AlergiaPaciente($idPaciente);
+				$alergias = Paciente::R_AlergiaPaciente($idPaciente);		
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				$condiciones1=Condicion::Seleccionar('');
 				$alergias1=Alergia::Seleccionar('');			
