@@ -16,13 +16,19 @@ y el popup que muestra el detalle del medicamento
             <form class="form-search">
                 <div class="input-append">
                     <input type="text" id="Medicamentos" class="span2 search-query">
-                    <button type="button" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
+                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
                     <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" id='ID' data-toggle="modal"> Paracetamol </a></span></div>
                 </div>
             </form>
         </div>
+        
+        
+        <a class="btn btn-warning span2 offset5"><strong><br>Emitir Receta<br></strong><br></a>
     </div>
 </div>
+
+
+
 
 <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
@@ -46,8 +52,8 @@ y el popup que muestra el detalle del medicamento
 
 <!--JS de funcion verificacion de contraindicaciones-->
 <script>
-   
-    $( "#Medicamentos" ).autocomplete({
+   $(function(){
+    $("#Medicamentos").autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
                                         url: "../../../ajax/autocompleteMedicamento.php",
@@ -56,6 +62,8 @@ y el popup que muestra el detalle del medicamento
                                         },
                                         type: "post",
                                         success: function( data ) {
+                                            alert(data);
+                                            $('#boton_medicamentos').removeAttr('disabled');
                          
                         
                                             var output = jQuery.parseJSON(data);
@@ -71,23 +79,12 @@ y el popup que muestra el detalle del medicamento
                                     });
                                 },
                                 minLength: 2,
-                                /**
-                                 * ESTA FUNCION ES LA QUE REALIZA LA ACCION UNA VEZ ESTÁ SELECCIONADO
-                                 * ALGUNO DE LOS ELEMENTOS MOSTRADOS
-                                 * ---------
-                                 * en este caso se muestra de forma simple
-                                 * (cambiar esto segun como se quieran mostrar los datos)
-                                 */
-                                select: function( event, ui ) {
-                                    log( ui.item ?
-                                        "Selected: " + ui.item.label :
-                                        "Nothing selected, input was " + this.value);
-                                },
-                                open: function() {
+                                 open: function() {
                                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
                                 },
                                 close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 }
                             });
+   });
 </script>
