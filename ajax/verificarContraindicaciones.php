@@ -60,7 +60,7 @@ while($row = $busquedaCondicionesMedicamento->fetch_array()){
         }
     }
 }
-$idMedicamentos = array();
+$idMedicamentos = array(); 
 while($row = $busquedaMedicamentos->fetch_array()){
     $idMedicamentos[] = $row['ID'];
 }
