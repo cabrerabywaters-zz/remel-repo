@@ -8,7 +8,7 @@
     <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
 
         <div class="modal-body">
-
+            <div class="span3"><!-- div donde estará el buscador -->     
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
             <form class="form-search" id="buscar_diagnostico" method="post">
@@ -120,9 +120,10 @@
 
 
                 </div>
-                <div>
+            </div><!-- div del buscador-->
+                <div class="span3"><!-- div de diagnosticos selecciondos -->
                 <div id="log_titulo"></div>   
-                <div id="log_diagnostico" class="span3"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
+                <div id="log_diagnostico" class="span2"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
                 </div>
             </form>
 
@@ -206,7 +207,7 @@
                         var id_tipo = $('#tipo_diagnostico').val();
                         
                         var pill = '<div class="alert alert-info" id="id_diagnostico'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong></div>';
-                        $('#log_titulo').html('<p>Diagnosticos seleccionados:</p>');
+                        $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
                         $('#myModal').modal('hide');
                         
