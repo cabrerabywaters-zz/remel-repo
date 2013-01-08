@@ -27,16 +27,6 @@
                              * 
                              * Funcion select que ejecutará una accion cuando se devuelva
                              */
-                            function log( message ) {
-                                /**
-                                 * Funcion log
-                                 *      Recibe: message -> string de mensaje
-                                 *      Retorna: agrega el mensaje en el div con id = "log"
-                                 **/
-                                $( "<div>" ).text( message ).prependTo( "#log" );
-                                $( "#log" ).scrollTop( 0 );
-                            }
- 
                             $( "#diagnostico" ).autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
@@ -62,19 +52,7 @@
                                     });
                                 },
                                 minLength: 2,
-                                /**
-                                 * ESTA FUNCION ES LA QUE REALIZA LA ACCION UNA VEZ ESTÁ SELECCIONADO
-                                 * ALGUNO DE LOS ELEMENTOS MOSTRADOS
-                                 * ---------
-                                 * en este caso se muestra de forma simple
-                                 * (cambiar esto segun como se quieran mostrar los datos)
-                                 */
-                                select: function( event, ui ) {
-                                    log( ui.item ?
-                                        "Selected: " + ui.item.label :
-                                        "Nothing selected, input was " + this.value);
-                                },
-                                open: function() {
+                                 open: function() {
                                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
                                 },
                                 close: function() {
@@ -122,7 +100,7 @@
 
                 </div>
             </div><!-- div del buscador-->
-                <div class="span3"><!-- div de diagnosticos selecciondos -->
+                <div class="span3" id="log"><!-- div de diagnosticos selecciondos -->
                 <div id="log_titulo"></div>   
                 <div id="log_diagnostico" class="span2"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
                 </div>
@@ -181,6 +159,13 @@
                 </div>
                 </div><!-- fin popup informacion diagnostico -->
                 <script>
+                   $('.close[data-dismiss ="alert"]').click(function(){
+                      if($(this).text()== ""){
+                          $('#log_titulo').html('');
+                          $('#log').removeClass();
+                      } 
+                   });
+                        
                     $("#cancelar_modal").click(function() {
                         /**
                          * funcion que maneja el popup cuando se hace click
@@ -208,10 +193,17 @@
                         var id_tipo = $('#tipo_diagnostico').val();
                         
                         var pill = '<div class="alert alert-info" id="id_diagnostico'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong></div>';
+                        $('#log').removeClass().addClass('span3 modal-body img-rounded');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
                         $('#myModal').modal('hide');
-                        
+                        $('#diagnostico').val(''); // se borra el buscador
+                        $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
+                        $('#comentario_diagnostico').val(''); // se borra el comentario
+                        $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+//                      
+//                      
+//                      
 //                      la siguiente función guarda en la bbdd un diagnostico
 //                      especifico 
 //                      
