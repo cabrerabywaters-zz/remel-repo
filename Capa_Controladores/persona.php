@@ -141,6 +141,17 @@ class Persona {
         }
         else return false;
     }
+
+    public static function ActualizarFoto($rut, $url)){
+	$datosActualizacion = array(
+                                array('Foto',$url)
+                                );
+
+        $where = "WHERE " . self::$nombreIdTabla . " = '$rut'";
+        $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreT$
+        $query = CallQuery($queryString);
+
+    }
 }
 
 ?>
