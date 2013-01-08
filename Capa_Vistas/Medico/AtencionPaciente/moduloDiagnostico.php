@@ -120,9 +120,10 @@
 
 
                 </div>
-
-                <div id="log_diagnostico" class="collapse" > </div> <!-- div donde se mostraran los diagnosticos obtenidos -->
-
+                <div>
+                <div id="log_titulo"></div>   
+                <div id="log_diagnostico" class="span3"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
+                </div>
             </form>
 
 
@@ -199,33 +200,41 @@
                              * en la bbdd al hacer click en "diagnosticar"
                              * agrega el pill en la seccion log_diagnostico
                              */
-                        var nombre_diagnostico = $('#myModalLabel');    
-                        var id_diagnostico= $('#id_diagnostico').html();
-                        var id_consulta = $('#consulta').html();
+                        var nombre_diagnostico = $('#myModalLabel').text();    
+                        var id_diagnostico= $('#id_diagnostico').text();
+                        var id_consulta = $('#consulta').text();
                         var id_tipo = $('#tipo_diagnostico').val();
                         
-                        $.ajax({ url: '../../../ajax/agregarHistorialMedico.php',
-                            data: { diagnostico: id_diagnostico, consulta:  id_consulta, tipo: id_tipo },
-                            type: 'post',
-                            success: function(output) {
-                                if(output == '1') {
-                                    $('#myModal').modal('hide'); //se esconde el modal
-                                    $('#diagnostico').val(''); // se borra el buscador
-                                    $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
-                                    $('#comentario_diagnostico').val(''); // se borra el comentario
-                                    
-                                    //se agrega el pill correspondiente al div "log_diagnostico"
-                                    
-                                    
-                                    $('#log_diagnostico').html()
-                                    
-                                 
-                                }
-                                else{
-                                    $('#mensaje').html("<span style='color: red'>No se pudo insertar el disgnóstico</span>");
-                                }
-                            }
-                        });
+                        var pill = '<div class="alert alert-info" id="id_diagnostico'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong></div>';
+                        $('#log_titulo').html('<p>Diagnosticos seleccionados:</p>');
+                        $('#log_diagnostico').prepend(pill);
+                        $('#myModal').modal('hide');
+                        
+//                      la siguiente función guarda en la bbdd un diagnostico
+//                      especifico 
+//                      
+//                        $.ajax({ url: '../../../ajax/agregarHistorialMedico.php',
+//                            data: { diagnostico: id_diagnostico, consulta:  id_consulta, tipo: id_tipo },
+//                            type: 'post',
+//                            success: function(output) {
+//                                if(output == '1') {
+//                                    $('#myModal').modal('hide'); //se esconde el modal
+//                                    $('#diagnostico').val(''); // se borra el buscador
+//                                    $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
+//                                    $('#comentario_diagnostico').val(''); // se borra el comentario
+//                                    
+//                                    //se agrega el pill correspondiente al div "log_diagnostico"
+//                                    
+//                                    
+//                                    $('#log_diagnostico').html()
+//                                    
+//                                 
+//                                }
+//                                else{
+//                                    $('#mensaje').html("<span style='color: red'>No se pudo insertar el disgnóstico</span>");
+//                                }
+//                            }
+//                        });
                     });
 				
     
