@@ -198,7 +198,7 @@ color:white}
             
             <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
                 <div class="span3 img-rounded" style="background-color: whitesmoke">
-                    <img class="img-rounded pull-left" src="../../../imgs/dr-house.jpg" style="width: 140px; height: 140px;">
+                    <img class="img-rounded pull-left" src="<?php echo $medico['Foto']; ?>" style="width: 140px; height: 140px;">
                     <blockquote>
                     <strong>Informacion Medico:<br></strong> 
                    <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
@@ -218,7 +218,7 @@ color:white}
                 </div>
                 
                 <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke">
-                    <img class="img-rounded pull-right" src="../../../imgs/sabina.jpg"  style="width: 140px; height: 140px;">
+                    <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 140px; height: 140px;">
                     <blockquote>
                      <script type="text/javascript">
                 //validacion del rut ingresado
