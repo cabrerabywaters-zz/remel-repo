@@ -105,7 +105,7 @@
                                      // se hace enable al boton_diagnostico                                                  
                                     $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
                                     $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
-                                    $('')
+                                    $('#imagenDiagnostico').html('<img src="'+data['Foto']+'" class="img-rounded" width="100px" height="100px">');//foto de la enfermedad
                                     //resto de la informacion que se busca desplegar en el popup
                                     
                                 }
