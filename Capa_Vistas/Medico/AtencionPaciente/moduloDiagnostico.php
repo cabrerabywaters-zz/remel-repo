@@ -105,6 +105,7 @@
                                      // se hace enable al boton_diagnostico                                                  
                                     $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
                                     $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
+                                    $('')
                                     //resto de la informacion que se busca desplegar en el popup
                                     
                                 }
@@ -143,7 +144,7 @@
     <div class="modal-body">
         <strong><p></p></strong>
         <div class="span3" id="imagenDiagnostico">
-        <img src="#" class="img-rounded" width="100px" height="100px">
+        <img src="http://agingadrenalinejunkies.com/wp-content/uploads/2011/05/istockphoto_10197494-sick-flu-bug-with-thermometer.jpg" class="img-rounded" width="100px" height="100px">
         </div>
         <span id="id_diagnostico" style="display:none"></span>
 
