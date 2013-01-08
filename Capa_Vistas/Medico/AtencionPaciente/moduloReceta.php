@@ -16,14 +16,14 @@ y el popup que muestra el detalle del medicamento
             <form class="form-search">
                 <div class="input-append">
                     <input type="text" id="Medicamentos" class="span2 search-query">
-                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="collapse" data-target="#informacion2">Buscar</button>  <br>
-                    <div id="informacion2" class="collapse" > <span id="info2" class="badge badge-info">  <a  href="#myModal2" id='ID' data-toggle="modal"> Paracetamol </a></span></div>
+                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#myModal2" disabled="disabled">Añadir</button>  <br>
+                    
                 </div>
             </form>
         </div>
         
         
-        <a class="btn btn-warning span2 offset5"><strong><br><i class="icon-check icon-white"></i> Emitir Receta<br></strong><br></a>
+        <a class="btn btn-warning span2 offset5"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
     </div>
 </div>
 
@@ -53,6 +53,10 @@ y el popup que muestra el detalle del medicamento
 <!--JS de funcion verificacion de contraindicaciones-->
 <script>
    $(function(){
+       
+       
+       
+       
     $("#Medicamentos").autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
@@ -62,7 +66,6 @@ y el popup que muestra el detalle del medicamento
                                         },
                                         type: "post",
                                         success: function( data ) {
-                                            alert(data);
                                             $('#boton_medicamentos').removeAttr('disabled');
                          
                         
