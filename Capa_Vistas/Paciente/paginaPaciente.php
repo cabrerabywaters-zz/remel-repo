@@ -28,7 +28,7 @@ include('/../pacienteHeader.php');
         </div>
     
     </div><!-- Fin tab historial-->
-    <div class="tab-pane active img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
+    <div class="tab-pane img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
       
         <div class="accordion" id="accordion2"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
@@ -41,7 +41,7 @@ include('/../pacienteHeader.php');
         </div>
     
     </div><!-- Fin tab Diagnostico-->
-    <div class="tab-pane active img-rounded" id="tabRecetas"><!-- tab Recetas-->
+    <div class="tab-pane img-rounded" id="tabRecetas"><!-- tab Recetas-->
       
         <div class="accordion" id="accordion2"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
@@ -54,7 +54,7 @@ include('/../pacienteHeader.php');
         </div>
     
     </div><!-- Fin tab Recetas-->
-    <div class="tab-pane active img-rounded" id="tabHistorialMedico"><!-- tab Historial Medico-->
+    <div class="tab-pane img-rounded" id="tabHistorialMedico"><!-- tab Historial Medico-->
       
         <div class="accordion" id="accordion2"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
