@@ -18,7 +18,7 @@ include('/../pacienteHeader.php');
   
     <div class="tab-content"><!-- contenido del panel 1-->
     
-    <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
+    <div class="tab-pane active img-rounded" id="tabInfoPersonal"><!-- tab Historial-->
       
         <div class="accordion" id="accordion2"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->

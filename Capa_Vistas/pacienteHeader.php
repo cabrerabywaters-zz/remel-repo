@@ -172,11 +172,13 @@ background: -ms-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,
 background: linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 "><!-- barra de navegacion -->
-                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Información Personal</a></li>
-                    <li><a href="#tabConsulta" data-toggle="tab">Mis Diagnósticos</a></li>
-                      <li><a href="#" data-toggle="tab">Mis Recetas</a></li>
-                      <li><a href="#" data-toggle="tab">Historial Médico</a>
-                      <li class="pull-right"><a href="/Medico/logout.php">Salir</a></li>
+                    <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
+                    <!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
+                         Los href hacen referencia a los tabs en paginaPaciente.php -->
+                    <li><a href="#tabDiagnosticos" data-toggle="tab">Mis Diagnósticos</a></li>
+                      <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas</a></li>
+                      <li><a href="#tabHistorialMedico" data-toggle="tab">Historial Médico</a>
+                      <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
 
                     
         </ul>
