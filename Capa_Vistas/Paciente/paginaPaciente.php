@@ -37,5 +37,22 @@ include('/../pacienteHeader.php');
         </div>
     
     </div><!-- Fin tab historial-->
+    <div class="tab-pane active img-rounded" id="tabDiagnosticos"><!-- tab Historial-->
+      
+        <div class="accordion" id="accordion2"><!-- accordion historial -->
+            <div class="accordion-group"><!-- informacion personal del paciente-->
+                 Hola
+            </div><!-- informacion personal del paciente-->
+            
+            <div class="accordion-group"><!-- informacion medica registrada-->
+              hola
+            </div><!-- informacion medica registrada-->
+        </div>
+    
+    </div><!-- Fin tab historial-->
+    </div>
+    </div>
+    </body>
+    
     </body>
 </html>
