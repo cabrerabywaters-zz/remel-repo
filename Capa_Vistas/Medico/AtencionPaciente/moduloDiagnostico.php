@@ -76,10 +76,31 @@
                         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
 
                 </div>
-                </div><!-- fin popup informacion diagnostico -->
+</div><!-- fin popup informacion diagnostico -->
+
+<!-- dialogo que contiene los medicamentos asociados a un diagnostico -->
+
+
+<div id="medicamentosAsociados">
+    
+    <strong id="institucion">
+        <?php $institucion = $_SESSION['institucionLog']; echo $institucion[1]; ?>
+    </strong>
+        <div id="recomendadosInstitucion"><!-- div con los medicamentos asociados por la institucion-->
+        </div><!-- div con los medicamentos asociados por la institucion-->
+    
+        <hr>
+    <strong id="medicamentosFavo">Mis Favoritos Asociados</strong>    
+        <div id="recomendadosFav"><!-- div con los medicamentos asociados por favoritos-->
+        </div><!-- div con los medicamentos asociados por los favoritos -->
+</div> 
+
+
+<!-- fin dialogo de "usos" -->
                 
                                     <script>
-                        $(function() {
+                            $("#medicamentosAsociados").hide();           
+                        
                             /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -123,7 +144,7 @@
         
         
      
-                        });
+                        
     
     
                         $('#boton_diagnostico').click(function(){
@@ -154,17 +175,11 @@
                            }
                           
                         });
-                    </script>
+                </script>
                 
                 <script>
-         
-                   $('.close[data-dismiss ="alert"]').click(function(){
-                      if($(this).text()== ""){
-                          $('#log_titulo').html('');
-                          $('#log').removeClass();
-                      } 
-                   });
-                        
+                    
+                    
                     $("#cancelar_modal").click(function() {
                         /**
                          * funcion que maneja el popup cuando se hace click
@@ -191,7 +206,7 @@
                         var id_consulta = $('#consulta').text();
                         var id_tipo = $('#tipo_diagnostico').val();
                         
-                        var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="protocolo pull-right" rel="tooltip"><i class="icon-th-list icon-white"></i></button></div>';
+                        var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="protocolo pull-right" rel="tooltip" onclick=""><i class="icon-th-list icon-white"></i></a></div>';
                         $('#log').removeClass().addClass('span5 img-rounded');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
@@ -205,42 +220,59 @@
                              * el siguiente popover contiene la información de los protocolos asociados 
                              * a un diagnostico especifico
                              */
-                        $('a[rel="tooltip"]')
-                            .tooltip({title:"Ver protocolos asociados"})
-                        .popover({
-                              live: true,
-                              placement: 'right',
-                              html: true,
-                              title: function(){
-                                  return '<strong>Protocolos </strong><a href="#" class="icon-remove-sign pull-right" data-dismiss="tooltip"></a>';
-                                },
-                              
-                              content: function(){ 
-                                 
-                              var perro = 2;
-                              /**
-                               * aqui se entrega el id via ajax para crear el display de los protocolos asociados a n
-                               * diagnostico
-                               */
-                               var id = $(this).parent().attr('id'); // id del diagnostic
-                               id = id[5]; // se guarda para enviar
-                               
-                               $.ajax({ 
-                                url: 'protocolosDiagnostico.php',
-                                data: {'id':id},
+                            
+                            
+                           
+                        $('a[rel="tooltip"]').tooltip({title:"Ver Medicamentos Asociados"}).unbind("click").on('click', (function(){
+                            /**
+                             *Funcion que abre el dialogo donde se encuentran los 
+                             *medicamentos asignados al diagnostico seleccionado
+                             */
+                            
+                            var nombreDiagnostico = $(this).parent().children('strong').html(); //nombre del diagnostico clickeado
+                            var idDiagnostico = $(this).parent().attr('id'); 
+                            idDiagnostico = idDiagnostico[5]; // id del diagnostico clickeado
+                            
+                            
+                            
+                            // generar pills vía ajax syncronico
+                            $.ajax({ 
+                                url: '../../../ajax/medicamentosAsociados.php',
+                                data: idDiagnostico,
                                 type: 'post',
                                 async: false,
                                 success: function(output) {
-                                    perro = output;
-                                }
-                           
+                                    $('#recomendadosInstitucion').html('');//limpio el espacio antes de mostrar
 
-                            });                       
-                               return perro;
-                            },
-                              
-                              trigger: 'click'
-                            }); // end popover
+                                    $.each(output,function(index,val){
+                                    var pill = '<span class="label label-info">'+val+'<a href="#'+index+'_'+val+'"><i class="icon-plus-sign icon-white"></i></a></span>';
+                                    $('#recomendadosInstitucion').append(pill);//agrego cada uno de los medicamentos
+                                    })//end each
+                                }//end success
+                            });//ajax
+                           
+                            // pill ejemplo
+                            var label = '<span class="label label-info">Medicamento 1 <a href=""><i class="icon-plus-sign icon-white"></i></a></span>';
+                            $('#recomendadosInstitucion').html(label);                            
+                            
+                            
+                            
+                            // se setea el dialogo
+                            $("#medicamentosAsociados")
+                                .dialog({
+                                height: 250,
+                                width: 275,
+                                title: '<small>Medicamentos asociados a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
+                                autoOpen: false,
+                                resizable: false,
+                                position: {my: "left center", at: "center", of: $('#accordion3')}
+                            });
+                            //se abre el dialogo con los medicamentos asociados sugeridos
+                            $("#medicamentosAsociados").dialog('open');
+
+                         
+                        })); // end click 
+                        
                                 
                             
 //                      
