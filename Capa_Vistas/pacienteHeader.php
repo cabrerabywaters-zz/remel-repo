@@ -157,7 +157,7 @@
                 </div>
                 
                 <div class="img-rounded span6" style=" background-color:white">
-                    <center><h2><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?>
+                    <center><h2><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno']." ". $paciente['Apellido_Materno'];?>
                             </h2>
                     </center>
                 </div>
@@ -182,6 +182,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 
                     
         </ul>
+        
 
 
 
