@@ -46,6 +46,8 @@ $etnia = $etnia[0];
 
 $idPaciente = $infoPaciente['idPaciente'];
 
+
+$diagnosticosPaciente = Paciente::R_DiagnosticoPaciente($idPaciente);
 $condicionesPaciente = Paciente::R_CondicionPaciente($idPaciente);
 $alergiasPaciente = Paciente::R_AlergiaPaciente($idPaciente);
 

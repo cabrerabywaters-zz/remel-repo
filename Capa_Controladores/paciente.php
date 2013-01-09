@@ -146,6 +146,25 @@ AND Pacientes.idPaciente=".$idPaciente."";
 	    }
 	    return $resultArray;
     }
+    
+    public static function R_DiagnosticoPaciente($idPaciente) {
+    	$queryString="SELECT Diagnosticos.Nombre, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
+                      FROM Pacientes, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos
+                      WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
+                      AND Pacientes.idPaciente = $idPaciente
+                      AND Pacientes.idPaciente = Consulta.idPaciente
+                      AND Consulta.Id_consulta = Historiales_medicos.Consulta_Id_consulta
+                      AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
+                      AND Consulta.Medicos_idMedico = Medicos.idMedico
+                      AND Medicos.Personas_RUN = Personas.RUN";
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
 }
 
 ?>
