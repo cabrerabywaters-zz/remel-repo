@@ -8,7 +8,7 @@
     <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
 
         <div class="modal-body">
-            <div class="span3"><!-- div donde estará el buscador -->     
+            <div class="span4"><!-- div donde estará el buscador -->     
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
             <form class="form-search" id="buscar_diagnostico" method="post">
@@ -17,7 +17,68 @@
                     <input type="text" class="span2 search-query" id="diagnostico" name="diagnostico">
                     <input type="submit" id="boton_diagnostico" class="btn" data-target="#myModal"  data-toggle="modal" value="Añadir" disabled>  <br>
 
-                    <script>
+               </div>
+            </div><!-- div del buscador-->
+                <div class="span5" id="log"><!-- div de diagnosticos selecciondos -->
+                <div id="log_titulo"></div>   
+                <div id="log_diagnostico" class="span2"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
+                </div>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- popup informacion diagnostico -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Debe seleccionar un Diagnóstico</h3>
+
+    </div>
+    <div class="modal-body">
+        <strong><p></p></strong>
+        <div class="span3" id="imagenDiagnostico">
+        <img src="http://agingadrenalinejunkies.com/wp-content/uploads/2011/05/istockphoto_10197494-sick-flu-bug-with-thermometer.jpg" class="img-rounded" width="100px" height="100px">
+        </div>
+        <span id="id_diagnostico" style="display:none"></span>
+
+        <p></p>
+        <select id="tipo_diagnostico">
+            <option value="0" selected="selected">Escoja un tipo...</option>
+            <?php
+            include_once('../../../Capa_Controladores/tipo.php');
+
+            $tipos_diagnosticos = Tipo::Seleccionar('');
+
+            foreach ($tipos_diagnosticos as $tipo) {
+
+                echo'<option value="'.$tipo['idTipo'].'">' . $tipo['Nombre'] . '</option>';
+            }
+            ?>
+        <select>
+            Patología notificada como GES?
+            <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" class="btn">Si</button>
+                <button type="button" class="btn">No</button>
+            </div>
+            <p></p>
+
+
+                <p>Comentario: </p>
+                <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%"></textarea></center>
+                <span id="mensaje"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info"  id="guardar_diagnostico">Diagnosticar</a>
+                        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
+
+                </div>
+                </div><!-- fin popup informacion diagnostico -->
+                
+                                    <script>
                         $(function() {
                             /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -94,71 +155,9 @@
                           
                         });
                     </script>
-
-
-
-
-                </div>
-            </div><!-- div del buscador-->
-                <div class="span3" id="log"><!-- div de diagnosticos selecciondos -->
-                <div id="log_titulo"></div>   
-                <div id="log_diagnostico" class="span2"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
-                </div>
-            </form>
-
-
-
-        </div>
-    </div>
-</div>
-
-<!-- popup informacion diagnostico -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Debe seleccionar un Diagnóstico</h3>
-
-    </div>
-    <div class="modal-body">
-        <strong><p></p></strong>
-        <div class="span3" id="imagenDiagnostico">
-        <img src="http://agingadrenalinejunkies.com/wp-content/uploads/2011/05/istockphoto_10197494-sick-flu-bug-with-thermometer.jpg" class="img-rounded" width="100px" height="100px">
-        </div>
-        <span id="id_diagnostico" style="display:none"></span>
-
-        <p></p>
-        <select id="tipo_diagnostico">
-            <option value="0" selected="selected">Escoja un tipo...</option>
-            <?php
-            include_once('../../../Capa_Controladores/tipo.php');
-
-            $tipos_diagnosticos = Tipo::Seleccionar('');
-
-            foreach ($tipos_diagnosticos as $tipo) {
-
-                echo'<option value="'.$tipo['idTipo'].'">' . $tipo['Nombre'] . '</option>';
-            }
-            ?>
-        <select>
-            Patología notificada como GES?
-            <div class="btn-group" data-toggle="buttons-radio">
-                <button type="button" class="btn">Si</button>
-                <button type="button" class="btn">No</button>
-            </div>
-            <p></p>
-
-
-                <p>Comentario: </p>
-                <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%"></textarea></center>
-                <span id="mensaje"></span>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-info"  id="guardar_diagnostico">Diagnosticar</a>
-                        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
-
-                </div>
-                </div><!-- fin popup informacion diagnostico -->
+                
                 <script>
+         
                    $('.close[data-dismiss ="alert"]').click(function(){
                       if($(this).text()== ""){
                           $('#log_titulo').html('');
@@ -192,8 +191,8 @@
                         var id_consulta = $('#consulta').text();
                         var id_tipo = $('#tipo_diagnostico').val();
                         
-                        var pill = '<div class="alert alert-info" id="id_diagnostico'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong></div>';
-                        $('#log').removeClass().addClass('span3 modal-body img-rounded');
+                        var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="protocolo pull-right" rel="tooltip"><i class="icon-th-list icon-white"></i></button></div>';
+                        $('#log').removeClass().addClass('span5 img-rounded');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
                         $('#myModal').modal('hide');
@@ -201,7 +200,49 @@
                         $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
                         $('#comentario_diagnostico').val(''); // se borra el comentario
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
-//                      
+                            
+                            /**
+                             * el siguiente popover contiene la información de los protocolos asociados 
+                             * a un diagnostico especifico
+                             */
+                        $('a[rel="tooltip"]')
+                            .tooltip({title:"Ver protocolos asociados"})
+                        .popover({
+                              live: true,
+                              placement: 'right',
+                              html: true,
+                              title: function(){
+                                  return '<strong>Protocolos </strong><a href="#" class="icon-remove-sign pull-right" data-dismiss="tooltip"></a>';
+                                },
+                              
+                              content: function(){ 
+                                 
+                              var perro = 2;
+                              /**
+                               * aqui se entrega el id via ajax para crear el display de los protocolos asociados a n
+                               * diagnostico
+                               */
+                               var id = $(this).parent().attr('id'); // id del diagnostic
+                               id = id[5]; // se guarda para enviar
+                               
+                               $.ajax({ 
+                                url: 'protocolosDiagnostico.php',
+                                data: {'id':id},
+                                type: 'post',
+                                async: false,
+                                success: function(output) {
+                                    perro = output;
+                                }
+                           
+
+                            });                       
+                               return perro;
+                            },
+                              
+                              trigger: 'click'
+                            }); // end popover
+                                
+                            
 //                      
 //                      
 //                      la siguiente función guarda en la bbdd un diagnostico
@@ -229,7 +270,7 @@
 //                                }
 //                            }
 //                        });
-                    });
+                    });// end click
 				
     
             
