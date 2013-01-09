@@ -11,7 +11,7 @@ include('/../pacienteHeader.php');
     
     <div class="tab-pane active img-rounded" id="tabInfoPersonal"><!-- tab info personal-->
       
-        <div class="accordion" id="accordionInfo"><!-- accordion info personal -->
+        <div class="accordion" id="accordion1"><!-- accordion info personal -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
                  <?php 
 		  // muestra los detalles de paciente
@@ -30,7 +30,7 @@ include('/../pacienteHeader.php');
     </div><!-- Fin tab info personal-->
     <div class="tab-pane img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
       
-        <div class="accordion" id="accordionDiagnostico"><!-- accordion historial -->
+        <div class="accordion" id="accordion2"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
                  <?php include("diagnosticosPaciente.php"); ?>
             </div><!-- informacion personal del paciente-->
@@ -40,7 +40,7 @@ include('/../pacienteHeader.php');
     </div><!-- Fin tab Diagnostico-->
     <div class="tab-pane img-rounded" id="tabRecetas"><!-- tab Recetas-->
       
-        <div class="accordion" id="accordion2"><!-- accordion historial -->
+        <div class="accordion" id="accordion3"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
                  Hola
             </div><!-- informacion personal del paciente-->
@@ -53,7 +53,7 @@ include('/../pacienteHeader.php');
     </div><!-- Fin tab Recetas-->
     <div class="tab-pane img-rounded" id="tabHistorialMedico"><!-- tab Historial Medico-->
       
-        <div class="accordion" id="accordion2"><!-- accordion historial -->
+        <div class="accordion" id="accordion3"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
                  Hola
             </div><!-- informacion personal del paciente-->
