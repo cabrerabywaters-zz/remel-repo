@@ -5,16 +5,7 @@ iniciarCookie();
 verificarIP();
 include('/../pacienteHeader.php');
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head> 
     <body>
-        
-        
-  
   
     <div class="tab-content"><!-- contenido del panel 1-->
     
@@ -37,7 +28,7 @@ include('/../pacienteHeader.php');
         </div>
     
     </div><!-- Fin tab historial-->
-    <div class="tab-pane active img-rounded" id="tabDiagnosticos"><!-- tab Historial-->
+    <div class="tab-pane active img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
       
         <div class="accordion" id="accordion2"><!-- accordion historial -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
@@ -49,10 +40,35 @@ include('/../pacienteHeader.php');
             </div><!-- informacion medica registrada-->
         </div>
     
-    </div><!-- Fin tab historial-->
-    </div>
-    </div>
-    </body>
+    </div><!-- Fin tab Diagnostico-->
+    <div class="tab-pane active img-rounded" id="tabRecetas"><!-- tab Recetas-->
+      
+        <div class="accordion" id="accordion2"><!-- accordion historial -->
+            <div class="accordion-group"><!-- informacion personal del paciente-->
+                 Hola
+            </div><!-- informacion personal del paciente-->
+            
+            <div class="accordion-group"><!-- informacion medica registrada-->
+              hola
+            </div><!-- informacion medica registrada-->
+        </div>
+    
+    </div><!-- Fin tab Recetas-->
+    <div class="tab-pane active img-rounded" id="tabHistorialMedico"><!-- tab Historial Medico-->
+      
+        <div class="accordion" id="accordion2"><!-- accordion historial -->
+            <div class="accordion-group"><!-- informacion personal del paciente-->
+                 Hola
+            </div><!-- informacion personal del paciente-->
+            
+            <div class="accordion-group"><!-- informacion medica registrada-->
+              hola
+            </div><!-- informacion medica registrada-->
+        </div>
+    
+    </div><!-- Fin tab Historial Medico-->
+</div><!--fin div contenido panel-->
+</div><!-- fin contenedor general -->
     
     </body>
 </html>
