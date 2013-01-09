@@ -82,7 +82,7 @@ echo'
                 </tbody>
             </table>
             </tr></td><tfoot><tr><td> 
-  </div></table>';
+  </td></tr></tfoot></table></div></div>';
   } 
 
           mostrarAlergias($alergiasPaciente);
