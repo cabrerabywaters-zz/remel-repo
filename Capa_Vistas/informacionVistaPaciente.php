@@ -11,8 +11,8 @@ include(dirname(__FILE__) . "/../Capa_Controladores/region.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/etnia.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/prevision.php");
 
-$RUTPaciente = $_SESSION['RUTPaciente'];
 
+$RUTPaciente = $_SESSION['RUT'];
 //son diferentes informaciones la del paciente y la persona, acorde a la BDD
 $infoPaciente = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'");
 $infoPersona = Persona::Seleccionar("WHERE RUN = '$RUTPaciente'");
