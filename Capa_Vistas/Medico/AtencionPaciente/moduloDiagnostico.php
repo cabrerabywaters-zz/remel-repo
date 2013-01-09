@@ -79,8 +79,6 @@
 </div><!-- fin popup informacion diagnostico -->
 
 <!-- dialogo que contiene los medicamentos asociados a un diagnostico -->
-
-
 <div id="medicamentosAsociados">
     
     <strong id="institucion">
@@ -152,10 +150,11 @@
                          * funcion que envía el id del diagnostico y retorna el json 
                          * con todos los atributos para rellenar el popup
                          **/
+                           if($('#id_diagnostico').html()==""){
+                               $('#guardar_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                           }
                            
-                           if( $("#diagnostico").val() == "" ){ }
-                           else{
-                            var postData = $("#buscar_diagnostico").serialize();
+                           var postData = $("#buscar_diagnostico").serialize();
                             $.ajax({ 
                                 url: '../../../ajax/diagnosticarPaciente.php',
                                 data: postData,
@@ -168,12 +167,11 @@
                                     $('#imagenDiagnostico').html('<img src="'+data['Foto']+'" class="img-rounded" width="100px" height="100px">');//foto de la enfermedad
                                     //resto de la informacion que se busca desplegar en el popup
                                     
-                                }
-                           
+                                }//end success
+                                
 
                             });// end ajax
-                           }
-                          
+                              
                         });
                 </script>
                 
@@ -186,11 +184,11 @@
                          * en el boton canelar
                          * 
                          */
-                        $('#myModalLabel').html('Debe Escojer un Diagnóstico');
+                        $('#myModalLabel').html('Debe Escojer un Diagnóstico'); // cambio el titulo
                         $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
                         $('select>option:eq(0)').attr('selected', true);
-                        $('#diagnostico').val('');
-                        $('#comentario_diagnostico').val('');
+                        $('#diagnostico').val(''); // borro el buscador
+                        $('#comentario_diagnostico').val(''); //borro el comentario
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                     });
                     
@@ -260,8 +258,6 @@
                             // se setea el dialogo
                             $("#medicamentosAsociados")
                                 .dialog({
-                                height: 250,
-                                width: 275,
                                 title: '<small>Medicamentos asociados a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
                                 autoOpen: false,
                                 resizable: false,
