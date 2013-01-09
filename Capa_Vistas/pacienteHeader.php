@@ -152,17 +152,18 @@
     <div class="container-fluid"><!-- contenedor general -->
             
             <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
-                <div class="span3 img-rounded" style="background-color: whitesmoke">
+                <div class="span3 img-rounded" style="background-color: whitesmoke"><!-- despliega la foto del paciente -->
                     <img class="img-rounded pull-left" src="<?php echo $paciente['Foto']; ?>" style="width: 140px; height: 140px;">
-                </div>
+                </div><!-- cierre del despliege de la foto -->
                 
-                <div class="img-rounded span6" style=" background-color:white">
+                <div class="img-rounded span6" style=" background-color:white"><!-- despliega el nombre del usuario -->
                     <center><h2><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno']." ". $paciente['Apellido_Materno'];?>
                             </h2>
                     </center>
-                </div>
-            </div>
-    </div>
+                </div><!-- cierre despliege del nombre del usuario -->
+            </div><!-- cierre div superior -->
+ 
+    <!-- stilos de diseño de la bara de navegacion y la pagina -->
     <ul class="nav nav-tabs img-rounded" style="background: rgb(242,245,246); /* Old browsers */
 background: -moz-linear-gradient(45deg,  rgba(242,245,246,1) 0%, rgba(227,234,237,1) 37%, rgba(200,215,220,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(242,245,246,1)), color-stop(37%,rgba(227,234,237,1)), color-stop(100%,rgba(200,215,220,1))); /* Chrome,Safari4+ */
