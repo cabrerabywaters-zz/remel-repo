@@ -61,6 +61,14 @@ class Uso  {
         
     }
 
+    public static function SeleccionarPorIdDiagnostico($id){
+	$rows = array();
+	$queryString = "SELECT * FROM Uso, Medicamentos WHERE Medicamento_idMedicamento = idMedicamento AND Enfermedad_idEnfermedad = '$id';";
+	$query = CallQuery($queryString);
+	while($row = $query->fetch_assoc()) $rows[] = $row;
+
+	return $rows;
+    }
 }
 
 ?>
