@@ -40,9 +40,6 @@
     </div>
     <div class="modal-body">
         <strong><p></p></strong>
-        <div class="span3" id="imagenDiagnostico">
-        <img src="http://agingadrenalinejunkies.com/wp-content/uploads/2011/05/istockphoto_10197494-sick-flu-bug-with-thermometer.jpg" class="img-rounded" width="100px" height="100px">
-        </div>
         <span id="id_diagnostico" style="display:none"></span>
 
         <p></p>
@@ -82,13 +79,15 @@
 <div id="medicamentosAsociados">
     
     <strong id="institucion">
-        <?php $institucion = $_SESSION['institucionLog']; echo $institucion[1]; ?>
+        <?php $institucion = $_SESSION['institucionLog']; if($institucion[1]!="Consulta Particular"){echo $institucion[1];}else{echo 'Mis Favoritos asociados';} ?>
     </strong>
         <div id="recomendadosInstitucion"><!-- div con los medicamentos asociados por la institucion-->
         </div><!-- div con los medicamentos asociados por la institucion-->
     
         <hr>
-    <strong id="medicamentosFavo">Mis Favoritos Asociados</strong>    
+    <strong id="medicamentosFavo">
+        <?php if($institucion[1]!="Consulta Particular"){echo "Mis Favoritos Asociados";}?>
+    </strong>    
         <div id="recomendadosFav"><!-- div con los medicamentos asociados por favoritos-->
         </div><!-- div con los medicamentos asociados por los favoritos -->
 </div> 
@@ -168,7 +167,6 @@
                                                                                              
                                     $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
                                     $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
-                                    $('#imagenDiagnostico').html('<img src="'+data['Foto']+'" class="img-rounded" width="100px" height="100px">');//foto de la enfermedad
                                     //resto de la informacion que se busca desplegar en el popup
                                     
                                 }//end success
@@ -225,7 +223,8 @@
                             
                             
                            
-                        $('a[rel="tooltip"]').tooltip({title:"Ver Medicamentos Asociados"}).unbind("click").on('click', (function(){
+                        $('a[rel="tooltip"]').tooltip({title:"Ver Medicamentos Asociados"}).unbind("click")
+                        .on('click', (function(){
                             /**
                              *Funcion que abre el dialogo donde se encuentran los 
                              *medicamentos asignados al diagnostico seleccionado
@@ -244,24 +243,29 @@
                                 type: 'post',
                                 async: false,
                                 success: function(output) {
+                                    
                                     $('#recomendadosInstitucion').html('');//limpio el espacio antes de mostrar
-
-                                    $.each(output,function(index,val){
-                                    var pill = '<span class="label label-info">'+val+'<a href="#'+index+'_'+val+'"><i class="icon-plus-sign icon-white"></i></a></span>';
-                                    $('#recomendadosInstitucion').append(pill);//agrego cada uno de los medicamentos
+                                    output = $.parseJSON(output);
+                                    $.each(output,function(i,value){
+                                        $.each(value,function(indice,valor){
+                                            if(indice == "Nombre_Comercial"){
+                                            var pill = '<span class="label label-info">'+valor+' <a href="#'+valor+'"> <i class="icon-plus-sign icon-white"></i></a></span>';
+                                            $('#recomendadosInstitucion').append(pill);//agrego cada uno de los medicamentos
+                                            }//end if   
+                                        })//end each
                                     })//end each
                                 }//end success
                             });//ajax
                            
                             // pill ejemplo
-                            var label = '<span class="label label-info">Medicamento 1 <a href=""><i class="icon-plus-sign icon-white"></i></a></span>';
-                            $('#recomendadosInstitucion').html(label);                            
+                                                      
                             
                             
                             
                             // se setea el dialogo
                             $("#medicamentosAsociados")
                                 .dialog({
+                                width: 200, 
                                 title: '<small>Medicamentos asociados a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
                                 autoOpen: false,
                                 resizable: false,
