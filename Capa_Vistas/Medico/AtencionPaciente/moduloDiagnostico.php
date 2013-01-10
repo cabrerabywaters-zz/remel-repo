@@ -72,7 +72,7 @@
                 <span id="mensaje"></span>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-info"  id="guardar_diagnostico">Diagnosticar</a>
+                    <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</a>
                         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
 
                 </div>
@@ -97,7 +97,10 @@
 <!-- fin dialogo de "usos" -->
                 
                                     <script>
-                            $("#medicamentosAsociados").hide();           
+                            $("#medicamentosAsociados").hide();//escondo el dialogo
+                            if($('#id_diagnostico').html()==""){
+                                $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                            }
                         
                             /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -137,6 +140,9 @@
                                 },
                                 close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                                },
+                                select: function(){
+                                    $('#guardar_diagnostico').removeAttr('disabled');
                                 }
                             });
         
@@ -150,9 +156,7 @@
                          * funcion que envía el id del diagnostico y retorna el json 
                          * con todos los atributos para rellenar el popup
                          **/
-                           if($('#id_diagnostico').html()==""){
-                               $('#guardar_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
-                           }
+                           
                            
                            var postData = $("#buscar_diagnostico").serialize();
                             $.ajax({ 
@@ -161,7 +165,7 @@
                                 type: 'post',
                                 success: function(output) {
                                     var data = jQuery.parseJSON(output);
-                                     // se hace enable al boton_diagnostico                                                  
+                                                                                             
                                     $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
                                     $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
                                     $('#imagenDiagnostico').html('<img src="'+data['Foto']+'" class="img-rounded" width="100px" height="100px">');//foto de la enfermedad
@@ -178,7 +182,7 @@
                 <script>
                     
                     
-                    $("#cancelar_modal").click(function() {
+                    $("#cancelar_modal").unbind('click').click(function() {
                         /**
                          * funcion que maneja el popup cuando se hace click
                          * en el boton canelar
