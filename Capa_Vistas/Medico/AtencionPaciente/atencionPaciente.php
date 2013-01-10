@@ -53,6 +53,11 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     
 
   </div><!-- fin contenido del panel-->
+  
+  <!-- barra de favoritos -->
+  <?php include('../favBar.php');?>
+  <!-- barra de favoritos -->
+  
 </div><!--fin div contenido -->
 </div><!-- fin contenedor general -->
         
@@ -60,7 +65,14 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       
         
         
-        
+<script>
+    $('#favBar').hide(); //para que la barra de favoritos se no se muestre al inicio
+$('#toggleFav').click(function(){
+    $('.tab-content').toggleClass('span10'); // se acorta el contenido
+    $('#favBar').slideToggle();
+
+})
+</script>        
        
         
         
