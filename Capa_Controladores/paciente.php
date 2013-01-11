@@ -1,13 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Paciente {
 
     static $nombreTabla = "Pacientes";
     static $nombreIdTabla = "idPaciente";
-    
-    
+
     /**
      * Insertar
      * 
@@ -15,13 +14,13 @@ class Paciente {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-                                array('Fecha_Ultima_Actualizacion',$_POST['fecha_ultima_actualizacion']),
-                                array('Nacionalidad',$_POST['nacionalidad']),
-                                array('Peso',$_POST['peso']),
-                                array('Etnias',$_POST['idEtnias']),                  
-                                array('altura',$_POST['altura'])                  
-           );
+        $datosCreacion = array(
+            array('Fecha_Ultima_Actualizacion', $_POST['fecha_ultima_actualizacion']),
+            array('Nacionalidad', $_POST['nacionalidad']),
+            array('Peso', $_POST['peso']),
+            array('Etnias', $_POST['idEtnias']),
+            array('altura', $_POST['altura'])
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -37,7 +36,7 @@ class Paciente {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -51,32 +50,32 @@ class Paciente {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-								'idPaciente',
-								'Fecha_Ultima_Actualizacion',
-                                'Nacionalidad',
-                                'Peso',
-                                'Etnias_idEtnias',
-								'altura'
-									);
+        $atributosASeleccionar = array(
+            'idPaciente',
+            'Fecha_Ultima_Actualizacion',
+            'Nacionalidad',
+            'Peso',
+            'Etnias_idEtnias',
+            'altura'
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
-	
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -85,70 +84,74 @@ class Paciente {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_paciente'];
-    	$datosActualizacion = array(
-                                array('Nacionalidad',$_POST['nacionalidad']),
-                                array('Peso',$_POST['peso']),
-                                array('altura',$_POST['altura'])  
-				);
+        $id = $_POST['id_paciente'];
+        $datosActualizacion = array(
+            array('Nacionalidad', $_POST['nacionalidad']),
+            array('Peso', $_POST['peso']),
+            array('altura', $_POST['altura'])
+        );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-    
+
     public static function EncontrarPaciente($rut) {
-	$queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
+        $queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
         $res = CallQuery($queryString);
-        if($res->num_rows == 1){
-        	return $res->fetch_row();
+        if ($res->num_rows == 1) {
+            return $res->fetch_row();
         }
-	else return false;
+        else
+            return false;
     }
 
     public static function EncontrarPacienteAssoc($rut) {
         $queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
         $res = CallQuery($queryString);
-        if($res->num_rows == 1){
-                return $res->fetch_assoc();
+        if ($res->num_rows == 1) {
+            return $res->fetch_assoc();
         }
-        else return false;
+        else
+            return false;
     }
-	 public static function R_AlergiaPaciente($idPaciente) {
-    	$queryString="SELECT Descripcion
+
+    public static function R_AlergiaPaciente($idPaciente) {
+        $queryString = "SELECT Descripcion
 FROM Pacientes, Alergia_has_Paciente, Alergias
 WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
 AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
-AND Pacientes.idPaciente =".$idPaciente."";
+AND Pacientes.idPaciente =" . $idPaciente . "";
 
-      
+
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-	public static function R_CondicionPaciente($idPaciente) {
-    	$queryString="SELECT Nombre
+
+    public static function R_CondicionPaciente($idPaciente) {
+        $queryString = "SELECT Nombre
 FROM Pacientes, Paciente_has_Condiciones, Condiciones
 WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
 AND Condiciones.idCondiciones = Condiciones_idcondiciones
-AND Pacientes.idPaciente=".$idPaciente."";
+AND Pacientes.idPaciente=" . $idPaciente . "";
 
-      
+
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     public static function R_DiagnosticoPaciente($idPaciente) {
-    	$queryString="SELECT Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
+        $queryString = "SELECT Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
 						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos
 						WHERE Pacientes.idPaciente = $idPaciente
 						AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
@@ -156,15 +159,34 @@ AND Pacientes.idPaciente=".$idPaciente."";
 						AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
 						AND Consulta.Medicos_idMedico = Medicos.idMedico
 						AND Medicos.Personas_RUN = Personas.RUN";
-					  
+
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
+
+    public static function R_RecetasPaciente($idPaciente) {
+
+        $queryString = "SELECT 
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes
+			WHERE Pacientes.idPaciente = $idPaciente
+                        AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
+                        AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
+                        AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
+                        AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento
+                        ";
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
+
 }
 
 ?>
