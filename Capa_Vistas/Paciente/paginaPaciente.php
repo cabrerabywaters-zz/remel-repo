@@ -1,9 +1,9 @@
 <?php
-include '/../../ajax/sessionCheck.php';
+include './../../ajax/sessionCheck.php';
 
 iniciarCookie();
 verificarIP();
-include('/../pacienteHeader.php');
+include('./../pacienteHeader.php');
 ?>
     <body>
   
@@ -29,44 +29,40 @@ include('/../pacienteHeader.php');
         </div><!-- fin acordion info personal-->
     
     </div><!-- Fin tab info personal-->
-    <div class="tab-pane img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
-      
-<div class="accordion" id="accordion2"><!-- accordion historial -->
-            <div class="accordion-group"><!-- informacion personal del paciente-->
-                <?php include("diagnosticosPaciente.php"); ?>
-            </div><!-- informacion personal del paciente-->
-        </div>
-                 
-    
+   			 <div class="tab-pane" id="tabDiagnosticos"><!-- tab Diagnostico-->
+                <?php  include("diagnosticosPaciente.php"); ?>
+			</div><!-- fin tab Diagnostico -->  
     </div><!-- Fin tab Diagnostico-->
-    <div class="tab-pane img-rounded" id="tabRecetas"><!-- tab Recetas-->
+
+    <div class="tab-pane active img-rounded" id="tabHistorialMedico"><!-- tab info personal-->
       
-        <div class="accordion" id="accordion3"><!-- accordion historial -->
+        <div class="accordion" id="accordion3"><!-- accordion info personal -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
-                 Hola
+             hola
             </div><!-- informacion personal del paciente-->
             
             <div class="accordion-group"><!-- informacion medica registrada-->
-              hola
+ 			 hola
             </div><!-- informacion medica registrada-->
-        </div>
+        </div><!-- fin acordion info personal-->
     
+    </div><!-- Fin tab info personal-->
     </div><!-- Fin tab Recetas-->
-    <div class="tab-pane img-rounded" id="tabHistorialMedico"><!-- tab Historial Medico-->
+       <div class="tab-pane active img-rounded" id="tabRecetas"><!-- tab info personal-->
       
-        <div class="accordion" id="accordion4"><!-- accordion historial -->
+        <div class="accordion" id="accordion4"><!-- accordion info personal -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
-                 Hola
+               hola
             </div><!-- informacion personal del paciente-->
             
             <div class="accordion-group"><!-- informacion medica registrada-->
-              hola
+               hola
             </div><!-- informacion medica registrada-->
-        </div>
+        </div><!-- fin acordion info personal-->
     
-    </div><!-- Fin tab Historial Medico-->
-</div><!--fin div contenido panel-->
-</div><!-- fin contenedor general -->
+    </div><!-- Fin tab info personal-->
+ <!-- </div><!--fin div contenido panel-->
+ <!-- </div><!-- fin contenedor general -->
     
     </body>
 </html>

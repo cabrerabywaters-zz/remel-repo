@@ -1,5 +1,5 @@
 
-<a class="active btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapsethree">
+<a class=" btn btn-large btn-block disable"  href="#collapsethree" >
     Mis Diagnosticos
 
 </a>
@@ -12,11 +12,11 @@
   <table>
                 <tr><td>
    <table class="table table-striped">
-
+	<thead>
     <tr>
-    <td>Diagnostico</td>
-    <td>Fecha</td>
-    <td>Nombre del Médico</td>
+    <th>Diagnostico</td>
+    <th>Fecha</td>
+    <th>Nombre del Médico</td></tr></thead>
     ';
     foreach ($diagnosticosPaciente as $datos => $dato) {
         echo "<tr>";
