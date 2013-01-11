@@ -1,7 +1,7 @@
 <?php
-
 session_start();
-if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
+if (!empty($_SESSION))
+    header("Location: ajax/comprobadorDoctor.php");
 ?>
 
 <!DOCTYPE html>
@@ -25,18 +25,18 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
             }
 
             .form-signin {
-                
+
                 font-style:italic;
 
-                 font-weight:bold;
+                font-weight:bold;
 
-                 font-size:2em;
+                font-size:2em;
 
-                 font-color:#ffffff;
+                font-color:#ffffff;
 
-               font-family: 'Courier New', Courier, monospace;
+                font-family: 'Courier New', Courier, monospace;
 
-               
+
                 max-width: 300px;
                 padding: 19px 29px 29px;
                 margin: 0 auto 20px;
@@ -67,7 +67,7 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
 
 
         </style>
-        
+
 
 
     </head>
@@ -78,25 +78,33 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
 
             <form class="form-signin" id="usuario" method="post" action="javascript:enviar()">
                 <fieldset>
-                <h2 class="form-signin-heading"><center>REMEL</center>  </h2>
-                <input type="text" class="input-block-level" placeholder="Rut" id="rut" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" name="rutUsuario">
-                <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" name="passUsuario">
-                <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Recordarme
-                </label>
-             <center>   <button class="btn btn-large" type="submit"><strong>Ingresar</strong></button></center>
-                <p><span id="mensaje"></span></p>
+                    <h2 class="form-signin-heading"><center>REMEL</center>  </h2>
+                    <input type="text" class="input-block-level" placeholder="Rut" id="rut" onfocus="disableIngresar()" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" name="rutUsuario">
+                    <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" name="passUsuario">
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"> Recordarme
+                    </label>
+                    <center>   <button class="btn btn-large" disabled="disabled" id="ingresar" type="submit"><strong>Ingresar</strong></button></center>
+                    <p><span id="mensaje"></span></p>
                 </fieldset>
             </form>
-            
 
-            
+
+
             <script type="text/javascript">
                 //validacion del rut ingresado
+                function disableIngresar(){
+                    
+                    $('#ingresar').attr('disabled','disabled');
+
+                    
+                }
+                
+                
                 function verificarRut( Objeto )
                 {
                     var tmpstr = "";
-                     $('#mensaje').html("");
+                    $('#mensaje').html("");
                     var intlargo = Objeto.value
                     if (intlargo.length> 0)
                     {
@@ -104,7 +112,7 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
                         largo = crut.length;
                         if ( largo <2 )
                         {
-                             $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
+                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
                             Objeto.focus()
                             return false;
                         }
@@ -157,26 +165,27 @@ if(!empty($_SESSION)) header("Location: ajax/comprobadorDoctor.php");
                             return false;
                         }
                         //alert('El Rut Ingresado es Correcto!')
+                        $('#ingresar').removeAttr('disabled');
                         return true;
                     }
                 }                       
                 $("usuario").validator();
 		
-		function enviar(){
-			var postData = $("#usuario").serialize();
-			$.ajax({ url: 'ajax/verificarPassUsuario.php',
-         			data: postData,
-         			type: 'post',
-         			success: function(output) {
-	               				if(output = '1') {
-							window.location.href = "ajax/comprobadorDoctor.php";
-						}
-						else{
-							$('#mensaje').html("<span style='color: red'>Nombre de Usuario o Constraseña Incorrecto </span>");
-						}
-                  			}
-				});
-		}
+                function enviar(){
+                    var postData = $("#usuario").serialize();
+                    $.ajax({ url: 'ajax/verificarPassUsuario.php',
+                        data: postData,
+                        type: 'post',
+                        success: function(output) {
+                            if(output = '1') {
+                                window.location.href = "ajax/comprobadorDoctor.php";
+                            }
+                            else{
+                                $('#mensaje').html("<span style='color: red'>Nombre de Usuario o Constraseña Incorrecto </span>");
+                            }
+                        }
+                    });
+                }
 		    
             </script>
 

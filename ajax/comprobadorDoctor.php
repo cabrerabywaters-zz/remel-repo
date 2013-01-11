@@ -26,7 +26,13 @@ if($_SESSION['idMedicoLog'] != null){
     
     
     }
-else $page = "../Capa_Vistas/Paciente/paginaPaciente.php";
+elseif($_SESSION['idPacienteLog'] != null){
+    $page = "../Capa_Vistas/Paciente/paginaPaciente.php";
+
+}
+else{
+    $page = "../Capa_Vistas/Medico/logout.php";
+}
 
 header("Location: http://$host$uri/$page");
 
