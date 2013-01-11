@@ -78,24 +78,30 @@
 <!-- dialogo que contiene los medicamentos asociados a un diagnostico -->
 <div id="medicamentosAsociados">
     
-    <strong id="institucion">
-        <?php $institucion = $_SESSION['institucionLog']; if($institucion[1]!="Consulta Particular"){echo $institucion[1];}else{echo 'Mis Favoritos asociados';} ?>
-    </strong>
-        <div id="recomendadosInstitucion"><!-- div con los medicamentos asociados por la institucion-->
-        </div><!-- div con los medicamentos asociados por la institucion-->
     
-        <hr>
-    <strong id="medicamentosFavo">
-        <?php if($institucion[1]!="Consulta Particular"){echo "Mis Favoritos Asociados";}?>
-    </strong>    
-        <div id="recomendadosFav"><!-- div con los medicamentos asociados por favoritos-->
+        <?php $institucion = $_SESSION['institucionLog']; 
+            if($institucion[1]!="Consulta Particular"){
+                echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i>'.$institucion[1].'</button>';
+            }
+            else{
+                echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i>Mis Favoritos</button>';} ?>
+     
+    
+        <div id="recomendadosInstitucion" class="collapse in"><!-- div con los medicamentos asociados por la institucion-->
+        </div><!-- div con los medicamentos asociados por la institucion-->
+       
+    
+        <button id='medicamentosFavo' type='button' class='btn btn-danger btn-block' data-toggle='collapse' data-target='#recomendadosFav'><i class="icon-white icon-circle-arrow-up"></i>Mis Favoritos</button>
+        
+        <div id="recomendadosFav" class="collapse in"><!-- div con los medicamentos asociados por favoritos-->
+        <span class="label label-info">Medicamento fav <a href="#valor"> <i class="icon-plus-sign icon-white"></i></a></span>
         </div><!-- div con los medicamentos asociados por los favoritos -->
 </div> 
 
 
 <!-- fin dialogo de "usos" -->
                 
-                                    <script>
+<script>
                             $("#medicamentosAsociados").hide();//escondo el dialogo
                             if($('#id_diagnostico').html()==""){
                                 $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
@@ -153,7 +159,7 @@
                         $('#boton_diagnostico').click(function(){
                         /**
                          * funcion que envía el id del diagnostico y retorna el json 
-                         * con todos los atributos para rellenar el popup
+                         * con todos los atributos para rellenar el popup del diagnostico
                          **/
                            
                            
@@ -175,14 +181,14 @@
                             });// end ajax
                               
                         });
-                </script>
+</script>
                 
-                <script>
+<script>
                     
                     
                     $("#cancelar_modal").unbind('click').click(function() {
                         /**
-                         * funcion que maneja el popup cuando se hace click
+                         * funcion que maneja el popup de diagnostico cuando se hace click
                          * en el boton canelar
                          * 
                          */
@@ -216,17 +222,11 @@
                         $('#comentario_diagnostico').val(''); // se borra el comentario
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                             
-                            /**
-                             * el siguiente popover contiene la información de los protocolos asociados 
-                             * a un diagnostico especifico
-                             */
                             
-                            
-                           
-                        $('a[rel="tooltip"]').tooltip({title:"Ver Medicamentos Asociados"}).unbind("click")
+                     $('a[rel="tooltip"]').tooltip({title:"Ver Medicamentos Asociados"}).unbind("click")
                         .on('click', (function(){
                             /**
-                             *Funcion que abre el dialogo donde se encuentran los 
+                             *Funcion que abre el widget donde se encuentran los 
                              *medicamentos asignados al diagnostico seleccionado
                              */
                             
@@ -257,27 +257,35 @@
                                 }//end success
                             });//ajax
                            
-                            // pill ejemplo
-                                                      
-                            
-                            
-                            
                             // se setea el dialogo
                             $("#medicamentosAsociados")
                                 .dialog({
                                 width: 200, 
-                                title: '<small>Medicamentos asociados a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
+                                title: '<small>Fármacos asociados a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
                                 autoOpen: false,
                                 resizable: false,
-                                position: {my: "left center", at: "center", of: $('#accordion3')}
+                                position: {my: "left center", at: "right", of: $('#log_diagnostico')}
                             });
                             //se abre el dialogo con los medicamentos asociados sugeridos
                             $("#medicamentosAsociados").dialog('open');
 
                          
                         })); // end click 
-                        
-                                
+                 
+                /**
+                * comportamiento de los paneles colapsables
+                * @author: Cesar González
+                */ 
+
+               $('#recomendadosInstitucion').on('hide',function(){
+                   $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");})
+               $('#recomendadosInstitucion').on('show',function(){
+                   $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");})
+               $('#recomendadosFav').on('hide',function(){
+                   $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");})
+               $('#recomendadosFav').on('show',function(){
+                   $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");})
+
                             
 //                      
 //                      
@@ -310,4 +318,4 @@
 				
     
             
-                </script>
+</script>
