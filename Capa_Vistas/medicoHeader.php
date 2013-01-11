@@ -320,7 +320,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 "><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
                     <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
-                      <li><a href="#" data-toggle="tab">Favoritos</a></li>
+                      <li><a href="#" id="toggleFav"><i class="icon-star"></i>Favoritos</a></li>
                       <li><a href="#" data-toggle="tab">Imprimir Receta</a></li>
                     <li class="dropdown pull-right">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">

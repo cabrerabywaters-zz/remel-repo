@@ -5,26 +5,41 @@
 </a>
 <div class="accordion-inner">
     <?php
-    var_dump($diagnosticosPaciente);
-
     echo'
   <div class="row">
-  <div class="span5" id="diagnosticos">
+
+  <center> <div style="width: 50%; ;">
   <table>
                 <tr><td>
-   <table class="table table-hover">';
+   <table class="table table-striped">
 
+    <tr>
+    <td>Diagnostico</td>
+    <td>Fecha</td>
+    <td>Nombre del Médico</td>
+    ';
     foreach ($diagnosticosPaciente as $datos => $dato) {
-        echo"	<tr>";
-        foreach ($dato as $valor) {
-            echo '<td>';
-            echo $valor;
-            echo '</td>';
+        echo "<tr>";
+        foreach ($dato as $llave=>$valor) {
+            //var_dump($llave);
+            if ($llave == 'Nombre'){
+                echo '<td>';
+                echo $valor.' ';
+            }
+            if ($llave == 'Apellido_Paterno'){
+                echo $valor;
+                echo '</td>';
+            }
+            if ($llave == 'Fecha' || $llave == 'Diagnostico') {
+                echo '<td>';
+                echo $valor;
+                echo '</td>';
+            }
         }
 
             echo "</tr>";
     }
-    echo '</table>';
+    echo '</table></div></center></div>';
     ?>
 
 </div>
