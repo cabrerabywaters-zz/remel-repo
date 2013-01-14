@@ -19,9 +19,9 @@ y el popup que muestra el detalle del medicamento
 		    </div><br>
 		   <div class="row-fluid">
 		    <strong><p>Categorias</p></strong>
-                    <select id="clase" multiple="multiple"></select>
-		    <select id="subclase" multiple="multiple"></select>
-	            <select id="medicamento" multiple="multiple"></select>
+                    <select name="clase" id="clase" multiple="multiple"></select>
+		    <select name="subclase" id="subclase" multiple="multiple"></select>
+	            <select name="medicamento" id="medicamento" multiple="multiple"></select>
 		   </div>
             </form>
         </div>
@@ -70,6 +70,45 @@ y el popup que muestra el detalle del medicamento
 			}
 		}
 	);
+
+	$('#clase').change(function() {
+				var id = $("#clase").attr("value");
+				$.ajax({
+                		type:"POST",
+                		url: "../../../ajax/subClaseMultiSelect.php",
+                		data: {clase: id},
+                		success: function(output){
+                                	var output = jQuery.parseJSON(output);
+                                	$("#subclase").empty();
+                                	$.each(output,function(i,el){
+                                        	var string = "<option value='" + el['idSubClase'] + "'> " + el['Nombre']+ "</option";
+                                        	$("#subclase").append(string);
+						}
+					);
+                                	}
+				});
+                	}
+        );
+
+
+	$('#subclase').change(function() {
+                                var id2 = $("#subclase").attr("value");
+                                $.ajax({
+                                type:"POST",
+                                url: "../../../ajax/medicamentosMultiSelect.php",
+                                data: {subclase: id2},
+                                success: function(output){
+                                        var output = jQuery.parseJSON(output);
+                                        $("#subclase").empty();
+                                        $.each(output,function(i,el){
+                                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre'] + "</option>";
+                                                $("#subclase").append(string);
+                                                }
+                                        );
+                                        }
+                                });
+                        }
+        );
 
    $(function(){
        
