@@ -20,7 +20,7 @@
     <th>Fecha</td>
     <th>Nombre del Médico</td></tr></thead>
     ';
-        var_dump($recetasPaciente);
+        print_r($recetasPaciente);
         foreach ($recetasPaciente as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
