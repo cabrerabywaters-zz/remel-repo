@@ -5,9 +5,7 @@
     </div>
     <div id="collapseone2" class="accordion-body collapse">
       <div class="accordion-inner">
-<?php 
-function mostrarAlergias($alergiasPaciente){ 
-    echo'
+
   <div class="row">
   <div class="span5" id="alergias">
   <table>
@@ -17,8 +15,8 @@ function mostrarAlergias($alergiasPaciente){
                     </tr>
                 </thead>
                 <tr><td>
-   <table class="table table-hover">';
-               
+   <table class="table table-hover">
+              <?php 
                foreach ($alergiasPaciente as $datos => $dato)
 				{
 				echo"	<tr>";
@@ -40,14 +38,15 @@ function mostrarAlergias($alergiasPaciente){
 					}
 					echo"</tr>";
 				} 
-				echo' </tbody>
+				?>
+                 </tbody>
             </table>
             </tr></td><tfoot><tr><td> 
-  </td></tr></tfoot></table></div>';
-}
+  </td></tr></tfoot></table></div>
+
   
-function mostrarCondiciones($condicionesPaciente){  
-    echo'<div class="span5 offset2">
+
+<div class="span5 offset2">
   <table>
    <thead>
                      <tr>
@@ -57,7 +56,7 @@ function mostrarCondiciones($condicionesPaciente){
                 <tr><td>
    <table class="table table-hover">';
                
-              foreach ($condicionesPaciente as $datos => $dato)
+          <?php    foreach ($condicionesPaciente as $datos => $dato)
 				{
 				echo"	<tr>";
 					$contador=1;
@@ -78,59 +77,10 @@ function mostrarCondiciones($condicionesPaciente){
 					}
 					echo"</tr>";
 				}
-echo'
+?>
                 </tbody>
             </table>
             </tr></td><tfoot><tr><td> 
-  </td></tr></tfoot></table></div></div>';
-  } 
-
-          mostrarAlergias($alergiasPaciente);
-          mostrarCondiciones($condicionesPaciente); ?>
+  </td></tr></tfoot></table></div></div>
       </div>
-    </div><!--
-<script>
-$( "#Condiciones" ).autocomplete({
-                                source: function( request, response ) {
-                                    $.ajax({
-                                        url: "../../../ajax/autocompleteDiagnostico.php",
-                                        data: {
-                                            name_startsWith: request.term
-                                        },
-                                        type: "post",
-                                        success: function( data ) {
-                         
-                        
-                                            var output = jQuery.parseJSON(data);
-                       
-                                            response( $.map( output, function( item ) {
-                                                return {
-                                                    label: item
-                                                    // value: item.Nombre
-                                                }
-                                            }));
-                                        }
-                    
-                                    });
-                                },
-                                minLength: 2,
-                                /**
-                                 * ESTA FUNCION ES LA QUE REALIZA LA ACCION UNA VEZ ESTÁ SELECCIONADO
-                                 * ALGUNO DE LOS ELEMENTOS MOSTRADOS
-                                 * ---------
-                                 * en este caso se muestra de forma simple
-                                 * (cambiar esto segun como se quieran mostrar los datos)
-                                 */
-                                select: function( event, ui ) {
-                                    log( ui.item ?
-                                        "Selected: " + ui.item.label :
-                                        "Nothing selected, input was " + this.value);
-                                },
-                                open: function() {
-                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-                                },
-                                close: function() {
-                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-                                }
-                            });
-</script>-->
+    </div>
