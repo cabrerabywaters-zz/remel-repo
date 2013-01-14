@@ -187,7 +187,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         $result = CallQuery($queryString);
         $resultArray = array();
         while ($fila = $result->fetch_assoc()) {
-            $resultArray[] = $fila;
+            $resultEscalar[] = $fila;
         }
         
         //segunda query que obtiene todos los nombres de medicamentos (vectores)
@@ -199,13 +199,19 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
                         AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento         
                        ";
-        return $resultArray;
         $result = CallQuery($queryString);
         $count = 0;
         while ($fila = $result->fetch_assoc()) {
-            $resultArray[$count] = $fila;
+            $resultVectorial[$count] = $fila;
             $count++;
         }
+        foreach ($resultEscalar as $dato => $valor){
+            $resultArray[$dato] = $valor;
+        }
+        foreach ($resultVectorial as $dato => $valor){
+            $resultArray[$dato] = $valor;
+        }
+        return $resultArray;
     }
 }
 
