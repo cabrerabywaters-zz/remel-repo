@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class ClaseTerapeutica {
+class SubClaseTerapeuticaHasMedicamento {
 
-    static $nombreTabla = "Clases_Terapeuticas";
-    static $nombreIdTabla = "idClase_Terapeutica";    
+    static $nombreTabla = "SubClases_Terapeuticas_has_Medicamentos";
+    static $nombreIdTabla = "SubClase_Terapeutica_idSubClase";    
     
     /**
      * Insertar
@@ -15,7 +15,7 @@ class ClaseTerapeutica {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_clase_terapeutica']),
+                                array('Nombre',$_POST['nombre_sub_clase_terapeutica']),
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -47,8 +47,7 @@ class ClaseTerapeutica {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Nombre',
-					'idClase_Terapeutica',
+					'Medicamento_idMedicamento'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -63,29 +62,10 @@ class ClaseTerapeutica {
         $result = CallQuery($queryString);
 	    $resultArray = array();
 	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
+	       $resultArray[] = $fila['Medicamento_idMedicamento'];
 	    }
 	    return $resultArray;
     }
-    
-    /**
-     * Actualizar
-     * 
-     * Esta funcion toma una id de una entrada existente
-     * y actualiza con datos nuevos, la id y los datos vienen
-     * por POST desde AJAX
-     */
-    public static function Actualizar() {
-    	$id = $_POST['id_clase_terapeutica'];
-    	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_clase_terapeutica']),
-                );
-
-        $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
-        $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
-        $query = CallQuery($queryString);
-    }
-
 }
 
 ?>

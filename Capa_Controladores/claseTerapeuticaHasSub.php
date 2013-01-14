@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class SubClaseTerapeutica {
+class ClaseTerapeutica {
 
-    static $nombreTabla = "SubClases_Terapeuticas";
-    static $nombreIdTabla = "idSubClase";    
+    static $nombreTabla = "Clases_Terapeuticas";
+    static $nombreIdTabla = "idClase_Terapeutica";    
     
     /**
      * Insertar
@@ -15,7 +15,7 @@ class SubClaseTerapeutica {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_sub_clase_terapeutica']),
+                                array('Nombre',$_POST['nombre_clase_terapeutica']),
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -48,6 +48,8 @@ class SubClaseTerapeutica {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Nombre',
+					'idClase_Terapeutica',
+					'Clases_Terapeuticas_idClase_Terapeutica',
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -75,9 +77,9 @@ class SubClaseTerapeutica {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_sub_clase_terapeutica'];
+    	$id = $_POST['id_clase_terapeutica'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_sub_clase_terapeutica']),
+                                array('Nombre',$_POST['nombre_clase_terapeutica']),
                 );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

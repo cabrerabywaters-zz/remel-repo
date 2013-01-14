@@ -149,6 +149,17 @@ class Medicamento  {
         return $resultado->fetch_assoc();
     }
 
+    public static function BuscarMedicamentoPorId($id){
+	$queryString = "SELECT Nombre_Comercial, idMedicamento
+
+                        FROM Medicamentos
+
+                        WHERE idMedicamento = '$id';";
+
+	$resultado = CallQuery($queryString);
+        return $resultado->fetch_assoc();
+    }
+
 }
 
 ?>

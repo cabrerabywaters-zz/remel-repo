@@ -14,11 +14,15 @@ y el popup que muestra el detalle del medicamento
         <div class="modal-body img-rounded">
             <strong><p>Ingrese nombre del medicamento</p></strong>
             <form class="form-search">
-                <div class="input-append">
-                    <input type="text" id="Medicamentos" class="span2 search-query">
-                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#myModal2" disabled="disabled">Añadir</button>  <br>
-                    
-                </div>
+		   <div class="row-fluid">
+                    <input type="text" id="Medicamentos" class="span2 search-query"/>
+		    </div><br>
+		   <div class="row-fluid">
+		    <strong><p>Categorias</p></strong>
+                    <select id="clase" multiple="multiple"></select>
+		    <select id="subclase" multiple="multiple"></select>
+	            <select id="medicamento" multiple="multiple"></select>
+		   </div>
             </form>
         </div>
         
@@ -52,6 +56,21 @@ y el popup que muestra el detalle del medicamento
 
 <!--JS de funcion verificacion de contraindicaciones-->
 <script>
+	$.ajax({
+		type:"POST",
+		url: "../../../ajax/claseMultiSelect.php",
+		data: "",
+		success: function(output){
+				var output = jQuery.parseJSON(output);
+				$("#clase").empty();
+				$.each(output,function(i,el){
+					var string = "<option value='" + el['idClase_Terapeutica'] + "'> " + el['Nombre']+ "</option>";
+					$("#clase").append(string);
+				});
+			}
+		}
+	);
+
    $(function(){
        
        
@@ -67,8 +86,8 @@ y el popup que muestra el detalle del medicamento
                                         type: "post",
                                         success: function( data ) {
                                             $('#boton_medicamentos').removeAttr('disabled');
-                         
-                        
+                         		    
+                        		    
                                             var output = jQuery.parseJSON(data);
                        
                                             response( $.map( output, function( item ) {
