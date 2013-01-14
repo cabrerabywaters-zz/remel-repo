@@ -55,7 +55,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   </div><!-- fin contenido del panel-->
   
   
-  <div class="span3 pull-right img-rounded">
+  <div class="span3 pull-right img-rounded row">
   <!-- barra de favoritos -->
   <?php include('../favBar.php');?>
   <!-- barra de favoritos -->
@@ -73,11 +73,45 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
         
 <script>
     $('#favBar').hide(); //para que la barra de favoritos se no se muestre al inicio
-$('#toggleFav').click(function(){
-    $('.tab-content').toggleClass('span10'); // se acorta el contenido
-    $('#favBar').slideToggle();
+$('#toggleFav').click(
+    function(){// se ejecuta
+        if($('.tab-content').hasClass('span10')){// si el panel está chico
+            $('#favBar').show();// se muestra simplemente
+        }
+        else{// si el panel está grande
+           $('.tab-content').addClass('span10'); //achico el panel
+           $('#favBar').show();// se muestra simplemente
+        }
+    }
+    
+); // click
+    
+    
+    $('#arsenalBar').hide();// para que la barra de arsenal no se muestre en el inicio
+$('#toggleArsenal').click(
+    function(){// se ejecuta la primer click
+        if($('.tab-content').hasClass('span10')){// si el panel está chico
+            $('#arsenalBar').show();// se muestra simplemente
+        }
+        else{// si el panel está grande
+           $('.tab-content').addClass('span10'); //achico el panel
+           $('#arsenalBar').show();// se muestra simplemente
+        }
+    }
+); // toggle   
 
-})
+$('.closeBar').click(function(){
+    /*
+     * funcion que oculta el div de favoritos o arsenal se gun corresponda.
+     * si no hay ninguno visible entonces agranda el espacio de muestra.
+     */
+    var padre = $(this).parent().parent();
+    padre.hide();
+    if($('#favBar').is(':hidden')&& $('#arsenalBar').is(':hidden')){
+        $('.tab-content').removeClass('span10');
+    } 
+});
+
 </script>        
        
         
