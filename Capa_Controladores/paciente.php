@@ -171,9 +171,14 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 
     public static function R_RecetasPaciente($idPaciente) {
 
-        $queryString = "SELECT 
-                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes
+        //primera query que obtiene solo escalares (nombre medico, fechas, etc)
+        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Instituciones.Nombre as nomInst 
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes, Personas, Instituciones, Medicos_has_Instituciones, Medicos
 			WHERE Pacientes.idPaciente = $idPaciente
+                        AND Medicos.idMedico = Medicos_has_Instituciones.Medico_idMedico
+                        AND Medicos_has_Instituciones.Institucion_RUT = Instituciones.RUT
+                        AND Instituciones.RUT = Recetas.Institucion_Emision
+                        AND Medicos.Personas_RUN = Personas.RUN
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
@@ -184,9 +189,24 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         while ($fila = $result->fetch_assoc()) {
             $resultArray[] = $fila;
         }
+        
+        //segunda query que obtiene todos los nombres de medicamentos (vectores)
+        $queryString = "SELECT Medicamentos.Nombre_Comercial 
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes
+			WHERE Pacientes.idPaciente = $idPaciente
+                        AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
+                        AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
+                        AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
+                        AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento         
+                       ";
         return $resultArray;
+        $result = CallQuery($queryString);
+        $count = 0;
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[$count] = $fila;
+            $count++;
+        }
     }
-
 }
 
 ?>
