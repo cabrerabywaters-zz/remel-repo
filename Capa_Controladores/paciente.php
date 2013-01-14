@@ -169,7 +169,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         return $resultArray;
     }
 
-    public static function R_RecetasPaciente($idPaciente) {
+    /*public static function R_RecetasPaciente($idPaciente) {
 
         //primera query que obtiene solo escalares (nombre medico, fechas, etc)
         $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Instituciones.Nombre as nomInst, Consulta.Id_consulta 
@@ -212,7 +212,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         //$resultArray[0] = $resultEscalar;
         //$resultArray[1] = $resultVectorial;
         return $resultArray;
-    }
+    }*/
 }
 
 ?>
