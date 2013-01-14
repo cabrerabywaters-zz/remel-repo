@@ -56,11 +56,6 @@
             }
             ?>
         <select>
-            Patología notificada como GES?
-            <div class="btn-group" data-toggle="buttons-radio">
-                <button type="button" class="btn">Si</button>
-                <button type="button" class="btn">No</button>
-            </div>
             <p></p>
 
 
@@ -83,8 +78,7 @@
             if($institucion[1]!="Consulta Particular"){
                 echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i>'.$institucion[1].'</button>';
             }
-            else{
-                echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i>Mis Favoritos</button>';} ?>
+        ?>
      
     
         <div id="recomendadosInstitucion" class="collapse in"><!-- div con los medicamentos asociados por la institucion-->

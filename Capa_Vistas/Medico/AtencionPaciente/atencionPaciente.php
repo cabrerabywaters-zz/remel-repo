@@ -54,10 +54,16 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 
   </div><!-- fin contenido del panel-->
   
+  
+  <div class="span3 pull-right img-rounded">
   <!-- barra de favoritos -->
   <?php include('../favBar.php');?>
   <!-- barra de favoritos -->
   
+  <!-- barra del arsenal de medicamentos de la institución -->
+  <?php include('../arsenalBar.php');?>
+  <!-- barra del arsenal de medicamentos de la institucion -->
+  </div>
 </div><!--fin div contenido -->
 </div><!-- fin contenedor general -->
         
