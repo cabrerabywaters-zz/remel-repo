@@ -16,32 +16,21 @@
    <table class="table table-striped">
 	<thead>
     <tr>
-    <th>Diagnostico</td>
+    <th>Receta</td>
     <th>Fecha</td>
     <th>Nombre del Médico</td></tr></thead>
     ';
-    foreach ($diagnosticosPaciente as $datos => $dato) {
+    foreach ($recetasPaciente as $datos => $dato) {
         echo "<tr>";
+        var_dump($llave);
         foreach ($dato as $llave=>$valor) {
             //var_dump($llave);
-            if ($llave == 'Nombre'){
-                echo '<td>';
-                echo $valor.' ';
-            }
-            if ($llave == 'Apellido_Paterno'){
-                echo $valor;
-                echo '</td>';
-            }
-            if ($llave == 'Fecha' || $llave == 'Diagnostico') {
-                echo '<td>';
-                echo $valor;
-                echo '</td>';
-            }
+            
         }
 
             echo "</tr>";
     }
-    echo '</table></div></center></div>';
+    echo '</table></div></table></center></div>';
     ?>
   </div>
   </div>
