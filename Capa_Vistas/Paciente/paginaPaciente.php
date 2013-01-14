@@ -29,7 +29,8 @@ include('./../pacienteHeader.php');
         </div><!-- fin acordion info personal-->
     
     </div><!-- Fin tab info personal-->
-   	<div class="tab-pane img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
+    
+	<div class="tab-pane img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
       
         <div class="accordion" id="accordion2"><!-- accordion info Diagnostico -->
             <div class="accordion-group"><!-- Diagnosticos del paciente-->
@@ -38,11 +39,9 @@ include('./../pacienteHeader.php');
 		  include ("diagnosticosPaciente.php"); 
                   ?>
             </div><!-- fin diagnosticos del paciente-->
-            
-
         </div><!-- fin acordion info Diagnostico-->
     
-    </div><!-- Fin tab Diagnostico-->
+    </div><!-- Fin tab Diagnostico--> 
 
     <div class="tab-pane img-rounded" id="tabRecetas"><!-- tab info personal-->
       
@@ -53,24 +52,19 @@ include('./../pacienteHeader.php');
 		  include ("pacienteMisRecetas.php"); 
                   ?>
             </div><!-- informacion personal del paciente-->
-            
-            <div class="accordion-group"><!-- informacion medica registrada-->
- 			 hola
-            </div><!-- informacion medica registrada-->
         </div><!-- fin acordion info personal-->
     
     </div><!-- Fin tab info personal-->
-    </div><!-- Fin tab Recetas-->
+
        <div class="tab-pane img-rounded" id="tabHistorialMedico"><!-- tab info personal-->
       
         <div class="accordion" id="accordion4"><!-- accordion info personal -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
-               hola
+               <?php 
+		  // muestra los detalles de paciente
+		  include ("pacienteMiHistorialMedico.php"); 
+                  ?>
             </div><!-- informacion personal del paciente-->
-            
-            <div class="accordion-group"><!-- informacion medica registrada-->
-               hola
-            </div><!-- informacion medica registrada-->
         </div><!-- fin acordion info personal-->
     
     </div><!-- Fin tab info personal-->
