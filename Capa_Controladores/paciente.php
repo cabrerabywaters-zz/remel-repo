@@ -172,7 +172,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     public static function R_RecetasPaciente($idPaciente) {
 
         //primera query que obtiene solo escalares (nombre medico, fechas, etc)
-        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Instituciones.Nombre as nomInst 
+        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Instituciones.Nombre as nomInst, Consulta.Id_consulta 
                         FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes, Personas, Instituciones, Medicos_has_Instituciones, Medicos
 			WHERE Pacientes.idPaciente = $idPaciente
                         AND Medicos.idMedico = Medicos_has_Instituciones.Medico_idMedico
@@ -182,16 +182,19 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
-                        AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento
                         ";
+                                //AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento
+
         $result = CallQuery($queryString);
         $resultArray = array();
+        $resultEscalar = array();
+        $resultVectorial = array();
         while ($fila = $result->fetch_assoc()) {
             $resultEscalar[] = $fila;
         }
         
         //segunda query que obtiene todos los nombres de medicamentos (vectores)
-        $queryString = "SELECT Medicamentos.Nombre_Comercial 
+        $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta
                         FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes
 			WHERE Pacientes.idPaciente = $idPaciente
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
@@ -205,12 +208,9 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
             $resultVectorial[$count] = $fila;
             $count++;
         }
-        foreach ($resultEscalar as $dato => $valor){
-            $resultArray[$dato] = $valor;
-        }
-        foreach ($resultVectorial as $dato => $valor){
-            $resultArray[$dato] = $valor;
-        }
+        $resultArray = array_merge($resultEscalar, $resultVectorial);
+        //$resultArray[0] = $resultEscalar;
+        //$resultArray[1] = $resultVectorial;
         return $resultArray;
     }
 }
