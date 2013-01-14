@@ -1,10 +1,6 @@
-<?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<html><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title><!-- styles -->
@@ -82,68 +78,6 @@
         // donde estan ubicadas las variables que se despliegan en la base del proyecto
         include(dirname(__FILE__) . "/informacionVistaPaciente.php");
         ?>
-
-
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
-        <style> 
-            /* Estilos de cargando de la barra respectiva*/
-            .ui-autocomplete-loading {
-                background: white url('../../img/ui-anim_basic_16x16.gif') right center no-repeat;
-            }
-        </style>
-        <style type="text/css">
-
-            body {
-                padding-top: 10px;
-                padding-bottom: 40px;
-                background-color: white;
-            }
-
-            ul.nav, .nav{
-
-                background: whitesmoke;
-            }
-            .tabbable-fluid{
-
-
-            }
-            .tab-content{
-
-
-            }
-            .tab-pane
-            {
-
-
-                background-color: whitesmoke;
-
-            }
-
-
-            .modal{
-
-                border: 5px solid #efdcc8;
-            }
-            .modal-header, .modal-footer{
-
-                background-color: whitesmoke;
-            }
-            .modal-body{
-                background-color: white;
-                border: 3px solid #efdcc8;
-            }
-
-
-
-            .modal-body a:link {text-decoration: none;
-                                color:white}
-            .modal-body a:visited {text-decoration: none;
-                                   color:white}
-            .modal-body a:active {text-decoration: none;
-                                  color:white}
-
-        </style><!-- fin estilo de la pagina -->
     </head>
     
     
@@ -173,9 +107,9 @@ background: -ms-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,
 background: linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 "><!-- barra de navegacion -->
-                    <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
-                    <!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
+<!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
                          Los href hacen referencia a los tabs en paginaPaciente.php -->
+                    <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
                     <li><a href="#tabDiagnosticos" data-toggle="tab">Mis Diagnósticos</a></li>
                       <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas</a></li>
                       <li><a href="#tabHistorialMedico" data-toggle="tab">Historial Médico</a>

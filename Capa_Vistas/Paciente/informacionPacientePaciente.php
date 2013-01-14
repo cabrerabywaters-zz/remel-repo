@@ -1,10 +1,10 @@
   
 <div class="accordion-heading">
-  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
   Información Personal del Paciente
   </a>
   </div>
-  <div id="collapseOne" class="accordion-body collapse">
+  <div id="collapseOne1" class="accordion-body collapse">
   <div class="accordion-inner">
    <center> <div style="width: 50%; ;"><form class="form-inline" >
     

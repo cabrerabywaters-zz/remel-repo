@@ -1,10 +1,10 @@
 <div class="accordion-heading">
-<a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapsetwo">
-    Mis Diagnosticos
+<a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapsethree">
+    Mis Recetas
 
 </a>
  </div>
-  <div id="collapsetwo" class="accordion-body collapse">
+  <div id="collapsethree" class="accordion-body collapse">
   <div class="accordion-inner">
     <?php
     echo'
@@ -45,4 +45,3 @@
     ?>
   </div>
   </div>
-

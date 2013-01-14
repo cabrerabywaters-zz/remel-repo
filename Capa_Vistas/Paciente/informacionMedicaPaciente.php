@@ -1,9 +1,9 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion1" href="#collapseone2">
         Información Médica Registrada
       </a>
     </div>
-    <div id="collapseTwo" class="accordion-body collapse">
+    <div id="collapseone2" class="accordion-body collapse">
       <div class="accordion-inner">
 <?php 
 function mostrarAlergias($alergiasPaciente){ 
