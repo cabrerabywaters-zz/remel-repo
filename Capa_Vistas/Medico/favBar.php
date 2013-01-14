@@ -58,7 +58,7 @@
     </div><!-- fin de la barra de favoritos -->
 <script>
    /**
-    * comportamiento de los paneles colapsables
+    * comportamiento de los paneles colapsables (que cambien los iconos segun corresponda)
     * de favoritos
     * @author: Cesar González
     */ 
@@ -89,13 +89,11 @@
             .attr('title','Ocultar')
             ;})
      
-   /*
-    * eliminación de un elemento de la barra favoritos
-    * haciendo click en el boton eliminar de favoritos
-    *+tooltip correspondientes por boton
-    */
-   $('a[rel="tooltip"]').tooltip({placement:"right"});
    
+   $('a[rel="tooltip"]').tooltip({placement:"right"});
+        /*
+         *funcion que agrega capacidad de tooltip a los que lo requieran
+         */
    
    $('a[href="#borrarFav"]').click(function(){
        /**
