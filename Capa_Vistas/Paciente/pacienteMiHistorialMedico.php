@@ -1,9 +1,9 @@
 <div class="accordion-heading">
-<a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion4" href="#collapsefour">
+<a class="btn btn-large btn-block active"  data-parent="#accordion4" >
     Mi Historial Medico
 </a>
  </div>
-  <div id="collapsefour" class="accordion-body collapse">
+  <div class="accordion-body">
   <div class="accordion-inner">
     <?php
     echo'
