@@ -56,11 +56,6 @@
             }
             ?>
         <select>
-            Patología notificada como GES?
-            <div class="btn-group" data-toggle="buttons-radio">
-                <button type="button" class="btn">Si</button>
-                <button type="button" class="btn">No</button>
-            </div>
             <p></p>
 
 
