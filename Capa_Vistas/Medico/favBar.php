@@ -1,6 +1,9 @@
 <!-- barra de favoritos -->
     <div class="row-fluid show-grid img-rounded" id="favBar" style="background-color: #B0BED9">
-      <button class="btn btn-large btn-block btn-primary"><i class="icon-star icon-white"></i> Mis Favoritos</button>
+        <button class="btn btn-block" disabled>
+             <i class="icon-star"></i>Mis Favoritos
+          <a href="#" class="closeBar"><i class="icon-remove-sign pull-right"></i></a>
+      </button>
       
       <!-- diagnosticos Favoritos -->
       <button type="button" class="btn btn-success btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
@@ -56,6 +59,7 @@
 <script>
    /**
     * comportamiento de los paneles colapsables
+    * de favoritos
     * @author: Cesar González
     */ 
    
@@ -103,8 +107,14 @@
    });
 
    
-   /*
+   
+   $('a[href="#agregarFav"]').click(function(){
+    /*
     * agregar un elemento a la receta al hacer click
-    * desde la barra de favori
+    * desde la barra de favoritos (aplicable a cualquier pill)
     */
+    $('#myModal2').modal('show');   
+       
+   });
+   
 </script>
