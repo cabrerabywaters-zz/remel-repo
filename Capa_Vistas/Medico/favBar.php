@@ -1,5 +1,5 @@
-<div id="favBar" class="span3 pull-right img-rounded" style="background-color: #B0BED9"><!-- barra de favoritos -->
-    <div class="row-fluid show-grid">
+<!-- barra de favoritos -->
+    <div class="row-fluid show-grid img-rounded" id="favBar" style="background-color: #B0BED9">
       <button class="btn btn-large btn-block btn-primary"><i class="icon-star icon-white"></i> Mis Favoritos</button>
       
       <!-- diagnosticos Favoritos -->
@@ -52,9 +52,7 @@
 
 
 
-    </div>
-</div><!-- fin de la barra de favoritos -->
-
+    </div><!-- fin de la barra de favoritos -->
 <script>
    /**
     * comportamiento de los paneles colapsables
