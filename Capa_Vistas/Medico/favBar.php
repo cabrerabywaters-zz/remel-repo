@@ -90,11 +90,7 @@
             ;})
      
    
-   $('a[rel="tooltip"]').tooltip({placement:"right"});
-        /*
-         *funcion que agrega capacidad de tooltip a los que lo requieran
-         */
-   
+
    $('a[href="#borrarFav"]').click(function(){
        /**
         * funcion que elimina de favoritos
