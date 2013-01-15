@@ -10,9 +10,9 @@ y el popup que muestra el detalle del medicamento
     </a>
 </div>
 <div id="collapseTwo2" class="accordion-body collapse">
-    <div class="accordion-inner">
-        <div class="modal-body img-rounded row-fluid">
-            <div class="span7">  
+    <div class="accordion-inner"><!-- contenido del accordion -->
+        <div class="row-fluid"><!-- fila fluida -->
+            <div class="span12 modal-body">  
             <p>
                 <strong>Buscar:</strong> 
                     <br><input type="radio" class="btn" name="filtroMedicamento" value="principioActivo">por Principio Activo<br>
@@ -29,30 +29,36 @@ y el popup que muestra el detalle del medicamento
 		   
                     
                  
-                        <div class="span11">
+                    <div class="span11">
                         <strong><p>Categorias</p></strong>
-                    <select id="clase" multiple="multiple"></select>
-		    <select id="subclase" multiple="multiple"></select>
-	            <select id="medicamento" multiple="multiple"></select>
-                        </div>
+                        <select id="clase" multiple="multiple"></select>
+                        <select id="subclase" multiple="multiple"></select>
+                        <select id="medicamento" multiple="multiple"></select>
+                    </div>
                                               
 
             </form>
-            </div><!-- span 7-->
-            <div class="span4">
+            </div><!-- span -->
+            
+            <div class="row-fluid">
+                <div class="span12 modal-body">
                 <p><strong>Medicamentos Seleccionados:</strong></p>
-                <div id="medicamentosRecetados">
-                </div>    
-            </div> <!-- span 4 -->
-        </div>
-        
-        <div class="span10">
-        <a class="btn btn-warning span2"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
-        </div>
+                    <div id="medicamentosRecetados">
+                    </div> 
+                </div>
+            </div> <!-- row -->
         
         
-     </div>
-</div>
+            <div class="row-fluid">
+                <div class="span4 offset4">
+                <a class="btn btn-warning btn-block"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+                </div>
+            </div>
+        
+        </div><!-- fila fluida -->
+        
+     </div><!-- contenido del accordion -->
+</div><!-- contenido del colapsable-->
 
 
 

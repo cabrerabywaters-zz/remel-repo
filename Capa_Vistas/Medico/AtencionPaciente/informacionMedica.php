@@ -8,8 +8,8 @@
 <?php 
 function mostrarAlergias($alergias){ 
     echo'
-  <div class="row">
-  <div class="span5" id="alergias">
+  <div class="row-fluid">
+  <div class="span6 modal-body" id="alergias">
   <table>
    <thead>
                      <tr>
@@ -45,7 +45,7 @@ function mostrarAlergias($alergias){
             </tr></td><tfoot><tr><td> 
 			<form class="form-search">
 			<div class="input-append">
-  				<input class="span2" id="Alergias" type="text">
+  				<input id="Alergias" type="text">
  				 <button class="btn" type="button">Añadir</button>
   			</div>
 			</form>
@@ -53,7 +53,7 @@ function mostrarAlergias($alergias){
 }
   
 function mostrarCondiciones($condiciones){  
-    echo'<div class="span5 offset2">
+    echo'<div class="span6 modal-body">
   <table>
    <thead>
                      <tr>
@@ -90,7 +90,7 @@ echo'
             </tr></td><tfoot><tr><td> 
 			<form class="form-search">
 			<div class="input-append">
-  				<input class="span2" id="Condiciones" type="text">
+  				<input id="Condiciones" type="text">
   				<button class="btn" type="button">Añadir</button></div>
 				</form></td></tr>	
 				</tfoot></table>

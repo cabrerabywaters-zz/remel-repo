@@ -7,23 +7,24 @@
 <div id="collapseOne1" class="accordion-body collapse">
     <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
 
-        <div class="modal-body">
-            <div class="span4"><!-- div donde estará el buscador -->     
+        <div class="row-fluid">
+            <div class="span6 modal-body"><!-- div donde estará el buscador -->     
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
             <form class="form-search" id="buscar_diagnostico" method="post">
                 <div class="input-append"> <!-- buscador inline con autocomplete -->
 
-                    <input type="text" class="span2 search-query" id="diagnostico" name="diagnostico">
+                    <input type="text" class="search-query" id="diagnostico" name="diagnostico">
                     <input type="submit" id="boton_diagnostico" class="btn" data-target="#myModal"  data-toggle="modal" value="Añadir" disabled>  <br>
-
-               </div>
+           </form>
+               </div><!-- buscador inline con autocomplete -->
             </div><!-- div del buscador-->
-                <div class="span5" id="log"><!-- div de diagnosticos selecciondos -->
+            
+            <div id="log" class="span6"><!-- div de diagnosticos selecciondos -->
                 <div id="log_titulo"></div>   
-                <div id="log_diagnostico" class="span2"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
-                </div>
-            </form>
+                <div id="log_diagnostico"></div> <!-- div donde se mostraran los diagnosticos obtenidos -->
+            </div><!-- div de diagnosticos selecciondos -->
+            
 
 
 
@@ -206,7 +207,7 @@
                         var id_tipo = $('#tipo_diagnostico').val();
                         
                         var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="protocolo pull-right" rel="tooltip" onclick=""><i class="icon-th-list icon-white"></i></a></div>';
-                        $('#log').removeClass().addClass('span5 img-rounded');
+                        $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
                         $('#myModal').modal('hide');

@@ -1,28 +1,28 @@
 <!-- barra de favoritos -->
     <div class="row-fluid show-grid img-rounded" id="favBar" style="background-color: #B0BED9">
         <button class="btn btn-block" disabled>
-             <i class="icon-star"></i>Mis Favoritos
-          <a href="#" class="closeBar"><i class="icon-remove-sign pull-right"></i></a>
+             <i class="icon-star"></i> Mis Favoritos
+          <a href="#" class="closeBar"><i class="icon-remove pull-right"></i></a>
       </button>
       
       <!-- diagnosticos Favoritos -->
-      <button type="button" class="btn btn-success btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
+      <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
            <i class="icon-circle-arrow-up icon-white" rel="tooltip" title="Ocultar"></i> Diagnosticos
       </button>
       
       <div id="diagnosticosFav" class="collapse in">
-          <div class="span9 offset1">
+          <div class="span10 offset1">
               
-          <span class="label label-info"><!-- pill diagnosticoFav 1 -->
-              Diagnostico ej 
-              <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar favorito seleccionado -->
-              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove-sign icon-white"></i></a><!-- eliminar de favoritos -->
-          </span><!-- end pill diagnosticoFav 1-->
-          <span class="label label-info"><!-- pill diagnosticoFav 1 -->
-              Diagnostico ej 
-              <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar favorito seleccionado -->
-              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove-sign icon-white"></i></a><!-- eliminar de favoritos -->
-          </span><!-- end pill diagnosticoFav 1-->
+          <div class="alert alert-info"><!-- pill diagnosticoFav 1 -->
+              <strong>Diagnostico ej</strong>
+              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
+              <a href="#gregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
+          </div><!-- end pill diagnosticoFav 1-->
+          <div class="alert alert-info"><!-- pill diagnosticoFav 1 -->
+              <strong>Diagnostico ej</strong>
+              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
+              <a href="#gregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
+          </div><!-- end pill diagnosticoFav 1-->
           
           </div>
       </div>
@@ -34,18 +34,18 @@
       </button>
       
       <div id="medicamentosFav" class="collapse in ">
-       <div class="span9 offset1">
+       <div class="span10 offset1">
            
-          <span class="label label-info"><!-- pill medicamentoFav 1 -->
-              Medicamento ej 
-              <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar favorito seleccionado -->
-              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove-sign icon-white"></i></a><!-- eliminar de favoritos -->
-          </span><!-- pill medicamentoFav 1 -->
-           <span class="label label-info"><!-- pill medicamentoFav 1 -->
-              Medicamento ej 
-              <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar favorito seleccionado -->
-              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove-sign icon-white"></i></a><!-- eliminar de favoritos -->
-           </span><!-- pill medicamentoFav 1 -->
+         <div class="alert alert-success"><!-- pill medicamentoFav 1 -->
+              <strong>Medicamento ej</strong>
+              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove pull-right"></i> </a><!-- eliminar de favoritos --> 
+              <a href="#gregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus pull-right"></i> </a><!-- agregar favorito seleccionado -->
+         </div><!-- end pill diagnosticoFav 1-->
+         <div class="alert alert-success"><!-- pill medicamentoFav 1 -->
+              <strong>Medicamento ej</strong>
+              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
+              <a href="#gregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
+         </div><!-- end pill diagnosticoFav 1-->
        
        </div>
       </div>
