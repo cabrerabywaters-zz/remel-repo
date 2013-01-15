@@ -20,16 +20,6 @@ y el popup que muestra el detalle del medicamento
             </p>
             <form class="form-search">
 
-		   <div class="row-fluid">
-                    <input type="text" id="Medicamentos" class="span2 search-query"/>
-		    </div><br>
-		   <div class="row-fluid">
-		    <strong><p>Categorias</p></strong>
-                    <select name="clase" id="clase" multiple="multiple"></select>
-		    <select name="subclase" id="subclase" multiple="multiple"></select>
-	            <select name="medicamento" id="medicamento" multiple="multiple"></select>
-		   </div>
-
                     <div class="span11">
                     <div class="input-append">
                     <input type="text" id="Medicamentos" class="span10 search-query">
@@ -142,6 +132,13 @@ y el popup que muestra el detalle del medicamento
                                 });
                         }
         );
+
+	$('#medicamento').change(function() { 
+		$("#Medicamentos").val($('#medicamento :selected').text());
+		$("#boton_medicamentos").removeAttr('disabled');
+		$("#boton_medicamentos").attr('enabled', 'enabled');
+	 } );
+
 
    $(function(){
        
