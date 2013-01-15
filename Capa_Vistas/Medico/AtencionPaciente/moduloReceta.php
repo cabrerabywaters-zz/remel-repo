@@ -30,8 +30,8 @@ y el popup que muestra el detalle del medicamento
                     
                  
                         <div class="span11">
-                        <strong><p>Categorias</p></strong>
-                    <select id="clase" multiple="multiple"></select>
+                    <strong><p>Categorias</p></strong>
+		    <select id="clase" multiple="multiple"></select>
 		    <select id="subclase" multiple="multiple"></select>
 	            <select id="medicamento" multiple="multiple"></select>
                         </div>
