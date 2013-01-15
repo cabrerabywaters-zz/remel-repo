@@ -9,13 +9,13 @@
            
           <span class="label label-info"><!-- pill medicamentoFav 1 -->
               Medicamento ej 
-              <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar favorito seleccionado -->
-              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove-sign icon-white"></i></a><!-- eliminar de favoritos -->
+              <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar desde el arsenal seleccionado -->
+              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-star icon-white"></i></a><!-- eliminar de favoritos -->
           </span><!-- pill medicamentoFav 1 -->
            <span class="label label-info"><!-- pill medicamentoFav 1 -->
               Medicamento ej 
               <a href="#agregarFav" rel="tooltip" title="Agregar"> <i class="icon-plus-sign icon-white"></i></a><!-- agregar favorito seleccionado -->
-              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-remove-sign icon-white"></i></a><!-- eliminar de favoritos -->
+              <a href="#borrarFav" rel="tooltip" title="Eliminar"> <i class="icon-star icon-white"></i></a><!-- eliminar de favoritos -->
            </span><!-- pill medicamentoFav 1 -->
        
        </div>

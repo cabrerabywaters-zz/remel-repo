@@ -83,6 +83,10 @@ color:white}
 
         
 <script>
+       $('a[rel="tooltip"]').tooltip({placement:"right"});
+        /*
+         *funcion que agrega capacidad de tooltip a los que lo requieran
+         */
     $(function() {
 		
         var Alergias = [ <?php
