@@ -15,15 +15,17 @@ y el popup que muestra el detalle del medicamento
             <div class="span12 modal-body">  
             <p>
                 <strong>Buscar:</strong> 
-                    <br><input type="radio" class="btn" name="filtroMedicamento" value="principioActivo">por Principio Activo<br>
-                    <input class="btn" type="radio" name="filtroMedicamento" value="nombreComercial">por Nombre Comercial<br>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                    <button type="button" class="btn" filtro="principioActivo">Principio Activo</button>
+                    <button type="button" class="btn" filtro="nombreComercial">Nombre Comercial</button>
+                    </div>
             </p>
             <form class="form-search">
 
                     <div class="span11">
                     <div class="input-append">
-                    <input type="text" id="Medicamentos" class="span10 search-query">
-                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#myModal2" disabled="disabled">Añadir</button>  <br>
+                    <input type="text" id="Medicamentos" class="span10 search-query" placeholder="Escriba aquí para buscar">
+                    <a id="boton_medicamentos" class="btn detalleMedicamento" disabled="disabled">Añadir</a>  <br>
                     </div>
                     </div><br>
 		   
@@ -61,30 +63,9 @@ y el popup que muestra el detalle del medicamento
 </div><!-- contenido del colapsable-->
 
 
-
-
-<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Paracetamol</h3>
-    </div>
-    <div class="modal-body">
-        <div class="span3"><img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
-        <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
-        <p>Cantidad: <input type="text" placeholder="Indique Cantidad">Miligramos (mg)</p>
-        <p>Cada :<input type="text" placeholder="frequencia">Horas (hrs)</p>
-        <p>Por :<input type="text" placeholder="periodo">Dias</p>
-        <p>Comentario: </p>
-        <center> <textarea rows="2" style="width:90%"></textarea></center>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <a href="#" role="button" class="btn btn-warning">Prescribir</a>
-    </div>
-</div><!-- fin popup informacion del medicamento -->
-
 <!--JS de funcion verificacion de contraindicaciones-->
 <script>
+        $('button[filtro="principioActivo"]').button('toggle')
 	$.ajax({
 		type:"POST",
 		url: "../../../ajax/claseMultiSelect.php",
@@ -141,16 +122,11 @@ y el popup que muestra el detalle del medicamento
 
 	$('#medicamento').change(function() { 
 		$("#Medicamentos").val($('#medicamento :selected').text());
-		$("#boton_medicamentos").removeAttr('disabled');
-		$("#boton_medicamentos").attr('enabled', 'enabled');
+		$("#boton_medicamentos").removeAttr('disabled').attr('enabled', 'enabled');
 	 } );
 
-
+        
    $(function(){
-       
-       
-       
-       
     $("#Medicamentos").autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
@@ -183,5 +159,14 @@ y el popup que muestra el detalle del medicamento
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 }
                             });
-   });
+   
+    $('.detalleMedicamento').unbind('click').bind('click',function(){
+      $('#modalDetalleMedicamento').modal('show')
+        
+    });//bind click
+   
+   
+   
+   });//end ready
+   
 </script>
