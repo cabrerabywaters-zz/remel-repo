@@ -16,11 +16,12 @@ class MedicamentoVendido {
     public static function Insertar() {
     	$datosCreacion = array(
                                 array('Expendedores_idExpendedores',$_POST['idExpendedores']),
-                                array('Expendedores_Plazas_Instituciones_idPlaza',$_POST['idPlaza']),
-                                array('Medicamentos_Recetas_Medicamento_idMedicamento',$_POST['Medicamento_idMedicamento']),
+                                array('Medicamentos_Recetas_Medicamento_idMedicamento',$_POST['idMedicamento']),
                                 array('Medicamentos_Recetas_Receta_idReceta',$_POST['idReceta']),
                                 array('Cantidad',$_POST['cantidad']),
-                                array('Fecha',"NOW()")
+                                array('Fecha',"NOW()"),
+								array('Unidades_idUnidade',$_POST['idUnidades'])
+								
 						);
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -53,11 +54,11 @@ class MedicamentoVendido {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Expendedores_idExpendedores',
-                                        'Expendedores_Plazas_Instituciones_idPlaza',
                                         'Medicamentos_Recetas_Medicamento_idMedicamento',
                                         'Medicamentos_Recetas_Receta_idReceta',
                                         'Cantidad',
-                                        'Fecha'
+                                        'Fecha',
+										'Unidades_idUnidade'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -87,8 +88,13 @@ class MedicamentoVendido {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
+                                array('Expendedores_idExpendedores',$_POST['idExpendedores']),
+                                array('Medicamentos_Recetas_Medicamento_idMedicamento',$_POST['idMedicamento']),
+                                array('Medicamentos_Recetas_Receta_idReceta',$_POST['idReceta']),
                                 array('Cantidad',$_POST['cantidad']),
-                                array('Fecha',"NOW()")
+                                array('Fecha',"NOW()"),
+								array('Unidades_idUnidade',$_POST['idUnidades'])
+								
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
