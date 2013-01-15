@@ -52,13 +52,11 @@ class Medico {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-										'Medicocol',
                                         'Direccion_Consulta',
                                         'Correo_Medico',
                                         'Codigo_Registro_SS',
                                         'Codigo_Registro_CM',
                                         'Fecha_Inscripcion_REMEL',
-                                        'Medicocol1',
                                         'Fecha_ultima_edicion'
 									);
 

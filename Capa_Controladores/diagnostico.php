@@ -17,7 +17,7 @@ class Diagnostico {
         $datosCreacion = array(
             array('Nombre', $_POST['nombre_diagnostico']),
             array('Codigo_Snom', $_POST['codigo_snom']),
-            array('Tipo_Diagnostico', $_POST['idTipo']),
+            array('Clase_Diagnostico_ConceptID', $_POST['conceptID']),
             array('Es_Ges', $_POST['es_ges']),
             array('Codigo_Cie', $_POST['codigo_cie']),
         );
@@ -31,9 +31,8 @@ class Diagnostico {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId() {
-        $id = $_POST['id'];
-        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+    public static function BorrarPorId($id) {
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $id);
         $query = CallQuery($queryString);
     }
 
@@ -55,7 +54,8 @@ class Diagnostico {
             'Nombre',
             'Codigo_Snom',
             'Es_Ges',
-            'Codigo_Cie'
+            'Codigo_Cie',
+            'Clase_Diagnostico_ConceptID'
         );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -87,7 +87,7 @@ class Diagnostico {
         $datosActualizacion = array(
             array('Nombre', $_POST['nombre_diagnostico']),
             array('Codigo_Snom', $_POST['codigo_snom']),
-            array('Tipo_Diagnostico', $_POST['idTipo']),
+            array('Clase_Diagnostico_ConceptID', $_POST['conceptID']),
             array('Es_Ges', $_POST['es_ges']),
             array('Codigo_Cie', $_POST['codigo_cie']),
         );
