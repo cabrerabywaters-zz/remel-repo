@@ -8,7 +8,8 @@ class Uso  {
     static $nombreTabla = "Uso";
     static $nombreIdTabla = "Medicamento_idMedicamento";
     static $nombreIdTabla1 = "Enfermedad_idEnfermedad";
-    
+    static $nombreIdTabla2 = "Sucursales_RUT";
+
     /**
      * Insertar
      * 
@@ -18,7 +19,8 @@ class Uso  {
     public static function Insertar() {
     	$id1 = $_POST['Medicamento_idMedicamento'];
         $id2 = $_POST['Enfermedad_idEnfermedad'];
-        $id = array($id1,$id2);
+        $id3 = $_POST['Sucursales_RUT'];
+        $id = array($id1,$id2,$id3);
        
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -32,16 +34,14 @@ class Uso  {
     public static function BorrarPorId() {
         $id1 = $_POST['Medicamento_idMedicamento'];
         $id2 = $_POST['Enfermedad_idEnfermedad'];
-        $id = array($id1,$id2);
+        $id3 = $_POST['Sucursales_RUT'];
+        $id = array($id1,$id2,$id3);
         
         $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
         
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
         $query = CallQuery($queryString);
     }
-    
-  
-    
     /**
      * Actualizar
      * 
@@ -52,7 +52,8 @@ class Uso  {
    public static function Actualizar() {
     	$id1 = $_POST['Medicamento_idMedicamento'];
         $id2 = $_POST['Enfermedad_idEnfermedad'];
-        $id = array($id1,$id2);
+        $id3 = $_POST['Sucursales_RUT'];
+        $id = array($id1,$id2,$id3);
         
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
@@ -63,7 +64,8 @@ class Uso  {
 
     public static function SeleccionarPorIdDiagnostico($id){
 	$rows = array();
-	$queryString = "SELECT * FROM Uso, Medicamentos WHERE Medicamento_idMedicamento = idMedicamento AND Enfermedad_idEnfermedad = '$id';";
+	$queryString = "SELECT * FROM Uso, Medicamentos, Sucursales WHERE Uso.Medicamento_idMedicamento = Medicamentos.idMedicamento 
+                        AND Uso.Enfermedad_idEnfermedad = '$id' AND Sucursales.RUT= Uso.Sucursales_RUT;";
 	$query = CallQuery($queryString);
 	while($row = $query->fetch_assoc()) $rows[] = $row;
 

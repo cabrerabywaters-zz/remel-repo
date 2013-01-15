@@ -75,7 +75,7 @@ class TipoReceta {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_tipo_receta'];
     	$datosActualizacion = array(
                               array('Nombre',$_POST['nombre_tipo_receta'])
             );

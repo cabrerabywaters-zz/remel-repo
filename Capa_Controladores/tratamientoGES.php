@@ -16,8 +16,10 @@ class TratamientoGES {
     public static function Insertar() {
     	$datosCreacion = array(
             array('Nombre',$_POST['nombre_tratamiento_ges']),
-            array('Descripcion',$_POST['descripcion_tratamiento_ges'])
-            );
+            array('Descripcion',$_POST['descripcion_tratamiento_ges']),
+            array('Link_PDF',$_POST('link_pdf'))
+           
+                );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -49,9 +51,10 @@ class TratamientoGES {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Nombre',
-                                        'Descripcion'
-      );
-
+                                        'Descripcion',
+                                        'Link_PDF'
+        
+         );  
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
 	    if($limit != 0){
@@ -80,8 +83,10 @@ class TratamientoGES {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
                                array('Nombre',$_POST['nombre_tratamiento_ges']),
-                               array('Descripcion',$_POST['descripcion_tratamiento_ges'])
-               );
+                               array('Descripcion',$_POST['descripcion_tratamiento_ges']),
+                               array('Link_PDF',$_POST('link_pdf'))
+  
+            );
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);

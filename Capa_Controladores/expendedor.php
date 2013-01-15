@@ -17,8 +17,9 @@ class Expendedor {
     	$datosCreacion = array(
                                 array('Nombre',$_POST['nombre_expendedor']),
                                 array('Encargado',$_POST['encargado_expendedor']),
-                                array('Telefono_expendedor',$_POST['telefono_expendedor'])
-                                );
+                                array('Telefono_expendedor',$_POST['telefono_expendedor']),
+                                array('Sucursales_RUT',$_POST['RUT'])
+            );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -51,7 +52,8 @@ class Expendedor {
     	$atributosASeleccionar = array(
                                         'Nombre',
                                         'Encargado',
-                                        'Telefono_expendedor'
+                                        'Telefono_expendedor',
+                                        'Sucursales_RUT'
 );
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
@@ -82,8 +84,9 @@ class Expendedor {
     	$datosActualizacion = array(
                                 array('Nombre',$_POST['nombre_expendedor']),
                                 array('Encargado',$_POST['encargado_expendedor']),
-                                array('Telefono_expendedor',$_POST['telefono_expendedor'])
-                                );
+                                array('Telefono_expendedor',$_POST['telefono_expendedor']),
+                                array('Sucursales_RUT',$_POST['RUT'])
+            );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);

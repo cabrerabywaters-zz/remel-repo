@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class TipoInstitucion {
+class TipoSucursal {
 
-    static $nombreTabla = "Tipos_Instituciones";
-    static $nombreIdTabla = "idTipo_Institucion";    
+    static $nombreTabla = "Tipos_Sucursales";
+    static $nombreIdTabla = "idTipo_Sucursal";    
     
     /**
      * Insertar
@@ -75,7 +75,7 @@ class TipoInstitucion {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_tipo_sucursal'];
     	$datosActualizacion = array(
                                 array('Nombre',$_POST['nombre_plaza_institucion'])
 				);

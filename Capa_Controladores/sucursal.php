@@ -1,32 +1,29 @@
-<?php 
+<?php
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Funcionario {
+class Sucursal{
 
-    static $nombreTabla = "Funcionarios";
-    static $nombreIdTabla = "idFuncionario";    
-    
-    /**
-     * Insertar
-     * 
-     * Inserta una nueva entrada
-     * 
-     */
-    public static function Insertar() {
+static $nombreTabla = "Sucursales";
+static $nombreIdTabla = "RUT";
+
+ public static function Insertar() {
     	$datosCreacion = array(
-                                array('Telefono',$_POST['telefono_funcionario']),
-                                array('Persona_RUN',$_POST('persona_run')),
-                                array('Categoria_Funcionario_idCategoria_Funcionario',$_POST['idCategoria_Funcionario']),
+                                array('Nombre',$_POST['nombre']),
+                                array('Direccion_idDireccion',$_POST['idDireccion']),
+                                array('RUN_Administrador',$_POST['run_administrador']),
+                                array('Email_Administrador',$_POST['email_administrador']),
+                                array('Telefono',$_POST['medicamentocol']),
+                                array('Tipo_Sucursales_idTipo_Sucursal',$_POST['idTipo_Sucursal']),
                                 array('Fecha_creacion_REMEL','NOW()'),
-                                array('Fecha_ultima_edicion','NOW()')
-                                      );
-
+                                array('RED_RUT',$_POST['RUT'])
+                                );
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
-    /**
+    
+      /**
      * BorrarPorId
      * 
      * Borra una entrada segun su id, pasada por POST.
@@ -51,12 +48,15 @@ class Funcionario {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
+					'Nombre',
+                                        'Direccion_idDireccion',
+                                        'RUN_Administrador',
+                                        'Email_Administrador',
                                         'Telefono',
-                                        'Persona_RUN',
-                                        'Categoria_Funcionario_idCategoria_Funcionario',
+                                        'Tipo_Sucursales_idTipo_Sucursal',
                                         'Fecha_creacion_REMEL',
-                                        'Fecha_ultima_edicion'
-            );
+                                        'RED_RUT',
+      );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
@@ -83,18 +83,36 @@ class Funcionario {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['RUT'];
     	$datosActualizacion = array(
-                                array('Telefono',$_POST['telefono_funcionario']),
-                                array('Categoria_Funcionario_idCategoria_Funcionario',$_POST['idCategoria_Funcionario']),
-                                array('Fecha_creacion_REMEL','NOW()'),
-                                array('Fecha_ultima_edicion','NOW()')
-                                	);
-
+                               array('Nombre',$_POST['nombre']),
+                                array('RUN_Administrador',$_POST['run_administrador']),
+                                array('Email_Administrador',$_POST['email_administrador']),
+                                array('Telefono',$_POST['medicamentocol']),
+                                array('Tipo_Sucursales_idTipo_Sucursal',$_POST['idTipo_Sucursal']),
+                                array('Fecha_creacion_REMEL','NOW()')
+                                );
+        
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    
+   
+public static function BuscarNombreArrayRUT($arrayRUT){
+	$sucursales = array();
+
+	$where = "WHERE RUT IN (".implode(",",$arrayRUT).")";
+
+        $queryString = "SELECT RUT, Nombre FROM ".self::$nombreTabla." ".$where;
+	$resultado = callQuery($queryString);
+
+	while($row = $resultado->fetch_assoc()){
+		$sucursales[] = $row;
+	}
+
+	return $sucursales;
+}
 
 }
 

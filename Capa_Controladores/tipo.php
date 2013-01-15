@@ -46,8 +46,8 @@ class Tipo {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                             'idTipo',  'Nombre'         
+    	$atributosASeleccionar = array(  
+                             'Nombre'         
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
