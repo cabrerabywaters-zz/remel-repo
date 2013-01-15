@@ -16,6 +16,7 @@ class Presentacion {
     public static function Insertar() {
     	$datosCreacion = array(
                                 array('Descripcion',$_POST['descripcion_presentacion']),
+                                array('Tipo_Presentacion_ID',$_POST['ID'])
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -48,8 +49,8 @@ class Presentacion {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Descripcion',
-      );
-
+                                        'Tipo_Presentacion_ID'
+                                        );                           
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
 	    if($limit != 0){

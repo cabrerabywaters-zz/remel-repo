@@ -8,6 +8,7 @@ class HistorialMedico  {
     static $nombreTabla = "Historiales_medicos";
     static $nombreIdTabla = "Diagnosticos_idDiagnostico";
     static $nombreIdTabla1 = "Consulta_Id_consulta";
+    static $nombreIdTabla2 = "Tipo_idTipo";
     
     /**
      * Insertar
@@ -15,11 +16,11 @@ class HistorialMedico  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idDiagnostico,$idConsulta,$tipo) {
+    public static function Insertar($idDiagnostico,$idConsulta,$idTipo) {
     	
         
        
-        $queryString ='Insert into Historiales_medicos(Diagnosticos_idDiagnostico,Consulta_Id_consulta,tipo_diagnostico) Values("'.$idDiagnostico.'","'.$idConsulta.'","'.$tipo.'");' ;
+        $queryString ='Insert into Historiales_medicos(Diagnosticos_idDiagnostico,Consulta_Id_consulta,Tipo_idTipo) Values("'.$idDiagnostico.'","'.$idConsulta.'","'.$idTipo.'");' ;
         $query = CallQuery($queryString);
         if($query){
             
@@ -40,6 +41,7 @@ class HistorialMedico  {
     public static function BorrarPorId() {
         $id1 = $_POST['Diagnosticos_idDiagnostico'];
         $id2 = $_POST['Consulta_Id_consulta'];
+        $id3 = $_POST['Tipo_idTipo'];
         $id = array($id1,$id2);
         
         $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
@@ -47,21 +49,6 @@ class HistorialMedico  {
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
         $query = CallQuery($queryString);
     }
-    
-    /**
-     * Seleccionar
-     * 
-     * Esta funcion selecciona todas las entradas de una tabla
-     * con respecto a una condicion dada. Tambien es posible
-     * entregar un limite y un offset.
-     * 
-     * @param string $where
-     * @param int $limit
-     * @param int $offset
-     * @returns array $resultArray
-     */
-  
-    
     /**
      * Actualizar
      * 
@@ -72,7 +59,8 @@ class HistorialMedico  {
    public static function Actualizar() {
     	$id1 = $_POST['Diagnosticos_idDiagnostico'];
         $id2 = $_POST['Consulta_Id_consulta'];
-        $id = array($id1,$id2);
+        $id3 = $_POST['Tipo_idTipo'];
+        $id = array($id1,$id2,$id3);
         
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

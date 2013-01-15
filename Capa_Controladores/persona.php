@@ -22,14 +22,16 @@ class Persona {
                                 array('Fecha_Nac',$_POST['fecha_nac']),
                                 array('Prevision_rut',$_POST['rut']),
                                 array('sexo',$_POST['sexo']),
+                                array('Foto',$_POST['foto']),
                                 array('Clave',$_POST['clave']),
                                 array('Codigo_Seguridad',$_POST['codigo_seguridad']),
                                 array('email',$_POST['email']),
                                 array('n_celular',$_POST['n_celular']),
                                 array('Fecha_creacion_REMEL','NOW()'),
-                                array('n_fijo',$_POST['n_fijo'])
-						);
-
+                                array('n_fijo',$_POST['n_fijo']),
+                                array('Nacionalidad',$_POST['nacionalidad'])
+                                    );
+        
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
@@ -66,13 +68,14 @@ class Persona {
                                                                         'Fecha_Nac',
                                                                         'Prevision_rut',
                                                                         'Sexo',
+                                                                        'Foto',
                                                                         'Clave',
                                                                         'Codigo_Seguridad',
                                                                         'Email',
                                                                         'N_Celular',
                                                                         'Fecha_creacion_REMEL',
                                                                         'n_fijo',
-																		'Foto'
+                                                                        'Nacionalidad'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -104,10 +107,11 @@ class Persona {
     	$datosActualizacion = array(
                                 array('Direccion_idDireccion',$_POST['idDireccion']),
                                 array('Clave',$_POST['clave']),
-                                array('Email',$_POST['email']),
-                                array('N_celular',$_POST['n_celular']),
+                                array('email',$_POST['email']),
+                                array('Foto',$_POST['foto']),                                array('N_celular',$_POST['n_celular']),
                                 array('Fecha_creacion_REMEL','NOW()'),
-                                array('n_fijo',$_POST['n_fijo'])
+                                array('n_fijo',$_POST['n_fijo']),
+                                array('Nacionalidad',$_POST['nacionalidad'])
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

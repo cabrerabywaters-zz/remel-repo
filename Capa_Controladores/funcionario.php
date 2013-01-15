@@ -87,7 +87,6 @@ class Funcionario {
     	$datosActualizacion = array(
                                 array('Telefono',$_POST['telefono_funcionario']),
                                 array('Categoria_Funcionario_idCategoria_Funcionario',$_POST['idCategoria_Funcionario']),
-                                array('Fecha_creacion_REMEL','NOW()'),
                                 array('Fecha_ultima_edicion','NOW()')
                                 	);
 
