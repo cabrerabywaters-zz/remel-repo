@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Medico {
+class PlazaInstitucion {
 
-    static $nombreTabla = "Medicos";
-    static $nombreIdTabla = "idMedico";    
+    static $nombreTabla = "Lugar_de_Atencion";
+    static $nombreIdTabla = "idLugar_de_Atencion";    
     
     /**
      * Insertar
@@ -15,13 +15,12 @@ class Medico {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Direccion_Consulta',$_POST['id_consulta']),
-                                array('Correo_Medico',$_POST['correo_medico']),
-                                array('Codigo_Registro_SS',$_POST['codigo_registro_ss']),
-                                array('Codigo_Registro_CM',$_POST['codigo_registro_cm']),
-                                array('Fecha_Inscripcion',$_POST['fecha_inscripcion']),
-                                array('Fecha_ultima_edicion',$_POST['fecha_ultima_edicion'])
-						);
+                                array('Nombre',$_POST['nombre_plaza_institucion']),
+                                array('Telefono',$_POST['telefono']),
+                                array('RUN_Administrador',$_POST['run_administrador']),
+                                array('Email_Administrador',$_POST['email_administrador']),
+                                array('Sucursales_RUT',$_POST['RUT']),
+                                );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -52,15 +51,12 @@ class Medico {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-										'Medicocol',
-                                        'Direccion_Consulta',
-                                        'Correo_Medico',
-                                        'Codigo_Registro_SS',
-                                        'Codigo_Registro_CM',
-                                        'Fecha_Inscripcion_REMEL',
-                                        'Medicocol1',
-                                        'Fecha_ultima_edicion'
-									);
+                                        'Nombre',
+                                        'RUN_Administrador',
+                                        'Email_Administrador',
+                                        'Telefono',
+                                        'Sucursales_RUT'
+      );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
@@ -76,7 +72,7 @@ class Medico {
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
-	    return $resultArray[0];
+	    return $resultArray;
     }
     
     /**
@@ -89,11 +85,11 @@ class Medico {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Medicocol',$_POST['medico_col']),
-                                array('Direccion_Consulta',$_POST['id_consulta']),
-                                array('Correo_Medico',$_POST['correo_medico']),
-                                array('Medicocol1',$_POST['medico_col_1']),
-                                array('Fecha_ultima_edicion',"NOW()")
+                                array('Nombre',$_POST['nombre_plaza_institucion']),
+                                array('Telefono',$_POST['telefono']),
+                                array('RUN_Administrador',$_POST['run_administrador']),
+                                array('Email_Administrador',$_POST['email_administrador']),
+                                array('Sucursales_RUT',$_POST['RUT'])
 				);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
@@ -101,14 +97,6 @@ class Medico {
         $query = CallQuery($queryString);
     }
 
-    public static function EncontrarMedico($rut) {
-        $queryString = "SELECT idMedico FROM Medicos WHERE Personas_RUN = '$rut';";
-        $res = CallQuery($queryString);
-        if($res->num_rows == 1){
-                return $res->fetch_row();
-        }
-        else return false;
-    }
 }
 
 ?>

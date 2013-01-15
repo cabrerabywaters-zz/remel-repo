@@ -19,7 +19,6 @@ class Medicamento  {
                                 array('Laboratorio_idLaboratorio',$_POST['RUT']),
                                 array('SubClase_Terapeutica_idSubClase',$_POST['idSubClase']),
                                 array('bioequivalente',$_POST['bioequivalente']),
-                                array('Medicamentocol',$_POST['medicamentocol']),
                                 array('Reacciones_Adversas',$_POST['reacciones_adversas']),
                                 array('Nombre_Generico',$_POST['nombre_generico']),
                                 array('CodigoISP',$_POST['codigo_isp']),
@@ -27,11 +26,11 @@ class Medicamento  {
                                 array('Foto_Presentacion',$_POST['foto_presentacion']),
                                 array('Fecha_Autorizacion_ISP','NOW()'),
                                 array('Fecha_Prox_Renovacion_ISP',$_POST['fecha_prox_renovacion_isp']),
-                                array('Observacion',$_POST['observacion']),
+                                array('Observaciones',$_POST['observacion']),
                                 array('Presentaciones_idPresentacion',$_POST['idUnidade']),
                                 array('Descripcion_consumo_idDescripcion_consumo',$_POST['idDescripcion_consumo']),
-                                array('retenido',$_POST['retenido']),
-                                array('Ean13',$_POST['ean13'])
+                                array('Ean13',$_POST['ean13']),
+								array('Tipo_de_Receta_Id',$_POST['Tipo_de_Receta_Id'])
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -63,13 +62,12 @@ class Medicamento  {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-					'idMedico',
+										'idMedico',
                                         'Nombre_Comercial',
                                         'Laboratorio_idLaboratorio',
                                         'SubClase_Terapeutica_idSubClase',
                                         'Clase_Terapeurtica_idClase_Terapeurtica',
                                         'bioequivalente',
-                                        'Medicamentocol',
                                         'Reacciones_Adversas',
                                         'Nombre_Generico',
                                         'CodigoISP',
@@ -81,8 +79,8 @@ class Medicamento  {
                                         'Presentaciones_idPresentacion',
                                         'Unidades_idUnidade',
                                         'Descripcion_consumo_idDescripcion_consumo',
-                                        'retenido',
-                                        'Ean13'
+                                        'Ean13',
+										'Tipo_de_Receta_Id'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -113,18 +111,21 @@ class Medicamento  {
     	$id = $_POST['id_medicamento'];
     	$datosActualizacion = array(
                                array('Nombre_Comercial',$_POST['nombre_comercial']),
+                                array('Laboratorio_idLaboratorio',$_POST['RUT']),
                                 array('SubClase_Terapeutica_idSubClase',$_POST['idSubClase']),
                                 array('bioequivalente',$_POST['bioequivalente']),
-                                array('Medicamentocol',$_POST['medicamentocol']),
                                 array('Reacciones_Adversas',$_POST['reacciones_adversas']),
                                 array('Nombre_Generico',$_POST['nombre_generico']),
-                                array('Precio_Referencia',$_POST['precio_referencia']),
+                                array('CodigoISP',$_POST['codigo_isp']),
+                                array('Precio_Referencia(CLP)',$_POST['precio_referencia']),
                                 array('Foto_Presentacion',$_POST['foto_presentacion']),
                                 array('Fecha_Autorizacion_ISP','NOW()'),
                                 array('Fecha_Prox_Renovacion_ISP',$_POST['fecha_prox_renovacion_isp']),
-                                array('Observacion',$_POST['observacion']),
-                                array('retenido',$_POST['retenido']),
-                                array('Ean13',$_POST['ean13']) 
+                                array('Observaciones',$_POST['observacion']),
+                                array('Presentaciones_idPresentacion',$_POST['idUnidade']),
+                                array('Descripcion_consumo_idDescripcion_consumo',$_POST['idDescripcion_consumo']),
+                                array('Ean13',$_POST['ean13']),
+								array('Tipo_de_Receta_Id',$_POST['Tipo_de_Receta_Id'])
             );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

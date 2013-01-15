@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class PlazaInstitucion {
+class Laboratorio {
 
-    static $nombreTabla = "Plazas_Instituciones";
-    static $nombreIdTabla = "idPlaza";    
+    static $nombreTabla = "Log";
+    static $nombreIdTabla = "ID";    
     
     /**
      * Insertar
@@ -15,14 +15,15 @@ class PlazaInstitucion {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_plaza_institucion']),
-                                array('Telefono',$_POST['telefono']),
-                                array('Direccion_idDireccion',$_POST['idDireccion']),
-                                array('RUN_Administrador',$_POST['run_administrador']),
-                                array('Email_Administrador',$_POST['email_administrador']),
-                                array('Plaza_Institucioncol',$_POST['plaza_institucioncol']),
-                                array('Instituciones_RUT',$_POST['RUT'])
-                                );
+								array('Fecha',$_POST['fecha']),
+								array('campoModificado',$_POST['campoModificado']),
+								array('valorAnterior',$_POST['valorAnterior']),
+								array('valorNuevo',$_POST['valorNuevo']),
+								array('NombreTabla',$_POST['NombreTabla']),
+								array('Personas_RUN',$_POST['Personas_RUN']),
+								array('Medicos_idMedico',$_POST['Medicos_idMedico']),
+								array('Medicos_Personas_RUN',$_POST['Medicos_Personas_RUN']),
+                                      );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -53,13 +54,14 @@ class PlazaInstitucion {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Direccion_idDireccion',
-                                        'RUN_Administrador',
-                                        'Email_Administrador',
-                                        'Telefono',
-                                        'Tipo_Institucion_idTipo_Institucion',
-                                        'Fecha_creacion_REMEL'
+                                        'Fecha',
+										'campoModificado',
+										'valorAnterior',
+										'valorNuevo',
+										'NombreTabla',
+										'Personas_RUN',
+										'Medicos_idMedico',
+										'Medicos_Personas_RUN',
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -87,13 +89,17 @@ class PlazaInstitucion {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['rut'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_plaza_institucion']),
-                                array('Telefono',$_POST['telefono']),
-                                array('Email_Administrador',$_POST['email_administrador']),
-                                array('Plaza_Institucioncol',$_POST['plaza_institucioncol'])
-				);
+                                array('Fecha',$_POST['fecha']),
+								array('campoModificado',$_POST['campoModificado']),
+								array('valorAnterior',$_POST['valorAnterior']),
+								array('valorNuevo',$_POST['valorNuevo']),
+								array('NombreTabla',$_POST['NombreTabla']),
+								array('Personas_RUN',$_POST['Personas_RUN']),
+								array('Medicos_idMedico',$_POST['Medicos_idMedico']),
+								array('Medicos_Personas_RUN',$_POST['Medicos_Personas_RUN']),
+                );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);

@@ -8,7 +8,7 @@ class MedicamentoReceta  {
     static $nombreTabla = "Medicamentos_Recetas";
     static $nombreIdTabla = "Medicamento_idMedicamento";
     static $nombreIdTabla1 = "Receta_idReceta";
-    
+	static $nombreIdTabla2 = "Diagnosticos_idDiagnostico";
     /**
      * Insertar
      * 
@@ -17,10 +17,14 @@ class MedicamentoReceta  {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                             array('DetalleRPcol',$_POST['detallerpcol']),
-                             array('Cantidad_unidades',$_POST['cantidad_unidades']),
-                             array('Periodo',$_POST['periodo']),
-                             array('Ciclo',$_POST['ciclo']) 
+                             array('Cantidad',$_POST['cantidad']),
+                             array('Frecuencia',$_POST['frecuencia']),
+                             array('Unidad_Frecuencia_ID',$_POST['Unidad_Frecuencia_ID']),
+                             array('Fecha_Inicio',$_POST['fechaInicio']) ,
+							 array('Fecha_Termino',$_POST['fechaTermino']),
+							 array('Periodo',$_POST['periodo']),
+							 array('Unidad_Periodo_ID',$_POST['unidadPeriodoId']),
+							 array('Unidad_de_Consumo_idUnidad_de_Consumo',$_POST['Unidad_de_Consumo_idUnidad_de_Consumo'])
                             );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -56,10 +60,12 @@ class MedicamentoReceta  {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                 'DetalleRPcol',
-                                 'Cantidad_unidades',
-                                 'Periodo',
-                                 'Ciclo'
+                                 'Cantidad',
+                                 'Frecuencia',
+                                 'Unidad_Frecuencia_ID',
+                                 'Fecha_Inicio',
+								 'Periodo',
+								 'Unidad_Periodo_ID',								 'Unidad_de_Consumo_idUnidad_de_Consumo'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -92,10 +98,14 @@ class MedicamentoReceta  {
         $id = array($id1,$id2);
         
         $datosActualizacion = array(                      	
-                             array('DetalleRPcol',$_POST['detallerpcol']),
-                             array('Cantidad_unidades',$_POST['cantidad_unidades']),
-                             array('Periodo',$_POST['periodo']),
-                             array('Ciclo',$_POST['ciclo'])
+                             array('Cantidad',$_POST['cantidad']),
+                             array('Frecuencia',$_POST['frecuencia']),
+                             array('Unidad_Frecuencia_ID',$_POST['Unidad_Frecuencia_ID']),
+                             array('Fecha_Inicio',$_POST['fechaInicio']) ,
+							 array('Fecha_Termino',$_POST['fechaTermino']),
+							 array('Periodo',$_POST['periodo']),
+							 array('Unidad_Periodo_ID',$_POST['unidadPeriodoId']),
+							 array('Unidad_de_Consumo_idUnidad_de_Consumo',$_POST['Unidad_de_Consumo_idUnidad_de_Consumo'])
                       	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

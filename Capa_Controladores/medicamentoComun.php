@@ -17,7 +17,7 @@ class MedicamentoComun  {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Glosa',$_POST['glosa'])
+                                array('FechaCreacion',$_POST['FechaCreacion'])
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -49,7 +49,7 @@ class MedicamentoComun  {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Glosa'
+                                        'FechaCreacion'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -82,7 +82,7 @@ class MedicamentoComun  {
         $id = array($id1,$id2);
         
         $datosActualizacion = array(                      	
-                             array('Glosa',$_POST['glosa'])
+                             array('FechaCreacion',$_POST['fechaCreacion'])
                       	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
