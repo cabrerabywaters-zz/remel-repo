@@ -11,9 +11,15 @@ y el popup que muestra el detalle del medicamento
 </div>
 <div id="collapseTwo2" class="accordion-body collapse">
     <div class="accordion-inner">
-        <div class="modal-body img-rounded">
-            <strong><p>Ingrese nombre del medicamento</p></strong>
+        <div class="modal-body img-rounded row-fluid">
+            <div class="span7">  
+            <p>
+                <strong>Buscar:</strong> 
+                    <br><input type="radio" class="btn" name="filtroMedicamento" value="principioActivo">por Principio Activo<br>
+                    <input class="btn" type="radio" name="filtroMedicamento" value="nombreComercial">por Nombre Comercial<br>
+            </p>
             <form class="form-search">
+
 		   <div class="row-fluid">
                     <input type="text" id="Medicamentos" class="span2 search-query"/>
 		    </div><br>
@@ -23,12 +29,39 @@ y el popup que muestra el detalle del medicamento
 		    <select name="subclase" id="subclase" multiple="multiple"></select>
 	            <select name="medicamento" id="medicamento" multiple="multiple"></select>
 		   </div>
+
+                    <div class="span11">
+                    <div class="input-append">
+                    <input type="text" id="Medicamentos" class="span10 search-query">
+                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#myModal2" disabled="disabled">Añadir</button>  <br>
+                    </div>
+                    </div><br>
+		   
+                    
+                 
+                        <div class="span11">
+                        <strong><p>Categorias</p></strong>
+                    <select id="clase" multiple="multiple"></select>
+		    <select id="subclase" multiple="multiple"></select>
+	            <select id="medicamento" multiple="multiple"></select>
+                        </div>
+                                              
+
             </form>
+            </div><!-- span 7-->
+            <div class="span4">
+                <p><strong>Medicamentos Seleccionados:</strong></p>
+                <div id="medicamentosRecetados">
+                </div>    
+            </div> <!-- span 4 -->
+        </div>
+        
+        <div class="span10">
+        <a class="btn btn-warning span2"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
         </div>
         
         
-        <a class="btn btn-warning span2 offset5"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
-    </div>
+     </div>
 </div>
 
 
@@ -37,20 +70,20 @@ y el popup que muestra el detalle del medicamento
 <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Información del Medicamento</h3>
+        <h3 id="myModalLabel">Paracetamol</h3>
     </div>
     <div class="modal-body">
-        <strong><p>Paracetamol</p></strong>
-        <div class="span3"> <img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
+        <div class="span3"><img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
         <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
-        <p>Cantidad: </p>
-        <input type="text" placeholder="Indique Cantidad">
+        <p>Cantidad: <input type="text" placeholder="Indique Cantidad">Miligramos (mg)</p>
+        <p>Cada :<input type="text" placeholder="frequencia">Horas (hrs)</p>
+        <p>Por :<input type="text" placeholder="periodo">Dias</p>
         <p>Comentario: </p>
         <center> <textarea rows="2" style="width:90%"></textarea></center>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Recetar</a>
+        <a href="#" role="button" class="btn btn-warning">Prescribir</a>
     </div>
 </div><!-- fin popup informacion del medicamento -->
 
@@ -99,10 +132,10 @@ y el popup que muestra el detalle del medicamento
                                 data: {subclase: id2},
                                 success: function(output){
                                         var output = jQuery.parseJSON(output);
-                                        $("#subclase").empty();
+                                        $("#medicamento").empty();
                                         $.each(output,function(i,el){
-                                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre'] + "</option>";
-                                                $("#subclase").append(string);
+                                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
+                                                $("#medicamento").append(string);
                                                 }
                                         );
                                         }

@@ -63,6 +63,7 @@ class Medicamento  {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
+					'idMedico',
                                         'Nombre_Comercial',
                                         'Laboratorio_idLaboratorio',
                                         'SubClase_Terapeutica_idSubClase',

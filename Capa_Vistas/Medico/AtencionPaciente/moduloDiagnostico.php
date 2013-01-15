@@ -75,9 +75,8 @@
     
     
         <?php $institucion = $_SESSION['institucionLog']; 
-            if($institucion[1]!="Consulta Particular"){
-                echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i>'.$institucion[1].'</button>';
-            }
+            echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i> Guía '.$institucion[1].'</button>';
+            
         ?>
      
     
@@ -85,10 +84,10 @@
         </div><!-- div con los medicamentos asociados por la institucion-->
        
     
-        <button id='medicamentosFavo' type='button' class='btn btn-danger btn-block' data-toggle='collapse' data-target='#recomendadosFav'><i class="icon-white icon-circle-arrow-up"></i>Mis Favoritos</button>
+        <button id='medicamentosFavo' type='button' class='btn btn-danger btn-block' data-toggle='collapse' data-target='#recomendadosFav'><i class="icon-white icon-circle-arrow-up"></i>Guía GES</button>
         
         <div id="recomendadosFav" class="collapse in"><!-- div con los medicamentos asociados por favoritos-->
-        <span class="label label-info">Medicamento fav <a href="#valor"> <i class="icon-plus-sign icon-white"></i></a></span>
+        <span class="label label-info">Medicamento GES <a href="#valor"> <i class="icon-plus-sign icon-white"></i></a></span>
         </div><!-- div con los medicamentos asociados por los favoritos -->
 </div> 
 
@@ -217,7 +216,7 @@
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                             
                             
-                     $('a[rel="tooltip"]').tooltip({title:"Ver Medicamentos Asociados"}).unbind("click")
+                     $('a[rel="tooltip"]').tooltip({title:"Ver Guías del diagnostico"}).unbind("click")
                         .on('click', (function(){
                             /**
                              *Funcion que abre el widget donde se encuentran los 
@@ -254,8 +253,8 @@
                             // se setea el dialogo
                             $("#medicamentosAsociados")
                                 .dialog({
-                                width: 200, 
-                                title: '<small>Fármacos asociados a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
+                                width: 250, 
+                                title: '<small>Guías asociadas a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
                                 autoOpen: false,
                                 resizable: false,
                                 position: {my: "left center", at: "right", of: $('#log_diagnostico')}
