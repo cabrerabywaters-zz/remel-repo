@@ -16,8 +16,8 @@ class ClaseTerapeutica {
     public static function Insertar() {
     	$datosCreacion = array(
                                 array('Nombre',$_POST['nombre_clase_terapeutica']),
+                                array('SubClase_Terapeuticas_idSubClase',$_POST['subClase'])
                                       );
-
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
@@ -27,9 +27,8 @@ class ClaseTerapeutica {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId() {
-        $id = $_POST['id'];
-        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+    public static function BorrarPorId($id) {
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $id);
         $query = CallQuery($queryString);
     }
     
@@ -49,6 +48,7 @@ class ClaseTerapeutica {
     	$atributosASeleccionar = array(
                                         'Nombre',
 					'idClase_Terapeutica',
+                                        'SubClase_Terapeuticas_idSubClase'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -79,6 +79,7 @@ class ClaseTerapeutica {
     	$id = $_POST['id_clase_terapeutica'];
     	$datosActualizacion = array(
                                 array('Nombre',$_POST['nombre_clase_terapeutica']),
+                                array('SubClase_Terapeuticas_idSubClase',$_POST['subClase'])
                 );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

@@ -15,19 +15,19 @@ class Consulta  {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Fecha','NOW()'),
+                                array('Fecha','date(d-m-y)'),
+                                array('Hora','time()'),
                                 array('Medicos_idMedico',$_POST['idMedico']),
                                 array('Pacientes_idPaciente',$_POST['idPaciente']),
-                                array('Prestadores_Salud_idPrestadores_Salud',$_POST['idPrestadores_Salud']),
-                                array('Prestadores_Salud_Plazas_Instituciones_idPlaza',$_POST['idPlaza'])
+                                array('Lugar_de_Atencion_idLugar_de_Atencion',$_POST['idLugar'])
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-    public static function InsertarAlternativo($fecha, $idMedico, $idPaciente, $idPrestadorSalud, $idPlaza){
-        $queryString = 'INSERT INTO '.self::$nombreTabla.' (Fecha, Medicos_idMedico, Pacientes_idPaciente, Prestadores_Salud_idPrestadores_Salud, Prestadores_Salud_Plazas_Instituciones_idPlaza)
-                        VALUES ("'.$fecha.'","'.$idMedico.'","'.$idPaciente.'","'.$idPrestadorSalud.'","'.$idPlaza.'")';
+    public static function InsertarAlternativo($fecha, $hora, $idMedico, $idPaciente, $idLugar){
+        $queryString = 'INSERT INTO '.self::$nombreTabla.' (Fecha, Hora, Medicos_idMedico, Pacientes_idPaciente, Lugar_de_Atencion_id_lugar_de_Atencion)
+                        VALUES ("'.$fecha.'","'.$hora.'","'.$idMedico.'","'.$idPaciente.'","'.$idLugar.'")';
         $query = CallQuery($queryString);
        
     }
@@ -37,9 +37,8 @@ class Consulta  {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId() {
-        $id = $_POST['id'];
-        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+    public static function BorrarPorId($id) {
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $id);
         $query = CallQuery($queryString);
     }
     
@@ -62,8 +61,7 @@ class Consulta  {
                                 'Hora',
                                 'Medicos_idMedico',
                                 'Pacientes_idPaciente',
-                                'Prestadores_Salud_idPrestadores_Salud',
-                                'Prestadores_Salud_Plazas_Instituciones_idPlaza'
+                                'Lugar_de_Atencion_idLugar_de_Atencion'
             );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -85,14 +83,13 @@ class Consulta  {
     
     // lo generé de forma rapida para salir del problema, hay que hacerlo de manera correcta con el 
     //seleccionar query que está arriba de este
-     public static function SeleccionarID($idMedico,$idPaciente,$fecha,$idPrestador,$idPlaza) {
+     public static function SeleccionarID($idMedico,$hora,$idPaciente,$fecha,$idLugar) {
     	
 
        $queryString="Select Id_consulta from Consulta Where Medicos_idMedico =".$idMedico." 
            and Pacientes_idPaciente=".$idPaciente." and  
-               Fecha='".$fecha."'  and 
-                   Prestadores_Salud_idPrestadores_Salud=".$idPrestador." and 
-                       Prestadores_Salud_Plazas_Instituciones_idPlaza=".$idPlaza." LIMIT 1;";
+               Fecha='".$fecha."'  and Hora = '".$hora."'
+                   Lugar_de_Atencion_idLugar_de_Atencion=".$idLugar."  LIMIT 1;";
        
         $result = CallQuery($queryString);
 	    $resultArray = array();
@@ -116,10 +113,10 @@ class Consulta  {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id_consulta'];
     	$datosActualizacion = array(
-                                array('Fecha','NOW()'),
-                                array('Hora','NOW()'),
+                                array('Fecha',$_POST['fecha']),
+                                array('Hora',$_POST['hora']),
                                	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";

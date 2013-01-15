@@ -3,11 +3,11 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
 
-class ComposicionMedicamento {
+class ComposicionSecundaria {
 
-    static $nombreTabla = "Composicion_Medicamento";
+    static $nombreTabla = "Composicion_Secundaria";
     static $nombreIdTabla = "Medicamentos_idMedicamento";
-    static $nombreIdTabla1 = "Principio_Activo_idPrincipio_Activo";
+    static $nombreIdTabla1 = "Otros_Compuestos_ID";
 
     /**
      * Insertar
@@ -18,7 +18,7 @@ class ComposicionMedicamento {
     public static function Insertar() {
         $id = array(
             array('Medicamentos_idMedicamento', $_POST['idMedicamento']),
-            array('Principio_Activo_idPrincipio_Activo', $_POST['idPrincipioActivo'])
+            array('Otros_Compuestos_ID', $_POST['idCompuesto'])
         );
         $datosCreacion = array(
             array('Cantidad', $_POST['cantidad']),
@@ -84,7 +84,7 @@ class ComposicionMedicamento {
     public static function Actualizar() {
         $id = array(
             array('Medicamentos_idMedicamento', $_POST['idMedicamento']),
-            array('Principio_Activo_idPrincipio_Activo', $_POST['idPrincipioActivo'])
+            array('Otros_Compuestos_ID', $_POST['idCompuesto'])
         );
 
         $datosActualizacion = array(
@@ -97,7 +97,5 @@ class ComposicionMedicamento {
         $queryString = QueryStringActualizarRelacion($where, $id, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
 }
-
 ?>

@@ -3,11 +3,11 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
-class ContraindicacionAlergia  {
+class ContraindicacionDiagnostico  {
 
-    static $nombreTabla = "Contraindicaciones_Principios_Activos";
-    static $nombreIdTabla = "Princio_Activo_has_Princio_Activo";
-    static $nombreIdTabla1 = "Princio_Activo_has_Princio_Activo1";
+    static $nombreTabla = "Contraindicaciones_Diagnosticos";
+    static $nombreIdTabla = "Diagnosticos_idDiagnostico";
+    static $nombreIdTabla1 = "Medicamentos_idMedicamento";
     
     /**
      * Insertar
@@ -15,10 +15,14 @@ class ContraindicacionAlergia  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($id1, $id2) {
+    public static function Insertar() {
+    	$id1 = $_POST['Diagnosticos_idDiagnostico'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
-       
-        $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
+        $datos = array(
+                            array('Descripcion',$_POST['descripcion'])
+                                      );
+        $queryString = QueryStringCrearRelacion($id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
@@ -27,7 +31,9 @@ class ContraindicacionAlergia  {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId($id1, $id2) {
+    public static function BorrarPorId() {
+        $id1 = $_POST['Diagnosticos_idDiagnostico'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
         
         $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
@@ -49,8 +55,11 @@ class ContraindicacionAlergia  {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
+    	$atributosASeleccionar = array(
+                                        'Descripcion'
+      );
         
-        $queryString = QueryStringSeleccionarRelacion($where, null, self::$nombreTabla);
+        $queryString = QueryStringSeleccionarRelacion($where, $atributosASeleccionar, self::$nombreTabla);
 
 	    if($limit != 0){
 	       $queryString = $queryString." LIMIT $limit";
@@ -74,18 +83,20 @@ class ContraindicacionAlergia  {
      * y actualiza con datos nuevos, la id y los datos vienen
      * por POST desde AJAX
      */
-    /*no necesita actualizar
-   public static function Actualizar($id1, $id2) {
+   public static function Actualizar() {
+    	$id1 = $_POST['Diagnosticos_idDiagnostico'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
         $id = array($id1,$id2);
-        $datos = array(
-          array('Descripcion',$_POST['desc'])  
-        );
+        
+        $datos = array(                      	
+                             array('Descripcion',$_POST['descripcion'])
+                      	);
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
         
-    }*/
+    }
 
 }
 
