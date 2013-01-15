@@ -16,7 +16,7 @@ y el popup que muestra el detalle del medicamento
             <p>
                 <strong>Buscar:</strong> 
                     <br><input type="radio" class="btn" name="filtroMedicamento" value="principioActivo">por Principio Activo<br>
-                    <input class="btn" type="radio" name="filtroMedicamento" value="nombreComercial">po Nombre Comercial<br>
+                    <input class="btn" type="radio" name="filtroMedicamento" value="nombreComercial">por Nombre Comercial<br>
             </p>
             <form class="form-search">
                     <div class="span11">
@@ -58,20 +58,20 @@ y el popup que muestra el detalle del medicamento
 <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Información del Medicamento</h3>
+        <h3 id="myModalLabel">Paracetamol</h3>
     </div>
     <div class="modal-body">
-        <strong><p>Paracetamol</p></strong>
-        <div class="span3"> <img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
+        <div class="span3"><img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
         <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
-        <p>Cantidad: </p>
-        <input type="text" placeholder="Indique Cantidad">
+        <p>Cantidad: <input type="text" placeholder="Indique Cantidad">Miligramos (mg)</p>
+        <p>Cada :<input type="text" placeholder="frequencia">Horas (hrs)</p>
+        <p>Por :<input type="text" placeholder="periodo">Dias</p>
         <p>Comentario: </p>
         <center> <textarea rows="2" style="width:90%"></textarea></center>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <a href="atendiendo_paciente.php" role="button" class="btn btn-warning">Recetar</a>
+        <a href="#" role="button" class="btn btn-warning">Prescribir</a>
     </div>
 </div><!-- fin popup informacion del medicamento -->
 
