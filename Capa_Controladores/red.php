@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Region {
+class Red {
 
-    static $nombreTabla = "Regiones";
-    static $nombreIdTabla = "idRegion";    
+    static $nombreTabla = "RED";
+    static $nombreIdTabla = "RUT";    
     
     /**
      * Insertar
@@ -15,8 +15,7 @@ class Region {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                            array('Nombre',$_POST['nombre_region']),
-                            array('Numero',$_POST['numero_region'])
+                                array('Nombre',$_POST['nombre']),
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -49,7 +48,6 @@ class Region {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                         'Nombre',
-                                        'Numero'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -77,10 +75,10 @@ class Region {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_region'];
+    	$id = $_POST['rut'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])    );
+                                array('Nombre',$_POST['nombre']),
+                );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
