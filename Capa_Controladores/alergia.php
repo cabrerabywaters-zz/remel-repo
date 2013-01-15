@@ -15,7 +15,8 @@ class Alergia {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-            array('Descripcion',$_POST['descripcion_alergia'])               
+            array('Descripcion',$_POST['descripcion_alergia']),
+            array('Nombre',$_POST['nombre'])
             );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -27,9 +28,8 @@ class Alergia {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId() {
-        $id = $_POST['id'];
-        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
+    public static function BorrarPorId($id) {
+        $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $id);
         $query = CallQuery($queryString);
     }
     
@@ -47,7 +47,7 @@ class Alergia {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'Descripcion'
+                                        'Descripcion','Nombre'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -75,9 +75,10 @@ class Alergia {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
+    	$id = $_POST['id'];
     	$datosActualizacion = array(
-                               array('Descripcion',$_POST['descripcion_alergia'])    
+                               array('Descripcion',$_POST['descripcion_alergia']),
+                               array('Nombre', $_POST['nombre'])
             );
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
@@ -86,11 +87,11 @@ class Alergia {
 
     public static function BuscarAlergiaLike($nombre) {
 
-      		        $queryString = 'SELECT Descripcion, idAlergia
+      		        $queryString = 'SELECT Nombre, Descripcion, idAlergia
 
                         FROM Alergia
 
-                        WHERE Descripcion LIKE "% $nombre %"
+                        WHERE Nombre LIKE "% $nombre %"
 
                         ORDER BY Nombre
 
