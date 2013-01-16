@@ -13,16 +13,19 @@ y el popup que muestra el detalle del medicamento
         <div class="modal-body img-rounded row-fluid">
             <div class="span7">  
             <p>
-                <strong>Buscar:</strong> 
-                    <br><input type="radio" class="btn" name="filtroMedicamento" value="principioActivo">por Principio Activo<br>
-                    <input class="btn" type="radio" name="filtroMedicamento" value="nombreComercial">por Nombre Comercial<br>
+                <strong>Buscar:</strong><br>
+            <div class="btn-group" data-toggle="buttons-radio" id="filtro">
+            <button type="button" class="btn" filtro="principioActivo">Principio Activo</button>
+            <button type="button" class="btn" filtro="nombreComercial">Nombre Comercial</button>
+            </div>
             </p>
+            
             <form class="form-search">
 
                     <div class="span11">
                     <div class="input-append">
-                    <input type="text" id="Medicamentos" class="span10 search-query">
-                    <button type="button" id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#myModal2" disabled="disabled">Añadir</button>  <br>
+                    <input type="text" id="Medicamentos" class="search-query">
+                    <button id="boton_medicamentos" class="detalleMedicamento btn" disabled="disabled">Añadir</button>  <br>
                     </div>
                     </div><br>
 		   
@@ -120,10 +123,12 @@ y el popup que muestra el detalle del medicamento
        
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
+                var filtro = $('#filtro').children('button').attr('filtro'); // el filtro correspondiente
                 $.ajax({
                     url: "../../../ajax/autocompleteMedicamento.php",
                     data: {
-                        name_startsWith: request.term
+                        name_startsWith: request.term,
+                        filtro: filtro
                     },
                     type: "post",
                     success: function( data ) {
@@ -194,7 +199,7 @@ y el popup que muestra el detalle del medicamento
             $.ajax({
               url: "url",
               type: "POST",
-              data: {'idMedicamento':idMedicamento},
+              data: idMedicamento,
               success: function(output){
                   alert(output);
 //                  if(output == 1){// se eliminó correctamente de favoritos
