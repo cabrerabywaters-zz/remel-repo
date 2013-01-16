@@ -90,11 +90,11 @@ verificarIP();
  * el medico conectado
  */
 if (isset($_SESSION['instituciones']) == "true") {
-    echo '<div id=contenedor_instituciones>';
-    foreach ($_SESSION['instituciones'] as $institucion) {
-        $idPlaza = $institucion['idPlaza'];
-        $nombreInstitucion = $institucion['Nombre'];
-        echo "<button class='btn btn-block' type='button' idPlaza='$idPlaza'>$nombreInstitucion</button>";
+    echo '<div id=contenedor_lugares>';
+    foreach ($_SESSION['instituciones'] as $lugar) {
+        $idPlaza = $lugar['idLugar'];
+        $nombreLugar = $lugar['Nombre'];
+        echo "<button class='btn btn-block' type='button' idLugar='$idLugar'>$nombreLugar</button>";
     };
     echo ' </div>';
 }
@@ -107,15 +107,15 @@ if (isset($_SESSION['instituciones']) == "true") {
                          * $_SESSION['institucionLog']
                          */
                         $(document).ready(function(){
-                            $("#contenedor_instituciones button").click(function(){
+                            $("#contenedor_lugares button").click(function(){
                         
                                 var postData = { //JSON con la info de la institucion que se envia
-                                    'idPlaza': $(this).attr('idPlaza'),
+                                    'idLugar': $(this).attr('idLugar'),
                                     'nombre': $(this).html()
                                 };
                        
 			        
-                                $.ajax({ url: '../ajax/institucionesLog.php',
+                                $.ajax({ url: '../ajax/lugarLog.php',
                                     data: postData,
                                     type: 'post',
                                     success: function(output) {                          
