@@ -91,66 +91,65 @@ y el popup que muestra el detalle del medicamento
 
 
 	$('#subclase').change(function() {
-                                var id2 = $("#subclase").attr("value");
-                                $.ajax({
-                                type:"POST",
-                                url: "../../../ajax/medicamentosMultiSelect.php",
-                                data: {subclase: id2},
-                                success: function(output){
-                                        var output = jQuery.parseJSON(output);
-                                        $("#medicamento").empty();
-                                        $.each(output,function(i,el){
-                                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
-                                                $("#medicamento").append(string);
-                                                }
-                                        );
-                                        }
-                                });
-                        }
-        );
+                var id2 = $("#subclase").attr("value");
+                $.ajax({
+                type:"POST",
+                url: "../../../ajax/medicamentosMultiSelect.php",
+                data: {subclase: id2},
+                success: function(output){
+                        var output = jQuery.parseJSON(output);
+                        $("#medicamento").empty();
+                        $.each(output,function(i,el){
+                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
+                                $("#medicamento").append(string);
+                                }
+                        );
+                        }//success
+                });
+        });//end change
 
 	$('#medicamento').change(function() { 
 		$("#Medicamentos").val($('#medicamento :selected').text());
 		$("#boton_medicamentos").removeAttr('disabled');
 		$("#boton_medicamentos").attr('enabled', 'enabled');
-	 } );
+	 }); // change
 
 
     
        
        
         $("#Medicamentos").autocomplete({
-                                source: function( request, response ) {
-                                    $.ajax({
-                                        url: "../../../ajax/autocompleteMedicamento.php",
-                                        data: {
-                                            name_startsWith: request.term
-                                        },
-                                        type: "post",
-                                        success: function( data ) {
-                                            $('#boton_medicamentos').removeAttr('disabled');
-                         		    
-                        		    
-                                            var output = jQuery.parseJSON(data);
-                       
-                                            response( $.map( output, function( item ) {
-                                                return {
-                                                    label: item
-                                                    // value: item.Nombre
-                                                }
-                                            }));
-                                        }//end success
-                    
-                                    });
-                                },
-                                minLength: 2,
-                                open: function() {
-                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-                                },
-                                close: function() {
-                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-                                }
-                            }); //autocomplete
+            source: function( request, response ) {
+                $.ajax({
+                    url: "../../../ajax/autocompleteMedicamento.php",
+                    data: {
+                        name_startsWith: request.term
+                    },
+                    type: "post",
+                    success: function( data ) {
+                        $('#boton_medicamentos').removeAttr('disabled');
+
+
+                        var output = jQuery.parseJSON(data);
+
+                        response( $.map( output, function( item ) {
+                            return {
+                                label: item
+                                // value: item.Nombre
+                            }
+                        }));
+                    }//end success
+
+                });
+            },
+            minLength: 2,
+            open: function() {
+                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+            },
+            close: function() {
+                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+            }
+        }); //autocomplete
                 
         /*
         * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
@@ -210,5 +209,5 @@ y el popup que muestra el detalle del medicamento
             
             
             
-   }); 
+      }); // click
 </script>
