@@ -87,45 +87,7 @@ color:white}
         /*
          *funcion que agrega capacidad de tooltip a los que lo requieran
          */
-    $(function() {
-		
-        var Alergias = [ <?php
-		foreach ($alergias1 as $cantidad)
-		{
-			foreach($cantidad as $dato)
-			{
-			echo'"'; echo $dato; echo'"'; echo",";
-			}
-		}
-		?>
-        ];
-		var Condiciones = [
-		<?php foreach ($condiciones1 as $cantidad)
-		{
-			foreach($cantidad as $dato)
-			{
-			echo'"'; echo $dato; echo'"'; echo",";
-			}
-		}?>
-		];
-			var Recetas = [
-		<?php foreach ($recetas as $dato)
-		{
-			echo'"'; echo $dato; echo'"'; echo",";
-		}?>
-		 ];
-        $( "#Condiciones" ).autocomplete({
-            source: Condiciones
-        });
-		 $( "#Recetas" ).autocomplete({
-            source: Recetas
-        });
-		 $( "#Alergias" ).autocomplete({
-            source: Alergias
-        });
-		
-    });
-    </script>
+</script>
     
      
         <!-- fin script js externos -->
