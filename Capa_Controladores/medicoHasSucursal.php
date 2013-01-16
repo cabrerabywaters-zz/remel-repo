@@ -79,7 +79,6 @@ public static function SucursalesPorIdMedico($idMedico){
 	$nombresConLugares = array();
 
 	foreach($nombres as $nombre){
-		echo $nombre['Nombre'];
 		$nombresConLugares[] = array(
 						$nombre['Nombre'],
 						$nombre['RUT'],

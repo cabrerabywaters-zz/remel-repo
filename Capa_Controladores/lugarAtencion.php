@@ -101,7 +101,6 @@ class LugarAtencion {
 	$nombreTabla = self::$nombreTabla;
 	$queryString = "SELECT Nombre, idLugar_de_Atencion FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";
 	
-	echo $queryString;
 	$result = CallQuery($queryString);
         $resultArray = array();
         while($fila = $result->fetch_assoc()) {
