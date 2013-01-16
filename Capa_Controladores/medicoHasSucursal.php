@@ -1,7 +1,9 @@
-<?php 
+<?php
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
+include_once(dirname(__FILE__).'/sucursal.php');
+include_once(dirname(__FILE__).'/lugarAtencion.php');
 
 class MedicoHasSucursal  {
 
@@ -58,7 +60,36 @@ class MedicoHasSucursal  {
         $query = CallQuery($queryString);
         
     }
+ 
+public static function SucursalesPorIdMedico($idMedico){
+        $atributosASeleccionar = array(
+                                        'Sucursal_RUT',
+      	);
 
+	$where = "WHERE Medico_idMedico = '$idMedico'"; 
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);	
+
+        $result = CallQuery($queryString);
+        $rutsSucursales = array();
+        while($fila = $result->fetch_assoc()) {
+               $rutsSucursales[] = $fila['Sucursal_RUT'];
+        }
+
+	$nombres = Sucursal::BuscarNombreArrayRUT($rutsSucursales);
+	$nombresConLugares = array();
+
+	foreach($nombres as $nombre){
+		echo $nombre['Nombre'];
+		$nombresConLugares[] = array(
+						$nombre['Nombre'],
+						$nombre['RUT'],
+						LugarAtencion::SeleccionarPorRutSucursal($nombre['RUT'])
+					   );
+	}
+
+        return $nombresConLugares;
 }
 
+
+}
 ?>

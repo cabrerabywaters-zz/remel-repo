@@ -98,6 +98,22 @@ static $nombreIdTabla = "RUT";
         $query = CallQuery($queryString);
     }
     
+public static function SucursalesPorDoctorRUT($doctorRUT){
+	$atributosASeleccionar = array(
+                                        'Nombre',
+                                        'Fecha_creacion_REMEL',
+      );
+
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+
+        $result = CallQuery($queryString);
+            $resultArray = array();
+            while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+            }
+
+	return $resultArray;
+}
    
 public static function BuscarNombreArrayRUT($arrayRUT){
 	$sucursales = array();

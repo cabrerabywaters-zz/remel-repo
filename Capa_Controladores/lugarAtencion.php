@@ -2,7 +2,7 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class PlazaInstitucion {
+class LugarAtencion {
 
     static $nombreTabla = "Lugar_de_Atencion";
     static $nombreIdTabla = "idLugar_de_Atencion";    
@@ -95,6 +95,20 @@ class PlazaInstitucion {
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
+    }
+
+    public static function SeleccionarPorRutSucursal($RUT) {
+	$nombreTabla = self::$nombreTabla;
+	$queryString = "SELECT Nombre, idLugar_de_Atencion FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";
+	
+	echo $queryString;
+	$result = CallQuery($queryString);
+        $resultArray = array();
+        while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+        }
+
+        return $resultArray;
     }
 
 }
