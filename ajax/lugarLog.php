@@ -3,12 +3,18 @@
  session_start();
 
  $idLugar = $_POST['idLugar'];
- $nombreLugar = $_POST['nombre'];
+ $nombreLugar = $_POST['nombreLugar'];
+  $rutSucursal = $_POST['rutSucursal'];
+ $nombreSucursal = $_POST['nombreSucursal'];
  //print_r($_SESSION['idMedicoLog'][0]);
- $_SESSION['lugarLog'][0]= $idLugar;
- $_SESSION['lugarLog'][1]= $nombreLugar;
+ $_SESSION['logLugar'] = array(
+     'rutSucursal' => $rutSucursal,
+     'nombreSucursal' => $nombreSucursal,
+     'idLugar' => $idLugar,
+     'nombreLugar' => $nombreLugar
+ );
  
- if(isset($_SESSION['lugarLog'])==true){
+ if(isset($_SESSION['logLugar'])==true){
      
      echo '1';
      
