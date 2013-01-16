@@ -87,7 +87,7 @@ $('#toggleFav').click(
 ); // click
     
     
-    $('#arsenalBar').hide();// para que la barra de arsenal no se muestre en el inicio
+$('#arsenalBar').hide();// para que la barra de arsenal no se muestre en el inicio
 $('#toggleArsenal').click(
     function(){// se ejecuta la primer click
         if($('.tab-content').hasClass('span10')){// si el panel está chico
