@@ -53,7 +53,6 @@ class Paciente {
         $atributosASeleccionar = array(
             'idPaciente',
             'Fecha_Ultima_Actualizacion',
-            'Nacionalidad',
             'Peso',
             'Etnias_idEtnias',
             'altura'
@@ -127,10 +126,15 @@ AND Pacientes.idPaciente =" . $idPaciente . "";
 
         $result = CallQuery($queryString);
         $resultArray = array();
+        if ($result != null){
         while ($fila = $result->fetch_assoc()) {
             $resultArray[] = $fila;
         }
         return $resultArray;
+        }
+        else{
+            return false;
+        }
     }
 
     public static function R_CondicionPaciente($idPaciente) {
@@ -144,12 +148,16 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 
         $result = CallQuery($queryString);
         $resultArray = array();
+        if ($result != null){
         while ($fila = $result->fetch_assoc()) {
             $resultArray[] = $fila;
         }
         return $resultArray;
+        }
+        else{
+            return false;
+        }
     }
-
     public static function R_DiagnosticoPaciente($idPaciente) {
         $queryString = "SELECT Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
 						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos

@@ -83,7 +83,7 @@ verificarIP();
         <form class="form-signin" action="atendiendo_paciente.php">
          
         <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
-        <h5 class="form-signin-heading"><center>Atendiendo en: <?php echo $_SESSION['institucionLog'][1] ?></center>   </h5>
+        <h5 class="form-signin-heading"><center>Atendiendo en: <?php echo $_SESSION['nomLugar']." de la sucursal ". $_SESSION['nomSucursal']  ?></center>   </h5>
          <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
         <!-- Button to trigger modal -->
         <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>

@@ -51,7 +51,6 @@ class Direccion {
     	$atributosASeleccionar = array(
                                         'Calle',
                                         'Numero',
-                                        'Direccioncol',
                                         'Comuna_idComuna'
       );
 
