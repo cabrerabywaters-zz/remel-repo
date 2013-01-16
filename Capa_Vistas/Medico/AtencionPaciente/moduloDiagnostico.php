@@ -53,7 +53,7 @@
 
             foreach ($tipos_diagnosticos as $tipo) {
 
-                echo'<option value="'.$tipo['idTipo'].'">' . $tipo['Nombre'] . '</option>';
+                echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
             }
             ?>
         <select>
@@ -88,7 +88,7 @@
         <button id='medicamentosFavo' type='button' class='btn btn-danger btn-block' data-toggle='collapse' data-target='#recomendadosFav'><i class="icon-white icon-circle-arrow-up"></i>Guía GES</button>
         
         <div id="recomendadosFav" class="collapse in"><!-- div con los medicamentos asociados por favoritos-->
-        <span class="label label-info">Medicamento GES <a href="#valor"> <i class="icon-plus-sign icon-white"></i></a></span>
+        <span class="label label-info">Principio Activo GES <a href="#valor"> <i class="icon-plus-sign icon-white"></i></a></span>
         </div><!-- div con los medicamentos asociados por los favoritos -->
 </div> 
 
@@ -101,15 +101,16 @@
                                 $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                             }
                         
-                            /**
+                            
+                            $( "#diagnostico" ).autocomplete({
+                                /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
                              * busca en la base de datos en el archivo autocompleteDiagnostico.php
                              * el jSon correspondiente a las coincidencias
                              * 
                              * Funcion select que ejecutará una accion cuando se devuelva
-                             */
-                            $( "#diagnostico" ).autocomplete({
+                             */        
                                 source: function( request, response ) {
                                     $.ajax({
                                         url: "../../../ajax/autocompleteDiagnostico.php",
@@ -198,7 +199,7 @@
                     $("#guardar_diagnostico").click(function() {
                             /**
                              * funcion que guarda el diagnostico correspondiente
-                             * en la bbdd al hacer click en "diagnosticar"
+                             * en el div al hacer click en "diagnosticar"
                              * agrega el pill en la seccion log_diagnostico
                              */
                         var nombre_diagnostico = $('#myModalLabel').text();    
@@ -210,7 +211,7 @@
                         $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
-                        $('#myModal').modal('hide');
+                        $('#myModal').modal('hide');// se cierra el modal
                         $('#diagnostico').val(''); // se borra el buscador
                         $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
                         $('#comentario_diagnostico').val(''); // se borra el comentario
@@ -266,7 +267,7 @@
                          
                         })); // end click 
                  
-                /**
+               /*
                 * comportamiento de los paneles colapsables
                 * @author: Cesar González
                 */ 
@@ -279,8 +280,7 @@
                    $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");})
                $('#recomendadosFav').on('show',function(){
                    $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");})
-
-                            
+                                         
 //                      
 //                      
 //                      la siguiente función guarda en la bbdd un diagnostico
