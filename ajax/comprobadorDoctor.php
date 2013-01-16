@@ -10,12 +10,12 @@ $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 
 
 if($_SESSION['idMedicoLog'] != null){ 
-   include_once('../Capa_Controladores/medicosHasPlazasInstituciones.php');
+   include_once('../Capa_Controladores/medicoHasSucursal.php');
    
    $idMedico = $_SESSION['idMedicoLog'][0];
    
   
-   $instituciones = MedicosHasPlazasInstituciones::PlazasPorIDMedico($idMedico);
+   $instituciones = MedicoHasSucursal::SucursalesPorIdMedico($idMedico);
    
    // falta agregar que las instituciones sean prestadoras de salud.
    
