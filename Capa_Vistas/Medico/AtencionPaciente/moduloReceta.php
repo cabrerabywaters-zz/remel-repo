@@ -140,12 +140,10 @@ y el popup que muestra el detalle del medicamento
 	 } );
 
 
-   $(function(){
+    
        
        
-       
-       
-    $("#Medicamentos").autocomplete({
+        $("#Medicamentos").autocomplete({
                                 source: function( request, response ) {
                                     $.ajax({
                                         url: "../../../ajax/autocompleteMedicamento.php",
@@ -170,12 +168,12 @@ y el popup que muestra el detalle del medicamento
                                     });
                                 },
                                 minLength: 2,
-                                 open: function() {
+                                open: function() {
                                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
                                 },
                                 close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 }
-                            });
-   });
+                            }); //autocomplete
+
 </script>
