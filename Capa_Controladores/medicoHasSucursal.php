@@ -80,9 +80,9 @@ public static function SucursalesPorIdMedico($idMedico){
 
 	foreach($nombres as $nombre){
 		$nombresConLugares[] = array(
-						$nombre['Nombre'],
-						$nombre['RUT'],
-						LugarAtencion::SeleccionarPorRutSucursal($nombre['RUT'])
+						'Nombre' => $nombre['Nombre'],
+						'RUT' => $nombre['RUT'],
+						'Lugares' => LugarAtencion::SeleccionarPorRutSucursal($nombre['RUT'])
 					   );
 	}
 

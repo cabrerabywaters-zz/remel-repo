@@ -124,7 +124,10 @@ public static function BuscarNombreArrayRUT($arrayRUT){
 	$resultado = callQuery($queryString);
 
 	while($row = $resultado->fetch_assoc()){
-		$sucursales[] = $row;
+		$sucursales[] = array(
+					'Nombre' => $row['Nombre'],
+					'RUT' => $row['RUT']
+					);
 	}
 
 	return $sucursales;
