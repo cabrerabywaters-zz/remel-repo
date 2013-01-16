@@ -139,7 +139,7 @@ y el popup que muestra el detalle del medicamento
                                                     // value: item.Nombre
                                                 }
                                             }));
-                                        }//end success
+                                        }
                     
                                     });
                                 },
@@ -151,29 +151,5 @@ y el popup que muestra el detalle del medicamento
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 }
                             }); //autocomplete
-                
-                /*
-                * funcionalidade de los botones de agregar un medicamento desde favoritos o desde arsenal
-                * ----------------------------------------------
-                * solo para los medicamentos que requieren escribir el rp
-                */
-               $('.detalleMedicamento').click(function(){
-                   alert('se hizo click en agregar un elemento desde la barra favoritos o arsenal!');
-                   var idMedicamento = $(this).attr('medicamento'); // id del medicamento a agregar
-                   
-                   $.ajax({ 
-                       url: "url", //agregar la url del ajax que devuelve la info del medicamento
-                       type:"POST",
-                       data: idMedicamento,
-                       success:function(data){
-                            alert(data);
-                            var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del 
-                            $('#modalDetalleMedicamento').modal('show');
-                            alert(medicamento);                    
-                       
-                       }//end success
-                   });//ajax
-                   
-                   
-               });// end click                           
+
 </script>

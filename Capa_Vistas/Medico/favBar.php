@@ -36,12 +36,12 @@
       <div id="medicamentosFav" class="collapse">
        <div class="span10 offset1">
            
-         <div class="alert alert-success" medicamento="medicamento1"><!-- pill medicamentoFav 1 -->
+         <div class="alert alert-success"><!-- pill medicamentoFav 1 -->
               <strong>Medicamento ej</strong>
               <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i> </a><!-- eliminar de favoritos --> 
               <a href="#" rel="tooltip" title="Agregar a Receta"> <i class="detalleMedicamento icon-plus pull-right"></i> </a><!-- agregar favorito seleccionado -->
          </div><!-- end pill diagnosticoFav 1-->
-         <div class="alert alert-success" medicamento="medicamento2"><!-- pill medicamentoFav 1 -->
+         <div class="alert alert-success"><!-- pill medicamentoFav 1 -->
               <strong>Medicamento ej</strong>
               <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
               <a href="#" rel="tooltip" title="Agregar a Receta"> <i class="detalleMedicamento icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
