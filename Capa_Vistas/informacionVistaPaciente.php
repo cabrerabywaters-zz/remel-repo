@@ -48,7 +48,7 @@ $idPaciente = $infoPaciente['idPaciente'];
 
 
 $diagnosticosPaciente = Paciente::R_DiagnosticoPaciente($idPaciente);
-//$recetasPaciente = Paciente::R_RecetasPaciente($idPaciente);
+$recetasPaciente = Paciente::R_RecetasPaciente($idPaciente);
 $condicionesPaciente = Paciente::R_CondicionPaciente($idPaciente);
 $alergiasPaciente = Paciente::R_AlergiaPaciente($idPaciente);
 

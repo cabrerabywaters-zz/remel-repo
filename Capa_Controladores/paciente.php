@@ -126,13 +126,12 @@ AND Pacientes.idPaciente =" . $idPaciente . "";
 
         $result = CallQuery($queryString);
         $resultArray = array();
-        if ($result != null){
-        while ($fila = $result->fetch_assoc()) {
-            $resultArray[] = $fila;
-        }
-        return $resultArray;
-        }
-        else{
+        if ($result != null) {
+            while ($fila = $result->fetch_assoc()) {
+                $resultArray[] = $fila;
+            }
+            return $resultArray;
+        } else {
             return false;
         }
     }
@@ -148,16 +147,16 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 
         $result = CallQuery($queryString);
         $resultArray = array();
-        if ($result != null){
-        while ($fila = $result->fetch_assoc()) {
-            $resultArray[] = $fila;
-        }
-        return $resultArray;
-        }
-        else{
+        if ($result != null) {
+            while ($fila = $result->fetch_assoc()) {
+                $resultArray[] = $fila;
+            }
+            return $resultArray;
+        } else {
             return false;
         }
     }
+
     public static function R_DiagnosticoPaciente($idPaciente) {
         $queryString = "SELECT Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
 						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos
@@ -177,50 +176,43 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         return $resultArray;
     }
 
-    /*public static function R_RecetasPaciente($idPaciente) {
+    public static function R_RecetasPaciente($idPaciente) {
 
         //primera query que obtiene solo escalares (nombre medico, fechas, etc)
-        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Instituciones.Nombre as nomInst, Consulta.Id_consulta 
-                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes, Personas, Instituciones, Medicos_has_Instituciones, Medicos
+        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Consulta.Id_consulta 
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes, Personas, Medicos
 			WHERE Pacientes.idPaciente = $idPaciente
-                        AND Medicos.idMedico = Medicos_has_Instituciones.Medico_idMedico
-                        AND Medicos_has_Instituciones.Institucion_RUT = Instituciones.RUT
-                        AND Instituciones.RUT = Recetas.Institucion_Emision
                         AND Medicos.Personas_RUN = Personas.RUN
+                        AND Medicos.idMedico = Consulta.Medicos_idMedico
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
                         ";
-                                //AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento
 
         $result = CallQuery($queryString);
         $resultArray = array();
-        $resultEscalar = array();
-        $resultVectorial = array();
         while ($fila = $result->fetch_assoc()) {
-            $resultEscalar[] = $fila;
+            $resultArray[] = $fila;
         }
-        
-        //segunda query que obtiene todos los nombres de medicamentos (vectores)
+        return $resultArray;
+    }
+
+    public static function R_MedicamentosConsulta($idConsulta) {
         $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta
-                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes
-			WHERE Pacientes.idPaciente = $idPaciente
-                        AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos
+			WHERE Consulta.Id_consulta = $idConsulta
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
                         AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento         
                        ";
         $result = CallQuery($queryString);
-        $count = 0;
+        $resultArray = array();
         while ($fila = $result->fetch_assoc()) {
-            $resultVectorial[$count] = $fila;
-            $count++;
+            $resultArray[] = $fila;
         }
-        $resultArray = array_merge($resultEscalar, $resultVectorial);
-        //$resultArray[0] = $resultEscalar;
-        //$resultArray[1] = $resultVectorial;
         return $resultArray;
-    }*/
+    }
+
 }
 
 ?>

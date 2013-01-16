@@ -16,17 +16,36 @@
    <table class="table table-striped">
 	<thead>
     <tr>
-    <th>Receta</td>
-    <th>Fecha</td>
-    <th>Nombre del Médico</td></tr></thead>
+    <th>Medico</td>
+    <th>Fecha de Emision</td>
+    <th>Fecha de Vencimiento</td>
+    <th>Medicamentos</td>
+    </tr></thead>
     ';
-        print_r($recetasPaciente);
         foreach ($recetasPaciente as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
-                //var_dump($llave);
+                if ($llave == 'Id_consulta'){
+                    echo '<td>';
+                    $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
+                    for($i=0;$i<count($medicamentosConsulta);$i++){
+                        echo $medicamentosConsulta[$i]['Nombre_Comercial'].'</br>';
+                    }
+                }
+                if ($llave == 'Nombre'){
+                    echo '<td>';
+                    echo $valor.' ';
+                }
+                if ($llave == 'Apellido_Paterno'){
+                    echo $valor;
+                    echo '</td>';
+                }
+                if ($llave == 'Fecha_Emision' || $llave == 'Fecha_Vencimiento'){
+                    echo '<td>';
+                    echo $valor;
+                    echo '</td>';
+                }                
             }
-
             echo "</tr>";
         }
         echo '</table></div></table></center></div>';
