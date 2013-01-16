@@ -154,14 +154,5 @@
             .attr('title','Ocultar')
             ;})
      
-   
-
-   $('a[href="#borrarFav"]').click(function(){
-       /**
-        * funcion que elimina de favoritos
-        * se debe primero eliminar de la bbdd vía ajax
-        * luego se elimina del DOM
-        */
-       $(this).parent('span').remove();
-   });  
+ 
 </script>
