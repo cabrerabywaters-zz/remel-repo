@@ -16,7 +16,6 @@ if ($_SESSION['idMedicoLog'] != null) {
 
     $_SESSION['lugares'] = MedicoHasSucursal::SucursalesPorIdMedico($idMedico);
 
-    $_SESSION['lugares'] = $lugares;
     $page = "../Capa_Vistas/decisionDoctor.php";
 } elseif ($_SESSION['idPacienteLog'] != null) {
     $page = "../Capa_Vistas/Paciente/paginaPaciente.php";

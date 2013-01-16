@@ -26,7 +26,6 @@
                 if($idMedico != false){
 			
                         $_SESSION['idMedicoLog'] = $idMedico;
-			$_SESSION['lugares'] = MedicoHasSucursal::SucursalesPorIdMedico($idMedico);
                 }
 
 		echo "1";
