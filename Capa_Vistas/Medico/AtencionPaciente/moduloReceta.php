@@ -152,28 +152,63 @@ y el popup que muestra el detalle del medicamento
                                 }
                             }); //autocomplete
                 
-                /*
-                * funcionalidade de los botones de agregar un medicamento desde favoritos o desde arsenal
-                * ----------------------------------------------
-                * solo para los medicamentos que requieren escribir el rp
-                */
-               $('.detalleMedicamento').click(function(){
-                   alert('se hizo click en agregar un elemento desde la barra favoritos o arsenal!');
-                   var idMedicamento = $(this).attr('medicamento'); // id del medicamento a agregar
-                   
-                   $.ajax({ 
-                       url: "url", //agregar la url del ajax que devuelve la info del medicamento
-                       type:"POST",
-                       data: idMedicamento,
-                       success:function(data){
-                            alert(data);
-                            var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del 
-                            $('#modalDetalleMedicamento').modal('show');
-                            alert(medicamento);                    
-                       
-                       }//end success
-                   });//ajax
-                   
-                   
-               });// end click                           
+        /*
+        * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
+        * a la receta
+        * ----------------------------------------------
+        * solo para los medicamentos que requieren escribir el rp
+        */
+       $('.detalleMedicamento').click(function(){
+           var idMedicamento = $(this).attr('medicamento'); // id del medicamento a agregar
+           alert('se hizo click en agregar un elemento desde la barra favoritos o arsenal!'+idMedicamento);
+           
+           $.ajax({ 
+               url: "url", //agregar la url del ajax que devuelve la info del medicamento
+               type:"POST",
+               data: idMedicamento,
+               success:function(data){
+                   /*
+                    * en esta funcion se utilizan los valores de los campos de medicamento y
+                    * se modifica el modal para llenar los campos relativos al medicamento
+                    */
+                    alert(data);
+                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
+                    
+                    
+                    $('#modalDetalleMedicamento').modal('show'); // se muestra el modal
+                    alert(medicamento);                    
+
+               }//end success
+           });//ajax
+
+
+       });// end click 
+               
+       /*
+        * funcion que elimina de favoritos el medicamento seleccionado
+        * se debe primero eliminar de la bbdd vía ajax
+        * luego se elimina del DOM
+        */
+       $('a[href="#borrarFav"]').click(function(){
+            var idMedicamento = $(this).attr('medicamento');
+            alert('se quiere eliminar de favoritos el medicamento con id: '+idMedicamento);
+            $.ajax({
+              url: "url",
+              type: "POST",
+              data: {'idMedicamento':idMedicamento},
+              success: function(output){
+                  alert(output);
+//                  if(output == 1){// se eliminó correctamente de favoritos
+//                      $(this).parent('span').remove(); // se elimina el div donde está contenido el elemento
+//                        
+//                  }
+              }//end success
+              
+                
+            });//end ajax
+            
+            
+            
+            
+   }); 
 </script>
