@@ -138,7 +138,7 @@ y el popup que muestra el detalle del medicamento
                         response( $.map( output, function( item ) {
                             return {
                                 label: item.Nombre,
-                                id:  item.idPrincipio_Activo
+                                value:  item.idPrincipio_Activo
                             }
                         }));
                     }//end success
