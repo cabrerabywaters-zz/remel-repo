@@ -5,8 +5,9 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-<?php 
+	  <?php 
 function mostrarAlergias($alergias){ 
+//print_r($alergias);
     echo'
   <div class="row">
   <div class="span5" id="alergias">
@@ -28,16 +29,10 @@ function mostrarAlergias($alergias){
 						$contador++;
 						
 					}
-					
+					print_r($dato);
+echo "<br>";
 					echo"<td rowspan='".$contador."'>
 					</td></tr>";
-					
-					foreach($dato as $valor)
-					{
-						$contador++;
-						echo "<tr><td>$valor</td></tr>";
-						
-					}
 					echo"</tr>";
 				} 
 				echo' </tbody>
@@ -53,6 +48,7 @@ function mostrarAlergias($alergias){
 }
   
 function mostrarCondiciones($condiciones){  
+print_r($condiciones);
     echo'<div class="span5 offset2">
   <table>
    <thead>
@@ -97,9 +93,9 @@ echo'
 			</div> 
   </div>';
   } 
-/*
+
           mostrarAlergias($alergias);
-          mostrarCondiciones($condiciones); */?>
+          mostrarCondiciones($condiciones); ?>
       </div>
     </div>
 <script>

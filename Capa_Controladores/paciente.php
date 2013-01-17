@@ -125,12 +125,15 @@ class Paciente {
     }
 
     public static function R_AlergiaPaciente($idPaciente) {
-        $queryString = "SELECT Descripcion
-FROM Pacientes, Alergia_has_Paciente, Alergias
+        $queryString = "SELECT Alergias.Nombre as Alergia, Alergias.Sintomas, Tipo_Alergia.Nombre as Tipo, count(Tipo_Alergia.Nombre) as Cantidad
+		FROM Pacientes, Alergia_has_Paciente, Alergias, Tipo_Alergia
 WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
 AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
-AND Pacientes.idPaciente =" . $idPaciente . "";
-
+AND Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
+AND Pacientes.idPaciente =" . $idPaciente . "
+GROUP BY idTipo;";
+//Alergias.Nombre, Alergias.Sintomas, Tipo_Alergia.Nombre,
+echo $queryString;
 
 
         $result = CallQuery($queryString);
@@ -144,6 +147,7 @@ AND Pacientes.idPaciente =" . $idPaciente . "";
             return false;
         }
     }
+
 
     public static function R_CondicionPaciente($idPaciente) {
         $queryString = "SELECT Nombre
