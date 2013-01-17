@@ -75,7 +75,7 @@
     $('.edicion').change(function() {
                 $('#guardar').show();
     });
-    $('#guardar').click(function() {
+    $('#guardar').unbind('click').click(function() {
                 $("#guardar").hide();
                 var editado = $("#collapseOne").serialize();
                 alert(editado);
