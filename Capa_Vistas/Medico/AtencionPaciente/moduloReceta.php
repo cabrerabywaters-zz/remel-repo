@@ -57,32 +57,8 @@ y el popup que muestra el detalle del medicamento
 </div><!-- accordion modulo receta -->
 
 
-<!-- modalDetalleMedicamento-->
-<div id="detalleMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-    <div class="modal-header"><!-- titulo del modal (nombre del medicamento) -->
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Paracetamol</h3>
-    </div><!-- titulo del modal (nombre del medicamento) -->
-    
-    <div class="modal-body"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
-        <div class="span3"><img src="../../../imgs/paracetamol.jpg" style="width:60%" ></div>
-        <p>El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
-        <p>Cantidad: <input type="text" placeholder="Indique Cantidad">Miligramos (mg)</p>
-        <p>Cada :<input type="text" placeholder="frequencia">Horas (hrs)</p>
-        <p>Por :<input type="text" placeholder="periodo">Dias</p>
-        <p>Comentario: </p>
-        <center> <textarea rows="2" style="width:90%"></textarea></center>
-    </div><!-- contenido del modal (indicaciones de día frecuencia etc)-->
-    
-    <div class="modal-footer"><!-- acciones del modal (cancerlar, agregar medicamento etc)-->
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <a href="#" role="button" class="btn btn-warning">Prescribir</a>
-    </div>
-
-</div><!-- fin popup informacion del medicamento -->
-
 <script>
+       
         /*
          * el filtro correspondiente al buscador 
          */
@@ -210,33 +186,38 @@ y el popup que muestra el detalle del medicamento
         * ----------------------------------------------
         * solo para los medicamentos que requieren escribir el rp
         */
-       $('.detalleMedicamento').click(function(){
-           var idMedicamento = $(this).attr('medicamento'); // id del medicamento a agregar
-           alert('se hizo click en agregar un elemento desde la barra favoritos o arsenal!'+idMedicamento);
-           
+       
+    $(document).ready(function(){ 
+        
+       $('.detalleMedicamento').unbind('click').on('click',function(){
+           var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
+                   
            $.ajax({ 
-               url: "url", //agregar la ../ajax/mostrarMedicamento.php
+               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
                type:"POST",
-               data: idMedicamento,
+               data: {idMedicamento:idMedicamento},
                success:function(data){
                    /*
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                    alert(data);
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
+                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
                     
-                    
+                   
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
-                    alert(medicamento);                    
-
-               }//end success
+                    }//end success
            });//ajax
 
 
        });// end click 
                
 
+      /*
+       * accion de click en el boton "añadir" medicamento seleccionado
+       * se debe abrir el modal correspondiente (detalleMedicamento) con toda la 
+       * información que sea necesaria ingresar
+       */       
        $('#boton_medicamentos').click(function(){
        if(filtro =='true'){// si es principio activo
            // POR AHORA NO HACE NADA
@@ -252,17 +233,16 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                    alert(data);
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-                    $('#myModalLabel').text(medicamento['Nombre_Comercial']);
+                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
                     
                    
-                    $('#modalDetalleMedicamento').modal('show'); // se muestra el modal
+                    $('#detalleMedicamento').modal('show'); // se muestra el modal
                                         
 
                }//end success
            });//ajax
-           }// if(el nombre es comercial
+           }// endif(el nombre es comercial)
            
        
        
@@ -274,26 +254,25 @@ y el popup que muestra el detalle del medicamento
         * se debe primero eliminar de la bbdd vía ajax
         * luego se elimina del DOM
         */
-       $('a[href="#borrarFav"]').click(function(){
-            var idMedicamento = $(this).attr('medicamento');
-            alert('se quiere eliminar de favoritos el medicamento con id: '+idMedicamento);
+       $('a[href="#borrarFav"]').unbind('click').on('click',function(){
+            var idFavorito = $(this).parent().attr('idFavorito');
+            alert('se quiere eliminar de favoritos el medicamento con idFavorito: '+idFavorito);
             $.ajax({
               url: "url",
               type: "POST",
-              data: idMedicamento,
+              data: {idFavorito:idFavorito, accion:'0'},
               success: function(output){
                   alert(output);
-//                  if(output == 1){// se eliminó correctamente de favoritos
-//                      $(this).parent('span').remove(); // se elimina el div donde está contenido el elemento
-//                        
-//                  }
+                  if(output == 1){// se eliminó correctamente de favoritos
+                      $(this).parent('span').remove(); // se elimina el div donde está contenido el elemento
+                        
+                  }
               }//end success
               
                 
             });//end ajax
-            
-            
-            
-            
-      }); // click
+}); // click
+
+
+});//end ready
 </script>
