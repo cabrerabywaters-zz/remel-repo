@@ -55,13 +55,10 @@ y el popup que muestra el detalle del medicamento
         
      </div>
 </div>
-
-<!--JS de funcion verificacion de contraindicaciones-->
 <script>
 	$.ajax({
 		type:"POST",
 		url: "../../../ajax/claseMultiSelect.php",
-		data: "",
 		success: function(output){
 				var output = jQuery.parseJSON(output);
 				$("#clase").empty();
