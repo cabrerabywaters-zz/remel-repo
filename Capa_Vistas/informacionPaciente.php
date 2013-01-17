@@ -1,4 +1,3 @@
-
 <?php
        
 		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
@@ -16,8 +15,10 @@
 				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
-				$RUTMedico=$_SESSION['RUT'];
-				$RUTPaciente = $_SESSION['RUTPaciente'];
+				//$RUTMedico=$_SESSION['RUT'];
+				//$RUTPaciente = $_SESSION['RUTPaciente'];
+				$RUTMedico = 177004871;
+				$RUTPaciente = 177004871;
 				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
 				$medico = $medico[0];
 				$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'");
@@ -47,7 +48,7 @@
 				$alergias = Paciente::R_AlergiaPaciente($idPaciente);		
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
 				$condiciones1=Condicion::Seleccionar('');
-				$alergias1=Alergia::Seleccionar('');			
+				//$alergias1=Alergia::Seleccionar('');			
 				
 				 // fin de la consulta llevar a ajax
 				 

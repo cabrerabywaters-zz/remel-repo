@@ -173,8 +173,8 @@ color:white}
                 
                 <div class="img-rounded span6" style=" background-color:white">
                     <center><h2><?php 
-					$institucion=$_SESSION['institucionLog']; 
-					echo $institucion[1];					
+					$lugar=$_SESSION['logLugar']; 
+					echo $lugar['nombreLugar'].", ".$lugar['nombreSucursal'];					
 					
                     
                      echo   '<br> Consulta N° <span id="consulta">'.$_SESSION['idConsulta'].'</span>'; 

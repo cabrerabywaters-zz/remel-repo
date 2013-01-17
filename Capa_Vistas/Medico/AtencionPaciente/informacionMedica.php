@@ -97,9 +97,9 @@ echo'
 			</div> 
   </div>';
   } 
-
+/*
           mostrarAlergias($alergias);
-          mostrarCondiciones($condiciones); ?>
+          mostrarCondiciones($condiciones); */?>
       </div>
     </div>
 <script>
