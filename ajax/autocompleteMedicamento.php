@@ -11,7 +11,6 @@ else{
 }
 
 
-
 echo json_encode($medicamentos);
 
 ?>

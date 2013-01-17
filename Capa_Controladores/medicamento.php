@@ -133,23 +133,33 @@ class Medicamento  {
         $query = CallQuery($queryString);
     }
 
-    public static function BuscarMedicamentoLike($nombre) {
-	$like = "'%$nombre%'";
-        $queryString = "SELECT Nombre_Comercial
+	public static function BuscarMedicamentoLike($nombre) {
+        $limit = 5; $offset = 0;
+        $like = "'%$nombre%'";
+        $where = "WHERE Nombre_Comercial LIKE $like OR Nombre_Generico LIKE $like";
+        $atributosASeleccionar = array(
+                                        'Nombre_Comercial',
+                                        'idMedicamento'
+      );
 
-                        FROM Medicamentos
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-                        WHERE Nombre_Comercial LIKE $like 
-			
-			OR Nombre_Generico LIKE $like 
+            if($limit != 0){
+               $queryString = $queryString." LIMIT $limit";
+            }
+            if($offset != 0){
+                  $queryString = $queryString." OFFSET $offset ";
+            }
 
-                        ORDER BY Nombre_Comercial
+        $result = CallQuery($queryString);
+            $resultArray = array();
+            while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+            }
 
-                        LIMIT 5;";
-
-        $resultado = CallQuery($queryString);
-        return $resultado->fetch_assoc();
+        return $resultArray;
     }
+
 
     public static function BuscarMedicamentoPorId($id){
 	$queryString = "SELECT Nombre_Comercial, idMedicamento
