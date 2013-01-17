@@ -16,10 +16,9 @@ class Paciente {
     public static function Insertar() {
         $datosCreacion = array(
             array('Fecha_Ultima_Actualizacion', $_POST['fecha_ultima_actualizacion']),
-            array('Nacionalidad', $_POST['nacionalidad']),
             array('Peso', $_POST['peso']),
             array('Etnias', $_POST['idEtnias']),
-            array('altura', $_POST['altura'])
+            array('altura', $_POST['altura']),
         );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -85,9 +84,10 @@ class Paciente {
     public static function Actualizar() {
         $id = $_POST['id_paciente'];
         $datosActualizacion = array(
-            array('Nacionalidad', $_POST['nacionalidad']),
+            array('Fecha_Ultima_Actualizacion','NOW()'),
             array('Peso', $_POST['peso']),
             array('altura', $_POST['altura'])
+            
         );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
@@ -95,6 +95,13 @@ class Paciente {
         $query = CallQuery($queryString);
     }
 
+   /* public static function ActualizarPorId($idPaciente){
+        $queryString = "UPDATE Pacientes (Pacientes, Personas) VALUES ($_POST[]) 
+                        WHERE Pacientes.idPaciente = Pacientes.$idPaciente
+                        AND Personas.RUN = Pacientes.Personas_RUN
+                        ";
+    } */
+    
     public static function EncontrarPaciente($rut) {
         $queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
         $res = CallQuery($queryString);
