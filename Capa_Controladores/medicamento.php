@@ -162,7 +162,7 @@ class Medicamento  {
 
 
     public static function BuscarMedicamentoPorId($id){
-	$queryString = "SELECT Nombre_Comercial, idMedicamento
+	$queryString = "SELECT *
 
                         FROM Medicamentos
 
