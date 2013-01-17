@@ -120,7 +120,7 @@ y el popup que muestra el detalle del medicamento
                 $('button[filtro="true"]').removeClass('active');
                 $('button[filtro="false"]').addClass('active');
                 $("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
-                $("#Medicamentos").removeAttr('identificador').attr('identicador',$('#medicamento :selected').attr('value'));
+                $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
 		$("#boton_medicamentos").attr('enabled', 'enabled');
 	 }); // change
@@ -219,9 +219,9 @@ y el popup que muestra el detalle del medicamento
        else{ // si es nombre comercial
            var idMedicamento = $('#Medicamentos').attr('identificador'); // id del medicamento que se busca
            $.ajax({ 
-               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
+               url: "../../../ajax/mostrarMedicamento.php",
                type:"POST",
-               data: idMedicamento,
+               data: {idMedicamento:idMedicamento},
                success:function(data){
                    /*
                     * en esta funcion se utilizan los valores de los campos de medicamento y
