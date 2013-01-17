@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Alergia {
+class Tipo_Alergia{
 
-    static $nombreTabla = "Alergias";
-    static $nombreIdTabla = "idAlergia";    
+    static $nombreTabla = "Tipo_Alergia";
+    static $nombreIdTabla = "idTipo";    
     
     /**
      * Insertar
@@ -16,8 +16,6 @@ class Alergia {
     public static function Insertar() {
     	$datosCreacion = array(
             array('Nombre',$_POST['nombre']),
-			array('Sintomas',$_POST['sintomas']),
-			array('Tipo_idTipo',$_POST['tipo_idtipo'])
             );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -49,8 +47,7 @@ class Alergia {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
 										'Nombre',
-										'Sintomas',
-										'Tipo_idTipo'
+										
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -81,8 +78,6 @@ class Alergia {
     	$id = $_POST['id'];
     	$datosActualizacion = array(
                             	array('Nombre', $_POST['nombre']),
-							 	array('Sintomas',$_POST['sintomas']),
-								array('Tipo_idTipo',$_POST['tipo_idtipo'])
             );
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
@@ -91,9 +86,9 @@ class Alergia {
 
     public static function BuscarAlergiaLike($nombre) {
 
-      		        $queryString = 'SELECT Nombre, Sintomas, idAlergia, Tipo_idTipo
+      		        $queryString = 'SELECT Nombre,  idTipo
 
-                        FROM Alergia
+                        FROM Tipo_Alergia
 
                         WHERE Nombre LIKE "% $nombre %"
 
