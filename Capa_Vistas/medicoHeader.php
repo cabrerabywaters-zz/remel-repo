@@ -4,7 +4,8 @@ and open the template in the editor.
 -->
 
 <!DOCTYPE html>
-<html><head>
+<html>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title><!-- styles -->
@@ -163,15 +164,15 @@ color:white}
         <div class="container-fluid"><!-- contenedor general -->
             
             <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
-                <div class="span3 img-rounded" style="background-color: whitesmoke">
+                <div class="span3 img-rounded" style="background-color: whitesmoke"> <!-- div de la informacion del medico -->
                     <img class="img-rounded pull-left" src="<?php echo $medico['Foto']; ?>" style="width: 140px; height: 140px;">
                     <blockquote>
                     <strong>Informacion Medico:<br></strong> 
                    <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
                     </blockquote>
-                </div>
+                </div> <!-- div de la informacion del medico -->
                 
-                <div class="img-rounded span6" style=" background-color:white">
+                <div class="img-rounded span6" style=" background-color:white"> <!-- informacion de la institucion  -->
                     <center><h2><?php 
 					$lugar=$_SESSION['logLugar']; 
 					echo $lugar['nombreLugar'].", ".$lugar['nombreSucursal'];					
@@ -181,9 +182,9 @@ color:white}
                                          ?>
                             </h2>
                     </center>
-                </div>
+                </div> <!-- informacion de la institucion  --> 
                 
-                <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke">
+                <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke"><!-- información del paciente -->
                     <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 140px; height: 140px;">
                     <blockquote>
                      <script type="text/javascript">
@@ -253,7 +254,7 @@ color:white}
 		
 		
 		    
-            </script>
+            </script><!-- validación del rut ingresado -->
                     <strong>Paciente:<br></strong><table>
                     <tr><td><?php 
 					if($paciente['Sexo']=="1")
@@ -270,7 +271,7 @@ color:white}
                      echo $resultado; ?></td></tr></table>
 
                     </blockquote>
-                </div>
+                </div> <!-- información del paciente -->
             </div><!-- cierre div superior-->
             
             <div class="tabbable-fluid"><!-- div contenido --> 
