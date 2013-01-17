@@ -10,8 +10,8 @@ y el popup que muestra el detalle del medicamento
 </div>
 <div id="collapseTwo2" class="accordion-body collapse">
     <div class="accordion-inner">
-        <div class="modal-body img-rounded row-fluid">
-            <div class="span7">  
+        <div class="row-fluid"><!-- row del buscador -->
+            <div class="span12" style="background-color: aquamarine">  
             <p>
                 <strong>Buscar:</strong><br>
             <div class="btn-group" data-toggle="buttons-radio" id="filtro">
@@ -23,30 +23,31 @@ y el popup que muestra el detalle del medicamento
             <form class="form-search">
 
                     <div class="span11">
-                    <div class="input-append">
-                    <input type="text" id="Medicamentos" class="search-query">
-                    <button id="boton_medicamentos" class="detalleMedicamento btn" disabled="disabled">Añadir</button>  <br>
-                    </div>
+                        <div class="input-append">
+                        <input type="text" id="Medicamentos" class="search-query">
+                        <button id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#modalDetalleMedicamento" disabled="disabled">Añadir</button>  <br>
+                        </div>
                     </div><br>
 		   
                     
                  
-                        <div class="span11">
-                    <strong><p>Categorias</p></strong>
-		    <select id="clase" multiple="multiple"></select>
-		    <select id="subclase" multiple="multiple"></select>
-	            <select id="medicamento" multiple="multiple"></select>
-                        </div>
+                    <div class="span11">
+                        <strong><p>Categorias</p></strong>
+                        <select id="clase" multiple="multiple"></select>
+                        <select id="subclase" multiple="multiple"></select>
+                        <select id="medicamento" multiple="multiple"></select>
+                    </div>
                                               
 
             </form>
             </div><!-- span 7-->
+            
             <div class="span4">
                 <p><strong>Medicamentos Seleccionados:</strong></p>
                 <div id="medicamentosRecetados">
                 </div>    
             </div> <!-- span 4 -->
-        </div>
+        </div><!-- row del buscador -->
         
         <div class="span10">
         <a class="btn btn-warning span2"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
@@ -137,8 +138,8 @@ y el popup que muestra el detalle del medicamento
 
                         response( $.map( output, function( item ) {
                             return {
-                                label: item.Nombre,
-                                value:  item.idPrincipio_Activo
+                                label: item.Nombre
+                                //,value:  item.idPrincipio_Activo
                             }
                         }));
                     }//end success
@@ -165,7 +166,7 @@ y el popup que muestra el detalle del medicamento
            alert('se hizo click en agregar un elemento desde la barra favoritos o arsenal!'+idMedicamento);
            
            $.ajax({ 
-               url: "url", //agregar la url del ajax que devuelve la info del medicamento
+               url: "url", //agregar la ../ajax/mostrarMedicamento.php
                type:"POST",
                data: idMedicamento,
                success:function(data){
