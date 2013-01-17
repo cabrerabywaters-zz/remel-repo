@@ -15,10 +15,8 @@
 				include(dirname(__FILE__)."/../Capa_Controladores/region.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
-				//$RUTMedico=$_SESSION['RUT'];
-				//$RUTPaciente = $_SESSION['RUTPaciente'];
-				$RUTMedico = 177004871;
-				$RUTPaciente = 177004871;
+				$RUTMedico=$_SESSION['RUT'];
+				$RUTPaciente = $_SESSION['RUTPaciente'];
 				$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
 				$medico = $medico[0];
 				$paciente1 = Paciente::Seleccionar("WHERE Personas_RUN = '$RUTPaciente'");
