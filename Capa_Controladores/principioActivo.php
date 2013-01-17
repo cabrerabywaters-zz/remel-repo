@@ -85,6 +85,33 @@ class PrincipioActivo {
         $query = CallQuery($queryString);
     }
 
+ public static function BuscarPrincipioActivoLike($nombre) {
+	$limit = 5; $offset = 0;
+	$like = "'%$nombre%'";
+	$where = "WHERE Nombre LIKE $like"; 
+	$atributosASeleccionar = array(
+                                        'Nombre',
+					'idPrincipio_Activo'
+      );
+
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+
+            if($limit != 0){
+               $queryString = $queryString." LIMIT $limit";
+            }
+            if($offset != 0){
+                  $queryString = $queryString." OFFSET $offset ";
+            }
+
+        $result = CallQuery($queryString);
+            $resultArray = array();
+            while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+            }
+
+	return $resultArray;
+    }
+
 }
 
 ?>
