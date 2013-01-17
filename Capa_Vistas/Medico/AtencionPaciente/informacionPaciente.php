@@ -59,17 +59,7 @@
   </div>
 
 
-<html>
-<head>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.js"></script>
-</head>
-<body>
- 
 <center><button id="guardar" >Guardar</button></center>
-
-</html>
 <script> 
     $('#guardar').hide();
     $('.edicion').change(function() {
