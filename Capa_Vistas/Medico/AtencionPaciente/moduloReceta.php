@@ -120,7 +120,7 @@ y el popup que muestra el detalle del medicamento
        
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
-                var filtro = $('#filtro').children('button').attr('filtro'); // el filtro correspondiente
+                var filtro = $('#filtro').children('.active').attr('filtro'); // el filtro correspondiente
                 $.ajax({
                     url: "../../../ajax/autocompleteMedicamento.php",
                     data: {
