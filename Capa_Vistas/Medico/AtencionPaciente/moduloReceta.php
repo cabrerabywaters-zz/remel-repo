@@ -56,6 +56,7 @@ y el popup que muestra el detalle del medicamento
      </div>
 </div>
 <script>
+        $('button[filtro="true"]').addClass('active');
 	$.ajax({
 		type:"POST",
 		url: "../../../ajax/claseMultiSelect.php",
@@ -136,8 +137,8 @@ y el popup que muestra el detalle del medicamento
 
                         response( $.map( output, function( item ) {
                             return {
-                                label: item
-                                // value: item.Nombre
+                                label: item.Nombre,
+                                id:  item.idPrincipio_Activo
                             }
                         }));
                     }//end success
