@@ -77,6 +77,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 $('#toggleFav').click(
     function(){// se ejecuta
         if($('.tab-content').hasClass('span8')){// si el panel está chico
+            $(this).parent().addClass('active'); // se pone como activo
             $('#favBar').show();// se muestra simplemente
         }
         else{// si el panel está grande
@@ -92,6 +93,7 @@ $('#arsenalBar').hide();// para que la barra de arsenal no se muestre en el inic
 $('#toggleArsenal').click(
     function(){// se ejecuta la primer click
         if($('.tab-content').hasClass('span8')){// si el panel está chico
+            $(this).parent().addClass('active'); // se pone como activo
             $('#arsenalBar').show();// se muestra simplemente
         }
         else{// si el panel está grande
@@ -108,14 +110,13 @@ $('.closeBar').click(function(){
      */
     var padre = $(this).parent().parent();
     padre.hide();
-    if($('#favBar').is(':hidden')&& $('#arsenalBar').is(':hidden')){
-        $('.tab-content').removeClass('span8');
-    } 
-});
+    if($('#favBar').is(':hidden')&& $('#arsenalBar').is(':hidden')){ //si están favoritos y arsenal ocultos
+        $('.tab-content').removeClass('span8'); //agrando el div contenido
+    }//end if
+});//end click (close bar)
 
 </script>        
-       
-        
-        
-    </body>
+
+
+</body>
 </html>
