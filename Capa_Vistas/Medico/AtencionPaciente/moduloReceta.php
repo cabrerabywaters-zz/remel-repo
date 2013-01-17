@@ -10,51 +10,50 @@ y el popup que muestra el detalle del medicamento
 </div>
 <div id="collapseTwo2" class="accordion-body collapse">
     <div class="accordion-inner">
-        <div class="row-fluid"><!-- row del buscador -->
-            <div class="span12" style="background-color: aquamarine">  
-            <p>
-                <strong>Buscar:</strong><br>
-            <div class="btn-group" data-toggle="buttons-radio" id="filtro">
-            <button type="button" class="btn" filtro="true">Principio Activo</button>
-            <button type="button" class="btn" filtro="false">Nombre Comercial</button>
-            </div>
-            </p>
-            
-            <form class="form-search">
-
-                    <div class="span11">
+            <div class="row-fluid span12"><!-- row del buscador -->  
+                    <strong>Buscar:</strong><br><br>
+                    <div class="btn-group" data-toggle="buttons-radio" id="filtro">
+                        <button type="button" class="btn" filtro="true">Principio Activo</button>
+                        <button type="button" class="btn" filtro="false">Nombre Comercial</button>
+                    </div><!-- filtro -->
+                    
+                    <form class="form-search">
+                        <br>
                         <div class="input-append">
-                        <input type="text" id="Medicamentos" class="search-query">
-                        <button id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#modalDetalleMedicamento" disabled="disabled">Añadir</button>  <br>
-                        </div>
-                    </div><br>
-		   
+                            <input type="text" id="Medicamentos" class="search-query">
+                            <button id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#modalDetalleMedicamento" disabled="disabled">Añadir</button>  <br>
+                        </div><!-- input +boton -->
+                        <br>
+                    </form><!-- append form-->
+            
+            </div><!-- row del buscador -->
+            
                     
                  
-                    <div class="span11">
+            <div class="row-fluid span12">
                         <strong><p>Categorias</p></strong>
                         <select id="clase" multiple="multiple"></select>
                         <select id="subclase" multiple="multiple"></select>
                         <select id="medicamento" multiple="multiple"></select>
-                    </div>
+            </div><!-- row de multiselect-->
                                               
 
-            </form>
-            </div><!-- span 7-->
             
-            <div class="span4">
+            
+            
+            <div class="span12"><!-- row medicamentos seleccionados -->
                 <p><strong>Medicamentos Seleccionados:</strong></p>
                 <div id="medicamentosRecetados">
                 </div>    
-            </div> <!-- span 4 -->
-        </div><!-- row del buscador -->
-        
-        <div class="span9">
-        <a class="btn btn-warning span2"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
-        </div>
+            </div> <!-- row medicamentos seleccionados -->
         
         
-     </div>
+       <div class="row-fluid span11"><!-- boton emitir receta -->
+        <a class="btn btn-warning span4 offset4"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+       </div> <!-- boton emitir receta -->
+        
+        
+     </div><!-- interior del accordion -->
 </div>
 <script>
         var filtro;
@@ -227,7 +226,6 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                    alert(data);
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
                     

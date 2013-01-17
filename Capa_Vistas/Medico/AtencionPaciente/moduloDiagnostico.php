@@ -207,7 +207,7 @@
                         var id_consulta = $('#consulta').text();
                         var id_tipo = $('#tipo_diagnostico').val();
                         
-                        var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="protocolo pull-right" rel="tooltip" onclick=""><i class="icon-th-list icon-white"></i></a></div>';
+                        var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a><a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
                         $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
