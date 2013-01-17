@@ -55,7 +55,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   </div><!-- fin contenido del panel-->
   
   
-  <div class="span3 pull-right img-rounded row">
+  <div class="span4 img-rounded">
   <!-- barra de favoritos -->
   <?php include('../favBar.php');?>
   <!-- barra de favoritos -->
@@ -64,6 +64,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   <?php include('../arsenalBar.php');?>
   <!-- barra del arsenal de medicamentos de la institucion -->
   </div>
+
 </div><!--fin div contenido -->
 </div><!-- fin contenedor general -->
         
@@ -75,11 +76,11 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
     $('#favBar').hide(); //para que la barra de favoritos se no se muestre al inicio
 $('#toggleFav').click(
     function(){// se ejecuta
-        if($('.tab-content').hasClass('span10')){// si el panel está chico
+        if($('.tab-content').hasClass('span9')){// si el panel está chico
             $('#favBar').show();// se muestra simplemente
         }
         else{// si el panel está grande
-           $('.tab-content').addClass('span10'); //achico el panel
+           $('.tab-content').addClass('span9'); //achico el panel
            $('#favBar').show();// se muestra simplemente
         }
     }
@@ -90,11 +91,11 @@ $('#toggleFav').click(
 $('#arsenalBar').hide();// para que la barra de arsenal no se muestre en el inicio
 $('#toggleArsenal').click(
     function(){// se ejecuta la primer click
-        if($('.tab-content').hasClass('span10')){// si el panel está chico
+        if($('.tab-content').hasClass('span9')){// si el panel está chico
             $('#arsenalBar').show();// se muestra simplemente
         }
         else{// si el panel está grande
-           $('.tab-content').addClass('span10'); //achico el panel
+           $('.tab-content').addClass('span9'); //achico el panel
            $('#arsenalBar').show();// se muestra simplemente
         }
     }
@@ -108,7 +109,7 @@ $('.closeBar').click(function(){
     var padre = $(this).parent().parent();
     padre.hide();
     if($('#favBar').is(':hidden')&& $('#arsenalBar').is(':hidden')){
-        $('.tab-content').removeClass('span10');
+        $('.tab-content').removeClass('span9');
     } 
 });
 
