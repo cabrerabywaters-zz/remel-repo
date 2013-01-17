@@ -79,7 +79,8 @@
 
     </div><!-- fin de la barra de favoritos -->
 
-<div id="modalDetalleMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- modalDetalleMedicamento-->
+<div id="detalleMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
     <div class="modal-header"><!-- titulo del modal (nombre del medicamento) -->
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

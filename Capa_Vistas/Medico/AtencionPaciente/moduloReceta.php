@@ -21,7 +21,7 @@ y el popup que muestra el detalle del medicamento
                         <br>
                         <div class="input-append">
                             <input type="text" id="Medicamentos" class="search-query">
-                            <button id="boton_medicamentos" class="btn" data-toggle="modal" data-target="#modalDetalleMedicamento" disabled="disabled">Añadir</button>  <br>
+                            <button id="boton_medicamentos" class="btn" disabled="disabled">Añadir</button>  <br>
                         </div><!-- input +boton -->
                         <br>
                     </form><!-- append form-->
@@ -197,7 +197,7 @@ y el popup que muestra el detalle del medicamento
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
                     
-                    $('#modalDetalleMedicamento').modal('show'); // se muestra el modal
+                    $('#detalleMedicamento').modal('show'); // se muestra el modal
                     alert(medicamento);                    
 
                }//end success
@@ -206,13 +206,9 @@ y el popup que muestra el detalle del medicamento
 
        });// end click 
                
-       /*
-        * funcion que elimina de favoritos el medicamento seleccionado
-        * se debe primero eliminar de la bbdd vía ajax
-        * luego se elimina del DOM
-        */
+
        $('#boton_medicamentos').click(function(){
-       if(filtro =='true'){
+       if(filtro =='true'){// si es principio activo
            // POR AHORA NO HACE NADA
        }
        else{ // si es nombre comercial
@@ -226,21 +222,28 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
+                    alert(data);
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
+                    $('#myModalLabel').text(medicamento['Nombre_Comercial']);
                     
-                    
-                    //$('#modalDetalleMedicamento').modal('show'); // se muestra el modal
-                    alert(medicamento);                    
+                   
+                    //$('#modalDetalleMedicamento').dialog('show'); // se muestra el modal
+                                        
 
                }//end success
            });//ajax
+           }// if(el nombre es comercial
            
-       }
-       
-       })
        
        
+       });// end click
        
+       
+       /*
+        * funcion que elimina de favoritos el medicamento seleccionado
+        * se debe primero eliminar de la bbdd vía ajax
+        * luego se elimina del DOM
+        */
        $('a[href="#borrarFav"]').click(function(){
             var idMedicamento = $(this).attr('medicamento');
             alert('se quiere eliminar de favoritos el medicamento con id: '+idMedicamento);
