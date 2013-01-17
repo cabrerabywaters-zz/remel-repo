@@ -36,15 +36,15 @@
       <div id="medicamentosFav" class="collapse">
        <div class="span10 offset1">
            
-         <div class="alert alert-success" medicamento="medicamento1"><!-- pill medicamentoFav 1 -->
+         <div class="alert alert-success" identificador="1"><!-- pill medicamentoFav 1 -->
               <strong>Medicamento ej</strong>
               <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i> </a><!-- eliminar de favoritos --> 
-              <a href="#" rel="tooltip" title="Agregar a Receta"> <i class="detalleMedicamento icon-plus pull-right"></i> </a><!-- agregar favorito seleccionado -->
+              <a href="#" rel="tooltip" title="Agregar a Receta" class="detalleMedicamento"> <i class="icon-plus pull-right"></i> </a><!-- agregar favorito seleccionado -->
          </div><!-- end pill diagnosticoFav 1-->
-         <div class="alert alert-success" medicamento="medicamento2"><!-- pill medicamentoFav 1 -->
+         <div class="alert alert-success" identificador="2"><!-- pill medicamentoFav 1 -->
               <strong>Medicamento ej</strong>
               <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
-              <a href="#" rel="tooltip" title="Agregar a Receta"> <i class="detalleMedicamento icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
+              <a href="#" rel="tooltip" title="Agregar a Receta" class="detalleMedicamento"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
          </div><!-- end pill diagnosticoFav 1-->
        
        </div>
@@ -74,11 +74,12 @@
       </div>
       <!-- fin medicamentos RP favoritos -->
 
+</div><!-- fin de la barra de favoritos -->
 
+  <!-- Modal detalleMedicamento -->
+  <?php include('detalleMedicamento.php'); ?>
+  <!-- Modal detalleMedicamento -->
 
-
-    </div><!-- fin de la barra de favoritos -->
-   
 <script>
    /**
     * comportamiento de los paneles colapsables (que cambien los iconos segun corresponda)
