@@ -15,8 +15,8 @@ y el popup que muestra el detalle del medicamento
             <p>
                 <strong>Buscar:</strong><br>
             <div class="btn-group" data-toggle="buttons-radio" id="filtro">
-            <button type="button" class="btn" filtro="principioActivo">Principio Activo</button>
-            <button type="button" class="btn" filtro="nombreComercial">Nombre Comercial</button>
+            <button type="button" class="btn" filtro="true">Principio Activo</button>
+            <button type="button" class="btn" filtro="false">Nombre Comercial</button>
             </div>
             </p>
             
