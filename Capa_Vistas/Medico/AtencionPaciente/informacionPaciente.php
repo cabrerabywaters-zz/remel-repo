@@ -14,7 +14,7 @@
     
     <div class="control-group">
     <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="span3 uneditable-input" id="Fecha" value="<?php echo $paciente['Fecha_Nac']; ?>" disabled></label>&nbsp
-    <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" class="span3 edicion" id="Sexo" value="<?php if($paciente['Sexo']=='1')
+    <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" class="span3" id="Sexo" value="<?php if($paciente['Sexo']=='1')
 	{
 		echo "Masculino";
 	}
@@ -80,13 +80,12 @@
                 var editado = $("#arbol").serialize();
                 alert(editado);
                 $.ajax({
-                      url:'../../../ajax/algo.php',
+                      url:'../../../ajax/actualizarDatosPaciente.php',
                       data: editado,
                       type: 'post',
                       success: function(output){
                         var data = jQuery.parseJSON(output);
                         
-                        $('#Sexo').html(data['sexo']);
                         $('#Peso').html(data['peso']);
                         $('#Altura').html(data['altura']);
                         $('#Direccion').html(data['direccion']);
