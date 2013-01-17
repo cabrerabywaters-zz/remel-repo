@@ -95,12 +95,14 @@ class Paciente {
         $query = CallQuery($queryString);
     }
 
-   /* public static function ActualizarPorId($idPaciente){
-        $queryString = "UPDATE Pacientes (Pacientes, Personas) VALUES ($_POST[]) 
-                        WHERE Pacientes.idPaciente = Pacientes.$idPaciente
-                        AND Personas.RUN = Pacientes.Personas_RUN
+    public static function ActualizarPorId($idPaciente){
+        $queryString = "UPDATE Personas SET (Altura = $_POST[altura], Peso = $_POST[peso], Comuna = $_POST[comuna], Direccion = $_POST[direccion],)
+                        WHERE Pacientes.idPaciente = '$idPaciente'
+                        AND Direcciones.idDireccion = Personas.Direccion_idDireccion
+                        AND Pacientes.Personas_RUN = Persona.RUN
                         ";
-    } */
+                echo $queryString;
+    }
     
     public static function EncontrarPaciente($rut) {
         $queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";

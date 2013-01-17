@@ -69,7 +69,7 @@
  
 <center><button id="guardar" >Guardar</button></center>
 
-
+</html>
 <script> 
     $('#guardar').hide();
     $('.edicion').change(function() {
@@ -77,7 +77,7 @@
     });
     $('#guardar').click(function() {
                 $("#guardar").hide();
-                var editado = $("#arbol").serialize();
+                var editado = $("#collapseOne").serialize();
                 alert(editado);
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
@@ -94,5 +94,4 @@
                       }
                 });
            });
-    
 </script>
