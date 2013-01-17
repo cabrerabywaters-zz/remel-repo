@@ -49,7 +49,7 @@ y el popup que muestra el detalle del medicamento
             </div> <!-- span 4 -->
         </div><!-- row del buscador -->
         
-        <div class="span10">
+        <div class="span9">
         <a class="btn btn-warning span2"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
         </div>
         
@@ -57,6 +57,11 @@ y el popup que muestra el detalle del medicamento
      </div>
 </div>
 <script>
+        var filtro;
+        $('#filtro button').click(function(){
+          filtro = $(this).attr('filtro'); // el filtro correspondiente  
+        });
+        
         $('button[filtro="true"]').addClass('active');
 	$.ajax({
 		type:"POST",
@@ -111,7 +116,11 @@ y el popup que muestra el detalle del medicamento
         });//end change
 
 	$('#medicamento').change(function() { 
-		$("#Medicamentos").val($('#medicamento :selected').text());
+                filtro = "false";
+                $('button[filtro="true"]').removeClass('active');
+                $('button[filtro="false"]').addClass('active');
+                $("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
+                $("#Medicamentos").removeAttr('identificador').attr('identicador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
 		$("#boton_medicamentos").attr('enabled', 'enabled');
 	 }); // change
@@ -122,7 +131,6 @@ y el popup que muestra el detalle del medicamento
        
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
-                var filtro = $('#filtro').children('.active').attr('filtro'); // el filtro correspondiente
                 $.ajax({
                     url: "../../../ajax/autocompleteMedicamento.php",
                     data: {
@@ -137,15 +145,27 @@ y el popup que muestra el detalle del medicamento
                         var output = jQuery.parseJSON(data);
 
                         response( $.map( output, function( item ) {
+                            if(filtro == "true"){
                             return {
-                                label: item.Nombre
-                                //,value:  item.idPrincipio_Activo
+                                label: item.Nombre,
+                                id2:  item.idPrincipio_Activo
+                            }
+                            }
+                            else return {
+                                label: item.Nombre_Comercial,
+                                id2: item.idMedicamento
                             }
                         }));
                     }//end success
 
                 });
             },
+            select: function(event, ui){
+
+                $('#Medicamentos').removeAttr('identificador').attr('identificador',ui.item.id2)
+            
+            }
+            ,
             minLength: 2,
             open: function() {
                 $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -192,6 +212,37 @@ y el popup que muestra el detalle del medicamento
         * se debe primero eliminar de la bbdd vía ajax
         * luego se elimina del DOM
         */
+       $('#boton_medicamentos').click(function(){
+       if(filtro =='true'){
+           // POR AHORA NO HACE NADA
+       }
+       else{ // si es nombre comercial
+           var idMedicamento = $('#Medicamentos').attr('identificador'); // id del medicamento que se busca
+           $.ajax({ 
+               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
+               type:"POST",
+               data: idMedicamento,
+               success:function(data){
+                   /*
+                    * en esta funcion se utilizan los valores de los campos de medicamento y
+                    * se modifica el modal para llenar los campos relativos al medicamento
+                    */
+                    alert(data);
+                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
+                    
+                    
+                    //$('#modalDetalleMedicamento').modal('show'); // se muestra el modal
+                    alert(medicamento);                    
+
+               }//end success
+           });//ajax
+           
+       }
+       
+       })
+       
+       
+       
        $('a[href="#borrarFav"]').click(function(){
             var idMedicamento = $(this).attr('medicamento');
             alert('se quiere eliminar de favoritos el medicamento con id: '+idMedicamento);
