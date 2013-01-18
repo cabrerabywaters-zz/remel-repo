@@ -84,6 +84,25 @@ class Laboratorio {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    
+      public static function SeleccionarLaboratorioPorClaseTerapeutica($idSubClase){
+	$queryString = "SELECT ID , Nombre FROM Laboratorios where ID IN 
+            (SELECT distinct(Laboratorio_idLaboratorio) FROM 
+            Medicamentos WHERE idMedicamento IN 
+            (SELECT Medicamento_idMedicamento FROM SubClases_Terapeuticas_has_Medicamentos WHERE SubClase_Terapeutica_idSubClase ='$idSubClase'))";
+
+	$resultado = CallQuery($queryString);
+        
+        
+           $resultArray = array();
+	    while($fila = $resultado->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+	    
+    }
+    
+    
 
 }
 

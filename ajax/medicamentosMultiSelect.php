@@ -1,21 +1,16 @@
 <?php
 
-include_once(dirname(__FILE__)."/../Capa_Controladores/subClaseTerapeuticaHasMedicamento.php");
-include_once(dirname(__FILE__)."/../Capa_Controladores/medicamento.php");
+include_once(dirname(__FILE__)."/../Capa_Controladores/laboratorio.php");
+
 
 $subClase = $_POST['subclase'];
-$medicamentosSubClase = SubClaseTerapeuticaHasMedicamento::Seleccionar("WHERE SubClase_Terapeutica_idSubClase = '$subClase'");
 
-$medicamentos = array();
 
-foreach($medicamentosSubClase as $idMedicamento){
+$laboratorios = array();
 
-	$medicamento = Medicamento::BuscarMedicamentoPorId($idMedicamento);
-	$medicamentos[] = $medicamento;
-	
-}
+	$laboratorio = Laboratorio::SeleccionarLaboratorioPorClaseTerapeutica($subClase);
 
-echo json_encode($medicamentos);
-
+         echo json_encode($laboratorio);
+ 
 
 ?>

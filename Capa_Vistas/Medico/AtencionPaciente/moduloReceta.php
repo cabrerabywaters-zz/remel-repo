@@ -34,7 +34,9 @@ y el popup que muestra el detalle del medicamento
                         <strong><p>Categorias</p></strong>
                         <select id="clase" multiple="multiple"></select>
                         <select id="subclase" multiple="multiple"></select>
-                        <select id="medicamento" multiple="multiple"></select>
+                        <select id="laboratorio" multiple="multiple"></select>
+                        <strong><p>Medicamentos</p></strong>
+                        <select id="medicamento" multiple="multiple" class ="span7"></select>
             </div><!-- row de multiselect-->
                                               
 
@@ -91,6 +93,8 @@ y el popup que muestra el detalle del medicamento
                 		success: function(output){
                                 	var output = jQuery.parseJSON(output);
                                 	$("#subclase").empty();
+                                        $("#laboratorio").empty();  
+                                        $("#medicamento").empty();
                                 	$.each(output,function(i,el){
                                         	var string = "<option value='" + el['idSubClase'] + "'> " + el['Nombre']+ "</option";
                                         	$("#subclase").append(string);
@@ -109,7 +113,32 @@ y el popup que muestra el detalle del medicamento
                 url: "../../../ajax/medicamentosMultiSelect.php",
                 data: {subclase: id2},
                 success: function(output){
+                    
                         var output = jQuery.parseJSON(output);
+                        alert(output);
+                        $("#laboratorio").empty();  
+                        $("#medicamento").empty();
+                        $.each(output,function(i,el){
+                                var string = '<option value="' + el["ID"] + '"> ' + el["Nombre"] + '</option>';
+                                $("#laboratorio").append(string);
+                                }
+                        );
+                        }//success
+                });
+        });//end change
+        
+        
+        // Pasa los medicamentos dado el laboratorio seleccionado
+        $('#laboratorio').change(function() {
+                var idSubclase = $("#subclase").attr("value");
+                var idLab=$("#laboratorio").attr("value");
+                $.ajax({
+                type:"POST",
+                url: "../../../ajax/laboratorioMultiSelect.php",
+                data: {subclase: idSubclase,
+                idLaboratorio: idLab},
+                success: function(output){
+                       var output = jQuery.parseJSON(output);
                         $("#medicamento").empty();
                         $.each(output,function(i,el){
                                 var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
