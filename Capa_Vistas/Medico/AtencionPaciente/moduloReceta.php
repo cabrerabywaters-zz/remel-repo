@@ -115,7 +115,6 @@ y el popup que muestra el detalle del medicamento
                 success: function(output){
                     
                         var output = jQuery.parseJSON(output);
-                        alert(output);
                         $("#laboratorio").empty();  
                         $("#medicamento").empty();
                         $.each(output,function(i,el){
