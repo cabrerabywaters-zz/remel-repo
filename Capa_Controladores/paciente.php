@@ -131,9 +131,8 @@ WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
 AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
 AND Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
 AND Pacientes.idPaciente =" . $idPaciente . "
-GROUP BY idTipo;";
-//Alergias.Nombre, Alergias.Sintomas, Tipo_Alergia.Nombre,
-echo $queryString;
+GROUP BY Alergias.Nombre
+ORDER BY Tipo_Alergia.Nombre ASC ;";
 
 
         $result = CallQuery($queryString);

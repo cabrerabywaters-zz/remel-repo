@@ -19,22 +19,25 @@ function mostrarAlergias($alergias){
                 </thead>
                 <tr><td>
    <table class="table table-hover">';
-               
+			   $tipos=array();
+			   $cantidad=count($alergias);
+			   echo $cantidad;
                foreach ($alergias as $datos => $dato)
 				{
-				echo"	<tr>";
-					$contador=1;
-					foreach($dato as $valor)
-					{
-						$contador++;
-						
-					}
+
+					
 					print_r($dato);
-echo "<br>";
-					echo"<td rowspan='".$contador."'>
-					</td></tr>";
-					echo"</tr>";
+					
+					$tipos[]=$dato['Tipo'];
+					echo "<br>";
+					echo"<td rowspan='"; if ($hola="hola")
+					{					
+						echo"".$dato['Cantidad']."";
+												
+					}echo "'>".$dato['Tipo']."
+					</td><td>".$dato['Alergia']."</td></tr>";
 				} 
+				print_r($tipos);
 				echo' </tbody>
             </table>
             </tr></td><tfoot><tr><td> 
