@@ -40,7 +40,6 @@
 
     </div>
     <div class="modal-body">
-        <strong><p></p></strong>
         <span id="id_diagnostico" style="display:none"></span>
 
         <p></p>
@@ -56,7 +55,7 @@
                 echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
             }
             ?>
-        <select>
+        </select>
             <p></p>
 
 
@@ -102,7 +101,7 @@
                             }
                         
                             
-                            $( "#diagnostico" ).autocomplete({
+                        $( "#diagnostico" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -111,39 +110,38 @@
                              * 
                              * Funcion select que ejecutará una accion cuando se devuelva
                              */        
-                                source: function( request, response ) {
-                                    $.ajax({
-                                        url: "../../../ajax/autocompleteDiagnostico.php",
-                                        data: {
-                                            name_startsWith: request.term
-                                        },
-                                        type: "post",
-                                        success: function( data ) {
-                                            $('#boton_diagnostico').removeAttr('disabled');
-                         
-                        
-                                            var output = jQuery.parseJSON(data);
-                       
-                                            response( $.map( output, function( item ) {
-                                                return {
-                                                    label: item
-                                                    // value: item.Nombre
-                                                }
-                                            }));
-                                        }
-                    
-                                    });
-                                },
-                                minLength: 2,
-                                 open: function() {
-                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-                                },
-                                close: function() {
-                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-                                },
-                                select: function(){
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../../ajax/autocompleteDiagnostico.php",
+                                    data: {
+                                        name_startsWith: request.term
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        var output = jQuery.parseJSON(data);
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                                label: item
+                                                //,id2:  item.idPrincipio_Activo
+                                            }
+                                            
+                                        })); //end map / end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           select: function(event, ui){
+                                    $('#diagnostico').removeAttr('idDiagnostico').attr('idDiagnostico',ui.item.id3)
                                     $('#guardar_diagnostico').removeAttr('disabled');
-                                }
+                                    $('#boton_diagnostico').removeAttr('disabled');
+                                },
+                           minLength: 2,
+                           open: function() {
+                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                                }, //end open
+                           close: function() {
+                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                                } //end close
                             });
         
         
@@ -158,12 +156,14 @@
                          **/
                            
                            
-                           var postData = $("#buscar_diagnostico").serialize();
+                           var idDiagnostico = $("#buscar_diagnostico").serialize();
                             $.ajax({ 
                                 url: '../../../ajax/diagnosticarPaciente.php',
-                                data: postData,
+                                data: idDiagnostico,
                                 type: 'post',
+                                async: false,
                                 success: function(output) {
+                                    alert(output)
                                     var data = jQuery.parseJSON(output);
                                                                                              
                                     $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
@@ -175,13 +175,13 @@
 
                             });// end ajax
                               
-                        });
+                        }); // end click
 </script>
                 
 <script>
-        $(document).ready(function(){            
+         
                     
-                    $("#cancelar_modal").unbind('click').click(function() {
+                    $("#cancelar_modal").unbind('click').on('click',function(){
                         /**
                          * funcion que maneja el popup de diagnostico cuando se hace click
                          * en el boton canelar
@@ -193,10 +193,10 @@
                         $('#diagnostico').val(''); // borro el buscador
                         $('#comentario_diagnostico').val(''); //borro el comentario
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
-                    });
+                    }); //end on
                     
                     
-                    $("#guardar_diagnostico").click(function() {
+                    $("#guardar_diagnostico").click(function(){
                             /**
                              * funcion que guarda el diagnostico correspondiente
                              * en el div al hacer click en "diagnosticar"
@@ -207,7 +207,7 @@
                         var id_consulta = $('#consulta').text();
                         var id_tipo = $('#tipo_diagnostico').val();
                         
-                        var pill = '<div class="alert alert-info" id="diag_'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a><a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
+                        var pill = '<div class="alert alert-info" idDiagnostico="'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a><a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
                         $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
@@ -253,20 +253,18 @@
                             });//ajax
                            
                             // se setea el dialogo
-                            $("#medicamentosAsociados")
-                                .dialog({
+                            $("#medicamentosAsociados").dialog({
                                 width: 250, 
                                 title: '<small>Guías asociadas a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
                                 autoOpen: false,
                                 resizable: false,
                                 position: {my: "left center", at: "right", of: $('#log_diagnostico')}
-                            });
-                            //se abre el dialogo con los medicamentos asociados sugeridos
-                            $("#medicamentosAsociados").dialog('open');
+                            }).dialog('open');
 
                          
-                        })); // end click 
-                    });//end ready
+                        })); // end click del tooltip
+                    }); // end click guardar_diagnostico   
+                  
                /*
                 * comportamiento de los paneles colapsables
                 * @author: Cesar González
