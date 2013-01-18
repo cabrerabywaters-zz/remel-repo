@@ -7,38 +7,34 @@
       <div class="accordion-inner">
 	  <?php 
 function mostrarAlergias($alergias){ 
-//print_r($alergias);
     echo'
   <div class="row">
   <div class="span5" id="alergias">
   <table>
    <thead>
                      <tr>
-                     <th>Alergias</th>                      
+                     <th colspan="2">Alergias</th>                      
                     </tr>
                 </thead>
                 <tr><td>
-   <table class="table table-hover">';
-			   $tipos=array();
-			   $cantidad=count($alergias);
-			   echo $cantidad;
-               foreach ($alergias as $datos => $dato)
-				{
-
-					
-					print_r($dato);
-					
-					$tipos[]=$dato['Tipo'];
-					echo "<br>";
-					echo"<td rowspan='"; if ($hola="hola")
-					{					
-						echo"".$dato['Cantidad']."";
-												
-					}echo "'>".$dato['Tipo']."
-					</td><td>".$dato['Alergia']."</td></tr>";
-				} 
-				print_r($tipos);
-				echo' </tbody>
+   <table class="table table-hover">
+   <tbody>';
+   echo "<tr><td><strong>Nombre</strong></td><td><strong>Sintomas</strong></td></tr>";
+   foreach ($alergias as $datos => $dato)
+   
+   {
+	echo "<tr>";
+	echo "<td>".$dato['Alergia']." </td>";
+	echo "<td>".$dato['Sintomas']."</td>";
+	
+	
+	echo "</tr>";   
+	   
+   }
+			   
+			   
+			   
+              echo '</tbody>
             </table>
             </tr></td><tfoot><tr><td> 
 			<form class="form-search">
@@ -51,7 +47,6 @@ function mostrarAlergias($alergias){
 }
   
 function mostrarCondiciones($condiciones){  
-print_r($condiciones);
     echo'<div class="span5 offset2">
   <table>
    <thead>
@@ -61,28 +56,13 @@ print_r($condiciones);
                 </thead>
                 <tr><td>
    <table class="table table-hover">';
-               
-              foreach ($condiciones as $datos => $dato)
-				{
-				echo"	<tr>";
-					$contador=1;
-					foreach($dato as $valor)
-					{
-						$contador++;
-						
-					}
-					
-					echo"<td rowspan='".$contador."'>
-						</td></tr>";
-					
-					foreach($dato as $valor)
-					{
-						$contador++;
-						echo "<tr><td>$valor</td></tr>";
-						
-					}
-					echo"</tr>";
-				}
+   foreach ($condiciones as $datos => $dato)
+   {
+	echo "<tr>";
+	echo "<td>".$dato['Nombre']." </td>";
+	echo "</tr>";   
+	   
+   }
 echo'
                 </tbody>
             </table>

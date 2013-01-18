@@ -125,14 +125,13 @@ class Paciente {
     }
 
     public static function R_AlergiaPaciente($idPaciente) {
-        $queryString = "SELECT Alergias.Nombre as Alergia, Alergias.Sintomas, Tipo_Alergia.Nombre as Tipo, count(Tipo_Alergia.Nombre) as Cantidad
+        $queryString = "SELECT Alergias.Nombre as Alergia, Alergias.Sintomas
 		FROM Pacientes, Alergia_has_Paciente, Alergias, Tipo_Alergia
 WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
 AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
 AND Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
 AND Pacientes.idPaciente =" . $idPaciente . "
-GROUP BY Alergias.Nombre
-ORDER BY Tipo_Alergia.Nombre ASC ;";
+GROUP BY Alergias.Nombre;";
 
 
         $result = CallQuery($queryString);
@@ -147,13 +146,13 @@ ORDER BY Tipo_Alergia.Nombre ASC ;";
         }
     }
 
-
     public static function R_CondicionPaciente($idPaciente) {
         $queryString = "SELECT Nombre
 FROM Pacientes, Paciente_has_Condiciones, Condiciones
 WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
 AND Condiciones.idCondiciones = Condiciones_idcondiciones
 AND Pacientes.idPaciente=" . $idPaciente . "";
+echo $queryString;
 
 
 
@@ -208,7 +207,19 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         }
         return $resultArray;
     }
-
+	
+	public static function R_MedicamentosVigentesPaciente($idPaciente,$fechaActual){
+        $queryString = 'SELECT Medicamentos_Recetas.idMedicamento
+                                    FROM Medicamentos_Recetas, Recetas, Consulta, Pacientes
+                                    WHERE Recetas.Fecha_Vencimiento <= ' . $fechaActual . '
+                                    AND Recetas.idReceta = Medicamentos_Recetas.Recetas_idReceta
+                                    AND Recetas.Consulta_Id_consulta = Consulta.Id_consulta
+                                    AND Consulta.Pacientes_idPaciente = Pacientes.idPaciente
+                                    AND Pacientes.idPaciente ='.$idPaciente.'
+                                    ';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+	}
     public static function R_MedicamentosConsulta($idConsulta) {
         $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta
                         FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos
