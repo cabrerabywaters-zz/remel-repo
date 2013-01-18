@@ -60,6 +60,13 @@ class AlergiaHasPaciente  {
         $query = CallQuery($queryString);
         
     }
+    public static function BuscarAlergiasPorPacienteId($idPaciente){
+        $queryString = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Pacientes, Alergia_has_Paciente 
+                                WHERE ' . "$idPaciente" . ' = Alergia_has_Paciente.Paciente_idPaciente
+                                AND ' . "$idPaciente" . ' = Pacientes.idPaciente';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 
 }
 

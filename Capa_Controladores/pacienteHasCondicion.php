@@ -60,6 +60,14 @@ class PacienteHasCondicion  {
         $query = CallQuery($queryString);
         
     }
+    
+    public static function BuscarCondicionesPorPacienteId($idPaciente){
+        $queryString = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Pacientes, Paciente_has_Condiciones
+                                   WHERE ' . $idPaciente . ' = Paciente_has_Condiciones.Paciente_idPaciente
+                                   AND ' . $idPaciente . ' = Pacientes.idPaciente';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 
 }
 

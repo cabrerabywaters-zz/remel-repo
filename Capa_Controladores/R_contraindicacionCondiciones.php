@@ -97,6 +97,14 @@ class ContraindicacionCondicion  {
         $query = CallQuery($queryString);
         
     }
+    
+    public static function BuscarCondicionesPorMedicamentoId($idMedicamento){
+        $queryString = 'SELECT Contraindicaciones_Condiciones.Condiciones_idCondiciones as ID FROM Medicamentos, Contraindicaciones_Condiciones
+                                      WHERE ' . $idMedicamento . ' = Contraindicaciones_Condiciones.Medicamentos_idmedicamento
+                                      AND ' . $idMedicamento . ' = Medicamentos.idMedicamento';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 
 }
 

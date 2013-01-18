@@ -87,6 +87,13 @@ class ContraindicacionAlergia  {
         
     }*/
 
+    public static function BuscarAlergiasPorMedicamentoId($idMedicamento){
+        $queryString = 'SELECT Contraindicaciones_Alergias.Alergias_idAlergia as ID FROM Medicamentos, Contraindicaciones_Alergias
+                                   WHERE ' . $idMedicamento . ' = Contraindicaciones_Alergias.Medicamentos_idMedicamento
+                                   AND ' . $idMedicamento . ' = Medicamentos.idMedicamento';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 }
 
 ?>
