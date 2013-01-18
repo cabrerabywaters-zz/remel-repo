@@ -119,10 +119,12 @@
                                     type: "post",
                                     success: function( data ){
                                         var output = jQuery.parseJSON(data);
-                                        alert(output)
-                                        
+                                                                                
                                         response( $.map( output, function( item ) {
-                                           return {label: item}
+                                           return {
+                                               label: item.Nombre
+                                              ,id3 : item.idDiagnostico
+                                            }
                                             
                                         })//end map
                                         );  // end response
