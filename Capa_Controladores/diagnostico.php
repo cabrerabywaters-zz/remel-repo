@@ -119,24 +119,24 @@ class Diagnostico {
 	    return $resultArray;
     }
 
-    public static function BuscarDiagnosticoExacto($nombre) {
+    public static function BuscarDiagnosticoExacto($idDiagnostico) {
 
         $diagnosticos = array();
         $queryString = 'SELECT Nombre, idDiagnostico, Foto
 
                         FROM Diagnosticos
 
-                        WHERE Nombre = "' . $nombre . '"
-
-                        ORDER BY Nombre
+                        WHERE idDiagnostico = "' . $idDiagnostico . '"
 
                         LIMIT 5;';
 
         $resultado = CallQuery($queryString);
 
-
-            return $resultado->fetch_assoc();
-        
+        $resultArray = array();
+	    while($fila = $resultado->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
      }
 
 }
