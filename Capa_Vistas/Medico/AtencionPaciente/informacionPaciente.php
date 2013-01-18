@@ -6,7 +6,7 @@
   </div>
   <div id="collapseOne" class="accordion-body collapse">
   <div class="accordion-inner">
-   <center> <div style="width: 50%; ;"><form id="arbol" class="form-inline" >
+   <center> <div style="width: 50%; ;"><form id="funciona" class="form-inline" method="post" >
     
     <div class="control-group">
     <label class="control-label" for="Nombre" ><strong>Nombre </strong> <br><input style="text-align:center;" class="span6" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
@@ -43,31 +43,71 @@
     </div>
        
     <div class="control-group">
-    <label class="control-label" for="N_Celular N_Fijo"><strong>Teléfonos </strong> <br> <input style="text-align:center;" type="text" class="span3 edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  <input style="text-align:center;" type="text" class="span3 edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
+    <label class="control-label" for="N_Celular N_Fijo"><strong>Teléfonos </strong> <br> <input style="text-align:center;" type="text" class="span3 edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  
+        <input style="text-align:center;" type="text" class="span3 edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
     </div>
      
     
     <div class="control-group">
     <label class="control-label" for="Isapre"><strong>Isapre </strong> <br> <input style="text-align:center;" type="text" class="span6" id="Isapre" value="<?php echo $prevision['Nombre']; ?>" disabled></label>
     </div>
+     
+    <input name="guardar" id="guardar" type="button" class="btn btn-danger" value="Guardar">
     
-    </form></div> </center>
-      
-      
-      
+           </form></div> </center>
+    
+    
   </div>
   </div>
 
-
-<center><button id="guardar" >Guardar</button></center>
-<script> 
+<script>
     $('#guardar').hide();
     $('.edicion').change(function() {
                 $('#guardar').show();
     });
-    $('#guardar').unbind('click').click(function() {
+    $('#guardar').unbind('click').on('click',function() {
                 $("#guardar").hide();
-                var editado = $("#collapseOne").serialize();
+                
+                $('.edicion').each(function(){
+                var editado = $(this);
+                alert(editado.val());
+                $.ajax({
+                      url:'../../../ajax/actualizarDatosPaciente.php',
+                      data: editado,
+                      type: 'post',
+                      success: function(output){
+                        var data = jQuery.parseJSON(output);
+                        
+                        $('#Peso').html(data['peso']);
+                        $('#Altura').html(data['altura']);
+                        $('#Direccion').html(data['direccion']);
+                        $('#Comuna').html(data['comuna']);
+                        $('#N_Celular').html(data['N_celular']);
+                        $('#N_Fijo').html(data['n_fijo']);
+                      }
+            });
+       });
+ });    
+    
+    
+    
+                    /*new Array(document.getElementById('Peso'),document.getElementById('Altura'),document.getElementById('Region').document.getElementById('Comuna'));
+                for($i=0;editado[$i]<editado.lenght;$i++){
+                alert(editado[$i].value);
+                }
+                });
+                /*$("#Peso").each(function(){
+                var editado = $(this);
+                alert(editado);   */            
+                
+   
+   /* $('#guardar').hide();
+    $('.edicion').change(function() {
+                $('#guardar').show();
+    });
+    $('#guardar').click(function() {
+                $("#guardar").hide();
+                var editado = $("#funciona").serialize();
                 alert(editado);
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
@@ -84,4 +124,5 @@
                       }
                 });
            });
+           */
 </script>
