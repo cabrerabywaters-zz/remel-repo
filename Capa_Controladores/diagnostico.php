@@ -122,7 +122,7 @@ class Diagnostico {
     public static function BuscarDiagnosticoExacto($idDiagnostico) {
 
         $diagnosticos = array();
-        $queryString = 'SELECT Nombre, idDiagnostico, Foto
+        $queryString = 'SELECT *
 
                         FROM Diagnosticos
 
