@@ -34,7 +34,8 @@
     </div>
     
     <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="span6 edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ".$paciente['Numero']." "; ?>"></label>
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="span4 edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="span2 edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
     </div>
  
     <div class="control-group">
@@ -69,15 +70,27 @@
                 $("#guardar").hide();
                 
                 $('.edicion').each(function(){
-                var editado = $(this);
-                alert(editado.val());
+                        var run = <?php echo $paciente['rut'] ?> ;
+                        var peso = $('#Peso').html()
+                        var altura = $('#Altura').html()
+                        var direccion = $('#Direccion').html()
+                        var comuna = $('#Comuna').html()
+                        var n_celular = $('#N_Celular').html()
+                        var n_fijo = $('#N_Fijo').html()
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
-                      data: editado,
+                      data: {RUN:run,
+                      Peso:peso, 
+                      altura:altura, 
+                      Direccion:direccion, 
+                      Comuna:comuna,
+                      n_celular:n_celular,
+                      n_fijo:n_fijo},
                       type: 'post',
                       success: function(output){
                         var data = jQuery.parseJSON(output);
                         
+                        $('#')
                         $('#Peso').html(data['peso']);
                         $('#Altura').html(data['altura']);
                         $('#Direccion').html(data['direccion']);
