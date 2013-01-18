@@ -156,6 +156,31 @@ class Persona {
         $query = CallQuery($queryString);
 	return $query;
     }
+    
+    public static function MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo){
+        $queryString = 'SELECT idDireccion FROM Direcciones 
+                        WHERE Calle = '.$calle.'
+                        AND Numero = '.$nCalle.'
+                        AND Comuna_idComuna = '.$comuna.'
+                        ';
+        $idDireccion = CallQuery($queryString);
+        if ($idDireccion == false){
+            include_once(dirname(__FILE__).'/direccion.php');
+            include_once(dirname(__FILE__).'/comuna.php');
+            $result = Comuna::BuscarComunaPorNombre($comuna);
+            Direccion::InsertarConDatos($calle, $nCalle, $result[0]);
+            $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $result[0]);
+        }
+        $queryString = 'UPDATE Personas, Personas
+                        SET Personas.n_celular = '.$nCelular.', Personas.n_fijo = '.$nFijo.', Personas.Direccion_idDireccion '.$idDireccion[0].', 
+                            Pacientes.Peso = '.$peso.', Pacientes.altura = '.$altura.'
+                        WHERE Personas.RUN = Pacientes.Personas_RUN
+                        AND Personas.RUN = '.$run.'
+            
+                        ';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 }
 
 ?>
