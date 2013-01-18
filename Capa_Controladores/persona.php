@@ -171,6 +171,37 @@ class Persona {
             Direccion::InsertarConDatos($calle, $nCalle, $result[0]);
             $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $result[0]);
         }
+        $queryString = 'SELECT Personas.n_celular as n_celular, Personas.n_fijo as n_fijo, Personas. Direccion_idDireccion as id_direccion,
+                               Pacientes.Peso as peso, Pacientes.altura as altura
+                        FROM Personas, Paciente
+                        WHERE Personas.RUN = '.$run.'
+                        AND Paciente.Personas_RUN = '.$run.'
+                        ';
+        $datosAnteriores = CallQuery($queryString);
+        $cambios = array();
+        
+        if ($nCelular != $datosAnteriores['n_celular']){
+            $cambios['n_celular'] = array($nCelular, $datosAnteriores['n_celular']);
+        }
+        if ($nFijo != $datosAnteriores['n_fijo']){
+            $cambios['n_fijo'] = array($nFijo, $datosAnteriores['n_fijo']);
+        }
+        if ($peso != $datosAnteriores['peso']){
+            $cambios['Peso'] = array($peso, $datosAnteriores['peso']);
+        }
+        if ($altura != $datosAnteriores['altura']){
+            $cambios['altura'] = array($altura, $datosAnteriores['altura']);
+        }
+        if ($idDireccion != $datosAnteriores['id_direccion']){
+            $cambios['idDireccion'] = array($idDireccion, $datosAnteriores['id_direccion']);
+        }
+        foreach ($cambios as $key=>$value){
+                $queryString = 'INSERT Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico
+                                INTO Log
+                                VALUES ('.date('d-m-y').', '.$key.', '.$value[1].', '.$value[0].', tabla(hacerIF), '.$_SESSION["RUTPaciente"].', idmedico)  
+                                ';
+            
+        }
         $queryString = 'UPDATE Personas, Personas
                         SET Personas.n_celular = '.$nCelular.', Personas.n_fijo = '.$nFijo.', Personas.Direccion_idDireccion '.$idDireccion[0].', 
                             Pacientes.Peso = '.$peso.', Pacientes.altura = '.$altura.'
@@ -179,7 +210,6 @@ class Persona {
             
                         ';
         $resultado = CallQuery($queryString);
-        return $resultado;
     }
 }
 

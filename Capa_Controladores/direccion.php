@@ -17,13 +17,26 @@ class Direccion {
     	$datosCreacion = array(
                            array('Calle',$_POST['calle_direccion']),
 				array('Numero',$_POST['numero_direccion']),
-                                array('Direccioncol',$_POST['direccioncol_direccion']),
 				array('Comuna_idComuna',$_POST['idComuna'])       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    
+    public static function InsertarConDatos($calle, $nCalle, $Comuna) {
+    	$datosCreacion = array(
+                           array('Calle',$calle),
+				array('Numero',$nCalle),
+				array('Comuna_idComuna',$Comuna)       );
 
+        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+    public static function BuscarIdDireccion($calle, $nCalle, $Comuna){
+        $queryString = 'SELECT idDireccion FROM Direccion WHERE Calle = '.$calle.' AND Numero = '.$nCalle.' AND Comuna_idComuna'.$Comuna.'';
+        $result = CallQuery($queryString);
+        return $result;
+    }
     /**
      * BorrarPorId
      * 

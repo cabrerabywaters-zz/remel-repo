@@ -94,7 +94,7 @@ for ($i = 0; $i < count($idCondiciones); $i++) {
     $nombreCondiciones[] = $fila['Text'];
 }
 
-//primer if, verifica si alguno de los resultados es positivo, de ser así, continua:
-//falta hacer la magia de mostrar las alergias de manera bonita
-//y obtener las cantidades de las contraindicaciones en los medicamentos
+
+
+
 ?>

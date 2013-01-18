@@ -86,7 +86,14 @@ class Comuna {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    public static function BuscarComunaPorNombre($nombre){
+        $queryString = 'SELECT idComuna FROM Comuna WHERE Nombre '.$nombre.'';
+        $result = CallQuery($queryString);
+        if ($result != false){
+        return $result;
+        }
+        else return false;
+    }
 }
 
 ?>
