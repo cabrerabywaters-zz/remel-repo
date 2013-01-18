@@ -112,7 +112,11 @@ class Diagnostico {
 
         $resultado = CallQuery($queryString);
 
-        return $resultado->fetch_assoc();
+       $resultArray = array();
+	    while($fila = $resultado->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
     }
 
     public static function BuscarDiagnosticoExacto($nombre) {

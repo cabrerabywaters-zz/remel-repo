@@ -118,15 +118,14 @@
                                     },
                                     type: "post",
                                     success: function( data ){
-                                        alert(data)
                                         var output = jQuery.parseJSON(data);
+                                        alert(output)
+                                        
                                         response( $.map( output, function( item ) {
-                                           return {
-                                                label: item
-                                                //,id2:  item.idPrincipio_Activo
-                                            }
+                                           return {label: item}
                                             
-                                        })); //end map / end response
+                                        })//end map
+                                        );  // end response
                                     }//end success
 
                                 }); // end ajax
@@ -143,7 +142,8 @@
                            close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 } //end close
-                            });
+                            });//autocompleteDiagnosticos
+                            
         
         
      
