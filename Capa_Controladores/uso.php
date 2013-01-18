@@ -7,7 +7,7 @@ class Uso  {
 
     static $nombreTabla = "Uso";
     static $nombreIdTabla = "Medicamento_idMedicamento";
-    static $nombreIdTabla1 = "Enfermedad_idEnfermedad";
+    static $nombreIdTabla1 = "Diagnostico_idDiagnostico";
     static $nombreIdTabla2 = "Sucursales_RUT";
 
     /**
@@ -18,7 +18,7 @@ class Uso  {
      */
     public static function Insertar() {
     	$id1 = $_POST['Medicamento_idMedicamento'];
-        $id2 = $_POST['Enfermedad_idEnfermedad'];
+        $id2 = $_POST['Diagnostico_idDiagnostico'];
         $id3 = $_POST['Sucursales_RUT'];
         $id = array($id1,$id2,$id3);
        
@@ -33,7 +33,7 @@ class Uso  {
      */
     public static function BorrarPorId() {
         $id1 = $_POST['Medicamento_idMedicamento'];
-        $id2 = $_POST['Enfermedad_idEnfermedad'];
+        $id2 = $_POST['Diagnostico_idDiagnostico'];
         $id3 = $_POST['Sucursales_RUT'];
         $id = array($id1,$id2,$id3);
         
@@ -51,7 +51,7 @@ class Uso  {
      */
    public static function Actualizar() {
     	$id1 = $_POST['Medicamento_idMedicamento'];
-        $id2 = $_POST['Enfermedad_idEnfermedad'];
+        $id2 = $_POST['Diagnostico_idDiagnostico'];
         $id3 = $_POST['Sucursales_RUT'];
         $id = array($id1,$id2,$id3);
         
@@ -65,9 +65,9 @@ class Uso  {
     public static function SeleccionarPorIdDiagnostico($id){
 	$rows = array();
 	$queryString = "SELECT * FROM Uso, Medicamentos, Sucursales WHERE Uso.Medicamento_idMedicamento = Medicamentos.idMedicamento 
-                        AND Uso.Enfermedad_idEnfermedad = '$id' AND Sucursales.RUT= Uso.Sucursales_RUT;";
+                        AND Uso.Diagnostico_idDiagnostico = '$id' AND Sucursales.RUT= Uso.Sucursales_RUT;";
 	$query = CallQuery($queryString);
-	while($row = $query->fetch_assoc()) $rows[] = $row;
+	while($row = $query->fetch_assoc()){ $rows[] = $row;}
 
 	return $rows;
     }

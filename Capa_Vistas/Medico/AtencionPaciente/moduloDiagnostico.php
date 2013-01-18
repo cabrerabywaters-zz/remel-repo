@@ -15,7 +15,7 @@
                 <div class="input-append"> <!-- buscador inline con autocomplete -->
 
                     <input type="text" class="search-query" id="diagnostico" name="diagnostico">
-                    <input type="submit" id="boton_diagnostico" class="btn" data-target="#myModal"  data-toggle="modal" value="Añadir" disabled>  <br>
+                    <input type="submit" id="boton_diagnostico" class="btn" data-target="#modalDiagnostico"  data-toggle="modal" value="Añadir" disabled>  <br>
            </form>
                </div><!-- buscador inline con autocomplete -->
             </div><!-- div del buscador-->
@@ -33,14 +33,15 @@
 </div>
 
 <!-- popup informacion diagnostico -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modalDiagnostico" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalDiagnosticoLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Debe seleccionar un Diagnóstico</h3>
+        <h3 id="modalDiagnosticoLabel">Debe seleccionar un Diagnóstico</h3>
 
     </div>
     <div class="modal-body">
         <span id="id_diagnostico" style="display:none"></span>
+        <span id="esGES" style="display:none">0</span>
 
         <p></p>
         <select id="tipo_diagnostico">
@@ -60,7 +61,7 @@
 
 
                 <p>Comentario: </p>
-                <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%"></textarea></center>
+                <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%" placeholder="Puede Ingresar un comentario para su diagnostico"></textarea></center>
                 <span id="mensaje"></span>
                 </div>
                 <div class="modal-footer">
@@ -74,8 +75,8 @@
 <div id="medicamentosAsociados">
     
     
-        <?php $institucion = $_SESSION['institucionLog']; 
-            echo '<button id="institucion" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i> Guía '.$institucion[1].'</button>';
+        <?php 
+        echo '<button id="sucursal" type="button" class="btn btn-danger btn-block" data-toggle="collapse" data-target="#recomendadosInstitucion"><i class="icon-white icon-circle-arrow-up"></i> Guía '.$lugar['idSucursal'].'</button>';
             
         ?>
      
@@ -84,9 +85,9 @@
         </div><!-- div con los medicamentos asociados por la institucion-->
        
     
-        <button id='medicamentosFavo' type='button' class='btn btn-danger btn-block' data-toggle='collapse' data-target='#recomendadosFav'><i class="icon-white icon-circle-arrow-up"></i>Guía GES</button>
+        <button type='button' class='btn btn-danger btn-block' data-toggle='collapse' data-target='#recomendadosFav'><i class="icon-white icon-circle-arrow-up"></i>Guía GES</button>
         
-        <div id="recomendadosFav" class="collapse in"><!-- div con los medicamentos asociados por favoritos-->
+        <div id="guiaGES" class="collapse in"><!-- div con los medicamentos asociados por favoritos-->
         <span class="label label-info">Principio Activo GES <a href="#valor"> <i class="icon-plus-sign icon-white"></i></a></span>
         </div><!-- div con los medicamentos asociados por los favoritos -->
 </div> 
@@ -95,13 +96,7 @@
 <!-- fin dialogo de "usos" -->
                 
 <script>
-                            $("#medicamentosAsociados").hide();//escondo el dialogo
-                            if($('#id_diagnostico').html()==""){
-                                $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
-                            }
-                        
-                            
-                        $( "#diagnostico" ).autocomplete({
+                         $( "#diagnostico" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -160,18 +155,21 @@
                            
                            
                            var postData = $("#diagnostico").attr('iddiagnostico');
-                           alert('el diagnostico es '+postData)
                            $.ajax({ 
                                 url: '../../../ajax/informacionDiagnostico.php',
                                 data: {diagnostico:postData},
                                 type: 'post',
                                 async: false,
                                 success: function(output) {
-                                    alert(output)
+                                    
                                     var data = jQuery.parseJSON(output);
-                                                                                             
-                                    $('#myModalLabel').html(data['Nombre']) ; //nombre de la enfermedad
-                                    $('#id_diagnostico').html(data['idDiagnostico']); // id de la enfermedad
+                                    $('#modalDiagnosticoLabel').text(data['Nombre']) ; //nombre de la enfermedad
+                                    $('#id_diagnostico').html(data['idDiagnostico']);// id de la enfermedad
+                                    
+                                    if(data['Es_Ges'] != null){ // el diagnostico es ges se informa con un pill y un
+                                        $('#modalDiagnosticoLabel').append('    <span class="badge badge-success">Considerado GES por MINSAL</span>')
+                                        $('#esGES').html('1');
+                                    } // end if
                                     //resto de la informacion que se busca desplegar en el popup
                                     
                                 }//end success
@@ -183,7 +181,16 @@
 </script>
                 
 <script>
-         
+                    /*
+                     * dialogo donde se guardarán las guías relativas al diagnostico
+                     */
+                    $("#medicamentosAsociados").dialog({
+                                width: 250, 
+                                title: '<div id="titleGuias"><small>Guías asociadas a:</small></div>',
+                                autoOpen: false,
+                                resizable: false,
+                                position: {my: "left center", at: "right", of: $('#log_diagnostico')}
+                            })
                     
                     $("#cancelar_modal").unbind('click').on('click',function(){
                         /**
@@ -191,8 +198,7 @@
                          * en el boton canelar
                          * 
                          */
-                        $('#myModalLabel').html('Debe Escojer un Diagnóstico'); // cambio el titulo
-                        $('#imagenDiagnostico').html('<img src="../../../imgs/no_encontrado.jpg" style="width:30%" >');
+                        $('#modalDiagnosticoLabel').html('Debe Escojer un Diagnóstico'); // cambio el titulo
                         $('select>option:eq(0)').attr('selected', true);
                         $('#diagnostico').val(''); // borro el buscador
                         $('#comentario_diagnostico').val(''); //borro el comentario
@@ -206,23 +212,31 @@
                              * en el div al hacer click en "diagnosticar"
                              * agrega el pill en la seccion log_diagnostico
                              */
-                        var nombre_diagnostico = $('#myModalLabel').text();    
+                        var nombre_diagnostico = $('#modalDiagnosticoLabel').text();    
                         var id_diagnostico= $('#id_diagnostico').text();
                         var id_consulta = $('#consulta').text();
                         var id_tipo = $('#tipo_diagnostico').val();
+                        var comentarioDiagnostico = $('#comentario_diagnostico').val();
+                        var esGES = $('#esGES').text();
                         
-                        var pill = '<div class="alert alert-info" idDiagnostico="'+id_diagnostico+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong><a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a><a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
+                        var pill = '\
+                        <div class="alert alert-info" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
+                        <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
+                        <a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
+                        <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
+                        
+                                         
                         $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
-                        $('#myModal').modal('hide');// se cierra el modal
+                        $('#modalDiagnostico').modal('hide');// se cierra el modal
                         $('#diagnostico').val(''); // se borra el buscador
                         $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
                         $('#comentario_diagnostico').val(''); // se borra el comentario
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                             
                             
-                     $('a[rel="tooltip"]').tooltip({title:"Ver Guías del diagnostico"}).unbind("click")
+                     $('.protocolo').tooltip({title:"Ver Guías del diagnostico"}).unbind("click")
                         .on('click', (function(){
                             /**
                              *Funcion que abre el widget donde se encuentran los 
@@ -230,19 +244,18 @@
                              */
                             
                             var nombreDiagnostico = $(this).parent().children('strong').html(); //nombre del diagnostico clickeado
-                            var idDiagnostico = $(this).parent().attr('id'); 
-                            idDiagnostico = idDiagnostico[5]; // id del diagnostico clickeado
+                            var idDiagnostico = $(this).parent().attr('idDiagnostico');  // id del diagnostico clickeado
                             
                             
                             
                             // generar pills vía ajax syncronico
                             $.ajax({ 
                                 url: '../../../ajax/medicamentosAsociados.php',
-                                data: idDiagnostico,
+                                data: {"idDiagnostico":idDiagnostico},
                                 type: 'post',
                                 async: false,
                                 success: function(output) {
-                                    
+                                    alert(output)
                                     $('#recomendadosInstitucion').html('');//limpio el espacio antes de mostrar
                                     output = $.parseJSON(output);
                                     $.each(output,function(i,value){
@@ -257,13 +270,8 @@
                             });//ajax
                            
                             // se setea el dialogo
-                            $("#medicamentosAsociados").dialog({
-                                width: 250, 
-                                title: '<small>Guías asociadas a:</small> <span class="label label-inverse">'+nombreDiagnostico+'</span>',
-                                autoOpen: false,
-                                resizable: false,
-                                position: {my: "left center", at: "right", of: $('#log_diagnostico')}
-                            }).dialog('open');
+                            $('#titleGuias').append(nombreDiagnostico);
+                            $("#medicamentosAsociados").dialog('open');
 
                          
                         })); // end click del tooltip
@@ -293,7 +301,7 @@
 //                            type: 'post',
 //                            success: function(output) {
 //                                if(output == '1') {
-//                                    $('#myModal').modal('hide'); //se esconde el modal
+//                                    $('#modalDiagnosticol').modal('hide'); //se esconde el modal
 //                                    $('#diagnostico').val(''); // se borra el buscador
 //                                    $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
 //                                    $('#comentario_diagnostico').val(''); // se borra el comentario

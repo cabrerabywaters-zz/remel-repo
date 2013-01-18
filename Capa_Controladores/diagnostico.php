@@ -132,11 +132,7 @@ class Diagnostico {
 
         $resultado = CallQuery($queryString);
 
-        $resultArray = array();
-	    while($fila = $resultado->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+	    return $resultado->fetch_assoc();
      }
 
 }
