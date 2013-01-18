@@ -78,7 +78,9 @@ if (!empty($_SESSION))
 
             <form class="form-signin" id="usuario" method="post" action="javascript:enviar()">
                 <fieldset>
-                    <h2 class="form-signin-heading"><center>REMEL</center>  </h2>
+                    
+                         <center> <img class="img-rounded " src="imgs/logo-remel.png" style="width: 140px; height: 140px;"></center>
+                         <br>
                     <input type="text" class="input-block-level" placeholder="Rut" id="rut" onfocus="disableIngresar()" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" name="rutUsuario">
                     <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" name="passUsuario">
                     <label class="checkbox">
