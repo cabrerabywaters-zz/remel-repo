@@ -159,10 +159,11 @@
                          **/
                            
                            
-                           var postData = $("#buscar_diagnostico").serialize();
+                           var postData = $("#diagnostico").attr('iddiagnostico');
+                           alert('el diagnostico es '+postData)
                            $.ajax({ 
-                                url: '../../../ajax/diagnosticarPaciente.php',
-                                data: postData,
+                                url: '../../../ajax/informacionDiagnostico.php',
+                                data: {diagnostico:postData},
                                 type: 'post',
                                 async: false,
                                 success: function(output) {
