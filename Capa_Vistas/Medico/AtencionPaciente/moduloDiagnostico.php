@@ -110,6 +110,7 @@
                                     url: "../../../ajax/autocompleteDiagnostico.php",
                                     data: {
                                         name_startsWith: request.term
+                                        
                                     },
                                     type: "post",
                                     success: function( data ){

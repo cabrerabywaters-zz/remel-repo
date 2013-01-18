@@ -15,6 +15,8 @@ y el popup que muestra el detalle del medicamento
                     <div class="btn-group" data-toggle="buttons-radio" id="filtro">
                         <button type="button" class="btn" filtro="true">Principio Activo</button>
                         <button type="button" class="btn" filtro="false">Nombre Comercial</button>
+                        <button type="button" class="btn" filtro="false2"> Busqueda Avanzada</button>
+            
                     </div><!-- filtro -->
                     
                     <form class="form-search">
@@ -29,12 +31,25 @@ y el popup que muestra el detalle del medicamento
             </div><!-- row del buscador -->
             
                     
+            
+            
                  
             <div class="row-fluid span12">
+                <div id="busqueda_avanzada" class="collapse">
                         <strong><p>Categorias</p></strong>
-                        <select id="clase" multiple="multiple"></select>
-                        <select id="subclase" multiple="multiple"></select>
-                        <select id="laboratorio" multiple="multiple"></select>
+                        <select id="clase" multiple="multiple" class ="span5"></select>
+                        <strong><p>Sub Categorias</p></strong>
+                        <select id="subclase" multiple="multiple" class ="span7"></select>
+                        <strong><p>Laboratorio</p></strong>
+                        <select id="laboratorio" multiple="multiple" class="span5"></select>
+                        
+            </div>
+                
+                <div id="filtro_laboratorios_principio_activo" class="collapse in">
+                     <strong><p>Laboratorio</p></strong>
+                        <select id="laboratorio" multiple="multiple" class="span5"></select>
+                    
+                </div>
                         <strong><p>Medicamentos</p></strong>
                         <select id="medicamento" multiple="multiple" class ="span7"></select>
             </div><!-- row de multiselect-->
@@ -67,6 +82,68 @@ y el popup que muestra el detalle del medicamento
         var filtro = 'true';
         $('#filtro button').click(function(){
           filtro = $(this).attr('filtro'); // el filtro correspondiente  
+        
+            if($(this).attr('filtro')=="true")
+                {
+                    $("#medicamento").empty();
+                    $("#Medicamentos").removeAttr('value')
+                    $("#filtro_laboratorios_principio_activo").collapse("show");
+                    
+         if($('#busqueda_avanzada').attr('class')=="collapse")
+             {
+                 
+                 
+             }
+             else
+                 {
+                     $("#busqueda_avanzada").collapse('hide');
+                     
+                 }
+                    
+                               
+                   
+                   
+                    
+                    
+                }
+        else if ($(this).attr('filtro')=="false"){
+            
+            $("#medicamento").empty();
+            $("#Medicamentos").removeAttr('value')
+            
+            $("#filtro_laboratorios_principio_activo").collapse("hide");
+            if($('#busqueda_avanzada').attr('class')=="collapse")
+             {
+                 
+                 
+             }
+             else
+                 {
+                     $("#busqueda_avanzada").collapse('hide');
+                     
+                 }
+           
+        }
+        
+       else if ($(this).attr('filtro')=="false2"){
+           $("#busqueda_avanzada").collapse('show');
+           
+            $("#Medicamentos").removeAttr('value')
+            if($('#filtro_laboratorios_principio_activo').attr('class')=="collapse")
+             {
+                 
+                 
+             }
+             else
+                 {
+                     $("#filtro_laboratorios_principio_activo").collapse('hide');
+                     
+                 }
+           
+        }
+        
+        
+        
         });
         
         $('button[filtro="true"]').addClass('active');
@@ -156,6 +233,8 @@ y el popup que muestra el detalle del medicamento
                 $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
 		$("#boton_medicamentos").attr('enabled', 'enabled');
+                $("#busqueda_avanzada").collapse('hide');
+                
 	 }); // change
 
 
@@ -196,6 +275,26 @@ y el popup que muestra el detalle del medicamento
             select: function(event, ui){
 
                 $('#Medicamentos').removeAttr('identificador').attr('identificador',ui.item.id2)
+                
+                //aquí se hace el ajax para poder indexsar los medicamentos que tienen ese principio activo
+                
+                  $.ajax({
+                type:"POST",
+                url: "../../../ajax/medicamentosPrincipiosActivos.php",
+                data: {idPrincipio: ui.item.id2},
+                success: function(output){
+                    
+                    alert(output);
+                    /*
+                       var output = jQuery.parseJSON(output);
+                        $("#medicamento").empty();
+                        $.each(output,function(i,el){
+                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
+                                $("#medicamento").append(string);
+                                }
+                        );*/
+                        }//success
+                });
             
             }
             ,
@@ -303,7 +402,7 @@ y el popup que muestra el detalle del medicamento
 
         $('#agregarMedicamento').click()
 
-
+           
 
 });//end ready
 </script>
