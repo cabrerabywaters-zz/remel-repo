@@ -100,11 +100,11 @@ class Diagnostico {
     public static function BuscarDiagnosticoLike($nombre) {
 
         $diagnosticos = array();
-        $queryString = 'SELECT Nombre
+        $queryString = 'SELECT Nombre, idDiagnostico
 
                         FROM Diagnosticos
 
-                        WHERE Nombre LIKE "%' . $nombre . '%"
+                        WHERE Nombre LIKE "%'.$nombre.'%"
 
                         ORDER BY Nombre
 
