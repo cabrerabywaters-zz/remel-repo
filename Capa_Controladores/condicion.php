@@ -83,6 +83,25 @@ class Condicion {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+	 public static function BuscarCondicionLike($Nombre) {
+
+      		        $queryString = 'SELECT Nombre, idCondiciones
+
+                     				 FROM Condiciones
+
+                       				 WHERE Nombre LIKE "%'.$Nombre.'%"
+
+                       				 ORDER BY Nombre
+
+                     			     LIMIT 5;';
+
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+   }
 
 }
 

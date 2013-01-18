@@ -89,19 +89,18 @@ class Alergia {
         $query = CallQuery($queryString);
     }
 
-    public static function BuscarAlergiaLike($nombre) {
+    public static function BuscarAlergiaLike($Nombre) {
 
-      		        $queryString = 'SELECT Nombre, Sintomas, idAlergia, Tipo_idTipo
-
-                        FROM Alergia
-
-                        WHERE Nombre LIKE "% $nombre %"
-
-                        ORDER BY Nombre
-
-                        LIMIT 5;';
-
-        $resultado = CallQuery($queryString);
+      		        $queryString = 'SELECT Nombre, idAlergia
+										FROM  Alergias
+										WHERE  Nombre LIKE  "%'.$Nombre.'%"
+										LIMIT 5;';
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
    }	     
  
 }
