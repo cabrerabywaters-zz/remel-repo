@@ -62,7 +62,7 @@ y el popup que muestra el detalle del medicamento
         /*
          * el filtro correspondiente al buscador 
          */
-        var filtro;
+        var filtro = 'true';
         $('#filtro button').click(function(){
           filtro = $(this).attr('filtro'); // el filtro correspondiente  
         });
@@ -180,15 +180,15 @@ y el popup que muestra el detalle del medicamento
             }
         }); //autocomplete
                 
-        /*
+       
+       
+    $(document).ready(function(){ 
+         /*
         * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
         * a la receta
         * ----------------------------------------------
         * solo para los medicamentos que requieren escribir el rp
         */
-       
-    $(document).ready(function(){ 
-        
        $('.detalleMedicamento').unbind('click').on('click',function(){
            var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
                    
@@ -258,11 +258,11 @@ y el popup que muestra el detalle del medicamento
             var idFavorito = $(this).parent().attr('idFavorito');
             alert('se quiere eliminar de favoritos el medicamento con idFavorito: '+idFavorito);
             $.ajax({
-              url: "url",
+              url: "../../ajax/borrarFavorito.php", //../../ajax/borrarFavorito.php
               type: "POST",
-              data: {idFavorito:idFavorito, accion:'0'},
+              data: {idFavorito:idFavorito},
               success: function(output){
-                  alert(output);
+                  alert('Favorito eliminado correctamente!');
                   if(output == 1){// se eliminó correctamente de favoritos
                       $(this).parent('span').remove(); // se elimina el div donde está contenido el elemento
                         
@@ -271,7 +271,10 @@ y el popup que muestra el detalle del medicamento
               
                 
             });//end ajax
-}); // click
+        }); // click
+
+        $('#agregarMedicamento').click()
+
 
 
 });//end ready

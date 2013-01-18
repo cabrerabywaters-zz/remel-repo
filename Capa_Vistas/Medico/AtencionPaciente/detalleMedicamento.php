@@ -18,7 +18,7 @@
     
     <div class="modal-footer"><!-- acciones del modal (cancerlar, agregar medicamento etc)-->
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <a href="#" role="button" class="btn btn-warning">Prescribir</a>
+        <a href="#" id="agregarMedicamento" role="button" class="btn btn-warning">Prescribir</a>
     </div>
 
 </div><!-- fin popup informacion del medicamento -->

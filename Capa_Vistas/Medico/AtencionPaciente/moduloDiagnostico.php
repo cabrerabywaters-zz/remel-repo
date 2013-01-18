@@ -179,7 +179,7 @@
 </script>
                 
 <script>
-                    
+        $(document).ready(function(){            
                     
                     $("#cancelar_modal").unbind('click').click(function() {
                         /**
@@ -266,7 +266,7 @@
 
                          
                         })); // end click 
-                 
+                    });//end ready
                /*
                 * comportamiento de los paneles colapsables
                 * @author: Cesar González
@@ -308,7 +308,7 @@
 //                                }
 //                            }
 //                        });
-                    });// end click
+                  
 				
     
             
