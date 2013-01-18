@@ -118,6 +118,7 @@
                                     },
                                     type: "post",
                                     success: function( data ){
+                                        alert(data)
                                         var output = jQuery.parseJSON(data);
                                         response( $.map( output, function( item ) {
                                            return {
@@ -156,10 +157,10 @@
                          **/
                            
                            
-                           var idDiagnostico = $("#buscar_diagnostico").serialize();
-                            $.ajax({ 
+                           var postData = $("#buscar_diagnostico").serialize();
+                           $.ajax({ 
                                 url: '../../../ajax/diagnosticarPaciente.php',
-                                data: idDiagnostico,
+                                data: postData,
                                 type: 'post',
                                 async: false,
                                 success: function(output) {
