@@ -5,6 +5,7 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/alergiaHasPaciente.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionAlergia.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/pacienteHasCondicion.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionCondiciones.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/paciente.php');
 
 
 session_start();
@@ -12,17 +13,9 @@ session_start();
 $idPaciente = $_SESSION['idPacienteLog'][0];
 $idMedicamento = 1;
 //obtener idMedicamento de algun lado
-//
-//query de contraindicaciones a alergias del medicamento
-//
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
-$queryStringMedicamentosVigentes = 'SELECT Medicamentos_Recetas.idMedicamento
-                                    FROM Medicamentos_Recetas, Recetas
-                                    WHERE Recetas.Fecha_Vencimiento <= ' . $fechaActual . '
-                                    AND Recetas.idReceta = Medicamentos_Recetas.Recetas_idReceta
-                                    ';
-$MedicamentosVigentes = CallQuery($queryStringMedicamentosVigentes);
+$MedicamentosVigentes = Paciente::R_MedicamentosVigentesPaciente($idPaciente, $fechaActual);
 if ($MedicamentosVigentes != false) {
     $queryStringPrincipiosActivos = array();
     $principiosActivos = array();
