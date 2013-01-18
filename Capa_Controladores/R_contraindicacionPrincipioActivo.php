@@ -3,7 +3,7 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
-class ContraindicacionDiagnostico  {
+class ContraindicacionPrincipioActivo  {
 
     static $nombreTabla = "Contraindicaciones_Diagnosticos";
     static $nombreIdTabla = "Diagnosticos_idDiagnostico";
@@ -97,7 +97,18 @@ class ContraindicacionDiagnostico  {
         $query = CallQuery($queryString);
         
     }
-
+    public static function BuscarContraindicacionPrincipioActivo($PA0,$PA1){
+        $queryString = 
+        'SELECT Principio_Activo_has_Principio_Activo, Principio_Activo_has_Principio_Activo1
+         FROM Contraindicaciones_Principios_Activos
+         WHERE ('.$PA0.' = Principio_Activo_has_Principio_Activo
+            AND '.$PA1.' = Principio_Activo_has_Principio_Activo1)
+         OR    ('.$PA1.' = Principio_Activo_has_Principio_Activo1
+            AND '.$PA0.' = Principio_Activo_has_Principio_Activo)
+         ';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 }
 
 ?>

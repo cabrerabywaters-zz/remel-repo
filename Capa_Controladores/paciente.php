@@ -236,6 +236,17 @@ echo $queryString;
         return $resultArray;
     }
 
+        public static function R_DiagnosticosIdPorPacienteId($idPaciente){
+        $queryString = 'SELECT Historiales_medicos.Diagnosticos_idDiagnostico 
+                        FROM Pacientes, Consulta, Historiales_medicos
+                        WHERE ' . "$idPaciente" . ' = Pacientes.idPaciente
+                        AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
+                        AND Consulta.Id_consulta = Historiales_medicos.Consulta_Id_consulta
+                        ';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
+
 }
 
 ?>

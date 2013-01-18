@@ -97,7 +97,17 @@ class ContraindicacionDiagnostico  {
         $query = CallQuery($queryString);
         
     }
+    
+    public static function BuscarDiagnosticosPorMedicamentoId($idMedicamento){
+        $queryString = 'SELECT Diagnosticos_idDiagnostico
+                        FROM Contraindicaciones_Diagnosticos
+                        WHERE Medicamentos_idMedicamento = '.$idMedicamento.'
+                        ';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
 
+    
 }
 
 ?>

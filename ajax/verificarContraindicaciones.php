@@ -6,6 +6,9 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionAlergia
 include_once(dirname(__FILE__).'/../Capa_Controladores/pacienteHasCondicion.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionCondiciones.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/paciente.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/composicionMedicamento.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionPrincipioActivo.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionDiagnostico.php');
 
 
 session_start();
@@ -21,25 +24,13 @@ if ($MedicamentosVigentes != false) {
     $principiosActivos = array();
     foreach ($MedicamentosVigentes as $llave => $valor) {
     //query de principios activos de los medicamentos vigentes del usuario
-        $queryStringPrincipiosActivos[] = 'SELECT Principio_Activo_idPrincipio_Activo
-                                           FROM Composicion_Medicamento
-                                           WHERE Medicamentos_idMedicamento = '.$valor.'
-                                         ';
-        $principiosActivos[] = CallQuery($queryStringPrincipiosActivos);
+        $principiosActivos[] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
     }
 }
 $paresContraindicadores = array();
 for($i=0;$i<count($principiosActivos);$i++){
     for($j=$i+1;$j<count($principiosActivos);$j++){
-        $queryStringVerificarContraindicacionPrincipioActivo = 
-        'SELECT Principio_Activo_has_Principio_Activo, Principio_Activo_has_Principio_Activo1
-         FROM Contraindicaciones_Principios_Activos
-         WHERE ('.$principiosActivos[$i].' = Principio_Activo_has_Principio_Activo
-            AND '.$principiosActivos[$j].' = Principio_Activo_has_Principio_Activo1)
-         OR    ('.$principiosActivos[$i].' = Principio_Activo_has_Principio_Activo1
-            AND '.$principiosActivos[$j].' = Principio_Activo_has_Principio_Activo)
-         ';
-        $resultado = CallQuery($queryStringVerificarContraindicacionPrincipioActivo);
+        $resultado = ContraindicacionPrincipioActivo::BuscarContraindicacionPrincipioActivo($principiosActivos[$i],$principiosActivos[$j]);
         if ($resultado){
             $paresContraindicadores[] = array($principiosActivos[$i], $principiosActivos[$j]);
         }
@@ -49,10 +40,11 @@ for($i=0;$i<count($principiosActivos);$i++){
 $busquedaAlergiasPaciente = AlergiaHasPaciente::BuscarAlergiasPorPacienteId($idPaciente);
 $busquedaAlergiasMedicamento = ContraindicacionAlergia::BuscarAlergiasPorMedicamentoId($idMedicamento);
 
+$busquedaDiagnosticosPaciente = Paciente::R_DiagnosticosIdPorPacienteId($idPaciente);
+$busquedaDiagnosticosMedicamento = ContraindicacionDiagnostico::BuscarDiagnosticosPorMedicamentoId($idMedicamento);
+
 $busquedaCondicionesPaciente = PacienteHasCondicion::BuscarCondicionesPorPacienteId($idPaciente);
 $busquedaCondicionesMedicamento = ContraindicacionCondicion::BuscarCondicionesPorMedicamentoId($idMedicamento);
-
-$busquedaMedicamentos = CallQuery($queryStringMedicamentos);
 
 $idAlergias = array();
 while ($row = $busquedaAlergiasMedicamento->fetch_array()) {
@@ -74,9 +66,15 @@ while ($row = $busquedaCondicionesMedicamento->fetch_array()) {
         }
     }
 }
-$idMedicamentos = array();
-while ($row = $busquedaMedicamentos->fetch_array()) {
-    $idMedicamentos[] = $row['ID'];
+
+$idDiagnostico = array();
+while ($row = $busquedaDiagnosticosMedicamento->fetch_array()) {
+    while ($fila = $busquedaDiagnosticosPaciente->fetch_array()) {
+        if ($row['ID'] == $fila ['ID']) {
+            $idDiagnostico[] = $row['ID'];
+            break;
+        }
+    }
 }
 
 //guarda el nombre de las alergias
@@ -96,13 +94,6 @@ for ($i = 0; $i < count($idCondiciones); $i++) {
     $nombreCondiciones[] = $fila['Text'];
 }
 
-$nombreMedicamentos = array();
-for ($i = 0; $i < count($idMedicamentos); $i++) {
-    $queryString = 'SELECT Nombre_Comercial as Nombre FROM Medicamentos WHERE idMedicamento = ' . $idMedicamentos[$i] . ';';
-    $result = CallQuery($queryString);
-    $fila = $result->fetch_array();
-    $nombreMedicamentos[] = $fila['Nombre'];
-}
 //primer if, verifica si alguno de los resultados es positivo, de ser así, continua:
 //falta hacer la magia de mostrar las alergias de manera bonita
 //y obtener las cantidades de las contraindicaciones en los medicamentos
