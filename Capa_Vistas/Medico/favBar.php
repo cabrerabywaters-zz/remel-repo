@@ -126,3 +126,53 @@
      
  
 </script>
+
+<script>
+$('a[href="#borrarFav"]').unbind('click').on('click',function() {
+    var idFavoritoRP = $(this).parent().attr('idFavorito');
+    $('a[href="#borrarFav"]').remove();
+    alert('¿Seguro que desea eliminar este favorito?')
+    $.ajax({
+    url: "../../ajax/borrarFavorito.php", 
+              type: "POST",
+              data: {idFavoritoRP:idFavorito},
+              success: function(output){
+                  alert('Favorito eliminado correctamente!');
+                  if(output == 1){// se eliminó correctamente de favoritos
+                      $(this).parent('span').remove(); // se elimina el div donde está contenido el elemento
+                        
+                  }
+              }//end success
+              
+                
+            });//end ajax
+        }); // click
+        
+       
+        
+        
+        
+$('a[href="#borrarFav"]').unbind('click').on('click',function() {
+    var idFavoritoRP = $(this).parent().attr('idFavorito');
+    $('a[href="#borrarFav"]').remove();
+    alert('¿Seguro que desea eliminar este favorito?')
+    $.ajax({
+    url: "../../ajax/borrarFavorito.php", 
+              type: "POST",
+              data: {idFavoritoRP:idFavorito},
+              success: function(output){
+                  alert('Favorito eliminado correctamente!');
+                  if(output == 1){// se eliminó correctamente de favoritos
+                      $(this).parent('span').remove(); // se elimina el div donde está contenido el elemento
+                        
+                  }
+              }//end success
+              
+                
+            });//end ajax
+        }); // click
+        
+        $('idFavoritoRP').remove();
+        
+
+</script>
