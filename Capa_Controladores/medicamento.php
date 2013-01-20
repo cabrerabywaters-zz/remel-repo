@@ -195,6 +195,25 @@ class Medicamento  {
     }
     
     
+    
+    public static function BuscarMedicamentoPorIdPrincipioActivo($idPrincipioActivo) {
+       
+
+        $queryString = "Select idMedicamento, Nombre_Comercial from Medicamentos where
+            idMedicamento IN 
+            (select Medicamentos_idMedicamento from 
+            Composicion_Medicamento where 
+            Principio_Activo_idPrincipio_Activo='$idPrincipioActivo')";
+
+        $result = CallQuery($queryString);
+            $resultArray = array();
+            while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+            }
+
+        return $resultArray;
+    }
+    
 
 }
 

@@ -45,11 +45,7 @@ y el popup que muestra el detalle del medicamento
                         
             </div>
                 
-                <div id="filtro_laboratorios_principio_activo" class="collapse in">
-                     <strong><p>Laboratorio</p></strong>
-                        <select id="laboratorio" multiple="multiple" class="span5"></select>
-                    
-                </div>
+               
                         <strong><p>Medicamentos</p></strong>
                         <select id="medicamento" multiple="multiple" class ="span7"></select>
             </div><!-- row de multiselect-->
@@ -87,8 +83,9 @@ y el popup que muestra el detalle del medicamento
                 {
                     $("#medicamento").empty();
                     $("#Medicamentos").removeAttr('value')
-                    $("#filtro_laboratorios_principio_activo").collapse("show");
+                   
                     
+              
          if($('#busqueda_avanzada').attr('class')=="collapse")
              {
                  
@@ -110,8 +107,8 @@ y el popup que muestra el detalle del medicamento
             
             $("#medicamento").empty();
             $("#Medicamentos").removeAttr('value')
+           
             
-            $("#filtro_laboratorios_principio_activo").collapse("hide");
             if($('#busqueda_avanzada').attr('class')=="collapse")
              {
                  
@@ -122,23 +119,16 @@ y el popup que muestra el detalle del medicamento
                      $("#busqueda_avanzada").collapse('hide');
                      
                  }
+                 
+              
            
         }
         
        else if ($(this).attr('filtro')=="false2"){
            $("#busqueda_avanzada").collapse('show');
-           
+           $("#medicamento").empty();
             $("#Medicamentos").removeAttr('value')
-            if($('#filtro_laboratorios_principio_activo').attr('class')=="collapse")
-             {
-                 
-                 
-             }
-             else
-                 {
-                     $("#filtro_laboratorios_principio_activo").collapse('hide');
-                     
-                 }
+           
            
         }
         
@@ -233,8 +223,23 @@ y el popup que muestra el detalle del medicamento
                 $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
 		$("#boton_medicamentos").attr('enabled', 'enabled');
-                $("#busqueda_avanzada").collapse('hide');
-                
+               
+               
+               //colapsa la busqueda avanzada cuando se elije un medicamento para facilitar su insercion
+                if($('#busqueda_avanzada').attr('class')=="collapse")
+             {
+                 
+                 
+             }
+             else
+                 {
+                     $("#busqueda_avanzada").collapse('hide');
+                     
+                 }
+                 
+               
+               
+                               
 	 }); // change
 
 
@@ -284,15 +289,13 @@ y el popup que muestra el detalle del medicamento
                 data: {idPrincipio: ui.item.id2},
                 success: function(output){
                     
-                    alert(output);
-                    /*
                        var output = jQuery.parseJSON(output);
                         $("#medicamento").empty();
                         $.each(output,function(i,el){
                                 var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
                                 $("#medicamento").append(string);
                                 }
-                        );*/
+                        );
                         }//success
                 });
             
