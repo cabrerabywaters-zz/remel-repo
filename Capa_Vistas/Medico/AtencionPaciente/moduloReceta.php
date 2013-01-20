@@ -69,8 +69,12 @@ y el popup que muestra el detalle del medicamento
      </div><!-- interior del accordion -->
 </div><!-- accordion modulo receta -->
 
-
+ <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script>
+<script type="text/javascript" src="js/ui.multiselect.js"></script>
 <script>
+    
+   
        
         /*
          * el filtro correspondiente al buscador 
@@ -319,6 +323,9 @@ y el popup que muestra el detalle del medicamento
         * ----------------------------------------------
         * solo para los medicamentos que requieren escribir el rp
         */
+       
+       
+       
        $('.detalleMedicamento').unbind('click').on('click',function(){
            var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
                    
