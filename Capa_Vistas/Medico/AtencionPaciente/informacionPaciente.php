@@ -137,4 +137,50 @@
                 });
            });
            */
+$( "#comuna" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de comuna (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteComuna.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../../ajax/autocompleteComuna.php",
+                                    data: {
+                                        name_startsWith: request.term
+                                        
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        var output = jQuery.parseJSON(data);
+                                                                                
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre
+                                              ,id3 : item.idComuna
+                                            }
+                                            
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           select: function(event, ui){
+                                    $('#comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3)
+                                    $('#guardar_comuna').removeAttr('disabled');
+                                    $('#boton_comuna').removeAttr('disabled');
+                                },
+                           minLength: 2,
+                           open: function() {
+                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                                }, //end open
+                           close: function() {
+                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                                } //end close
+                            });//autocompleteComuna
+
 </script>
