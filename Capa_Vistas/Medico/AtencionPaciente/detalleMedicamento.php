@@ -9,13 +9,13 @@
     
     <div class="modal-body"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
         <div class="row-fluid"><!-- fila contenido -->
-        <div class="row-fluid span11" style="background-color: #08c"><!-- div de la imagen -->
-            <img class="img-rounded" src="../../../imgs/paracetamol.jpg" style="width:200px; height: 150px" >
-        <p id="descripcionMedicamento">El paracetamol (DCI) o acetaminofén (acetaminofeno) es un fármaco con propiedades analgésicas, sin propiedades antiinflamatorias clínicamente significativas. Actúa inhibiendo la síntesis de prostaglandinas, mediadores celulares responsables de la aparición del dolor. Además, tiene efectos antipiréticos.</p>
+        <div class="row-fluid span11"><!-- div de la imagen -->
+            <img class="img-rounded pull-left" src="../../../imgs/paracetamol.jpg" style="width:200px; height: 150px" >
+        <p id="descripcionMedicamento">Observaciones de ejempl</p>
         
         </div><!-- div de la imagen -->
         
-        <div class="row-fluid span11" style="background-color: #08c">
+        <div class="row-fluid span11">
         <p>Cantidad: <input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></p>
         <p>Cada :<input type="text" placeholder="frequencia" id="frecuenciaMedicamento">Horas (hrs)</p>
         <p>Por :<input type="text" placeholder="periodo" id="periodoMedicamento">Dias</p>

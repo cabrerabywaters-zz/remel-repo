@@ -96,15 +96,21 @@ class Comuna {
     }
     
     public static function BuscarComunaLike($nombre){
-                $queryString = 'SELECT Nombre, idComuna
+                $queryString = 'SELECT Comunas.Nombre, Comunas.idComuna
                                 
-                                FROM Comunas
+                                FROM Comunas, Provincias, Regiones
                                
-                                WHERE Nombre LIKE "%'.$nombre.'%"
-                              
-                                ORDER BY Nombre 
+                                WHERE Comunas.Nombre LIKE "%'.$nombre.'%"
                                 
-                                LIMIT 5;';
+                                AND Provincias.idProvincia = Comunas.Provincias_idProvincia
+
+                                AND Regiones.idRegion = Provincias.Regiones_idRegion
+                              
+                                ORDER BY Comunas.Nombre 
+                                
+                                LIMIT 5;
+                                
+                                ';
                 
                 $result = CallQuery($queryString);
 	    $resultArray = array();
