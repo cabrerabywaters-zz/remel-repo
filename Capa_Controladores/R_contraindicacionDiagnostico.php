@@ -99,7 +99,7 @@ class ContraindicacionDiagnostico  {
     }
     
     public static function BuscarDiagnosticosPorMedicamentoId($idMedicamento){
-        $queryString = 'SELECT Diagnosticos_idDiagnostico
+        $queryString = 'SELECT Diagnosticos_idDiagnostico as ID
                         FROM Contraindicaciones_Diagnosticos
                         WHERE Medicamentos_idMedicamento = '.$idMedicamento.'
                         ';
