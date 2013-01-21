@@ -374,12 +374,12 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
+                    alert(data);
+                    var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
-                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-                    
-                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
+                    $('#detalleMedicamentoLabel').text(datos.Medicamento['Nombre_Comercial']);
                     $('#idMedicamento').text(idMedicamento);
-                    $('#descripcionMedicamento').text(medicamento['Observaciones'])
+                    $('#descripcionMedicamento').text(datos.Medicamento['Observaciones'])
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
                                         
 

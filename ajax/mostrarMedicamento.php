@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 include_once(dirname(__FILE__)."/../Capa_Controladores/medicamento.php");
 include_once(dirname(__FILE__).'/../Capa_Controladores/alergiaHasPaciente.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionAlergia.php');
