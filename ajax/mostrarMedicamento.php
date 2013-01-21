@@ -49,7 +49,9 @@ for($i=0;$i<count($principiosActivos);$i++){
     }
 }
 }
+if ($idsPrincipiosActivosPares != null){
 $idsPrincipiosActivosPares = array_unique($idsPrincipiosActivosPares);
+}
 //verificacion de principios activos para medicamentos actualmente siendo recetados por el medico
 if ($medicamentosRecetados != false) {
     foreach ($medicamentosRecetados as $llave => $valor) {
@@ -69,8 +71,9 @@ for($i = 0; $i < count($principiosActivosRecetados); $i++) {
     }
 }
 }
+if ($idsPrincipiosActivosRecetadosPares != null){
 $idsPrincipiosActivosRecetadosPares = array_unique($idsPrincipiosActivosRecetadosPares);
-
+}
 $busquedaAlergiasPaciente = AlergiaHasPaciente::BuscarAlergiasPorPacienteId($idPaciente);
 $busquedaAlergiasMedicamento = ContraindicacionAlergia::BuscarAlergiasPorMedicamentoId($idMedicamento);
 
