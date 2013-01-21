@@ -5,13 +5,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="detalleMedicamentoLabel">Paracetamol</h3>
         <span id="idMedicamento" style="display:none"></span>
+        <span id="estadoMedicamento" style="display:none">0</span><!-- 0 creacion 1 edicion -->
     </div><!-- titulo del modal (nombre del medicamento) -->
     
     <div class="modal-body"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
         <div class="row-fluid"><!-- fila contenido -->
         <div class="row-fluid span11"><!-- div de la imagen -->
             <img class="img-rounded pull-left" src="../../../imgs/paracetamol.jpg" style="width:200px; height: 150px" >
-        <p id="descripcionMedicamento">Observaciones de ejempl</p>
+        <p id="descripcionMedicamento">Observaciones de ejemplo</p>
         
         </div><!-- div de la imagen -->
         
