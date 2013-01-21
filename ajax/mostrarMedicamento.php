@@ -15,15 +15,12 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/diagnostico.php');
 
 session_start();
 
-//$idMedicamento = $_POST['idMedicamento'];
-$idMedicamento = 1;
+$idMedicamento = $_POST['idMedicamento'];
 $medicamento = array(
 	'Medicamento' => Medicamento::BuscarMedicamentoPorId($idMedicamento)
 	);
-//$idPaciente = $_SESSION['idPacienteLog'][0];
-$idPaciente = 7;
-//$medicamentosRecetados = $_POST['medicamentosRecetados'];
-$medicamentosRecetados = array();
+$idPaciente = $_SESSION['idPacienteLog'][0];
+$medicamentosRecetados = $_POST['medicamentosRecetados'];
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
