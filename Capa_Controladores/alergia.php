@@ -103,6 +103,11 @@ class Alergia {
 	    return $resultArray;
    }	     
  
+   public static function BuscarNombreAlergiaPorId($idAlergia){
+       $queryString = 'SELECT Nombre as Text FROM Alergias WHERE idAlergia = ' . $idAlergia . ';';
+       $result = CallQuery($queryString);
+       return $result;
+   }
 }
 
 ?>

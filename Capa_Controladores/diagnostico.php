@@ -135,6 +135,11 @@ class Diagnostico {
 	    return $resultado->fetch_assoc();
      }
 
+     public static function BuscarNombreDiagnosticoPorId($idDiagnostico) {
+         $queryString = 'SELECT Nombre FROM Diagnosticos WHERE idDiagnostico = '.$idDiagnostico.'';
+         $result = CallQuery($queryString);
+         return $result;
+     }
 }
 
 ?>

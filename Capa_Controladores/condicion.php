@@ -102,6 +102,12 @@ class Condicion {
 	    }
 	    return $resultArray;
    }
+   
+   public static function BuscarNombreCondicionPorId($idCondicion){
+        $queryString = 'SELECT Nombre as Text FROM Condiciones WHERE idCondiciones = ' . $idCondiciones . ';';
+        $result = CallQuery($queryString);
+        return $result;
+   }
 
 }
 

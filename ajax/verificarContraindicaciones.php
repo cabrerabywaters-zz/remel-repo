@@ -80,21 +80,30 @@ while ($row = $busquedaDiagnosticosMedicamento->fetch_array()) {
 //guarda el nombre de las alergias
 $nombreAlergias = array();
 for ($i = 0; $i < count($idAlergias); $i++) {
-    $queryString = 'SELECT Nombre as Text FROM Alergias WHERE idAlergia = ' . $idAlergias[$i] . ';';
-    $result = CallQuery($queryString);
+    $result = Alergia::BuscarNombreAlergiaPorId($idAlergias[$i]);
     $fila = $result->fetch_array();
     $nombreAlergias[] = $fila['Text'];
 }
 
 $nombreCondiciones = array();
 for ($i = 0; $i < count($idCondiciones); $i++) {
-    $queryString = 'SELECT Nombre as Text FROM Condiciones WHERE idCondiciones = ' . $idCondiciones[$i] . ';';
-    $result = CallQuery($queryString);
+    $result = Condicion::BuscarNombreCondicionPorId($idCondiciones[$i]);
     $fila = $result->fetch_array();
     $nombreCondiciones[] = $fila['Text'];
 }
 
+$nombreDiagnosticos = array();
+for ($i = 0; $i < count($idDiagnostico); $i++) {
+    $result = Diagnostico::BuscarNombreDiagnosticoPorId($idDiagnostico[$i]);
+    $fila = $result->fetch_array();
+    $nombreDiagnosticos[] = $fila['Text'];
+}
 
-
+$nombrePrincipiosActvos = array();
+for ($i = 0; $i < count($principiosActivos); $i++) {
+    $result = PrincipioActivo::BuscarNombrePrincipioActivoPorId($principiosActivos[$i]);
+    $fila = $result->fetch_array();
+    $nombrePrincipiosActvos[] = $fila['Text'];
+}
 
 ?>

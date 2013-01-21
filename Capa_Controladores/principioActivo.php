@@ -112,6 +112,11 @@ class PrincipioActivo {
 	return $resultArray;
     }
 
+    public static function BuscarNombrePrincipioActivoPorId($idPrincipioActivo) {
+        $queryString = 'SELECT Nombre FROM Principio_Activo WHERE idPrincipio_Activo = '.$idPrincipioActivo.'';
+        $result = CallQuery($queryString);
+        return $result;
+    }
 }
 
 ?>
