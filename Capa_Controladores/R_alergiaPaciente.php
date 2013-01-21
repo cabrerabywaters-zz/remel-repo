@@ -1,19 +1,42 @@
 <?php
 
-require_once '../Capa_Datos/R_alergiaPaciente.php';
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
 
-function Creacion() {
-    $datosCreacion = array(
-        array('Alergia_idAlergia', $_POST['id_Alergia']),
-        array('Paciente_idPaciente', $_POST['id_Paciente'])
-    );
-    if ($_POST['id_Alergia'] != '' && $_POST['id_Paciente'] != '') {
-        R_AlergiaPaciente::CrearRelacion($datosCreacion);
+class AlergiaHasPaciente {
+
+    static $nombreTabla = "Alergia_Has_Paciente";
+    static $nombreIdTabla = "Alergia_idAlergia";
+    static $nombreIdTabla1 = "Paciente_idPaciente";
+
+    public static function Insertar() {
+        $id1 = $_POST['Alergia_idAlergia'];
+        $id2 = $_POST['Paciente_idPaciente'];
+        $id = array($id1, $id2);
+        $queryString = QueryStringCrearRelacion($id, null, self::$nombreTabla);
+        $query = CallQuery($queryString);
     }
-    
+
+    public static function BorrarPorId() {
+        $id1 = $_POST['Alergia_idAlergia'];
+        $id2 = $_POST['Paciente_idPaciente'];
+        $id = array($id1, $id2);
+
+        $nombreId = array(self::$nombreIdTabla, self::$nombreIdTabla1);
+
+        $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
+        $query = CallQuery($queryString);
+    }
+
+    public static function BuscarAlergiasPorPacienteId($idPaciente) {
+        $queryString = 'SELECT Alergia_idAlergia
+                        FROM Alergia_has_Paciente
+                        WHERE Paciente_idPaciente = ' . $idPaciente . '
+                        ';
+        $resultado = CallQuery($queryString);
+        return $resultado;
+    }
+
 }
-function Eliminacion(){
-	$relacionABorrar = new R_AlergiaPaciente($_POST['id_Alergia'],$_POST['id_Paciente']);
-	$relacionABorrar->BorrarPorIdRelacion();
-}
+
 ?>
