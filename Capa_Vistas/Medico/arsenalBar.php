@@ -9,7 +9,8 @@
        <div class="span10 offset1">
           <?php
 		include_once(dirname(__FILE__).'/../../Capa_Datos/llamarQuery.php');
-		$sucursalRUT = $lugar['idSucursal'];
+		session_start();
+		$sucursalRUT = $_SESSION['logLugar']['rutSucursal'];
 		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
 FROM Laboratorios, Arsenal, Medicamentos, Expendedores, Sucursales
 WHERE Medicamentos_idMedicamento = idMedicamento
@@ -22,10 +23,10 @@ AND Sucursales_RUT =  '$sucursalRUT';";
 			$nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
 			$id = $row['idMedicamento'];
 			echo "<div class='alert alert-warning' identificador='$id'>\r\n";
-			echo "<strong>$nombre</strong>\r\n";
 			echo "<a href='#' rel='tooltip' title='Agregar a Favoritos'> <i class='icon-star pull-right'></i></a><!-- eliminar de favoritos -->\r\n
               			<a href='#' rel='tooltip' title='Agregar a Receta' class='detalleMedicamento'> <i class='icon-plus pull-right'></i></a><!-- agregar favorito seleccionado -->\r\n
-			</div>\r\n";
+			";
+			echo "<strong>$nombre</strong>\r\n</div>\r\n";
 		}
           
           ?>

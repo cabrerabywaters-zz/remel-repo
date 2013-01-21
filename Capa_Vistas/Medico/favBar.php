@@ -36,22 +36,23 @@
       <div id="medicamentosFav" class="collapse">
        <div class="span10 offset1">
            <?php
+		session_start();
 		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
-		$idMedico = $medico['idMedico'];
+		$idMedico = $_SESSION['idMedicoLog'];
 		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
 FROM Laboratorios, Medicamentos, Medicamentos_Comunes
 WHERE Medicamentos_idMedicamento = idMedicamento
 AND Laboratorio_idLaboratorio = Laboratorios.ID
-AND Medicos_idMedico = '1'";
+AND Medicos_idMedico = '$idMedico'";
 		$res = CallQuery($queryString);
                 while($row = $res->fetch_assoc()){
                         $nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
                         $id = $row['idMedicamento'];
                         echo "<div class='alert alert-warning' identificador='$id'>\r\n";
-                        echo "<strong>$nombre</strong>\r\n";
 			echo "<a href='#' rel='tooltip' title='Agregar a Favoritos'> <i class='icon-star pull-right'></i></a><!-- eliminar de favoritos -->\r\n
 				<a href='#' rel='tooltip' title='Agregar a Receta' class='detalleMedicamento'> <i class='icon-plus pull-right'></i></a>
-				</div>\r\n";
+				";
+			echo "<strong>$nombre</strong>\r\n</div>\r\n";
 		}
       ?> 
        </div>
