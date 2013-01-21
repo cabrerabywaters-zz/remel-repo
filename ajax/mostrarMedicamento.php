@@ -18,12 +18,13 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/diagnostico.php');
 session_start();
 
 $idMedicamento = $_POST['idMedicamento'];
+$idMedicamento = 1;
 $medicamento = array(
 	'Medicamento' => Medicamento::BuscarMedicamentoPorId($idMedicamento)
 	);
 $idPaciente = $_SESSION['idPaciente'];
+$idPaciente = 7; 
 $medicamentosRecetados = $_POST['medicamentosRecetados'];
-var_dump($medicamentosRecetados);
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
@@ -71,6 +72,7 @@ for($i = 0; $i < count($principiosActivosRecetados); $i++) {
     }
 }
 }
+
 if ($idsPrincipiosActivosRecetadosPares != null){
 $idsPrincipiosActivosRecetadosPares = array_unique($idsPrincipiosActivosRecetadosPares);
 }
