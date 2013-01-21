@@ -16,7 +16,7 @@
         
         </div><!-- div de la imagen -->
         
-        <div class="row-fluid span11">
+        <div class="row-fluid span11" id="detalleContenido">
         <p>Cantidad: <input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></p>
         <p>Cada :<input type="text" placeholder="frequencia" id="frecuenciaMedicamento">Horas (hrs)</p>
         <p>Por :<input type="text" placeholder="periodo" id="periodoMedicamento">Dias</p>
