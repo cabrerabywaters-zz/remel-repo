@@ -361,7 +361,9 @@ y el popup que muestra el detalle del medicamento
            
            $('.medicamentoRecetado').each(function(){
            medicamentosRecetados.push($(this).attr('idmedicamento'));
-           });
+           alert('se ingresó el '+$(this).attr('idmedicamento'))
+           }); // end each
+           
            
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
