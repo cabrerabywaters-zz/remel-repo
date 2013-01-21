@@ -65,7 +65,8 @@
                 <span id="mensaje"></span>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</a>
+                    <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</button>
+                    <button class="btn btn-info" id="guardar" disabled="disabled">Guardar</button>  
                         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
 
                 </div>
@@ -234,7 +235,7 @@
                         $('#diagnostico').val(''); // se borra el buscador
                         $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
                           /*tratando de hacer el edit (script original)
-                        $('#comentario_diagnostico').val(''); // se borra el comentario
+                        $('#comentario_diagnostico').val(''); // se borra el comentario 
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
        */               
                         
@@ -285,7 +286,10 @@
                 * @author: Cesar González
                 */ 
 
-               $('#recomendadosInstitucion').on('hide',function(){
+              
+              
+              
+              $('#recomendadosInstitucion').on('hide',function(){
                    $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");})
                $('#recomendadosInstitucion').on('show',function(){
                    $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");})
@@ -326,10 +330,13 @@
             
 </script>
 
+
 <script>
-
-  $('.editDiagnostico').unbind('click').on('click',function(){
+  /*$('.editDiagnostico').unbind('click').on('click',function(){
+    
     $('#modalDiagnostico').show()
-  });
-
+    $('#modalDiagnostico').remove('#guardar_diagnostico');
+    $('#guardar_diagnostico').attr('disabled',true);
+    $('#guardar').removeAttr('disabled');
+    $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton    */
 </script>
