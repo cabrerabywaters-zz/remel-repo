@@ -351,8 +351,8 @@ y el popup que muestra el detalle del medicamento
                         if(contraAlergias != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con alergia a: <strong>'+contraAlergias+'</strong></div>');}
                     var contraCondiciones = datos.condiciones;
                         if(contraCondiciones != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con las siguientes Condiciones: <strong>'+contraCondiciones+'</strong></div>');}
-//                    var contraDiagnosticos = datos.diagnosticos;
-//                      if(contraDiagnosticos != ""){ $('#detalleMedicamento .modal-body').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
+                    var contraDiagnosticos = datos.diagnosticos;
+                      if(contraDiagnosticos != ""){ $('#detalleMedicamento .modal-body').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
                     var contraPrincipiosRecetados = datos.principiosActivosRecetados;
                         if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Principios Activos: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
                     
