@@ -40,7 +40,7 @@
 				$condiciones = Paciente::R_CondicionPaciente($idPaciente);
 				$alergias = Paciente::R_AlergiaPaciente($idPaciente);		
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
-				// $recetas = Paciente::RecetasPacienteMedico($idPaciente, $RUTMedico);		
+				$recetas = Paciente::RecetasPacienteMedico($idPaciente, $RUTMedico);		
 				// ****************************************************************************
 				// funcion que corta el string del nombre 
 			
