@@ -23,7 +23,7 @@ y el popup que muestra el detalle del medicamento
                         <br>
                         <div class="input-append">
                             <input type="text" id="Medicamentos" class="search-query">
-                            <button id="boton_medicamentos" role="button" class="btn" disabled="disabled">Añadir</button><br>
+                            <button id="boton_medicamentos" role="button" class="btn" href="#" disabled="disabled">Añadir</button><br>
                         </div><!-- input +boton -->
                         <br>
                     </form><!-- append form-->
@@ -356,7 +356,7 @@ y el popup que muestra el detalle del medicamento
                     var contraCondiciones = datos.condiciones;
                         if(contraCondiciones != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con las siguientes Condiciones: <strong>'+contraCondiciones+'</strong></div>');}
                     var contraDiagnosticos = datos.diagnosticos;
-                      if(contraDiagnosticos != ""){ $('#detalleMedicamento .modal-body').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
+                      if(contraDiagnosticos != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
                     var contraPrincipiosRecetados = datos.principiosActivosRecetados;
                         if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Principios Activos: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
                     
