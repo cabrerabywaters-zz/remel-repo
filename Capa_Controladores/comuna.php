@@ -94,7 +94,26 @@ class Comuna {
         }
         else return false;
     }
+    
+    public static function BuscarComunaLike($nombre){
+                $queryString = 'SELECT Nombre, idComuna
+                                
+                                FROM Comunas
+                               
+                                WHERE Nombre LIKE "%'.$nombre.'%"
+                              
+                                ORDER BY Nombre 
+                                
+                                LIMIT 5;';
+                
+                $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+   }
+    
 }
 
 ?>
-
