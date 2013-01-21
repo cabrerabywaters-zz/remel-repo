@@ -9,6 +9,7 @@
     </div><!-- titulo del modal (nombre del medicamento) -->
     
     <div class="modal-body"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
+        <div id="warnings"></div>
         <div class="row-fluid"><!-- fila contenido -->
         <div class="row-fluid span11"><!-- div de la imagen -->
             <img class="img-rounded pull-left" src="../../../imgs/paracetamol.jpg" style="width:200px; height: 150px" >

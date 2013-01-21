@@ -19,12 +19,10 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/principioActivo.php');
 session_start();
 
 $idMedicamento = $_POST['idMedicamento'];
-$idMedicamento = 1;
 $medicamento = array(
 	'Medicamento' => Medicamento::BuscarMedicamentoPorId($idMedicamento)
 	);
 $idPaciente = $_SESSION['idPaciente'];
-$idPaciente = 7; 
 $medicamentosRecetados = $_POST['medicamentosRecetados'];
 $medicamentosRecetados = array(0=>'1',1=>'6');
 //obtener idMedicamento de algun lado

@@ -360,8 +360,11 @@ y el popup que muestra el detalle del medicamento
            var medicamentosRecetados = [];
            
            $('.medicamentoRecetado').each(function(){
-           medicamentosRecetados.push($(this).attr('idmedicamento'));
-           });
+            var medRecetado = $(this).attr('idmedicamento')
+            medicamentosRecetados.push(medRecetado);
+            alert('se ingresó el '+$(this).attr('idmedicamento'))
+           }); // end each
+           
            
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
@@ -374,20 +377,21 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                    alert(data);
                     var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
                     $('#detalleMedicamentoLabel').text(datos.Medicamento['Nombre_Comercial']);
                     $('#idMedicamento').text(idMedicamento);
                     $('#descripcionMedicamento').text(datos.Medicamento['Observaciones'])
                     
-                    var contraAlergias = datos.alergias;
-                    alert(contraAlergias);
-                    var contraCondiciones = datos.condiciones;
-                    alert(contraCondiciones);
-                    var contraDiagnosticos = datos.diagnosticos;
-                    var contraPrincipiosRecetados = datos.principiosActivosRecetados;
                     
+                    var contraAlergias = datos.alergias;
+                        if(contraAlergias != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con alergia a: <strong>'+contraAlergias+'</strong></div>');}
+                    var contraCondiciones = datos.condiciones;
+                        if(contraCondiciones != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con las siguientes Condiciones: <strong>'+contraCondiciones+'</strong></div>');}
+//                    var contraDiagnosticos = datos.diagnosticos;
+//                      if(contraDiagnosticos != ""){ $('#detalleMedicamento .modal-body').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
+                    var contraPrincipiosRecetados = datos.principiosActivosRecetados;
+                        if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Principios Activos: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
                     
                     
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
