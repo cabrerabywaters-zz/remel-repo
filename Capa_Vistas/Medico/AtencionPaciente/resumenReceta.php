@@ -6,7 +6,7 @@
     <h3 id="resumenRecetaLabel">Resumen de la Receta <strong>Folio: #12345 </strong></h3>
   </div>
   <div class="modal-body" id="resumen">
-    <p>One fine body…</p>
+    <p>Resumen</p>
   </div>
   <div class="modal-footer">
     <button class="btn pull-left" data-dismiss="modal" aria-hidden="true"><br>Volver<br><br></button>
@@ -14,3 +14,8 @@
   </div>
 </div><!-- modal de resumen de la receta -->
 
+<script>
+    
+    
+    
+</script><!-- script que genera el listado del resumen de la receta-->
