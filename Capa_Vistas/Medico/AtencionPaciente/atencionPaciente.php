@@ -31,6 +31,12 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 		  include ("informacionMedica.php"); 
                 ?>
             </div><!-- informacion medica registrada-->
+            <div class="accordion-group"><!-- informacion medica registrada-->
+                <?php 
+		  //muestra alergias y condiciones del paciente
+		  include ("recetasAnteriores.php"); 
+                ?>
+            </div><!-- informacion medica registrada-->
         </div>
     
     </div><!-- Fin tab historial-->

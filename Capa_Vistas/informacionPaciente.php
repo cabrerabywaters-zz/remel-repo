@@ -1,10 +1,5 @@
 <?php
-       
-		// $alergias=array("Medicamentosas" =>array("Acetil Salicilico","Corticoides","Penisilina"),"Alimentos" =>array("Maricos","Pescados","Carne"),"Ambientales" =>array("Polvo","Polen"));
-		// $condiciones=array("Problemas" =>array("Hipertension","Obesidad"),"Habitos" =>array("Fumador","Deportista"));
-		// autocompletar de recetas
-		$recetas=array("agua","aceite","miel","polen","trigo");
-				// consulta a la base de datos del usuario
+				// consulta a Realizar a la base de datos del usuario 
 				include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/condicion.php");
 				include(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
@@ -45,17 +40,13 @@
 				$condiciones = Paciente::R_CondicionPaciente($idPaciente);
 				$alergias = Paciente::R_AlergiaPaciente($idPaciente);		
 				$paciente = array_merge($paciente1, $paciente2, $direccion);
-				$condiciones1=Condicion::Seleccionar('');
-				//$alergias1=Alergia::Seleccionar('');			
-				
-				 // fin de la consulta llevar a ajax
-				 
-			/*****************************
-			funcion que corta el string del nombre */
+				$recetas = Paciente::RecetasPacienteMedico($idPaciente, $RUTMedico);		
+				// ****************************************************************************
+				// funcion que corta el string del nombre 
 			
-			$pos = strpos($medico['Nombre']," ");
-			$largo=strlen($medico['Nombre']);
-			$corte=$largo - $pos+1;
-			$medico['Nombre'] = substr($medico['Nombre'], 0, $corte);
+				$pos = strpos($medico['Nombre']," ");
+				$largo=strlen($medico['Nombre']);
+				$corte=$largo - $pos+1;
+				$medico['Nombre'] = substr($medico['Nombre'], 0, $corte);
 			
 			?>

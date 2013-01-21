@@ -137,7 +137,7 @@
                 });
            });
            */
-$( "#comuna" ).autocomplete({
+$( "#Comuna" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de comuna (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -171,8 +171,7 @@ $( "#comuna" ).autocomplete({
                             },  // end source
                            select: function(event, ui){
                                     $('#comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3)
-                                    $('#guardar_comuna').removeAttr('disabled');
-                                    $('#boton_comuna').removeAttr('disabled');
+                                  
                                 },
                            minLength: 2,
                            open: function() {

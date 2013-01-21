@@ -185,6 +185,27 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         }
         return $resultArray;
     }
+	
+	public static function RecetasPacienteMedico($idPaciente, $RUTMedico) {
+        $queryString = "SELECT *
+						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos, 
+						Medicamentos_Recetas
+						WHERE Pacientes.idPaciente = $idPaciente
+						AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
+						AND Consulta.Id_consulta = Historiales_medicos.Consulta_Id_consulta
+						AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
+						AND Consulta.Medicos_idMedico = Medicos.idMedico
+						AND Medicos.Personas_RUN = $RUTMedico ";
+						// Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
+
+
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
 
     public static function R_RecetasPaciente($idPaciente) {
 
