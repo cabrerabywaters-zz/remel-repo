@@ -24,7 +24,6 @@ $medicamento = array(
 	);
 $idPaciente = $_SESSION['idPaciente'];
 $medicamentosRecetados = $_POST['medicamentosRecetados'];
-$medicamentosRecetados = array(0=>'1',1=>'6');
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
