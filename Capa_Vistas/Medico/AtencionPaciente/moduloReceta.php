@@ -78,64 +78,36 @@ y el popup que muestra el detalle del medicamento
          */
         var filtro = 'true';
         $('#filtro button').click(function(){
-          filtro = $(this).attr('filtro'); // el filtro correspondiente  
+          filtro = $(this).attr('filtro'); // se modifica el filtro correspondiente  
         
-            if($(this).attr('filtro')=="true")
-                {
-                    $("#medicamento").empty();
-                    $("#Medicamentos").removeAttr('value')
-                   
-                    
-              
-         if($('#busqueda_avanzada').attr('class')=="collapse")
-             {
-                 
-                 
-             }
-             else
-                 {
-                     $("#busqueda_avanzada").collapse('hide');
-                     
-                 }
-                    
-                               
-                   
-                   
-                    
-                    
-                }
+        if($(this).attr('filtro')=="true"){
+            $("#medicamento").empty();
+            $("#Medicamentos").removeAttr('value')
+            
+            if($('#busqueda_avanzada').attr('class')=="collapse"){
+            }
+            else{
+            $("#busqueda_avanzada").collapse('hide');
+            }
+        }//end if
         else if ($(this).attr('filtro')=="false"){
             
             $("#medicamento").empty();
             $("#Medicamentos").removeAttr('value')
            
-            
-            if($('#busqueda_avanzada').attr('class')=="collapse")
-             {
-                 
-                 
-             }
-             else
-                 {
-                     $("#busqueda_avanzada").collapse('hide');
-                     
-                 }
-                 
-              
-           
-        }
+            if($('#busqueda_avanzada').attr('class')=="collapse"){
+            }//end if
+            else{
+               $("#busqueda_avanzada").collapse('hide');
+            }//end else
+        }//end elseif
         
        else if ($(this).attr('filtro')=="false2"){
            $("#busqueda_avanzada").collapse('show');
            $("#medicamento").empty();
-            $("#Medicamentos").removeAttr('value')
-           
-           
-        }
-        
-        
-        
-        });
+           $("#Medicamentos").removeAttr('value')
+        }//elseif
+        }); //end click
         
         $('button[filtro="true"]').addClass('active');
 	$.ajax({
@@ -147,31 +119,28 @@ y el popup que muestra el detalle del medicamento
 				$.each(output,function(i,el){
 					var string = "<option value='" + el['idClase_Terapeutica'] + "'> " + el['Nombre']+ "</option>";
 					$("#clase").append(string);
-				});
-			}
-		}
-	);
+				});//end each
+			}// end success
+		});//end ajax
 
 	$('#clase').change(function() {
-				var id = $("#clase").attr("value");
-				$.ajax({
-                		type:"POST",
-                		url: "../../../ajax/subClaseMultiSelect.php",
-                		data: {clase: id},
-                		success: function(output){
-                                	var output = jQuery.parseJSON(output);
-                                	$("#subclase").empty();
-                                        $("#laboratorio").empty();  
-                                        $("#medicamento").empty();
-                                	$.each(output,function(i,el){
-                                        	var string = "<option value='" + el['idSubClase'] + "'> " + el['Nombre']+ "</option";
-                                        	$("#subclase").append(string);
-						}
-					);
-                                	}
-				});
-                	}
-        );
+                    var id = $("#clase").attr("value");
+                    $.ajax({
+                    type:"POST",
+                    url: "../../../ajax/subClaseMultiSelect.php",
+                    data: {clase: id},
+                    success: function(output){
+                            var output = jQuery.parseJSON(output);
+                            $("#subclase").empty();
+                            $("#laboratorio").empty();  
+                            $("#medicamento").empty();
+                            $.each(output,function(i,el){
+                                    var string = "<option value='" + el['idSubClase'] + "'> " + el['Nombre']+ "</option";
+                                    $("#subclase").append(string);
+                                    });//end each
+                            }// end success
+                    }); //end each
+            });// end change
 
 
 	$('#subclase').change(function() {
@@ -188,10 +157,9 @@ y el popup que muestra el detalle del medicamento
                         $.each(output,function(i,el){
                                 var string = '<option value="' + el["ID"] + '"> ' + el["Nombre"] + '</option>';
                                 $("#laboratorio").append(string);
-                                }
-                        );
+                                });//end each
                         }//success
-                });
+                }); // end ajax
         });//end change
         
         
@@ -210,10 +178,9 @@ y el popup que muestra el detalle del medicamento
                         $.each(output,function(i,el){
                                 var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
                                 $("#medicamento").append(string);
-                                }
-                        );
+                                });//end each
                         }//success
-                });
+                });//end ajax
         });//end change
 
 	$('#medicamento').change(function() { 
@@ -227,16 +194,12 @@ y el popup que muestra el detalle del medicamento
                
                
                //colapsa la busqueda avanzada cuando se elije un medicamento para facilitar su insercion
-                if($('#busqueda_avanzada').attr('class')=="collapse")
-             {
-                 
-                 
-             }
-             else
-                 {
-                     $("#busqueda_avanzada").collapse('hide');
+                if($('#busqueda_avanzada').attr('class')=="collapse"){
+                }
+                else{
+                $("#busqueda_avanzada").collapse('hide');
                      
-                 }
+                }
                  
                
                
