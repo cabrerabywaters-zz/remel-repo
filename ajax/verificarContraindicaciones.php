@@ -14,7 +14,7 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionDiagnos
 session_start();
 
 $idPaciente = $_SESSION['idPacienteLog'][0];
-$idMedicamento = 1;
+$idMedicamento = $_POST['idMedicamento'];
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
@@ -106,4 +106,12 @@ for ($i = 0; $i < count($principiosActivos); $i++) {
     $nombrePrincipiosActvos[] = $fila['Text'];
 }
 
+$contraindicaciones = array();
+//relleno de contraindicaciones como un solo arreglo
+$contraindicaciones['alergias'] = $nombreAlergias;
+$contraindicaciones['condiciones'] = $nombreCondiciones;
+$contraindicaciones['diagnosticos'] = $nombreDiagnosticos;
+$contraindicaciones['principiosActivos'] = $nombrePrincipiosActvos;
+
+echo json_encode($contraindicaciones);
 ?>
