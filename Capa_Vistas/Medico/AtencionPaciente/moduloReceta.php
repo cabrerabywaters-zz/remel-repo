@@ -62,7 +62,7 @@ y el popup que muestra el detalle del medicamento
         
         
        <div class="row-fluid span11"><!-- boton emitir receta -->
-        <a class="btn btn-warning span4 offset4"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+        <a class="btn btn-warning span4 offset4" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
        </div> <!-- boton emitir receta -->
         
         
@@ -358,10 +358,11 @@ y el popup que muestra el detalle del medicamento
        else{ // si es nombre comercial
            var idMedicamento = $('#Medicamentos').attr('identificador'); // id del medicamento que se busca
            var medicamentosRecetados = [];
-           alert(medicamentosRecetados)
-                   $('.medicamentoRecetado').each(function(){
-                   medicamentosRecetados.push($(this).attr('idmedicamento'));
+           
+           $('.medicamentoRecetado').each(function(){
+           medicamentosRecetados.push($(this).attr('idmedicamento'));
            });
+           alert(medicamentosRecetados)
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
                type:"POST",
@@ -456,7 +457,11 @@ y el popup que muestra el detalle del medicamento
         
         })
 
-           
+        $('.editMedicamento').tooltip().click(function(){
+            
+            
+            
+        });// end click a edit medicamento
 
 });//end ready
 </script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->

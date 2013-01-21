@@ -16,7 +16,7 @@ class Comuna {
     public static function Insertar() {
     	$datosCreacion = array(
                            array('Nombre',$_POST['nombre']),
-                               array('Provincias_idProvincia',$_POST['id_provincia'])
+                           array('Provincias_idProvincia',$_POST['id_provincia'])
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -95,7 +95,7 @@ class Comuna {
         else return false;
     }
     
-    public static function BuscarComunaLike($nombre){
+    public static function BuscarComunaLike($nombre,$idRegion){
                 $queryString = 'SELECT Comunas.Nombre, Comunas.idComuna
                                 
                                 FROM Comunas, Provincias, Regiones
@@ -105,6 +105,8 @@ class Comuna {
                                 AND Provincias.idProvincia = Comunas.Provincias_idProvincia
 
                                 AND Regiones.idRegion = Provincias.Regiones_idRegion
+                                
+                                AND Regiones.idRegion = "'.$idRegion.'"
                               
                                 ORDER BY Comunas.Nombre 
                                 
