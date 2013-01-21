@@ -257,7 +257,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     }
 
         public static function R_DiagnosticosIdPorPacienteId($idPaciente){
-        $queryString = 'SELECT Historiales_medicos.Diagnosticos_idDiagnostico 
+        $queryString = 'SELECT Historiales_medicos.Diagnosticos_idDiagnostico as ID
                         FROM Pacientes, Consulta, Historiales_medicos
                         WHERE ' . "$idPaciente" . ' = Pacientes.idPaciente
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
