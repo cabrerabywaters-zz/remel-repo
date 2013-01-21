@@ -9,7 +9,7 @@
        <div class="span10 offset1">
           <?php
 		include_once(dirname(__FILE__).'/../../Capa_Datos/llamarQuery.php');
-		session_start();
+		//session_start();
 		$sucursalRUT = $_SESSION['logLugar']['rutSucursal'];
 		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
 FROM Laboratorios, Arsenal, Medicamentos, Expendedores, Sucursales

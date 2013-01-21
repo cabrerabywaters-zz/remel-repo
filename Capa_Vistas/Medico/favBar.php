@@ -36,7 +36,7 @@
       <div id="medicamentosFav" class="collapse">
        <div class="span10 offset1">
            <?php
-		session_start();
+		//session_start();
 		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
 		$idMedico = $_SESSION['idMedicoLog'];
 		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
