@@ -23,7 +23,7 @@ y el popup que muestra el detalle del medicamento
                         <br>
                         <div class="input-append">
                             <input type="text" id="Medicamentos" class="search-query">
-                            <a id="boton_medicamentos" role="button" class="btn" disabled="disabled">Añadir</a><br>
+                            <button id="boton_medicamentos" role="button" class="btn" disabled="disabled">Añadir</button><br>
                         </div><!-- input +boton -->
                         <br>
                     </form><!-- append form-->
@@ -54,9 +54,9 @@ y el popup que muestra el detalle del medicamento
             
             
             
-            <div class="span12"><!-- row medicamentos seleccionados -->
+            <div class="row-fluid span12"><!-- row medicamentos seleccionados -->
                 <p><strong>Medicamentos Seleccionados:</strong></p>
-                <div id="medicamentosRecetados">
+                <div id="medicamentosRecetados" class="span10">
                 </div>    
             </div> <!-- row medicamentos seleccionados -->
         
@@ -371,9 +371,10 @@ y el popup que muestra el detalle del medicamento
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
                     
-                   
+                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
+                    $('#idMedicamento').text(idMedicamento);
+                    $('#descripcionMedicamento').text(medicamento['Observaciones'])
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
                                         
 
@@ -410,7 +411,46 @@ y el popup que muestra el detalle del medicamento
             });//end ajax
         }); // click
 
-        $('#agregarMedicamento').click()
+       /*
+        * Función asignada al boton prescribir que agrega el pill con el medicamento
+        * seleccionado
+        *          
+        */      
+        $('#agregarMedicamento').unbind('click').on('click', function(){
+        
+        // se obtienen los datos correspondientes del medicamento
+        var nombreComercial = $('#detalleMedicamentoLabel').text();
+        var idMedicamento = $('#idMedicamento').text();
+        var descripcionMedicamento = $('#descripcionMedicamento').text();
+        var cantidadMedicamento = $('#cantidadMedicamento').val();
+        var frecuenciaMedicamento = $('#frecuenciaMedicamento').val();
+        var periodoMedicamento = $('#periodoMedicamento').val();
+        var comentarioMedicamento = $('#comentarioMedicamento').val();
+        var diagnosticoAsociado = $('diagnosticoAsociado').val();
+        
+        // se arma el pill con la informacion del medicamento
+        var pill = '<div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
+        " cantidadMedicamento="'+cantidadMedicamento+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" periodoMedicamento="'+periodoMedicamento+'"\n\
+        comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'">\n\
+        <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombreComercial+'</strong>\n\
+        <a href=# class="editMedicamento pull-right" rel="tooltip" title="Editar Medicamento"><i class="icon-edit"></i> </a>'
+        
+        $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
+        
+        //se limpian los campos y se esconde el modal
+        $('#detalleMedicamento').modal('hide');
+        $('#Medicamentos').val('');
+        $('#boton_medicamentos').attr('disabled','disabled');
+        $('#detalleMedicamentoLabel').text('');
+        $('#idMedicamento').text('');
+        $('#descripcionMedicamento').text('');
+        $('#cantidadMedicamento').val('');
+        $('#frecuenciaMedicamento').val('');
+        $('#periodoMedicamento').val('');
+        $('#comentarioMedicamento').val('');
+        $('select>option:eq(0)').attr('selected', true);
+        
+        })
 
            
 
