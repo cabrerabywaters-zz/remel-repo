@@ -98,12 +98,16 @@ class ComposicionMedicamento {
         $query = CallQuery($queryString);
     }
     public static function BuscarPrincipiosActivosPorMedicamentoId($idMedicamento){
-        $queryStringPrincipiosActivos = 'SELECT Principio_Activo_idPrincipio_Activo
+        $queryString = 'SELECT Principio_Activo_idPrincipio_Activo
                                          FROM Composicion_Medicamento
                                          WHERE Medicamentos_idMedicamento = '.$idMedicamento.'
                                          ';
         $resultado = CallQuery($queryString);
-        return $resultado;
+        $result = array();
+        while ($fila = $resultado->fetch_array()){
+            $result[] = $fila;
+        }
+        return $result;
     }
 }
 

@@ -14,6 +14,7 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionDiagnos
 include_once(dirname(__FILE__).'/../Capa_Controladores/condicion.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/alergia.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/diagnostico.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/principioActivo.php');
 
 session_start();
 
@@ -25,6 +26,7 @@ $medicamento = array(
 $idPaciente = $_SESSION['idPaciente'];
 $idPaciente = 7; 
 $medicamentosRecetados = $_POST['medicamentosRecetados'];
+$medicamentosRecetados = array(0=>'1',1=>'6');
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
@@ -36,7 +38,7 @@ if ($MedicamentosVigentes != false) {
     //query de principios activos de los medicamentos vigentes del usuario
         $principiosActivos[] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
     }
-
+}
 $paresContraindicadores = array();
 $idsPrincipiosActivosPares = array();
 for($i=0;$i<count($principiosActivos);$i++){
@@ -49,16 +51,19 @@ for($i=0;$i<count($principiosActivos);$i++){
         }
     }
 }
-}
+
 if ($idsPrincipiosActivosPares != null){
 $idsPrincipiosActivosPares = array_unique($idsPrincipiosActivosPares);
 }
+$principiosActivosRecetas = array();
 //verificacion de principios activos para medicamentos actualmente siendo recetados por el medico
 if ($medicamentosRecetados != false) {
     foreach ($medicamentosRecetados as $llave => $valor) {
-        $principiosActivosRecetados[] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
+        $result = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
+        $resultado = $result[0];
+        $principiosActivosRecetados[] = $resultado[0];
     }
-
+}
 $paresContraindicadoresMedicamentosRecetados = array();
 $idsPrincipiosActivosRecetadosPares = array();
 for($i = 0; $i < count($principiosActivosRecetados); $i++) {
@@ -71,7 +76,7 @@ for($i = 0; $i < count($principiosActivosRecetados); $i++) {
         }
     }
 }
-}
+
 
 if ($idsPrincipiosActivosRecetadosPares != null){
 $idsPrincipiosActivosRecetadosPares = array_unique($idsPrincipiosActivosRecetadosPares);
@@ -145,11 +150,11 @@ for ($i = 0; $i < count($idsPrincipiosActivosPares); $i++) {
     $fila = $result->fetch_array();
     $nombrePrincipiosActvos[] = $fila['Text'];
 }
-$nombrePrincipiosActvosRecetados = array();
+$nombrePrincipiosActivosRecetados = array();
 for ($i = 0; $i < count($idsPrincipiosActivosRecetadosPares); $i++) {
     $result = PrincipioActivo::BuscarNombrePrincipioActivoPorId($idsPrincipiosActivosRecetadosPares[$i]);
     $fila = $result->fetch_array();
-    $nombrePrincipiosActvosRecetados[] = $fila['Text'];
+    $nombrePrincipiosActivosRecetados[] = $fila['Nombre'];
 }
 
 $contraindicaciones = array();
@@ -160,7 +165,7 @@ $contraindicaciones['diagnosticos'] = $nombreDiagnosticos;
 //PAs de medicamentos que ya tiene el paciente
 $contraindicaciones['principiosActivos'] = $nombrePrincipiosActvos;
 //PAs de medicamentos siendom actualmente recetados
-$contraindicaciones['principiosActivosRecetados'] = $nombrePrincipiosActvosRecetados;
+$contraindicaciones['principiosActivosRecetados'] = $nombrePrincipiosActivosRecetados;
 $json = array_merge($medicamento,$contraindicaciones);
 
 echo json_encode($json);

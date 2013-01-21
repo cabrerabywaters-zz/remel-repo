@@ -101,12 +101,12 @@ class ContraindicacionPrincipioActivo  {
         $queryString = 
         'SELECT Principio_Activo_has_Principio_Activo, Principio_Activo_has_Principio_Activo1
          FROM Contraindicaciones_Principios_Activos
-         WHERE ('.$PA0.' = Principio_Activo_has_Principio_Activo
-            AND '.$PA1.' = Principio_Activo_has_Principio_Activo1)
-         OR    ('.$PA1.' = Principio_Activo_has_Principio_Activo1
-            AND '.$PA0.' = Principio_Activo_has_Principio_Activo)
+         WHERE ("'.$PA0.'" = Principio_Activo_has_Principio_Activo
+            AND "'.$PA1.'" = Principio_Activo_has_Principio_Activo1)
+         OR    ("'.$PA1.'" = Principio_Activo_has_Principio_Activo1
+            AND "'.$PA0.'" = Principio_Activo_has_Principio_Activo)
          ';
-        $resultado = CallQuery($queryString);
+        $resultado = CallQuery($queryString)->fetch_assoc();
         return $resultado;
     }
 }
