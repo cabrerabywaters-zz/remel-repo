@@ -3,7 +3,7 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
 
-class AlergiaHasPaciente {
+class PacienteHasCondicion {
 
     static $nombreTabla = "Paciente_has_Condiciones";
     static $nombreIdTabla = "Condiciones_idCondiciones";
