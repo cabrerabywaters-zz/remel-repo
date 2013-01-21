@@ -68,7 +68,6 @@ y el popup que muestra el detalle del medicamento
         
      </div><!-- interior del accordion -->
 </div><!-- accordion modulo receta -->
-
 <script>
     
    
@@ -231,10 +230,11 @@ y el popup que muestra el detalle del medicamento
                                 id2:  item.idPrincipio_Activo
                             }
                             }
-                            else return {
+                            else {
+                                return {
                                 label: item.Nombre_Comercial,
-                                id2: item.idMedicamento
-                            }
+                                id2: item.idMedicamento};
+                        }
                         }));
                     }//end success
 
@@ -245,6 +245,8 @@ y el popup que muestra el detalle del medicamento
                 $('#Medicamentos').removeAttr('identificador').attr('identificador',ui.item.id2)
                 
                 //aquí se hace el ajax para poder indexsar los medicamentos que tienen ese principio activo
+                
+                if (filtro == "true"){
                 
                   $.ajax({
                 type:"POST",
@@ -260,8 +262,8 @@ y el popup que muestra el detalle del medicamento
                                 }
                         );
                         }//success
-                });
-            
+                });//cierra ajax extraño 
+                }
             }
             ,
             minLength: 2,
@@ -303,7 +305,7 @@ y el popup que muestra el detalle del medicamento
                    
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
                     }//end success
-           });//ajax
+           });//ajax 
 
 
        });// end click 
@@ -334,12 +336,14 @@ y el popup que muestra el detalle del medicamento
                type:"POST",
                data: {
                     "idMedicamento":idMedicamento, 
-                    "medicamentosRecetados": medicamentosRecetados},
+                    "medicamentosRecetados": medicamentosRecetados
+                },
                success:function(data){
                    /*
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
+                   alert(data);
                     var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
                     $('#detalleMedicamentoLabel').text(datos.Medicamento['Nombre_Comercial']);
@@ -419,7 +423,9 @@ y el popup que muestra el detalle del medicamento
         
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
-        //se limpian los campos y se esconde el modal
+        //se limpian los campos y se esconde el 
+        
+        /*
         $('#detalleMedicamento').modal('hide');
         $('#Medicamentos').val('');
         $('#boton_medicamentos').attr('disabled','disabled');
@@ -432,7 +438,9 @@ y el popup que muestra el detalle del medicamento
         $('#comentarioMedicamento').val('');
         $('select>option:eq(0)').attr('selected', true);
         
+        */
         })
+      
 
         $('.editMedicamento').tooltip().click(function(){
             
