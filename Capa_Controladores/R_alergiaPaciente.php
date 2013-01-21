@@ -29,7 +29,7 @@ class AlergiaHasPaciente {
     }
 
     public static function BuscarAlergiasPorPacienteId($idPaciente) {
-        $queryString = 'SELECT Alergia_idAlergia
+        $queryString = 'SELECT Alergia_idAlergia as ID
                         FROM Alergia_has_Paciente
                         WHERE Paciente_idPaciente = ' . $idPaciente . '
                         ';
