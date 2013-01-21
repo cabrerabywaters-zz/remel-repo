@@ -69,9 +69,6 @@ y el popup que muestra el detalle del medicamento
      </div><!-- interior del accordion -->
 </div><!-- accordion modulo receta -->
 
- <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script>
-<script type="text/javascript" src="js/ui.multiselect.js"></script>
 <script>
     
    
@@ -246,9 +243,8 @@ y el popup que muestra el detalle del medicamento
                                
 	 }); // change
 
-
-    
-       
+</script><!-- filtro de la busqueda avanzada -->
+<script>       
        
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
@@ -313,9 +309,9 @@ y el popup que muestra el detalle del medicamento
                 $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
             }
         }); //autocomplete
-                
+ </script><!-- autocomplete de medicamentos -->               
        
-       
+<script>       
     $(document).ready(function(){ 
          /*
         * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
@@ -361,15 +357,23 @@ y el popup que muestra el detalle del medicamento
        }
        else{ // si es nombre comercial
            var idMedicamento = $('#Medicamentos').attr('identificador'); // id del medicamento que se busca
+           var medicamentosRecetados = [];
+           alert(medicamentosRecetados)
+                   $('.medicamentoRecetado').each(function(){
+                   medicamentosRecetados.push($(this).attr('idmedicamento'));
+           });
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
                type:"POST",
-               data: {idMedicamento:idMedicamento},
+               data: {
+                    "idMedicamento":idMedicamento, 
+                    "medicamentosRecetados": medicamentosRecetados},
                success:function(data){
                    /*
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
+                    alert(data);
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
                     $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
@@ -455,4 +459,4 @@ y el popup que muestra el detalle del medicamento
            
 
 });//end ready
-</script>
+</script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->
