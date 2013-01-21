@@ -19,7 +19,7 @@ y el popup que muestra el detalle del medicamento
             
                     </div><!-- filtro -->
                     
-                    <form class="form-search">
+                    <form class="form-search" action="#">
                         <br>
                         <div class="input-append">
                             <input type="text" id="Medicamentos" class="search-query">
@@ -334,6 +334,7 @@ y el popup que muestra el detalle del medicamento
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
                type:"POST",
+		async: false,
                data: {
                     "idMedicamento":idMedicamento, 
                     "medicamentosRecetados": medicamentosRecetados
@@ -343,9 +344,10 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                   alert(data);
-                    var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-                    
+                   
+                    var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento             
+ 		
+		   alert(datos);
                     $('#detalleMedicamentoLabel').text(datos.Medicamento['Nombre_Comercial']);
                     $('#idMedicamento').text(idMedicamento);
                     $('#descripcionMedicamento').text(datos.Medicamento['Observaciones'])

@@ -75,7 +75,7 @@ color:white}
         <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script><!-- CDN jquery-->
         <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script></script><!-- CDN jquery tools-->
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script><!-- CDN jquery UI-->
+        <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!-- CDN jquery UI-->
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script></script><!-- CDN bootstrap-->
         <!-- fin script js externos -->
 
