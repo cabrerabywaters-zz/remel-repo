@@ -9,15 +9,21 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/paciente.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/composicionMedicamento.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionPrincipioActivo.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/R_contraindicacionDiagnostico.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/condicion.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/alergia.php');
+include_once(dirname(__FILE__).'/../Capa_Controladores/diagnostico.php');
 
 session_start();
 
-$idMedicamento = $_POST['idMedicamento'];
+//$idMedicamento = $_POST['idMedicamento'];
+$idMedicamento = 1;
 $medicamento = array(
-	'Medicamento' => Medicamento::BuscarMedicamentoPorId(1)
+	'Medicamento' => Medicamento::BuscarMedicamentoPorId($idMedicamento)
 	);
-$idPaciente = $_SESSION['idPacienteLog'][0];
-$medicamentosRecetados = $_POST['medicamentosRecetados'];
+//$idPaciente = $_SESSION['idPacienteLog'][0];
+$idPaciente = 7;
+//$medicamentosRecetados = $_POST['medicamentosRecetados'];
+$medicamentosRecetados = array();
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
 $fechaActual = date('d-m-y');
@@ -78,7 +84,7 @@ $idAlergias = array();
 while ($row = $busquedaAlergiasMedicamento->fetch_array()) {
 //echo $row['ID'];
     while ($fila = $busquedaAlergiasPaciente->fetch_array()) {
-        if ($row['ID'] == $fila ['ID']) {
+        if ($row['ID'] == $fila['ID']) {
             $idAlergias[] = $row['ID'];
             break;
         }
@@ -94,6 +100,7 @@ while ($row = $busquedaCondicionesMedicamento->fetch_array()) {
         }
     }
 }
+
 
 $idDiagnostico = array();
 while ($row = $busquedaDiagnosticosMedicamento->fetch_array()) {
