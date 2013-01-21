@@ -73,8 +73,10 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 
 </div><!--fin div contenido -->
 </div><!-- fin contenedor general -->
-        
-        
+
+<!-- modal de resumen de receta -->
+<?php include'resumenReceta.php'; ?>
+<!-- modal de resumen de receta -->        
       
         
         
