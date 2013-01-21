@@ -70,10 +70,11 @@
                 $("#guardar").hide();
                 
                 $('.edicion').each(function(){
-                        var run = <?php echo $paciente['rut'] ?> ;
+                        var run = <?php echo $_SESSION['RUT'];   ?>;
                         var peso = $('#Peso').html()
                         var altura = $('#Altura').html()
                         var direccion = $('#Direccion').html()
+                        var numero = $('#Numero').html()
                         var comuna = $('#Comuna').html()
                         var n_celular = $('#N_Celular').html()
                         var n_fijo = $('#N_Fijo').html()
@@ -83,6 +84,7 @@
                       Peso:peso, 
                       altura:altura, 
                       Direccion:direccion, 
+                      Numero:numero,
                       Comuna:comuna,
                       n_celular:n_celular,
                       n_fijo:n_fijo},
@@ -93,6 +95,7 @@
                         $('#Peso').html(data['peso']);
                         $('#Altura').html(data['altura']);
                         $('#Direccion').html(data['direccion']);
+                        $('#Numero').html(data['direccion']);
                         $('#Comuna').html(data['comuna']);
                         $('#N_Celular').html(data['N_celular']);
                         $('#N_Fijo').html(data['n_fijo']);
@@ -170,16 +173,9 @@ $( "#Comuna" ).autocomplete({
                                 }); // end ajax
                             },  // end source
                            select: function(event, ui){
-                                    $('#comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3)
+                                    $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3)
                                   
-                                },
-                           minLength: 2,
-                           open: function() {
-                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-                                }, //end open
-                           close: function() {
-                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-                                } //end close
+                                }
                             });//autocompleteComuna
 
 </script>
