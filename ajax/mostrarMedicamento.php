@@ -21,7 +21,7 @@ $idMedicamento = $_POST['idMedicamento'];
 $medicamento = array(
 	'Medicamento' => Medicamento::BuscarMedicamentoPorId($idMedicamento)
 	);
-$idPaciente = $_SESSION['idPacienteLog'][0];
+$idPaciente = $_SESSION['idPaciente'];
 $medicamentosRecetados = $_POST['medicamentosRecetados'];
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
