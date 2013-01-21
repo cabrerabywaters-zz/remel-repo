@@ -172,9 +172,10 @@ $( "#Comuna" ).autocomplete({
 
                                 }); // end ajax
                             },  // end source
+                           minLength: 2,
                            select: function(event, ui){
                                     $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3)
-                                  
+                                    $('#guardar').show()
                                 }
                             });//autocompleteComuna
 
