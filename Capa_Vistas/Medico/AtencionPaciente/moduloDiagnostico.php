@@ -221,7 +221,7 @@
                         var esGES = $('#esGES').text();
                         
                         var pill = '\
-                        <div class="alert alert-info" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
+                        <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
                         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
                         <a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
                         <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
