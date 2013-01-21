@@ -18,12 +18,10 @@ include_once(dirname(__FILE__).'/../Capa_Controladores/diagnostico.php');
 session_start();
 
 $idMedicamento = $_POST['idMedicamento'];
-$idMedicamento = 1;
 $medicamento = array(
 	'Medicamento' => Medicamento::BuscarMedicamentoPorId($idMedicamento)
 	);
 $idPaciente = $_SESSION['idPaciente'];
-$idPaciente = 7; 
 $medicamentosRecetados = $_POST['medicamentosRecetados'];
 //obtener idMedicamento de algun lado
 //query de medicamentos vigentes del paciente
