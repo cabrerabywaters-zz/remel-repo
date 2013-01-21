@@ -30,7 +30,7 @@
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" class="span2" id="Pais" value="Chile" disabled></label>
     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="span2 inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
-    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="span2 inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
+    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="span2 inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>" disabled></label>
     </div>
     
     <div class="control-group">
