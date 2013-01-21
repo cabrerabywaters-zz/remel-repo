@@ -219,23 +219,25 @@
                         var id_tipo = $('#tipo_diagnostico').val();
                         var comentarioDiagnostico = $('#comentario_diagnostico').val();
                         var esGES = $('#esGES').text();
-                        
+                        $('#diagnosticoAsociado').append('<option value="'+id_diagnostico+'">'+nombre_diagnostico+'</option>');
                         var pill = '\
                         <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
                         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
-                        <a href=# class="editDiagnostico pull-right" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
+                        <a href=# class="editDiagnostico pull-right" data-target="#modalDiagnostico"  data-toggle="modal" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
                         <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
                         
-                                         
+                
                         $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
                         $('#modalDiagnostico').modal('hide');// se cierra el modal
                         $('#diagnostico').val(''); // se borra el buscador
                         $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
+                          /*tratando de hacer el edit (script original)
                         $('#comentario_diagnostico').val(''); // se borra el comentario
                         $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
-                            
+       */               
+                        
                             
                      $('.protocolo').tooltip({title:"Ver Guías del diagnostico"}).unbind("click")
                         .on('click', (function(){
@@ -319,8 +321,15 @@
 //                                }
 //                            }
 //                        });
-                  
-				
+
     
             
+</script>
+
+<script>
+
+  $('.editDiagnostico').unbind('click').on('click',function(){
+    $('#modalDiagnostico').show()
+  });
+
 </script>
