@@ -29,7 +29,7 @@ if ($MedicamentosVigentes != false) {
     //query de principios activos de los medicamentos vigentes del usuario
         $principiosActivos[] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
     }
-}
+
 $paresContraindicadores = array();
 $idsPrincipiosActivosPares = array();
 for($i=0;$i<count($principiosActivos);$i++){
@@ -42,13 +42,14 @@ for($i=0;$i<count($principiosActivos);$i++){
         }
     }
 }
+}
 $idsPrincipiosActivosPares = array_unique($idsPrincipiosActivosPares);
 //verificacion de principios activos para medicamentos actualmente siendo recetados por el medico
-if ($MedicamentosVigentes != false) {
+if ($medicamentosRecetados != false) {
     foreach ($medicamentosRecetados as $llave => $valor) {
         $principiosActivosRecetados[] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
     }
-}
+
 $paresContraindicadoresMedicamentosRecetados = array();
 $idsPrincipiosActivosRecetadosPares = array();
 for($i = 0; $i < count($principiosActivosRecetados); $i++) {
@@ -60,6 +61,7 @@ for($i = 0; $i < count($principiosActivosRecetados); $i++) {
             $idsPrincipiosActivosRecetadosPares[] = $principiosActivosRecetados[$j];
         }
     }
+}
 }
 $idsPrincipiosActivosRecetadosPares = array_unique($idsPrincipiosActivosRecetadosPares);
 
