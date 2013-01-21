@@ -166,7 +166,7 @@ verificarIP();
                         success: function(output) {
                                         if(output == 1){// redireccion a atencionPaciente
                                             
-						window.location.href = "AtencionPaciente/atencionPaciente.php";
+						window.location.href = "AtencionPaciente/atencionPaciente.php?";
 					}
 					else if(output == 0){ //mensaje de error
                                             $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>"); }
