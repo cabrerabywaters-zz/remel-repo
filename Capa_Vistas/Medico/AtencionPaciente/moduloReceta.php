@@ -380,6 +380,16 @@ y el popup que muestra el detalle del medicamento
                     $('#detalleMedicamentoLabel').text(datos.Medicamento['Nombre_Comercial']);
                     $('#idMedicamento').text(idMedicamento);
                     $('#descripcionMedicamento').text(datos.Medicamento['Observaciones'])
+                    
+                    var contraAlergias = datos.alergias;
+                    alert(contraAlergias);
+                    var contraCondiciones = datos.condiciones;
+                    alert(contraCondiciones);
+                    var contraDiagnosticos = datos.diagnosticos;
+                    var contraPrincipiosRecetados = datos.principiosActivosRecetados;
+                    
+                    
+                    
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
                                         
 
@@ -431,7 +441,7 @@ y el popup que muestra el detalle del medicamento
         var frecuenciaMedicamento = $('#frecuenciaMedicamento').val();
         var periodoMedicamento = $('#periodoMedicamento').val();
         var comentarioMedicamento = $('#comentarioMedicamento').val();
-        var diagnosticoAsociado = $('diagnosticoAsociado').val();
+        var diagnosticoAsociado = $('#diagnosticoAsociado').val();
         
         // se arma el pill con la informacion del medicamento
         var pill = '<div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
