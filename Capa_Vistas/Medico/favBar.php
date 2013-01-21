@@ -35,18 +35,25 @@
       
       <div id="medicamentosFav" class="collapse">
        <div class="span10 offset1">
-           
-         <div class="alert alert-success" identificador="1"><!-- pill medicamentoFav 1 -->
-              <strong>Medicamento ej</strong>
-              <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i> </a><!-- eliminar de favoritos --> 
-              <a href="#" rel="tooltip" title="Agregar a Receta" class="detalleMedicamento"> <i class="icon-plus pull-right"></i> </a><!-- agregar favorito seleccionado -->
-         </div><!-- end pill diagnosticoFav 1-->
-         <div class="alert alert-success" identificador="2"><!-- pill medicamentoFav 1 -->
-              <strong>Medicamento ej</strong>
-              <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
-              <a href="#" rel="tooltip" title="Agregar a Receta" class="detalleMedicamento"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
-         </div><!-- end pill diagnosticoFav 1-->
-       
+           <?php
+		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
+		$idMedico = $medico['idMedico'];
+		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
+FROM Laboratorios, Medicamentos, Medicamentos_Comunes
+WHERE Medicamentos_idMedicamento = idMedicamento
+AND Laboratorio_idLaboratorio = Laboratorios.ID
+AND Medicos_idMedico = '1'";
+		$res = CallQuery($queryString);
+                while($row = $res->fetch_assoc()){
+                        $nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
+                        $id = $row['idMedicamento'];
+                        echo "<div class='alert alert-warning' identificador='$id'>\r\n";
+                        echo "<strong>$nombre</strong>\r\n";
+			echo "<a href='#' rel='tooltip' title='Agregar a Favoritos'> <i class='icon-star pull-right'></i></a><!-- eliminar de favoritos -->\r\n
+				<a href='#' rel='tooltip' title='Agregar a Receta' class='detalleMedicamento'> <i class='icon-plus pull-right'></i></a>
+				</div>\r\n";
+		}
+      ?> 
        </div>
       </div>
       <!-- fin medicamentos favoritos -->
@@ -77,7 +84,7 @@
 </div><!-- fin de la barra de favoritos -->
 
   <!-- Modal detalleMedicamento -->
-  <?php include('detalleMedicamento.php'); ?>
+  <?php include(dirname(__FILE__).'/AtencionPaciente/detalleMedicamento.php'); ?>
   <!-- Modal detalleMedicamento -->
 
 <script>
