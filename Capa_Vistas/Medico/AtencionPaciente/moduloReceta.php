@@ -62,7 +62,7 @@ y el popup que muestra el detalle del medicamento
         
         
        <div class="row-fluid span11"><!-- boton emitir receta -->
-        <a class="btn btn-warning span4 offset4" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+        <a class="btn btn-warning span4 offset4" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
        </div> <!-- boton emitir receta -->
         
         
@@ -362,7 +362,7 @@ y el popup que muestra el detalle del medicamento
            $('.medicamentoRecetado').each(function(){
            medicamentosRecetados.push($(this).attr('idmedicamento'));
            });
-           alert(medicamentosRecetados)
+           
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
                type:"POST",
@@ -374,7 +374,7 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                    alert(data);
+                    
                     var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
                     
                     $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
