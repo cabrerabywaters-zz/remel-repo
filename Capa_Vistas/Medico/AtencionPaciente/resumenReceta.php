@@ -21,7 +21,7 @@
    
   <div class="modal-footer">
     <button class="btn pull-left" data-dismiss="modal" aria-hidden="true"><br><strong>Volver</strong><br><br></button>
-    <button class="btn btn-primary confirmarEmision"><br><strong><i class="icon-check icon-white"></i>Confirmar Emisión<br><br></strong></button>
+    <button class="btn btn-primary confirmarEmision"><br><strong><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
   </div>
 
 </div><!-- modal de resumen de la receta -->
@@ -79,6 +79,44 @@
        }
        
    }); // end click
-    
-    
+   
+   /*
+    *Funcion que se ejecuta al hacer click en "Firmar Emisión"
+    *se debe obtener todos los diagnosticos con sus medicamentos 
+    *correspondientes y escribir el JSON que los contenga para ser enviados
+    *{diagnostico1: {medicamento1:{}, medicamento2:{}...}, diagnostico2:{medicamento3:{},medicamento4:{}} 
+    */
+   $('.confirmarEmision').click(function(){
+        var resumenReceta = {};
+        
+        $('.diagnostico').each(function(){// para cada diagnostico
+            var idDiagnostico = $(this).attr('iddiagnostico');
+            var diagnostico = {}; //creo objeto para cada diagnostico
+            var tipoDiagnostico = {"tipoDiagnostico":$(this).attr('tipoDiagnostico')} // tipoDiagnostico
+            var comentarioDiagnostico = {"comentarioDiagnostico":$(this).attr('comentarioDiagnostico')}; //comentario del diagnostico
+            diagnostico.push({"idDiagnostico":idDiagnostico}).push(tipoDiagnostico).push(comentarioDiagnostico);
+            
+            var medicamentos = {};
+            //busco todos los medicamentos asociados
+            $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
+                var idMedicamento = $(this).attr('idMedicamento');
+                var descripcionMedicamento = {"descripcionMedicamento": $(this).attr('descripcionMedicamento')};
+                var cantidadMedicamento = {"cantidadMedicamento": $(this).attr('cantidadMedicamento')};
+                var frecuenciaMedicamento = {"frecuenciaMedicamento": $(this).attr('frecuenciaMedicamento')};
+                var periodoMedicamento = {"periodoMedicamento": $(this).attr('periodoMedicamento')};
+                var comentarioMedicamento = {"comentarioMedicamento": $(this).attr('comentarioMedicamento')};
+                medicamentos
+                .push({"idMedicamento":idMedicamento})
+                .push(descripcionMedicamento)
+                .push(cantidadMedicamento)
+                .push(frecuenciaMedicamento)
+                .push(periodoMedicamento)
+                .push(comentarioMedicamento)
+            
+            });//end each medicamento
+            diagnostico.push({"medicamentos": medicamentos});
+        }); // end each diagnostico
+
+        alert(resumenReceta)
+   }); // end click
 </script><!-- script que genera el listado del resumen de la receta-->
