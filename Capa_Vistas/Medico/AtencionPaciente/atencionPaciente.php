@@ -12,7 +12,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
 
 ?>
 
-
+<div class="row-fluid">
   <div class="tab-content"><!-- contenido del panel 1-->
     
     <div class="tab-pane active img-rounded" id="tabHistorial"><!-- tab Historial-->
@@ -72,6 +72,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   </div>
 
 </div><!--fin div contenido -->
+</div>
 </div><!-- fin contenedor general -->
 
 <!-- modal de resumen de receta -->
