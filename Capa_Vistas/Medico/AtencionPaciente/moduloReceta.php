@@ -278,37 +278,56 @@ y el popup que muestra el detalle del medicamento
        
 <script>       
     $(document).ready(function(){ 
-         /*
+        /*
+         *funcion que maneja el modal detallemedicamento cuando este se encuentra escondido
+         */
+        $('#detalleMedicamento').on('hide',function(){
+                $('#Medicamentos').val('');
+                $('#warnings').html('')
+                $('#boton_medicamentos').attr('disabled','disabled');
+                $('#detalleMedicamentoLabel').text('');
+                $('#idMedicamento').text('');
+                $('#descripcionMedicamento').text('');
+                $('#cantidadMedicamento').val('');
+                $('#frecuenciaMedicamento').val('');
+                $('#periodoMedicamento').val('');
+                $('#comentarioMedicamento').val('');
+                var select = $('#diagnosticoAsociado')
+                select.val(jQuery('options:first', select).val());
+        })
+        
+        
+        
+        
+        
+        /*
         * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
         * a la receta
         * ----------------------------------------------
         * solo para los medicamentos que requieren escribir el rp
         */
-       
-       
-       
-       $('.detalleMedicamento').unbind('click').on('click',function(){
-           var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
-                   
-           $.ajax({ 
-               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
-               type:"POST",
-               data: {idMedicamento:idMedicamento},
-               success:function(data){
-                   /*
-                    * en esta funcion se utilizan los valores de los campos de medicamento y
-                    * se modifica el modal para llenar los campos relativos al medicamento
-                    */
-                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
-                    
-                   
-                    $('#detalleMedicamento').modal('show'); // se muestra el modal
-                    }//end success
-           });//ajax 
-
-
-       });// end click 
+//       $('.detalleMedicamento').unbind('click').on('click',function(){
+//           var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
+//                   
+//           $.ajax({ 
+//               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
+//               type:"POST",
+//               data: {idMedicamento:idMedicamento},
+//               success:function(data){
+//                   /*
+//                    * en esta funcion se utilizan los valores de los campos de medicamento y
+//                    * se modifica el modal para llenar los campos relativos al medicamento
+//                    */
+//                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
+//                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
+//                    
+//                   
+//                    $('#detalleMedicamento').modal('show'); // se muestra el modal
+//                    }//end success
+//           });//ajax 
+//
+//
+//       });// end click 
                
 
       /*
@@ -323,18 +342,16 @@ y el popup que muestra el detalle del medicamento
        else{ // si es nombre comercial
            var idMedicamento = $('#Medicamentos').attr('identificador'); // id del medicamento que se busca
            var medicamentosRecetados = [];
-           
            $('.medicamentoRecetado').each(function(){
-            var medRecetado = $(this).attr('idmedicamento')
-            medicamentosRecetados.push(medRecetado);
-            alert('se ingresó el '+$(this).attr('idmedicamento'))
+           var medRecetado = $(this).attr('idmedicamento')
+           medicamentosRecetados.push(medRecetado);
            }); // end each
            
            
            $.ajax({ 
                url: "../../../ajax/mostrarMedicamento.php",
                type:"POST",
-		async: false,
+               async: true,
                data: {
                     "idMedicamento":idMedicamento, 
                     "medicamentosRecetados": medicamentosRecetados
@@ -344,10 +361,10 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                   
+                   alert(data)
                     var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento             
  		
-		   alert(datos);
+		   
                     $('#detalleMedicamentoLabel').text(datos.Medicamento['Nombre_Comercial']);
                     $('#idMedicamento').text(idMedicamento);
                     $('#descripcionMedicamento').text(datos.Medicamento['Observaciones'])
@@ -366,7 +383,8 @@ y el popup que muestra el detalle del medicamento
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
                                         
 
-               }//end success
+           
+       }//end success
            });//ajax
            }// endif(el nombre es comercial)
            
@@ -425,11 +443,12 @@ y el popup que muestra el detalle del medicamento
         
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
-        //se limpian los campos y se esconde el 
+        //se limpian los campos y se esconde el modal   
         
-        /*
+        
         $('#detalleMedicamento').modal('hide');
         $('#Medicamentos').val('');
+        $('#warnings').html('')
         $('#boton_medicamentos').attr('disabled','disabled');
         $('#detalleMedicamentoLabel').text('');
         $('#idMedicamento').text('');
@@ -438,9 +457,11 @@ y el popup que muestra el detalle del medicamento
         $('#frecuenciaMedicamento').val('');
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
-        $('select>option:eq(0)').attr('selected', true);
+        var select = $('#diagnosticoAsociado')
+        select.val(jQuery('options:first', select).val());
+
         
-        */
+        
         })
       
 
@@ -449,6 +470,6 @@ y el popup que muestra el detalle del medicamento
             
             
         });// end click a edit medicamento
-
+        
 });//end ready
 </script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->

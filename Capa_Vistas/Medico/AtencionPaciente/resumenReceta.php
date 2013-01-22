@@ -28,6 +28,12 @@
 
 <script>
     /*
+     *Funcion que maneja el modal Resumen Receta cuando está escondido. (se borran los elementos puestos
+     */
+    $('#resumenReceta').on('hide',function(){
+        $('#resumen').html('');
+    });
+    /*
      * Función que al hacer click en el boton "emitir receta" hace el resumen completo de la 
      * receta. es necesario mostrar los diagnosticos con sus medicamentos asociados 
      * como listado
