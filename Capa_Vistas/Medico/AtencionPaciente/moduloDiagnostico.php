@@ -68,7 +68,7 @@
                     <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</button>
                     <button class="btn btn-info" id="guardar_cambios" disabled="disabled">Guardar</button>  
                         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
-                        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_cambios" disabled="disabled">Cancelar</button>
+                        
 
                 </div>
 </div><!-- fin popup informacion diagnostico -->
@@ -156,7 +156,9 @@
                          * con todos los atributos para rellenar el popup del diagnostico
                          **/
                            $('#guardar_cambios').hide();
-                           $('#cancelar_cambios').hide();
+                           $('#guardar_diagnostico').show();
+                           $('select>option:eq(0)').attr('selected', true); 
+                           $('#comentario_diagnostico').val('');
                            
                            var postData = $("#diagnostico").attr('iddiagnostico');
                            $.ajax({ 
@@ -183,7 +185,9 @@
                               
                         }); // end click
 </script>
-                
+
+
+
 <script>
                     /*
                      * dialogo donde se guardarán las guías relativas al diagnostico
@@ -206,7 +210,7 @@
                         $('select>option:eq(0)').attr('selected', true);
                         $('#diagnostico').val(''); // borro el buscador
                         $('#comentario_diagnostico').val(''); //borro el comentario
-                        $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                       // $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                     }); //end on
                     
                     
@@ -226,7 +230,7 @@
                         var pill = '\
                         <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
                         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
-                        <a href=# class="editDiagnostico pull-right" data-target="#modalDiagnostico"  data-toggle="modal" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
+                        <a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
                         <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
                         
                 
@@ -235,14 +239,52 @@
                         $('#log_diagnostico').prepend(pill);
                         $('#modalDiagnostico').modal('hide');// se cierra el modal
                         $('#diagnostico').val(''); // se borra el buscador
-                       // $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
-                        //$('#comentario_diagnostico').val(''); // se borra el comentario 
-                        $('#cancelar_modal').hide().attr('disabled',true); //se hace disabled el boton
-                        $('#guardar_diagnostico').hide().attr('disabled',true); //se hace disabled el boton
-                        $('#guardar_cambios').show().attr('disabled',false);
-                        $('#cancelar_cambios').show().attr('disabled',false);
+                        $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
+                        $('#comentario_diagnostico').val(''); // se borra el comentario 
                         
-                            
+                        
+     //BOTON EDITAR
+     //AUTOR: MAX SILVA mit master oviedo
+     $('.editar').tooltip({title:"edita"}).unbind('click').on('click',function(){  
+            var idDiagnosticoEdit = $(this).parent().attr('iddiagnostico');
+         
+            $('#modalDiagnosticoLabel').text(
+                $(this).parent().children('strong').text()
+            );
+            $('#comentario_diagnostico').val(
+                $(this).parent().attr('comentariodiagnostico')
+            );
+            $('#tipo_diagnostico').val(
+                $(this).parent().attr('tipodiagnostico')
+            );
+            $('#esGES').text(
+                $(this).parent().attr('esges')
+            );
+                
+            $('#guardar_cambios').show().attr('disabled',false);
+            $('#guardar_diagnostico').hide();
+            $('#modalDiagnostico').modal('show');
+                     
+                     
+            $('#guardar_cambios').unbind('click').on('click',function(){
+                   
+                   var comentario = $('#comentario_diagnostico').val();
+                   var tipo_diagnostico = $('#tipo_diagnostico').val();
+                       
+                       $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('comentariodiagnostico',comentario);
+                       $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('tipodiagnostico',tipo_diagnostico);
+                         
+                        $('#modalDiagnostico').modal('hide');
+                         
+                     });
+                     
+            });              
+            
+            
+                       
+      //FIN BOTON EDITAR                      
+      
+      
                      $('.protocolo').tooltip({title:"Ver Guías del diagnostico"}).unbind("click")
                         .on('click', (function(){
                             /**
@@ -293,15 +335,16 @@
               
               
               $('#recomendadosInstitucion').on('hide',function(){
-                   $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");})
+                   $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");});
                $('#recomendadosInstitucion').on('show',function(){
-                   $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");})
+                   $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");});
                $('#recomendadosFav').on('hide',function(){
-                   $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");})
+                   $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");});
                $('#recomendadosFav').on('show',function(){
-                   $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");})
+                   $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");});
                                          
 //                      
+               
 //                      
 //                      la siguiente función guarda en la bbdd un diagnostico
 //                      especifico 
@@ -335,12 +378,9 @@
 
 
 <script>
-  $('.editDiagnostico').unbind('click').on('click',function(){
-   
-   
-   
   
-  
+
+           
   
   /*var nombre_diagnostico = $('#modalDiagnosticoLabel').text();          
                        var id_diagnostico= $('#id_diagnostico').text();
@@ -354,5 +394,5 @@
                         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
                         <a href=# class="editDiagnostico pull-right" data-target="#modalDiagnostico"  data-toggle="modal" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
                         <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
- */ });
+*/
 </script>
