@@ -83,7 +83,7 @@ verificarIP();
         <form class="form-signin" action="atendiendo_paciente.php">
          
         <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
-        <h5 class="form-signin-heading"><center>Atendiendo en:<br><span class="label label-info"><?php echo $_SESSION['logLugar']['nombreLugar']."</span> de la sucursal <span class='label label-info'>". $_SESSION['logLugar']['nombreSucursal']  ?></span></center>   </h5>
+        <h5 class="form-signin-heading"><center>Atendiendo en:<br><span class="label label-info"><?php echo $_SESSION['logLugar']['nombreLugar']."</span><br> <span class='label label-info'>". $_SESSION['logLugar']['nombreSucursal']  ?></span></center>   </h5>
          <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
         <!-- Button to trigger modal -->
         <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
@@ -126,8 +126,8 @@ verificarIP();
             <input type="hidden" name="hRUN" value=""/>
   	</div>
         <div class="modal-footer">
-            <button class="btn" type="submit"><strong>Ingresar</strong></button></form>
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" type="submit"><strong>Ingresar</strong></button></form>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Volver</button>
         </div>
     </div>
     
@@ -148,10 +148,11 @@ verificarIP();
                         success: function(output) {
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
-                                    $("#atender").html("<a class='label label-info' data-toggle='collapse' data-target='#clave' id='"+data['Nombre']+"'>"+nombre+"</a>");
+                                    $("#atender").html("<a class='label label-info' id='"+data['Nombre']+"'>"+nombre+"</a>");
                                     $('input[name=hID]').val(data['idPaciente']);
                                     $('input[name=hRUN]').val(data['RUN']);
-                                }
+                                    $('#clave').collapse('show');
+                            }
 
                   	});// end ajax
 	} // end funcion enviar
