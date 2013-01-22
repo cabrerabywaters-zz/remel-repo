@@ -87,10 +87,10 @@ color:white}
             <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
                 <div class="span3 img-rounded" style="background-color: whitesmoke"> <!-- div de la informacion del medico -->
                     <img class="img-rounded pull-left" src="<?php echo $medico['Foto']; ?>" style="width: 140px; height: 140px;">
-                    <blockquote>
+                    <blockquote></blockquote><center>
                     <strong>Informacion Medico:<br></strong> 
                    <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
-                    </blockquote>
+                    </center></blockquote>
                 </div> <!-- div de la informacion del medico -->
                 
                 <div class="img-rounded span6" style=" background-color:white"> <!-- informacion de la institucion  -->
@@ -107,7 +107,7 @@ color:white}
                 
                 <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke"><!-- información del paciente -->
                     <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 140px; height: 140px;">
-                    <blockquote>
+                    <blockquote><center>
                      <!-- validación del rut ingresado -->
                     <strong>Paciente:<br></strong><table>
                     <tr><td><?php 
@@ -121,8 +121,7 @@ color:white}
 					}
 				echo '</td></tr><tr><td>';
                                        $cadena=$_SESSION['RUTPaciente'];
-                  include("Medico/AtencionPaciente/recomponerRUT.php");
-					
+                  include("Medico/AtencionPaciente/recomponerRUT.php");				
  
 					$array_rut_sin_guion = explode('-',$valor); // separamos el la cadena del digito verificador.
 					$rut_sin_guion = $array_rut_sin_guion[0]; // la primera cadena
@@ -194,7 +193,7 @@ color:white}
 					
 					 ?></td></tr></table>
 
-                    </blockquote>
+                    </center></blockquote>
                 </div> <!-- información del paciente -->
             </div><!-- cierre div superior-->
             
