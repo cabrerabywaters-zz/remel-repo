@@ -92,31 +92,37 @@
         $('.diagnostico').each(function(){// para cada diagnostico
             var idDiagnostico = $(this).attr('iddiagnostico');
             var diagnostico = {}; //creo objeto para cada diagnostico
-            var tipoDiagnostico = {"tipoDiagnostico":$(this).attr('tipoDiagnostico')} // tipoDiagnostico
-            var comentarioDiagnostico = {"comentarioDiagnostico":$(this).attr('comentarioDiagnostico')}; //comentario del diagnostico
-            diagnostico.push({"idDiagnostico":idDiagnostico}).push(tipoDiagnostico).push(comentarioDiagnostico);
+            var tipoDiagnostico = $(this).attr('tipoDiagnostico')// tipoDiagnostico
+            var comentarioDiagnostico = $(this).attr('comentarioDiagnostico'); //comentario del diagnostico
+            
+            diagnostico.idDiagnostico = idDiagnostico; // se agrega el idDiagnostico al arreglo de diagnostico
+            diagnostico.tipoDiagnostico = tipoDiagnostico; // se agrega el tipoDiagnostico al arreglo de diagnostico
+            diagnostico.comentarioDiagnostico = comentarioDiagnostico // se agrega el comentarioDiagnostico al arreglo
+            
             
             var medicamentos = {};
             //busco todos los medicamentos asociados
             $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
                 var idMedicamento = $(this).attr('idMedicamento');
-                var descripcionMedicamento = {"descripcionMedicamento": $(this).attr('descripcionMedicamento')};
-                var cantidadMedicamento = {"cantidadMedicamento": $(this).attr('cantidadMedicamento')};
-                var frecuenciaMedicamento = {"frecuenciaMedicamento": $(this).attr('frecuenciaMedicamento')};
-                var periodoMedicamento = {"periodoMedicamento": $(this).attr('periodoMedicamento')};
-                var comentarioMedicamento = {"comentarioMedicamento": $(this).attr('comentarioMedicamento')};
-                medicamentos
-                .push({"idMedicamento":idMedicamento})
-                .push(descripcionMedicamento)
-                .push(cantidadMedicamento)
-                .push(frecuenciaMedicamento)
-                .push(periodoMedicamento)
-                .push(comentarioMedicamento)
+                var descripcionMedicamento = $(this).attr('descripcionMedicamento');
+                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
+                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
+                var periodoMedicamento = $(this).attr('periodoMedicamento');
+                var comentarioMedicamento = $(this).attr('comentarioMedicamento');
+                medicamentos.idMedicamento = idMedicamento;
+                medicamentos.descripcionMedicamento = descripcionMedicamento ; 
+                medicamentos.cantidadMedicamento = cantidadMedicamento;
+                medicamentos.frecuenciaMedicamento = frecuenciaMedicamento;
+                medicamentos.periodoMedicamento = periodoMedicamento;
+                medicamentos.comentariosMedicamento = comentarioMedicamento;
             
             });//end each medicamento
-            diagnostico.push({"medicamentos": medicamentos});
+            diagnostico.medicamentos = medicamentos;
         }); // end each diagnostico
 
-        alert(resumenReceta)
+        $.ajax({
+         data: resumenReceta,
+         
+        })
    }); // end click
 </script><!-- script que genera el listado del resumen de la receta-->
