@@ -81,19 +81,26 @@ verificarIP();
     <div class="container-fluid">
       
         <form class="form-signin" action="atendiendo_paciente.php">
-         
-        <h2 class="form-signin-heading"><center>Opciones</center>   </h2>
-        <h5 class="form-signin-heading"><center>Atendiendo en:<br><span class="label label-info"><?php echo $_SESSION['logLugar']['nombreLugar']."</span><br> <span class='label label-info'>". $_SESSION['logLugar']['nombreSucursal']  ?></span></center>   </h5>
-         <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
-        <!-- Button to trigger modal -->
-        <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
-        <button class="btn btn-large btn-block" type="button">Ver Pacientes Atendidos</button>
-        <button class="btn btn-large btn-block " type="button">Consultar medicamentos</button>
-        <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
-                <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
-	<a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
-      </form>
-
+            
+            <div class="row-fluid">
+                <center><h5 class="form-signin-heading">Atendiendo en:</h5>
+                <div class="alert alert-info"><strong><?php echo $_SESSION['logLugar']['nombreLugar'];?></strong></div>
+                <div class='alert alert-info'><strong><?php echo $_SESSION['logLugar']['nombreSucursal'];?></strong></div>
+                </center>
+            </div>    
+            <div class="row-fluid">
+                <h3 class="form-signin-heading"><center>Opciones</center>   </h3>
+                <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
+                <!-- Button to trigger modal -->
+                <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
+                <button class="btn btn-large btn-block" type="button">Ver Pacientes Atendidos</button>
+                <button class="btn btn-large btn-block " type="button">Consultar medicamentos</button>
+                <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
+                        <a href="../decisionDoctor.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
+                <a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
+                </form>
+             </div>
+                
     </div> <!-- /container -->
 
    
@@ -118,6 +125,7 @@ verificarIP();
             </div>
             <div id="clave" class="collapse" >
             <form id="verificacionClave" action="javascript:verificarClave()" method="post">
+                <br>
             <strong>Ingrese Clave :</strong> <center> 
             <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> 
             <div id="mensaje"></div>
@@ -136,11 +144,13 @@ verificarIP();
   </body>
 
   <script>
-	$("busqueda").validator();
-	$("verificacionClave").validator();
-
+	$('busqueda').validator();
+	$('verificacionClave').validator();
+        $('#myModal').on('show',function(){
+            $('input[name="RUN"]').focus();
+        })
 	function enviar(){
-                        var postData = $("#busqueda").serialize();
+                        var postData = $('#busqueda').serialize();
                         $.ajax({ 
                         url: '../../ajax/jsonPaciente.php',
                         data: postData,
@@ -152,6 +162,7 @@ verificarIP();
                                     $('input[name=hID]').val(data['idPaciente']);
                                     $('input[name=hRUN]').val(data['RUN']);
                                     $('#clave').collapse('show');
+                                    $('input[name="clave"]').focus();
                             }
 
                   	});// end ajax

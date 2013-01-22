@@ -172,6 +172,18 @@ class Medicamento  {
         return $resultado->fetch_assoc();
     }
     
+    public static function BuscarNombreMedicamentoPorId($id){
+        $queryString = "SELECT Nombre_Comercial
+
+                        FROM Medicamentos
+
+                        WHERE idMedicamento = '$id';";
+
+        $resultado = CallQuery($queryString);
+	$res = $resultado->fetch_assoc();
+        return $res['Nombre_Comercial'];
+    }
+    
     
       public static function SeleccionarLaboratorioPorIdMedicamento($id){
 	$queryString = "SELECT ID, Nombre as laboratorio FROM Laboratorios WHERE ID in (SELECT DISTINCT (

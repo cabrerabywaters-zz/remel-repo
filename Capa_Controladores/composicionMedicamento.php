@@ -105,7 +105,7 @@ class ComposicionMedicamento {
         $resultado = CallQuery($queryString);
         $result = array();
         while ($fila = $resultado->fetch_array()){
-            $result[] = $fila;
+            $result[] = $fila['Principio_Activo_idPrincipio_Activo'];
         }
         return $result;
     }

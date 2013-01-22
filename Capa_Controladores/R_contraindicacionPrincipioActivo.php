@@ -106,8 +106,8 @@ class ContraindicacionPrincipioActivo  {
          OR    ("'.$PA1.'" = Principio_Activo_has_Principio_Activo1
             AND "'.$PA0.'" = Principio_Activo_has_Principio_Activo)
          ';
-        $resultado = CallQuery($queryString)->fetch_assoc();
-        return $resultado;
+	if (CallQuery($queryString)->num_rows < 0) return false;
+	else return true;
     }
 }
 
