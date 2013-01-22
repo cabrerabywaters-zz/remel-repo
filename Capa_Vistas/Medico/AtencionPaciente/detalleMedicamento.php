@@ -1,5 +1,10 @@
 <?php include_once '../../../Capa_Controladores/unidadDeConsumo.php';
+include_once '../../../Capa_Controladores/unidadFrecuencia.php';
+include_once '../../../Capa_Controladores/unidadPeriodo.php';
  $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
+ $unidadFrecuencia = UnidadFrecuencia::Seleccionar('where 1=1');
+ $unidadPeriodo = UnidadPeriodo::Seleccionar('where 1=1');
+  
 ?>
 <!-- modalDetalleMedicamento-->
 <div id="detalleMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="detalleMedicamentoLabel" aria-hidden="true">
@@ -25,22 +30,22 @@
             <tr>
                <td>Cantidad:</td>
                <td><input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></td>
-               <td><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['tipo']."'>".$unidad['tipo']."</option>";}?></td>
+               <td><select name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['tipo']."'>".$unidad['tipo']."</option>";}?></select></td>
             </tr>
             <tr>
                <td>Cada :</td>
                <td><input type="text" placeholder="frequencia" id="frecuenciaMedicamento"></td>
-               <td>Horas (hrs)</td>
+               <td><select name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['Nombre']."'>".$unidad['Nombre']."</option>";}?></select></td>
             </tr>
             <tr>
                 <td>Por :</td>
                 <td><input type="text" placeholder="periodo" id="periodoMedicamento"></td>
-                <td>Dias</td>
+                <td><select name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['Nombre']."'>".$unidad['Nombre']."</option>";}?></select></td>
             </tr>
             <tr>
                 <td>Comentario:</td> 
             </tr>
-            <tr><td colspan="3"><textarea rows="2" style="width:90%"  id="comentarioMedicamento"></textarea></td></tr>
+            <tr><td colspan="3"><textarea rows="2" style="width:95%" id="comentarioMedicamento"></textarea></td></tr>
         </table>
         </div>
         
