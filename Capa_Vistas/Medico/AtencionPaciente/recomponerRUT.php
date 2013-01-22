@@ -12,4 +12,5 @@ $cadena=$resultado;
 $lugar=(strlen($cadena)-9);
 $insertar = ".";
 $resultado = substr($cadena, 0, $lugar) . $insertar . substr($cadena, $lugar); 
+$valorfinal=$resultado;
 ?>

@@ -108,74 +108,7 @@ color:white}
                 <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke"><!-- información del paciente -->
                     <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 140px; height: 140px;">
                     <blockquote>
-                     <script type="text/javascript">
-                //validacion del rut ingresado
-                function verificarRut( Objeto )
-                {
-                    var tmpstr = "";
-                     $('#mensaje').html("");
-                    var intlargo = Objeto.value
-                    if (intlargo.length> 0)
-                    {
-                        crut = Objeto.value
-                        largo = crut.length;
-                        for ( i=0; i <crut.length ; i++ )
-                        if ( crut.charAt(i) != ' ' && crut.charAt(i) != '.' && crut.charAt(i) != '-' )
-                        {
-                            tmpstr = tmpstr + crut.charAt(i);
-                        }
-                        rut = tmpstr;
-                        crut=tmpstr;
-                        largo = crut.length;
-	
-                        if ( largo> 2 )
-                            rut = crut.substring(0, largo - 1);
-                        else
-                            rut = crut.charAt(0);
-	
-                        dv = crut.charAt(largo-1);
-	
-                        if ( rut == null || dv == null )
-                            return 0;
-	
-                        var dvr = '0';
-                        suma = 0;
-                        mul  = 2;
-	
-                        for (i= rut.length-1 ; i>= 0; i--)
-                        {
-                            suma = suma + rut.charAt(i) * mul;
-                            if (mul == 7)
-                                mul = 2;
-                            else
-                                mul++;
-                        }
-	
-                        res = suma % 11;
-                        if (res==1)
-                            dvr = 'k';
-                        else if (res==0)
-                            dvr = '0';
-                        else
-                        {
-                            dvi = 11-res;
-                            dvr = dvi + "";
-                        }
-                        if ( dvr != dv.toLowerCase() )
-                        {
-                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
-                            Objeto.focus();
-                            return false;
-                        }
-                        //alert('El Rut Ingresado es Correcto!')
-                        return true;
-                    }
-                }                       
-                $("usuario").validator();
-		
-		
-		    
-            </script><!-- validación del rut ingresado -->
+                     <!-- validación del rut ingresado -->
                     <strong>Paciente:<br></strong><table>
                     <tr><td><?php 
 					if($paciente['Sexo']=="1")
@@ -189,7 +122,77 @@ color:white}
 				echo '</td></tr><tr><td>';
                                        $cadena=$_SESSION['RUTPaciente'];
                   include("Medico/AtencionPaciente/recomponerRUT.php");
-                     echo $resultado; ?></td></tr></table>
+					
+ 
+					$array_rut_sin_guion = explode('-',$valor); // separamos el la cadena del digito verificador.
+					$rut_sin_guion = $array_rut_sin_guion[0]; // la primera cadena
+					$digito_verificador = $array_rut_sin_guion[1];// el digito despues del guion.
+					if ($digito_verificador==0)
+					{
+					$cantidad = strlen($rut_sin_guion); //8 o 7 elementos
+					for ( $i = 0; $i < $cantidad; $i++)//pasamos el rut sin guion a un vector
+   					 {
+  					  $rut_array[$i] = $rut_sin_guion{$i};
+					 }  
+ 
+ 
+					$i = ($cantidad-1);
+					$x=$i;
+					for ($ib = 0; $ib < $cantidad; $ib++)
+					// ingresamos los elementos del ventor rut_array en otro vector pero al reves.
+  						{
+   						 $rut_reverse[$ib]= $rut_array[$i];
+    					 $rut_reverse[$ib];
+ 							$i=$i-1;
+    					}
+  
+						$i=2;
+						$ib=0;
+						$acum=0; 
+						   do
+   						 {
+						 if( $i > 7 )
+  						 {
+ 						  $i=2;
+  						 }
+ 						  $acum = $acum + ($rut_reverse[$ib]*$i);
+ 						 $i++;
+ 						 $ib++;
+						 }
+						 while ( $ib <= $x);
+ 
+						$resto = $acum%11;
+						$resultado = 11-$resto;
+						if ($resultado == 11) { 
+						$resultado=0; }
+						if ($resultado == 10) { $resultado='k'; }
+						if ($digito_verificador == 'k' or $digito_verificador =='K')
+						 { $digito_verificador='k';}
+ 
+						if ($resultado == $digito_verificador)
+   						 {
+ 						return true;
+						 }
+						 else
+						 {
+								$cadena=$rut_sin_guion;
+								$lugar=(strlen($cadena)-3);
+								$insertar = ".";
+								$resultado = substr($cadena, 0, $lugar) . $insertar . substr($cadena, $lugar); 
+								$cadena=$resultado;
+								$lugar=(strlen($cadena)-7);
+								$insertar = ".";
+								$resultado = substr($cadena, 0, $lugar) . $insertar . substr($cadena, $lugar); 
+						 echo "".$resultado."-K";
+						 }
+
+					}
+					else
+					{ 
+					echo $valorfinal;
+					}
+					
+					 ?></td></tr></table>
 
                     </blockquote>
                 </div> <!-- información del paciente -->
