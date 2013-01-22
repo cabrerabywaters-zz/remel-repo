@@ -29,55 +29,32 @@ $medicamentosRecetados = $_POST['medicamentosRecetados'];
 $fechaActual = date('d-m-y');
 //verificacion de principios activos para medicamentos que el paciente esta actualmente consumiendo
 $MedicamentosVigentes = Paciente::R_MedicamentosVigentesPaciente($idPaciente, $fechaActual);
-if ($MedicamentosVigentes != false) {
-    $principiosActivos = array();
-    foreach ($MedicamentosVigentes as $llave => $valor) {
-    //query de principios activos de los medicamentos vigentes del usuario
-        $principiosActivos[] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
-    }
-}
-$paresContraindicadores = array();
-$idsPrincipiosActivosPares = array();
-for($i=0;$i<count($principiosActivos);$i++){
-    for($j=$i+1;$j<count($principiosActivos);$j++){
-        $resultado = ContraindicacionPrincipioActivo::BuscarContraindicacionPrincipioActivo($principiosActivos[$i],$principiosActivos[$j]);
-        if ($resultado){
-            $paresContraindicadores[] = array($principiosActivos[$i], $principiosActivos[$j]);
-            $idsPrincipiosActivosPares[] = $principiosActivos[$i];
-            $idsPrincipiosActivosPares[] = $principiosActivos[$j];
-        }
-    }
-}
+// TODO nueva logica principio activos contra vigentes
 
-if ($idsPrincipiosActivosPares != null){
-$idsPrincipiosActivosPares = array_unique($idsPrincipiosActivosPares);
-}
-$principiosActivosRecetas = array();
-//verificacion de principios activos para medicamentos actualmente siendo recetados por el medico
-if ($medicamentosRecetados != false) {
-    foreach ($medicamentosRecetados as $llave => $valor) {
-        $result = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($valor);
-        $resultado = $result[0];
-        $principiosActivosRecetados[] = $resultado[0];
-    }
-}
-$paresContraindicadoresMedicamentosRecetados = array();
-$idsPrincipiosActivosRecetadosPares = array();
-for($i = 0; $i < count($principiosActivosRecetados); $i++) {
-    for($j = $i + 1; $j < count($principiosActivosRecetados); $j++) {
-        $resultado = ContraindicacionPrincipioActivo::BuscarContraindicacionPrincipioActivo($principiosActivosRecetados[$i], $principiosActivosRecetados[$j]);
-        if ($resultado) {
-            $paresContraindicadoresMedicamentosRecetados[] = array($principiosActivosRecetados[$i], $principiosActivosRecetados[$j]);
-            $idsPrincipiosActivosRecetadosPares[] = $principiosActivosRecetados[$i];
-            $idsPrincipiosActivosRecetadosPares[] = $principiosActivosRecetados[$j];
-        }
-    }
+
+
+
+// FIN ESPACIO TODO
+
+//Nueva logica principios activos ya recetados, ahora encuentra medicamentos
+if ($medicamentosRecetados != "NULL"){
+	$medicamentosRecetadosConflictivos = array();
+	$principiosActivosMedicamentoARecetar = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($idMedicamento);
+	foreach($medicamentosRecetados as $medicamentoRecetado){
+		$principiosActivosPorMedicamentoRecetado[$medicamentoRecetado] = ComposicionMedicamento::BuscarPrincipiosActivosPorMedicamentoId($medicamentoRecetado);
+	}
+	
+	foreach($principiosActivosPorMedicamentoRecetado as $medicamentoRecetado => $arrayPrincipiosActivosRecetados){
+		foreach($principiosActivosMedicamentoARecetar as $principioActivo){
+			foreach($arrayPrincipiosActivosRecetados as $principioActivoRecetado){
+				if(ContraindicacionPrincipioActivo::BuscarContraindicacionPrincipioActivo($principioActivo,$principioActivoRecetado) == true) $medicamentosRecetadosConflictivos[] = $medicamentoRecetado;
+			}
+		}
+	}
+	$medicamentosRecetadosConflictivos = array_unique($medicamentosRecetadosConflictivos);
 }
 
 
-if ($idsPrincipiosActivosRecetadosPares != null){
-$idsPrincipiosActivosRecetadosPares = array_unique($idsPrincipiosActivosRecetadosPares);
-}
 $busquedaAlergiasPaciente = AlergiaHasPaciente::BuscarAlergiasPorPacienteId($idPaciente);
 $busquedaAlergiasMedicamento = ContraindicacionAlergia::BuscarAlergiasPorMedicamentoId($idMedicamento);
 
@@ -141,28 +118,21 @@ for ($i = 0; $i < count($idDiagnostico); $i++) {
     $nombreDiagnosticos[] = $fila['Text'];
 }
 
-$nombrePrincipiosActvos = array();
-for ($i = 0; $i < count($idsPrincipiosActivosPares); $i++) {
-    $result = PrincipioActivo::BuscarNombrePrincipioActivoPorId($idsPrincipiosActivosPares[$i]);
-    $fila = $result->fetch_array();
-    $nombrePrincipiosActvos[] = $fila['Text'];
+
+// Nombre medicamentos recetados conflictivos
+$nombresMedicamentosRecetadosConflictivos = array();
+foreach( $medicamentosRecetadosConflictivos as $idMedicamentoRecetado){
+	$nombresMedicamentosRecetadosConflictivos[] = Medicamento::BuscarNombreMedicamentoPorId($idMedicamentoRecetado);
 }
-$nombrePrincipiosActivosRecetados = array();
-for ($i = 0; $i < count($idsPrincipiosActivosRecetadosPares); $i++) {
-    $result = PrincipioActivo::BuscarNombrePrincipioActivoPorId($idsPrincipiosActivosRecetadosPares[$i]);
-    $fila = $result->fetch_array();
-    $nombrePrincipiosActivosRecetados[] = $fila['Nombre'];
-}
+
 
 $contraindicaciones = array();
 //relleno de contraindicaciones como un solo arreglo
 $contraindicaciones['alergias'] = $nombreAlergias;
 $contraindicaciones['condiciones'] = $nombreCondiciones;
 $contraindicaciones['diagnosticos'] = $nombreDiagnosticos;
-//PAs de medicamentos que ya tiene el paciente
-$contraindicaciones['principiosActivos'] = $nombrePrincipiosActvos;
-//PAs de medicamentos siendom actualmente recetados
-$contraindicaciones['principiosActivosRecetados'] = $nombrePrincipiosActivosRecetados;
+//Medicamentos conflictivos recetados por PA
+$contraindicaciones['medicamentosRecetadosConflictivos'] = $nombresMedicamentosRecetadosConflictivos;
 $json = array_merge($medicamento,$contraindicaciones);
 
 echo json_encode($json);
