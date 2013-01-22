@@ -19,13 +19,11 @@ function mostrarAlergias($alergias){
                 <tr><td>
    <table class="table table-hover">
    <tbody>';
-   echo "<tr><td><strong>Nombre</strong></td><td><strong>Sintomas</strong></td></tr>";
    foreach ($alergias as $datos => $dato)
    
    {
 	echo "<tr>";
 	echo "<td>".$dato['Alergia']." </td>";
-	echo "<td>".$dato['Sintomas']."</td>";
 	
 	
 	echo "</tr>";   
