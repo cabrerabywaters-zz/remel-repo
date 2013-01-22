@@ -1,3 +1,6 @@
+<?php include_once '../../../Capa_Controladores/unidadDeConsumo.php';
+ $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
+?>
 <!-- modalDetalleMedicamento-->
 <div id="detalleMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="detalleMedicamentoLabel" aria-hidden="true">
     
@@ -18,11 +21,26 @@
         </div><!-- div de la imagen -->
         
         <div class="row-fluid span11" id="detalleContenido">
-        <p>Cantidad: <input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></p>
-        <p>Cada :<input type="text" placeholder="frequencia" id="frecuenciaMedicamento">Horas (hrs)</p>
-        <p>Por :<input type="text" placeholder="periodo" id="periodoMedicamento">Dias</p>
-        <p>Comentario: </p>
-        <center> <textarea rows="2" style="width:90%"  id="comentarioMedicamento"></textarea></center>
+        <table>    
+            <tr>
+               <td>Cantidad:</td>
+               <td><input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></td>
+               <td><?php foreach($unidadDeConsumo as $unidad){echo "<option value='$unidad[ti]";?></td>
+            </tr>
+            <tr>
+               <td>Cada :</td>
+               <td><input type="text" placeholder="frequencia" id="frecuenciaMedicamento"></td>
+               <td>Horas (hrs)</td>
+            </tr>
+            <tr>
+                <td>Por :</td>
+                <td><input type="text" placeholder="periodo" id="periodoMedicamento"></td>
+                <td>Dias</td>
+            </tr>
+            <tr>
+                <td>Comentario:</td> 
+            </tr>
+            <tr><td colspan="3"><textarea rows="2" style="width:90%"  id="comentarioMedicamento"></textarea></td></tr>
         </div>
         
         </div><!-- fila contenido -->
