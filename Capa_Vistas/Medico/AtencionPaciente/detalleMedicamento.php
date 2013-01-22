@@ -25,7 +25,7 @@
             <tr>
                <td>Cantidad:</td>
                <td><input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></td>
-               <td><?php foreach($unidadDeConsumo as $unidad){echo "<option value='$unidad[ti]";?></td>
+               <td><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['tipo']."'>".$unidad['tipo']."</option>";}?></td>
             </tr>
             <tr>
                <td>Cada :</td>
@@ -41,6 +41,7 @@
                 <td>Comentario:</td> 
             </tr>
             <tr><td colspan="3"><textarea rows="2" style="width:90%"  id="comentarioMedicamento"></textarea></td></tr>
+        </table>
         </div>
         
         </div><!-- fila contenido -->
