@@ -361,7 +361,6 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
                     */
-                   alert(data)
                     var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento             
  		
 		   
