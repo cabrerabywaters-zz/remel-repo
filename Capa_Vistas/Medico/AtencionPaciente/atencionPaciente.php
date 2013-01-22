@@ -34,7 +34,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
             <div class="accordion-group"><!-- informacion medica registrada-->
                 <?php 
 		  //muestra alergias y condiciones del paciente
-		  include ("recetasAnteriores.php"); 
+		  include ("recetasVigentes.php"); 
                 ?>
             </div><!-- informacion medica registrada-->
         </div>

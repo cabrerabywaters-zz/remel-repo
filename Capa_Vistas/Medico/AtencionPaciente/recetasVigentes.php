@@ -1,6 +1,6 @@
     <div class="accordion-heading">
       <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-        Recetas Anteriores
+        Recetas Vigentes
       </a>
     </div>
     <div id="collapseThree" class="accordion-body collapse">
