@@ -10,6 +10,7 @@ function mostrarAlergias($alergias){
     echo'
   <div class="row-fluid">
   <div class="span6" id="alergias">
+  <center>
   <table>
    <thead>
                      <tr>
@@ -41,11 +42,11 @@ function mostrarAlergias($alergias){
  				 <button class="btn" type="button" id="boton_alergia">Añadir</button>
   			</div>
 			</form>
-  </td></tr></tfoot></table></div>';
+  </td></tr></tfoot></table></center></div>';
 }
   
 function mostrarCondiciones($condiciones){  
-    echo'<div class="span6">
+    echo'<div class="span6"><center>
   <table>
    <thead>
                      <tr>
@@ -70,7 +71,7 @@ echo'
   				<input id="Condiciones" type="text">
   				<button class="btn" type="button" id="boton_condiciones">Añadir</button></div>
 				</form></td></tr>	
-				</tfoot></table>
+				</tfoot></table></center>
 			</div> 
   </div>';
   } 
