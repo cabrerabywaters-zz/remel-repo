@@ -361,7 +361,7 @@ y el popup que muestra el detalle del medicamento
                     * en esta funcion se utilizan los valores de los campos de medicamento y
                     * se modifica el modal para llenar los campos relativos al medicamento
               	   */
-			alert(data);
+	
                     var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento             
  		
 		   
@@ -376,8 +376,8 @@ y el popup que muestra el detalle del medicamento
                         if(contraCondiciones != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con las siguientes Condiciones: <strong>'+contraCondiciones+'</strong></div>');}
                     var contraDiagnosticos = datos.diagnosticos;
                       if(contraDiagnosticos != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
-                    var contraPrincipiosRecetados = datos.principiosActivosRecetados;
-                        if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Principios Activos: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
+                    var contraPrincipiosRecetados = datos.medicamentosRecetadosConflictivos;
+                        if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes medicamentos en esta receta: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
                     
                     
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
