@@ -98,8 +98,8 @@ color:white}
 					$lugar=$_SESSION['logLugar']; 
 					echo $lugar['nombreLugar'].", ".$lugar['nombreSucursal'];					
 					
-                    
-                     echo   '<br> Consulta N° <span id="consulta">'.$_SESSION['idConsulta'].'</span>'; 
+                    // esto se puede eliminar si es que no van a utilizar el span para agregar algo
+                     echo   ' <span id="consulta" style="VISIBILITY:hidden;display:none">'.$_SESSION['idConsulta'].'</span>'; 
                                          ?>
                             </h2>
                     </center>
