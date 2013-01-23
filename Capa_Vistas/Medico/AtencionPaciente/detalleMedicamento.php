@@ -78,8 +78,19 @@ return ddiff+1; }
 $('input[name="fechaInicio"]').change(function(){
    var inicio = $(this).val();
    var fecha = new Date(inicio);
-   alert(dayofyear(fecha));
+   fecha = dayofyear(fecha)
    var unidadPeriodo = $('select[name="unidadPeriodo"]').val()
+   var periodo = $('#periodoMedicamento').val();
+   if(unidadPeriodo == "Dias"){
+       fecha = fecha + periodo // se suman los días
+   }
+   else if(unidadPeriodo == "Semanas"){ // se suman las semanas *7 días
+       fecha = fecha + periodo*7
+   }
+   else{ // se suman los meses por 30(30días por mes) ERROR!
+       fecha = fecha + periodo*30
+   }
+   alert('la fecha final es '+fecha)
 })
 
 
