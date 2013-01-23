@@ -174,7 +174,46 @@ foreach($sucursalesFuncionario as $sucursal){
 ?>
                 </div>
                 </div>
-                
+                            <script>
+                        /**
+                         * script que envía el valor de la institucion seleccionada
+                         * al archivo institucionesLog.php para ser guardado en la 
+                         * $_SESSION['institucionLog']
+                         */
+                            $("#contenedor_lugares_funcionario .lugar").click(function(){
+                                var postData = { //JSON con la info de la institucion que se envia
+                                    'idLugar': $(this).attr('idLugar'),
+                                    'nombreLugar': $(this).html(),
+                                    'rutSucursal': $(this).parent().attr('idSucursal'),
+                                    'nombreSucursal': $(this).parent().attr('nombreSucursal') 
+                                };
+	        
+                                $.ajax({ url: '../ajax/lugarLog.php',
+                                    data: postData,
+                                    type: 'post',
+                                    async: 'false',
+                                    success: function(output){                          
+                                        /**
+                                         * funcion que verifica el output de la consulta
+                                         * si es 1 re-dirige a la pagina correspondiente
+                                         * si es 0 muestra que la institucion no está bien seleccionada
+                                         */
+                                        
+                                        if(output == '1'){
+                                            window.location.href = "Funcionario/funcionarioIndex.php";
+                                        }
+                                        else{
+                                            $('#mensaje').html("<span style='color: red'>No se guardó la Institucion en la sesion!</span>");
+                                        }
+                                    }
+                                });//fin ajax
+                                
+                             
+                            });//fin click
+                    
+            
+                    </script>
+
                 
                 
                 <button class="btn btn-large btn-block" onClick="redireccionar()" type="button">Ingresar como Paciente</button>
