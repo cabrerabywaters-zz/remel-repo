@@ -30,17 +30,17 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
             <tr>
                <td>Cantidad:</td>
                <td><input type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento"></td>
-               <td><select name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['tipo']."'>".$unidad['tipo']."</option>";}?></select></td>
+               <td><select name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
             </tr>
             <tr>
                <td>Cada :</td>
                <td><input type="text" placeholder="frequencia" id="frecuenciaMedicamento"></td>
-               <td><select name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['Nombre']."'>".$unidad['Nombre']."</option>";}?></select></td>
+               <td><select name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
             </tr>
             <tr>
                 <td>Por :</td>
                 <td><input type="text" placeholder="periodo" id="periodoMedicamento"></td>
-                <td><select name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['Nombre']."'>".$unidad['Nombre']."</option>";}?></select></td>
+                <td><select name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
             </tr>
             <tr><td>Inicio</td><td><input type="text" name="fechaInicio" placeholder="Seleccionar inicio" class="datepicker"></tr>
             <tr><td>Fin</td><td><input type="text" name="fechaFin" class="datepicker"></tr>
@@ -78,24 +78,32 @@ return ddiff+1; }
 $('input[name="fechaInicio"]').change(function(){
    var inicio = $(this).val();
    var fecha = new Date(inicio);
-   fecha = dayofyear(fecha)
+   fecha = parseInt(dayofyear(fecha))
    var unidadPeriodo = $('select[name="unidadPeriodo"]').val()
-   var periodo = $('#periodoMedicamento').val();
-   if(unidadPeriodo == "Dias"){
-       fecha = fecha + periodo // se suman los días
-   }
-   else if(unidadPeriodo == "Semanas"){ // se suman las semanas *7 días
+   var periodo = parseInt($('#periodoMedicamento').val());
+   
+   if(unidadPeriodo == 2){
+       fecha = fecha+periodo     // se suman los días
+       
+    }
+   else if(unidadPeriodo == 3){ // se suman las semanas *7 días
        fecha = fecha + periodo*7
+       
    }
-   else{ // se suman los meses por 30(30días por mes) ERROR!
+   else if(unidadPeriodo == 1){// se suman los meses por 30(30días por mes) ERROR!
        fecha = fecha + periodo*30
+       
    }
+   
    function dateFromDay(year, day){
    var date = new Date(year, 0); // initialize a date in `year-01-01`
    return new Date(date.setDate(day)); // add the number of days
    }
+   
    fecha = dateFromDay(2013, fecha)
-   alert('la fecha final es '+fecha)
+   alert(fecha)
+   fecha = fecha.getMonth()+1+"/"+fecha.getDate()+"/"+fecha.getFullYear();   
+   $('input[name="fechaFin"]').val(fecha);
 })
 
 
