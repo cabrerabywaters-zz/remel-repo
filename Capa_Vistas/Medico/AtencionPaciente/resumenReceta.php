@@ -90,7 +90,6 @@
         var resumenPoder = [];
         
             $('.diagnostico').each(function(){// para cada diagnostico
-                var diagnostico = []; //creo objeto para cada diagnostico
 
                 var idDiagnostico = $(this).attr('iddiagnostico');
                 var tipoDiagnostico = $(this).attr('tipoDiagnostico')// tipoDiagnostico
@@ -98,14 +97,11 @@
 //                  alert("diagnostico n°: "+idDiagnostico+" tipo: "+tipoDiagnostico+" comentario: "+comentarioDiagnostico);
 //                  diagnostico.push({"idDiagnostico":idDiagnostico}); // se agrega el idDiagnostico al arreglo de diagnostico
 //                  alert("exito al pushear idDiagnostico!");
-                diagnostico.push({"idDiagnostico":idDiagnostico,"tipoDiagnostico":tipoDiagnostico,"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el tipoDiagnostico al arreglo de diagnostico
-//                  alert("exito al pushear tipoDiagnostico!");
-//                  diagnostico.push({"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el comentarioDiagnostico al arreglo
-//                  alert("exito al pushear comentarioDiagnostico!");
 
+                var medicamentos = [];
                 //busco todos los medicamentos asociados
                 $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
-                    var medicamento = []; // arreglo vacío donde se guardarán los datos del medicamento
+                    
                     var idMedicamento = $(this).attr('idMedicamento');
                     var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                     var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
@@ -114,7 +110,7 @@
 //                    alert("medicamento n°: "+idMedicamento+" desc: "+descripcionMedicamento+" cant: "+cantidadMedicamento+" freq: "+frecuenciaMedicamento+" per: "+periodoMedicamento+" coment: "+comentarioMedicamento)    
 //                    medicamento.push({"idMedicamento": idMedicamento});
 //                    alert("exito al pushear idMedicamento!");
-                    medicamento
+                    medicamentos
                     .push({"idMedicamento": idMedicamento, "cantidadMedicamento" : cantidadMedicamento,"frecuenciaMedicamento":frecuenciaMedicamento,"periodoMedicamento":periodoMedicamento,"comentarioMedicamento": comentarioMedicamento});
 //                    alert("exito al pushear cantidad!");
 //                    medicamento.push({"frecuenciaMedicamento" : frecuenciaMedicamento});
@@ -123,10 +119,14 @@
 //                    alert("exito al pushear periodo!");
 //                    medicamento.push({"comentariosMedicamento" : comentarioMedicamento});
 //                    alert("exito al pushear comentario!"+medicamentos);
-                diagnostico.push({"medicamento":medicamento})
+
                 });//end each medicamento
            
-           resumenPoder.push(diagnostico);
+                resumenPoder.push({"idDiagnostico":idDiagnostico,"tipoDiagnostico":tipoDiagnostico,"comentarioDiagnostico":comentarioDiagnostico,"medicamentos":medicamentos}); // se agrega el tipoDiagnostico al arreglo de diagnostico
+//                  alert("exito al pushear tipoDiagnostico!");
+//                  diagnostico.push({"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el comentarioDiagnostico al arreglo
+//                  alert("exito al pushear comentarioDiagnostico!");
+           
         }); // end each diagnostico
 
                 var sinDiagnostico = [];
