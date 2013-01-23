@@ -16,19 +16,15 @@ class HistorialMedico  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idDiagnostico,$idConsulta,$idTipo) {
-    	
-        
-       
-        $queryString ='Insert into Historiales_medicos(Diagnosticos_idDiagnostico,Consulta_Id_consulta,Tipo_idTipo) Values("'.$idDiagnostico.'","'.$idConsulta.'","'.$idTipo.'");' ;
-        $query = CallQuery($queryString);
-        if($query){
-            
-            return true;
-                    }
-                    else{
-                        return false;
-                    }
+    public static function Insertar($idConsulta,$idDiagnostico,$idTipo,$comentario) {
+    	$datosCreacion = array(
+	                                array('Diagnosticos_idDiagnostico',$idDiagnostico),
+				        array('Consulta_Id_consulta',$idConsulta]),
+					array('Tipo_idTipo',$idTipo),
+					array('Comentario',$comentario),									                                );	
+	$queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $query = CallQuery(queryString);
+	return $query;
     }
 
     

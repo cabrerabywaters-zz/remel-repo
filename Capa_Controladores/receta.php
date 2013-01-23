@@ -13,23 +13,19 @@ class Receta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar() {
+    public static function Insertar($idLugar, $ip, $tipoReceta, $idConsulta, ) {
     	$datosCreacion = array(
                                 array('Fecha_Emision','NOW()'),
-                                array('Recetacol',$_POST['Recetacol']),
-                                array('Institucion_Emision',$_POST['institucion_emision']),
-                                array('DireccionIP',$_POST['direccion_ip']),
-                                array('Tipo_Receta_idTipo_Receta',$_POST['idTipo_Receta']),
-                                array('Fecha_Vencimiento',$_POST['fecha_vencimiento']),
-                                array('Folio_RP',$_POST['Folio_RP']),
-                                array('Consulta_Id_consulta',$_POST['id_consulta']),
-                                array('Estado',$_POST['estado']),
-                                array('Causa_eliminacion',$_POST['causa_eliminacion']),
-                                array('Fecha_eliminacion',$_POST['fecha_eliminacion']),
+                                array('Institucion_Emision',$idLugar]),
+                                array('DireccionIP',$ip),
+                                array('Tipo_Receta_idTipo_Receta',$tipoReceta),
+                                array('Consulta_Id_consulta',$idConsulta),
+                                array('Estado','0']),
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
-        $query = CallQuery($queryString);
+        $query = CallQueryReturnID($queryString);
+	return $query;
     }
 
     /**

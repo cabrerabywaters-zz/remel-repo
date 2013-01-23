@@ -1,4 +1,8 @@
 <?php
 
-var_dump($_POST);
+$datos = $_POST['resumenPoder'];
+
+echo json_decode($datos);
+
+
 ?>
