@@ -107,49 +107,66 @@
                     var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                     var periodoMedicamento = $(this).attr('periodoMedicamento');
                     var comentarioMedicamento = $(this).attr('comentarioMedicamento');
-//                    alert("medicamento n°: "+idMedicamento+" desc: "+descripcionMedicamento+" cant: "+cantidadMedicamento+" freq: "+frecuenciaMedicamento+" per: "+periodoMedicamento+" coment: "+comentarioMedicamento)    
-//                    medicamento.push({"idMedicamento": idMedicamento});
-//                    alert("exito al pushear idMedicamento!");
+                    var unidadDeConsumo = $(this).attr('unidadDeConsumo');
+                    var unidadFrecuencia = $(this).attr('unidadFrecuencia');
+                    var unidadPeriodo = $(this).attr('unidadPeriodo');
+                    var fechaInicio = $(this).attr('fechaInicio');
+                    var fechaFin = $(this).attr('fechaFin');
+
                     medicamentos
-                    .push({"idMedicamento": idMedicamento, "cantidadMedicamento" : cantidadMedicamento,"frecuenciaMedicamento":frecuenciaMedicamento,"periodoMedicamento":periodoMedicamento,"comentarioMedicamento": comentarioMedicamento});
-//                    alert("exito al pushear cantidad!");
-//                    medicamento.push({"frecuenciaMedicamento" : frecuenciaMedicamento});
-//                    alert("exito al pushear frecuencia!");
-//                    medicamento.push({"periodoMedicamento" : periodoMedicamento});
-//                    alert("exito al pushear periodo!");
-//                    medicamento.push({"comentariosMedicamento" : comentarioMedicamento});
-//                    alert("exito al pushear comentario!"+medicamentos);
+                    .push({
+                        "idMedicamento": idMedicamento, 
+                        "cantidadMedicamento" : cantidadMedicamento,
+                        "frecuenciaMedicamento": frecuenciaMedicamento,
+                        "periodoMedicamento": periodoMedicamento, 
+                        "comentarioMedicamento": comentarioMedicamento, 
+                        "unidadDeConsumo" : unidadDeConsumo,
+                        "unidadFrecuencia" : unidadFrecuencia,
+                        "unidadPeriodo" : unidadPeriodo,
+                        "fechaInicio" : fechaInicio,
+                        "fechaFin" : fechaFin
+                    });
 
                 });//end each medicamento
            
-                resumenPoder.push({"idDiagnostico":idDiagnostico,"tipoDiagnostico":tipoDiagnostico,"comentarioDiagnostico":comentarioDiagnostico,"medicamentos":medicamentos}); // se agrega el tipoDiagnostico al arreglo de diagnostico
-//                  alert("exito al pushear tipoDiagnostico!");
-//                  diagnostico.push({"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el comentarioDiagnostico al arreglo
-//                  alert("exito al pushear comentarioDiagnostico!");
-           
+                resumenPoder.push({
+                    "idDiagnostico" : idDiagnostico,
+                    "tipoDiagnostico" : tipoDiagnostico,
+                    "comentarioDiagnostico" : comentarioDiagnostico,
+                    "medicamentos" : medicamentos
+                }); // se agrega el tipoDiagnostico al arreglo de diagnostico
         }); // end each diagnostico
 
                 var sinDiagnostico = [];
         $('div[diagnosticoAsociado="0"]').each(function(){//para cada medicamento sin diagnostico asociado
-             var medicamentoRecetado = [];   
                 var idMedicamento = $(this).attr('idMedicamento');
                 var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                 var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                 var periodoMedicamento = $(this).attr('periodoMedicamento');
                 var comentarioMedicamento = $(this).attr('comentarioMedicamento');
-            medicamentoRecetado.push({"idMedicamento": idMedicamento});
-            medicamentoRecetado.push({"cantidadMedicamento":cantidadMedicamento});
-            medicamentoRecetado.push({"frecuenciaMedicamento":frecuenciaMedicamento});
-            medicamentoRecetado.push({"periodoMedicamento": periodoMedicamento});
-            medicamentoRecetado.push({"comentarioMedicamento":comentarioMedicamento});  
+                var unidadDeConsumo = $(this).attr('unidadDeConsumo');
+                var unidadFrecuencia = $(this).attr('unidadFrecuencia');
+                var unidadPeriodo = $(this).attr('unidadPeriodo');
+                var fechaInicio = $(this).attr('fechaInicio');
+                var fechaFin = $(this).attr('fechaFin');
             
-            sinDiagnostico.push({"medicamento":medicamentoRecetado})
+            sinDiagnostico.push({
+                "idMedicamento": idMedicamento,
+                "cantidadMedicamento":cantidadMedicamento,
+                "frecuenciaMedicamento":frecuenciaMedicamento, 
+                "periodoMedicamento": periodoMedicamento,
+                "comentarioMedicamento":comentarioMedicamento, 
+                "unidadDeConsumo" : unidadDeConsumo,
+                "unidadFrecuencia" : unidadFrecuencia,
+                "unidadPeriodo" : unidadPeriodo,
+                "fechaInicio" : fechaInicio,
+                "fechaFin" : fechaFin
+            })
         
         })//end each medicamento sin diagnostico asociado
-        resumenPoder.push({"sinDiagnostico":sinDiagnostico})
         
         $.ajax({
-         data: {"resumenPoder" : resumenPoder},
+         data: {"resumenPoder" : resumenPoder, "sinDiagnostico": sinDiagnostico},
          url: '../../../ajax/ingresarReceta.php',
          type: "POST",
          async: false,
