@@ -428,11 +428,16 @@ y el popup que muestra el detalle del medicamento
         var periodoMedicamento = $('#periodoMedicamento').val();
         var comentarioMedicamento = $('#comentarioMedicamento').val();
         var diagnosticoAsociado = $('#diagnosticoAsociado').val();
+        var unidadDeConsumo = $('select[name="unidadDeConsumo"]').val();
+        var unidadFrecuencia = $('select[name="unidadFrecuencia"]').val();
+        var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
+        var fechaInicio = $('input[name="fechaInicio"]').val();
+        var fechaFin = $('input[name="fechaFin"]').val();
         
         // se arma el pill con la informacion del medicamento
         var pill = '<div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
-        " cantidadMedicamento="'+cantidadMedicamento+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" periodoMedicamento="'+periodoMedicamento+'"\n\
-        comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'">\n\
+        " cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
+        comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombreComercial+'</strong>\n\
         <a href=# class="editMedicamento pull-right" rel="tooltip" title="Editar Medicamento"><i class="icon-edit"></i> </a>'
         
