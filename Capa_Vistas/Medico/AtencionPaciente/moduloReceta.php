@@ -36,9 +36,9 @@ y el popup que muestra el detalle del medicamento
                  
             <div class="row-fluid span12">
                 <div id="busqueda_avanzada" class="collapse">
-                        <strong><p>Categorias</p></strong>
+                        <strong><p>Categorias ATC</p></strong>
                         <select id="clase" multiple="multiple" class ="span5"></select>
-                        <strong><p>Sub Categorias</p></strong>
+                        <strong><p>Sub Categorias ATC</p></strong>
                         <select id="subclase" multiple="multiple" class ="span7"></select>
                         <strong><p>Laboratorio</p></strong>
                         <select id="laboratorio" multiple="multiple" class="span5"></select>
@@ -189,9 +189,7 @@ y el popup que muestra el detalle del medicamento
                 $("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
                 $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
-		$("#boton_medicamentos").attr('enabled', 'enabled');
-               
-               
+		               
                //colapsa la busqueda avanzada cuando se elije un medicamento para facilitar su insercion
                 if($('#busqueda_avanzada').attr('class')=="collapse"){
                 }
@@ -218,9 +216,6 @@ y el popup que muestra el detalle del medicamento
                     },
                     type: "post",
                     success: function( data ) {
-                        $('#boton_medicamentos').removeAttr('disabled');
-
-
                         var output = jQuery.parseJSON(data);
 
                         response( $.map( output, function( item ) {
@@ -241,7 +236,7 @@ y el popup que muestra el detalle del medicamento
                 });
             },
             select: function(event, ui){
-
+                $('#boton_medicamentos').removeAttr('disabled');
                 $('#Medicamentos').removeAttr('identificador').attr('identificador',ui.item.id2)
                 
                 //aquí se hace el ajax para poder indexsar los medicamentos que tienen ese principio activo
@@ -262,9 +257,9 @@ y el popup que muestra el detalle del medicamento
                                 }
                         );
                         }//success
-                });//cierra ajax extraño 
-                }
-            }
+                });//end ajax
+                }//end if
+            } //end select
             ,
             minLength: 2,
             open: function() {
@@ -371,13 +366,13 @@ y el popup que muestra el detalle del medicamento
                     
                     
                     var contraAlergias = datos.alergias;
-                        if(contraAlergias != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con alergia a: <strong>'+contraAlergias+'</strong></div>');}
+                        if(contraAlergias != ""){ $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con alergia a: <strong>'+contraAlergias+'</strong></div>');}
                     var contraCondiciones = datos.condiciones;
-                        if(contraCondiciones != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con las siguientes Condiciones: <strong>'+contraCondiciones+'</strong></div>');}
+                        if(contraCondiciones != ""){ $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con las siguientes Condiciones: <strong>'+contraCondiciones+'</strong></div>');}
                     var contraDiagnosticos = datos.diagnosticos;
-                      if(contraDiagnosticos != ""){ $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
+                      if(contraDiagnosticos != ""){ $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con los siguientes Diagnosticos: <strong>'+contraDiagnosticos+'</strong></div>');}
                     var contraPrincipiosRecetados = datos.medicamentosRecetadosConflictivos;
-                        if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-warning">Contraindicado con los siguientes medicamentos en esta receta: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
+                        if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con los siguientes medicamentos en esta receta: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
                     
                     
                     $('#detalleMedicamento').modal('show'); // se muestra el modal
