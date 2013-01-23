@@ -27,9 +27,10 @@
                 if($idMedico != false){
                     $_SESSION['idMedicoLog'] = $idMedico;
                 }
-                $idFuncionario = Funcionario::EncontrarFuncionario($rut)[0];
+                $idFuncionario = Funcionario::EncontrarFuncionario($rut);
                 if($idFuncionario != false){
-                    $_SESSION['idFuncionarioLog'] = $idFuncionario;
+                    $_SESSION['idFuncionarioLog'] = $idFuncionario[0];
+                    $_SESSION['funcionarioCategoria'] = $idFuncionario[1];
                 }
 
 		echo "1";
