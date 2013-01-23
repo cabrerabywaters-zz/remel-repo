@@ -19,7 +19,7 @@ class HistorialMedico  {
     public static function Insertar($idConsulta,$idDiagnostico,$idTipo,$comentario) {
     	$datosCreacion = array(
 	                                array('Diagnosticos_idDiagnostico',$idDiagnostico),
-				        array('Consulta_Id_consulta',$idConsulta]),
+				        array('Consulta_Id_consulta',$idConsulta),
 					array('Tipo_idTipo',$idTipo),
 					array('Comentario',$comentario),									                                );	
 	$queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);

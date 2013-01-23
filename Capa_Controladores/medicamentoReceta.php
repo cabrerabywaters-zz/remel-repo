@@ -15,7 +15,7 @@ class MedicamentoReceta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($cantidad, $frencuencia, $unidadFrecuencia, $fechaInicio, $periodo, $unidadPeriodo, $unidadConsumo, $via) {
+    public static function Insertar($cantidad, $frencuencia, $unidadFrecuencia, $fechaInicio, $periodo, $unidadPeriodo, $unidadConsumo, $via, $comentario) {
     	$datosCreacion = array(
                              		array('Cantidad',$cantidad),
                              		array('Frecuencia',$frecuencia),
@@ -23,6 +23,7 @@ class MedicamentoReceta  {
                              		array('Periodo',$periodo),
 					array('Unidad_Periodo_ID',$unidadPeriodo),
 					array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadConsumo)
+					array('Comentario',$comentario)
                             );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);

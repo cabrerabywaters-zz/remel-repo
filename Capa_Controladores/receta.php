@@ -13,14 +13,14 @@ class Receta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idLugar, $ip, $tipoReceta, $idConsulta, ) {
+    public static function Insertar($idLugar, $ip, $tipoReceta, $idConsulta ) {
     	$datosCreacion = array(
                                 array('Fecha_Emision','NOW()'),
-                                array('Institucion_Emision',$idLugar]),
+                                array('Lugar_de_Atencion_idLugar_de_Atencion',$idLugar),
                                 array('DireccionIP',$ip),
                                 array('Tipo_Receta_idTipo_Receta',$tipoReceta),
                                 array('Consulta_Id_consulta',$idConsulta),
-                                array('Estado','0']),
+                                array('Estado','0'),
                                 );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
