@@ -87,42 +87,76 @@
     *{diagnostico1: {medicamento1:{}, medicamento2:{}...}, diagnostico2:{medicamento3:{},medicamento4:{}} 
     */
    $('.confirmarEmision').click(function(){
-        var resumenReceta = {};
+        var resumenPoder = [];
         
-        $('.diagnostico').each(function(){// para cada diagnostico
-            var idDiagnostico = $(this).attr('iddiagnostico');
-            var diagnostico = {}; //creo objeto para cada diagnostico
-            var tipoDiagnostico = $(this).attr('tipoDiagnostico')// tipoDiagnostico
-            var comentarioDiagnostico = $(this).attr('comentarioDiagnostico'); //comentario del diagnostico
-            
-            diagnostico.idDiagnostico = idDiagnostico; // se agrega el idDiagnostico al arreglo de diagnostico
-            diagnostico.tipoDiagnostico = tipoDiagnostico; // se agrega el tipoDiagnostico al arreglo de diagnostico
-            diagnostico.comentarioDiagnostico = comentarioDiagnostico // se agrega el comentarioDiagnostico al arreglo
-            
-            
-            var medicamentos = {};
-            //busco todos los medicamentos asociados
-            $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
+            $('.diagnostico').each(function(){// para cada diagnostico
+                var diagnostico = []; //creo objeto para cada diagnostico
+
+                var idDiagnostico = $(this).attr('iddiagnostico');
+                var tipoDiagnostico = $(this).attr('tipoDiagnostico')// tipoDiagnostico
+                var comentarioDiagnostico = $(this).attr('comentarioDiagnostico'); //comentario del diagnostico
+//                  alert("diagnostico n°: "+idDiagnostico+" tipo: "+tipoDiagnostico+" comentario: "+comentarioDiagnostico);
+//                diagnostico.push({"idDiagnostico":idDiagnostico}); // se agrega el idDiagnostico al arreglo de diagnostico
+//                  alert("exito al pushear idDiagnostico!");
+                diagnostico.push({"tipoDiagnostico":tipoDiagnostico,"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el tipoDiagnostico al arreglo de diagnostico
+//                  alert("exito al pushear tipoDiagnostico!");
+//                diagnostico.push({"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el comentarioDiagnostico al arreglo
+//                  alert("exito al pushear comentarioDiagnostico!");
+
+                //busco todos los medicamentos asociados
+                $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
+                    var medicamento = []; // arreglo vacío donde se guardarán los datos del medicamento
+                    var idMedicamento = $(this).attr('idMedicamento');
+                    var cantidadMedicamento = $(this).attr('cantidadMedicamento');
+                    var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
+                    var periodoMedicamento = $(this).attr('periodoMedicamento');
+                    var comentarioMedicamento = $(this).attr('comentarioMedicamento');
+//                    alert("medicamento n°: "+idMedicamento+" desc: "+descripcionMedicamento+" cant: "+cantidadMedicamento+" freq: "+frecuenciaMedicamento+" per: "+periodoMedicamento+" coment: "+comentarioMedicamento)    
+//                    medicamento.push({"idMedicamento": idMedicamento});
+//                    alert("exito al pushear idMedicamento!");
+                    medicamento
+                    .push({"cantidadMedicamento" : cantidadMedicamento,"frecuenciaMedicamento":frecuenciaMedicamento,"periodoMedicamento":periodoMedicamento,"comentarioMedicamento": comentarioMedicamento});
+//                    alert("exito al pushear cantidad!");
+//                    medicamento.push({"frecuenciaMedicamento" : frecuenciaMedicamento});
+//                    alert("exito al pushear frecuencia!");
+//                    medicamento.push({"periodoMedicamento" : periodoMedicamento});
+//                    alert("exito al pushear periodo!");
+//                    medicamento.push({"comentariosMedicamento" : comentarioMedicamento});
+//                  alert("exito al pushear comentario!"+medicamentos);
+                diagnostico.push({idMedicamento: idMedicamento,"medicamento":medicamento})
+                });//end each medicamento
+           
+           resumenPoder.push({idDiagnostico : idDiagnostico,"contenido" :diagnostico});
+        }); // end each diagnostico
+
+                var sinDiagnostico = [];
+        $('div[diagnosticoAsociado="0"]').each(function(){//para cada medicamento sin diagnostico asociado
+             var medicamentoRecetado = [];   
                 var idMedicamento = $(this).attr('idMedicamento');
-                var descripcionMedicamento = $(this).attr('descripcionMedicamento');
                 var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                 var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                 var periodoMedicamento = $(this).attr('periodoMedicamento');
                 var comentarioMedicamento = $(this).attr('comentarioMedicamento');
-                medicamentos.idMedicamento = idMedicamento;
-                medicamentos.descripcionMedicamento = descripcionMedicamento ; 
-                medicamentos.cantidadMedicamento = cantidadMedicamento;
-                medicamentos.frecuenciaMedicamento = frecuenciaMedicamento;
-                medicamentos.periodoMedicamento = periodoMedicamento;
-                medicamentos.comentariosMedicamento = comentarioMedicamento;
+            medicamentoRecetado.push({"idMedicamento": idMedicamento});
+            medicamentoRecetado.push({"cantidadMedicamento":cantidadMedicamento});
+            medicamentoRecetado.push({"frecuenciaMedicamento":frecuenciaMedicamento});
+            medicamentoRecetado.push({"periodoMedicamento": periodoMedicamento});
+            medicamentoRecetado.push({"comentarioMedicamento":comentarioMedicamento});  
             
-            });//end each medicamento
-            diagnostico.medicamentos = medicamentos;
-        }); // end each diagnostico
-
+            sinDiagnostico.push({"medicamento":medicamentoRecetado})
+        
+        })//end each medicamento sin diagnostico asociado
+        resumenPoder.push({"sinDiagnostico":sinDiagnostico})
+        
         $.ajax({
-         data: resumenReceta,
-         
-        })
+         data: {"resumenPoder" : resumenPoder},
+         url: '../../../ajax/ingresarReceta.php',
+         type: "POST",
+         async: false,
+         success: function(output){
+            alert(output);
+         }
+           
+        });
    }); // end click
 </script><!-- script que genera el listado del resumen de la receta-->
