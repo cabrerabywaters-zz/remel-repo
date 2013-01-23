@@ -47,7 +47,8 @@ class UnidadDeConsumo {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'tipo',
+            'idUnidad_de_Consumo',                            
+            'tipo',
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
