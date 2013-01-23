@@ -2,6 +2,7 @@
 
 include_once(dirname(__FILE__) . '/sessionCheck.php');
 include_once(dirname(__FILE__) . '/../Capa_Controladores/medicoHasSucursal.php');
+include_once(dirname(__FILE__) . '/../Capa_Controladores/sucursalesHasFuncionarios.php');
 
 iniciarCookie();
 verificarIP();
@@ -9,12 +10,20 @@ verificarIP();
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 
-if ($_SESSION['idMedicoLog'] != null) {
-    $idMedico = $_SESSION['idMedicoLog'][0];
+if ($_SESSION['idMedicoLog'] != null || $_SESSION['idFuncionarioLog'] != null) {
+    if ($_SESSION['idMedicoLog'] != null) {
+        $idMedico = $_SESSION['idMedicoLog'][0];
 
-    $_SESSION['lugares'] = MedicoHasSucursal::SucursalesPorIdMedico($idMedico);
+        $_SESSION['lugares'] = MedicoHasSucursal::SucursalesPorIdMedico($idMedico);
+    }
+    if ($_SESSION['idFuncionarioLog'] != null) {
+        $idFuncionario = $_SESSION['idFuncionarioLog'];
 
-    $page = "../Capa_Vistas/decisionDoctor.php";
+        $_SESSION['lugaresFuncionario'] = SucursalesHasFuncionarios::SucursalesPorIdFuncionario($idFuncionario);
+
+    }
+        $page = "../Capa_Vistas/decision.php";
+
 } elseif ($_SESSION['idPacienteLog'] != null) {
     $page = "../Capa_Vistas/Paciente/paginaPaciente.php";
 } else {

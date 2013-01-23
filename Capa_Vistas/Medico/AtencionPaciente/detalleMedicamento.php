@@ -42,6 +42,8 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                 <td><input type="text" placeholder="periodo" id="periodoMedicamento"></td>
                 <td><select name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['Nombre']."'>".$unidad['Nombre']."</option>";}?></select></td>
             </tr>
+            <tr><td>Inicio</td><td><input type="text" name="fechaInicio" placeholder="Seleccionar inicio" class="datepicker"></tr>
+            <tr><td>Fin</td><td><input type="text" name="fechaFin" class="datepicker"></tr>
             <tr>
                 <td>Comentario:</td> 
             </tr>
@@ -63,3 +65,23 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
     </div>
 
 </div><!-- fin popup informacion del medicamento -->
+
+<script>
+ function dayofyear(d) {   // d is a Date object
+var yn = d.getFullYear();
+var mn = d.getMonth();
+var dn = d.getDate();
+var d1 = new Date(yn,0,1,12,0,0); // noon on Jan. 1
+var d2 = new Date(yn,mn,dn,12,0,0); // noon on input date
+var ddiff = Math.round((d2-d1)/864e5);
+return ddiff+1; }   
+$('input[name="fechaInicio"]').change(function(){
+   var inicio = $(this).val();
+   var fecha = new Date(inicio);
+   alert(dayofyear(fecha));
+   var unidadPeriodo = $('select[name="unidadPeriodo"]').val()
+})
+
+
+
+</script>

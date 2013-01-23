@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php
 include '../ajax/sessionCheck.php';
+include_once(dirname(__FILE__) . '/../Capa_Controladores/sucursalesHasFuncionarios.php');
+include_once(dirname(__FILE__) . '/../Capa_Controladores/funcionario.php');
 
 iniciarCookie();
 verificarIP();
+print_r($_SESSION);
 ?>
 <html lang="en">
     <head>
@@ -146,6 +149,35 @@ foreach($sucursales as $sucursal){
                     </script>
 
                 </div>
+                
+                                <button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#funcionario"><i class="icon-chevron-down icon-white"></i> Ingresar como Funcionario</button>
+                <div id="funcionario" class="collapse" data-parent="#ingresoFuncionario">
+                <div id="contenedor_lugares_funcionario">    
+<?php
+/**
+ * genero el listado de las instituciones desde el arreglo
+ * de sesion instituciones (contiene todas las instituciones de 
+ * el medico conectado
+ */
+
+
+if (isset($_SESSION['lugaresFuncionario']) == "true") {
+$sucursalesFuncionario = $_SESSION['lugaresFuncionario'];
+
+foreach($sucursalesFuncionario as $sucursal){
+    echo "<div idSucursal='".$sucursal['RUT']."' nombreSucursal='".$sucursal['Nombre']."Funcionario' class='alert alert-success'><strong>".$sucursal['Nombre']."</strong>";
+    foreach($sucursal['Lugares'] as $lugar){
+        echo "<button class='btn btn-block lugar' type='button' idLugar='".$lugar['idLugar_de_Atencion']."Funcionario'>".$lugar['Nombre']."</button>";
+    }
+    echo "</div>";
+}
+}//end if
+?>
+                </div>
+                </div>
+                
+                
+                
                 <button class="btn btn-large btn-block" onClick="redireccionar()" type="button">Ingresar como Paciente</button>
 
                 <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
