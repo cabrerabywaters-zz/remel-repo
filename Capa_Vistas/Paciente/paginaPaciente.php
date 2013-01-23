@@ -9,7 +9,7 @@ include('./../pacienteHeader.php');
   
     <div class="tab-content"><!-- contenido del panel 1-->
     
-    
+
     <div class="tab-pane active img-rounded" id="tabInfoPersonal"><!-- tab info personal-->
       
         <div class="accordion" id="accordion1"><!-- accordion info personal -->
@@ -68,6 +68,20 @@ include('./../pacienteHeader.php');
         </div><!-- fin acordion info personal-->
     
     </div><!-- Fin tab info personal-->
+    <div class="tab-pane img-rounded" id="infoRelevante"><!-- tab de info Revelante-->
+      
+        <div class="accordion" id="accordion5"><!-- accordion info Relevante
+         -->
+            <div class="accordion-group">
+           <!-- Diagnosticos del paciente-->
+                 <?php 
+		  // muestra los detalles de paciente
+		  include ("informacionRelevante.php"); 
+                  ?>
+            </div><!-- fin diagnosticos del paciente-->
+        </div><!-- fin acordion info Diagnostico-->
+    
+    </div><!-- Fin tab Diagnostico--> 
  <!-- </div><!--fin div contenido panel-->
  <!-- </div><!-- fin contenedor general -->
     
