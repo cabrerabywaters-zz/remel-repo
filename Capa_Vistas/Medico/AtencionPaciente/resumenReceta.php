@@ -126,7 +126,7 @@
                 diagnostico.push({"medicamento":medicamento})
                 });//end each medicamento
            
-           resumenPoder.push({"contenido" :diagnostico});
+           resumenPoder.push(diagnostico);
         }); // end each diagnostico
 
                 var sinDiagnostico = [];
@@ -154,6 +154,7 @@
          type: "POST",
          async: false,
          success: function(output){
+            alert(output)
             if(output == "1"){
                 //si el registro de la receta se confirma ( = 1)
             }
