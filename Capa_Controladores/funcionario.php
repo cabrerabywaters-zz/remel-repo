@@ -95,6 +95,15 @@ class Funcionario {
         $query = CallQuery($queryString);
     }
 
+    public static function EncontrarFuncionario($rut){
+        $queryString = "SELECT idFuncionario FROM Funcionarios WHERE Persona_RUN = ".$rut.";";
+        $res = CallQuery($queryString);
+        if ($res->num_rows == 1) {
+            return $res->fetch_row();
+        }
+        else
+            return false;
+    }
 }
 
 ?>
