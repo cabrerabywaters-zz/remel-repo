@@ -84,28 +84,24 @@
     *Funcion que se ejecuta al hacer click en "Firmar Emisión"
     *se debe obtener todos los diagnosticos con sus medicamentos 
     *correspondientes y escribir el JSON que los contenga para ser enviados
-    *{diagnostico1: {medicamento1:{}, medicamento2:{}...}, diagnostico2:{medicamento3:{},medicamento4:{}} 
+    *[{diagnostico1: [{medicamento1:[{}], medicamento2:[{}]...}], diagnostico2:{medicamento3:{},medicamento4:{}} 
     */
    $('.confirmarEmision').click(function(){
         var resumenPoder = [];
         
             $('.diagnostico').each(function(){// para cada diagnostico
-                var diagnostico = []; //creo objeto para cada diagnostico
 
                 var idDiagnostico = $(this).attr('iddiagnostico');
                 var tipoDiagnostico = $(this).attr('tipoDiagnostico')// tipoDiagnostico
                 var comentarioDiagnostico = $(this).attr('comentarioDiagnostico'); //comentario del diagnostico
 //                  alert("diagnostico n°: "+idDiagnostico+" tipo: "+tipoDiagnostico+" comentario: "+comentarioDiagnostico);
-//                diagnostico.push({"idDiagnostico":idDiagnostico}); // se agrega el idDiagnostico al arreglo de diagnostico
+//                  diagnostico.push({"idDiagnostico":idDiagnostico}); // se agrega el idDiagnostico al arreglo de diagnostico
 //                  alert("exito al pushear idDiagnostico!");
-                diagnostico.push({"tipoDiagnostico":tipoDiagnostico,"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el tipoDiagnostico al arreglo de diagnostico
-//                  alert("exito al pushear tipoDiagnostico!");
-//                diagnostico.push({"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el comentarioDiagnostico al arreglo
-//                  alert("exito al pushear comentarioDiagnostico!");
 
+                var medicamentos = [];
                 //busco todos los medicamentos asociados
                 $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
-                    var medicamento = []; // arreglo vacío donde se guardarán los datos del medicamento
+                    
                     var idMedicamento = $(this).attr('idMedicamento');
                     var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                     var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
@@ -114,19 +110,23 @@
 //                    alert("medicamento n°: "+idMedicamento+" desc: "+descripcionMedicamento+" cant: "+cantidadMedicamento+" freq: "+frecuenciaMedicamento+" per: "+periodoMedicamento+" coment: "+comentarioMedicamento)    
 //                    medicamento.push({"idMedicamento": idMedicamento});
 //                    alert("exito al pushear idMedicamento!");
-                    medicamento
-                    .push({"cantidadMedicamento" : cantidadMedicamento,"frecuenciaMedicamento":frecuenciaMedicamento,"periodoMedicamento":periodoMedicamento,"comentarioMedicamento": comentarioMedicamento});
+                    medicamentos
+                    .push({"idMedicamento": idMedicamento, "cantidadMedicamento" : cantidadMedicamento,"frecuenciaMedicamento":frecuenciaMedicamento,"periodoMedicamento":periodoMedicamento,"comentarioMedicamento": comentarioMedicamento});
 //                    alert("exito al pushear cantidad!");
 //                    medicamento.push({"frecuenciaMedicamento" : frecuenciaMedicamento});
 //                    alert("exito al pushear frecuencia!");
 //                    medicamento.push({"periodoMedicamento" : periodoMedicamento});
 //                    alert("exito al pushear periodo!");
 //                    medicamento.push({"comentariosMedicamento" : comentarioMedicamento});
-//                  alert("exito al pushear comentario!"+medicamentos);
-                diagnostico.push({idMedicamento: idMedicamento,"medicamento":medicamento})
+//                    alert("exito al pushear comentario!"+medicamentos);
+
                 });//end each medicamento
            
-           resumenPoder.push({idDiagnostico : idDiagnostico,"contenido" :diagnostico});
+                resumenPoder.push({"idDiagnostico":idDiagnostico,"tipoDiagnostico":tipoDiagnostico,"comentarioDiagnostico":comentarioDiagnostico,"medicamentos":medicamentos}); // se agrega el tipoDiagnostico al arreglo de diagnostico
+//                  alert("exito al pushear tipoDiagnostico!");
+//                  diagnostico.push({"comentarioDiagnostico":comentarioDiagnostico}); // se agrega el comentarioDiagnostico al arreglo
+//                  alert("exito al pushear comentarioDiagnostico!");
+           
         }); // end each diagnostico
 
                 var sinDiagnostico = [];
@@ -154,7 +154,13 @@
          type: "POST",
          async: false,
          success: function(output){
-            alert(output);
+            alert(output)
+            if(output == "1"){
+                //si el registro de la receta se confirma ( = 1)
+            }
+            else{
+                // si el registro de la receta arroja algun error ( = 0)
+            }
          }
            
         });

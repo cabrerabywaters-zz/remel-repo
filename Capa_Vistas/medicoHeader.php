@@ -11,7 +11,7 @@
         <!-- styles -->       
         <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet"><!-- css jQuery UI-->
         <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"><!-- css bootstrap-->
-        
+        <link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet"><!-- css bootstrap-->
         
         <style> 
         /* Estilos de cargando de la barra respectiva*/
@@ -78,7 +78,7 @@ color:white}
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!-- CDN jquery UI-->
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script></script><!-- CDN bootstrap-->
         <!-- fin script js externos -->
-
+        <script> $(document).ready(function(){$('.datepicker').datepicker();});</script>   
     </head>
     <body>
         
