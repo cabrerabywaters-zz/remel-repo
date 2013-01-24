@@ -96,7 +96,7 @@ class Funcionario {
     }
 
     public static function EncontrarFuncionario($rut){
-        $queryString = "SELECT idFuncionario, Categoria_Funcionario_idCategoria FROM Funcionarios WHERE Persona_RUN = ".$rut.";";
+        $queryString = "SELECT idFuncionario, Categoria_Funcionario_idCategoria_Funcionario FROM Funcionarios WHERE Persona_RUN = ".$rut."";
         $res = CallQuery($queryString);
         if ($res->num_rows == 1) {
             return $res->fetch_row();

@@ -10,7 +10,9 @@
 	session_unset();
 
 	$rut = validadorRUT($_POST['rutUsuario']);
+        $rut = 179944634;
 	$pass = $_POST['passUsuario'];
+        $pass = '1234';
 	
 	if(!Persona::VerificarClave($rut,$pass)){
 		echo "0";
@@ -35,4 +37,5 @@
 
 		echo "1";
 	}
+        print_r($_SESSION);
 ?>
