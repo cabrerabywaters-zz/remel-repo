@@ -89,12 +89,28 @@ class Alergia {
         $query = CallQuery($queryString);
     }
 
-    public static function BuscarAlergiaLike($Nombre) {
+    public static function BuscarAlergiaLike($Nombre,$id) {
 
-      		        $queryString = 'SELECT Nombre, idAlergia
-										FROM  Alergias
-										WHERE  Nombre LIKE  "%'.$Nombre.'%"
-										LIMIT 5;';
+      		        $queryString = "SELECT Nombre,idAlergia
+									 
+									FROM Alergias
+
+									WHERE Nombre LIKE '%".$Nombre."%'
+									
+								    AND idAlergia NOT IN (SELECT idAlergia
+
+                     				FROM Alergias, Alergia_has_Paciente, Pacientes
+
+                       				WHERE Pacientes.idPaciente= ".$id."
+									 
+									AND Pacientes.idPaciente=Alergia_has_Paciente.Paciente_idPaciente
+									 
+									AND Alergia_has_Paciente.Alergia_idAlergia=Alergias.idAlergia)
+
+                       				ORDER BY  Alergias.Nombre ASC 
+									
+									LIMIT 5";
+									
         $result = CallQuery($queryString);
 	    $resultArray = array();
 	    while($fila = $result->fetch_assoc()) {

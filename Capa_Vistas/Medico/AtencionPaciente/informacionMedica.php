@@ -34,10 +34,10 @@
  </tbody>
  <tfoot>
  		<tr><td> 
-			<form class="form-search" id="buscar_alergia" method="post">
+			<form class="form-search" method="post">
 			<div class="input-append">
   				<input id="Alergias" type="text">
- 				 <button class="btn" type="button" id="boton_alergia">Añadir</button>
+ 				 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
   			</div>
 			</form>
   		</td></tr>
@@ -110,20 +110,6 @@ $( "#Condiciones" ).autocomplete({
                             var idCondicion = ui.item.id3
 							$("#boton_condiciones").removeAttr('disabled');
 							$('#Condiciones').removeAttr('idCondicion').attr('idCondicion',idCondicion)
-							//        
-                            //      var nombreCondicion = ui.item.label
-							//		$('#boton_condiciones').removeAttr('disabled');
-							//		$.ajax({
-							//			url: "../../../ajax/agregarCondicion.php",
-							//			data: {"idCondicion":idCondicion},
-							//			type: "post",
-							//			success: function(output){
-							//				if(output=="1"){
-							//			//aqui se agrega al listado
-									//	$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>')
-								//			}
-								//		}
-                             //   });
 							},
                            minLength: 2,
                            open: function() {
@@ -163,32 +149,36 @@ $( "#Alergias" ).autocomplete({
                              * Funcion select que ejecutará una accion cuando se devuelva
                              */        
                           source: function( request, response ){
-                                $.ajax({
+                                	 
+								$.ajax({
                                     url: "../../../ajax/autocompleteAlergias.php",
                                     data: {
-                                        name_startsWith: request.term
-                                    },
+                                        name_startsWith: request.term,
+    										                                
+									},
+									
                                     type: "post",
                                     success: function( data ){
-                                        var output = jQuery.parseJSON(data);
-                                                                                
+										alert(data);
+                                        var output = jQuery.parseJSON(data); 
+										              
                                         response( $.map( output, function( item ) {
+											
                                            return {
                                                label: item.Nombre
-                                              ,id3 : item.idAlergias
+                                              ,id3 : item.idAlergia
                                             }
-                                            
                                         })//end map
                                         );  // end response
                                     }//end success
 
-                                }); // end ajax
-                            },  // end source
+                                });//end ajax 
+							}, // end source
                            select: function(event, ui){
-                                    $('#Alergias').removeAttr('idAlergia').attr('idAlergia',ui.item.id3)
-                                    $('#guardar_alergia').removeAttr('disabled');
-                                    $('#boton_alergia').removeAttr('disabled');
-                                },
+                            var idCondicion = ui.item.id3
+							$("#boton_alergias").removeAttr('disabled');
+							$('#Alergias').removeAttr('idAlergia').attr('idAlergia',idCondicion)
+							},
                            minLength: 2,
                            open: function() {
                                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -196,5 +186,25 @@ $( "#Alergias" ).autocomplete({
                            close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 } //end close
-                            });//autocompleteDiagnosticos
+		                        });
+								
+
+							//autocompleteDiagnosticos
+$("#boton_alergias").click(function(){
+var idCondicion = $("#Alergias").attr('idalergia')
+var nombreCondicion = $("#Alergias").val()
+$.ajax({
+		url: "../../../ajax/agregarAlergia.php",
+		data: {"idAlergia":idAlergia},
+		type: "post",
+		success: function(output){ 
+		alert(output);
+				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
+								//aqui se agrega al listado
+		$('#alergias tbody').append('<tr><td idAlergia="'+idAlergia+'">'+nombreAlergia+'</td></tr>')
+				}
+		}
+
+});
+})
 </script>

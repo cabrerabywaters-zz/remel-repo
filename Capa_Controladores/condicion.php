@@ -101,7 +101,7 @@ class Condicion {
 									 
 									AND Paciente_has_Condiciones.Condiciones_idCondiciones=Condiciones.idCondiciones)
 
-                       				ORDER BY Nombre
+                       				ORDER BY  Condiciones.Nombre ASC 
 									
 									LIMIT 5';
 									 
