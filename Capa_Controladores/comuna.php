@@ -121,6 +121,20 @@ class Comuna {
 	    }
 	    return $resultArray;
    }
+   
+   
+   public static function BuscarComunaPorRegionYNombre($idRegion,$letra){
+                $queryString = "Select idComuna, Nombre from Comunas where 
+       	Provincias_idProvincia In(SELECT idProvincia from Provincias where  Regiones_idRegion='$idRegion') and Nombre like '%$letra%'"                              
+                                ;
+                
+                $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+   }
     
 }
 

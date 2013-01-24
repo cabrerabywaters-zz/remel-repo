@@ -27,7 +27,7 @@ if ($_SESSION['idMedicoLog'] != null || $_SESSION['idFuncionarioLog'] != null) {
 } elseif ($_SESSION['idPacienteLog'] != null) {
     $page = "../Capa_Vistas/Paciente/paginaPaciente.php";
 } else {
-    $page = "../Capa_Vistas/Medico/logout.php";
+    $page = "../Capa_Vistas/Medico/logout.php?error=1";
 }
 
 header("Location: http://$host$uri/$page");
