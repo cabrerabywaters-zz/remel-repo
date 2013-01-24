@@ -1,16 +1,22 @@
 <?php
 	// consulta a Realizar a la base de datos del usuario 
-	include(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/condicion.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/direccion.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/comuna.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/provincia.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/region.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
-	include(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
-	$RUTMedico=$_SESSION['RUT'];
+	include_once(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/condicion.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/persona.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/direccion.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/comuna.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/provincia.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/region.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/etnia.php");
+	include_once(dirname(__FILE__)."/../Capa_Controladores/prevision.php");
+	include_once(dirname(__FILE__).'/../Capa_Controladores/unidadDeConsumo.php');
+        include_once(dirname(__FILE__).'/../Capa_Controladores/unidadFrecuencia.php');
+        include_once(dirname(__FILE__).'/../Capa_Controladores/unidadPeriodo.php');
+        $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
+        $unidadFrecuencia = UnidadFrecuencia::Seleccionar('where 1=1');
+        $unidadPeriodo = UnidadPeriodo::Seleccionar('where 1=1');
+        $RUTMedico=$_SESSION['RUT'];
 	$RUTPaciente = $_SESSION['RUTPaciente'];
 	$medico = Persona::Seleccionar("WHERE RUN = '$RUTMedico'");
 	$medico = $medico[0];
