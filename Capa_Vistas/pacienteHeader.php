@@ -73,18 +73,19 @@
         <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <!-- script de google charts -->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
         <?php
         // donde estan ubicadas las variables que se despliegan en la base del proyecto
         include(dirname(__FILE__) . "/informacionVistaPaciente.php");
         ?>
-<!-- scripts de google con php -->
-<?php include("scriptTorta.php"); 
-	  include("scriptLineas.php");
-	  include("scriptBarra.php");
-?>
-    </head>
+			<!-- scripts de google con php -->
+			<?php include("paciente/scriptTorta.php"); 
+	 			  include("paciente/scriptLinea.php");
+				  include("paciente/scriptBarra.php");
+			?>
+    	</head>
     
     
     <!--de aqui en adelante es pura prueba-->

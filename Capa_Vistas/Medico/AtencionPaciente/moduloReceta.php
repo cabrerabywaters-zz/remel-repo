@@ -11,7 +11,7 @@ y el popup que muestra el detalle del medicamento
 <div id="collapseTwo2" class="accordion-body collapse">
     <div class="accordion-inner">
             <div class="row-fluid span12"><!-- row del buscador -->  
-                    <strong>Buscar:</strong><br><br>
+                    
                     <div class="btn-group" data-toggle="buttons-radio" id="filtro">
                         <button type="button" class="btn" filtro="true">Principio Activo</button>
                         <button type="button" class="btn" filtro="false">Nombre Comercial</button>
@@ -21,10 +21,11 @@ y el popup que muestra el detalle del medicamento
                     
                     <form class="form-search" action="#">
                         <br>
-                        <div class="input-append">
+                         <strong><p>Buscar:</p></strong> 
+                      
                             <input type="text" id="Medicamentos" class="search-query">
-                            <button id="boton_medicamentos" role="button" class="btn" href="#" disabled="disabled">Añadir</button><br>
-                        </div><!-- input +boton -->
+                           
+                        
                         <br>
                     </form><!-- append form-->
             
@@ -37,20 +38,20 @@ y el popup que muestra el detalle del medicamento
             <div class="row-fluid span12">
                 <div id="busqueda_avanzada" class="collapse">
                         <strong><p>Categorias ATC</p></strong>
-                        <select id="clase" multiple="multiple" class ="span5"></select>
+                        <select id="clase" multiple="multiple" class ="span5" SIZE=6></select>
                         <strong><p>Sub Categorias ATC</p></strong>
-                        <select id="subclase" multiple="multiple" class ="span7"></select>
+                        <select id="subclase" multiple="multiple" class ="span7" SIZE=6></select>
                         <strong><p>Laboratorio</p></strong>
-                        <select id="laboratorio" multiple="multiple" class="span5"></select>
+                        <select id="laboratorio" multiple="multiple" class="span5" SIZE=6></select>
                         
             </div>
                 
-               
+                  
                         <strong><p>Medicamentos</p></strong>
-                        <select id="medicamento" multiple="multiple" class ="span7"></select>
+                        <select id="medicamento" multiple="multiple" class ="span7" SIZE=6></select>
             </div><!-- row de multiselect-->
-                                              
-
+                                            
+  <center><button id="boton_medicamentos" role="button" class="btn" href="#" disabled="disabled" class="span7">Recetar</button><br></center>
             
             
             
@@ -80,7 +81,10 @@ y el popup que muestra el detalle del medicamento
           filtro = $(this).attr('filtro'); // se modifica el filtro correspondiente  
         
         if($(this).attr('filtro')=="true"){
+               $('#boton_medicamentos').attr("disabled", "disabled");
             $("#medicamento").empty();
+             $("#subclase").empty();
+              $("#laboratorio").empty();
             $("#Medicamentos").removeAttr('value')
             
             if($('#busqueda_avanzada').attr('class')=="collapse"){
@@ -90,7 +94,9 @@ y el popup que muestra el detalle del medicamento
             }
         }//end if
         else if ($(this).attr('filtro')=="false"){
-            
+             $('#boton_medicamentos').attr("disabled", "disabled");
+              $("#subclase").empty();
+              $("#laboratorio").empty();
             $("#medicamento").empty();
             $("#Medicamentos").removeAttr('value')
            
@@ -102,6 +108,9 @@ y el popup que muestra el detalle del medicamento
         }//end elseif
         
        else if ($(this).attr('filtro')=="false2"){
+            $("#subclase").empty();
+              $("#laboratorio").empty();
+              $('#boton_medicamentos').attr("disabled", "disabled");
            $("#busqueda_avanzada").collapse('show');
            $("#medicamento").empty();
            $("#Medicamentos").removeAttr('value')
@@ -116,7 +125,7 @@ y el popup que muestra el detalle del medicamento
 				var output = jQuery.parseJSON(output);
 				$("#clase").empty();
 				$.each(output,function(i,el){
-					var string = "<option value='" + el['idClase_Terapeutica'] + "'> " + el['Nombre']+ "</option>";
+					var string = "<option value='" + el['idClase_Terapeutica'] + "'> " + el['Nombre']+"</option>";
 					$("#clase").append(string);
 				});//end each
 			}// end success
@@ -183,10 +192,17 @@ y el popup que muestra el detalle del medicamento
         });//end change
 
 	$('#medicamento').change(function() { 
-                filtro = "false";
+              
+                $('#boton_medicamentos').removeAttr('disabled');
+              
+              /*
+               
+              
                 $('button[filtro="true"]').removeClass('active');
                 $('button[filtro="false"]').addClass('active');
-                $("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
+            
+            
+                /*$("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
                 $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
 		               
@@ -197,7 +213,7 @@ y el popup que muestra el detalle del medicamento
                 $("#busqueda_avanzada").collapse('hide');
                      
                 }
-                 
+                 */
                
                
                                
@@ -217,7 +233,7 @@ y el popup que muestra el detalle del medicamento
                     type: "post",
                     success: function( data ) {
                         var output = jQuery.parseJSON(data);
-
+                            $("#medicamento").empty();
                         response( $.map( output, function( item ) {
                             if(filtro == "true"){
                             return {
@@ -226,9 +242,16 @@ y el popup que muestra el detalle del medicamento
                             }
                             }
                             else {
-                                return {
+                              /*  return {
                                 label: item.Nombre_Comercial,
-                                id2: item.idMedicamento};
+                                id2: item.idMedicamento
+                                      };*/
+                
+                //Se agregan todos los medicamentos al multiselect
+                            
+                var string = "<option value='" + item.idMedicamento + "'> " + item.Nombre_Comercial + "</option>";
+                                $("#medicamento").append(string);
+                
                         }
                         }));
                     }//end success
@@ -236,8 +259,7 @@ y el popup que muestra el detalle del medicamento
                 });
             },
             select: function(event, ui){
-                $('#boton_medicamentos').removeAttr('disabled');
-                $('#Medicamentos').removeAttr('identificador').attr('identificador',ui.item.id2)
+              
                 
                 //aquí se hace el ajax para poder indexsar los medicamentos que tienen ese principio activo
                 
@@ -331,11 +353,12 @@ y el popup que muestra el detalle del medicamento
        * información que sea necesaria ingresar
        */       
        $('#boton_medicamentos').click(function(){
-       if(filtro =='true'){// si es principio activo
+       if(filtro =='true5'){// si es principio activo
            // POR AHORA NO HACE NADA
        }
        else{ // si es nombre comercial
-           var idMedicamento = $('#Medicamentos').attr('identificador'); // id del medicamento que se busca
+           
+           var idMedicamento = $('#medicamento :selected').attr('value'); // id del medicamento que se busca
            var medicamentosRecetados = [];
            $('.medicamentoRecetado').each(function(){
            var medRecetado = $(this).attr('idmedicamento')
