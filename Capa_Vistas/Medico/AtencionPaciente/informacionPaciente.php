@@ -2,6 +2,7 @@
 <div class="accordion-heading">
   <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
   Información Personal del Paciente
+  
   </a>
   </div>
   <div id="collapseOne" class="accordion-body collapse">
@@ -89,31 +90,31 @@
   
     $("#guardar").click(function() {
                         var run = <?php echo $_SESSION['RUT'];   ?>;
-                        var peso = $('#Peso').html();
-                        var altura = $('#Altura').html();
-                        var direccion = $('#Direccion').html();
-                        var numero = $('#Numero').html();
-                        var comuna = $('#Comuna').html();
-                        var n_celular = $('#N_Celular').html();
-                        var n_fijo = $('#N_Fijo').html();
+                        var peso = $('#Peso').val();
+                        var altura = $('#Altura').val();
+                        var direccion = $('#Direccion').val();
+                        var numero = $('#Numero').val();
+                        var comuna = $('#Comuna').val();
+                        var n_celular = $('#N_Celular').val();
+                        var n_fijo = $('#N_Fijo').val();
                        
                        
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
-                      data: {RUN:run,
-                      Peso:peso, 
-                      altura:altura, 
-                      Direccion:direccion, 
-                      Numero:numero,
-                      Comuna:comuna,
-                      n_celular:n_celular,
-                      n_fijo:n_fijo
+                      data: {
+                          RUN:run,
+                          Peso:peso, 
+                         altura:altura, 
+                        Direccion:direccion, 
+                        Numero:numero,
+                        Comuna:comuna,
+                         n_celular:n_celular,
+                        n_fijo:n_fijo
                   
           },
                       type: 'post',
                       success: function(output){
-                        alert(output);
-                        
+                                               
                         if(output=="1")
                             {
                                 $("#guardar").hide();

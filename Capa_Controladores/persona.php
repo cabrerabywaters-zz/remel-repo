@@ -196,10 +196,10 @@ class Persona {
         if ($idDireccion != $datosAnteriores['id_direccion']){
             $cambios['idDireccion'] = array($idDireccion, $datosAnteriores['id_direccion']);
         }
+        session_start();
         foreach ($cambios as $key=>$value){
-                $queryString = 'INSERT Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico
-                                INTO Log
-                                VALUES ('.date('d-m-y').', '.$key.', '.$value[1].', '.$value[0].', tabla(hacerIF), '.$_SESSION["RUTPaciente"].', idmedico)  
+                $queryString = 'INSERT  INTO Log(Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
+                                VALUES('.date('d-m-y').', '.$key.', '.$value[1].', '.$value[0].',"nombre", '.$_SESSION["RUTPaciente"].', '.$_SESSION['idMedicoLog'] .')  
                                 ';
             
         }

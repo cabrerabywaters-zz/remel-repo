@@ -11,9 +11,8 @@ $nCalle = $_POST['Numero'];
 $nCelular = $_POST['n_celular'];
 $nFijo = $_POST['n_fijo'];
 
+
 $actualizado = Persona::MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo);
-
-
 
 if ($actualizado){
     
@@ -24,6 +23,5 @@ else
     
         echo '0';
 }
-
 
 ?>
