@@ -33,7 +33,6 @@ function QueryStringCrearRelacion($id, $datos, $nombreTabla) {
                 $valores = $valores . ",";
             }
         }
-        print_r($id);
     } else {
         $totalAtributos = count($id) + count($datos);
         for ($i = 0; $i < count($id); $i++) {
