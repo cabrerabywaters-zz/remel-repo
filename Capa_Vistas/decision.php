@@ -6,7 +6,6 @@ include_once(dirname(__FILE__) . '/../Capa_Controladores/funcionario.php');
 
 iniciarCookie();
 verificarIP();
-print_r($_SESSION);
 ?>
 <html lang="en">
     <head>
