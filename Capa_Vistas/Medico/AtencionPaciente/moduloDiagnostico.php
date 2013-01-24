@@ -33,30 +33,17 @@
 </div>
 
 <!-- popup informacion diagnostico -->
-<div id="modalDiagnostico" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalDiagnosticoLabel" aria-hidden="true">
+<div id="modalDiagnostico" class="hide fade" tabindex="-1" role="dialog" aria-labelledby="modalDiagnosticoLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="modalDiagnosticoLabel">Debe seleccionar un Diagnóstico</h3>
 
     </div>
     <div class="modal-body">
-        <span id="id_diagnostico" style="display:none"></span>
-        <span id="esGES" style="display:none">0</span>
+
 
         <p></p>
-        <select id="tipo_diagnostico">
-            <option value="0" selected="selected">Escoja un tipo...</option>
-            <?php
-            include_once('../../../Capa_Controladores/tipo.php');
 
-            $tipos_diagnosticos = Tipo::Seleccionar('');
-
-            foreach ($tipos_diagnosticos as $tipo) {
-
-                echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
-            }
-            ?>
-        </select>
             <p></p>
 
 
@@ -375,3 +362,22 @@
     
             
 </script>
+
+
+<!--        <select id="tipo_diagnostico">
+            <option value="0" selected="selected">Escoja un tipo...</option>
+            <?php
+            include_once('../../../Capa_Controladores/tipo.php');
+
+            $tipos_diagnosticos = Tipo::Seleccionar('');
+
+            foreach ($tipos_diagnosticos as $tipo) {
+
+                echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
+            }
+            ?>
+        </select>
+        <span id="id_diagnostico" style="display:none"></span>
+        <span id="esGES" style="display:none">0</span>
+
+-->
