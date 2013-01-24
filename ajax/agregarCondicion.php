@@ -13,7 +13,6 @@ $idPaciente = $_SESSION['idPaciente'];
 $idCondicion = $_REQUEST['idCondicion'];
 
 
-
 $insercion= PacienteHasCondicion::Insertar($idPaciente,$idCondicion);
   
 
