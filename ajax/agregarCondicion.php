@@ -11,7 +11,7 @@ include_once(dirname(__FILE__) . '/../Capa_Controladores/pacienteHasCondicion.ph
 $idPaciente = $_SESSION['idPaciente'];
 $idCondicion = $_POST['idCondicion'];
 
-$insercion= PacienteHasCondicion::Insertar($idPaciente,$idCondicion);
+$insercion = PacienteHasCondicion::Insertar($idPaciente,$idCondicion);
   
 
     if($insercion)

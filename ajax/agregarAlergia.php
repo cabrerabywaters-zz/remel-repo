@@ -10,8 +10,8 @@ include_once(dirname(__FILE__) . '/../Capa_Controladores/alergiaHasPaciente.php'
 
 $idPaciente = $_SESSION['idPaciente'];
 $idAlergia = $_POST['idAlergia'];
-print_r($_POST);
-$insercion=AlergiaHasPaciente::Insertar($idAlergia, $idPaciente);
+echo $idAlergia;
+$insercion = AlergiaHasPaciente::Insertar($idAlergia, $idPaciente);
   
 
     if($insercion)
