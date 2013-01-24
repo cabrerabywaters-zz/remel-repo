@@ -1,23 +1,12 @@
 <?php
 
 include_once('../Capa_Controladores/comuna.php');
-include_once('../Capa_Controladores/region.php');
 
+ $idRegion= $_POST['idRegion'];
+ $letras= $_POST['name_startsWith'];
 
-//$nombre_region = $_POST['nombre_region'];
+$comunas = Comuna::BuscarComunaPorRegionYNombre($idRegion, $letras);
 
-$idRegion = Region::BuscarRegionPorNombre($nombre_region);
-
-$fila = $idRegion->fetch_assoc();
-
-print_r($fila['idRegion']);
-
-//$idRegion = $_POST['idRegion'];
-
-//$comuna = Comuna::BuscarComunaLike($_POST['name_startsWith'],$idRegion);
-$comuna = Comuna::BuscarComunaLike($_POST['name_startsWith'],$idRegion);
-
-
-echo json_encode($comuna);
+echo json_encode($comunas);
 
 ?>

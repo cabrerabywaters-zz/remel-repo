@@ -30,7 +30,8 @@
      <br> 
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
-    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
+
+    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" idRegion="<?php echo $region['IdRegion']; ?>" disabled></label>
     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
     </div>
     
@@ -159,16 +160,18 @@ $( "#Comuna" ).autocomplete({
                                     data: {
                                         
                                         name_startsWith: request.term,
-                                        idRegion: $('#region').attr('idRegion')
+                                        idRegion: $('#Region').attr('idRegion')
                                     },
                                     type: "post",
                                     success: function( data ){
+                                        
+                                        alert(data);
                                         var output = jQuery.parseJSON(data);
                                                                                 
                                         response( $.map( output, function( item ) {
                                            return {
                                                label: item.Nombre
-                                              ,id3 : item.idComuna
+                                             
                                             }
                                             
                                         })//end map
@@ -179,9 +182,12 @@ $( "#Comuna" ).autocomplete({
                             },  // end source
                            minLength: 2,
                            select: function(event, ui){
-                                    $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3)
-                                    $('#guardar').show()
+                                    
                                 }
                             });//autocompleteComuna
+                            
+                            
+                         
+                            
 
 </script>
