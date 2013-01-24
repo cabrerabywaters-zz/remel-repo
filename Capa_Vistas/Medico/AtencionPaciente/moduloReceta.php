@@ -38,11 +38,11 @@ y el popup que muestra el detalle del medicamento
             <div class="row-fluid span12">
                 <div id="busqueda_avanzada" class="collapse">
                         <strong><p>Categorias ATC</p></strong>
-                        <select id="clase" multiple="multiple" class ="span5"></select>
+                        <select id="clase" multiple="multiple" class ="span5" SIZE=6></select>
                         <strong><p>Sub Categorias ATC</p></strong>
-                        <select id="subclase" multiple="multiple" class ="span7"></select>
+                        <select id="subclase" multiple="multiple" class ="span7" SIZE=6></select>
                         <strong><p>Laboratorio</p></strong>
-                        <select id="laboratorio" multiple="multiple" class="span5"></select>
+                        <select id="laboratorio" multiple="multiple" class="span5" SIZE=6></select>
                         
             </div>
                 
