@@ -1,25 +1,26 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
-include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
 
-class PacienteHasCondicion  {
+class PacienteHasCondicion {
 
     static $nombreTabla = "Paciente_has_Condiciones";
     static $nombreIdTabla = "Paciente_idPaciente";
     static $nombreIdTabla1 = "Condiciones_idCondiciones";
-    
+
     /**
      * Insertar
      * 
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idPaciente,$idCondicion) {
-    	$id1 = $idPaciente;
-        $id2 = $idCondicion;
-        $id = array($id1,$id2);
-       
+    public static function Insertar($idPaciente, $idCondicion) {
+        $id[0][0] = 'Paciente_idPaciente';
+        $id[0][1] = $idPaciente;
+        $id[1][0] = 'Condiciones_idCondiciones';
+        $id[1][1] = $idCondicion;
+
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
@@ -32,16 +33,14 @@ class PacienteHasCondicion  {
     public static function BorrarPorId() {
         $id1 = $_POST['Paciente_idPaciente'];
         $id2 = $_POST['Condiciones_idCondiciones'];
-        $id = array($id1,$id2);
-        
-        $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
-        
+        $id = array($id1, $id2);
+
+        $nombreId = array(self::$nombreIdTabla, self::$nombreIdTabla1);
+
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
         $query = CallQuery($queryString);
     }
-    
-  
-    
+
     /**
      * Actualizar
      * 
@@ -49,19 +48,18 @@ class PacienteHasCondicion  {
      * y actualiza con datos nuevos, la id y los datos vienen
      * por POST desde AJAX
      */
-   public static function Actualizar() {
-    	$id1 = $_POST['Paciente_idPaciente'];
+    public static function Actualizar() {
+        $id1 = $_POST['Paciente_idPaciente'];
         $id2 = $_POST['Condiciones_idCondiciones'];
-        $id = array($id1,$id2);
-        
+        $id = array($id1, $id2);
+
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
-        
     }
-    
-    public static function BuscarCondicionesPorPacienteId($idPaciente){
+
+    public static function BuscarCondicionesPorPacienteId($idPaciente) {
         $queryString = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Pacientes, Paciente_has_Condiciones
                                    WHERE ' . $idPaciente . ' = Paciente_has_Condiciones.Paciente_idPaciente
                                    AND ' . $idPaciente . ' = Pacientes.idPaciente';
