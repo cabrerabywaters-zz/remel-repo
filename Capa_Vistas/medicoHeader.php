@@ -77,6 +77,9 @@ color:white}
         <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script></script><!-- CDN jquery tools-->
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!-- CDN jquery UI-->
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script></script><!-- CDN bootstrap-->
+	<!--[if lt IE 9]>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+	<![endif]-->
         <!-- fin script js externos -->
         <script> $(document).ready(function(){$('.datepicker').datepicker();});</script>   
     </head>

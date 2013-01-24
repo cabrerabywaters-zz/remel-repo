@@ -15,7 +15,7 @@ class Receta  {
      */
     public static function Insertar($idLugar, $ip, $tipoReceta, $idConsulta ) {
     	$datosCreacion = array(
-                                array('Fecha_Emision','NOW()'),
+                                array('Fecha_Emision',date("Y-m-d H:i:s")),
                                 array('Lugar_de_Atencion_idLugar_de_Atencion',$idLugar),
                                 array('DireccionIP',$ip),
                                 array('Tipo_Receta_idTipo_Receta',$tipoReceta),

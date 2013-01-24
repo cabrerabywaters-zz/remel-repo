@@ -15,19 +15,24 @@ class MedicamentoReceta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($cantidad, $frencuencia, $unidadFrecuencia, $fechaInicio, $periodo, $unidadPeriodo, $unidadConsumo, $via, $comentario) {
+    public static function Insertar($idReceta, $idDiagnostico, $idMedicamento, $cantidad, $unidadConsumo, $frecuencia, $unidadFrecuencia, $periodo, $unidadPeriodo, $via, $fechaInicio, $comentario) {
     	$datosCreacion = array(
+					array('Receta_idReceta',$idReceta),
+					array('Medicamento_idMedicamento',$idMedicamento),
+					array('Diagnosticos_idDiagnostico',$idDiagnostico),
                              		array('Cantidad',$cantidad),
                              		array('Frecuencia',$frecuencia),
                              		array('Unidad_Frecuencia_ID',$unidadFrecuencia, ),
                              		array('Periodo',$periodo),
 					array('Unidad_Periodo_ID',$unidadPeriodo),
-					array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadConsumo)
-					array('Comentario',$comentario)
+					array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadConsumo),
+					array('Comentario',$comentario),
+					array('Fecha_Inicio',$fechaInicio),
+					array('Via_idVia',$via),
                             );
-
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
-        $query = CallQueryReturnId($queryString);
+	echo $queryString;
+        $query = CallQuery($queryString);
     }
 
    /**
