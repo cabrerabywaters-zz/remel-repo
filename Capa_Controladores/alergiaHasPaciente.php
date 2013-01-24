@@ -15,9 +15,9 @@ class AlergiaHasPaciente  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar() {
-    	$id1 = $_POST['Alergia_idAlergia'];
-        $id2 = $_POST['Paciente_idPaciente'];
+    public static function Insertar($idAlergia,$idPaciente) {
+    	$id1 = $idAlergia;
+        $id2 = $idPaciente;
         $id = array($id1,$id2);
        
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
