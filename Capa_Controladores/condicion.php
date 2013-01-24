@@ -83,19 +83,29 @@ class Condicion {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-	 public static function BuscarCondicionLike($Nombre) {
+	 public static function BuscarCondicionLike($Nombre,$id) {
 
-      		        $queryString = 'SELECT Nombre, idCondiciones
+      		        $queryString = 'SELECT Nombre,idCondiciones
+									 
+									FROM Condiciones
 
-                     				 FROM Condiciones
+									WHERE Nombre LIKE "%'.$Nombre.'%"
+									
+									AND idCondiciones NOT IN (SELECT Condiciones.idCondiciones
 
-                       				 WHERE Nombre LIKE "%'.$Nombre.'%"
+                     				FROM Condiciones, Paciente_has_Condiciones, Pacientes
 
-                       				 ORDER BY Nombre
+                       				WHERE Pacientes.idPaciente= '.$id.'
+									 
+									AND Pacientes.idPaciente=Paciente_has_Condiciones.Paciente_idPaciente
+									 
+									AND Paciente_has_Condiciones.Condiciones_idCondiciones=Condiciones.idCondiciones)
 
-                     			     LIMIT 5;';
-
-        $result = CallQuery($queryString);
+                       				ORDER BY Nombre
+									
+									LIMIT 5';
+									 
+		 $result = CallQuery($queryString);
 	    $resultArray = array();
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
