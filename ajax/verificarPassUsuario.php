@@ -10,9 +10,7 @@
 	session_unset();
 
 	$rut = validadorRUT($_POST['rutUsuario']);
-        $rut = 179944634;
 	$pass = $_POST['passUsuario'];
-        $pass = '1234';
 	
 	if(!Persona::VerificarClave($rut,$pass)){
 		echo "0";
@@ -28,12 +26,12 @@
 		$idMedico = Medico::EncontrarMedico($rut)[0];
                 if($idMedico != false){
                     $_SESSION['idMedicoLog'] = $idMedico;
-                }
+                } else $_SESSION['idMedicoLog'] = false;
                 $idFuncionario = Funcionario::EncontrarFuncionario($rut);
                 if($idFuncionario != false){
                     $_SESSION['idFuncionarioLog'] = $idFuncionario[0];
                     $_SESSION['funcionarioCategoria'] = $idFuncionario[1];
-                }
+                } else $_SESSION['idFuncionarioLog'] = false;
 
 		echo "1";
 	}
