@@ -21,10 +21,8 @@
   <?php  foreach ($alergias as $datos => $dato)
    
    {
-	echo "<tr>";
+	echo '<tr idAlergia="'.$dato['idAlergia'].'">';
 	echo "<td>".$dato['Alergia']." </td>";
-	
-	
 	echo "</tr>";   
 	   
    }
@@ -55,7 +53,7 @@
 
   <?php foreach ($condiciones as $datos => $dato)
    {
-	echo '<tr id="'.$dato['idCondiciones'].'">';
+	echo '<tr idCondicion="'.$dato['idCondiciones'].'">';
 	echo "<td>".$dato['Nombre']." </td>";
 	echo "</tr>";   
 	   
@@ -138,6 +136,7 @@ $.ajax({
 		}
 
 });
+$("#boton_condiciones").attr('disabled',"disable");
 })
 $( "#Alergias" ).autocomplete({
                                 /**
@@ -159,14 +158,13 @@ $( "#Alergias" ).autocomplete({
 									
                                     type: "post",
                                     success: function( data ){
-										alert(data);
                                         var output = jQuery.parseJSON(data); 
 										              
                                         response( $.map( output, function( item ) {
 											
                                            return {
                                                label: item.Nombre
-                                              ,id3 : item.idAlergia
+                                              ,id4 : item.idAlergias
                                             }
                                         })//end map
                                         );  // end response
@@ -174,10 +172,10 @@ $( "#Alergias" ).autocomplete({
 
                                 });//end ajax 
 							}, // end source
-                           select: function(event, ui){
-                            var idCondicion = ui.item.id3
+                          select: function(event, ui){
+                            var idAlergia = ui.id4
 							$("#boton_alergias").removeAttr('disabled');
-							$('#Alergias').removeAttr('idAlergia').attr('idAlergia',idCondicion)
+							$('#Alergias').removeAttr('idAlergia').attr('idAlergia',idAlergia)
 							},
                            minLength: 2,
                            open: function() {
@@ -191,8 +189,8 @@ $( "#Alergias" ).autocomplete({
 
 							//autocompleteDiagnosticos
 $("#boton_alergias").click(function(){
-var idCondicion = $("#Alergias").attr('idalergia')
-var nombreCondicion = $("#Alergias").val()
+var idAlergia = $("#Alergias").attr('idAlergia')
+var nombreAlergia = $("#Alergias").val()
 $.ajax({
 		url: "../../../ajax/agregarAlergia.php",
 		data: {"idAlergia":idAlergia},
@@ -206,5 +204,6 @@ $.ajax({
 		}
 
 });
+$("#boton_alergias").attr('disabled',"disable");
 })
 </script>
