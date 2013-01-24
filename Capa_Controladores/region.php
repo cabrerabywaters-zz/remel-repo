@@ -85,8 +85,19 @@ class Region {
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
+        
     }
-
+    
+   public static function BuscarRegionPorNombre($Nombre) {
+        
+        $queryString = 'SELECT idRegion FROM Regiones WHERE Nombre = "'.$Nombre.'"';
+        $result = CallQuery($queryString);
+   if ($result != false){
+        return $result;
+        }
+        else return false;
+   }
+  
 }
 
 ?>

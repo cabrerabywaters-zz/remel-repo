@@ -31,7 +31,7 @@
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
-    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>" disabled></label>
+    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
     </div>
     
     <div class="control-group">
@@ -79,6 +79,7 @@
                         var comuna = $('#Comuna').html()
                         var n_celular = $('#N_Celular').html()
                         var n_fijo = $('#N_Fijo').html()
+                        var nacionalidad = $('#Nacionalidad').html()
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
                       data: {RUN:run,
@@ -100,6 +101,8 @@
                         $('#Comuna').html(data['comuna']);
                         $('#N_Celular').html(data['N_celular']);
                         $('#N_Fijo').html(data['n_fijo']);
+                        $('#Nacionalidad').html();
+                        
                       }
             });
        });
@@ -155,8 +158,8 @@ $( "#Comuna" ).autocomplete({
                                     url: "../../../ajax/autocompleteComuna.php",
                                     data: {
                                         
-                                        name_startsWith: request.term
-                                        
+                                        name_startsWith: request.term,
+                                        idRegion: $('#region').attr('idRegion')
                                     },
                                     type: "post",
                                     success: function( data ){
