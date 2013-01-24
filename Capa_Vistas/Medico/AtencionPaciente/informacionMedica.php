@@ -137,10 +137,22 @@ $( "#Condiciones" ).autocomplete({
 
 							//autocompleteDiagnosticos
 $("#boton_condiciones").click(function(){
-var idCondicion = $("#Condiciones")
+var idCondicion = $("#Condiciones").attr('idcondicion')
+var nombreCondicion = $("#Condiciones").val()
+$.ajax({
+		url: "../../../ajax/agregarCondicion.php",
+		data: {"idCondicion":idCondicion},
+		type: "post",
+		success: function(output){ 
+		alert(output);
+				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
+								//aqui se agrega al listado
+		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>')
+				}
+		}
 
-	
-})							
+});
+})
 $( "#Alergias" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
