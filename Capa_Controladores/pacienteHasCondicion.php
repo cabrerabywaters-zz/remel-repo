@@ -15,9 +15,9 @@ class PacienteHasCondicion  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar() {
-    	$id1 = $_POST['Paciente_idPaciente'];
-        $id2 = $_POST['Condiciones_idCondiciones'];
+    public static function Insertar($idPaciente,$idCondicion) {
+    	$id1 = $idPaciente;
+        $id2 = $idCondicion;
         $id = array($id1,$id2);
        
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
