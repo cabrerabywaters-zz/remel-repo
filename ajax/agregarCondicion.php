@@ -5,21 +5,19 @@ session_start();
  * and open the template in the editor.
  */
 
-
 include_once(dirname(__FILE__) . '/../Capa_Controladores/pacienteHasCondicion.php');
 
 
 $idPaciente = $_SESSION['idPaciente'];
-$idCondicion = $_REQUEST['idCondicion'];
+$idCondicion = $_POST['idCondicion'];
 
-
-$insercion= PacienteHasCondicion::Insertar($idPaciente,$idCondicion);
+$insercion = PacienteHasCondicion::Insertar($idPaciente,$idCondicion);
   
 
     if($insercion)
-    {echo '1';}
+    {echo '0';}
     else{
-        echo '0';
+        echo '1';
     }
 
 

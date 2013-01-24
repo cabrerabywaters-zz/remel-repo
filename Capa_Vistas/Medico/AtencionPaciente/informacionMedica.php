@@ -21,10 +21,8 @@
   <?php  foreach ($alergias as $datos => $dato)
    
    {
-	echo "<tr>";
+	echo '<tr idAlergia="'.$dato['idAlergia'].'">';
 	echo "<td>".$dato['Alergia']." </td>";
-	
-	
 	echo "</tr>";   
 	   
    }
@@ -34,10 +32,10 @@
  </tbody>
  <tfoot>
  		<tr><td> 
-			<form class="form-search" id="buscar_alergia" method="post">
+			<form class="form-search" method="post">
 			<div class="input-append">
   				<input id="Alergias" type="text">
- 				 <button class="btn" type="button" id="boton_alergia">Añadir</button>
+ 				 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
   			</div>
 			</form>
   		</td></tr>
@@ -55,7 +53,7 @@
 
   <?php foreach ($condiciones as $datos => $dato)
    {
-	echo '<tr id="'.$dato['idCondiciones'].'">';
+	echo '<tr idCondicion="'.$dato['idCondiciones'].'">';
 	echo "<td>".$dato['Nombre']." </td>";
 	echo "</tr>";   
 	   
@@ -73,6 +71,75 @@
       </div>
     </div>
 <script>
+
+$( "#Alergias" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de diagnostico (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteDiagnostico.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                         source: function( request, response ){
+                                	 
+								$.ajax({
+                                    url: "../../../ajax/autocompleteAlergias.php",
+                                    data: {
+                                        name_startsWith: request.term,
+    										                                
+									},
+									
+                                    type: "post",
+                                    success: function( data ){
+                                        var output = jQuery.parseJSON(data); 
+										              
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre
+                                              ,id3 : item.idAlergias
+                                            }
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                });//end ajax 
+							}, // end source
+                           select: function(event, ui){
+                            var idAlergia = ui.item.id3
+							$("#boton_alergias").removeAttr('disabled');
+							$('#Alergias').removeAttr('idAlergia').attr('idAlergia',idAlergia);
+							},
+                           minLength: 2,
+                           open: function() {
+                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                                }, //end open
+                           close: function() {
+                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                                } //end close
+		                        });
+								
+
+							//autocompleteDiagnosticos
+$("#boton_alergias").click(function(){
+var idAlergia = $("#Alergias").attr('idalergia');
+var nombreAlergia = $("#Alergias").val()
+$.ajax({
+		url: "../../../ajax/agregarAlergia.php",
+		data: {"idAlergia":idAlergia},
+		type: "post",
+		success: function(output){
+			alert(output) 
+				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
+								//aqui se agrega al listado
+		$('#alergias tbody').append('<tr><td idAlergias="'+idAlergia+'">'+nombreAlergia+'</td></tr>');
+				}
+		}
+
+});
+$("#boton_alergias").attr('disabled',"disable");
+$("#Alergias").attr("value","");
+});
 $( "#Condiciones" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -109,21 +176,7 @@ $( "#Condiciones" ).autocomplete({
                            select: function(event, ui){
                             var idCondicion = ui.item.id3
 							$("#boton_condiciones").removeAttr('disabled');
-							$('#Condiciones').removeAttr('idCondicion').attr('idCondicion',idCondicion)
-							//        
-                            //      var nombreCondicion = ui.item.label
-							//		$('#boton_condiciones').removeAttr('disabled');
-							//		$.ajax({
-							//			url: "../../../ajax/agregarCondicion.php",
-							//			data: {"idCondicion":idCondicion},
-							//			type: "post",
-							//			success: function(output){
-							//				if(output=="1"){
-							//			//aqui se agrega al listado
-									//	$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>')
-								//			}
-								//		}
-                             //   });
+							$('#Condiciones').removeAttr('idCondicion').attr('idCondicion',idCondicion);
 							},
                            minLength: 2,
                            open: function() {
@@ -144,57 +197,14 @@ $.ajax({
 		data: {"idCondicion":idCondicion},
 		type: "post",
 		success: function(output){ 
-		alert(output);
 				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
 								//aqui se agrega al listado
-		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>')
+		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>');
 				}
 		}
 
 });
-})
-$( "#Alergias" ).autocomplete({
-                                /**
-                             * esta función genera el autocomplete para el campo de diagnostico (input)
-                             * al seleccionar y escribir 2 letras se ejecuta el ajax
-                             * busca en la base de datos en el archivo autocompleteDiagnostico.php
-                             * el jSon correspondiente a las coincidencias
-                             * 
-                             * Funcion select que ejecutará una accion cuando se devuelva
-                             */        
-                          source: function( request, response ){
-                                $.ajax({
-                                    url: "../../../ajax/autocompleteAlergias.php",
-                                    data: {
-                                        name_startsWith: request.term
-                                    },
-                                    type: "post",
-                                    success: function( data ){
-                                        var output = jQuery.parseJSON(data);
-                                                                                
-                                        response( $.map( output, function( item ) {
-                                           return {
-                                               label: item.Nombre
-                                              ,id3 : item.idAlergias
-                                            }
-                                            
-                                        })//end map
-                                        );  // end response
-                                    }//end success
-
-                                }); // end ajax
-                            },  // end source
-                           select: function(event, ui){
-                                    $('#Alergias').removeAttr('idAlergia').attr('idAlergia',ui.item.id3)
-                                    $('#guardar_alergia').removeAttr('disabled');
-                                    $('#boton_alergia').removeAttr('disabled');
-                                },
-                           minLength: 2,
-                           open: function() {
-                                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-                                }, //end open
-                           close: function() {
-                                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-                                } //end close
-                            });//autocompleteDiagnosticos
+$("#boton_condiciones").attr('disabled',"disable");
+$("#Condiciones").attr("value","");
+});
 </script>

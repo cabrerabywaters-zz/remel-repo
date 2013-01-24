@@ -2,28 +2,27 @@
 
 include_once(dirname(__FILE__) . '/../Capa_Controladores/persona.php');
 
-$run = $_POST['run'];
-$peso = $_POST['peso'];
+$run = $_POST['RUN'];
+$peso = $_POST['Peso'];
 $altura = $_POST['altura'];
-$calle = $_POST['calle'];
-$comuna = $_POST['comuna'];
-$nCalle = $_POST['ncalle'];
-$nCelular = $_POST['ncelular'];
-$nFijo = $_POST['nFijo'];
+$calle = $_POST['Direccion'];
+$comuna = $_POST['Comuna'];
+$nCalle = $_POST['Numero'];
+$nCelular = $_POST['n_celular'];
+$nFijo = $_POST['n_fijo'];
 
 $actualizado = Persona::MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo);
 
-echo json_encode($actualizado);
 
 
-if ($actualizado != datos){
+if ($actualizado){
     
-    return true;
+    echo "1";
 }
 else
 {
     
-        return false;
+        echo '0';
 }
 
 

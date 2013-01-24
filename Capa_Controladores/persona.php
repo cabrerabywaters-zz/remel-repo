@@ -211,6 +211,8 @@ class Persona {
             
                         ';
         $resultado = CallQuery($queryString);
+        
+       
     }
 }
 

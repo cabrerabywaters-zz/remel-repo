@@ -124,7 +124,7 @@ class Paciente {
     }
 
     public static function R_AlergiaPaciente($idPaciente) {
-        $queryString = "SELECT Alergias.Nombre as Alergia, Alergias.Sintomas
+        $queryString = "SELECT Alergias.Nombre as Alergia, Alergias.Sintomas, idAlergia
 		FROM Pacientes, Alergia_has_Paciente, Alergias, Tipo_Alergia
 WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
 AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia

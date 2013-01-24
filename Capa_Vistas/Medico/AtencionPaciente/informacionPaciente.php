@@ -35,8 +35,8 @@
     <label class="control-label" for="Region"><strong>Región </strong><br>
     <select name="cars" style="text-align:center;" type="text" class="inline edicion" id="Region">
 <?php  
-  include_once(dirname(__FILE__)."/../Capa_Controladores/region.php");
-    $arrayRegiones = array();
+  include_once("../../../Capa_Controladores/region.php");
+    
     $arrayRegiones =  Region::Seleccionar("");
     
   
@@ -73,8 +73,8 @@
     <label class="control-label" for="Isapre"><strong>Isapre </strong> <br> <input style="text-align:center;" type="text" id="Isapre" value="<?php echo $prevision['Nombre']; ?>" disabled></label>
     </div>
      
-    <input name="guardar" id="guardar" type="button" class="btn btn-danger" value="Guardar">
-    
+    <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
+
            </form></div> </center>
     
     
@@ -86,19 +86,18 @@
     $('.edicion').change(function() {
                 $('#guardar').show();
     });
-    $('#guardar').unbind('click').on('click',function() {
-                $("#guardar").hide();
-                
-                $('.edicion').each(function(){
+  
+    $("#guardar").click(function() {
                         var run = <?php echo $_SESSION['RUT'];   ?>;
-                        var peso = $('#Peso').html()
-                        var altura = $('#Altura').html()
-                        var direccion = $('#Direccion').html()
-                        var numero = $('#Numero').html()
-                        var comuna = $('#Comuna').html()
-                        var n_celular = $('#N_Celular').html()
-                        var n_fijo = $('#N_Fijo').html()
-                        var nacionalidad = $('#Nacionalidad').html()
+                        var peso = $('#Peso').html();
+                        var altura = $('#Altura').html();
+                        var direccion = $('#Direccion').html();
+                        var numero = $('#Numero').html();
+                        var comuna = $('#Comuna').html();
+                        var n_celular = $('#N_Celular').html();
+                        var n_fijo = $('#N_Fijo').html();
+                       
+                       
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
                       data: {RUN:run,
@@ -108,25 +107,26 @@
                       Numero:numero,
                       Comuna:comuna,
                       n_celular:n_celular,
-                      n_fijo:n_fijo},
+                      n_fijo:n_fijo
+                  
+          },
                       type: 'post',
                       success: function(output){
-                        var data = jQuery.parseJSON(output);
+                        alert(output);
                         
-                        $('#Peso').html(data['peso']);
-                        $('#Altura').html(data['altura']);
-                        $('#Direccion').html(data['direccion']);
-                        $('#Numero').html(data['direccion']);
-                        $('#Comuna').html(data['comuna']);
-                        $('#N_Celular').html(data['N_celular']);
-                        $('#N_Fijo').html(data['n_fijo']);
-                        $('#Nacionalidad').html();
+                        if(output=="1")
+                            {
+                                $("#guardar").hide();
+                            }
+                            else{
+                                alert('No se pudo insertar el campo');
+                            }
+                            
+        
                         
                       }
             });
-       });
- });    
-    
+});
     
     
                     /*new Array(document.getElementById('Peso'),document.getElementById('Altura'),document.getElementById('Region').document.getElementById('Comuna'));
@@ -164,7 +164,7 @@
            });
            */
 $('#Region').change(function(){
-   $('#Comuna')empty()
+    $("#Comuna").removeAttr('value')
 });
 
          $( "#Comuna" ).autocomplete({
@@ -182,7 +182,7 @@ $('#Region').change(function(){
                                     data: {
                                         
                                         name_startsWith: request.term,
-                                        idRegion: $('#Region').attr('idRegion')
+                                        idRegion: $('#Region').attr('value')
                                     },
                                     type: "post",
                                     success: function( data ){
