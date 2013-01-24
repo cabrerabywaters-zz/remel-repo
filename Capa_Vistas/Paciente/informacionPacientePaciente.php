@@ -29,12 +29,30 @@
      <br> 
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" class="span2" id="Pais" value="Chile" disabled></label>
-    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="span2 inline" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
-    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="span2 inline" id="Comuna" value="<?php echo $comuna['Nombre']; ?>" disabled></label>
+    
+    <label class="control-label" for="Region"><strong>Región </strong><br>
+    <select name="cars" style="text-align:center;" type="text" class="inline edicion" id="Region">
+<?php  
+  include_once("../../Capa_Controladores/region.php");
+    
+    $arrayRegiones =  Region::Seleccionar("");
+    
+  
+  foreach ($arrayRegiones  as $campo=>$valor){
+    echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
+    
+  }
+?>  
+        
+    </select>
+    </label>
+    
+    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="span2 inline" id="Comuna" value="<?php echo $comuna['Nombre']; ?>" ></label>
     </div>
     
     <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="span6" id="Direccion" value="<?php echo "".$paciente['Calle']." ".$paciente['Numero']." "; ?>" disabled></label>
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
     </div>
  
     <div class="control-group">
@@ -43,18 +61,111 @@
     </div>
        
     <div class="control-group">
-    <label class="control-label" for="N_Celular N_Fijo"><strong>Teléfonos </strong> <br> <input style="text-align:center;" type="text" class="span3" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>" disabled>  <input style="text-align:center;" type="text" class="span3" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>" disabled>  </label>
+    <label class="control-label" for="N_Celular N_Fijo"><strong>Teléfonos </strong> <br> <input style="text-align:center;" type="text" class="span3" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  <input style="text-align:center;" type="text" class="span3" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
     </div>
      
     <div class="control-group">
-    <label class="control-label" for="Isapre"><strong>Isapre </strong> <br> <input style="text-align:center;" type="text" class="span6" id="Isapre" value="<?php echo $prevision['Nombre']; ?>" disabled></label>
+    <label class="control-label" for="Isapre"><strong>Isapre </strong> <br> <input style="text-align:center;" type="text" class="span6" id="Isapre" value="<?php echo $prevision['Nombre']; ?>"></label>
     </div>
     
+     <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
+     
     </form></div> </center>
   </div>
   </div>
 
+<script>
+    $('#guardar').hide();
+    $('.edicion').change(function() {
+                $('#guardar').show();
+    });
+  
+    $("#guardar").click(function() {
+                        var run = <?php echo $_SESSION['RUT'];   ?>;
 
+                        var direccion = $('#Direccion').html();
+                        var numero = $('#Numero').html();
+                        var comuna = $('#Comuna').html();
+                        var n_celular = $('#N_Celular').html();
+                        var n_fijo = $('#N_Fijo').html();
+                       
+                       
+                $.ajax({
+                      url:'../../ajax/actualizarDatosPaciente.php',
+                      data: {RUN:run, 
+                      Direccion:direccion, 
+                      Numero:numero,
+                      Comuna:comuna,
+                      n_celular:n_celular,
+                      n_fijo:n_fijo
+                  
+          },
+                      type: 'post',
+                      success: function(output){
+                        alert(output);
+                        
+                        if(output=="1")
+                            {
+                                $("#guardar").hide();
+                            }
+                            else{
+                                alert('No se pudo insertar el campo');
+                            }
+                            
+        
+                        
+                      }
+            });
+});
+
+$('#Region').change(function(){
+    $("#Comuna").removeAttr('value')
+});
+
+         $( "#Comuna" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de comuna (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteComuna.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../ajax/autocompleteComuna.php",
+                                    data: {
+                                        
+                                        name_startsWith: request.term,
+                                        idRegion: $('#Region').attr('value')
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        
+                                        var output = jQuery.parseJSON(data);
+                                                                                
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre,
+                                               id3: item.idComuna
+                                             
+                                            }
+                                            
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           minLength: 2,
+                           select: function(event, ui){
+                                   
+                                }
+                            });//autocompleteComuna
+
+//CAMBIAR LA QUERY PARA GUARDAR LOS DATOS!
+
+</script>
 
 
 
