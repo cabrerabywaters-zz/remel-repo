@@ -9,7 +9,7 @@
     echo'
   <div class="row">
 
-  <center> <div style="width: 50%; ;">
+  <center><div style="width: 50%; ;">
   <table>
                 <tr><td>
    <table class="table table-striped">
@@ -40,7 +40,7 @@
 
             echo "</tr>";
     }
-    echo '</table></div></center></div>';
+    echo '</table></td></tr></table></div></center></div>';
     ?>
   </div>
   </div>

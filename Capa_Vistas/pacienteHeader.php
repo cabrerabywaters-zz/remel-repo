@@ -73,11 +73,17 @@
         <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
         <?php
         // donde estan ubicadas las variables que se despliegan en la base del proyecto
         include(dirname(__FILE__) . "/informacionVistaPaciente.php");
         ?>
+<!-- scripts de google con php -->
+<?php include("scriptTorta.php"); 
+	  include("scriptLineas.php");
+	  include("scriptBarra.php");
+?>
     </head>
     
     
@@ -113,6 +119,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
                     <li><a href="#tabDiagnosticos" data-toggle="tab">Mis Diagnósticos</a></li>
                       <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas</a></li>
                       <li><a href="#tabHistorialMedico" data-toggle="tab">Historial Médico</a>
+                      <li><a href="#infoRelevante" data-toggle="tab">Informacion Relevante</a>
                       <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
 
                     
