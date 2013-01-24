@@ -84,10 +84,9 @@ class Paciente {
     public static function Actualizar() {
         $id = $_POST['id_paciente'];
         $datosActualizacion = array(
-            array('Fecha_Ultima_Actualizacion','NOW()'),
+            array('Fecha_Ultima_Actualizacion', 'NOW()'),
             array('Peso', $_POST['peso']),
             array('altura', $_POST['altura'])
-            
         );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
@@ -95,15 +94,15 @@ class Paciente {
         $query = CallQuery($queryString);
     }
 
-    public static function ActualizarPorId($idPaciente){
+    public static function ActualizarPorId($idPaciente) {
         $queryString = "UPDATE Personas SET (Altura = $_POST[altura], Peso = $_POST[peso], Comuna = $_POST[comuna], Direccion = $_POST[direccion],)
                         WHERE Pacientes.idPaciente = '$idPaciente'
                         AND Direcciones.idDireccion = Personas.Direccion_idDireccion
                         AND Pacientes.Personas_RUN = Persona.RUN
                         ";
-                echo $queryString;
+        echo $queryString;
     }
-    
+
     public static function EncontrarPaciente($rut) {
         $queryString = "SELECT idPaciente FROM Pacientes WHERE Personas_RUN = '$rut';";
         $res = CallQuery($queryString);
@@ -185,8 +184,8 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         }
         return $resultArray;
     }
-	
-	public static function RecetasPacienteMedico($idPaciente, $RUTMedico) {
+
+    public static function RecetasPacienteMedico($idPaciente, $RUTMedico) {
         $queryString = "SELECT *
 						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos, 
 						Medicamentos_Recetas
@@ -196,7 +195,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 						AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
 						AND Consulta.Medicos_idMedico = Medicos.idMedico
 						AND Medicos.Personas_RUN = $RUTMedico ";
-						// Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
+        // Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
 
 
         $result = CallQuery($queryString);
@@ -211,7 +210,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 
         //primera query que obtiene solo escalares (nombre medico, fechas, etc)
         $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Consulta.Id_consulta 
-                        FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos, Pacientes, Personas, Medicos
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Pacientes, Personas, Medicos
 			WHERE Pacientes.idPaciente = $idPaciente
                         AND Medicos.Personas_RUN = Personas.RUN
                         AND Medicos.idMedico = Consulta.Medicos_idMedico
@@ -227,19 +226,42 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         }
         return $resultArray;
     }
-	
-	public static function R_MedicamentosVigentesPaciente($idPaciente,$fechaActual){
+    
+    public static function R_RecetasPacienteVigentes($idPaciente, $fechaActual) {
+
+        //primera query que obtiene solo escalares (nombre medico, fechas, etc)
+        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Consulta.Id_consulta 
+                        FROM Consulta, Recetas, Medicamentos_Recetas, Pacientes, Personas, Medicos
+			WHERE Pacientes.idPaciente = $idPaciente
+                        AND Medicos.Personas_RUN = Personas.RUN
+                        AND Medicos.idMedico = Consulta.Medicos_idMedico
+                        AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
+                        AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
+                        AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
+                        AND Recetas.Fecha_Vencimiento <= $fechaActual
+                        ";
+
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
+    
+    public static function R_MedicamentosVigentesPaciente($idPaciente, $fechaActual) {
         $queryString = 'SELECT Medicamentos_Recetas.idMedicamento
                                     FROM Medicamentos_Recetas, Recetas, Consulta, Pacientes
                                     WHERE Recetas.Fecha_Vencimiento <= ' . $fechaActual . '
                                     AND Recetas.idReceta = Medicamentos_Recetas.Recetas_idReceta
                                     AND Recetas.Consulta_Id_consulta = Consulta.Id_consulta
                                     AND Consulta.Pacientes_idPaciente = Pacientes.idPaciente
-                                    AND Pacientes.idPaciente ='.$idPaciente.'
+                                    AND Pacientes.idPaciente =' . $idPaciente . '
                                     ';
         $resultado = CallQuery($queryString);
         return $resultado;
-	}
+    }
+
     public static function R_MedicamentosConsulta($idConsulta) {
         $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta
                         FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos
@@ -256,7 +278,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         return $resultArray;
     }
 
-        public static function R_DiagnosticosIdPorPacienteId($idPaciente){
+    public static function R_DiagnosticosIdPorPacienteId($idPaciente) {
         $queryString = 'SELECT Historiales_medicos.Diagnosticos_idDiagnostico as ID
                         FROM Pacientes, Consulta, Historiales_medicos
                         WHERE ' . "$idPaciente" . ' = Pacientes.idPaciente

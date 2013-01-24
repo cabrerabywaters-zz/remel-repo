@@ -59,9 +59,11 @@
         /**
          * función que verifica la clave del paciente
          */
-        var postData = $("#verificacionClave").serialize();
+        var rut = $("input[name='RUN']").val();
+        var clave = $("input[name='clave']").val();
+        var id = $("input[name='hID']").val();
         $.ajax({ url: '../../ajax/verificarClavePaciente.php',
-            data: postData,
+            data: {'hRUN': rut,'clave': clave, 'hID': id},
             type: 'post',
             success: function(output) {
                 if(output == 1){// redireccion a atencionPaciente
