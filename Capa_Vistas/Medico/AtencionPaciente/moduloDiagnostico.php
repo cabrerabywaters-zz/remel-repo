@@ -199,10 +199,11 @@
                          * 
                          */
                         $('#modalDiagnosticoLabel').html('Debe Escojer un Diagnóstico'); // cambio el titulo
-                        $('select>option:eq(0)').attr('selected', true);
+                        $('select>option:eq(1)').attr('selected', true);
                         $('#diagnostico').val(''); // borro el buscador
                         $('#comentario_diagnostico').val(''); //borro el comentario
-                       // $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                        $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                        $('#modalDiagnostico').collapse('hide');
                     }); //end on
                     
                     
@@ -221,9 +222,10 @@
                         $('#diagnosticoAsociado').append('<option value="'+id_diagnostico+'">'+nombre_diagnostico+'</option>');
                         var pill = '\
                         <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
-                        <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
-                        <a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
-                        <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
+                        <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
+                        <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a>\n\
+                        <strong>'+nombre_diagnostico+'</strong>\n\
+                        </div>';
                         
                 
                         $('#log').removeClass().addClass('span6 modal-body');
@@ -238,6 +240,7 @@
      //BOTON EDITAR
      //AUTOR: MAX SILVA mit master oviedo
      $('.editar').tooltip({title:"edita"}).unbind('click').on('click',function(){  
+            
             var idDiagnosticoEdit = $(this).parent().attr('iddiagnostico');
          
             $('#modalDiagnosticoLabel').text(
@@ -255,7 +258,7 @@
                 
             $('#guardar_cambios').show().attr('disabled',false);
             $('#guardar_diagnostico').hide();
-            $('#modalDiagnostico').modal('show');
+            $('#modalDiagnostico').collapse('show');
                      
                      
             $('#guardar_cambios').unbind('click').on('click',function(){
@@ -266,7 +269,7 @@
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('comentariodiagnostico',comentario);
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('tipodiagnostico',tipo_diagnostico);
                          
-                        $('#modalDiagnostico').modal('hide');
+                        $('#modalDiagnostico').collapse('hide');
                          
                      });
                      
