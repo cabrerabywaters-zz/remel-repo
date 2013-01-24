@@ -30,11 +30,11 @@ y el popup que muestra el detalle del medicamento
                     </form><!-- append form-->
             
             </div><!-- row del buscador -->
+             
+              <!-- Modal detalleMedicamento -->
+              <?php include('detalleMedicamento.php'); ?>
+              <!-- Modal detalleMedicamento -->
             
-                    
-            
-            
-                 
             <div class="row-fluid span12">
                 <div id="busqueda_avanzada" class="collapse">
                         <strong><p>Categorias ATC</p></strong>
@@ -398,7 +398,7 @@ y el popup que muestra el detalle del medicamento
                         if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con los siguientes medicamentos en esta receta: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
                     
                     
-                    $('#detalleMedicamento').modal('show'); // se muestra el modal
+                    $('#detalleMedicamento').collapse('show'); // se muestra el modal
                                         
 
            
@@ -469,7 +469,7 @@ y el popup que muestra el detalle del medicamento
         //se limpian los campos y se esconde el modal   
         
         
-        $('#detalleMedicamento').modal('hide');
+        $('#detalleMedicamento').collapse('hide');
         $('#Medicamentos').val('');
         $('#warnings').html('')
         $('#boton_medicamentos').attr('disabled','disabled');
