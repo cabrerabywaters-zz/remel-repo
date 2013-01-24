@@ -84,10 +84,6 @@ AND Medicos_idMedico = '$idMedico'";
 
 </div><!-- fin de la barra de favoritos -->
 
-  <!-- Modal detalleMedicamento -->
-  <?php include(dirname(__FILE__).'/AtencionPaciente/detalleMedicamento.php'); ?>
-  <!-- Modal detalleMedicamento -->
-
 <script>
    /**
     * comportamiento de los paneles colapsables (que cambien los iconos segun corresponda)
