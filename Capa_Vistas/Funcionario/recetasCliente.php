@@ -15,7 +15,8 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
 <div class="accordion-body">
     <div class="accordion-inner">
         <?php
-        $fechaActual = date('d-m-y');
+        //$fechaActual = date('y-m-d');
+        $fechaActual = date("Y-m-d H:i:s");
         $recetasPaciente = Paciente::R_RecetasPacienteVigentes($_SESSION['idPaciente'], $fechaActual);
         echo'
   <div class="row">

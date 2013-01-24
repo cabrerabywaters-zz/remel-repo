@@ -238,9 +238,8 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
-                        AND Recetas.Fecha_Vencimiento <= $fechaActual
+                        AND Recetas.Fecha_Vencimiento >= '$fechaActual'
                         ";
-
         $result = CallQuery($queryString);
         $resultArray = array();
         while ($fila = $result->fetch_assoc()) {
