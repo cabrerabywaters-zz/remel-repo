@@ -6,6 +6,7 @@ include_once(dirname(__FILE__) . '/../Capa_Controladores/funcionario.php');
 
 iniciarCookie();
 verificarIP();
+//print_r($_SESSION);
 ?>
 <html lang="en">
     <head>
@@ -164,7 +165,7 @@ if (isset($_SESSION['lugaresFuncionario']) == "true") {
 $sucursalesFuncionario = $_SESSION['lugaresFuncionario'];
 
 foreach($sucursalesFuncionario as $sucursal){
-    echo "<div idSucursal='".$sucursal['RUT']."' nombreSucursal='".$sucursal['Nombre']."Funcionario' class='alert alert-success'><strong>".$sucursal['Nombre']."</strong>";
+    echo "<div idSucursal='".$sucursal['RUT']."Funcionario' nombreSucursal='".$sucursal['Nombre']."Funcionario' class='alert alert-success'><strong>".$sucursal['Nombre']."</strong>";
     foreach($sucursal['Lugares'] as $lugar){
         echo "<button class='btn btn-block lugar' type='button' idLugar='".$lugar['idLugar_de_Atencion']."Funcionario'>".$lugar['Nombre']."</button>";
     }
