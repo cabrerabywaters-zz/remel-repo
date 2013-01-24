@@ -31,6 +31,7 @@
                 if($idFuncionario != false){
                     $_SESSION['idFuncionarioLog'] = $idFuncionario[0];
                     $_SESSION['funcionarioCategoria'] = $idFuncionario[1];
+                    $_SESSION['RUTFuncionario'] = $rut;
                 } else $_SESSION['idFuncionarioLog'] = false;
 
 		echo "1";
