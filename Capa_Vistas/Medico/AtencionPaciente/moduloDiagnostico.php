@@ -11,13 +11,44 @@
             <div class="span6 modal-body"><!-- div donde estará el buscador -->     
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
-            <form class="form-search" id="buscar_diagnostico" method="post">
+            <div class="form-search" id="buscar_diagnostico">
                 <div class="input-append"> <!-- buscador inline con autocomplete -->
 
                     <input type="text" class="search-query" id="diagnostico" name="diagnostico">
-                    <input type="submit" id="boton_diagnostico" class="btn" data-target="#modalDiagnostico"  data-toggle="modal" value="Añadir" disabled>  <br>
-           </form>
+                    <button id="boton_diagnostico" class="btn" disabled>Añadir</button>  <br>
+           </div>
                </div><!-- buscador inline con autocomplete -->
+            
+            <!-- popup informacion diagnostico -->
+                        <div id="modalDiagnostico" class="collapse">
+                            <div class="arrow"></div>
+                            <br>
+                            <strong><h3 id="modalDiagnosticoLabel" class="popover-title">Debe seleccionar un Diagnóstico</h3></strong>
+
+                            <div class="popover-content">
+                            <select id="tipo_diagnostico">
+                                <?php
+                                include_once('../../../Capa_Controladores/tipo.php');
+
+                                $tipos_diagnosticos = Tipo::Seleccionar('');
+
+                                foreach ($tipos_diagnosticos as $tipo) {
+
+                                    echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <span id="id_diagnostico" style="display:none"></span>
+                            <span id="esGES" style="display:none">0</span>
+                            <p>Comentario: </p>
+                            <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%" placeholder="Puede Ingresar un comentario para su diagnostico"></textarea></center>
+                            <span id="mensaje"></span>
+
+                                <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</button>
+                                <button class="btn btn-info" id="guardar_cambios" disabled="disabled">Guardar</button>  
+                                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
+                            </div>   
+                        </div><!-- fin popup informacion diagnostico -->
             </div><!-- div del buscador-->
             
             <div id="log" class="span6"><!-- div de diagnosticos selecciondos -->
@@ -31,34 +62,6 @@
         </div>
     </div>
 </div>
-
-<!-- popup informacion diagnostico -->
-<div id="modalDiagnostico" class="hide fade" tabindex="-1" role="dialog" aria-labelledby="modalDiagnosticoLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="modalDiagnosticoLabel">Debe seleccionar un Diagnóstico</h3>
-
-    </div>
-    <div class="modal-body">
-
-
-        <p></p>
-
-            <p></p>
-
-
-                <p>Comentario: </p>
-                <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%" placeholder="Puede Ingresar un comentario para su diagnostico"></textarea></center>
-                <span id="mensaje"></span>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</button>
-                    <button class="btn btn-info" id="guardar_cambios" disabled="disabled">Guardar</button>  
-                        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
-                        
-
-                </div>
-</div><!-- fin popup informacion diagnostico -->
 
 <!-- dialogo que contiene los medicamentos asociados a un diagnostico -->
 <div id="medicamentosAsociados">
@@ -136,7 +139,7 @@
      
                         
     
-    
+                 $(document).ready(function(){           
                         $('#boton_diagnostico').click(function(){
                         /**
                          * funcion que envía el id del diagnostico y retorna el json 
@@ -164,13 +167,15 @@
                                         $('#esGES').html('1');
                                     } // end if
                                     //resto de la informacion que se busca desplegar en el popup
-                                    
+                                  $('#modalDiagnostico').collapse('show');  
                                 }//end success
                                 
 
                             });// end ajax
-                              
+                           
                         }); // end click
+                 });//end ready       
+            
 </script>
 
 
@@ -194,10 +199,11 @@
                          * 
                          */
                         $('#modalDiagnosticoLabel').html('Debe Escojer un Diagnóstico'); // cambio el titulo
-                        $('select>option:eq(0)').attr('selected', true);
+                        $('select>option:eq(1)').attr('selected', true);
                         $('#diagnostico').val(''); // borro el buscador
                         $('#comentario_diagnostico').val(''); //borro el comentario
-                       // $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                        $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
+                        $('#modalDiagnostico').collapse('hide');
                     }); //end on
                     
                     
@@ -216,15 +222,16 @@
                         $('#diagnosticoAsociado').append('<option value="'+id_diagnostico+'">'+nombre_diagnostico+'</option>');
                         var pill = '\
                         <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
-                        <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombre_diagnostico+'</strong>\n\
-                        <a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
-                        <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a></div>';
+                        <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
+                        <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a>\n\
+                        <strong>'+nombre_diagnostico+'</strong>\n\
+                        </div>';
                         
                 
                         $('#log').removeClass().addClass('span6 modal-body');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
-                        $('#modalDiagnostico').modal('hide');// se cierra el modal
+                        $('#modalDiagnostico').collapse('toggle');// se cierra el modal
                         $('#diagnostico').val(''); // se borra el buscador
                         $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
                         $('#comentario_diagnostico').val(''); // se borra el comentario 
@@ -233,6 +240,7 @@
      //BOTON EDITAR
      //AUTOR: MAX SILVA mit master oviedo
      $('.editar').tooltip({title:"edita"}).unbind('click').on('click',function(){  
+            
             var idDiagnosticoEdit = $(this).parent().attr('iddiagnostico');
          
             $('#modalDiagnosticoLabel').text(
@@ -250,7 +258,7 @@
                 
             $('#guardar_cambios').show().attr('disabled',false);
             $('#guardar_diagnostico').hide();
-            $('#modalDiagnostico').modal('show');
+            $('#modalDiagnostico').collapse('show');
                      
                      
             $('#guardar_cambios').unbind('click').on('click',function(){
@@ -261,7 +269,7 @@
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('comentariodiagnostico',comentario);
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('tipodiagnostico',tipo_diagnostico);
                          
-                        $('#modalDiagnostico').modal('hide');
+                        $('#modalDiagnostico').collapse('hide');
                          
                      });
                      
@@ -364,20 +372,5 @@
 </script>
 
 
-<!--        <select id="tipo_diagnostico">
-            <option value="0" selected="selected">Escoja un tipo...</option>
-            <?php
-            include_once('../../../Capa_Controladores/tipo.php');
 
-            $tipos_diagnosticos = Tipo::Seleccionar('');
 
-            foreach ($tipos_diagnosticos as $tipo) {
-
-                echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
-            }
-            ?>
-        </select>
-        <span id="id_diagnostico" style="display:none"></span>
-        <span id="esGES" style="display:none">0</span>
-
--->

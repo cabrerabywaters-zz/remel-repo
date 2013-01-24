@@ -1,6 +1,5 @@
 <?php
 	// consulta a Realizar a la base de datos del usuario 
-        session_start();
 	include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 	include(dirname(__FILE__)."/../Capa_Controladores/funcionario.php");
 	include(dirname(__FILE__)."/../Capa_Controladores/categoriaFuncionario.php");

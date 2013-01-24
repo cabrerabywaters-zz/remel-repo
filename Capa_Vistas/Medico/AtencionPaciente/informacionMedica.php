@@ -5,22 +5,20 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-	  <?php 
-function mostrarAlergias($alergias){ 
-    echo'
-  <div class="row-fluid">
-  <div class="span6" id="alergias">
-  <center>
-  <table>
-   <thead>
+
+
+
+  	<div class="row-fluid">
+ 		 <div class="span6" id="alergias">
+ 			 <center>
+ 				 <table class="table table-hover">
+  				 <thead>
                      <tr>
                      <th colspan="2">Alergias</th>                      
                     </tr>
                 </thead>
-                <tr><td>
-   <table class="table table-hover">
    <tbody>';
-   foreach ($alergias as $datos => $dato)
+  <?php  foreach ($alergias as $datos => $dato)
    
    {
 	echo "<tr>";
@@ -30,54 +28,48 @@ function mostrarAlergias($alergias){
 	echo "</tr>";   
 	   
    }
+		?>	   
 			   
 			   
-			   
-              echo '</tbody>
-            </table>
-            </tr></td><tfoot><tr><td> 
+ </tbody>
+ <tfoot>
+ 		<tr><td> 
 			<form class="form-search" id="buscar_alergia" method="post">
 			<div class="input-append">
   				<input id="Alergias" type="text">
  				 <button class="btn" type="button" id="boton_alergia">Añadir</button>
   			</div>
 			</form>
-  </td></tr></tfoot></table></center></div>';
-}
-  
-function mostrarCondiciones($condiciones){  
-    echo'<div class="span6"><center>
-  <table>
+  		</td></tr>
+</tfoot>
+</table>
+</center></div>
+<div class="span6" id="condiciones"> <center>
+  <table class="table table-hover">
    <thead>
                      <tr>
                      <th>Condiciones</th>                      
                     </tr>
                 </thead>
-                <tr><td>
-   <table class="table table-hover">';
-   foreach ($condiciones as $datos => $dato)
+                <tbody>
+
+  <?php foreach ($condiciones as $datos => $dato)
    {
-	echo "<tr>";
+	echo '<tr id="'.$dato['idCondiciones'].'">';
 	echo "<td>".$dato['Nombre']." </td>";
 	echo "</tr>";   
 	   
-   }
-echo'
+   } ?>
                 </tbody>
-            </table>
-            </tr></td><tfoot><tr><td> 
-			<form class="form-search" id="buscar_condicion" method="post">
+<tfoot><tr><td> 
+			<form class="form-search" method="post">
 			<div class="input-append">
   				<input id="Condiciones" type="text">
-  				<button class="btn" type="button" id="boton_condiciones">Añadir</button></div>
+  				<button class="btn" type="button" id="boton_condiciones" disabled="disabled">Añadir</button></div>
 				</form></td></tr>	
 				</tfoot></table></center>
-			</div> 
-  </div>';
-  } 
-
-          mostrarAlergias($alergias);
-          mostrarCondiciones($condiciones); ?>
+		  </div> 
+  		</div>
       </div>
     </div>
 <script>
@@ -91,32 +83,48 @@ $( "#Condiciones" ).autocomplete({
                              * Funcion select que ejecutará una accion cuando se devuelva
                              */        
                           source: function( request, response ){
-                                $.ajax({
+                                	 
+								$.ajax({
                                     url: "../../../ajax/autocompleteCondiciones.php",
                                     data: {
-                                        name_startsWith: request.term
-                                    },
+                                        name_startsWith: request.term,
+    										                                
+									},
+									
                                     type: "post",
                                     success: function( data ){
-                                        var output = jQuery.parseJSON(data);
-                                                                                
+                                        var output = jQuery.parseJSON(data); 
+										              
                                         response( $.map( output, function( item ) {
                                            return {
                                                label: item.Nombre
                                               ,id3 : item.idCondiciones
                                             }
-                                            
                                         })//end map
                                         );  // end response
                                     }//end success
 
-                                }); // end ajax
-                            },  // end source
+                                });//end ajax 
+							}, // end source
                            select: function(event, ui){
-                                    $('#Condiciones').removeAttr('idCondiciones').attr('idCondiciones',ui.item.id3)
-                                    $('#guardar_condiciones').removeAttr('disabled');
-                                    $('#boton_ondiciones').removeAttr('disabled');
-                                },
+                            var idCondicion = ui.item.id3
+							$("#boton_condiciones").removeAttr('disabled');
+							$('#Condiciones').removeAttr('idCondicion').attr('idCondicion',idCondicion)
+							//        
+                            //      var nombreCondicion = ui.item.label
+							//		$('#boton_condiciones').removeAttr('disabled');
+							//		$.ajax({
+							//			url: "../../../ajax/agregarCondicion.php",
+							//			data: {"idCondicion":idCondicion},
+							//			type: "post",
+							//			success: function(output){
+							//				if(output=="1"){
+							//			//aqui se agrega al listado
+									//	$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>')
+								//			}
+								//		}
+                             //   });
+							},
                            minLength: 2,
                            open: function() {
                                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -124,7 +132,27 @@ $( "#Condiciones" ).autocomplete({
                            close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 } //end close
-                            });//autocompleteDiagnosticos
+		                        });
+								
+
+							//autocompleteDiagnosticos
+$("#boton_condiciones").click(function(){
+var idCondicion = $("#Condiciones").attr('idcondicion')
+var nombreCondicion = $("#Condiciones").val()
+$.ajax({
+		url: "../../../ajax/agregarCondicion.php",
+		data: {"idCondicion":idCondicion},
+		type: "post",
+		success: function(output){ 
+		alert(output);
+				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
+								//aqui se agrega al listado
+		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>')
+				}
+		}
+
+});
+})
 $( "#Alergias" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)

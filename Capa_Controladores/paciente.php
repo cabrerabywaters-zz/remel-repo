@@ -147,7 +147,7 @@ GROUP BY Alergias.Nombre;";
     }
 
     public static function R_CondicionPaciente($idPaciente) {
-        $queryString = "SELECT Nombre
+        $queryString = "SELECT Nombre, idCondiciones
 FROM Pacientes, Paciente_has_Condiciones, Condiciones
 WHERE Pacientes.idPaciente = Paciente_has_Condiciones.Paciente_idPaciente
 AND Condiciones.idCondiciones = Condiciones_idcondiciones

@@ -114,7 +114,7 @@ if (!empty($_SESSION))
                         largo = crut.length;
                         if ( largo <2 )
                         {
-                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
+                            $('#mensaje').html("<span class='alert alert-danger'><small><strong>El rut ingresado no es válido</strong></small></span>");
                             Objeto.focus()
                             return false;
                         }
@@ -162,7 +162,7 @@ if (!empty($_SESSION))
                         }
                         if ( dvr != dv.toLowerCase() )
                         {
-                            $('#mensaje').html("<span style='color: red'>El rut ingresado no es válido</span>");
+                            $('#mensaje').html("<span class='alert alert-danger'>El rut ingresado no es válido</span>");
                             Objeto.focus();
                             return false;
                         }
@@ -183,7 +183,7 @@ if (!empty($_SESSION))
                                 window.location.href = "ajax/comprobadorDoctor.php";
                             }
                             else{
-                                $('#mensaje').html("<span style='color: red'>Nombre de Usuario o Constraseña Incorrecto </span>");
+                                $('#mensaje').html("<span class='alert alert-danger'>Nombre de Usuario o Constraseña Incorrecto </span>");
                             }
                         }
                     });
