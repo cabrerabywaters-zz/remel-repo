@@ -108,7 +108,8 @@ class Persona {
                                 array('Direccion_idDireccion',$_POST['idDireccion']),
                                 array('Clave',$_POST['clave']),
                                 array('email',$_POST['email']),
-                                array('Foto',$_POST['foto']),                                array('N_celular',$_POST['n_celular']),
+                                array('Foto',$_POST['foto']),                                
+                                array('N_celular',$_POST['n_celular']),
                                 array('Fecha_creacion_REMEL','NOW()'),
                                 array('n_fijo',$_POST['n_fijo']),
                                 array('Nacionalidad',$_POST['nacionalidad'])
