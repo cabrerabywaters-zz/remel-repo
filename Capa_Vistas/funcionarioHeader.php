@@ -80,14 +80,6 @@
                         include(dirname(__FILE__) . "/informacionFuncionario.php");
                         ?>
                         <!-- scripts de google con php -->
-                        <?php
-                        include("scriptTorta.php");
-                        include("scriptLineas.php");
-                        include("scriptBarra.php");
-                        include_once(dirname(__FILE__) . '/../ajax/sessionCheck.php');
-                        iniciarCookie();
-                        verificarIP();
-                        ?>
                         </head>
 
 
@@ -97,11 +89,14 @@
 
                             <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
                                 <div class="span3 img-rounded" style="background-color: whitesmoke"><!-- despliega la foto del paciente -->
-                                    <img class="img-rounded pull-left" src="<?php echo $paciente['Foto']; ?>" style="width: 140px; height: 140px;">
+                                    <img class="img-rounded pull-left" src="<?php echo $funcionario['Foto']; ?>" style="width: 140px; height: 140px;">
                                 </div><!-- cierre del despliege de la foto -->
 
                                 <div class="img-rounded span6" style=" background-color:white"><!-- despliega el nombre del usuario -->
-                                    <center><h2><?php echo $paciente['Nombre'] . " " . $paciente['Apellido_Paterno'] . " " . $paciente['Apellido_Materno']; ?>
+                                    <center><h2><?php echo $funcionario['Nombre'] . " " . $funcionario['Apellido_Paterno'] . " " . $funcionario['Apellido_Materno'];
+                                                      echo '</br>';
+                                                      echo $nombreCategoria;
+                                                ?>
                                         </h2>
                                     </center>
                                 </div><!-- cierre despliege del nombre del usuario -->
@@ -119,11 +114,7 @@
                                 "><!-- barra de navegacion -->
                                 <!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
                                                          Los href hacen referencia a los tabs en paginaPaciente.php -->
-                                <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
-                                <li><a href="#tabDiagnosticos" data-toggle="tab">Mis Diagnósticos</a></li>
-                                <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas</a></li>
-                                <li><a href="#tabHistorialMedico" data-toggle="tab">Historial Médico</a>
-                                    <li><a href="#infoRelevante" data-toggle="tab">Informacion Relevante</a>
+                                <li class="active img-rounded"><a href="#tabVenderMedicamentos" data-toggle="tab">Vender Medicamentos</a></li>
                                         <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
 
 
