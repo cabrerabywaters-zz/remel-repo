@@ -32,7 +32,7 @@ y el popup que muestra el detalle del medicamento
             </div><!-- row del buscador -->
              
               <!-- Modal detalleMedicamento -->
-              <?php include('detalleMedicamento.php'); ?>
+
               <!-- Modal detalleMedicamento -->
             
             <div class="row-fluid span12">
