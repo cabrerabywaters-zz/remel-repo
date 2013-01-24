@@ -31,7 +31,25 @@
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
 
-    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" idRegion="<?php echo $region['IdRegion']; ?>" ></label>
+   
+    <label class="control-label" for="Region"><strong>Región </strong><br>
+    <select name="cars" style="text-align:center;" type="text" class="inline edicion" id="Region">
+<?php  
+  include_once(dirname(__FILE__)."/../Capa_Controladores/region.php");
+    $arrayRegiones = array();
+    $arrayRegiones =  Region::Seleccionar("");
+    
+  
+  foreach ($arrayRegiones  as $campo=>$valor){
+    echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
+    
+  }
+?>  
+        
+          </select>
+    </label>
+    
+    
     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
     </div>
     
@@ -145,7 +163,11 @@
                 });
            });
            */
-$( "#Comuna" ).autocomplete({
+$('#Region').change(function(){
+   $('#Comuna')empty()
+});
+
+         $( "#Comuna" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de comuna (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -169,7 +191,8 @@ $( "#Comuna" ).autocomplete({
                                                                                 
                                         response( $.map( output, function( item ) {
                                            return {
-                                               label: item.Nombre
+                                               label: item.Nombre,
+                                               id3: item.idComuna
                                              
                                             }
                                             
@@ -181,33 +204,30 @@ $( "#Comuna" ).autocomplete({
                             },  // end source
                            minLength: 2,
                            select: function(event, ui){
-                                    
+                                   
                                 }
                             });//autocompleteComuna
-                            
+
                             
                          
-                            
-
+       //change regiones
+       
+  /*     $('#Region').change(function(){
+	$.ajax({
+		url: "../../../ajax/selectComunas.php",
+                data: {
+                    
+                 idRegion: $('#Region').attr('idRegion');
+                    
+                }
+		success: function(output){
+				var output = jQuery.parseJSON(output);
+				$.each(output,function(i,el){
+					nombre comunas que tienen el id region
+				});//end each
+			}// end        
+                });
+       });
+      */
+     
 </script>
-
-<html>
-<body>
-<select name="cars">
-<?php  
-  
-  $array = array('Región de Tarapacá','Región de Antofagasta','Región de Atacama',
-      'Región de Coquimbo','Región de Valparaiso','Región del Libertador General Bernardo O Higg',
-      'Región del Maule','Región del Bío-Bío','Región de la Araucanía','Región de Los Lagos',
-      'Región de Aysén del General Carlos Ibañez del','Región de Magallanes y la Antártica Chilena',
-      'Región Metropolitana', 'Región de Los Rios', 'Región de Arica y Parinacota'
-      );
-  
-  foreach ($array as $valor=>$value){
-    echo "<option value='asd'> $value </option>";
-  }
-?>  
-
-</select>
-</body>
-</html>

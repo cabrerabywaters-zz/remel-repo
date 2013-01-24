@@ -98,7 +98,18 @@ class Region {
         }
         else return false;
    }
-  
+   
+   public static function BuscarRegionPorID($idRegion) {
+           
+           $queryString = 'SELECT Nombre FROM Regiones WHERE idRegion = "'.$idRegion.'"';
+            
+                 $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+   }
 }
 
 ?>
