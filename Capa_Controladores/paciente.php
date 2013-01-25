@@ -308,5 +308,26 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         }
         return $historialMedico;
     }
+    
+    public static function SeleccionarRecetaPorId($idPaciente){
+    $queryString = "SELECT Personas.Nombre as nombreMedico, Personas.Apellido_Paterno as apellidoMedico, Recetas.Folio_RP as folio, Recetas.Fecha_Emision as fechaEmision, 
+                    Recetas.Fecha_eliminacion as fechaEliminacion, Diagnosticos.Nombre as nombreDiagnostico, Medicamentos_Vendidos.Fecha as fechaAdquisicion                   
+                    FROM Recetas, Medicos, Personas, Diagnosticos, Consulta, Historiales_medicos, Medicamentos_Recetas, Medicamentos_Vendidos
+                    WHERE Consulta.Pacientes_idPaciente =  '$idPaciente'
+                    AND Recetas.Consulta_Id_consulta = Consulta.Id_consulta
+                    AND Consulta.Medicos_idMedico = Medicos.idMedico
+                    AND Medicos.Personas_RUN = Personas.RUN
+                    AND Historiales_medicos.Consulta_Id_consulta = Consulta.Id_consulta
+                    AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
+                    AND Medicamentos_Recetas.Receta_idReceta = Recetas.idReceta
+                    AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos_Vendidos.Medicamentos_Recetas_Medicamento_idMedicamento";
+    $query = CallQuery($queryString);
+    $historialRecetas=array();
+    while($lineaRecetas = $query->fetch_assoc()){
+        $historialRecetas[] = $lineaRecetas;
+    }
+    return $historialRecetas;
+}
+
 }
 ?>

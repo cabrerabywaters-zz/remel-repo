@@ -2,6 +2,7 @@
 
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
+include_once(dirname(__FILE__) . '/../Capa_Controladores/expendedor.php');
 
 class SucursalesHasFuncionarios {
 
@@ -90,7 +91,7 @@ class SucursalesHasFuncionarios {
             $nombresConLugares[] = array(
                 'Nombre' => $nombre['Nombre'],
                 'RUT' => $nombre['RUT'],
-                'Lugares' => LugarAtencion::SeleccionarPorRutSucursal($nombre['RUT'])
+                'Expendedores' => Expendedor::SeleccionarPorRutSucursal($nombre['RUT'])
             );
         }
 

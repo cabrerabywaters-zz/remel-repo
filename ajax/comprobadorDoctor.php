@@ -19,7 +19,7 @@ if ($_SESSION['idMedicoLog'] != null || $_SESSION['idFuncionarioLog'] != null) {
     if ($_SESSION['idFuncionarioLog'] != null) {
         $idFuncionario = $_SESSION['idFuncionarioLog'];
 
-        $_SESSION['lugaresFuncionario'] = SucursalesHasFuncionarios::SucursalesPorIdFuncionario($idFuncionario);
+        $_SESSION['expendedores'] = SucursalesHasFuncionarios::SucursalesPorIdFuncionario($idFuncionario);
 
     }
         $page = "../Capa_Vistas/decision.php";

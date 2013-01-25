@@ -117,7 +117,7 @@ verificarIP();
             <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
                 <div class="input-append">
                 <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
-                <button class="btn btn" type="submit">Buscar</button>
+                <button class="btn btn" type="submit">Buscar</button> <div style="display:none" class="alert alert-error" id="error">SEMEN</div>
                 </div>
             </form>
             <div id="atender" class="atender">
@@ -156,6 +156,7 @@ verificarIP();
                         data: postData,
                         type: 'post',
                         success: function(output) {
+                                if (output != 'error'){
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
                                     $("#atender").html("<a class='label label-info' id='"+data['Nombre']+"'>"+nombre+"</a>");
@@ -163,6 +164,10 @@ verificarIP();
                                     $('input[name=hRUN]').val(data['RUN']);
                                     $('#clave').collapse('show');
                                     $('input[name="clave"]').focus();
+                                }
+                                else {
+                                    $("#error").show();
+                                }
                             }
 
                   	});// end ajax

@@ -92,6 +92,20 @@ class Expendedor {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    
+        public static function SeleccionarPorRutSucursal($RUT) {
+	$nombreTabla = self::$nombreTabla;
+	$queryString = "SELECT Nombre, idExpendedores FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";
+	
+	$result = CallQuery($queryString);
+        $resultArray = array();
+        while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+        }
+
+        return $resultArray;
+    }
+
 
 }
 
