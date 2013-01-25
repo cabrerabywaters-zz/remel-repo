@@ -121,6 +121,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
                       <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas</a></li>
                       <li><a href="#tabHistorialMedico" data-toggle="tab">Historial Médico</a>
                       <li><a href="#infoRelevante" data-toggle="tab">Informacion Relevante</a>
+                      <li><a href="#calendario" data-toggle="tab">Calendario</a>
                       <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
 
                     
