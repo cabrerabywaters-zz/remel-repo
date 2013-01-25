@@ -9,7 +9,7 @@
 
 
   	<div class="row-fluid">
- 		 <div class="span6" id="alergias">
+ 		 <div class="span6" id="divAlergias">
  			 <center>
  				 <table class="table table-hover">
   				 <thead>
@@ -21,7 +21,7 @@
   <?php  foreach ($alergias as $datos => $dato)
    
    {
-	echo '<tr idAlergia="'.$dato['idAlergia'].'">';
+	echo '<tr idalergia="'.$dato['idAlergia'].'">';
 	echo "<td>".$dato['Alergia']." </td>";
 	echo "</tr>";   
 	   
@@ -34,7 +34,7 @@
  		<tr><td> 
 			<form class="form-search" method="post">
 			<div class="input-append">
-  				<input id="Alergias" type="text">
+  				<input id="alergias" type="text" idAlergia="0">
  				 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
   			</div>
 			</form>
@@ -72,7 +72,7 @@
     </div>
 <script>
 
-$( "#Alergias" ).autocomplete({
+$( "#alergias" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -86,7 +86,7 @@ $( "#Alergias" ).autocomplete({
 								$.ajax({
                                     url: "../../../ajax/autocompleteAlergias.php",
                                     data: {
-                                        name_startsWith: request.term,
+                                        name_startsWith: request.term
     										                                
 									},
 									
@@ -97,7 +97,7 @@ $( "#Alergias" ).autocomplete({
                                         response( $.map( output, function( item ) {
                                            return {
                                                label: item.Nombre
-                                              ,id3 : item.idAlergias
+                                              ,idAlergia : item.idAlergia
                                             }
                                         })//end map
                                         );  // end response
@@ -106,9 +106,9 @@ $( "#Alergias" ).autocomplete({
                                 });//end ajax 
 							}, // end source
                            select: function(event, ui){
-                            var idAlergia = ui.item.id3
+                            var ID = ui.item.idAlergia
 							$("#boton_alergias").removeAttr('disabled');
-							$('#Alergias').removeAttr('idAlergia').attr('idAlergia',idAlergia);
+							$("#alergias").removeAttr('idAlergia').attr('idAlergia',ID);
 							},
                            minLength: 2,
                            open: function() {
@@ -122,23 +122,19 @@ $( "#Alergias" ).autocomplete({
 
 							//autocompleteDiagnosticos
 $("#boton_alergias").click(function(){
-var idAlergia = $("#Alergias").attr('idalergia');
-var nombreAlergia = $("#Alergias").val()
+var idAlergia = $("#alergias").attr('idAlergia');
+var nombreAlergia = $("#alergias").val()
 $.ajax({
 		url: "../../../ajax/agregarAlergia.php",
-		data: {"idAlergia":idAlergia},
+		data: {idAlergia:idAlergia},
 		type: "post",
 		success: function(output){
-			alert(output) 
-				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
-								//aqui se agrega al listado
-		$('#alergias tbody').append('<tr><td idAlergias="'+idAlergia+'">'+nombreAlergia+'</td></tr>');
-				}
+		$("#divAlergias tbody").append('<tr><td idAlergias="'+idAlergia+'">'+nombreAlergia+'</td></tr>');
 		}
 
 });
 $("#boton_alergias").attr('disabled',"disable");
-$("#Alergias").attr("value","");
+$("#alergias").attr("value","");
 });
 $( "#Condiciones" ).autocomplete({
                                 /**
@@ -154,7 +150,7 @@ $( "#Condiciones" ).autocomplete({
 								$.ajax({
                                     url: "../../../ajax/autocompleteCondiciones.php",
                                     data: {
-                                        name_startsWith: request.term,
+                                        name_startsWith: request.term
     										                                
 									},
 									
@@ -197,10 +193,7 @@ $.ajax({
 		data: {"idCondicion":idCondicion},
 		type: "post",
 		success: function(output){ 
-				if(output=="1"){ // si el output es 1 quiere decir que se agregaron los datos a la base de datos
-								//aqui se agrega al listado
 		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>');
-				}
 		}
 
 });

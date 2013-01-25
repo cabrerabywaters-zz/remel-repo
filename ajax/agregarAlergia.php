@@ -15,9 +15,9 @@ $insercion = AlergiaHasPaciente::Insertar($idAlergia, $idPaciente);
   
 
     if($insercion)
-    {echo '1';}
+    {echo '0';}
     else{
-        echo '0';
+        echo '1';
     }
 
 
