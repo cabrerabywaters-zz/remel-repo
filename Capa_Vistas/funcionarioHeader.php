@@ -115,6 +115,7 @@
                                 <!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
                                                          Los href hacen referencia a los tabs en paginaPaciente.php -->
                                 <li class="active img-rounded"><a href="#tabVenderMedicamentos" data-toggle="tab">Vender Medicamentos</a></li>
+                                <li><a href="#tabVerArsenal" data-toggle="tab">Ver Arsenal</a></li>
                                         <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
 
 

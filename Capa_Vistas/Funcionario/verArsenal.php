@@ -1,15 +1,11 @@
 <?php
-include_once(dirname(__FILE__) . '/../../ajax/sessionCheck.php');
-iniciarCookie();
-verificarIP();
-include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
 //buscar Recetas del cliente
 ?>
 
 <div class="accordion-heading">
-    <a class="btn btn-large btn-block active" data-toggle="collapse" data-parent="#accordion1" >
-        Recetas del Cliente
+    <a class="btn btn-large btn-block active" data-toggle="collapse" data-parent="#accordion2" >
+        Arsenal de <?php //$_SESSION['nomLugar'] ?>
     </a>
 </div>
 <div><center>
