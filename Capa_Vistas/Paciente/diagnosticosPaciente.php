@@ -25,27 +25,21 @@
        <tbody>
     
     <?php
-    foreach ($diagnosticosPaciente as $datos => $dato) {
-        echo "<tr>";
-        foreach ($dato as $llave=>$valor) {
-           var_dump($llave);
-            if ($llave == 'Nombre'){
-                echo '<td>';
-                echo $valor.' ';
-            }
-            if ($llave == 'Apellido_Paterno'){
-                echo $valor;
-                echo '</td>';
-            }
-            if ($llave == 'Fecha' || $llave == 'Diagnostico') {
-                echo '<td>';
-                echo $valor;
-                echo '</td>';
-            }
-        }
-
+    
+    include_once(dirname(__FILE__)."/../../Capa_Controladores/paciente.php");
+    
+    $historialPaciente = Paciente::SeleccionarDiagnosticosPorId($idPaciente);
+    
+    foreach ($historialPaciente as $lineaHistorial) {
+            echo "<tr>";
+            echo "<td>".$lineaHistorial['nombreDiagnostico']."</td>";
+            echo "<td>".$lineaHistorial['nombreMedico']." ".$lineaHistorial['apellidoMedico']."</td>";
+            echo "<td>".$lineaHistorial['fechaConsulta']."</td>";
+            echo "<td>".$lineaHistorial['nombreTipoDiagnostico']."</td>";
+            echo "<td>".$lineaHistorial['comentarioDiagnostico']."</td>";
             echo "</tr>";
     }
+        
     echo '</table></div></table></center></div>';
   ?>
            
