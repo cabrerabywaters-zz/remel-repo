@@ -13,7 +13,7 @@ include(dirname(__FILE__) . "/../funcionarioHeader.php");
                 <div class="accordion-group"><!-- informacion personal del paciente-->
                     <?php
                     // muestra los detalles de paciente
-                    include(dirname(__FILE__) . "/venderMedicamento.php");
+                    include("venderMedicamento.php");
                     ?>
                 </div><!-- informacion personal del paciente-->
             </div>
@@ -28,7 +28,7 @@ include(dirname(__FILE__) . "/../funcionarioHeader.php");
                 <div class="accordion-group"><!-- informacion personal del paciente-->
                     <?php
                     // muestra los detalles de paciente
-                    include(dirname(__FILE__) . "/verArsenal.php");
+                    include("verArsenal.php");
                     ?>
                 </div><!-- informacion personal del paciente-->
             </div>
