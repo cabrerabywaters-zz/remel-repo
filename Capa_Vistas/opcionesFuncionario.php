@@ -5,15 +5,15 @@
         /**
          * genero el listado de las instituciones desde el arreglo
          * de sesion instituciones (contiene todas las instituciones de 
-         * el medico conectado
+         * el funcionario conectado
          */
-        if (isset($_SESSION['lugaresFuncionario']) == "true") {
-            $sucursalesFuncionario = $_SESSION['lugaresFuncionario'];
+        if (isset($_SESSION['expendedores']) == "true") {
+            $sucursalesFuncionario = $_SESSION['expendedores'];
 
             foreach ($sucursalesFuncionario as $sucursal) {
-                echo "<div idSucursal='" . $sucursal['RUT'] . "Funcionario' nombreSucursal='" . $sucursal['Nombre'] . "Funcionario' class='alert alert-success'><strong>" . $sucursal['Nombre'] . "</strong>";
-                foreach ($sucursal['Lugares'] as $lugar) {
-                    echo "<button class='btn btn-block lugar' type='button' idLugar='" . $lugar['idLugar_de_Atencion'] . "Funcionario'>" . $lugar['Nombre'] . "</button>";
+                echo "<div idSucursal='" . $sucursal['RUT'] . "Funcionario' nombreSucursal='" . $sucursal['Nombre']."' class='alert alert-success'><strong>" . $sucursal['Nombre'] . "</strong>";
+                foreach ($sucursal['Expendedores'] as $lugar) {
+                    echo "<button class='btn btn-block lugar' type='button' idLugar='" . $lugar['idExpendedores'] . "Funcionario'>" . $lugar['Nombre'] . "</button>";
                 }
                 echo "</div>";
             }
