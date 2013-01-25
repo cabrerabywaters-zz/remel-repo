@@ -4,51 +4,46 @@
 
     </a>
 </div>
-<div class="accordion-body">
-    <div class="accordion-inner">
-        <?php
-        echo'
+  <div id="collapsetwo">
+  <div class="accordion-inner">
+  
   <div class="row">
 
   <center> <div style="width: 50%; ;">
   <table>
                 <tr><td>
-   <table class="table table-striped">
+   <table class="table table-striped table-bordered table-condensed">
 	<thead>
     <tr>
-    <th>Medico</td>
-    <th>Fecha de Emision</td>
-    <th>Fecha de Vencimiento</td>
-    <th>Medicamentos</td>
-    </tr></thead>
-    ';
-        foreach ($recetasPaciente as $datos => $dato) {
-            echo "<tr>";
-            foreach ($dato as $llave => $valor) {
-                if ($llave == 'Id_consulta'){
-                    echo '<td>';
-                    $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
-                    for($i=0;$i<count($medicamentosConsulta);$i++){
-                        echo $medicamentosConsulta[$i]['Nombre_Comercial'].'</br>';
-                    }
-                }
-                if ($llave == 'Nombre'){
-                    echo '<td>';
-                    echo $valor.' ';
-                }
-                if ($llave == 'Apellido_Paterno'){
-                    echo $valor;
-                    echo '</td>';
-                }
-                if ($llave == 'Fecha_Emision' || $llave == 'Fecha_Vencimiento'){
-                    echo '<td>';
-                    echo $valor;
-                    echo '</td>';
-                }                
-            }
-            echo "</tr>";
+    <th>Folio</th>    
+    <th>Nombre del Médico</th>
+    <th>Fecha Emisión</th>
+    <th>Fecha Vencimiento</th>
+    <th>Fecha Adquisición</th>
+    <th>Diagnostico Asociado</th>
+    </tr>
+       </thead>
+       <tbody>
+           
+           <?php
+               include_once(dirname(__FILE__)."/../../Capa_Controladores/paciente.php");
+               
+               $historialRecetas = Paciente::SeleccionarRecetaPorId($idPaciente);
+               
+           foreach($historialRecetas as $lineaRecetas){
+              echo "<tr>";
+              echo "<td>".$lineaRecetas["folio"]."</td>";
+              echo "<td>".$lineaRecetas["nombreMedico"]." ".$lineaRecetas["apellidoMedico"]."</td>";
+              echo "<td>".$lineaRecetas["fechaEmision"]."</td>";
+              echo "<td>".$lineaRecetas["fechaEliminacion"]."</td>";
+              echo "<td>".$lineaRecetas["fechaAdquisicion"]."</td>";
+              echo "<td>".$lineaRecetas["nombreDiagnostico"]."</td>";
+              echo "</tr>";
         }
-        echo '</table></div></table></center></div>';
-        ?>
-    </div>
-</div>
+    echo '</table></div></table></center></div>';
+  ?>
+           
+           
+  </tbody>
+  </div>
+  </div>
