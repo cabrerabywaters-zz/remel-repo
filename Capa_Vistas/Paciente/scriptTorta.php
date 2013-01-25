@@ -16,15 +16,16 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+          ['Doc Jose', 12],
+          ['Doc Leo', 5],
+          ['Doc Maria', 6],
+          ['Doc Amor', 15],
+          ['Doc Nacho', 4],
+		  ['Doc Cesar', 2]
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
+        var options = {'title':'Visitas de los medicos',
                        'width':400,
                        'height':300};
 

@@ -41,7 +41,7 @@ if (!empty($_SESSION))
                 padding: 19px 29px 29px;
                 margin: 0 auto 20px;
                 background-color: #fafaf0;
-                border: 3px solid #5eaded;
+                border: 3px solid #0b72b5;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
                 border-radius: 5px;

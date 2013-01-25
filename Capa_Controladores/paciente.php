@@ -260,6 +260,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         $resultado = CallQuery($queryString);
         return $resultado;
     }
+    
 
     public static function R_MedicamentosConsulta($idConsulta) {
         $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta
@@ -287,7 +288,25 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         $resultado = CallQuery($queryString);
         return $resultado;
     }
-
+    
+    public static function SeleccionarDiagnosticosPorId($idPaciente, $limit = 0, $offset = 0) {
+        $queryString = "SELECT Diagnosticos.Nombre AS nombreDiagnostico, Personas.Nombre AS nombreMedico, Personas.Apellido_Paterno as apellidoMedico, Tipo.Nombre AS nombreTipoDiagnostico, Consulta.Fecha AS fechaConsulta, Historiales_medicos.Comentario AS comentarioDiagnostico
+            FROM Diagnosticos, Personas, Consulta, Historiales_medicos, Tipo, Medicos
+            WHERE Consulta.Pacientes_idPaciente = '$idPaciente' 
+            AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
+            AND Consulta.Medicos_idMedico = Medicos.idMedico
+            AND Medicos.Personas_RUN = Personas.RUN
+            AND Historiales_medicos.Tipo_idTipo = Tipo.idTipo
+            AND Historiales_medicos.Consulta_Id_consulta = Consulta.Id_consulta";
+        if ($limit != 0) $queryString = $queryString."LIMIT $limit";
+        if ($offset != 0) $queryString = $queryString."OFFSET $offset";
+        $queryString = $queryString.";";
+        $query = CallQuery($queryString);
+        $historialMedico = array();
+        while($lineaHistorial = $query->fetch_assoc()){
+            $historialMedico[] = $lineaHistorial;
+        }
+        return $historialMedico;
+    }
 }
-
 ?>
