@@ -50,7 +50,7 @@
         
          .modal{
           
-           border: 5px solid #efdcc8;
+           border: 5px solid #0b72b5;
       }
      .modal-header, .modal-footer{
            
@@ -58,7 +58,7 @@
       }
       .modal-body{
           background-color: white;
-          border: 3px solid #efdcc8;
+          border: 3px solid #0b72b5;
       }
         
         
