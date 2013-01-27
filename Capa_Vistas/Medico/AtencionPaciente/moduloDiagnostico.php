@@ -4,7 +4,7 @@
         Diagnóstico
     </a>
 </div>
-<div id="collapseOne1" class="accordion-body collapse">
+<div id="collapseOne1" class="accordion-body collapse in">
     <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
 
         <div class="row-fluid">
@@ -12,21 +12,8 @@
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
             <div class="form-search" id="buscar_diagnostico">
-                <div class="input-append"> <!-- buscador inline con autocomplete -->
-
-                    <input type="text" class="search-query" id="diagnostico" name="diagnostico">
-                    <button id="boton_diagnostico" class="btn" disabled>Añadir</button>  <br>
-           </div>
-               </div><!-- buscador inline con autocomplete -->
-            
-            <!-- popup informacion diagnostico -->
-                        <div id="modalDiagnostico" class="collapse">
-                            <div class="arrow"></div>
-                            <br>
-                            <strong><h3 id="modalDiagnosticoLabel" class="popover-title">Debe seleccionar un Diagnóstico</h3></strong>
-
-                            <div class="popover-content">
-                            <select id="tipo_diagnostico">
+                <div class="input-prepend"> <!-- buscador inline con autocomplete -->
+                    <select id="tipo_diagnostico">
                                 <?php
                                 include_once('../../../Capa_Controladores/tipo.php');
 
@@ -37,15 +24,27 @@
                                     echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
                                 }
                                 ?>
-                            </select>
+                    </select>
+                    <input type="text" class="search-query" id="diagnostico" name="diagnostico">
+                    <br>
+                </div>
+               </div><!-- buscador inline con autocomplete -->
+            
+            <!-- popup informacion diagnostico -->
+                        <div id="modalDiagnostico" class="collapse">
+                            <div class="arrow"></div>
+                            <br>
+                            <strong><h3 id="modalDiagnosticoLabel" class="popover-title">Debe seleccionar un Diagnóstico</h3></strong>
+
+                            <div class="popover-content">
                             <span id="id_diagnostico" style="display:none"></span>
                             <span id="esGES" style="display:none">0</span>
                             <p>Comentario: </p>
                             <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%" placeholder="Puede Ingresar un comentario para su diagnostico"></textarea></center>
                             <span id="mensaje"></span>
 
-                                <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Diagnosticar</button>
-                                <button class="btn btn-info" id="guardar_cambios" disabled="disabled">Guardar</button>  
+                                <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Añadir <i class="icon-ok"></i></button>
+                                <button class="btn btn-info" id="guardar_cambios" disabled="disabled">Guardar <i class="icon-ok"></i></button>  
                                 <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
                             </div>   
                         </div><!-- fin popup informacion diagnostico -->
@@ -88,6 +87,13 @@
 <!-- fin dialogo de "usos" -->
                 
 <script>
+          $('a[href="#tabConsulta"]').click(function(){
+              $('#diagnostico').focus();
+              
+          })
+          
+          
+          
                          $( "#diagnostico" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -123,8 +129,42 @@
                            select: function(event, ui){
                                     $('#diagnostico').removeAttr('idDiagnostico').attr('idDiagnostico',ui.item.id3)
                                     $('#guardar_diagnostico').removeAttr('disabled');
-                                    $('#boton_diagnostico').removeAttr('disabled');
-                                },
+                                    
+                                 /* funcion que envía el id del diagnostico y retorna el json 
+                                 * con todos los atributos para rellenar el popup del diagnostico
+                                 **/
+                                   $('#guardar_cambios').hide();
+                                   $('#guardar_diagnostico').show();
+                                   $('select>option:eq(0)').attr('selected', true); 
+                                   $('#comentario_diagnostico').val('');
+
+                                   var postData = $("#diagnostico").attr('iddiagnostico');
+                                   $.ajax({ 
+                                        url: '../../../ajax/informacionDiagnostico.php',
+                                        data: {diagnostico:postData},
+                                        type: 'post',
+                                        async: false,
+                                        success: function(output) {
+
+                                            var data = jQuery.parseJSON(output);
+                                            $('#modalDiagnosticoLabel').text(data['Nombre']) ; //nombre de la enfermedad
+                                            $('#id_diagnostico').html(data['idDiagnostico']);// id de la enfermedad
+
+                                            if(data['Es_Ges'] != null){ // el diagnostico es ges se informa con un pill y un
+                                                $('#modalDiagnosticoLabel').append('    <span class="badge badge-success">Considerado GES por MINSAL</span>')
+                                                $('#esGES').html('1');
+                                            } // end if
+                                            //resto de la informacion que se busca desplegar en el popup
+                                          $('#modalDiagnostico').collapse('show');  
+                                        }//end success
+
+
+                                    });// end ajax    
+                            
+                            
+                            
+                            
+                             }, //end select:
                            minLength: 2,
                            open: function() {
                                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -133,48 +173,6 @@
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 } //end close
                             });//autocompleteDiagnosticos
-                            
-        
-        
-     
-                        
-    
-                 $(document).ready(function(){           
-                        $('#boton_diagnostico').click(function(){
-                        /**
-                         * funcion que envía el id del diagnostico y retorna el json 
-                         * con todos los atributos para rellenar el popup del diagnostico
-                         **/
-                           $('#guardar_cambios').hide();
-                           $('#guardar_diagnostico').show();
-                           $('select>option:eq(0)').attr('selected', true); 
-                           $('#comentario_diagnostico').val('');
-                           
-                           var postData = $("#diagnostico").attr('iddiagnostico');
-                           $.ajax({ 
-                                url: '../../../ajax/informacionDiagnostico.php',
-                                data: {diagnostico:postData},
-                                type: 'post',
-                                async: false,
-                                success: function(output) {
-                                    
-                                    var data = jQuery.parseJSON(output);
-                                    $('#modalDiagnosticoLabel').text(data['Nombre']) ; //nombre de la enfermedad
-                                    $('#id_diagnostico').html(data['idDiagnostico']);// id de la enfermedad
-                                    
-                                    if(data['Es_Ges'] != null){ // el diagnostico es ges se informa con un pill y un
-                                        $('#modalDiagnosticoLabel').append('    <span class="badge badge-success">Considerado GES por MINSAL</span>')
-                                        $('#esGES').html('1');
-                                    } // end if
-                                    //resto de la informacion que se busca desplegar en el popup
-                                  $('#modalDiagnostico').collapse('show');  
-                                }//end success
-                                
-
-                            });// end ajax
-                           
-                        }); // end click
-                 });//end ready       
             
 </script>
 
@@ -202,7 +200,6 @@
                         $('select>option:eq(1)').attr('selected', true);
                         $('#diagnostico').val(''); // borro el buscador
                         $('#comentario_diagnostico').val(''); //borro el comentario
-                        $('#boton_diagnostico').attr('disabled','disabled'); //se hace disabled el boton
                         $('#modalDiagnostico').collapse('hide');
                     }); //end on
                     
@@ -222,7 +219,7 @@
                         $('#diagnosticoAsociado').append('<option value="'+id_diagnostico+'">'+nombre_diagnostico+'</option>');
                         var pill = '\
                         <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
-                        <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-edit"></i> </a>\n\
+                        <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
                         <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a>\n\
                         <strong>'+nombre_diagnostico+'</strong>\n\
                         </div>';
