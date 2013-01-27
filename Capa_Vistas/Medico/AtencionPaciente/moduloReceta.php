@@ -195,14 +195,14 @@ y el popup que muestra el detalle del medicamento
               
                 $('#boton_medicamentos').removeAttr('disabled');
               
-              /*
+              
                
               
                 $('button[filtro="true"]').removeClass('active');
                 $('button[filtro="false"]').addClass('active');
             
             
-                /*$("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
+                $("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
                 $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
 		$("#boton_medicamentos").removeAttr('disabled');
 		               
@@ -213,7 +213,7 @@ y el popup que muestra el detalle del medicamento
                 $("#busqueda_avanzada").collapse('hide');
                      
                 }
-                 */
+                
                
                
                                
@@ -296,7 +296,7 @@ y el popup que muestra el detalle del medicamento
 <script>       
     $(document).ready(function(){ 
         /*
-         *funcion que maneja el modal detallemedicamento cuando este se encuentra escondido
+         *funcion que maneja el modal detalleMedicamento cuando este se encuentra escondido
          */
         $('#detalleMedicamento').on('hide',function(){
                 $('#Medicamentos').val('');
