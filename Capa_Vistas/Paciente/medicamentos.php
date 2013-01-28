@@ -33,7 +33,7 @@ y el popup que muestra el detalle del medicamento
              
               <!-- Modal detalleMedicamento -->
 <?php
-include('../AtencionPaciente/detalleMedicamento.php');
+include('/detalleMedicamento.php');
 ?>
               <!-- Modal detalleMedicamento -->
             
@@ -52,8 +52,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
                         <strong><p>Medicamentos</p></strong>
                         <select id="medicamento" multiple="multiple" class ="span7" SIZE=6></select>
             </div><!-- row de multiselect-->
-                                            
-  <center><button id="boton_medicamentos" role="button" class="btn" href="#" disabled="disabled" class="span7">Recetar</button><br></center>
+                                           
             
             
             
@@ -62,11 +61,6 @@ include('../AtencionPaciente/detalleMedicamento.php');
                 <div id="medicamentosRecetados" class="span10">
                 </div>    
             </div> <!-- row medicamentos seleccionados -->
-        
-        
-       <div class="row-fluid span11"><!-- boton emitir receta -->
-        <a class="btn btn-warning span4 offset4" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
-       </div> <!-- boton emitir receta -->
         
         
      </div><!-- interior del accordion -->
@@ -122,7 +116,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
         $('button[filtro="true"]').addClass('active');
 	$.ajax({
 		type:"POST",
-		url: "../../../ajax/claseMultiSelect.php",
+		url: "/../../ajax/claseMultiSelect.php",
 		success: function(output){
 				var output = jQuery.parseJSON(output);
 				$("#clase").empty();
@@ -137,7 +131,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
                     var id = $("#clase").attr("value");
                     $.ajax({
                     type:"POST",
-                    url: "../../../ajax/subClaseMultiSelect.php",
+                    url: "/../../ajax/subClaseMultiSelect.php",
                     data: {clase: id},
                     success: function(output){
                             var output = jQuery.parseJSON(output);
@@ -157,7 +151,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
                 var id2 = $("#subclase").attr("value");
                 $.ajax({
                 type:"POST",
-                url: "../../../ajax/medicamentosMultiSelect.php",
+                url: "/../../ajax/medicamentosMultiSelect.php",
                 data: {subclase: id2},
                 success: function(output){
                     
@@ -179,7 +173,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
                 var idLab=$("#laboratorio").attr("value");
                 $.ajax({
                 type:"POST",
-                url: "../../../ajax/laboratorioMultiSelect.php",
+                url: "/../../ajax/laboratorioMultiSelect.php",
                 data: {subclase: idSubclase,
                 idLaboratorio: idLab},
                 success: function(output){
@@ -227,7 +221,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
                 $.ajax({
-                    url: "../../../ajax/autocompleteMedicamento.php",
+                    url: "/../../ajax/autocompleteMedicamento.php",
                     data: {
                         name_startsWith: request.term,
                         filtro: filtro
@@ -269,7 +263,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
                 
                   $.ajax({
                 type:"POST",
-                url: "../../../ajax/medicamentosPrincipiosActivos.php",
+                url: "/../../ajax/medicamentosPrincipiosActivos.php",
                 data: {idPrincipio: ui.item.id2},
                 success: function(output){
                     
@@ -369,7 +363,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
            
            
            $.ajax({ 
-               url: "../../../ajax/mostrarMedicamento.php",
+               url: "/../../ajax/mostrarMedicamento.php",
                type:"POST",
                async: true,
                data: {
@@ -422,7 +416,7 @@ include('../AtencionPaciente/detalleMedicamento.php');
             var idFavorito = $(this).parent().attr('idFavorito');
             alert('se quiere eliminar de favoritos el medicamento con idFavorito: '+idFavorito);
             $.ajax({
-              url: "../../ajax/borrarFavorito.php", //../../ajax/borrarFavorito.php
+              url: "/../ajax/borrarFavorito.php", //../../ajax/borrarFavorito.php
               type: "POST",
               data: {idFavorito:idFavorito},
               success: function(output){
