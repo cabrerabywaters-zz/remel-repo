@@ -72,7 +72,7 @@
      
     <div class="control-group">
     <label class="control-label" for="Seguro"><strong>Seguro</strong> <br> <input style="text-align:center;" type="text" class="span6" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
-    </div> <?php print_r($seguro); ?>
+    </div> 
     
      <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
      
