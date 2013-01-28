@@ -70,7 +70,8 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   <?php include('../arsenalBar.php');?>
   <!-- barra del arsenal de medicamentos de la institucion -->
   </div>
-
+  
+  <?php require_once'resumenReceta.php'; ?>
 </div><!--fin div contenido -->
 </div>
 </div><!-- fin contenedor general -->
