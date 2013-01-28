@@ -7,73 +7,67 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
   
 ?>
 <!-- modalDetalleMedicamento-->
-<div id="detalleMedicamento" class="asd">
-    
-    <div class="popover-title"><!-- titulo del modal (nombre del medicamento) -->
-        <h3 id="detalleMedicamentoLabel">Paracetamol</h3>
+<div class="popover-title"> <!-- titulo del modal (nombre del medicamento) -->
+        
+        <h4 id="detalleMedicamentoLabel">Paracetamol</h4>
         <span id="idMedicamento" style="display:none"></span>
-        <span id="estadoMedicamento" style="display:none">0</span><!-- 0 creacion 1 edicion -->
-    </div><!-- titulo del modal (nombre del medicamento) -->
+        <span id="estadoMedicamento" style="display:none">0</span> <!-- 0 creacion 1 edicion--> 
+    </div> <!--titulo del modal (nombre del medicamento) -->
     
     <div class="popover-content"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
-        <div id="warnings"></div>
-        <div class="row-fluid"><!-- fila contenido -->
-        <div class="row-fluid span11"><!-- div de la imagen -->
-            <img class="img-rounded pull-left" src="../../../imgs/paracetamol.jpg" style="width:200px; height: 150px" >
-        <p id="descripcionMedicamento">Observaciones de ejemplo</p>
         
-        </div><!-- div de la imagen -->
+        <div class="row-fluid"><!-- fila contenido --> 
+               
+                  <div class="span12 img-rounded">
+                   
+                   <table class="table table-hover table-condensed">
+                       <tr>
+                           <td>Cada:</td>
+                           <td><input class="span11" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></td>
+                           <td><select class="span11" name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
+                       </tr>
+                       <tr>
+                           <td>Cada :</td>
+                           <td><input class="span11" type="text" placeholder="frequencia" id="frecuenciaMedicamento" value="8"></td>
+                           <td><select class="span11" name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
+                       </tr>
+                       <tr>
+                            <td>Por :</td>
+                            <td><input class="span11" type="text" placeholder="periodo" id="periodoMedicamento"></td>
+                            <td><select class="span11" name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
+                        </tr>
+                        <tr>
+                            <td>Inicio</td>
+                            <td colspan="2"><input class="span11" type="text" name="fechaInicio" placeholder="Seleccionar inicio" class="datepicker"></td>
+                        </tr>
+                        <tr>
+                            <td>Fin</td>
+                            <td colspan="2"><input class="span11" type="text" name="fechaFin" class="datepicker"></td>
+                        </tr>
+                        <tr>
+                            <td>Comentario:</td>
+                            <td colspan="2"><textarea width="100%" id="comentarioMedicamento"></textarea></td>
+                        </tr>
+                       
+                   </table>
+               </div> 
         
-        <div class="span10" id="detalleContenido">
-        <table class="table table-hover">    
-            <tr>
-               <td>Cantidad:</td>
-               <td><input class="span10" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></td>
-               <td><select name="unidadDeConsumo" class="span11"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
-            </tr>
-            <tr>
-               <td>Cada :</td>
-               <td><input class="span10" type="text" placeholder="frequencia" id="frecuenciaMedicamento" value="8"></td>
-               <td><select name="unidadFrecuencia" class="span11"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
-            </tr>
-            <tr>
-                <td>Por :</td>
-                <td><input class="span10" type="text" placeholder="periodo" id="periodoMedicamento"></td>
-                <td><select name="unidadPeriodo" class="span11"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
-            </tr>
-            <tr>
-                <td>Inicio</td>
-                <td colspan="2"><input type="text" name="fechaInicio" placeholder="Seleccionar inicio" class="datepicker"></td>
-            </tr>
-            <tr>
-                <td>Fin</td>
-                <td colspan="2"><input type="text" name="fechaFin" class="datepicker"></td>
-            </tr>
-            <tr>
-                <td colspan="3">Comentario:</td> 
-            </tr>
-            <tr>
-                <td colspan="3"><textarea width="100%" id="comentarioMedicamento"></textarea></td>
-            </tr>
-        </table>
-        </div>
-        
-        </div><!-- fila contenido -->
-    </div><!-- contenido del modal (indicaciones de día frecuencia etc)-->
+        </div> <!-- fila contenido --> 
+    </div> <!-- contenido del modal (indicaciones de día frecuencia etc)-->
     
-    <div class="modal-footer"><!-- acciones del modal (cancerlar, agregar medicamento etc)-->
+    <!--acciones del modal (cancerlar, agregar medicamento etc)-->
+    <div class="modal-footer">
         <div class="pull-left">
             <select id="diagnosticoAsociado">
                 <option label="Seleccionar Diagnostico">Seleccionar Diagnostico</option>
                 <option value="0">Sin Diagnostico Asociado</option>
             </select>    
         </div>
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <a href="#" id="agregarMedicamento" role="button" class="btn btn-warning">Prescribir</a>
-    </div>
-
-</div><!-- fin popup informacion del medicamento -->
-
+        <div class="pull-right">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <a href="#" id="agregarMedicamento" role="button" class="btn btn-warning">Prescribir</a>
+        </div>
+    </div>   
 <script>
  function dayofyear(d) {   // d is a Date object
         var yn = d.getFullYear();
