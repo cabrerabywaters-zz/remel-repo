@@ -8,7 +8,7 @@
     <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
 
         <div class="row-fluid">
-            <div class="span6 modal-body"><!-- div donde estará el buscador -->     
+            <div class="span6 modal-body img-rounded"><!-- div donde estará el buscador -->     
             <strong><p>Ingrese nombre del diagnóstico</p></strong>
 
             <div class="form-search" id="buscar_diagnostico">
@@ -225,7 +225,7 @@
                         </div>';
                         
                 
-                        $('#log').removeClass().addClass('span6 modal-body');
+                        $('#log').removeClass().addClass('span6 modal-body img-rounded');
                         $('#log_titulo').html('<p><strong>Diagnosticos seleccionados:</strong></p>');
                         $('#log_diagnostico').prepend(pill);
                         $('#modalDiagnostico').collapse('toggle');// se cierra el modal
