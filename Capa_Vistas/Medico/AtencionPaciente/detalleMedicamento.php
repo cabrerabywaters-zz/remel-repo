@@ -7,16 +7,15 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
   
 ?>
 <!-- modalDetalleMedicamento-->
-<div id="detalleMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="detalleMedicamentoLabel" aria-hidden="true">
+<div id="detalleMedicamento" class="asd">
     
-    <div class="modal-header"><!-- titulo del modal (nombre del medicamento) -->
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="popover-title"><!-- titulo del modal (nombre del medicamento) -->
         <h3 id="detalleMedicamentoLabel">Paracetamol</h3>
         <span id="idMedicamento" style="display:none"></span>
         <span id="estadoMedicamento" style="display:none">0</span><!-- 0 creacion 1 edicion -->
     </div><!-- titulo del modal (nombre del medicamento) -->
     
-    <div class="modal-body"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
+    <div class="popover-content"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
         <div id="warnings"></div>
         <div class="row-fluid"><!-- fila contenido -->
         <div class="row-fluid span11"><!-- div de la imagen -->
