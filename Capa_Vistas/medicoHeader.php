@@ -59,6 +59,7 @@
       .modal-body{
           background-color: white;
           border: 3px solid #0b72b5;
+          max-height: 900px
       }
         
         
