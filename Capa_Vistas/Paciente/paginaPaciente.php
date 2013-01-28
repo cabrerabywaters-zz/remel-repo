@@ -95,6 +95,21 @@ include('./../pacienteHeader.php');
         </div><!-- fin acordion info Diagnostico-->
     
     </div><!-- Fin tab Diagnostico--> 
+    
+     <div class="tab-pane img-rounded" id="medicamentos"><!-- tab de info Revelante-->
+      
+        <div class="accordion" id="accordion6"><!-- accordion info Relevante
+         -->
+            <div class="accordion-group">
+           <!-- Diagnosticos del paciente-->
+                 <?php 
+		 include ("medicamentos.php"); 
+                  ?>
+            </div><!-- fin diagnosticos del paciente-->
+        </div><!-- fin acordion info Diagnostico-->
+    
+    </div><!-- Fin tab Diagnostico--> 
+    
  <!-- </div><!--fin div contenido panel-->
  <!-- </div><!-- fin contenedor general -->
     
