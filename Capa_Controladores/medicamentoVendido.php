@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class MedicamentoVendido {
 
     static $nombreTabla = "Medicamentos_Vendidos";
-    static $nombreIdTabla = "idMedicamentos_Vendidos";    
-    
+    static $nombreIdTabla = "idMedicamentos_Vendidos";
+
     /**
      * Insertar
      * 
@@ -14,15 +14,28 @@ class MedicamentoVendido {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-                                array('Expendedores_idExpendedores',$_POST['idExpendedores']),
-                                array('Medicamentos_Recetas_Medicamento_idMedicamento',$_POST['idMedicamento']),
-                                array('Medicamentos_Recetas_Receta_idReceta',$_POST['idReceta']),
-                                array('Cantidad',$_POST['cantidad']),
-                                array('Fecha',"NOW()"),
-								array('Unidades_idUnidade',$_POST['idUnidades'])
-								
-						);
+        $datosCreacion = array(
+            array('Expendedores_idExpendedores', $_POST['idExpendedores']),
+            array('Medicamentos_Recetas_Medicamento_idMedicamento', $_POST['idMedicamento']),
+            array('Medicamentos_Recetas_Receta_idReceta', $_POST['idReceta']),
+            array('Cantidad', $_POST['cantidad']),
+            array('Fecha', "NOW()"),
+            array('Unidades_idUnidade', $_POST['idUnidades'])
+        );
+
+        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $idUnidad) {
+        $datosCreacion = array(
+            array('Expendedores_idExpendedores', $idExpendedor),
+            array('Medicamentos_Recetas_Medicamento_idMedicamento', $idMedicamento),
+            array('Medicamentos_Recetas_Receta_idReceta', $idReceta),
+            array('Cantidad', $cantidad),
+            array('Fecha', $fecha),
+            array('Unidades_idUnidade', $idUnidad)
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -38,7 +51,7 @@ class MedicamentoVendido {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -52,32 +65,32 @@ class MedicamentoVendido {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                                        'Expendedores_idExpendedores',
-                                        'Medicamentos_Recetas_Medicamento_idMedicamento',
-                                        'Medicamentos_Recetas_Receta_idReceta',
-                                        'Cantidad',
-                                        'Fecha',
-										'Unidades_idUnidade'
-      );
+        $atributosASeleccionar = array(
+            'Expendedores_idExpendedores',
+            'Medicamentos_Recetas_Medicamento_idMedicamento',
+            'Medicamentos_Recetas_Receta_idReceta',
+            'Cantidad',
+            'Fecha',
+            'Unidades_idUnidade'
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -86,16 +99,15 @@ class MedicamentoVendido {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
-    	$datosActualizacion = array(
-                                array('Expendedores_idExpendedores',$_POST['idExpendedores']),
-                                array('Medicamentos_Recetas_Medicamento_idMedicamento',$_POST['idMedicamento']),
-                                array('Medicamentos_Recetas_Receta_idReceta',$_POST['idReceta']),
-                                array('Cantidad',$_POST['cantidad']),
-                                array('Fecha',"NOW()"),
-								array('Unidades_idUnidade',$_POST['idUnidades'])
-								
-				);
+        $id = $_POST['id_condiciones'];
+        $datosActualizacion = array(
+            array('Expendedores_idExpendedores', $_POST['idExpendedores']),
+            array('Medicamentos_Recetas_Medicamento_idMedicamento', $_POST['idMedicamento']),
+            array('Medicamentos_Recetas_Receta_idReceta', $_POST['idReceta']),
+            array('Cantidad', $_POST['cantidad']),
+            array('Fecha', "NOW()"),
+            array('Unidades_idUnidade', $_POST['idUnidades'])
+        );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);

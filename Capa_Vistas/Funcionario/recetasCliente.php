@@ -13,8 +13,8 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
     </a>
 </div>
 <div><center>
-    <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
-</center></div><hr>
+        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
+    </center></div><hr>
 <div class="accordion-body">
     <div class="accordion-inner">
         <?php
@@ -44,6 +44,9 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                     $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
                     for ($i = 0; $i < count($medicamentosConsulta); $i++) {
                         echo $medicamentosConsulta[$i]['Nombre_Comercial'] . '</br>';
+                    }
+                    for ($i = 0; $i < count($medicamentosConsulta); $i++) {
+                        echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosConsulta[$i]['idMedicamento'] . ', ' . $medicamentosConsulta[$i]['idReceta'] . ', ' . $medicamentosConsulta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button>';
                     }
                 }
                 if ($llave == 'Nombre') {
@@ -75,4 +78,23 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
         window.location.href = 'funcionarioIndex.php#';
     }
     
+    function seleccionar(idMedicamento, idReceta, unidad){
+        var idMed = idMedicamento;
+        var idRec = idReceta;
+        var uni = unidad;
+        $.ajax({ url: '../../ajax/guardarDatosMedicamento.php',
+            data: {'idMedicamento': idMed,'idReceta': idRec,'unidad': uni },
+            type: 'post',
+            success: function(output) {
+                if(output == 1){// redireccion a atencionPaciente
+                    window.location.href = 'expenderMedicamento.php#';
+                    
+                }                
+                else{    
+                                    
+                    $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>");
+                }
+            }
+        });
+    }
 </script>

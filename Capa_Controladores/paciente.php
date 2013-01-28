@@ -266,7 +266,8 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     
 
     public static function R_MedicamentosConsulta($idConsulta) {
-        $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta
+        $queryString = "SELECT Medicamentos.Nombre_Comercial, Consulta.Id_consulta, Medicamentos.idMedicamento, Recetas.idReceta, 
+                               Medicamentos_Recetas.Unidad_de_Consumo_idUnidad_de_Consumo as unidad
                         FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos
 			WHERE Consulta.Id_consulta = $idConsulta
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
