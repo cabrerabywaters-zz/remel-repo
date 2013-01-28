@@ -341,7 +341,7 @@ include('detalleMedicamento.php')
 //                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
 //                    
 //                   
-//                    $('#detalleMedicamento').modal('show'); // se muestra el modal
+//                    $('#detalleMedicamento').collapse('show'); // se muestra el modal
 //                    }//end success
 //           });//ajax 
 //
