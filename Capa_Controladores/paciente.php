@@ -168,13 +168,15 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     }
 
     public static function R_DiagnosticoPaciente($idPaciente) {
-        $queryString = "SELECT Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno
-						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos
+        $queryString = "SELECT Diagnosticos.Nombre as Diagnostico, Consulta.Fecha, Personas.Nombre, Personas.Apellido_Paterno, Especialidades.Nombre as Especialidad
+						FROM Personas, Medicos, Consulta, Pacientes, Historiales_medicos, Diagnosticos, Especialidades, Especialidades_has_Medicos
 						WHERE Pacientes.idPaciente = $idPaciente
 						AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
 						AND Consulta.Id_consulta = Historiales_medicos.Consulta_Id_consulta
 						AND Historiales_medicos.Diagnosticos_idDiagnostico = Diagnosticos.idDiagnostico
 						AND Consulta.Medicos_idMedico = Medicos.idMedico
+                                                AND Especialidades_has_Medicos.Medico_idMedico=Medicos.idMedico
+                                                AND Especialidades_has_Medicos.Especialidad_idEspecialidad=Especialidades.idEspecialidad
 						AND Medicos.Personas_RUN = Personas.RUN";
 
 

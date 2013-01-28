@@ -5,20 +5,20 @@
  </div>
   <div class="accordion-body">
   <div class="accordion-inner">
-    <?php
-    echo'
+
   <div class="row">
 
   <center><div style="width: 50%; ;">
   <table>
                 <tr><td>
-   <table class="table table-striped">
+   <table class="table table-striped table-bordered table-condensed">
 	<thead>
     <tr>
-    <th>Diagnostico</td>
-    <th>Fecha</td>
-    <th>Nombre del Médico</td></tr></thead>
-    ';
+    <th>Diagnostico</th>
+    <th>Fecha</th>
+    <th>Nombre del Médico</th>
+    <th>Especialidad</th></tr></thead>
+ <?php
     foreach ($diagnosticosPaciente as $datos => $dato) {
         echo "<tr>";
         foreach ($dato as $llave=>$valor) {
@@ -36,11 +36,17 @@
                 echo $valor;
                 echo '</td>';
             }
+            if($llave == 'Especialidad'){
+                echo '<td>';
+                echo $valor;
+                echo '</td>';
+            }
         }
 
             echo "</tr>";
     }
-    echo '</table></td></tr></table></div></center></div>';
-    ?>
+ ?>
+   </table></td></tr></table></div></center></div>';
+
   </div>
   </div>
