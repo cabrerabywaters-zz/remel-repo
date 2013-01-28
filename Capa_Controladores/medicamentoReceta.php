@@ -31,7 +31,6 @@ class MedicamentoReceta  {
 					array('Via_idVia',$via),
                             );
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
-	echo $queryString;
         $query = CallQuery($queryString);
     }
 
