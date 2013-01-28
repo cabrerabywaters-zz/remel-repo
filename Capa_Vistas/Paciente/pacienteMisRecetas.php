@@ -19,8 +19,10 @@
     <th>Nombre del Médico</th>
     <th>Fecha Emisión</th>
     <th>Fecha Vencimiento</th>
-    <th>Fecha Adquisición</th>
     <th>Diagnostico Asociado</th>
+    <th>Nombre Medicamento</th>
+    <th>Nombre Farmacia</th>
+   
     </tr>
        </thead>
        <tbody>
@@ -36,7 +38,6 @@
               echo "<td>".$lineaRecetas["nombreMedico"]." ".$lineaRecetas["apellidoMedico"]."</td>";
               echo "<td>".$lineaRecetas["fechaEmision"]."</td>";
               echo "<td>".$lineaRecetas["fechaEliminacion"]."</td>";
-              echo "<td>".$lineaRecetas["fechaAdquisicion"]."</td>";
               echo "<td>".$lineaRecetas["nombreDiagnostico"]."</td>";
               echo "</tr>";
         }

@@ -1,4 +1,6 @@
   
+
+
 <div class="accordion-heading">
   <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
   Información Personal del Paciente
@@ -65,12 +67,16 @@
     </div>
      
     <div class="control-group">
-    <label class="control-label" for="Isapre"><strong>Isapre </strong> <br> <input style="text-align:center;" type="text" class="span6" id="Isapre" value="<?php echo $prevision['Nombre']; ?>"></label>
+    <label class="control-label" for="Prevision"><strong>Previsión</strong><br>  <input style="text-align:center;" type="text" class="span6" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
     </div>
+     
+    <div class="control-group">
+    <label class="control-label" for="Seguro"><strong>Seguro</strong> <br> <input style="text-align:center;" type="text" class="span6" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
+    </div> <?php print_r($seguro); ?>
     
      <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
      
-    </form></div> </center>
+    </form></div> </center> 
   </div>
   </div>
 
@@ -164,6 +170,84 @@ $('#Region').change(function(){
                             });//autocompleteComuna
 
 //CAMBIAR LA QUERY PARA GUARDAR LOS DATOS!
+
+ $( "#Prevision" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de comuna (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteComuna.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../ajax/autocompletePrevision.php",
+                                    data: {
+                                        
+                                        name_startsWith: request.term
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        
+                                        var output = jQuery.parseJSON(data);
+                                                                                
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre
+                                             
+                                            }
+                                            
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           minLength: 2,
+                           select: function(event, ui){
+                                   
+                                }
+                            });//autocompletePrevision
+                            
+$( "#Seguro" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de comuna (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteComuna.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../ajax/autocompleteSeguro.php",
+                                    data: {
+                                        
+                                        name_startsWith: request.term
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        
+                                        var output = jQuery.parseJSON(data);
+                                                                                
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre
+                                             
+                                            }
+                                            
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           minLength: 2,
+                           select: function(event, ui){
+                                   
+                                }
+                            });//autocompleteSeguro
 
 </script>
 

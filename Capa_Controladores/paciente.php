@@ -54,7 +54,8 @@ class Paciente {
             'Fecha_Ultima_Actualizacion',
             'Peso',
             'Etnias_idEtnias',
-            'altura'
+            'altura',
+            'Seguros_idSeguros'
         );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);

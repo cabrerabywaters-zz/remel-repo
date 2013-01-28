@@ -13,6 +13,7 @@
 	include_once(dirname(__FILE__).'/../Capa_Controladores/unidadDeConsumo.php');
         include_once(dirname(__FILE__).'/../Capa_Controladores/unidadFrecuencia.php');
         include_once(dirname(__FILE__).'/../Capa_Controladores/unidadPeriodo.php');
+        include_once(dirname(__FILE__).'/../Capa_Controladores/seguro.php');
         $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
         $unidadFrecuencia = UnidadFrecuencia::Seleccionar('where 1=1');
         $unidadPeriodo = UnidadPeriodo::Seleccionar('where 1=1');
@@ -47,4 +48,7 @@
 	$alergias = Paciente::R_AlergiaPaciente($idPaciente);		
 	$paciente = array_merge($paciente1, $paciente2, $direccion);
 	$recetas = Paciente::RecetasPacienteMedico($idPaciente, $RUTMedico);
+        $seguro=$paciente1['Seguros_idSeguros'];
+        $seguro = Seguro::Seleccionar("WHERE idSeguros = '$seguro'");
+	$seguro =$seguro[0];
 ?>

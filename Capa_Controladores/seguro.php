@@ -1,11 +1,11 @@
-<?php 
+ <?php 
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Prevision {
+class Seguro {
 
-    static $nombreTabla = "Previsiones";
-    static $nombreIdTabla = "rut";    
+    static $nombreTabla = "Seguros";
+    static $nombreIdTabla = "idSeguros";    
     
     /**
      * Insertar
@@ -15,7 +15,7 @@ class Prevision {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_especialidad']),
+                                array('Nombre',$_POST['nombre']),
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -77,7 +77,7 @@ class Prevision {
     public static function Actualizar() {
     	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_plaza_institucion']),
+                                array('Nombre',$_POST['nombre']),
                 );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
@@ -87,18 +87,18 @@ class Prevision {
 
 
 
-    public static function BuscarPrevisionLike($nombre){
+    public static function BuscarSeguroLike($nombre){
          
-       $queryString = 'SELECT Previsiones.Nombre
-                        FROM Previsiones
-                        WHERE Previsiones.Nombre LIKE "%'.$nombre.'%"';
+       $queryString = 'SELECT Seguros.Nombre
+                        FROM Seguros
+                        WHERE Seguros.Nombre LIKE "%'.$nombre.'%"';
        
        $query = Callquery($queryString);
-       $previsiones = array();
+       $seguros = array();
        while($fila = $query->fetch_assoc()){
-       $previsiones[] = $fila;
+       $seguros[] = $fila;
        }
-	    return $previsiones;
+	    return $seguros;
   }
 }
 ?>

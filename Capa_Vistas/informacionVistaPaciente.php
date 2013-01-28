@@ -10,6 +10,7 @@ include(dirname(__FILE__) . "/../Capa_Controladores/provincia.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/region.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/etnia.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/prevision.php");
+include(dirname(__FILE__) . "/../Capa_Controladores/seguro.php");
 
 
 $RUTPaciente = $_SESSION['RUT'];
@@ -53,5 +54,7 @@ $condicionesPaciente = Paciente::R_CondicionPaciente($idPaciente);
 $alergiasPaciente = Paciente::R_AlergiaPaciente($idPaciente);
 
 $paciente = array_merge($infoPaciente, $infoPersona, $direccion);
-
+$seguro=$infoPaciente['Seguros_idSeguros'];
+$seguro = Seguro::Seleccionar("WHERE idSeguros = '$seguro'");
+$seguro =$seguro[0];
 ?>
