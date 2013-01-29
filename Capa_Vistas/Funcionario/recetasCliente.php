@@ -36,7 +36,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
     <th>Medicamentos</td>
     </tr></thead>
     ';
-        foreach ($recetasPaciente as $datos => $dato) {
+            foreach ($recetasPaciente as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
                 if ($llave == 'Id_consulta') {
