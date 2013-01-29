@@ -57,18 +57,21 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       
     </div><!-- Fin del tab consulta-->
     
-
-  </div><!-- fin contenido del panel-->
-  
-  
   <div class="span4 img-rounded">
   <!-- barra de favoritos -->
   <?php include_once('../favBar.php');?>
   <!-- barra de favoritos -->
   </div>
   
+  
+  </div><!-- fin contenido del panel-->
+  
+  
+  
+  
   <?php require_once'resumenReceta.php'; ?>
 </div><!--fin div contenido -->
+
 </div>
 </div><!-- fin contenedor general -->
         
