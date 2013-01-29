@@ -21,11 +21,13 @@
     <th>Medicamentos</td>
     </tr></thead>
     ';
+	print_r($recetas);
         foreach ($recetas as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
                 if ($llave == 'Id_consulta'){
                     echo '<td>';
+					echo $valor;
                     $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
                     for($i=0;$i<count($medicamentosConsulta);$i++){
                         echo $medicamentosConsulta[$i]['Nombre_Comercial'].'</br>';
