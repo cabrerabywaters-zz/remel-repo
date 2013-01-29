@@ -158,7 +158,7 @@ class Persona {
 	return $query;
     }
     
-    public static function MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo){
+    public static function MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo, $prevision, $seguro){
         $queryString = 'SELECT idDireccion FROM Direcciones 
                         WHERE Calle = '.$calle.'
                         AND Numero = '.$nCalle.'
@@ -174,7 +174,7 @@ class Persona {
             $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $result['idComuna']);
         }
         $queryString = 'SELECT Personas.n_celular as n_celular, Personas.n_fijo as n_fijo, Personas. Direccion_idDireccion as id_direccion,
-                               Pacientes.Peso as peso, Pacientes.altura as altura
+                               Pacientes.Peso as peso, Pacientes.altura as altura, Personas.Prevision_rut as prevision, Pacientes.Seguros_idSeguros as seguro
                         FROM Personas, Paciente
                         WHERE Personas.RUN = '.$run.'
                         AND Paciente.Personas_RUN = '.$run.'
@@ -192,6 +192,12 @@ class Persona {
         if ($peso != $datosAnteriores['peso']){
             $cambios['Peso'] = array($peso, $datosAnteriores['peso'], 'Pacientes');
         }
+        if ($prevision != $datosAnteriores['prevision']){
+            $cambios['Prevision_rut'] = array($prevision, $datosAnteriores['prevision'], 'Personas');
+        }
+        if ($seguro != $datosAnteriores['seguro']){
+            $cambios['Seguros_idSeguros'] = array($seguro, $datosAnteriores['seguro'], 'Pacientes');
+        }
         if ($altura != $datosAnteriores['altura']){
             $cambios['altura'] = array($altura, $datosAnteriores['altura'], 'Pacientes');
         }
@@ -206,7 +212,7 @@ class Persona {
         }
         $queryString = 'UPDATE Personas, Personas
                         SET Personas.n_celular = '.$nCelular.', Personas.n_fijo = '.$nFijo.', Personas.Direccion_idDireccion '.$idDireccion[0].', 
-                            Pacientes.Peso = '.$peso.', Pacientes.altura = '.$altura.'
+                            Pacientes.Peso = '.$peso.', Pacientes.altura = '.$altura.', Personas.Prevision_rut = '.$prevision.', Pacientes.Seguros_idSeguros = '.$seguro.'
                         WHERE Personas.RUN = Pacientes.Personas_RUN
                         AND Personas.RUN = '.$run.'
             
