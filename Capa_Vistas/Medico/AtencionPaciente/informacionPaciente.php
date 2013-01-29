@@ -15,7 +15,11 @@
     </div>
     
     <div class="control-group">
-    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="uneditable-input" id="Fecha" value="<?php echo $paciente['Fecha_Nac']; ?>" disabled></label>&nbsp
+    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="uneditable-input" id="Fecha" value="<?php 
+    $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
+    $fechaNac = $fechaNac[0]; 
+    echo $fechaNac; 
+    ?>" disabled></label>&nbsp
     <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" id="Sexo" value="<?php if($paciente['Sexo']=='1')
 	{
 		echo "Masculino";
@@ -30,22 +34,27 @@
     </div>
      <br> 
     <div class="control-group">
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+    </div>
+     
+    <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
 
    
     <label class="control-label" for="Region"><strong>Región </strong><br>
     <select name="cars" style="text-align:center;" type="text" class="inline edicion" id="Region">
-<?php  
-  include_once("../../../Capa_Controladores/region.php");
-    
-    $arrayRegiones =  Region::Seleccionar("");
-    
-  
-  foreach ($arrayRegiones  as $campo=>$valor){
-    echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
-    
-  }
-?>  
+            <?php  
+              include_once("../../../Capa_Controladores/region.php");
+
+                $arrayRegiones =  Region::Seleccionar("");
+
+
+              foreach ($arrayRegiones  as $campo=>$valor){
+                echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
+
+              }
+            ?>  
         
           </select>
     </label>
@@ -54,11 +63,6 @@
     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
     </div>
     
-    <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
-    </div>
- 
     <div class="control-group">
     <label class="control-label" for="Nacionalidad"><strong>Nacionalidad  </strong><br>  <input style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
     <label class="control-label" for="Etnia"><strong>Etnia </strong> <br> <input style="text-align:center;" type="text" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
