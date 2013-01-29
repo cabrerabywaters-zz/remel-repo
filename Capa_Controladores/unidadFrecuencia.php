@@ -67,6 +67,17 @@ class UnidadFrecuencia {
 	    }
 	    return $resultArray;
     }
+	
+    public static function SeleccionarPorId($idUnidadFrecuencia){
+	$atributosASeleccionar = array(
+					'Nombre'
+				);
+	$where = "WHERE ID = '$idUnidadFrecuencia'";
+	$queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	$UnidadFrecuencia = $query->fetch_assoc()['Nombre'];
+	return $UnidadFrecuencia;
+    }
     
     /**
      * Actualizar

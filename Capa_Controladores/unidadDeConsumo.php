@@ -67,6 +67,17 @@ class UnidadDeConsumo {
 	    }
 	    return $resultArray;
     }
+
+    public static function SeleccionarPorId($idConsumo) {
+	$atributosASeleccionar = array(
+					'tipo'
+					);
+	$where = "WHERE idUnidad_de_Consumo = '$idConsumo'";
+	$queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	$unidadDeConsumo = $query->fetch_assoc()['tipo'];
+	return $unidadDeConsumo;
+    }
     
     /**
      * Actualizar

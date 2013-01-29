@@ -104,7 +104,15 @@ class Direccion {
         $query = CallQuery($queryString);
     }
 
+    public static function SeleccionarStringDireccion($idDireccion) {
+	$queryString = "SELECT Direcciones.Calle as Calle, Direcciones.Numero as Numero, Comunas.Nombre as Comuna
+			FROM Direcciones, Comunas
+			WHERE Comuna_idComuna = Comunas.idComuna AND
+				idDireccion = '$idDireccion';";
+	$query = CallQuery($queryString);
+	$res = $query->fetch_assoc();
+	return $res['Calle']." ".$res['Numero'].", ".$res['Comuna'];
+    } 
 }
 
 ?>
-			

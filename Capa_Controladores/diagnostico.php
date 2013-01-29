@@ -138,7 +138,7 @@ class Diagnostico {
      public static function BuscarNombreDiagnosticoPorId($idDiagnostico) {
          $queryString = 'SELECT Nombre as Text FROM Diagnosticos WHERE idDiagnostico = '.$idDiagnostico.'';
          $result = CallQuery($queryString);
-         return $result;
+         return $result->fetch_assoc();
      }
 }
 

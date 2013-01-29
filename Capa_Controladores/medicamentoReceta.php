@@ -87,7 +87,29 @@ class MedicamentoReceta  {
 	    }
 	    return $resultArray;
     }
-    
+
+    public static function SeleccionarPorHistorialMedico($idReceta, $idDiagnostico) {
+        $atributosASeleccionar = array(
+				 	'Medicamento_idMedicamento',
+                                 	'Cantidad',
+                                 	'Frecuencia',
+                                	'Unidad_Frecuencia_ID',
+                                 	'Fecha_Inicio',
+                                        'Periodo',
+                                        'Unidad_Periodo_ID',
+					'Via_idVia',
+					'Unidad_de_Consumo_idUnidad_de_Consumo'
+      );
+	$where = "WHERE Receta_idReceta = '$idReceta' AND Diagnosticos_idDiagnosticos = '$idDiagnostico'";
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	$medicamentos = array();
+	while($medicamento = $query->fetch_assoc()){
+		$medicamentos[] = $medicamento;
+	}
+	return $medicamentos;
+    }
+
     /**
      * Actualizar
      * 

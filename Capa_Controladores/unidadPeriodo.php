@@ -67,7 +67,17 @@ class UnidadPeriodo {
 	    }
 	    return $resultArray;
     }
-    
+
+    public static function SeleccionarPorId($idUnidadPeriodo) {
+	$atributosASeleccionar = array(
+					'Nombre'
+				);
+	$where = "WHERE ID = '$idUnidadPeriodo'";
+	$queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	$unidadPeriodo = $query->fetch_assoc()['Nombre'];
+	return $unidadPeriodo;
+    }
     /**
      * Actualizar
      * 
