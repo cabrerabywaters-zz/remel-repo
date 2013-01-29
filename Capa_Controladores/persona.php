@@ -169,8 +169,9 @@ class Persona {
             include_once(dirname(__FILE__).'/direccion.php');
             include_once(dirname(__FILE__).'/comuna.php');
             $result = Comuna::BuscarComunaPorNombre($comuna);
-            Direccion::InsertarConDatos($calle, $nCalle, $result[0]);
-            $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $result[0]);
+            $result = $result->fetch_assoc();
+            Direccion::InsertarConDatos($calle, $nCalle, $result['idComuna']);
+            $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $result['idComuna']);
         }
         $queryString = 'SELECT Personas.n_celular as n_celular, Personas.n_fijo as n_fijo, Personas. Direccion_idDireccion as id_direccion,
                                Pacientes.Peso as peso, Pacientes.altura as altura
@@ -179,29 +180,29 @@ class Persona {
                         AND Paciente.Personas_RUN = '.$run.'
                         ';
         $datosAnteriores = CallQuery($queryString);
+        $datosAnteriores = $datosAnteriores->fetch_assoc();
         $cambios = array();
-        
+        //si es necesario cambiar el atributo, se agrega
         if ($nCelular != $datosAnteriores['n_celular']){
-            $cambios['n_celular'] = array($nCelular, $datosAnteriores['n_celular']);
+            $cambios['n_celular'] = array($nCelular, $datosAnteriores['n_celular'], 'Personas');
         }
         if ($nFijo != $datosAnteriores['n_fijo']){
-            $cambios['n_fijo'] = array($nFijo, $datosAnteriores['n_fijo']);
+            $cambios['n_fijo'] = array($nFijo, $datosAnteriores['n_fijo'], 'Personas');
         }
         if ($peso != $datosAnteriores['peso']){
-            $cambios['Peso'] = array($peso, $datosAnteriores['peso']);
+            $cambios['Peso'] = array($peso, $datosAnteriores['peso'], 'Pacientes');
         }
         if ($altura != $datosAnteriores['altura']){
-            $cambios['altura'] = array($altura, $datosAnteriores['altura']);
+            $cambios['altura'] = array($altura, $datosAnteriores['altura'], 'Pacientes');
         }
         if ($idDireccion != $datosAnteriores['id_direccion']){
-            $cambios['idDireccion'] = array($idDireccion, $datosAnteriores['id_direccion']);
+            $cambios['idDireccion'] = array($idDireccion, $datosAnteriores['id_direccion'], 'Personas');
         }
-        session_start();
         foreach ($cambios as $key=>$value){
                 $queryString = 'INSERT  INTO Log(Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
-                                VALUES('.date('d-m-y').', '.$key.', '.$value[1].', '.$value[0].',"nombre", '.$_SESSION["RUTPaciente"].', '.$_SESSION['idMedicoLog'] .')  
+                                VALUES('.date('Y-m-d H:i:s').', '.$key.', '.$value[1].', '.$value[0].','.$value[2].', '.$_SESSION["RUTPaciente"].', '.$_SESSION['idMedicoLog'] .')  
                                 ';
-            
+                $query = CallQuery($queryString);
         }
         $queryString = 'UPDATE Personas, Personas
                         SET Personas.n_celular = '.$nCelular.', Personas.n_fijo = '.$nFijo.', Personas.Direccion_idDireccion '.$idDireccion[0].', 
