@@ -51,7 +51,7 @@ y el popup que muestra el detalle del medicamento
                     </div></div><!-- selector de medicamento -->
                 
                     <div class="row-fluid"><div class="span12  img-rounded">
-                            <center><button id="boton_medicamentos" role="button" class="btn" href="#" disabled="disabled" class="span10">Recetar</button><br></center>
+                            
                     </div></div><!-- boton de añadir a la receta -->        
                     
                     <div class="row-fluid"><div class="span11  img-rounded">
@@ -93,6 +93,8 @@ y el popup que muestra el detalle del medicamento
          var filtro2 = 'false';
         $('#filtroArsenal button').click(function(){
           filtro2 = $(this).attr('filtroarsenal');
+          $("#medicamento").empty();
+          $("#Medicamentos").removeAttr('value')
         });
         
         var filtro = 'true';
@@ -207,14 +209,14 @@ y el popup que muestra el detalle del medicamento
 
 	$('#medicamento').change(function() { 
                 
-                $('button[filtro="true"]').removeClass('active'); //quito active del boton prinipio activo
-                $('button[filtro="false2"]').removeClass('active'); //quito active del boton busqueda avanzafa
-                $('button[filtro="false"]').addClass('active'); // hago active el boton nombre comercial
+              //  $('button[filtro="true"]').removeClass('active'); //quito active del boton prinipio activo
+              //  $('button[filtro="false2"]').removeClass('active'); //quito active del boton busqueda avanzafa
+              //  $('button[filtro="false"]').addClass('active'); // hago active el boton nombre comercial
             
             
                 $("#Medicamentos")
                 .removeAttr('value')
-                .attr('value',$('#medicamento :selected').text()) // paso el medicamento seleccionado al input
+               .attr('value',$('#medicamento :selected').text()) // paso el medicamento seleccionado al input
                 .removeAttr('identificador')
                 .attr('identificador',$('#medicamento :selected').attr('value')); // paso el id al input
 		$("#boton_medicamentos").removeAttr('disabled');
@@ -260,16 +262,14 @@ y el popup que muestra el detalle del medicamento
                             }
                             } // end if
                             else {
-                                return {
-                                label: item.Nombre_Comercial,
-                                id2: item.idMedicamento
-                                      }; //end else
-                
+                                
                 //Se agregan todos los medicamentos al multiselect
-                            
-                var string = "<option value='" + item.idMedicamento + "'> " + item.Nombre_Comercial + "</option>";
+                 $("#medicamento").empty();
+                        $.each(output,function(i,el){
+                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
                                 $("#medicamento").append(string);
-                
+                                });//end each
+             
                         }
                         }));
                     }//end success
