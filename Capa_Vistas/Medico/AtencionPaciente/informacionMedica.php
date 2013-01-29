@@ -18,11 +18,18 @@
                     </tr>
                 </thead>
    <tbody>';
-  <?php  foreach ($alergias as $datos => $dato)
+  <?php  
+  print_r($alergiasCantidad);
+  
+  foreach ($alergias as $datos => $dato)
    
    {
-	echo '<tr idalergia="'.$dato['idAlergia'].'">';
-	echo "<td>".$dato['Alergia']." </td>";
+	echo '<tr ">';
+	foreach($alergiasCantidad as $datoCantidad => $datosCantidad)
+	{
+	if	
+	}
+	echo "<td idalergia='".$dato['idAlergia']."'>".$dato['Alergia']." </td>";
 	echo "</tr>";   
 	   
    }
