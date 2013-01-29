@@ -1,5 +1,5 @@
 
-<button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Ingresar como Médico</button>
+<button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Perfil Médico</button>
 <div id="demo" class="collapse" data-parent="#ingresoMedico">
     <div id="contenedor_lugares">    
         <?php

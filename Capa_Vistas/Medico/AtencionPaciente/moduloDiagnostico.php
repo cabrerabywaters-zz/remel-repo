@@ -9,7 +9,7 @@
 
         <div class="row-fluid">
             <div class="span6 modal-body img-rounded"><!-- div donde estará el buscador -->     
-            <strong><p>Ingrese nombre del diagnóstico</p></strong>
+            <strong><p>Ingrese diagnóstico</p></strong>
 
             <div class="form-search" id="buscar_diagnostico">
                 <div class="input-prepend"> <!-- buscador inline con autocomplete -->
@@ -95,7 +95,7 @@
           
           
                          $( "#diagnostico" ).autocomplete({
-                                /**
+                            /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
                              * busca en la base de datos en el archivo autocompleteDiagnostico.php
@@ -104,11 +104,16 @@
                              * Funcion select que ejecutará una accion cuando se devuelva
                              */        
                           source: function( request, response ){
+                                var diagnosticados = [];
+                                $('.diagnostico').each(function(){
+                                    diagnosticados = $(this).attr('idDiagnostico');
+                                });
+                                
                                 $.ajax({
                                     url: "../../../ajax/autocompleteDiagnostico.php",
                                     data: {
-                                        name_startsWith: request.term
-                                        
+                                        name_startsWith: request.term,
+                                        "diagnosticados": diagnosticados
                                     },
                                     type: "post",
                                     success: function( data ){

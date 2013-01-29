@@ -63,12 +63,8 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   
   <div class="span4 img-rounded">
   <!-- barra de favoritos -->
-  <?php include('../favBar.php');?>
+  <?php include_once('../favBar.php');?>
   <!-- barra de favoritos -->
-  
-  <!-- barra del arsenal de medicamentos de la institución -->
-  <?php include('../arsenalBar.php');?>
-  <!-- barra del arsenal de medicamentos de la institucion -->
   </div>
   
   <?php require_once'resumenReceta.php'; ?>
@@ -91,21 +87,7 @@ $('#toggleFav').click(
     }
     
 ); // click
-    
-    
-$('#arsenalBar').hide();// para que la barra de arsenal no se muestre en el inicio
-$('#toggleArsenal').click(
-    function(){// se ejecuta la primer click
-        if($('.tab-content').hasClass('span8')){// si el panel está chico
-            $(this).parent().addClass('active'); // se pone como activo
-            $('#arsenalBar').show();// se muestra simplemente
-        }
-        else{// si el panel está grande
-           $('.tab-content').addClass('span8'); //achico el panel
-           $('#arsenalBar').show();// se muestra simplemente
-        }
-    }
-); // toggle   
+  
 
 $('.closeBar').click(function(){
     /*
@@ -114,9 +96,9 @@ $('.closeBar').click(function(){
      */
     var padre = $(this).parent().parent();
     padre.hide();
-    if($('#favBar').is(':hidden')&& $('#arsenalBar').is(':hidden')){ //si están favoritos y arsenal ocultos
-        $('.tab-content').removeClass('span8'); //agrando el div contenido
-    }//end if
+    
+    $('.tab-content').removeClass('span8'); //agrando el div contenido
+    
 });//end click (close bar)
 
 </script>        

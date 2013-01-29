@@ -1,6 +1,6 @@
     <div class="accordion-heading">
       <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-        Recetas Vigentes
+        Recetas Anteriores
       </a>
     </div>
     <div id="collapseThree" class="accordion-body collapse">
@@ -21,11 +21,13 @@
     <th>Medicamentos</td>
     </tr></thead>
     ';
+	print_r($recetas);
         foreach ($recetas as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
                 if ($llave == 'Id_consulta'){
                     echo '<td>';
+					echo $valor;
                     $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
                     for($i=0;$i<count($medicamentosConsulta);$i++){
                         echo $medicamentosConsulta[$i]['Nombre_Comercial'].'</br>';

@@ -214,9 +214,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 "><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
                     <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
-                      <li><a href="#" id="toggleFav"><i class="icon-star"></i>Favoritos</a></li>
-                      <li><a href="#" id="toggleArsenal"><i class="icon-list"></i>Arsenal</a></li>
-                      <li><a href="#" data-toggle="tab">Imprimir Receta</a></li>
+                    <li><a href="#" data-toggle="tab">Calculadoras</a></li>
+                    <li><a href="#" id="toggleFav"><i class="icon-star"></i>Favoritos</a></li>
                     <li class="dropdown pull-right">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Volver <b class="caret"></b>

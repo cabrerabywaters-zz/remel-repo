@@ -2,10 +2,10 @@
 
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
-class Region {
+class Comuna {
 
-    static $nombreTabla = "Regiones";
-    static $nombreIdTabla = "idRegion";    
+    static $nombreTabla = "Comunas";
+    static $nombreIdTabla = "idComuna";    
     
     /**
      * Insertar
@@ -15,8 +15,8 @@ class Region {
      */
     public static function Insertar() {
     	$datosCreacion = array(
-                            array('Nombre',$_POST['nombre_region']),
-                            array('Numero',$_POST['numero_region'])
+                           array('Nombre',$_POST['nombre']),
+                           array('Provincias_idProvincia',$_POST['id_provincia'])
                                       );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
@@ -48,9 +48,8 @@ class Region {
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
-                                        'idRegion',
                                         'Nombre',
-                                        'Numero'
+                                        'Provincias_idProvincia'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -78,59 +77,65 @@ class Region {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_region'];
+    	$id = $_POST['id_condiciones'];
     	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])    );
+                                array('Nombre',$_POST['nombre']),
+                                     );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
-        
     }
-    
-   public static function BuscarRegionPorNombre($Nombre) {
-        
-        $queryString = 'SELECT idRegion FROM Regiones WHERE Nombre = "'.$Nombre.'"';
+    public static function BuscarComunaPorNombre($nombre){
+        $queryString = 'SELECT idComuna FROM Comuna WHERE Nombre '.$nombre.'';
         $result = CallQuery($queryString);
-   if ($result != false){
+        if ($result != false){
         return $result;
         }
         else return false;
-   }
-   
-   public static function BuscarRegionPorID($idRegion) {
-           
-           $queryString = 'SELECT Nombre FROM Regiones WHERE idRegion = "'.$idRegion.'"';
-            
-                 $result = CallQuery($queryString);
+    }
+    
+    public static function BuscarComunaLike($nombre,$idRegion){
+                $queryString = 'SELECT Comunas.Nombre, Comunas.idComuna
+                                
+                                FROM Comunas, Provincias, Regiones
+                               
+                                WHERE Comunas.Nombre LIKE "%'.$nombre.'%"
+                                
+                                AND Provincias.idProvincia = Comunas.Provincias_idProvincia
+
+                                AND Regiones.idRegion = Provincias.Regiones_idRegion
+                                
+                                AND Regiones.idRegion = "'.$idRegion.'"
+                              
+                                ORDER BY Comunas.Nombre 
+                                
+                                LIMIT 5;
+                                
+                                ';
+                
+                $result = CallQuery($queryString);
 	    $resultArray = array();
 	    while($fila = $result->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
 	    return $resultArray;
    }
-
-   public static function BuscarRegionPorIDComuna($idComuna){
-       
-       $queryString = 'SELECT Regiones.Nombre, Regiones.idRegion
-                        FROM Comunas, Provincias, Regiones
-                        WHERE Regiones.idRegion = Provincias.Regiones_idRegion
-                        AND Provincias.idProvincia = Comunas.Provincias_idProvincia
-                        AND Comunas.idComuna = "'.$idComuna.'" ';
-       $query = Callquery($queryString);
-      $resultArray = array();
-       while($fila = $query->fetch_asocc()){
-          $resultArray[] = $fila;
-       }
-       return $resultArray;
+   
+   
+   public static function BuscarComunaPorRegionYNombre($idRegion,$letra){
+                $queryString = "Select idComuna, Nombre from Comunas where 
+       	Provincias_idProvincia In(SELECT idProvincia from Provincias where  Regiones_idRegion='$idRegion') and Nombre like '%$letra%'"                              
+                                ;
+                
+                $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
    }
-   
-   
-   
-   
-   
+    
 }
-
 
 ?>
