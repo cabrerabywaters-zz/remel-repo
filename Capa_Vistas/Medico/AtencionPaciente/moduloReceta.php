@@ -4,7 +4,7 @@ incluyendo el buscador predictivo de medicamento
 y el popup que muestra el detalle del medicamento
 -->
 <div class="accordion-heading">
-    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
+    <a id="moduloReceta" class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
         Receta
     </a>
 </div>
@@ -232,7 +232,10 @@ y el popup que muestra el detalle del medicamento
                 $('#detalleMedicamentoLabel').html($('#medicamento :selected').text()); // set del titulo
                 $('#detalleMedicamento').collapse('show'); // se abre el div para ingresar datos
                
-                               
+                   $('html, body').animate({
+         scrollTop: $("#diagnosticoAsociado").offset().top
+     }, 2000);
+             
 	 }); // change
 
      
@@ -364,6 +367,16 @@ y el popup que muestra el detalle del medicamento
  </script><!-- autocomplete de medicamentos -->               
 <script>       
     $(document).ready(function(){ 
+        
+        //funcion que reacomoda la pantalla cuando se hace click en receta
+      
+        $("#moduloReceta").click(function() {
+   $('html, body').animate({
+         scrollTop: $("#tabConsulta").offset().top
+     }, 1000);
+});
+      
+        
         /*
          *funcion que maneja el modal detalleMedicamento cuando este se encuentra escondido
          */
@@ -449,7 +462,15 @@ y el popup que muestra el detalle del medicamento
           $('#diagnosticoAsociado')
             .focus()
             .addClass('error')  
-        $('body').scrollTo('#diagnosticoAsociado');
+            
+            
+            
+     $('html, body').animate({
+         scrollTop: $("#diagnosticoAsociado").offset().top
+     }, 2000);
+ 
+            
+          
         }
         else{
         // se obtienen los datos correspondientes del medicamento
@@ -476,9 +497,12 @@ y el popup que muestra el detalle del medicamento
         
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
-        //se limpian los campos y se esconde el modal   
-        
-        
+          
+        //se redirecciona la vista de la pantalla hacia receta.
+          $('html, body').animate({
+         scrollTop: $("#tabConsulta").offset().top
+     }, 1000);
+        //se limpian los campos y se esconde el modal 
         $('#detalleMedicamento').collapse('hide');
         $('#Medicamentos').val('');
         $('#warnings').html('')
@@ -490,6 +514,7 @@ y el popup que muestra el detalle del medicamento
         $('#frecuenciaMedicamento').val('');
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
+        
         var select = $('#diagnosticoAsociado')
         select.val(jQuery('options:first', select).val());
         }
