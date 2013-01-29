@@ -164,7 +164,7 @@
                                        
                                         var ardilla = jQuery.parseJSON(data);
                                         $('#Region').val(ardilla[0].Nombre);
-                                       
+                                        $('#guardar').show();
                                         }//end success
                                     });//end ajax
                                 }//end select
@@ -208,7 +208,7 @@
                             },  // end source
                            minLength: 2,
                            select: function(event, ui){
-                                   
+                                   $('#guardar').show();
                                 }
                             });//autocompletePrevision
                             
@@ -247,7 +247,7 @@ $( "#Seguro" ).autocomplete({
                             },  // end source
                            minLength: 2,
                            select: function(event, ui){
-                                   
+                                   $('#guardar').show();
                                 }
                             });//autocompleteSeguro
 
