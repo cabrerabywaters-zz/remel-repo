@@ -91,20 +91,23 @@
                         var comuna = $('#Comuna').val();
                         var n_celular = $('#N_Celular').val();
                         var n_fijo = $('#N_Fijo').val();
-                       
+                        var prevision = $('#Prevision').val();
+                        var seguro = $('#Seguro').val();
                        
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
                       data: {
-                          RUN:run,
-                          Peso:peso, 
-                         altura:altura, 
-                        Direccion:direccion, 
-                        Numero:numero,
-                        Comuna:comuna,
-                         n_celular:n_celular,
-                        n_fijo:n_fijo
-                  
+                            'RUN':run,
+                            'Peso':peso, 
+                            'Altura':altura, 
+                            'Direccion':direccion, 
+                            'Numero':numero,
+                            'Comuna':comuna,
+                            'N_celular':n_celular,
+                            'N_fijo':n_fijo,
+                            'Prevision':prevision,
+                            'Seguro':seguro
+                            
           },
                       type: 'post',
                       success: function(output){
@@ -197,6 +200,7 @@ $( "#Comuna" ).autocomplete({
                            select: function(event, ui){
                               $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3);
                               var comuna = ui.item.id3;
+                              alert(comuna);
                               $.ajax({
                                     url: "../../../ajax/cambiarRegion.php",
                                     data: { "idComuna":comuna 
@@ -211,6 +215,83 @@ $( "#Comuna" ).autocomplete({
                                 }//end select
                             });//autocompleteComuna
 
+ $( "#Prevision" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de comuna (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteComuna.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../../ajax/autocompletePrevision.php",
+                                    data: {
+                                        
+                                        name_startsWith: request.term
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        
+                                        var output = jQuery.parseJSON(data);
+                                                                                
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre
+                                             
+                                            }
+                                            
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           minLength: 2,
+                           select: function(event, ui){
+                                   
+                                }
+                            });//autocompletePrevision
+                            
+$( "#Seguro" ).autocomplete({
+                                /**
+                             * esta función genera el autocomplete para el campo de comuna (input)
+                             * al seleccionar y escribir 2 letras se ejecuta el ajax
+                             * busca en la base de datos en el archivo autocompleteComuna.php
+                             * el jSon correspondiente a las coincidencias
+                             * 
+                             * Funcion select que ejecutará una accion cuando se devuelva
+                             */        
+                          source: function( request, response ){
+                                $.ajax({
+                                    url: "../../../ajax/autocompleteSeguro.php",
+                                    data: {
+                                        
+                                        name_startsWith: request.term
+                                    },
+                                    type: "post",
+                                    success: function( data ){
+                                        
+                                        var output = jQuery.parseJSON(data);
+                                                                                
+                                        response( $.map( output, function( item ) {
+                                           return {
+                                               label: item.Nombre
+                                             
+                                            }
+                                            
+                                        })//end map
+                                        );  // end response
+                                    }//end success
+
+                                }); // end ajax
+                            },  // end source
+                           minLength: 2,
+                           select: function(event, ui){
+                                   
+                                }
+                            });//autocompleteSeguro
     
 
 </script>
