@@ -9,7 +9,7 @@
 
         <div class="row-fluid">
             <div class="span6 modal-body img-rounded"><!-- div donde estará el buscador -->     
-            <strong><p>Ingrese nombre del diagnóstico</p></strong>
+            <strong><p>Ingrese diagnóstico</p></strong>
 
             <div class="form-search" id="buscar_diagnostico">
                 <div class="input-prepend"> <!-- buscador inline con autocomplete -->
