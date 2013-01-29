@@ -226,6 +226,26 @@ class Medicamento  {
         return $resultArray;
     }
     
+    
+    public static function BuscarMedicamentoArsenalLike($nombre,$idSucursal) {
+        
+
+        $queryString ="Select Nombre_Comercial,idMedicamento from Medicamentos where 
+            idMedicamento IN ( Select Medicamentos_idMedicamento from Arsenal where Expendedores_idExpendedores IN 
+            (Select idExpendedores from Expendedores where Sucursales_RUT='$idSucursal')) and Nombre_Comercial like '%$nombre%'
+          ";
+
+           
+
+        $result = CallQuery($queryString);
+            $resultArray = array();
+            while($fila = $result->fetch_assoc()) {
+               $resultArray[] = $fila;
+            }
+
+        return $resultArray;
+    }
+    
 
 }
 
