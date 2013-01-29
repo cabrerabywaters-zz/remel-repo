@@ -30,7 +30,7 @@
       
       <!-- medicamentos favoritos -->
       <button type="button" class="btn btn-success btn-block" data-toggle="collapse" data-target="#medicamentosFav">
-          <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Medicamentos
+          <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Medicamentos Favoritos
       </button>
       
       <div id="medicamentosFav" class="collapse">
@@ -39,49 +39,33 @@
 		//session_start();
 		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
 		$idMedico = $_SESSION['idMedicoLog'];
-		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
-FROM Laboratorios, Medicamentos, Medicamentos_Comunes
-WHERE Medicamentos_idMedicamento = idMedicamento
-AND Laboratorio_idLaboratorio = Laboratorios.ID
-AND Medicos_idMedico = '$idMedico'";
+		$queryString = "SELECT Nombre_corto, Favoritos_RP.ID, Nombre_Comercial, idMedicamento, Laboratorios.Nombre
+                FROM Laboratorios, Medicamentos, Favoritos_RP
+                WHERE Medicamentos_idMedicamento = idMedicamento
+                AND Laboratorio_idLaboratorio = Laboratorios.ID
+                AND Medicos_idMedico = '$idMedico' GROUP BY idMedicamento";
 		$res = CallQuery($queryString);
                 while($row = $res->fetch_assoc()){
                         $nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
-                        $id = $row['idMedicamento'];
-                        echo "<div class='alert alert-warning' identificador='$id'>\r\n";
-			echo "<a href='#' rel='tooltip' title='Agregar a Favoritos'> <i class='icon-star pull-right'></i></a><!-- eliminar de favoritos -->\r\n
-				<a href='#' rel='tooltip' title='Agregar a Receta' class='detalleMedicamento'> <i class='icon-plus pull-right'></i></a>
-				";
-			echo "<strong>$nombre</strong>\r\n</div>\r\n";
+                        $idFav = $row['idMedicamento'];
+                        $nombreCorto = $row['Nombre_Corto'];
+                        echo "<div class='alert alert-warning' identificador='$idFav'>\r\n";
+			echo "<div class='btn-group pull-right'>
+                                <a class='btn btn-mini btn-success dropdown-toggle' data-toggle='dropdown' href='#'>
+                                    Añadir <i class='icon-star'></i>
+                                <span class='caret'></span>
+                                </a>
+                                <ul class='dropdown-menu'>
+                                <!-- nombres cortos	-->
+                                <li>".$nombreCorto."</li>
+                                </ul>
+                                </div>";
+			echo "<strong><small>$nombre</small></strong>\r\n</div>\r\n";
 		}
       ?> 
        </div>
       </div>
       <!-- fin medicamentos favoritos -->
-      
-<!-- medicamentos RP favoritos -->
-      <button type="button" class="btn btn-success btn-block" data-toggle="collapse" data-target="#medicamentosRpFav">
-          <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Medicamentos RP
-      </button>
-      
-      <div id="medicamentosRpFav" class="collapse">
-       <div class="span10 offset1">
-           
-         <div class="alert alert-success"><!-- pill medicamentoRpFav 1 -->
-              <strong>Medicamento RP ej</strong>
-              <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i> </a><!-- eliminar de favoritos --> 
-              <a href="#gregarFav" rel="tooltip" title="Agregar a Receta"> <i class="medicamentoRp icon-plus pull-right"></i> </a><!-- agregar favorito seleccionado -->
-         </div><!-- end pill diagnosticoFav 1-->
-         <div class="alert alert-success"><!-- pill medicamentoRpFav 1 -->
-              <strong>Medicamento RP ej</strong>
-              <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos --> 
-              <a href="#gregarFav" rel="tooltip" title="Agregar a Receta"> <i class="medicamentoRp icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
-         </div><!-- end pill medicamentoRpFav 1-->
-       
-       </div>
-      </div>
-      <!-- fin medicamentos RP favoritos -->
-
 </div><!-- fin de la barra de favoritos -->
 
 <script>

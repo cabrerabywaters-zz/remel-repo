@@ -3,6 +3,7 @@
 include_once(dirname(__FILE__).'/../Capa_Controladores/medicamento.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/principioActivo.php');
 
+
 if($_POST['filtro'] == "true" and $_POST['filtro2']=="false"){
 	$medicamentos = PrincipioActivo::BuscarPrincipioActivoLike($_POST['name_startsWith']);
 }
@@ -27,5 +28,6 @@ else if(($_POST['filtro'] == "true" and $_POST['filtro2']=="true")) {
 echo json_encode($medicamentos);
 
 
-/*echo $_POST['sucursal'];
+
+
 ?>

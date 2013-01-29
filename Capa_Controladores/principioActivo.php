@@ -111,27 +111,6 @@ class PrincipioActivo {
 
 	return $resultArray;
     }
-    
-     public static function BuscarPrincipioActivoArsenalLike($nombre,$sucursalid) {
-	
-
-        $queryString = 'Select Nombre, idPrincipio_Activo from Principio_Activo where 
-            idPrincipio_Activo in 
-            (select Principio_Activo_idPrincipio_Activo from Composicion_Medicamento where
-            Medicamentos_idMedicamento in 
-            (select Medicamentos_idMedicamento from Arsenal where Expendedores_idExpendedores IN 
-            (Select idExpendedores from Expendedores where Sucursales_RUT='.$sucursalid.'))) and Nombre like "%'.$nombre.'%" LIMIT 5';
-
-        $result = CallQuery($queryString);
-            $resultArray = array();
-            while($fila = $result->fetch_assoc()) {
-               $resultArray[] = $fila;
-            }
-
-	return $resultArray;
-    }
-    
-    
 
     public static function BuscarNombrePrincipioActivoPorId($idPrincipioActivo) {
         $queryString = 'SELECT Nombre FROM Principio_Activo WHERE idPrincipio_Activo = '.$idPrincipioActivo.'';
