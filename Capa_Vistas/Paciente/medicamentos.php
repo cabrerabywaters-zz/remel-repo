@@ -28,7 +28,7 @@ y el popup que muestra el detalle del medicamento
                         </form><!-- append form-->
                     </div><!-- ROW DEL BUSCADOR -->
                     
-                    <div class="row-fluid collapse" id="busqueda_avanzada"><div class="span12 modal-body img-rounded">
+                    <div class="collapse row-fluid" id="busqueda_avanzada"><div class="span12 modal-body img-rounded">
                                     <strong><p>Categorias ATC</p></strong>
                                     <select id="clase" multiple="multiple" class ="span10" SIZE=6></select>
                                     <strong><p>Sub Categorias ATC</p></strong>
@@ -42,7 +42,18 @@ y el popup que muestra el detalle del medicamento
                             <select id="medicamento" multiple="multiple" class ="span10" SIZE=6></select>
                     </div></div><!-- selector de medicamento -->
                 
+                   
                 </div></div>
+              
+              <div class="span5 img-rounded" style="background-color: blueviolet">
+                  <div class="row-fluid">
+                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
+                            <p><strong>Medicamentos Seleccionados:</strong></p>
+                            <div id="medicamentosRecetados" class="span11">
+                            </div>
+                    </div></div><!-- medicamentos seleccionados -->
+                    
+              </div></div><!-- row medicamentos -->
               
               <div class="span5 img-rounded">
                   <div class="row-fluid collapse" id="detalleMedicamento">
@@ -66,40 +77,35 @@ y el popup que muestra el detalle del medicamento
         $('#filtro button').click(function(){
           filtro = $(this).attr('filtro'); // se modifica el filtro correspondiente  
         
-        if($(this).attr('filtro')=="true"){
-               $('#boton_medicamentos').attr("disabled", "disabled");
-            $("#medicamento").empty();
-             $("#subclase").empty();
-              $("#laboratorio").empty();
-            $("#Medicamentos").removeAttr('value')
+        if($(this).attr('filtro')=="true"){ //si se seleccionó principio activo
+             
+            $("#medicamento").empty(); //limpio multiselect de medicamentos
+            $("#subclase").empty(); //limpio subclases
+            $("#laboratorio").empty(); //limpio laboratorios
+            $("#Medicamentos").removeAttr('value') //limpio el input con el valor que tenga dentro
             
-            if($('#busqueda_avanzada').attr('class')=="collapse"){
-            }
-            else{
-            $("#busqueda_avanzada").collapse('hide');
-            }
-        }//end if
-        else if ($(this).attr('filtro')=="false"){
-             $('#boton_medicamentos').attr("disabled", "disabled");
-              $("#subclase").empty();
-              $("#laboratorio").empty();
-            $("#medicamento").empty();
-            $("#Medicamentos").removeAttr('value')
-           
-            if($('#busqueda_avanzada').attr('class')=="collapse"){
+            if($('#busqueda_avanzada').is('.in')== true){ // si la busqueda avanzada está visible
+            $("#busqueda_avanzada").collapse('hide'); //la escondo
             }//end if
-            else{
-               $("#busqueda_avanzada").collapse('hide');
-            }//end else
-        }//end elseif
+        }//end if
+        else if($(this).attr('filtro')=="false"){ // si se seleccionó nombre comercial
+            $('#boton_medicamentos').attr("disabled", "disabled");
+            $("#subclase").empty(); //limpio multiselects
+            $("#laboratorio").empty(); //limpio laboratorio
+            $("#medicamento").empty(); //limpio listado de medicamentos
+            $("#Medicamentos").removeAttr('value') //limpio input
+           
+            if($('#busqueda_avanzada').is('.in')==true){// si la busqueda avanzada está visible
+            $("#busqueda_avanzada").collapse('hide');}// la escondo
+         }//end elseif
         
-       else if ($(this).attr('filtro')=="false2"){
-            $("#subclase").empty();
-              $("#laboratorio").empty();
-              $('#boton_medicamentos').attr("disabled", "disabled");
-           $("#busqueda_avanzada").collapse('show');
-           $("#medicamento").empty();
-           $("#Medicamentos").removeAttr('value')
+       else if ($(this).attr('filtro')=="false2"){ // si se seleccionó busqueda avanzada
+            $("#subclase").empty(); //limpio subclase
+            $("#laboratorio").empty(); //limpio laboratorio
+            $('#boton_medicamentos').attr("disabled", "disabled");
+            $("#busqueda_avanzada").collapse('show'); //muestro el div busqueda_avanzada
+            $("#medicamento").empty(); //limpio medicamentos
+            $("#Medicamentos").removeAttr('value'); // limpio el imput
         }//elseif
         }); //end click
         
@@ -178,29 +184,29 @@ y el popup que muestra el detalle del medicamento
         });//end change
 
 	$('#medicamento').change(function() { 
-              
-                $('#boton_medicamentos').removeAttr('disabled');
-              
-              
-               
-              
-                $('button[filtro="true"]').removeClass('active');
-                $('button[filtro="false"]').addClass('active');
+                
+                $('button[filtro="true"]').removeClass('active'); //quito active del boton prinipio activo
+                $('button[filtro="false2"]').removeClass('active'); //quito active del boton busqueda avanzafa
+                $('button[filtro="false"]').addClass('active'); // hago active el boton nombre comercial
             
             
-                $("#Medicamentos").removeAttr('value').attr('value',$('#medicamento :selected').text());
-                $("#Medicamentos").removeAttr('identificador').attr('identificador',$('#medicamento :selected').attr('value'));
+                $("#Medicamentos")
+                .removeAttr('value')
+                .attr('value',$('#medicamento :selected').text()) // paso el medicamento seleccionado al input
+                .removeAttr('identificador')
+                .attr('identificador',$('#medicamento :selected').attr('value')); // paso el id al input
 		$("#boton_medicamentos").removeAttr('disabled');
 		               
                //colapsa la busqueda avanzada cuando se elije un medicamento para facilitar su insercion
-                if($('#busqueda_avanzada').attr('class')=="collapse"){
-                }
-                else{
-                $("#busqueda_avanzada").collapse('hide');
-                     
-                }
+                if($('#busqueda_avanzada').is('.in')== true){ // si está visible
+                $("#busqueda_avanzada").collapse('hide');} // se esconde
                 
-               
+                /*
+                 *Se setea el div detalle medicamento para llenar sus campos
+                 */
+                $('#idMedicamento').text($('#medicamento :selected').val()); // div cn el id del medicamento
+                $('#detalleMedicamentoLabel').html($('#medicamento :selected').text()); // set del titulo
+                $('#detalleMedicamento').collapse('show'); // se abre el div para ingresar datos
                
                                
 	 }); // change
@@ -413,7 +419,13 @@ y el popup que muestra el detalle del medicamento
         *          
         */      
         $('#agregarMedicamento').unbind('click').on('click', function(){
-        
+        if($('#diagnosticoAsociado').val()== -1){ // si no se le ha asociado un diagnostico al medicamento
+          $('#diagnosticoAsociado')
+            .focus()
+            .addClass('error')  
+        $('body').scrollTo('#diagnosticoAsociado');
+        }
+        else{
         // se obtienen los datos correspondientes del medicamento
         var nombreComercial = $('#detalleMedicamentoLabel').text();
         var idMedicamento = $('#idMedicamento').text();
@@ -454,10 +466,10 @@ y el popup que muestra el detalle del medicamento
         $('#comentarioMedicamento').val('');
         var select = $('#diagnosticoAsociado')
         select.val(jQuery('options:first', select).val());
-
+        }
+        });
         
         
-        })
       
 
         $('.editMedicamento').tooltip().click(function(){
