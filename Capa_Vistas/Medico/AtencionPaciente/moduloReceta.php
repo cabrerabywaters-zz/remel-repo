@@ -14,7 +14,15 @@ y el popup que muestra el detalle del medicamento
              <div class="span7 img-rounded">
                 <div class="row-fluid">
                     
+                    
                     <div class="span12 modal-body img-rounded">
+                        <div class="btn-group" data-toggle="buttons-radio" id="filtroArsenal">
+                            <br>
+                            <button type="button" class="btn" filtroarsenal="false">Todos Los Medicamentos</button>
+                            <button type="button" class="btn" filtroarsenal="true">Arsenal</button>
+                            
+                        </div><!-- filtro -->
+                        <br>
                         <div class="btn-group" data-toggle="buttons-radio" id="filtro">
                             <br>
                             <button type="button" class="btn" filtro="true">Principio Activo</button>
@@ -80,6 +88,13 @@ y el popup que muestra el detalle del medicamento
         /*
          * el filtro correspondiente al buscador 
          */
+        
+        
+         var filtro2 = 'false';
+        $('#filtroArsenal button').click(function(){
+          filtro2 = $(this).attr('filtroarsenal');
+        });
+        
         var filtro = 'true';
         $('#filtro button').click(function(){
           filtro = $(this).attr('filtro'); // se modifica el filtro correspondiente  
@@ -218,8 +233,7 @@ y el popup que muestra el detalle del medicamento
                                
 	 }); // change
 
-</script><!-- filtro de la busqueda avanzada -->
-<script>       
+     
        
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
@@ -235,7 +249,7 @@ y el popup que muestra el detalle del medicamento
                     type: "post",
                     success: function( data ) {
                         
-                             var output = jQuery.parseJSON(data);
+                            var output = jQuery.parseJSON(data);
 
                             $("#medicamento").empty();
                         response( $.map( output, function( item ) {
