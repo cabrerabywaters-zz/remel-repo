@@ -97,6 +97,17 @@ class LugarAtencion {
         $query = CallQuery($queryString);
     }
 
+    public static function SeleccionarDatosRed($idLugar){
+	$nombreTabla = self::$nombreTabla;
+	$queryString = "SELECT Lugar_de_Atencion.Nombre as lugarNombre, Sucursales.Nombre as sucursalNombre, RED.Nombre
+			FROM Lugar_de_Atencion, Sucursales, RED
+			WHERE Lugar_de_Atencion.Sucursales_RUT = Sucursales.RUT AND 
+			      Sucursales.RED_RUT = RED.RUT AND
+			      idLugar_de_Atencion = '$idLugar';";
+	$query = CallQuery($queryString);
+	return $query->fetch_assoc();
+    }
+
     public static function SeleccionarPorRutSucursal($RUT) {
 	$nombreTabla = self::$nombreTabla;
 	$queryString = "SELECT Nombre, idLugar_de_Atencion FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";

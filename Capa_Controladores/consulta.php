@@ -48,6 +48,21 @@ class Consulta  {
      * @param int $offset
      * @returns array $resultArray
      */
+
+    public static function SeleccionarPorId($idConsulta){
+	$atributosASeleccionar = array(
+					'Fecha',
+					'Hora',
+					'Medicos_idMedico',
+					'Pacientes_idPaciente',
+					'Lugar_de_Atencion_idLugar_de_Atencion'
+					);
+	$where = "WHERE Id_Consulta = '$idConsulta'";
+	$queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	return $query->fetch_assoc();
+    }
+
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                 

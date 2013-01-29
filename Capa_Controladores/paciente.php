@@ -55,7 +55,8 @@ class Paciente {
             'Peso',
             'Etnias_idEtnias',
             'altura',
-            'Seguros_idSeguros'
+            'Seguros_idSeguros',
+	    'Personas_RUN'
         );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -311,6 +312,14 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
             $historialMedico[] = $lineaHistorial;
         }
         return $historialMedico;
+    }
+
+    public static function SeleccionarRutPorId($idPaciente){
+	$nombreTabla = self::$nombreTabla;
+	$queryString = "SELECT Personas_RUN FROM $nombreTabla WHERE idPaciente = '$idPaciente;'";
+	$query = CallQuery($queryString);
+
+	return $query->fetch_assoc();
     }
     
     public static function SeleccionarRecetaPorId($idPaciente){

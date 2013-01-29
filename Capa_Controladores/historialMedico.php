@@ -23,9 +23,9 @@ class HistorialMedico  {
 					array('Tipo_idTipo',$idTipo),
 					array('Comentario',$comentario),									                                );	
 	$queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
-        echo $queryString;
 	return $query;
     }
+
 
     
     
@@ -65,6 +65,21 @@ class HistorialMedico  {
         
     }
 
+    public static function SeleccionarPorConsulta($idConsulta){
+	$datosASeleccionar = array(
+					'Diagnosticos_idDiagnostico',
+					'Tipo_idTipo',
+					'Comentario'
+				);
+	$where = "WHERE Consulta_Id_Consulta = '$idConsulta'";
+	$queryString = QueryStringSeleccionar($where, $datosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	$historialMedico = array();
+	while($lineaHistorial = $query->fetch_assoc()){
+		$historialMedico[] = $lineaHistorial;
+	}
+	return $historialMedico;
+    }
 }
 
 ?>

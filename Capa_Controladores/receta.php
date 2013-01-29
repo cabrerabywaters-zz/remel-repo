@@ -38,7 +38,25 @@ class Receta  {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
+	public static function SeleccionarPorId($idReceta) {
+        $atributosASeleccionar = array(
+                                'Fecha_Emision',
+                                'Lugar_de_Atencion_idLugar_de_atencion',
+                                'DireccionIP',
+                                'Tipo_Receta_idTipo_Receta',
+                                'Fecha_Vencimiento',
+                                'Folio_RP',
+                                'Consulta_Id_consulta',
+                                'Estado',
+                                'Causa_eliminacion',
+                                'Fecha_eliminacion'
+            );
+	$where = "WHERE idReceta = '$idReceta'";
+        $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	return $query->fetch_assoc();
+    }
     /**
      * Seleccionar
      * 
@@ -54,8 +72,8 @@ class Receta  {
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
                                 'Fecha_Emision',
-                                'Recetacol',
                                 'Institucion_Emision',
+				'Lugar_de_Atencion_idLugar_de_atencion',
                                 'DireccionIP',
                                 'Tipo_Receta_idTipo_Receta',
                                 'Fecha_Vencimiento',
