@@ -20,25 +20,26 @@
     <th>Fecha Emisión</th>
     <th>Fecha Vencimiento</th>
     <th>Diagnostico Asociado</th>
-    <th>Nombre Medicamento</th>
-    <th>Nombre Farmacia</th>
    
     </tr>
        </thead>
        <tbody>
+       
            
            <?php
+		   print_r($_SESSION);
+		   
                include_once(dirname(__FILE__)."/../../Capa_Controladores/paciente.php");
                
                $historialRecetas = Paciente::SeleccionarRecetaPorId($idPaciente);
                
            foreach($historialRecetas as $lineaRecetas){
-              echo "<tr>";
+              echo "<tr folio='".$lineaRecetas['folio']."'>";
               echo "<td>".$lineaRecetas["folio"]."</td>";
               echo "<td>".$lineaRecetas["nombreMedico"]." ".$lineaRecetas["apellidoMedico"]."</td>";
               echo "<td>".$lineaRecetas["fechaEmision"]."</td>";
               echo "<td>".$lineaRecetas["fechaEliminacion"]."</td>";
-              echo "<td>".$lineaRecetas["nombreDiagnostico"]."</td>";
+			  echo '<td><center><input  type="button" class="btn btn-info" value="'.$lineaRecetas["nombreDiagnostico"].'"></center></td>';
               echo "</tr>";
         }
     echo '</table></div></table></center></div>';
@@ -48,3 +49,9 @@
   </tbody>
   </div>
   </div>
+  <script>
+  var folio = $(this).parent('tr').attr('folio');
+  var RUTPAciente = <?php echo $_SESSION['RUT']; ?>
+  
+  
+  </script>

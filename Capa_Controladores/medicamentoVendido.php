@@ -28,17 +28,11 @@ class MedicamentoVendido {
     }
 
     public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $idUnidad) {
-        $datosCreacion = array(
-            array('Expendedores_idExpendedores', $idExpendedor),
-            array('Medicamentos_Recetas_Medicamento_idMedicamento', $idMedicamento),
-            array('Medicamentos_Recetas_Receta_idReceta', $idReceta),
-            array('Cantidad', $cantidad),
-            array('Fecha', $fecha),
-            array('Unidades_idUnidade', $idUnidad)
-        );
-
-        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $queryString = 'INSERT INTO Medicamentos_Vendidos (Expendedores_idExpendedores,Medicamentos_Recetas_Medicamento_idMedicamento,Medicamentos_Recetas_Receta_idReceta,
+                                                           Cantidad,Fecha, Unidades_idUnidade) 
+                                                           VALUES ('.$idExpendedor.','.$idMedicamento.','.$idReceta.','.$cantidad.','.$fecha.','.$idUnidad.')';
         $query = CallQuery($queryString);
+        return true;
     }
 
     /**

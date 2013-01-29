@@ -92,7 +92,6 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                 }                
                 else{    
                                     
-                    $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>");
                 }
             }
         });
