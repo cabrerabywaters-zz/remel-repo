@@ -22,7 +22,7 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                    
                    <table class="table table-hover table-condensed">
                        <tr>
-                           <td>Cada:</td>
+                           <td>Tomar :</td>
                            <td><input class="span11" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></td>
                            <td><select class="span11" name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
                        </tr>
@@ -38,11 +38,14 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                         </tr>
                         <tr>
                             <td>Inicio</td>
-                            <td colspan="2"><input class="span11" type="text" name="fechaInicio" placeholder="Seleccionar inicio" class="datepicker"></td>
+                            <td colspan="2"><input class="span11 datepicker" type="text" name="fechaInicio" value="<?php 
+                                                   $hoy = getdate();
+                                                   $hoy = $hoy['mon']."/".$hoy['mday']."/".$hoy['year'];
+                                                   echo $hoy;?>"></td>
                         </tr>
                         <tr>
                             <td>Fin</td>
-                            <td colspan="2"><input class="span11" type="text" name="fechaFin" class="datepicker"></td>
+                            <td colspan="2"><input class="span11 datepicker" type="text" name="fechaFin" ></td>
                         </tr>
                         <tr>
                             <td>Comentario:</td>
@@ -59,12 +62,12 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
     <div class="modal-footer">
         <div class="pull-left">
             <select id="diagnosticoAsociado">
-                <option label="Seleccionar Diagnostico">Seleccionar Diagnostico</option>
+                <option value="-1" label="Seleccionar Diagnostico">Seleccionar Diagnostico</option>
                 <option value="0">Sin Diagnostico Asociado</option>
             </select>    
         </div>
         <div class="pull-right">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <button class="btn" data-dismiss="collapse" aria-hidden="true">Cancelar</button>
             <a href="#" id="agregarMedicamento" role="button" class="btn btn-warning">Prescribir</a>
         </div>
     </div>   
@@ -76,34 +79,30 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
         var d1 = new Date(yn,0,1,12,0,0); // noon on Jan. 1
         var d2 = new Date(yn,mn,dn,12,0,0); // noon on input date
         var ddiff = Math.round((d2-d1)/864e5);
-        return ddiff+1; }   
-$('input[name="fechaInicio"]').change(function(){
-   var inicio = $(this).val();
-   var fecha = new Date(inicio);
-   fecha = parseInt(dayofyear(fecha))
-   var unidadPeriodo = $('select[name="unidadPeriodo"]').val()
-   var periodo = parseInt($('#periodoMedicamento').val());
-   
-   if(unidadPeriodo == 2){
-       fecha = fecha+periodo     // se suman los días
-       
-    }
-   else if(unidadPeriodo == 3){ // se suman las semanas *7 días
-       fecha = fecha + periodo*7
-       
-   }
-   else if(unidadPeriodo == 1){// se suman los meses por 30(30días por mes) ERROR!
-       fecha = fecha + periodo*30
-       
-   }
-   
-   function dateFromDay(year, day){
+        return ddiff+1; }   // funcion que calcula el día del año con la fecha
+ function dateFromDay(year, day){
    var date = new Date(year, 0); // initialize a date in `year-01-01`
    return new Date(date.setDate(day)); // add the number of days
-   }
+ } // funcion que calcula la fecha con el día del año
+
+$('#periodoMedicamento').change(function(){
+   var inicio = $('input[name="fechaInicio"]').val();
+   var fecha = new Date(inicio);
+   fecha = parseInt(dayofyear(fecha));
+   var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
+   var periodo = parseInt($('#periodoMedicamento').val());
    
-   fecha = dateFromDay(2013, fecha)
-   alert(fecha)
+   if(unidadPeriodo == 1){
+       fecha = fecha+periodo     // se suman los días
+    }
+   else if(unidadPeriodo == 2){ // se suman las semanas *7 días
+       fecha = fecha + periodo*7
+   }
+   else if(unidadPeriodo == 3){// se suman los meses por 30(30días por mes) ERROR!
+       fecha = fecha + periodo*30
+   }
+
+   fecha = dateFromDay(<?php $hoy=getdate(); echo $hoy['year'];?>, fecha)
    fecha = fecha.getMonth()+1+"/"+fecha.getDate()+"/"+fecha.getFullYear();   
    $('input[name="fechaFin"]').val(fecha);
 })

@@ -82,7 +82,7 @@ color:white}
 		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 	<![endif]-->
         <!-- fin script js externos -->
-        <script> $(document).ready(function(){$('.datepicker').datepicker();});</script>   
+        <script> $(document).ready(function(){$('.datepicker').datepicker({ dateFormat: "mm/dd/yy" });});</script>   
     </head>
     <body>
         
