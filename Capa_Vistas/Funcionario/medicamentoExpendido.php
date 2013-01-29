@@ -17,3 +17,32 @@ if ($med){
  echo 'Medicamento Expendido Exitosamente.';   
 }
 ?>
+<center>
+        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
+    </center>
+
+<script>
+    
+    function volver(){
+        window.location.href = 'funcionarioIndex.php#';
+    }
+    
+    function seleccionar(idMedicamento, idReceta, unidad){
+        var idMed = idMedicamento;
+        var idRec = idReceta;
+        var uni = unidad;
+        $.ajax({ url: '../../ajax/guardarDatosMedicamento.php',
+            data: {'idMedicamento': idMed,'idReceta': idRec,'unidad': uni },
+            type: 'post',
+            success: function(output) {
+                if(output == 1){// redireccion a atencionPaciente
+                    window.location.href = 'expenderMedicamento.php#';
+                    
+                }                
+                else{    
+                                    
+                }
+            }
+        });
+    }
+</script>
