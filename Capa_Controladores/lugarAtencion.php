@@ -99,7 +99,8 @@ class LugarAtencion {
 
     public static function SeleccionarDatosRed($idLugar){
 	$nombreTabla = self::$nombreTabla;
-	$queryString = "SELECT Lugar_de_Atencion.Nombre as lugarNombre, Sucursales.Nombre as sucursalNombre, RED.Nombre
+	$queryString = "SELECT Lugar_de_Atencion.Nombre as lugarNombre, Sucursales.Nombre as sucursalNombre, RED.Nombre as redNombre,
+			Sucursales.Direccion_idDireccion
 			FROM Lugar_de_Atencion, Sucursales, RED
 			WHERE Lugar_de_Atencion.Sucursales_RUT = Sucursales.RUT AND 
 			      Sucursales.RED_RUT = RED.RUT AND

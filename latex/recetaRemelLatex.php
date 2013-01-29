@@ -24,23 +24,34 @@ $filetext = fread( $file, $filesize );
 
 $infoReceta = Receta::SeleccionarPorId($idReceta);
 
+//Info Consulta
 $idConsulta = $infoReceta['Consulta_Id_consulta'];
 $infoConsulta = Consulta::SeleccionarPorId($idConsulta);
-$idMedico = $infoConsulta['Medicos_idMedico'];
-$idLugar = $infoConsulta['Lugar_de_Atencion_idLugar_de_Atencion'];
 
+//Info Medico
+$idMedico = $infoConsulta['Medicos_idMedico'];
+$infoMedico = Medico::SeleccionarPorId($idMedico);
+$nombreMedico = Medico::SeleccionarNombre($idMedico);
+$especialidades = Medico::SeleccionarEspecialidades($idMedico);
+var_dump($especialidades);
+
+//Info Lugar
+$idLugar = $infoConsulta['Lugar_de_Atencion_idLugar_de_Atencion'];
 $lugar = LugarAtencion::SeleccionarDatosRed($idLugar);
 
+//Info Paciente
 $idPaciente = $infoConsulta['Pacientes_idPaciente'];
 $rutPaciente = Paciente::SeleccionarRutPorId($idPaciente);
+
+//Diagnosticos
 $diagnosticos = HistorialMedico::SeleccionarPorConsulta($idConsulta);
 
-$search  = array('[doctor]','[red]','[pos]','[sucursal]','[esp]',
-    '[lugar]','[rut]','[direccion]','[regss]', '[telefono]',
-    '[regcm]','[www]','[nro]');
+$search  = array('[doctor]','[red]','[rut]','[sucursal]','[regss]',
+    '[lugar]','[regcm]','[direccion]','[esp1]', '[telefono]',
+    '[esp2]','[web]','[espr]');
 
-$replace = array('Max','clinica alemana','hoy','mañana','SPM','hipotesis','es muy raro',
-        'hedilar','3cucharadas','cada 6 horas','dos veces al dia','ayudaa');
+$replace = array($nombreMedico,$lugar['redNombre'],$infoMedico['Personas_RUN'],$lugar['sucursalNombre'],$infoMedico['Codigo_Registro_SS'],$lugar['lugarNombre'],$infoMedico['Codigo_Registro_CM'],$lugar['Direccion_idDireccion'],
+        'hedilar','3cucharadas','cada 6 horas',$infoMedico['Correo_Medico'],'ayudaa');
 
 $filetext = str_replace($search, $replace, $filetext,$i);
 

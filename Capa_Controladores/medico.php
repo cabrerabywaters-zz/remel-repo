@@ -57,7 +57,8 @@ class Medico {
                                         'Codigo_Registro_SS',
                                         'Codigo_Registro_CM',
                                         'Fecha_Inscripcion_REMEL',
-                                        'Fecha_ultima_edicion'
+                                        'Fecha_ultima_edicion',
+					'Personas_RUN'
 									);
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
@@ -75,6 +76,21 @@ class Medico {
 	       $resultArray[] = $fila;
 	    }
 	    return $resultArray[0];
+    }
+
+    public static function SeleccionarPorId($idMedico){
+	$atributosASeleccionar = array(
+                                        'Correo_Medico',
+                                        'Codigo_Registro_SS',
+                                        'Codigo_Registro_CM',
+                                        'Fecha_Inscripcion',
+                                        'Fecha_ultima_edicion',
+                                        'Personas_RUN' 
+                                                                        );
+	$where = "WHERE idMedico = '$idMedico'";
+	$queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
+	$query = CallQuery($queryString);
+	return $query->fetch_assoc();
     }
     
     /**
@@ -97,6 +113,35 @@ class Medico {
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
+    }
+
+    public static function SeleccionarNombre($idMedico) {
+	$queryString = "SELECT Nombre, Apellido_Paterno, Apellido_Materno 
+			FROM Medicos, Personas
+			WHERE Medicos.Personas_RUN = Personas.RUN AND
+				Medicos.idMedico = '$idMedico';";
+	$query = CallQuery($queryString);
+	$result = $query->fetch_assoc();
+	return $result['Nombre']." ".$result['Apellido_Paterno']." ".$result['Apellido_Materno'];
+    }
+
+    public static function SeleccionarRUT($idMedico) {
+	$queryString = "SELECT Personas_RUT FROM Medicos WHERE idMedico = '$idMedico';";
+	$query = CallQuery($queryString);
+	return $query->fetch_assoc();
+    }
+
+    public static function SeleccionarEspecialidades($idMedico) {
+	$queryString = "SELECT Especialidades.Nombre as Nombre
+			FROM Especialidades, Especialidades_has_Medicos
+			WHERE Especialidades.idEspecialidad = Especialidades_has_Medicos.Especialidad_idEspecialidad AND
+				Especialidades_has_Medicos.Medico_idMedico = '$idMedico';";
+	$query = CallQuery($queryString);
+	$especialidades = array();
+	while($especialidad = $query->fetch_assoc()){
+		$especialidades[] = $especialidad['Nombre'];
+	}
+	return $especialidades;
     }
 
     public static function EncontrarMedico($rut) {
