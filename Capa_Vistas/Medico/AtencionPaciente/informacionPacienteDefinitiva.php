@@ -1,4 +1,3 @@
-  
 <div class="accordion-heading">
   <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
   Información Personal del Paciente
@@ -15,11 +14,7 @@
     </div>
     
     <div class="control-group">
-    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="uneditable-input" id="Fecha" value="<?php 
-    $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
-    $fechaNac = $fechaNac[0]; 
-    echo $fechaNac; 
-    ?>" disabled></label>&nbsp
+    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="uneditable-input" id="Fecha" value="<?php echo $paciente['Fecha_Nac']; ?>" disabled></label>&nbsp
     <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" id="Sexo" value="<?php if($paciente['Sexo']=='1')
 	{
 		echo "Masculino";
@@ -34,39 +29,37 @@
     </div>
      <br> 
     <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
-    </div>
-     
-    <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
 
    
-
     <label class="control-label" for="Region"><strong>Región </strong><br>
     <select name="cars" style="text-align:center;" type="text" class="inline edicion" id="Region">
-            <?php  
-              include_once("../../../Capa_Controladores/region.php");
-
-                $arrayRegiones =  Region::Seleccionar("");
-
-
-              foreach ($arrayRegiones  as $campo=>$valor){
-                echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
-
-              }
-            ?>  
+        
+        
+<?php  
+  include_once("../../../Capa_Controladores/region.php");
+    
+    $arrayRegiones =  Region::Seleccionar("");
+    
+  
+  foreach ($arrayRegiones  as $campo=>$valor){
+    echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
+    
+  }
+?>  
         
           </select>
     </label>
-
-    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
-
     
     
     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
     </div>
     
+    <div class="control-group">
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+    </div>
+ 
     <div class="control-group">
     <label class="control-label" for="Nacionalidad"><strong>Nacionalidad  </strong><br>  <input style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
     <label class="control-label" for="Etnia"><strong>Etnia </strong> <br> <input style="text-align:center;" type="text" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
@@ -79,11 +72,11 @@
      
      
     <div class="control-group">
-    <label class="control-label" for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
+    <label class="control-label" for="Prevision"><strong>Previsión</strong><br>  <input style="text-align:center;" type="text" class="edicion" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
     </div>
      
     <div class="control-group">
-    <label class="control-label" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
+    <label class="control-label" for="Seguro"><strong>Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
     </div> 
      
     <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
@@ -176,9 +169,12 @@
                 });
            });
            */
+$('#Region').change(function(){
+    $("#Comuna").removeAttr('value')
+});
 
-$( "#Comuna" ).autocomplete({
-                             /**
+         $( "#Comuna" ).autocomplete({
+                                /**
                              * esta función genera el autocomplete para el campo de comuna (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
                              * busca en la base de datos en el archivo autocompleteComuna.php
@@ -191,7 +187,8 @@ $( "#Comuna" ).autocomplete({
                                     url: "../../../ajax/autocompleteComuna.php",
                                     data: {
                                         
-                                        name_startsWith: request.term
+                                        name_startsWith: request.term,
+                                        idRegion: $('#Region').attr('value')
                                     },
                                     type: "post",
                                     success: function( data ){
@@ -213,8 +210,7 @@ $( "#Comuna" ).autocomplete({
                             },  // end source
                            minLength: 2,
                            select: function(event, ui){
-                               $('#Comuna').attr('idComuna',ui.item.id3);
-                               $('#Region').removeAttr('idRegion');
+                                   
                                 }
                             });//autocompleteComuna
 
@@ -239,5 +235,5 @@ $( "#Comuna" ).autocomplete({
                 });
        });
       */
-
+     
 </script>

@@ -123,9 +123,10 @@ class Comuna {
    }
    
    
-   public static function BuscarComunaPorRegionYNombre($idRegion,$letra){
-                $queryString = "Select idComuna, Nombre from Comunas where 
-       	Provincias_idProvincia In(SELECT idProvincia from Provincias where  Regiones_idRegion='$idRegion') and Nombre like '%$letra%'"                              
+   public static function BuscarComunaPorRegionYNombre($letra){
+                $queryString = "Select idComuna, Nombre 
+                                 from Comunas
+                                 where Comunas.Nombre like '%$letra%'"                              
                                 ;
                 
                 $result = CallQuery($queryString);
