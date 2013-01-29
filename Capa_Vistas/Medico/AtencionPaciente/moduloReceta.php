@@ -15,6 +15,12 @@ y el popup que muestra el detalle del medicamento
                 <div class="row-fluid">
                     
                     <div class="span12 modal-body img-rounded">
+                        <div class="btn-group" data-toggle="buttons-radio" id="filtroArsenal">
+                        <button  type="button" class="btn" filtroarsenal ="false">Todos los Medicamentos</button>
+                        <button  type="button" class="btn" filtroarsenal="true">Arsenal Institucional</button>
+                        </div><!-- filtro -->
+                        <br>
+
                         <div class="btn-group" data-toggle="buttons-radio" id="filtro">
                             <br>
                             <button type="button" class="btn" filtro="true">Principio Activo</button>
@@ -80,7 +86,14 @@ y el popup que muestra el detalle del medicamento
         /*
          * el filtro correspondiente al buscador 
          */
+
         var filtro = 'true';
+        var filtro2='false' 
+        $('#filtroArsenal button').click(function(){
+              filtro2 = $(this).attr('filtroarsenal'); 
+
+        });
+        
         $('#filtro button').click(function(){
           filtro = $(this).attr('filtro'); // se modifica el filtro correspondiente  
         
@@ -218,8 +231,7 @@ y el popup que muestra el detalle del medicamento
                                
 	 }); // change
 
-</script><!-- filtro de la busqueda avanzada -->
-<script>       
+   
        
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
@@ -227,10 +239,15 @@ y el popup que muestra el detalle del medicamento
                     url: "../../../ajax/autocompleteMedicamento.php",
                     data: {
                         name_startsWith: request.term,
-                        filtro: filtro
+                        filtro: filtro,
+                        filtro2: filtro2,
+                        sucursal:$_SESSION['logLugar']['rutSucursal']
+                        
                     },
                     type: "post",
                     success: function( data ) {
+                        
+                        alert('data');
                         var output = jQuery.parseJSON(data);
                             $("#medicamento").empty();
                         response( $.map( output, function( item ) {
@@ -265,15 +282,19 @@ y el popup que muestra el detalle del medicamento
                        */ 
 
                 //aquí se hace el ajax para poder indexsar los medicamentos que tienen ese principio activo
-                
-                if(filtro == "true"){
-                    
+              
+                if(filtro == "true" ){
+                    // si es principio activo 
                   $.ajax({
                     type:"POST",
                     url: "../../../ajax/medicamentosPrincipiosActivos.php",
-                    data: {"idPrincipio": ui.item.id2},
+                    data: {"idPrincipio": ui.item.id2,
+                            arsenal: filtro2
+                    },
+                          
+               
                     success: function(output){
-                    
+                     
                        var output = jQuery.parseJSON(output);
                         $("#medicamento").empty();
                         $.each(output,function(i,el){
@@ -284,6 +305,8 @@ y el popup que muestra el detalle del medicamento
                         }//success
                    });//end ajax
                 }//end if
+                               
+                
                 else{ // si es nombre comercial
                     $('#Medicamentos').removeAttr('identificador').attr('identificador', ui.item.id2)
                     var idMedicamento = ui.item.id2 // id del medicamento que se busca
