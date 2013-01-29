@@ -39,7 +39,7 @@
 		//session_start();
 		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
 		$idMedico = $_SESSION['idMedicoLog'];
-		$queryString = "SELECT Favoritos_RP.ID, Nombre_Comercial, idMedicamento, Laboratorios.Nombre
+		$queryString = "SELECT Nombre_corto, Favoritos_RP.ID, Nombre_Comercial, idMedicamento, Laboratorios.Nombre
                 FROM Laboratorios, Medicamentos, Favoritos_RP
                 WHERE Medicamentos_idMedicamento = idMedicamento
                 AND Laboratorio_idLaboratorio = Laboratorios.ID
@@ -48,6 +48,7 @@
                 while($row = $res->fetch_assoc()){
                         $nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
                         $idFav = $row['idMedicamento'];
+                        $nombreCorto = $row['Nombre_Corto'];
                         echo "<div class='alert alert-warning' identificador='$idFav'>\r\n";
 			echo "<div class='btn-group pull-right'>
                                 <a class='btn btn-mini btn-success dropdown-toggle' data-toggle='dropdown' href='#'>
@@ -56,7 +57,7 @@
                                 </a>
                                 <ul class='dropdown-menu'>
                                 <!-- nombres cortos	-->
-                                
+                                <li>".$nombreCorto."</li>
                                 </ul>
                                 </div>";
 			echo "<strong><small>$nombre</small></strong>\r\n</div>\r\n";
