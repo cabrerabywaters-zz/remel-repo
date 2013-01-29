@@ -15,7 +15,11 @@
     </div>
     
     <div class="control-group">
-    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="span3 uneditable-input" id="Fecha" value="<?php echo $paciente['Fecha_Nac']; ?>" disabled></label>&nbsp
+    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="span3 uneditable-input" id="Fecha" value="<?php
+    $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
+    $fechaNac = $fechaNac[0]; 
+    echo $fechaNac; 
+    ?>" disabled></label>&nbsp
     <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" class="span3" id="Sexo" value="<?php if($paciente['Sexo']=='1')
 	{
 		echo "Masculino";
@@ -23,24 +27,24 @@
 	else
 	{
 	echo "Femenino";	
-	}; ?>" disabled></label>
+	}; ?>"disabled></label>
     <br> <br>
     <label class="control-label" for="Peso"><strong>Peso [Kg]  </strong><br> <input style="text-align:center;" type="text" class="span3" id="Peso" value="<?php echo $paciente['Peso']; ?>" disabled></label>
     <label class="control-label" for="Altura"><strong>Altura [Cm] </strong><br><input style="text-align:center;" type="text" class="span3" id="Altura" value="<?php echo $paciente['altura']; ?>" disabled></label>
     </div>
      <br> 
     <div class="control-group">
-    <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" class="span2" id="Pais" value="Chile" disabled></label>
+    <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" class="span1" id="Pais" value="Chile" disabled></label>
     
-     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
+     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="span4 inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
 
     
     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="span2 inline" id="Comuna" value="<?php echo $comuna['Nombre']; ?>" ></label>
     </div>
     
     <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="span4 edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="edicion" id="span2 Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
     </div>
  
     <div class="control-group">
@@ -101,7 +105,7 @@
           },
                       type: 'post',
                       success: function(output){
-                                               
+                                              alert(output); 
                         if(output=="1")
                             {
                                 $("#guardar").hide();
