@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#funcionario"><i class="icon-chevron-down icon-white"></i> Ingresar como Funcionario</button>
+<button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#funcionario"><i class="icon-chevron-down icon-white"></i> Perfil Institucional</button>
 <div id="funcionario" class="collapse" data-parent="#ingresoFuncionario">
     <div id="contenedor_lugares_funcionario">    
         <?php
