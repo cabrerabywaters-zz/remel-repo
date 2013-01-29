@@ -41,6 +41,24 @@
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
 
+   
+
+    <label class="control-label" for="Region"><strong>Región </strong><br>
+    <select name="cars" style="text-align:center;" type="text" class="inline edicion" id="Region">
+            <?php  
+              include_once("../../../Capa_Controladores/region.php");
+
+                $arrayRegiones =  Region::Seleccionar("");
+
+
+              foreach ($arrayRegiones  as $campo=>$valor){
+                echo "<option value='".$valor['idRegion']."'>". $valor['Nombre'] ."</option>";
+
+              }
+            ?>  
+        
+          </select>
+    </label>
 
     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
 
@@ -195,22 +213,31 @@ $( "#Comuna" ).autocomplete({
                             },  // end source
                            minLength: 2,
                            select: function(event, ui){
-                              $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3);
-                              var comuna = ui.item.id3;
-                              $.ajax({
-                                    url: "../../../ajax/cambiarRegion.php",
-                                    data: { "idComuna":comuna 
-                                    },//end data
-                                    type: "post",
-                                    success:function(data){
-                                        var ardilla = jQuery.parseJSON(data);
-                                        $('#Region').val(ardilla[0].Nombre);
-                                       
-                                        }//end success
-                                    });//end ajax
-                                }//end select
+                               $('#Comuna').attr('idComuna',ui.item.id3);
+                               $('#Region').removeAttr('idRegion');
+                                }
                             });//autocompleteComuna
 
-    
+                            
+                         
+       //change regiones
+       
+  /*     $('#Region').change(function(){
+	$.ajax({
+		url: "../../../ajax/selectComunas.php",
+                data: {
+                    
+                 idRegion: $('#Region').attr('idRegion');
+                    
+                }
+		success: function(output){
+				var output = jQuery.parseJSON(output);
+				$.each(output,function(i,el){
+					nombre comunas que tienen el id region
+				});//end each
+			}// end        
+                });
+       });
+      */
 
 </script>

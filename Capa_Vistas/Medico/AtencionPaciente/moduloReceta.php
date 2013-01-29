@@ -227,11 +227,16 @@ y el popup que muestra el detalle del medicamento
                     url: "../../../ajax/autocompleteMedicamento.php",
                     data: {
                         name_startsWith: request.term,
-                        filtro: filtro
+
+                        filtro: filtro,
+                        filtro2: filtro2
+                        
                     },
                     type: "post",
                     success: function( data ) {
-                        var output = jQuery.parseJSON(data);
+                        
+                             var output = jQuery.parseJSON(data);
+
                             $("#medicamento").empty();
                         response( $.map( output, function( item ) {
                             if(filtro == "true"){
