@@ -87,10 +87,10 @@ class Comuna {
         $query = CallQuery($queryString);
     }
     public static function BuscarComunaPorNombre($nombre){
-        $queryString = 'SELECT idComuna FROM Comuna WHERE Nombre '.$nombre.'';
+        $queryString = 'SELECT idComuna FROM Comunas WHERE Nombre '.$nombre.'';
         $result = CallQuery($queryString);
         if ($result != false){
-        return $result;
+        return $result->fetch_assoc;
         }
         else return false;
     }

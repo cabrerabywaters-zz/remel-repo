@@ -5,7 +5,7 @@ include_once(dirname(__FILE__)."/../Capa_Controladores/paciente.php");
 include_once(dirname(__FILE__)."/utilidades.php");
 
 $rut = validadorRUT($_POST['RUN']);
-if ($_SESSION['RUT'] != $_POST['RUN']){
+if ($_SESSION['RUT'] != $rut){
 $array1 = Paciente::EncontrarPacienteAssoc($rut);
 $array2 = Persona::BuscarNombre($rut);
 

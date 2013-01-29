@@ -117,7 +117,7 @@ verificarIP();
             <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
                 <div class="input-append">
                 <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
-                <button class="btn btn" type="submit">Buscar</button> <div style="display:none" class="alert alert-error" id="error">SEMEN</div>
+                <button class="btn btn" type="submit">Buscar</button> <div style="display:none" class="alert alert-error" id="error">PERRO</div>
                 </div>
             </form>
             <div id="atender" class="atender">
