@@ -19,7 +19,7 @@ class MedicamentoReceta  {
     	$datosCreacion = array(
 					array('Receta_idReceta',$idReceta),
 					array('Medicamento_idMedicamento',$idMedicamento),
-					array('Diagnosticos_idDiagnostico',$idDiagnostico),
+					array('Diagnosticos_idDiagnosticos',$idDiagnostico),
                              		array('Cantidad',$cantidad),
                              		array('Frecuencia',$frecuencia),
                              		array('Unidad_Frecuencia_ID',$unidadFrecuencia, ),

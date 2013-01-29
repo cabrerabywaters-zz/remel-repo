@@ -166,9 +166,9 @@
         })//end each medicamento sin diagnostico asociado
                 
         $.ajax({
-         data: {"resumenPoder" : resumenPoder, "sinDiagnostico": sinDiagnostico},
+         data: {'resumenPoder' : resumenPoder, 'sinDiagnostico': sinDiagnostico},
          url: '../../../ajax/ingresarReceta.php',
-         type: "POST",
+         type: 'post',
          async: false,
          success: function(output){
             alert(output)
