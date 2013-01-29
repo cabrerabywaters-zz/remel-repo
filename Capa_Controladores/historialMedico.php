@@ -23,7 +23,7 @@ class HistorialMedico  {
 					array('Tipo_idTipo',$idTipo),
 					array('Comentario',$comentario),									                                );	
 	$queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
-        $query = CallQuery($queryString);
+        echo $queryString;
 	return $query;
     }
 

@@ -71,7 +71,7 @@
         
         $('#resumen').append('<hr>'); //linea
         $('.confirmarEmision').removeAttr('disabled');
-    
+        $('#resumen').modal('show');
        }// end if
        else{// si no hay medicamentos recetados
            $('#resumen').html('<div class="alert alert-error"><strong>No se ha agregado ningún medicamento a la receta</strong></div>');
@@ -161,10 +161,10 @@
                 "unidadPeriodo" : unidadPeriodo,
                 "fechaInicio" : fechaInicio,
                 "fechaFin" : fechaFin
-            })
+            }) // end push sinDiagnostico
         
         })//end each medicamento sin diagnostico asociado
-        
+                
         $.ajax({
          data: {"resumenPoder" : resumenPoder, "sinDiagnostico": sinDiagnostico},
          url: '../../../ajax/ingresarReceta.php',
@@ -172,14 +172,16 @@
          async: false,
          success: function(output){
             alert(output)
-            if(output == "1"){
-                //si el registro de la receta se confirma ( = 1)
+            if(output == "-1"){
+                //si el registro de la receta arroja errores( = -1)
+                alert('Error al guardar la receta en la bbdd')
             }
             else{
-                // si el registro de la receta arroja algun error ( = 0)
+                // si el registro de la receta fue correcto (output = folio)
+                alert('se ingresó correctamente la receta folio'+output)
             }
          }
            
-        });
+        });// end ajax
    }); // end click
 </script><!-- script que genera el listado del resumen de la receta-->
