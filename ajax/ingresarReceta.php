@@ -16,17 +16,20 @@ include_once(dirname(__FILE__)."/../Capa_Controladores/receta.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/historialMedico.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/medicamentoReceta.php");
 
-error_reporting(E_ALL);
+error_reporting('E_ALL');
 
 session_start();
 
-$diagnosticos = $_POST['resumenPoder'];
-if(!empty($_POST['sinDiagnostico'])){
+if(array_key_exists('resumenPoder', $_POST)){
+    $diagnosticos = $_POST['resumenPoder'];
+}
+else $diagnosticos = null;
+
+if(array_key_exists('sinDiagnostico', $_POST)){
     $sinDiagnostico = $_POST['sinDiagnostico'];
 }
-else {
-    $sinDiagnostico = null;
-}
+else $sinDiagnostico = null;
+
 $idLugar = $_SESSION['logLugar']['idLugar'];
 $idConsulta = $_SESSION['idConsulta'];
 $idMedico = $_SESSION['idMedicoLog'][0];
@@ -38,15 +41,17 @@ $idReceta = Receta::Insertar($idLugar, $ip, $tipoReceta, $idConsulta);
 
 if($idReceta == false){ $check = -1; die("Muere receta"); }
 
-foreach($diagnosticos as $diagnostico) {
-	$idDiagnostico = $diagnostico['idDiagnostico'];
-	$check = HistorialMedico::Insertar($idConsulta,$idDiagnostico,$diagnostico['tipoDiagnostico'],$diagnostico['comentarioDiagnostico']);
-	if($check == false){ echo -1; die("Muere Diagnostico"); }
+if($diagnosticos != null){
+    foreach($diagnosticos as $diagnostico) {
+            $idDiagnostico = $diagnostico['idDiagnostico'];
+            $check = HistorialMedico::Insertar($idConsulta,$idDiagnostico,$diagnostico['tipoDiagnostico'],$diagnostico['comentarioDiagnostico']);
+            if($check == false){ echo -1; die("Muere Diagnostico"); }
 
-	foreach($diagnostico['medicamentos'] as $medicamento) {
-		$check = MedicamentoReceta::Insertar($idReceta, $idDiagnostico, $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], '1', $medicamento['frecuenciaMedicamento'], '1', $medicamento['periodoMedicamento'], '1', '1', $medicamento['fechaInicio'], $medicamento['comentarioMedicamento']); 
-		if( $check != 1){ echo -1; die("Muere medicamento"); }
-	}
+            foreach($diagnostico['medicamentos'] as $medicamento) {
+                    $check = MedicamentoReceta::Insertar($idReceta, $idDiagnostico, $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], '1', $medicamento['frecuenciaMedicamento'], '1', $medicamento['periodoMedicamento'], '1', '1', $medicamento['fechaInicio'], $medicamento['comentarioMedicamento']); 
+                    if( $check != 1){ echo -1; die("Muere medicamento"); }
+            }
+    }
 }
 if($sinDiagnostico != null){
     foreach($sinDiagnostico as $medicamento) {
