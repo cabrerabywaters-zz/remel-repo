@@ -1,12 +1,12 @@
-<?php include_once '/../../Capa_Controladores/unidadDeConsumo.php';
-include_once '/../../Capa_Controladores/unidadFrecuencia.php';
-include_once '/../../Capa_Controladores/unidadPeriodo.php';
+<?php include_once '../../Capa_Controladores/unidadDeConsumo.php';
+include_once '../../Capa_Controladores/unidadFrecuencia.php';
+include_once '../../Capa_Controladores/unidadPeriodo.php';
  $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
  $unidadFrecuencia = UnidadFrecuencia::Seleccionar('where 1=1');
  $unidadPeriodo = UnidadPeriodo::Seleccionar('where 1=1');
   
-?>
-
+?>    
+       
 <script>
  function dayofyear(d) {   // d is a Date object
         var yn = d.getFullYear();
