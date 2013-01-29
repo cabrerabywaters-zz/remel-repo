@@ -240,15 +240,13 @@ y el popup que muestra el detalle del medicamento
                     data: {
                         name_startsWith: request.term,
                         filtro: filtro,
-                        filtro2: filtro2,
-                        sucursal:$_SESSION['logLugar']['rutSucursal']
+                        filtro2: filtro2
                         
                     },
                     type: "post",
                     success: function( data ) {
                         
-                        alert('data');
-                        var output = jQuery.parseJSON(data);
+                             var output = jQuery.parseJSON(data);
                             $("#medicamento").empty();
                         response( $.map( output, function( item ) {
                             if(filtro == "true"){
