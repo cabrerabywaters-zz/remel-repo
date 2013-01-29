@@ -120,7 +120,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
                     <li><a href="#tabDiagnosticos" data-toggle="tab">Mis Diagnósticos Históricos</a></li>
                      <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas Históricas</a></li>
                       <li><a href="#tabHistorialMedico" data-toggle="tab">Mis Médicos</a></li>
-                      	<li><a href="#infoRelevante" data-toggle="tab">Informacion Relevante</a></li>
+                      	<li><a href="#infoRelevante" data-toggle="tab">Mis Estadisticas</a></li>
                       	<li><a href="#calendario" data-toggle="tab">Calendario</a></li>
                       	<li><a href="#medicamentos" data-toggle="tab">Medicamentos</a></li>
                       <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
