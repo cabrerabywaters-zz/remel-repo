@@ -120,7 +120,7 @@ class Region {
                         AND Comunas.idComuna = "'.$idComuna.'" ';
        $query = Callquery($queryString);
       $resultArray = array();
-       while($fila = $query->fetch_asocc()){
+       while($fila = $query->fetch_assoc()){
           $resultArray[] = $fila;
        }
        return $resultArray;
