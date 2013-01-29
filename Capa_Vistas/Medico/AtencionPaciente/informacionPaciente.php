@@ -41,7 +41,7 @@
     <div class="control-group">
     <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
 
-
+    
     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
 
     
@@ -162,7 +162,7 @@
            });
            */
 
-$( "#Comuna" ).autocomplete({
+ $( "#Comuna" ).autocomplete({
                              /**
                              * esta función genera el autocomplete para el campo de comuna (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -200,7 +200,6 @@ $( "#Comuna" ).autocomplete({
                            select: function(event, ui){
                               $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3);
                               var comuna = ui.item.id3;
-                              alert(comuna);
                               $.ajax({
                                     url: "../../../ajax/cambiarRegion.php",
                                     data: { "idComuna":comuna 
@@ -214,6 +213,9 @@ $( "#Comuna" ).autocomplete({
                                     });//end ajax
                                 }//end select
                             });//autocompleteComuna
+
+
+//CAMBIAR LA QUERY PARA GUARDAR LOS DATOS!
 
  $( "#Prevision" ).autocomplete({
                                 /**
@@ -292,6 +294,4 @@ $( "#Seguro" ).autocomplete({
                                    
                                 }
                             });//autocompleteSeguro
-    
-
 </script>

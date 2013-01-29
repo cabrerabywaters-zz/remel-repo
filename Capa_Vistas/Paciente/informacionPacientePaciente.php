@@ -154,12 +154,14 @@
                            select: function(event, ui){
                               $('#Comuna').removeAttr('idComuna').attr('idComuna',ui.item.id3);
                               var comuna = ui.item.id3;
+                             
                               $.ajax({
-                                    url: "../../../ajax/cambiarRegion.php",
+                                    url: "../../ajax/cambiarRegion.php",
                                     data: { "idComuna":comuna 
                                     },//end data
                                     type: "post",
                                     success:function(data){
+                                       
                                         var ardilla = jQuery.parseJSON(data);
                                         $('#Region').val(ardilla[0].Nombre);
                                        
