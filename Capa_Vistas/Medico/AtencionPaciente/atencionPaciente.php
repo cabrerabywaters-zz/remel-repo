@@ -63,12 +63,8 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
   
   <div class="span4 img-rounded">
   <!-- barra de favoritos -->
-  <?php include('../favBar.php');?>
+  <?php include_once('../favBar.php');?>
   <!-- barra de favoritos -->
-  
-  <!-- barra del arsenal de medicamentos de la institución -->
-  <?php include('../arsenalBar.php');?>
-  <!-- barra del arsenal de medicamentos de la institucion -->
   </div>
   
   <?php require_once'resumenReceta.php'; ?>
