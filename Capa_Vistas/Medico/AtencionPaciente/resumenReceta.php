@@ -176,8 +176,14 @@
          type: 'post',
          async: false,
          success: function(output){
-            alert(output)
-                       
+            
+                    if(output=='0')
+                        {
+                            alert('La receta no pudo ser generada');
+                        }
+                        else{
+                            alert(output);
+                        }
          }
            
         });// end ajax
