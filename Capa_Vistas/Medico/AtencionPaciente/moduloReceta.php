@@ -522,6 +522,7 @@ y el popup que muestra el detalle del medicamento
         $('#frecuenciaMedicamento').val('');
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
+        $('#tipoReceta').text('');
         
         var select = $('#diagnosticoAsociado')
         select.val(jQuery('options:first', select).val());
@@ -531,7 +532,7 @@ y el popup que muestra el detalle del medicamento
         
              //BOTON EDITAR
      //AUTOR: MAX SILVA mit master oviedo
-     $('.editMedicamento').tooltip({title:"edita"}).unbind('click').on('click',function(){  
+     $('.editMedicamento').tooltip({title:"edit"}).unbind('click').on('click',function(){  
             
             var idRecetaEdit = $(this).parent().attr('idMedicamento');
          
@@ -566,13 +567,14 @@ y el popup que muestra el detalle del medicamento
                 $('#comentarioMedicamento').val(
                     $(this).parent().attr('comentariomedicamento')
                     );
+                        
+                $('#tipoReceta').text(
+                    $(this).parent().attr('tiporeceta')
+                    );
                 
             $('#guardar_cambios').show().attr('disabled',false);
-            $('#guardar_diagnostico').hide();
+            $('#agregarMedicamento').hide();
             $('#detalleMedicamento').collapse('show');
-
-            $('#modalDiagnostico').collapse('show');
-                     
                      
             $('#guardar_cambios').unbind('click').on('click',function(){
                    
@@ -582,7 +584,7 @@ y el popup que muestra el detalle del medicamento
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('comentariodiagnostico',comentario);
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('tipodiagnostico',tipo_diagnostico);
                          
-                        $('#modalDiagnostico').collapse('hide');
+                        $('#detalleMedicamento').collapse('hide');
                          
                      });
                      
