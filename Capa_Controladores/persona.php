@@ -159,20 +159,17 @@ class Persona {
     }
     
     public static function MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo, $prevision, $seguro){
-        $queryString = 'SELECT Direcciones.idDireccion FROM Direcciones, Comunas 
-                        WHERE Direcciones.Calle = '.$calle.'
-                        AND Direcciones.Numero = '.$nCalle.'
-                        AND Direcciones.Comuna_idComuna = Comunas.idComuna 
-                        AND Comunas.Nombre = '.$comuna.'
+        $queryString = 'SELECT idDireccion FROM Direcciones
+                        WHERE Calle = '.$calle.'
+                        AND Numero = '.$nCalle.'
+                        AND Comuna_idComuna = '.$comuna.'
                         ';
         
         $idDireccion = CallQuery($queryString);
-        var_dump($idDireccion);
         if ($idDireccion == false){
             include_once(dirname(__FILE__).'/direccion.php');
             include_once(dirname(__FILE__).'/comuna.php');
             $result = Comuna::BuscarComunaPorNombre($comuna);
-            var_dump($result);
             $result = $result->fetch_assoc();
             Direccion::InsertarConDatos($calle, $nCalle, $result['idComuna']);
             $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $result['idComuna']);
