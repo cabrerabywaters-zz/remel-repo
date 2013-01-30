@@ -12,7 +12,8 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
         <h4 id="detalleMedicamentoLabel">Paracetamol</h4>
         <span id="idMedicamento" style="display:none"></span>
         <span id="estadoMedicamento" style="display:none">0</span> <!-- 0 creacion 1 edicion--> 
-    </div> <!--titulo del modal (nombre del medicamento) -->
+        <span id="tipoReceta" style="display:none"></span>
+</div> <!--titulo del modal (nombre del medicamento) -->
     
     <div class="popover-content"><!-- contenido del modal (indicaciones de día frecuencia etc)-->
         

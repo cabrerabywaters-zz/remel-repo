@@ -103,23 +103,47 @@
             ;})
    
    $(document).ready(function(){
-   
-   $('#refreshFav').click(function(){
-      
-      $('.favRP').each(function(){
+       /*
+        *Función que actualiza los favoritos al cargar la pagina
+        */
+    $('.favRP').each(function(){
           var idMedicamento = $(this).attr('identificador');
-          
+          var favPadre = $(this)
+          favPadre.children().children('ul').html('')
           $.ajax({
            url: "../../../ajax/mostrarFavoritoRP.php",   
            data: {"idMedicamento":idMedicamento},
            type: "post",
            success:function(output){
-              alert(output) 
              var data = $.parseJSON(output);
              $.each(data,function(i,favRP){
-                    alert(favRP['Nombre_corto'])
-                   var lista = "<li idFavRP='"+favRP['idFavRP']+"'>"+favRP['Nombre_corto']+"</li>"; 
-                   $(this).children('ul').append(lista);  
+                   var lista = "<li idFavRP='"+favRP['idFavRP']+"'><a href='#' class='addFavRP'>"+favRP['Nombre_corto']+"</a></li>"; 
+                   favPadre.children().children('ul').append(lista);  
+                 
+             })//end each medicamento encontrado
+           }//end success
+          })//end ajax
+      });//end each favRP
+       
+       
+   $('#refreshFav').click(function(){
+       /*
+        * Función que refresca los medicamentos favoritos
+        * al hacer click en actualizar favoritos
+        */
+      $('.favRP').each(function(){
+          var idMedicamento = $(this).attr('identificador');
+          var favPadre = $(this)
+          favPadre.children().children('ul').html('')
+          $.ajax({
+           url: "../../../ajax/mostrarFavoritoRP.php",   
+           data: {"idMedicamento":idMedicamento},
+           type: "post",
+           success:function(output){
+             var data = $.parseJSON(output);
+             $.each(data,function(i,favRP){
+                   var lista = "<li idFavRP='"+favRP['idFavRP']+"'><a href='#' class='addFavRP'>"+favRP['Nombre_corto']+"</a></li>"; 
+                   favPadre.children().children('ul').append(lista);  
                  
              })//end each medicamento encontrado
            }//end success

@@ -21,57 +21,51 @@
         </style><!-- estilo loading -->
         <style type="text/css">
         
-       body {
+    body {
         padding-top: 40px;
         padding-bottom: 40px;
         background-color: white;
-      }
+    }
+    .dropdown-menu{
+        z-index: 1;
+    }
+    .dropdown{
+        z-index: 1;
+    }
         
-        ul.nav, .nav{
+    ul.nav, .nav{
             
              background: whitesmoke;
         }
-        .tabbable-fluid{
-            
-           
+    .tabbable-fluid{
         }
-        .tab-content{
-            
-            
+    .tab-content{
         }
-        .tab-pane
+    .tab-pane
         {
-            
-            
-            background-color: white;
-            
-        }
+            background-color: white;}
         
         
-         .modal{
-          
+    .modal{
            border: 5px solid #0b72b5;
       }
-     .modal-header, .modal-footer{
-           
-           background-color: whitesmoke;
+    .modal-header, .modal-footer{
+          background-color: whitesmoke;
       }
-      .modal-body{
+    .modal-body{
           background-color: white;
           border: 3px solid #0b72b5;
           max-height: 900px
       }
         
-        
-        
-         .modal-body a:link {text-decoration: none;
+    .modal-body a:link {text-decoration: none;
       color:white}
-.modal-body a:visited {text-decoration: none;
-color:white}
-.modal-body a:active {text-decoration: none;
-color:white}
+    .modal-body a:visited {text-decoration: none;
+      color:white}
+    .modal-body a:active {text-decoration: none;
+      color:white}
         
-    </style><!-- fin estilo de la pagina -->
+</style><!-- fin estilo de la pagina -->
   
         <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script><!-- CDN jquery-->
