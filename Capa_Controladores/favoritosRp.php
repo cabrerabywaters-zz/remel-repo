@@ -95,22 +95,9 @@ static $nombreIdTabla = "ID";
         $query = CallQuery($queryString);
     }
     public static function R_obtenerFavoritoRP($idMedicamento, $idMedico){
-        $queryString = "SELECT FRP.ID idFavRP,
-                       Nombre_corto, 
-                       Cantidad, 
-                       UC.tipo nombreUC, 
-                       Frecuencia, 
-                       UF.Nombre nombreUF,
-                       Periodo,
-                       UP.Nombre nombreUP
-                FROM Unidad_Frecuencia UF, 
-                     Unidad_Periodo UP, 
-                     Unidad_de_Consumo UC,
-                     Favoritos_RP FRP
-                WHERE Unidad_Frecuencia_ID = UF.ID
-                AND Unidad_de_Consumo_idUnidad_de_Consumo = idUnidad_de_Consumo
-                AND Unidad_Periodo_ID = UP.ID
-                AND Medicos_idMedico = '$idMedico' 
+        $queryString = "SELECT *
+                FROM Favoritos_RP FRP
+                WHERE Medicos_idMedico = '$idMedico' 
                 AND Medicamentos_idMedicamento = '$idMedicamento'";
                 
                 
