@@ -72,7 +72,7 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
             </div>
         </div>
         <div class="pull-right">
-            <button class="btn" data-dismiss="collapse" aria-hidden="true">Cancelar</button>
+            <button class="btn" data-dismiss="collapse" id="cancelar_cambios_receta" aria-hidden="true">Cancelar</button>
             <button class="btn btn-info" id="guardar_cambios_receta" disabled="disabled">Guardar <i class="icon-ok"></i></button>
             <a href="#" id="agregarMedicamento" role="button" class="btn btn-warning">Prescribir</a>
         </div>
