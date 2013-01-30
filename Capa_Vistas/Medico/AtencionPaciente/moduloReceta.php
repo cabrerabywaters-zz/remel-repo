@@ -355,7 +355,7 @@ y el popup que muestra el detalle del medicamento
                              var contraPrincipiosRecetados = datos.medicamentosRecetadosConflictivos;
                                  if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con los siguientes medicamentos en esta receta: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
 
-
+                             $('#guardar_cambios_receta').hide();
                              $('#detalleMedicamento').collapse('show'); // se muestra el modal
                         }//end success
                         });//ajax
@@ -497,7 +497,7 @@ y el popup que muestra el detalle del medicamento
         var tipoReceta = $('#tipoReceta').text();
         
         // se arma el pill con la informacion del medicamento
-        var pill = '<div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
+        var pill = '<div class="alert alert-success medicamentoRecetado" onClick="ClickPill();" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
         " cantidadMedicamento="'+cantidadMedicamento+'" tipoReceta="'+tipoReceta+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombreComercial+'</strong>\n\
@@ -529,11 +529,17 @@ y el popup que muestra el detalle del medicamento
         }
         });
         
-        
+        function ClickPill(){
+        alert('funciona mierdaaa');
+        }
              //BOTON EDITAR
      //AUTOR: MAX SILVA mit master oviedo
-     $('.editMedicamento').tooltip({title:"edit"}).unbind('click').on('click',function(){  
-            
+     function click(){
+     alert('ayudaaa');
+     
+     $('.editMedicamento').tooltip({title:"editar Medicamento"}).unbind('click').on('click',function(){  
+            $('#detalleMedicamento').collapse('toggle');
+            alert('click')
             var idRecetaEdit = $(this).parent().attr('idMedicamento');
          
                  $('#Medicamentos').val(
@@ -572,11 +578,11 @@ y el popup que muestra el detalle del medicamento
                     $(this).parent().attr('tiporeceta')
                     );
                 
-            $('#guardar_cambios').show().attr('disabled',false);
+            $('#guardar_cambios_receta').show().attr('disabled',false);
             $('#agregarMedicamento').hide();
-            $('#detalleMedicamento').collapse('show');
+            
                      
-            $('#guardar_cambios').unbind('click').on('click',function(){
+            $('#guardar_cambios_receta').unbind('click').on('click',function(){
                    
                    var comentario = $('#comentario_diagnostico').val();
                    var tipo_diagnostico = $('#tipo_diagnostico').val();
@@ -589,7 +595,7 @@ y el popup que muestra el detalle del medicamento
                      });
                      
             });              
-            
+     }
             
                        
       //FIN BOTON EDITAR  
