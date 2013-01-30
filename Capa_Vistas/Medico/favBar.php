@@ -7,7 +7,7 @@
       </button>
       
       <!-- diagnosticos Favoritos -->
-      <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
+      <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
            <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Diagnosticos
       </button>
       
@@ -30,7 +30,7 @@
       <!-- fin diagnosticos favoritos-->
       
       <!-- medicamentos favoritos -->
-      <button type="button" class="btn btn-success btn-block" data-toggle="collapse" data-target="#medicamentosFav">
+      <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#medicamentosFav">
           <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Medicamentos Favoritos
       </button>
       
