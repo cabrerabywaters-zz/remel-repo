@@ -494,10 +494,11 @@ y el popup que muestra el detalle del medicamento
         var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
         var fechaInicio = $('input[name="fechaInicio"]').val();
         var fechaFin = $('input[name="fechaFin"]').val();
+        var tipoReceta = $('#tipoReceta').text();
         
         // se arma el pill con la informacion del medicamento
         var pill = '<div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
-        " cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
+        " cantidadMedicamento="'+cantidadMedicamento+'" tipoReceta="'+tipoReceta+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombreComercial+'</strong>\n\
         <a href=# class="editMedicamento pull-right" rel="tooltip" title="Editar Medicamento"><i class="icon-edit"></i> </a>'
@@ -528,13 +529,68 @@ y el popup que muestra el detalle del medicamento
         });
         
         
-      
+             //BOTON EDITAR
+     //AUTOR: MAX SILVA mit master oviedo
+     $('.editMedicamento').tooltip({title:"edita"}).unbind('click').on('click',function(){  
+            
+            var idRecetaEdit = $(this).parent().attr('idMedicamento');
+         
+                 $('#Medicamentos').val(
+                    $(this).parent().attr('medicamentos')
+                     );
 
-        $('.editMedicamento').tooltip().click(function(){
+                //$('#warnings').html('')
+                
+                $('#detalleMedicamentoLabel').text(
+                    $(this).parent().children('strong').text()
+                    );
+                        
+                //$('#idMedicamento').text();
+                        
+                $('#descripcionMedicamento').text(
+                    $(this).parent().attr('descripcionmedicamento').text()
+                    );
+                        
+                $('#cantidadMedicamento').val(
+                    $(this).parent().attr('cantidadmedicamento')
+                    );
+                        
+                $('#frecuenciaMedicamento').val(
+                    $(this).parent().attr('frecuenciamedicamento')
+                    );
+                        
+                $('#periodoMedicamento').val(
+                    $(this).parent().attr('periodomedicamento')
+                    );
+                        
+                $('#comentarioMedicamento').val(
+                    $(this).parent().attr('comentariomedicamento')
+                    );
+                
+            $('#guardar_cambios').show().attr('disabled',false);
+            $('#guardar_diagnostico').hide();
+            $('#detalleMedicamento').collapse('show');
+
+            $('#modalDiagnostico').collapse('show');
+                     
+                     
+            $('#guardar_cambios').unbind('click').on('click',function(){
+                   
+                   var comentario = $('#comentario_diagnostico').val();
+                   var tipo_diagnostico = $('#tipo_diagnostico').val();
+                       
+                       $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('comentariodiagnostico',comentario);
+                       $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('tipodiagnostico',tipo_diagnostico);
+                         
+                        $('#modalDiagnostico').collapse('hide');
+                         
+                     });
+                     
+            });              
             
             
-            
-        });// end click a edit medicamento
+                       
+      //FIN BOTON EDITAR  
         
 });//end ready
 </script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->
