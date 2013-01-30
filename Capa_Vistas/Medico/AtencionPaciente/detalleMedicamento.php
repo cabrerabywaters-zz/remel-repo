@@ -63,13 +63,12 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
     <div class="modal-footer">
   
             
-        <div class="control-group error">
+        <div class="control-group pull-left">
             <div class="controls">
             <select id="diagnosticoAsociado">
                 <option value="-1" label="Seleccionar Diagnostico">Seleccionar Diagnostico</option>
                 <option value="0">Sin Diagnostico Asociado</option>
             </select>
-            <span class="help-inline">Please correct the error</span>
             </div>
         </div>
         <div class="pull-right">

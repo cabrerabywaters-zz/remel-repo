@@ -467,15 +467,19 @@ y el popup que muestra el detalle del medicamento
         $('#agregarMedicamento').unbind('click').on('click', function(){
         if($('#diagnosticoAsociado').val()== -1){ // si no se le ha asociado un diagnostico al medicamento
           $('#diagnosticoAsociado').focus();
-          
+          $('#diagnosticoAsociado').parent().parent().addClass('error');
           $('html, body').animate({ // se hace scrolling a la pagina para hacer enfasis
             scrollTop: $("#diagnosticoAsociado").offset().top
           }, 2000);
- 
+          $('#diagnosticoAsociado').popover({
+              content: 'Debe Seleccionar Diagnostico',
+              placement: 'top'
+          })
             
           
         }
         else{
+            $('#diagnosticoAsociado').parent().parent().addClass('error');
         // se obtienen los datos correspondientes del medicamento
         var nombreComercial = $('#detalleMedicamentoLabel').text();
         var idMedicamento = $('#idMedicamento').text();
@@ -504,8 +508,8 @@ y el popup que muestra el detalle del medicamento
           
         //se redirecciona la vista de la pantalla hacia receta.
           $('html, body').animate({
-         scrollTop: $("#tabConsulta").offset().top
-     }, 1000);
+            scrollTop: $("#tabConsulta").offset().top
+          }, 1000);
         //se limpian los campos y se esconde el modal 
         $('#detalleMedicamento').collapse('hide');
         $('#Medicamentos').val('');
