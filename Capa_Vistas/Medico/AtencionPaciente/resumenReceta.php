@@ -1,15 +1,22 @@
  <?php 
+ 
+ //esta es la funcion que es llamada con el Submit del Boton Imprimir 
+ //Del modal del Firmar Receta
  if(isset($_POST['content']))
- {
+ {//traermos el contenido del html para hacer el pdf desde el textarea del modal
      $contenido= $_POST['content'];
-     
+     //se incluye la libreria de dompdf
      include_once '../../../dompdf/dompdf_config.inc.php';
-     
+     //decodificamos los utf8 para evitar errores
      $contenido = utf8_decode($contenido);
+     //se instancia el dompdf
 $dompdf = new DOMPDF();
+//cargamos el contenido del pdf
 $dompdf->load_html($contenido);
+//se renderiza el pdf
 $dompdf->render();
-$dompdf->stream(ejemplo.pdf);
+// se hace estream para que comience la descarga
+$dompdf->stream(RecetaMedica_REMEL.pdf);
      
      
      
@@ -204,16 +211,23 @@ $dompdf->stream(ejemplo.pdf);
          success: function(output){
             
            
-          
+          //Si la funcion no ingresa los datos
                     if(output=='0')
                         {
                             alert('La receta no pudo ser generada');
                         }
+                        //Cuando el ingreso de los datos de la receta es correcto
                         else{
-                            
+                            //Se esconde el boton de confirmar emision
                             $('.confirmarEmision').hide();
+                            
+                            //Se muestran los botones de terminar e imprimir
                              $('.imprimir').show();
                              $('.terminar').show();
+                             
+                             //se carga todo el contenido del div de contenidoReceta en el campo de texto
+                             //que se encuentra oculto 
+                             //Se puede encontrar otra manera de hacerlo, ya que no es la mejor, pero funciona.
                              $('#content').html($('#contenidoReceta').html()) ;
                         }
                         
