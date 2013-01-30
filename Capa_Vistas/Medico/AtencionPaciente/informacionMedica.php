@@ -7,6 +7,7 @@
       <div class="accordion-inner">
   	<div class="row-fluid">
  		 <div class="span6" id="divAlergias">
+         <?php print_r($tiposAlergias); ?>
  			 <center>
  				 <table class="table table-hover">
   				 <thead>
@@ -19,37 +20,53 @@
                     </tr>
                 </thead>
    <tbody>
-  <?php    
-  
-  foreach ($tiposAlergias as $datos => $dato)
+
+  <tr>
+    <td rowspan="3">medicamentos</td>
+    <td><tr><td>resfrio</td></tr><tr><td>poxipol</td></tr><tr><td>agua</td></tr></td>
+  </tr>
+  <tr>
+    <td>diabetes</td>
+    <td><tr><td>hola</td></tr></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+
+
+  <?php 
+  /* foreach ($tiposAlergias as $datos => $dato)
    {
-	  echo "<tr>";
+	  echo '<tr idTipo="'.$dato['IdTipo'].'">';
 
 
-                echo '<td idTipo="'.$dato['IdTipo'].'" rowspan="'.$dato['Cantidad'].'">';
-                echo "<center>".$dato['Tipo']."</center>";
-				echo '</td>';
+                echo '<td  rowspan="'.$dato['Cantidad'].'">';
+                echo $dato['Tipo'];
+				echo '</td><td>';
 			$idTipo=$dato['IdTipo'];
            $alergias=Paciente::R_AlergiaPaciente($idPaciente,$idTipo);
 		   foreach($alergias as $value => $info)
-		   {
+		   {   echo"<tr>";
 			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
-			   echo "<center>".$info['Nombre']."</center>";
+			   echo $info['Nombre'];
 			   echo "</td>";
 			   echo"</tr>";
-			   echo"<tr>";
+			   
 			 
 			   
 		   }
 
-
+				echo"</td>";
 
             echo "</tr>";
 
    }
-		?>	   
+		*/ ?>	   
 			   
 			   
+               
+               
  </tbody>
  <tfoot>
  		<tr><td> 
