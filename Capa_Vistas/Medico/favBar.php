@@ -58,7 +58,7 @@
                                 </a>
                                 <ul class='dropdown-menu'>
                                 <!-- nombres cortos	-->
-                                <li><a href='#' class='pull-right addFavRP'>Rellenar con cada favorito con idMedicamento</a></li>
+                                <li><a href='#' class='pull-right addFavRP'>Dosis Para Mayores de 60 años</a></li>
                                 </ul>
                                 </div>";
 			echo "<strong><small>$nombre</small></strong>\r\n</div>\r\n";
