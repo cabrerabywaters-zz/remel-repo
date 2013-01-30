@@ -27,11 +27,11 @@
 	echo '<tr ">';
 	foreach($alergiasCantidad as $datoCantidad => $datosCantidad)
 	{
-	if	
-	}
+	
 	echo "<td idalergia='".$dato['idAlergia']."'>".$dato['Alergia']." </td>";
 	echo "</tr>";   
 	   
+   }
    }
 		?>	   
 			   

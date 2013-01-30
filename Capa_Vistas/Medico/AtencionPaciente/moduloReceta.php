@@ -37,7 +37,7 @@ y el popup que muestra el detalle del medicamento
                     </div><!-- ROW DEL BUSCADOR -->
                     
                     <div class="collapse row-fluid" id="busqueda_avanzada"><div class="span12 modal-body img-rounded">
-                                    <strong><p>Categorias ATC</p></strong>
+                            <span id="tituloClase"><strong><p>Categorias ATC</p></strong></span>
                                     <select id="clase" multiple="multiple" class ="span10" SIZE=6></select>
                                     <strong><p>Sub Categorias ATC</p></strong>
                                     <select id="subclase" multiple="multiple" class ="span10" SIZE=6></select>
@@ -55,7 +55,7 @@ y el popup que muestra el detalle del medicamento
                     </div></div><!-- boton de añadir a la receta -->        
                     
                     <div class="row-fluid"><div class="span11  img-rounded">
-                    <a class="btn btn-warning span4 offset4" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+                 <a class="btn btn-warning span4 offset9" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
                     </div></div><!-- boton de emitir receta -->
                 
                 </div></div>
@@ -124,6 +124,9 @@ y el popup que muestra el detalle del medicamento
          }//end elseif
         
        else if ($(this).attr('filtro')=="false2"){ // si se seleccionó busqueda avanzada
+            $('html, body').animate({
+         scrollTop: $("#tituloClase").offset().top
+     }, 500);
             $("#subclase").empty(); //limpio subclase
             $("#laboratorio").empty(); //limpio laboratorio
             $('#boton_medicamentos').attr("disabled", "disabled");
@@ -189,6 +192,10 @@ y el popup que muestra el detalle del medicamento
         
         // Pasa los medicamentos dado el laboratorio seleccionado
         $('#laboratorio').change(function() {
+        
+          //hacemos scroll para que podamos ver los medicamentos
+   
+
                 var idSubclase = $("#subclase").attr("value");
                 var idLab=$("#laboratorio").attr("value");
                 $.ajax({
@@ -373,7 +380,7 @@ y el popup que muestra el detalle del medicamento
         $("#moduloReceta").click(function() {
    $('html, body').animate({
          scrollTop: $("#tabConsulta").offset().top
-     }, 1000);
+     }, 500);
 });
       
         
