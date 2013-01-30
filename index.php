@@ -21,7 +21,7 @@ if (!empty($_SESSION))
             body {
                 padding-top: 40px;
                 padding-bottom: 40px;
-                background-color: white;
+                background-color: #fafaf0;
             }
 
             .form-signin {
@@ -34,13 +34,13 @@ if (!empty($_SESSION))
 
                 font-color:#ffffff;
 
-                font-family: 'Courier New', Courier, monospace;
+                font-family: ;
 
 
                 max-width: 300px;
                 padding: 19px 29px 29px;
                 margin: 0 auto 20px;
-                background-color: #fafaf0;
+                background-color: white;
                 border: 3px solid #0b72b5;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
@@ -79,7 +79,7 @@ if (!empty($_SESSION))
             <form class="form-signin" id="usuario" method="post" action="javascript:enviar()">
                 <fieldset>
                     
-                         <center> <img class="img-rounded " src="imgs/logo-remel.png" style="width: 230px; height: 180px;"></center>
+                         <center> <img class="img-rounded " src="imgs/logo-remel-principal.png" style="width: 230px; height: 180px;"></center>
                          <br>
                     <input type="text" class="input-block-level" placeholder="Rut" id="rut" onfocus="disableIngresar()" maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$" name="rutUsuario">
                     <input type="password" class="input-block-level" placeholder="Contraseña" onfocus="verificarRut(rut)" id="pass" name="passUsuario">

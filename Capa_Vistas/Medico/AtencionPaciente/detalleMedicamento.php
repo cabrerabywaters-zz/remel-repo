@@ -23,7 +23,7 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                    
                    <table class="table table-hover table-condensed">
                        <tr>
-                           <td>Tomar :</td>
+                           <td>Cantidad :</td>
                            <td><input class="span11" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></td>
                            <td><select class="span11" name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
                        </tr>
