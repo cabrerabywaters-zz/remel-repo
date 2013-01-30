@@ -27,10 +27,10 @@
         background-color: white;
     }
     .dropdown-menu{
-        z-index: 1;
+        z-index: 9999;
     }
     .dropdown{
-        z-index: 1;
+        z-index: 9999;
     }
         
     ul.nav, .nav{
