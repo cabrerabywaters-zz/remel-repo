@@ -15,7 +15,7 @@ class MedicamentoReceta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idReceta, $idDiagnostico, $idMedicamento, $cantidad, $unidadConsumo, $frecuencia, $unidadFrecuencia, $periodo, $unidadPeriodo, $via, $fechaInicio, $comentario) {
+    public static function Insertar($idReceta, $idDiagnostico, $idMedicamento, $cantidad, $unidadConsumo, $frecuencia, $unidadFrecuencia, $periodo, $unidadPeriodo, $fechaInicio,$fechaTermino, $comentario) {
     	$datosCreacion = array(
 					array('Receta_idReceta',$idReceta),
 					array('Medicamento_idMedicamento',$idMedicamento),
@@ -28,7 +28,7 @@ class MedicamentoReceta  {
 					array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadConsumo),
 					array('Comentario',$comentario),
 					array('Fecha_Inicio',$fechaInicio),
-					array('Via_idVia',$via),
+					array('Fecha_Termino',$fechaTermino),
                             );
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);

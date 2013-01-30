@@ -172,14 +172,7 @@
          async: false,
          success: function(output){
             alert(output)
-            if(output == "-1"){
-                //si el registro de la receta arroja errores( = -1)
-                alert('Error al guardar la receta en la bbdd')
-            }
-            else{
-                // si el registro de la receta fue correcto (output = folio)
-                alert('se ingresó correctamente la receta folio'+output)
-            }
+                       
          }
            
         });// end ajax
