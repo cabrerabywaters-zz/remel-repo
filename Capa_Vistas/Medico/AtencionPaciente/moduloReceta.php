@@ -473,8 +473,9 @@ y el popup que muestra el detalle del medicamento
           }, 2000);
           $('#diagnosticoAsociado').popover({
               content: 'Debe Seleccionar Diagnostico',
-              placement: 'top'
-          })
+              placement: 'top',
+              trigger: 'manual'
+          }).popover('show')
             
           
         }
