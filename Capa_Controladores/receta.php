@@ -128,6 +128,23 @@ class Receta  {
         $query = CallQuery($queryString);
     }
 
+     public static function SeleccionarPorLugarIpConsulta($idLugar,$ip,$idConsulta) {
+    	
+
+        $queryString = "Select idReceta from Recetas where Lugar_de_Atencion_idLugar_de_atencion='$idLugar' 
+         and DireccionIP='$ip' and Consulta_Id_consulta='$idConsulta' ";
+
+          
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+    
+    
+    
 }
 
 ?>
