@@ -52,7 +52,7 @@
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                var periodoMedicamento = $(this).attr('periodoMedicamento');
-               
+                
                $('#resumen').append('<h5>'+nombreComercial+'--'+cantidadMedicamento+' cada '+frecuenciaMedicamento+' hrs, por '+periodoMedicamento+' días.</h5>'); 
             })// end each medicamento
           $('#resumen').append('<hr>'); //linea  
@@ -107,7 +107,7 @@
                     var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                     var periodoMedicamento = $(this).attr('periodoMedicamento');
                     var comentarioMedicamento = $(this).attr('comentarioMedicamento');
-                    var unidadDeConsumo = $(this).attr('unidadDeConsumo');
+                    var unidadDeConsumo = $(this).attr('unidaddeconsumo');
                     var unidadFrecuencia = $(this).attr('unidadFrecuencia');
                     var unidadPeriodo = $(this).attr('unidadPeriodo');
                     var fechaInicio = $(this).attr('fechaInicio');
@@ -133,7 +133,12 @@
                     "idDiagnostico" : idDiagnostico,
                     "tipoDiagnostico" : tipoDiagnostico,
                     "comentarioDiagnostico" : comentarioDiagnostico,
-                    "medicamentos" : medicamentos
+                    "medicamentos" : medicamentos,
+                    "unidadDeConsumo" : unidadDeConsumo,
+                    "unidadFrecuencia" : unidadFrecuencia,
+                    "unidadPeriodo" : unidadPeriodo,
+                    "fechaInicio" : fechaInicio,
+                    "fechaFin" : fechaFin
                 }); // se agrega el tipoDiagnostico al arreglo de diagnostico
         }); // end each diagnostico
 
@@ -144,7 +149,7 @@
                 var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                 var periodoMedicamento = $(this).attr('periodoMedicamento');
                 var comentarioMedicamento = $(this).attr('comentarioMedicamento');
-                var unidadDeConsumo = $(this).attr('unidadDeConsumo');
+                var unidadDeConsumo = $(this).attr('unidaddeconsumo');
                 var unidadFrecuencia = $(this).attr('unidadFrecuencia');
                 var unidadPeriodo = $(this).attr('unidadPeriodo');
                 var fechaInicio = $(this).attr('fechaInicio');

@@ -61,11 +61,15 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
     
     <!--acciones del modal (cancerlar, agregar medicamento etc)-->
     <div class="modal-footer">
-        <div class="pull-left">
+  
+            
+        <div class="control-group pull-left">
+            <div class="controls">
             <select id="diagnosticoAsociado">
                 <option value="-1" label="Seleccionar Diagnostico">Seleccionar Diagnostico</option>
                 <option value="0">Sin Diagnostico Asociado</option>
-            </select>    
+            </select>
+            </div>
         </div>
         <div class="pull-right">
             <button class="btn" data-dismiss="collapse" aria-hidden="true">Cancelar</button>
@@ -87,7 +91,7 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
    return new Date(date.setDate(day)); // add the number of days
  } // funcion que calcula la fecha con el día del año
 
-$('#periodoMedicamento').change(function(){
+$('#periodoMedicamento, input[name="fechaInicio"]').change(function(){
    var inicio = $('input[name="fechaInicio"]').val();
    var fecha = new Date(inicio);
    fecha = parseInt(dayofyear(fecha));
