@@ -35,8 +35,10 @@
       </button>
       
       <div id="medicamentosFav" class="collapse">
-       <div class="span10 offset1">
-           <?php
+          
+          <div class="span10 offset1">
+              <br> 
+              <?php
 		//session_start();
 		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
 		$idMedico = $_SESSION['idMedicoLog'];
@@ -63,8 +65,9 @@
                                 </div>";
 			echo "<strong><small>$nombre</small></strong>\r\n</div>\r\n";
 		}
-      ?> 
+      ?> <br><br>
        </div>
+          
       </div>
       <!-- fin medicamentos favoritos -->
 </div><!-- fin de la barra de favoritos -->
