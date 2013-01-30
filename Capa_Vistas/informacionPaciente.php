@@ -46,8 +46,6 @@
 	$idPaciente=$paciente1['idPaciente'];
 	$condiciones = Paciente::R_CondicionPaciente($idPaciente);
 	$alergias = Paciente::R_AlergiaPaciente($idPaciente);	
-	$alergiasCantidad = Paciente::R_AlergiaPacienteCantidad($idPaciente);
-	//print_r($alergiasCantidad);
 	$paciente = array_merge($paciente1, $paciente2, $direccion);
 	$recetas = Paciente::RecetasPacienteMedico($idPaciente, $RUTMedico);
         $seguro=$paciente1['Seguros_idSeguros'];

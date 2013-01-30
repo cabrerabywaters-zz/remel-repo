@@ -125,35 +125,16 @@ class Paciente {
             return false;
     }
 
-    public static function R_AlergiaPacienteCantidad($idPaciente) {
-        $queryString = "SELECT  Tipo_Alergia.Nombre as Tipo, count(idTipo) as cantidad
-		FROM Pacientes, Alergia_has_Paciente, Alergias, Tipo_Alergia
-WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
-AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
-AND Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
-AND Pacientes.idPaciente =" . $idPaciente . "
-GROUP BY Tipo_Alergia.idTipo;";
 
-
-        $result = CallQuery($queryString);
-        $resultArray = array();
-        if ($result != null) {
-            while ($fila = $result->fetch_assoc()) {
-                $resultArray[] = $fila;
-            }
-            return $resultArray;
-        } else {
-            return false;
-        }
-    }
 	public static function R_AlergiaPaciente($idPaciente) {
-        $queryString = "SELECT Alergias.Nombre as Alergia, Alergias.Sintomas, idAlergia, Tipo_Alergia.Nombre as Tipo, Tipo_Alergia.idTipo as IdTipo
+        $queryString = "SELECT Tipo_Alergia.Nombre as Tipo, Alergias.Nombre as Alergia, Alergias.Sintomas, idAlergia, Tipo_Alergia.idTipo as IdTipo
 		FROM Pacientes, Alergia_has_Paciente, Alergias, Tipo_Alergia
 WHERE Pacientes.idPaciente = Alergia_has_Paciente.Paciente_idPaciente
 AND Alergias.idAlergia = Alergia_has_Paciente.Alergia_idAlergia
 AND Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
 AND Pacientes.idPaciente =" . $idPaciente . "
-GROUP BY Alergias.Nombre;";
+ORDER BY Tipo_Alergia.Nombre;";
+echo $queryString;
         $result = CallQuery($queryString);
         $resultArray = array();
         if ($result != null) {

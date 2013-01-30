@@ -91,11 +91,15 @@ class Alergia {
 
     public static function BuscarAlergiaLike($Nombre,$id) {
 
-      		        $queryString = "SELECT Nombre,idAlergia
+      		        $queryString = "SELECT Alergias.Nombre as Nombre, Alergias.idAlergia, Alergias.Sintomas, 	
+										
+									Tipo_Alergia.idTipo, Tipo_Alergia.Nombre as Tipo
 									 
-									FROM Alergias
+									FROM Alergias, Tipo_Alergia
 
-									WHERE Nombre LIKE '%".$Nombre."%'
+									WHERE Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
+									
+									AND Alergias.Nombre LIKE '%".$Nombre."%'
 									
 								    AND idAlergia NOT IN (SELECT idAlergia
 

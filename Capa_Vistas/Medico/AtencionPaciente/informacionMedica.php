@@ -5,6 +5,8 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
+      <?php   
+  print_r($alergias); ?>
 
 
 
@@ -14,24 +16,39 @@
  				 <table class="table table-hover">
   				 <thead>
                      <tr>
-                     <th colspan="2">Alergias</th>                      
+                     <th colspan="2"><center>Alergias</center></th>                 
+                    </tr>
+                    <tr>
+                    <th>Tipo de Alergia</th>
+                    <th>Nombre de Alergia</th>
                     </tr>
                 </thead>
    <tbody>';
-  <?php  
-  print_r($alergiasCantidad);
-  
+  <?php    
   foreach ($alergias as $datos => $dato)
-   
    {
-	echo '<tr ">';
-	foreach($alergiasCantidad as $datoCantidad => $datosCantidad)
-	{
-	if	
-	}
-	echo "<td idalergia='".$dato['idAlergia']."'>".$dato['Alergia']." </td>";
-	echo "</tr>";   
-	   
+	  echo "<tr>";
+	  $copia=0;
+        foreach ($dato as $llave=>$valor) {			
+            if ($llave == 'Tipo' && $valor==$copia){
+                echo '<td idTipo="'.$dato['IdTipo'].'">';
+                echo $valor;
+				$copia=$valor;
+				echo '</td>';
+            }
+            if ($llave == 'Alergia'){
+				echo '<td idAlergias="'.$dato['idAlergia'].'">';
+                echo $valor;
+                echo '</td>';
+            }
+           // if ($llave == 'Sintomas') {
+          //    echo '<td>';
+         //    echo $valor;
+        //   echo '</td>';
+       //  }
+        }
+
+            echo "</tr>";
    }
 		?>	   
 			   
@@ -103,8 +120,13 @@ $( "#alergias" ).autocomplete({
 										              
                                         response( $.map( output, function( item ) {
                                            return {
+											   
                                                label: item.Nombre
                                               ,idAlergia : item.idAlergia
+											  ,idTipo : item.idTipo
+											  ,Sintomas : item.Sintomas
+											  ,Tipo : item.Tipo
+											  
                                             }
                                         })//end map
                                         );  // end response
@@ -114,8 +136,11 @@ $( "#alergias" ).autocomplete({
 							}, // end source
                            select: function(event, ui){
                             var ID = ui.item.idAlergia
+							var idTipo = ui.item.idTipo
+							var Tipo = ui.item.Tipo
+							var Sintomas = ui.item.Tipo
 							$("#boton_alergias").removeAttr('disabled');
-							$("#alergias").removeAttr('idAlergia').attr('idAlergia',ID);
+							$("#alergias").removeAttr('idAlergia').removeAttr('idTipo').removeAttr('nombreTipo').attr('idAlergia',ID).attr('idTipo',idTipo).attr('Tipo',Tipo).attr('Sintomas',Sintomas);
 							},
                            minLength: 2,
                            open: function() {
@@ -130,13 +155,16 @@ $( "#alergias" ).autocomplete({
 							//autocompleteDiagnosticos
 $("#boton_alergias").click(function(){
 var idAlergia = $("#alergias").attr('idAlergia');
+var idTipo = $("#alergias").attr('idTipo');
+var Tipo = $("#alergias").attr('Tipo');
+var Sintomas = $("#alergias").attr('Sintomas');
 var nombreAlergia = $("#alergias").val()
 $.ajax({
 		url: "../../../ajax/agregarAlergia.php",
 		data: {idAlergia:idAlergia},
 		type: "post",
 		success: function(output){
-		$("#divAlergias tbody").append('<tr><td idAlergias="'+idAlergia+'">'+nombreAlergia+'</td></tr>');
+		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'">'+Tipo+'</td><td idAlergias="'+idAlergia+'">'+nombreAlergia+'</td></tr>');
 		}
 
 });
