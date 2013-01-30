@@ -466,15 +466,11 @@ y el popup que muestra el detalle del medicamento
         */      
         $('#agregarMedicamento').unbind('click').on('click', function(){
         if($('#diagnosticoAsociado').val()== -1){ // si no se le ha asociado un diagnostico al medicamento
-          $('#diagnosticoAsociado')
-            .focus()
-            .addClass('error')  
-            
-            
-            
-     $('html, body').animate({
-         scrollTop: $("#diagnosticoAsociado").offset().top
-     }, 2000);
+          $('#diagnosticoAsociado').focus();
+          
+          $('html, body').animate({ // se hace scrolling a la pagina para hacer enfasis
+            scrollTop: $("#diagnosticoAsociado").offset().top
+          }, 2000);
  
             
           
