@@ -97,16 +97,16 @@
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
                       data: {
-                            'RUN':run,
-                            'Peso':peso, 
-                            'Altura':altura, 
-                            'Direccion':direccion, 
-                            'Numero':numero,
-                            'Comuna':comuna,
-                            'N_celular':n_celular,
-                            'N_fijo':n_fijo,
-                            'Prevision':prevision,
-                            'Seguro':seguro
+                            "RUN":run,
+                            "Peso":peso, 
+                            "Altura":altura, 
+                            "Direccion":direccion, 
+                            "Numero":numero,
+                            "Comuna":comuna,
+                            "N_celular":n_celular,
+                            "N_fijo":n_fijo,
+                            "Prevision":prevision,
+                            "Seguro":seguro
                             
           },
                       type: 'post',

@@ -159,11 +159,12 @@ class Persona {
     }
     
     public static function MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo, $prevision, $seguro){
-        $queryString = 'SELECT idDireccion FROM Direcciones 
+        $queryString = 'SELECT idDireccion FROM Direcciones
                         WHERE Calle = '.$calle.'
                         AND Numero = '.$nCalle.'
                         AND Comuna_idComuna = '.$comuna.'
                         ';
+        
         $idDireccion = CallQuery($queryString);
         if ($idDireccion == false){
             include_once(dirname(__FILE__).'/direccion.php');

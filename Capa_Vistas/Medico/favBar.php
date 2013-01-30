@@ -1,12 +1,13 @@
 <!-- barra de favoritos -->
     <div class="row-fluid show-grid img-rounded" id="favBar" style="background-color: #B0BED9">
         <button class="btn btn-block" disabled>
-             <i class="icon-star"></i> Mis Favoritos
+            <a class="btn pull-left" href="#" id="refreshFav" title="Actualizar Favoritos"><i class="icon-refresh"></i></a>
+            <strong><i class="icon-star"></i> Mis Favoritos</strong>
           <a href="#" class="closeBar"><i class="icon-remove pull-right"></i></a>
       </button>
       
       <!-- diagnosticos Favoritos -->
-      <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
+      <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
            <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Diagnosticos
       </button>
       
@@ -29,7 +30,7 @@
       <!-- fin diagnosticos favoritos-->
       
       <!-- medicamentos favoritos -->
-      <button type="button" class="btn btn-success btn-block" data-toggle="collapse" data-target="#medicamentosFav">
+      <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#medicamentosFav">
           <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Medicamentos Favoritos
       </button>
       
@@ -39,25 +40,25 @@
 		//session_start();
 		include_once(dirname(__FILE__)."/../../Capa_Datos/llamarQuery.php");
 		$idMedico = $_SESSION['idMedicoLog'];
-		$queryString = "SELECT Nombre_corto, Favoritos_RP.ID, Nombre_Comercial, idMedicamento, Laboratorios.Nombre
+		$queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
                 FROM Laboratorios, Medicamentos, Favoritos_RP
                 WHERE Medicamentos_idMedicamento = idMedicamento
                 AND Laboratorio_idLaboratorio = Laboratorios.ID
                 AND Medicos_idMedico = '$idMedico' GROUP BY idMedicamento";
-		$res = CallQuery($queryString);
+                $res = CallQuery($queryString);
                 while($row = $res->fetch_assoc()){
                         $nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
-                        $idFav = $row['idMedicamento'];
-                        $nombreCorto = $row['Nombre_Corto'];
-                        echo "<div class='alert alert-warning' identificador='$idFav'>\r\n";
+                        $idMedicamento = $row['idMedicamento'];
+                        
+                        echo "<div class='alert alert-warning favRP' identificador='$idMedicamento'>\r\n";
 			echo "<div class='btn-group pull-right'>
                                 <a class='btn btn-mini btn-success dropdown-toggle' data-toggle='dropdown' href='#'>
-                                    Añadir <i class='icon-star'></i>
+                                    Añadir <i class='icon-star icon-white'></i>
                                 <span class='caret'></span>
                                 </a>
                                 <ul class='dropdown-menu'>
                                 <!-- nombres cortos	-->
-                                <li>".$nombreCorto."</li>
+                                <li><a href='#' class='pull-right addFavRP'>Dosis Para Mayores de 60 años</a></li>
                                 </ul>
                                 </div>";
 			echo "<strong><small>$nombre</small></strong>\r\n</div>\r\n";
@@ -87,18 +88,7 @@
             .addClass("icon-circle-arrow-up")
             .attr('title','Ocultar')
             ;})
-   $('#medicamentosFav').on('hide',function(){
-       $('button[data-target="#medicamentosFav"] i')
-            .removeClass("icon-circle-arrow-up")
-            .addClass("icon-circle-arrow-down")
-            .attr('title','Mostrar')
-            ;})
-   $('#medicamentosFav').on('show',function(){
-       $('button[data-target="#medicamentosFav"] i')
-            .removeClass("icon-circle-arrow-down")
-            .addClass("icon-circle-arrow-up")
-            .attr('title','Ocultar')
-            ;})
+  
    $('#medicamentosRpFav').on('hide',function(){
        $('button[data-target="#medicamentosRpFav"] i')
             .removeClass("icon-circle-arrow-up")
@@ -106,13 +96,63 @@
             .attr('title','Mostrar')
             ;})
    $('#medicamentosRpFav').on('show',function(){
-       $('button[data-target="#medicamentosRpFav"] i')
+      $('button[data-target="#medicamentosRpFav"] i')
             .removeClass("icon-circle-arrow-down")
             .addClass("icon-circle-arrow-up")
             .attr('title','Ocultar')
             ;})
-     
- 
+   
+   $(document).ready(function(){
+       /*
+        *Función que actualiza los favoritos al cargar la pagina
+        */
+    $('.favRP').each(function(){
+          var idMedicamento = $(this).attr('identificador');
+          var favPadre = $(this)
+          favPadre.children().children('ul').html('')
+          $.ajax({
+           url: "../../../ajax/mostrarFavoritoRP.php",   
+           data: {"idMedicamento":idMedicamento},
+           type: "post",
+           success:function(output){
+             var data = $.parseJSON(output);
+             $.each(data,function(i,favRP){
+                   var lista = "<li idFavRP='"+favRP['idFavRP']+"'><a href='#' class='addFavRP'>"+favRP['Nombre_corto']+"</a></li>"; 
+                   favPadre.children().children('ul').append(lista);  
+                 
+             })//end each medicamento encontrado
+           }//end success
+          })//end ajax
+      });//end each favRP
+       
+       
+   $('#refreshFav').click(function(){
+       /*
+        * Función que refresca los medicamentos favoritos
+        * al hacer click en actualizar favoritos
+        */
+      $('.favRP').each(function(){
+          var idMedicamento = $(this).attr('identificador');
+          var favPadre = $(this)
+          favPadre.children().children('ul').html('')
+          $.ajax({
+           url: "../../../ajax/mostrarFavoritoRP.php",   
+           data: {"idMedicamento":idMedicamento},
+           type: "post",
+           success:function(output){
+             var data = $.parseJSON(output);
+             $.each(data,function(i,favRP){
+                   var lista = "<li idFavRP='"+favRP['idFavRP']+"'><a href='#' class='addFavRP'>"+favRP['Nombre_corto']+"</a></li>"; 
+                   favPadre.children().children('ul').append(lista);  
+                 
+             })//end each medicamento encontrado
+           }//end success
+          })//end ajax
+      });//end each favRP
+       
+       
+   });//end click
+ }); // end ready
 </script>
 
 <script>

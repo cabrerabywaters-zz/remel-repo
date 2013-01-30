@@ -9,11 +9,10 @@
 
         <div class="row-fluid">
             <div class="span6 modal-body img-rounded"><!-- div donde estará el buscador -->     
-            <strong><p>Ingrese diagnóstico</p></strong>
+            <strong><p>Tipo de diagnóstico</p></strong>
 
             <div class="form-search" id="buscar_diagnostico">
-                <div class="input-prepend"> <!-- buscador inline con autocomplete -->
-                    <select id="tipo_diagnostico">
+                <select id="tipo_diagnostico">
                                 <?php
                                 include_once('../../../Capa_Controladores/tipo.php');
 
@@ -24,10 +23,11 @@
                                     echo'<option value="'.$tipo['idTipo'].'">'. $tipo['Nombre'] . '</option>';
                                 }
                                 ?>
-                    </select>
-                    <input type="text" class="search-query" id="diagnostico" name="diagnostico">
+                </select>
+                <strong><p><br>Ingrese diagnóstico</p></strong>
+                <input type="text" class="search-query" id="diagnostico" placeholder="Ingrese Diagnóstico" name="diagnostico">
                     <br>
-                </div>
+                
                </div><!-- buscador inline con autocomplete -->
             
             <!-- popup informacion diagnostico -->

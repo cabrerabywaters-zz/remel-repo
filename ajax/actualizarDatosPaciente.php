@@ -14,7 +14,7 @@ $prevision = $_POST['Prevision'];
 $seguro = $_POST['Seguro'];
 
 
-$actualizado = Persona::MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo);
+$actualizado = Persona::MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo, $prevision, $seguro);
 
 if ($actualizado){
     

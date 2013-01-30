@@ -27,6 +27,7 @@
   <?php    
   foreach ($alergias as $datos => $dato)
    {
+<<<<<<< HEAD
 	  echo "<tr>";
 	  $copia=0;
         foreach ($dato as $llave=>$valor) {			
@@ -49,6 +50,16 @@
         }
 
             echo "</tr>";
+=======
+	echo '<tr ">';
+	foreach($alergiasCantidad as $datoCantidad => $datosCantidad)
+	{
+	
+	echo "<td idalergia='".$dato['idAlergia']."'>".$dato['Alergia']." </td>";
+	echo "</tr>";   
+	   
+>>>>>>> 296198854e19ff4f42d9ffc99c0ee74a6e56a1e6
+   }
    }
 		?>	   
 			   
