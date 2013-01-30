@@ -1,6 +1,10 @@
 <?php
 
 require_once 'dompdf/dompdf_config.inc.php';
+
+$var="Cesar";
+$var2="variables";
+
 $codigo="<html>
     <head>
         
@@ -8,8 +12,10 @@ $codigo="<html>
     
     <body>
         
-        holaaaa
-    </body>
+        hola $var :<br>
+____________________________________________________________________________
+<br> asi puedes generar un PDF
+con las $var2 que tengas en el modal</body>
     
 </html>";
 
