@@ -35,7 +35,7 @@
      <br> 
     <div class="control-group">
     <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
     </div>
      
     <div class="control-group">
@@ -97,16 +97,16 @@
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
                       data: {
-                            'RUN':run,
-                            'Peso':peso, 
-                            'Altura':altura, 
-                            'Direccion':direccion, 
-                            'Numero':numero,
-                            'Comuna':comuna,
-                            'N_celular':n_celular,
-                            'N_fijo':n_fijo,
-                            'Prevision':prevision,
-                            'Seguro':seguro
+                            "RUN":run,
+                            "Peso":peso, 
+                            "Altura":altura, 
+                            "Direccion":direccion, 
+                            "Numero":numero,
+                            "Comuna":comuna,
+                            "N_celular":n_celular,
+                            "N_fijo":n_fijo,
+                            "Prevision":prevision,
+                            "Seguro":seguro
                             
           },
                       type: 'post',
