@@ -9,33 +9,46 @@
         <div class="span5" id="alergias">
 
      <center> <div style="width: 50%; ;">
-  <table>
-   <thead>
+   				 <table class="table table-hover">
+  				 <thead>
                      <tr>
-                     <th colspan="2">Alergias</th>                      
+                     <th colspan="2"><center>Alergias</center></th>                 
+                    </tr>
+                    <tr>
+                    <th><center>Tipo de Alergia</center></th>
+                    <th><center>Nombre de Alergia</center></th>
                     </tr>
                 </thead>
-                <tr><td>
-   <table class="table table-hover">
    <tbody>
-<tr><td><strong>Nombre</strong></td><td><strong>Sintomas</strong></td></tr>
- <?php  foreach ($alergiasPaciente as $datos => $dato)
-   
+  <?php    
+  
+  foreach ($alergiasPaciente as $datos => $dato)
    {
-	echo "<tr>";
-	echo "<td>".$dato['Alergia']." </td>";
-	echo "<td>".$dato['Sintomas']."</td>";
-	
-	
-	echo "</tr>";   
-	   
+	  echo "<tr>";
+
+
+                echo '<td idTipo="'.$dato['IdTipo'].'" rowspan="'.$dato['Cantidad'].'">';
+                echo "<center>".$dato['Tipo']."</center>";
+				echo '</td>';
+			$idTipo=$dato['IdTipo'];
+           $alergias=Paciente::R_AlergiaPaciente($idPaciente,$idTipo);
+		   foreach($alergias as $value => $info)
+		   {
+			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
+			   echo "<center>".$info['Nombre']."</center>";
+			   echo "</td>";
+			   echo"</tr>";
+			   echo"<tr>";
+			 
+			   
+		   }
+            echo "</tr>";
+
    }
+		?>	   
 			   
-			   
-			   
-?> </tbody>
-            </table>
-            </td></tr></table></div></center></div>  
+</tbody>
+</table></div></center></div>  
 		<div class="span5 offset2"><center><div style="width: 50%; ;">
   <table>
    <thead>
