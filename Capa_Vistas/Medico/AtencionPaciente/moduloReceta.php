@@ -500,8 +500,8 @@ y el popup que muestra el detalle del medicamento
         
         // se arma el pill con la informacion del medicamento
         var pill = '\
-        <div class="alert alert-success medicamentoRecetado" onClick="ClickPill()" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'"\n\
-        cantidadMedicamento="'+cantidadMedicamento+'" tipoReceta="'+tipoReceta+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
+        <div class="alert alert-success medicamentoRecetado" onClick="ClickPill()" idMedicamento="'+idMedicamento+'"\n\
+        cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
         <strong>'+nombreComercial+'</strong>\n\

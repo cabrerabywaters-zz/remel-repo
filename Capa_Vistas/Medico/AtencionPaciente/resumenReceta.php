@@ -1,13 +1,30 @@
+ <?php 
+ if(isset($_POST['content']))
+ {
+     $contenido= $_POST['content'];
+     
+     include_once '../../../dompdf/dompdf_config.inc.php';
+     
+     $contenido = utf8_decode($contenido);
+$dompdf = new DOMPDF();
+$dompdf->load_html($contenido);
+$dompdf->render();
+$dompdf->stream(ejemplo.pdf);
+     
+     
+     
+ }
  
+ ?>
 <!-- Modal de resumen de la receta-->
 <div id="resumenReceta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="resumenRecetaLabel" aria-hidden="true">
   
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="resumenRecetaLabel">Resumen de la Receta <strong>Folio: #12345 </strong></h3>
+   <center> <h3 id="resumenRecetaLabel">Resumen de la Receta</h3></center>
   </div>
   
-  <div class="modal-body">
+  <div class="modal-body" id="contenidoReceta">
       <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4>
       <div class="row-fluid datosResumen">
           <p>Doctor: <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></p>
@@ -17,11 +34,20 @@
       <div class="row-fluid" id="resumen">
           
       </div>
+      
   </div>
    
   <div class="modal-footer">
     <button class="btn pull-left" data-dismiss="modal" aria-hidden="true"><br><strong>Volver</strong><br><br></button>
     <button class="btn btn-primary confirmarEmision"><br><strong><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
+    <form method="post" action="resumenReceta.php">
+          <textarea name="content" id="content" style="display:none;">
+
+          </textarea>
+        <input type="submit" name="submit" id="submit" value="Imprimir Receta" class="btn btn-primary imprimir" style="display:none;"></input>
+      </form>
+    <br>
+   <center> <button class="btn btn-primary terminar" style="display:none;"><br><strong>Volver al Menú<br><br></strong></button></center>
   </div>
 
 </div><!-- modal de resumen de la receta -->
@@ -174,18 +200,28 @@
          data: {'resumenPoder' : resumenPoder, 'sinDiagnostico': sinDiagnostico},
          url: '../../../ajax/ingresarReceta.php',
          type: 'post',
-         async: false,
+         async: true,
          success: function(output){
             
+           
+          
                     if(output=='0')
                         {
                             alert('La receta no pudo ser generada');
                         }
                         else{
-                            alert(output);
+                            
+                            $('.confirmarEmision').hide();
+                             $('.imprimir').show();
+                             $('.terminar').show();
+                             $('#content').html($('#contenidoReceta').html()) ;
                         }
+                        
+                      
          }
            
         });// end ajax
    }); // end click
+   
+    
 </script><!-- script que genera el listado del resumen de la receta-->
