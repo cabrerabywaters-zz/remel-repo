@@ -13,12 +13,11 @@ class Receta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idLugar, $ip, $tipoReceta, $idConsulta ) {
+    public static function Insertar($idLugar, $ip, $idConsulta ) {
     	$datosCreacion = array(
                                 array('Fecha_Emision',date("Y-m-d H:i:s")),
                                 array('Lugar_de_Atencion_idLugar_de_Atencion',$idLugar),
                                 array('DireccionIP',$ip),
-                                array('Tipo_Receta_idTipo_Receta',$tipoReceta),
                                 array('Consulta_Id_consulta',$idConsulta),
                                 array('Estado','0'),
                                 );

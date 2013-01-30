@@ -1,15 +1,6 @@
 <?php
 
-/*
 
-  _____________________________    _____      _____    _______   
- /  _____/\_   _____/\______   \  /     \    /  _  \   \      \  
-/   \  ___ |    __)_  |       _/ /  \ /  \  /  /_\  \  /   |   \ 
-\    \_\  \|        \ |    |   \/    Y    \/    |    \/    |    \
- \______  /_______  / |____|_  /\____|__  /\____|__  /\____|__  /
-        \/        \/         \/         \/         \/         \/ 
-
-*/
 
 
 include_once(dirname(__FILE__)."/../Capa_Controladores/receta.php");
@@ -20,6 +11,8 @@ error_reporting('E_ALL');
 
 session_start();
 
+$_POST['resumenPoder'] ;
+/*
 if(array_key_exists('resumenPoder', $_POST)){
     $diagnosticos = $_POST['resumenPoder'];
 }
@@ -30,35 +23,44 @@ if(array_key_exists('sinDiagnostico', $_POST)){
 }
 else $sinDiagnostico = null;
 
+
+/*
 $idLugar = $_SESSION['logLugar']['idLugar'];
 $idConsulta = $_SESSION['idConsulta'];
 $idMedico = $_SESSION['idMedicoLog'][0];
 $idPaciente = $_SESSION['idPaciente'];
 $ip = $_SESSION['last_ip'];
-$tipoReceta = 1;
 
-$idReceta = Receta::Insertar($idLugar, $ip, $tipoReceta, $idConsulta);
 
-if($idReceta == false){ $check = -1; die("Muere receta"); }
+$unidadConsumo = $_POST['unidadDeConsumo'];
+$unidadFrecuencia = $_POST['unidadFrecuencia'];
+$unidadDePeriodo = $_POST['unidadPeriodo'];
+
+
+$idReceta = Receta::Insertar($idLugar, $ip, $idConsulta);
+
+if($idReceta == false){ $check = -1; die("No se insertó la receta correctamente"); }
 
 if($diagnosticos != null){
     foreach($diagnosticos as $diagnostico) {
             $idDiagnostico = $diagnostico['idDiagnostico'];
             $check = HistorialMedico::Insertar($idConsulta,$idDiagnostico,$diagnostico['tipoDiagnostico'],$diagnostico['comentarioDiagnostico']);
-            if($check == false){ echo -1; die("Muere Diagnostico"); }
+            if($check == false){ echo -1; die("No se insertó el historial médico"); }
 
             foreach($diagnostico['medicamentos'] as $medicamento) {
-                    $check = MedicamentoReceta::Insertar($idReceta, $idDiagnostico, $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], '1', $medicamento['frecuenciaMedicamento'], '1', $medicamento['periodoMedicamento'], '1', '1', $medicamento['fechaInicio'], $medicamento['comentarioMedicamento']); 
-                    if( $check != 1){ echo -1; die("Muere medicamento"); }
+                    $check = MedicamentoReceta::Insertar($idReceta, $idDiagnostico, $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], $unidadConsumo, $medicamento['frecuenciaMedicamento'], $unidadFrecuencia, $medicamento['periodoMedicamento'], $unidadDePeriodo, $medicamento['fechaInicio'],$medicamento['fechaFin'], $medicamento['comentarioMedicamento']); 
+                    if( $check != 1){ echo -1; die("No se insertó el medicamento"); }
             }
     }
 }
 if($sinDiagnostico != null){
     foreach($sinDiagnostico as $medicamento) {
-            $check = MedicamentoReceta::Insertar($idReceta, '0', $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], '1', $medicamento['frecuenciaMedicamento'], '1', $medicamento['periodoMedicamento'], '1', '1', $medicamento['fechaInicio'], $medicamento['comentarioMedicamento']);
-            if( $check != 1){ echo -1; die("Muere medicamento SD"); }
+        
+        
+            $check = MedicamentoReceta::Insertar($idReceta, '0', $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], $unidadConsumo, $medicamento['frecuenciaMedicamento'], $unidadFrecuencia, $medicamento['periodoMedicamento'], $unidadDePeriodo, $medicamento['fechaInicio'], $medicamento['fechaFin'], $medicamento['comentarioMedicamento']);
+            if( $check != 1){ echo -1; die("No se puede insertar este medicamento SD"); }
     }
 }
 echo $idReceta;
-
+*/
 ?>
