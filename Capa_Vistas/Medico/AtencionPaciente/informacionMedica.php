@@ -5,11 +5,6 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-      <?php   
-  print_r($alergias); ?>
-
-
-
   	<div class="row-fluid">
  		 <div class="span6" id="divAlergias">
  			 <center>
@@ -19,34 +14,35 @@
                      <th colspan="2"><center>Alergias</center></th>                 
                     </tr>
                     <tr>
-                    <th>Tipo de Alergia</th>
-                    <th>Nombre de Alergia</th>
+                    <th><center>Tipo de Alergia</center></th>
+                    <th><center>Nombre de Alergia</center></th>
                     </tr>
                 </thead>
-   <tbody>';
+   <tbody>
   <?php    
-  foreach ($alergias as $datos => $dato)
+  
+  foreach ($tiposAlergias as $datos => $dato)
    {
 	  echo "<tr>";
-	  $copia=0;
-        foreach ($dato as $llave=>$valor) {			
-            if ($llave == 'Tipo' && $valor==$copia){
-                echo '<td idTipo="'.$dato['IdTipo'].'">';
-                echo $valor;
-				$copia=$valor;
+
+
+                echo '<td idTipo="'.$dato['IdTipo'].'" rowspan="'.$dato['Cantidad'].'">';
+                echo "<center>".$dato['Tipo']."</center>";
 				echo '</td>';
-            }
-            if ($llave == 'Alergia'){
-				echo '<td idAlergias="'.$dato['idAlergia'].'">';
-                echo $valor;
-                echo '</td>';
-            }
-           // if ($llave == 'Sintomas') {
-          //    echo '<td>';
-         //    echo $valor;
-        //   echo '</td>';
-       //  }
-        }
+			$idTipo=$dato['IdTipo'];
+           $alergias=Paciente::R_AlergiaPaciente($idPaciente,$idTipo);
+		   foreach($alergias as $value => $info)
+		   {
+			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
+			   echo "<center>".$info['Nombre']."</center>";
+			   echo "</td>";
+			   echo"</tr>";
+			   echo"<tr>";
+			 
+			   
+		   }
+
+
 
             echo "</tr>";
 
@@ -71,7 +67,7 @@
   <table class="table table-hover">
    <thead>
                      <tr>
-                     <th>Condiciones</th>                      
+                     <th><center>Condiciones</center></th>                      
                     </tr>
                 </thead>
                 <tbody>
@@ -79,7 +75,7 @@
   <?php foreach ($condiciones as $datos => $dato)
    {
 	echo '<tr idCondicion="'.$dato['idCondiciones'].'">';
-	echo "<td>".$dato['Nombre']." </td>";
+	echo "<td><center>".$dato['Nombre']."</center></td>";
 	echo "</tr>";   
 	   
    } ?>
@@ -165,7 +161,7 @@ $.ajax({
 		data: {idAlergia:idAlergia},
 		type: "post",
 		success: function(output){
-		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'">'+Tipo+'</td><td idAlergias="'+idAlergia+'">'+nombreAlergia+'</td></tr>');
+		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'">'+Tipo+'</td><td idAlergias="'+idAlergia+'"><center>'+nombreAlergia+'</center></td></tr>');
 		}
 
 });
@@ -229,7 +225,7 @@ $.ajax({
 		data: {"idCondicion":idCondicion},
 		type: "post",
 		success: function(output){ 
-		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'">'+nombreCondicion+'</td></tr>');
+		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'"><center>'+nombreCondicion+'</center></td></tr>');
 		}
 
 });
