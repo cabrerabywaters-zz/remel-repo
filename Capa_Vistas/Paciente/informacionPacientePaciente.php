@@ -44,7 +44,7 @@
     
     <div class="control-group">
     <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="span4 edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="edicion" id="span2 Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="span2 edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
     </div>
  
     <div class="control-group">
