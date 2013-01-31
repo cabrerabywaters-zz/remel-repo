@@ -20,17 +20,18 @@ class MedicamentoVendido {
             array('Medicamentos_Recetas_Receta_idReceta', $_POST['idReceta']),
             array('Cantidad', $_POST['cantidad']),
             array('Fecha', "NOW()"),
-            array('Unidades_idUnidade', $_POST['idUnidades'])
+            array('Unidades_idUnidade', $_POST['idUnidades']),
+            array('RUT_Comprador', $_POST['compradorRUT'])
         );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
-    public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $idUnidad) {
+    public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $idUnidad, $rutCompador) {
         $queryString = 'INSERT INTO Medicamentos_Vendidos (Expendedores_idExpendedores,Medicamentos_Recetas_Medicamento_idMedicamento,Medicamentos_Recetas_Receta_idReceta,
-                                                           Cantidad,Fecha, Unidades_idUnidade) 
-                                                           VALUES ("'.$idExpendedor.'","'.$idMedicamento.'","'.$idReceta.'","'.$cantidad.'","'.$fecha.'","'.$idUnidad.'")';
+                                                           Cantidad,Fecha, Unidades_idUnidade, RUT_Comprador) 
+                                                           VALUES ("'.$idExpendedor.'","'.$idMedicamento.'","'.$idReceta.'","'.$cantidad.'","'.$fecha.'","'.$idUnidad.'","'.$rutComprador.'")';
         $query = CallQuery($queryString);
         return true;
     }
