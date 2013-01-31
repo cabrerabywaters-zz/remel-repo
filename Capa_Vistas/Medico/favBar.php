@@ -41,6 +41,7 @@
             <?php
             //session_start();
             include_once(dirname(__FILE__) . "/../../Capa_Datos/llamarQuery.php");
+            include_once(dirname(__FILE__)."/../../Capa_Controladores/favoritosRp.php");
             $idMedico = $_SESSION['idMedicoLog'];
             $queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
                 FROM Laboratorios, Medicamentos, Favoritos_RP
@@ -59,14 +60,28 @@
                                     Añadir <i class='icon-star icon-white'></i>
                                 <span class='caret'></span>
                                 </a>
-                                <ul class='dropdown-menu'>
-                                <!-- nombres cortos	-->
-                                <li><a href='#' class='pull-right addFavRP' cantidad='' >Dosis Para Mayores de 60 años</a></li>
-                                </ul>
-                                </div>";
-                echo "<strong><small>$nombre</small></strong>\r\n</div>\r\n";
-            }
-            ?> <br><br>
+                                <ul class='dropdown-menu'>";
+                echo "<!-- nombres cortos	-->";
+                
+                $favoritos = FavoritosRp::R_obtenerFavoritoRP($idMedicamento, $idMedico);
+                
+                     foreach($favoritos as $favRP){
+                            $idFav = $favRP['ID'];
+                            $nombreCorto = $favRP['Nombre_Corto'];
+                            $cantidad = $favRP['Cantidad'];
+                            $unidadConsumo = $favRP['Unidad_de_Consumo_idUnidad_de_consumo'];
+                            $frecuencia = $favRP['Frecuencia'];
+                            $unidadFrecuencia = $favRP['Unidad_Frecuencia_ID'];
+                            $periodo = $favRP['Periodo'];
+                            $unidadPeriodo = $favRP['Unidad_Periodo_ID'];
+                       echo "<li><a href='#' class='addFavRP' idFavRP='".$idFav."' cantidad='".$cantidad."' unidadConsumo='".$unidadConsumo."'
+                            frecuencia='".$frecuencia."' unidadFrecuencia='".$unidadFrecuencia."' periodo='".$periodo."' unidadPeriodo='".$unidadPeriodo."'>".$nombreCorto."</a></li>";
+                            
+                    }
+                
+                echo "          </ul>
+                                </div><strong><small id='nombreComercial'>$nombre</small></strong>\r\n</div>\r\n";
+            }?> <br><br>
         </div>
 
     </div>
@@ -107,82 +122,76 @@
         ;})
 
     $(document).ready(function(){
-        /*
-         *Función que actualiza los favoritos al cargar la pagina
-         */
-//        $('.favRP').each(function(){
-//            var idMedicamento = $(this).attr('identificador');
-//            var favPadre = $(this)
-//            favPadre.children().children('ul').html('')
-//            $.ajax({
-//                url: "../../../ajax/mostrarFavoritoRP.php",
-//                data: {"idMedicamento":idMedicamento},
-//                type: "post",
-//                success:function(output){
-//                    var data = $.parseJSON(output);
-//                    $.each(data,function(i,favRP){
-//                        var lista = "<li idFavRP='"+favRP['idFavRP']+"'><a href='#' class='addFavRP'>"+favRP['Nombre_corto']+"</a></li>";
-//                        favPadre.children().children('ul').append(lista);
+//        $('#refreshFav').click(function(){
+//            /*
+//             * Función que refresca los medicamentos favoritos
+//             * al hacer click en actualizar favoritos
+//             */
+//            $('.favRP').each(function(){
+//                var idMedicamento = $(this).attr('identificador');
+//                var favPadre = $(this)
+//                favPadre.children().children('ul').html('')
+//                $.ajax({
+//                    url: "../../../ajax/mostrarFavoritoRP.php",
+//                    data: {"idMedicamento":idMedicamento},
+//                    type: "post",
+//                    success:function(output){
+//                        var data = $.parseJSON(output);
+//                        $.each(data,function(i,favRP){
+//                            var idFav = favRP['ID'];
+//                            var nombreCorto = favRP['Nombre_Corto'];
+//                            var cantidad = favRP['Cantidad'];
+//                            var unidadConsumo = favRP['Unidad_de_Consumo_idUnidad_de_consumo'];
+//                            var frecuencia = favRP['Frecuencia'];
+//                            var unidadFrecuencia = favRP['Unidad_Frecuencia_ID'];
+//                            var periodo = favRP['Periodo'];
+//                            var unidadPeriodo = favRP['Unidad_Periodo_ID'];
+//                            
+//                            var lista = "<li><a href='#' class='addFavRP' idFavRP='"+idFav+"' cantidad='"+cantidad+"' unidadConsumo='"+unidadConsumo+"'\n\
+//                            frecuencia='//"+frecuencia+"' unidadFrecuencia='"+unidadFrecuencia+"' periodo='"+periodo+"' unidadPeriodo='"+unidadPeriodo+"'>"+nombreCorto+"</a></li>";
+//                            favPadre.children().children('ul').append(lista);
 //
-//                    })//end each medicamento encontrado
-//                }//end success
-//            })//end ajax
-//        });//end each favRP
-
-
-        $('#refreshFav').click(function(){
-            /*
-             * Función que refresca los medicamentos favoritos
-             * al hacer click en actualizar favoritos
-             */
-            $('.favRP').each(function(){
-                var idMedicamento = $(this).attr('identificador');
-                var favPadre = $(this)
-                favPadre.children().children('ul').html('')
-                $.ajax({
-                    url: "../../../ajax/mostrarFavoritoRP.php",
-                    data: {"idMedicamento":idMedicamento},
-                    type: "post",
-                    success:function(output){
-                        var data = $.parseJSON(output);
-                        $.each(data,function(i,favRP){
-                            var idFav = favRP['ID'];
-                            var nombreCorto = favRP['Nombre_Corto'];
-                            var cantidad = favRP['Cantidad'];
-                            var unidadConsumo = favRP['Unidad_de_Consumo_idUnidad_de_consumo'];
-                            var frecuencia = favRP['Frecuencia'];
-                            var unidadFrecuencia = favRP['Unidad_Frecuencia_ID'];
-                            var periodo = favRP['Periodo'];
-                            var unidadPeriodo = favRP['Unidad_Periodo_ID'];
-                            
-                            var lista = "<li><a href='#' class='addFavRP' idFavRP='"+idFav+"' cantidad='"+cantidad+"' unidadConsumo='"+unidadConsumo+"'\n\
-                            frecuencia='"+frecuencia+"' unidadFrecuencia='"+unidadFrecuencia+"' periodo='"+periodo+"' unidadPeriodo='"+unidadPeriodo+"'>"+nombreCorto+"</a></li>";
-                            favPadre.children().children('ul').append(lista);
-
-                        })//end each medicamento encontrado
-                    }//end success
-                })//end ajax
-            });//end each favRP
-
-
-        });//end click
-    }); // end ready
+//                        })//end each medicamento encontrado
+//                    }//end success
+//                })//end ajax
+//            });//end each favRP
+//
+//
+//        });//end click
+}); // end ready
 </script>
 
 <script>
-        /*
+       /*
         * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
         * a la receta
-        * ----------------------------------------------
-        * solo para los medicamentos que requieren escribir el rp
         */
-       $('.addFavRP').click(function(){
-           var idMedicamento = $(this).parent().parent().parent('div').attr('identificador');
-           alert(idMedicamento);
+     $(document).ready(function(){ 
+      $('.addFavRP').unbind('click').on("click",function(){
+          var divPadre = $(this).parent().parent().parent().parent('div');
+           var idMedicamento = divPadre.attr('identificador');
+           var nombreComercial = divPadre.children('strong').text();
+           var cantidad = $(this).attr('cantidad');
+           var unidadConsumo = $(this).attr('unidadConsmo');
+           var frecuencia = $(this).attr('frecuencia');
+           var unidadFrecuencia = $(this).attr('unidadFrecuencia');
+           var periodo = $(this).attr('periodo');
+           var unidadPeriodo = $(this).attr('unidadPeriodo');
+           var fechaInicio = "<?php $hoy=getdate(); echo $hoy['month'].'/'.$hoy['mday'].'/'.$hoy['year'];?>";
+           
+           var pill = '\
+            <div class="alert alert-success medicamentoRecetado" onClick="ClickPill()" idMedicamento="'+idMedicamento+'"\n\
+            cantidadMedicamento="'+cantidad+'" unidadDeConsumo="'+unidadConsumo+'" frecuenciaMedicamento="'+frecuencia+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodo+'" unidadPeriodo="'+unidadPeriodo+'"\n\
+            comentarioMedicamento=" " diagnosticoAsociado="0" fechaInicio="'+fechaInicio+'" fechaFin=" ">\n\
+            <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
+            <strong>'+nombreComercial+'</strong>\n\
+            </div>';
+                
+           $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
            
            
 
 
        });// end click 
-
+      });// end ready
 </script>
