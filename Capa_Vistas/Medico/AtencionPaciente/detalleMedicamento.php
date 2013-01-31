@@ -28,12 +28,12 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                            <td><select class="span11" name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
                        </tr>
                        <tr>
-                           <td>Cada :</td>
+                           <td>Frecuencia :</td>
                            <td><input class="span11" type="text" placeholder="frequencia" id="frecuenciaMedicamento" value="8"></td>
                            <td><select class="span11" name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
                        </tr>
                        <tr>
-                            <td>Por :</td>
+                            <td>Duración :</td>
                             <td><input class="span11" type="text" placeholder="periodo" id="periodoMedicamento"></td>
                             <td><select class="span11" name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
                         </tr>
