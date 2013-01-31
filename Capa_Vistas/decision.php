@@ -109,7 +109,7 @@ verificarIP();
 <script language="javascript">
     
     function redireccionar(){
-        top.location = '/remel-repo/Capa_Vistas/Paciente/paginaPaciente.php';
-    }
+        window.location.href = 'Paciente/paginaPaciente.php'; 
+   }
     
 </script>

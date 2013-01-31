@@ -16,6 +16,7 @@ include_once(dirname(__FILE__)."/../Capa_Controladores/unidadFrecuencia.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/unidadPeriodo.php");
 
 define("TMPDIRECTORY", dirname(__FILE__)."/tmp/");
+error_reporting("E_ALL");
 
 // Carga del header
 $filename = 'recetaMedicaHeader.tex';
@@ -31,7 +32,6 @@ $filetext = fread( $file, $filesize );
 
 // Carga de datos de receta por POST y SQL
 $idReceta = $_REQUEST['idReceta'];
-$idReceta = 49;
 $infoReceta = Receta::SeleccionarPorId($idReceta);
 
 // Info Consulta

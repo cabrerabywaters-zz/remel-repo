@@ -81,9 +81,9 @@
         include(dirname(__FILE__) . "/informacionVistaPaciente.php");
         ?>
 			<!-- scripts de google con php -->
-			<?php include("paciente/scriptTorta.php"); 
-	 			  include("paciente/scriptLinea.php");
-				  include("paciente/scriptBarra.php");
+			<?php include(dirname(__FILE__)."/Paciente/scriptTorta.php"); 
+	 			  include(dirname(__FILE__)."/Paciente/scriptLinea.php");
+				  include(dirname(__FILE__)."/Paciente/scriptBarra.php");
 			?>
     	</head>
     
