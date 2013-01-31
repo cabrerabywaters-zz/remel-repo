@@ -26,26 +26,14 @@
             
 
  
-               <!-- 
-               <tr>
-                  <td rowspan="2">1</td>
-                  <td>Mark</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                </tr>
-                </tbody><SPAN>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                </tr> -->
+
 
 
 <?php 
 
 foreach ($tiposAlergias as $datos => $dato)
    {
-	   echo '<span  idTipo="'.$dato['IdTipo'].'">';
+	   echo '<div  idTipo="'.$dato['IdTipo'].'">';
 	  echo '<tr>';
                 echo '<td  rowspan="'.$dato['Cantidad'].'">';
                 echo "<center>".$dato['Tipo']."</center>";
@@ -72,7 +60,7 @@ foreach ($tiposAlergias as $datos => $dato)
 			  }
 			    $contador++;	   	 
 		   }
-		  echo" </span>";
+		  echo" </div>";
 	   } 
 ?>	   
 	</tbody>		   
