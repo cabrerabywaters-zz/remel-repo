@@ -50,7 +50,8 @@ class Alergia {
     	$atributosASeleccionar = array(
 										'Nombre',
 										'Sintomas',
-										'Tipo_idTipo'
+										'Tipo_idTipo',
+                                                                                'idAlergia'
       );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);

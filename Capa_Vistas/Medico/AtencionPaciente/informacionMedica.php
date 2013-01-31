@@ -62,13 +62,30 @@ foreach ($tiposAlergias as $datos => $dato)
                
             </table> 
 
-			<form class="form-search" method="post">
-			<div class="input-append">
-  				<input id="alergias" type="text" idAlergia="0">
- 				 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
-  			</div>
-			</form>
+			
+  				
+ 				<form class="form-search" method="post"> 
+  			 <select style="text-align:center;" type="text" class="inline edicion" id="Alergias">
+        
+        
+<?php  
+  include_once("../../../Capa_Controladores/alergia.php");
+    
+    $arrayAlergia = Alergia::Seleccionar("");
+    
+  
+  foreach ($arrayAlergia as $campo=>$valor){
+    echo "<option value='".$valor['idAlergia']."'>". $valor['Nombre'] ."</option>";
+    
+  }
+?>  
+        
+          </select>
 
+<div class="input-append">                        
+<input id="alergias" type="text" idAlergia="0">                             
+<button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
+</div></form>
 
 </center></div>
 <div class="span6" id="condiciones"> <center>
@@ -90,7 +107,23 @@ foreach ($tiposAlergias as $datos => $dato)
                 </tbody>
 </table></center><center>
 			<form class="form-search" method="post">
-			<div class="input-append">
+			<select style="text-align:center;" type="text" class="inline edicion" id="Alergias">
+        
+        
+<?php  
+  include_once("../../../Capa_Controladores/condicion.php");
+    
+    $arrayCondicion = Condicion::Seleccionar("");
+    
+  
+  foreach ($arrayCondicion as $campo=>$valor){
+    echo "<option value='".$valor['idCondicion']."'>". $valor['Nombre'] ."</option>";
+    
+  }
+?>  
+        
+          </select>
+                            <div class="input-append">
   				<input id="Condiciones" type="text">
   				<button class="btn" type="button" id="boton_condiciones" disabled="disabled">Añadir</button></div>
 				</form></center>
@@ -99,6 +132,13 @@ foreach ($tiposAlergias as $datos => $dato)
       </div>
     </div>
 <script>
+$('#Alergias').change(function(){
+    var valor = $('#Alergias').val();
+       $('#alergias').attr('value',);
+}); //end change
+
+
+
 
 $( "#alergias" ).autocomplete({
                                 /**
