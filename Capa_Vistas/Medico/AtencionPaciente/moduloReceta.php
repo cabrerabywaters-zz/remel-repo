@@ -399,6 +399,7 @@ y el popup que muestra el detalle del medicamento
                 $('#frecuenciaMedicamento').val('');
                 $('#periodoMedicamento').val('');
                 $('#comentarioMedicamento').val('');
+                $('#tipoReceta').text('');
                 var select = $('#diagnosticoAsociado')
                 select.val(jQuery('options:first', select).val());
         });
@@ -526,6 +527,8 @@ y el popup que muestra el detalle del medicamento
         $('#frecuenciaMedicamento').val('');
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
+        $('input[name="fechaInicio"]').val('');
+        $('input[name="fechaFin"]').val('');
         $('#tipoReceta').text('');
         
         var select = $('#diagnosticoAsociado')
@@ -567,7 +570,9 @@ function ClickPill()
             $(this).parent().children('strong').text()
         );
             
-            //$('#idMedicamento').text();
+            $('#idMedicamento').text(
+            $(this).parent().attr('idmedicamento')
+                );
             
             /*$('#descripcionMedicamento').text(
             $(this).parent().attr('descripcionmedicamento').text()
@@ -607,8 +612,9 @@ function ClickPill()
                 var frecuencia_medicamento = $('#frecuenciaMedicamento').val();
                 var periodo_medicamento = $('#periodoMedicamento').val();
                 var comentario_medicamento = $('#comentarioMedicamento').val();
-                var tipo_receta = $('#tipoReceta').val();
+                var tipo_receta = $('#tipoReceta').text();
                 var diagnostico_asociado = $('#diagnosticoasociado').val();
+                var id_medicamento = $('#idMedicamento').val();
                 
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
@@ -616,9 +622,12 @@ function ClickPill()
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('comentariomedicamento',comentario_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('idmedicamento',id_medicamento);
                 
                 
                 $('#detalleMedicamento').collapse('hide');
+                $('#guardar_cambios_receta').hide();
+                $('#agregarMedicamento').show();
                 
             });
             
