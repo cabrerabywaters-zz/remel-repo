@@ -7,81 +7,91 @@
       <div class="accordion-inner">
   	<div class="row-fluid">
  		 <div class="span6" id="divAlergias">
-         <?php print_r($tiposAlergias); ?>
  			 <center>
- 				 <table class="table table-hover">
+             
+             
+
+ <table class="table table-bordered table-hover">
   				 <thead>
                      <tr>
-                     <th colspan="2"><center>Alergias</center></th>                 
+                     <th colspan="2"><center>Alergias / Intolerancias</center></th>                 
                     </tr>
                     <tr>
-                    <th><center>Tipo de Alergia</center></th>
+                    <th><center>Tipo</center></th>
                     <th><center>Nombre de Alergia</center></th>
                     </tr>
                 </thead>
    <tbody>
+             
+            
 
-  <tr>
-    <td rowspan="3">medicamentos</td>
-    <td><tr><td>resfrio</td></tr><tr><td>poxipol</td></tr><tr><td>agua</td></tr></td>
-  </tr>
-  <tr>
-    <td>diabetes</td>
-    <td><tr><td>hola</td></tr></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
+ 
+               <!-- 
+               <tr>
+                  <td rowspan="2">1</td>
+                  <td>Mark</td>
+                </tr>
+                <tr>
+                  <td>Mark</td>
+                </tr>
+                </tbody><SPAN>
+                <tr>
+                  <td>2</td>
+                  <td>Jacob</td>
+                </tr> -->
 
 
-  <?php 
-  /* foreach ($tiposAlergias as $datos => $dato)
+<?php 
+
+foreach ($tiposAlergias as $datos => $dato)
    {
-	  echo '<tr idTipo="'.$dato['IdTipo'].'">';
-
-
+	   echo '<span  idTipo="'.$dato['IdTipo'].'">';
+	  echo '<tr>';
                 echo '<td  rowspan="'.$dato['Cantidad'].'">';
-                echo $dato['Tipo'];
-				echo '</td><td>';
+                echo "<center>".$dato['Tipo']."</center>";
+				echo '</td>';
 			$idTipo=$dato['IdTipo'];
            $alergias=Paciente::R_AlergiaPaciente($idPaciente,$idTipo);
+		   $contador=0;
 		   foreach($alergias as $value => $info)
-		   {   echo"<tr>";
+		   {
+			   if($contador==0)
+			   {
 			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
-			   echo $info['Nombre'];
+			   echo "<center>".$info['Nombre']."</center>";
 			   echo "</td>";
 			   echo"</tr>";
-			   
-			 
-			   
+			   }
+			  else
+			  {
+			   echo"<tr>";
+			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
+			   echo "<center>".$info['Nombre']."</center>";
+			   echo "</td>";
+			   echo"</tr>";
+			  }
+			    $contador++;	   	 
 		   }
-
-				echo"</td>";
-
-            echo "</tr>";
-
-   }
-		*/ ?>	   
-			   
+		  echo" </span>";
+	   } 
+?>	   
+	</tbody>		   
 			   
                
                
- </tbody>
- <tfoot>
- 		<tr><td> 
+            </table> 
+
 			<form class="form-search" method="post">
 			<div class="input-append">
   				<input id="alergias" type="text" idAlergia="0">
  				 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
   			</div>
 			</form>
-  		</td></tr>
-</tfoot>
-</table>
+
+
 </center></div>
 <div class="span6" id="condiciones"> <center>
-  <table class="table table-hover">
+  <table class="table table-bordered table-hover">
    <thead>
                      <tr>
                      <th><center>Condiciones</center></th>                      
@@ -97,13 +107,12 @@
 	   
    } ?>
                 </tbody>
-<tfoot><tr><td> 
+</table></center><center>
 			<form class="form-search" method="post">
 			<div class="input-append">
   				<input id="Condiciones" type="text">
   				<button class="btn" type="button" id="boton_condiciones" disabled="disabled">Añadir</button></div>
-				</form></td></tr>	
-				</tfoot></table></center>
+				</form></center>
 		  </div> 
   		</div>
       </div>
