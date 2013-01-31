@@ -542,6 +542,12 @@ y el popup que muestra el detalle del medicamento
         
 });//end ready
 
+$("#cancelar_cambios_receta").unbind('click').on('click',function(){
+        $('#detalleMedicamento').collapse('toggle');                 
+       
+                    }); //end on
+
+
 function ClickPill()
         {
             //BOTON EDITAR
@@ -583,9 +589,12 @@ function ClickPill()
             $(this).parent().attr('comentariomedicamento')
         );
             
-            
             $('#tipoReceta').text(
             $(this).parent().attr('tiporeceta')
+        );
+            
+            $('#diagnosticoAsociado').val(
+            $(this).parent().attr('diagnosticoasociado')
         );
             
             $('#guardar_cambios_receta').show().attr('disabled',false);
@@ -599,12 +608,14 @@ function ClickPill()
                 var periodo_medicamento = $('#periodoMedicamento').val();
                 var comentario_medicamento = $('#comentarioMedicamento').val();
                 var tipo_receta = $('#tipoReceta').val();
+                var diagnostico_asociado = $('#diagnosticoasociado').val();
                 
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('periodomedicamento',periodo_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('comentariomedicamento',comentario_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
                 
                 
                 $('#detalleMedicamento').collapse('hide');
