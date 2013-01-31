@@ -32,7 +32,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
     <tr>
     <th>Medico</td>
     <th>Fecha de Emision</td>
-    <th>Fecha de Vencimiento</td>
+    <th>Folio</td>
     <th>Medicamentos</td>
     </tr></thead>
     ';
@@ -44,9 +44,10 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                     $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
                     for ($i = 0; $i < count($medicamentosConsulta); $i++) {
                         echo $medicamentosConsulta[$i]['Nombre_Comercial'] . '</br>';
+                        echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosConsulta[$i]['idMedicamento'] . ', ' . $medicamentosConsulta[$i]['idReceta'] . ', ' . $medicamentosConsulta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button></br>';
                     }
                     for ($i = 0; $i < count($medicamentosConsulta); $i++) {
-                        echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosConsulta[$i]['idMedicamento'] . ', ' . $medicamentosConsulta[$i]['idReceta'] . ', ' . $medicamentosConsulta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button>';
+                        
                     }
                 }
                 if ($llave == 'Nombre') {
@@ -57,15 +58,12 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                     echo $valor;
                     echo '</td>';
                 }
-                if ($llave == 'Fecha_Emision' || $llave == 'Fecha_Vencimiento') {
+                if ($llave == 'Fecha_Emision' || $llave == 'Folio') {
                     echo '<td>';
                     echo $valor;
                     echo '</td>';
                 }
             }
-            echo '<td>';
-            echo 'Expender';
-            echo '</td>';
             echo "</tr>";
         }
         echo '</table></div></table></center></div>';
