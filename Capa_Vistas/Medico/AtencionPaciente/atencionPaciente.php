@@ -57,6 +57,18 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       
     </div><!-- Fin del tab consulta-->
     
+    <div class="tab-pane img-rounded" id="tabCalculadora"><!-- tab calculadora-->
+
+        <div class="accordion" id="accordion4"><!-- accordion calculadora-->
+  
+            <div class="accordion-group"><!-- accordion calculadora-->
+            <?php include('calculadora.php'); ?>
+            </div><!-- accordion diagnostico -->
+        
+        </div><!-- accordion calculadora-->
+      
+    </div><!-- Fin del tab calculadora-->
+    
   <div class="span4 img-rounded">
   <!-- barra de favoritos -->
   <?php include_once('../favBar.php');?>
