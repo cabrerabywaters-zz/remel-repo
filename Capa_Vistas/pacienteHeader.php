@@ -123,7 +123,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
                       	<li><a href="#infoRelevante" data-toggle="tab">Mis Estadisticas</a></li>
                       	<li><a href="#calendario" data-toggle="tab">Calendario</a></li>
                       	<li><a href="#medicamentos" data-toggle="tab">Medicamentos</a></li>
-                      <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
+			<li class="dropdown pull-right">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Volver <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <!-- links -->
+                        <li><a href="../decision.php">Volver al Menú</a></li>
+                        <li><a href="../logout.php">Salir</a></li>
+                        </ul>
+                    </li> 
                       
                       </ul>
         
