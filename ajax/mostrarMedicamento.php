@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 include_once(dirname(__FILE__)."/../Capa_Controladores/medicamento.php");
 include_once(dirname(__FILE__).'/../Capa_Controladores/alergiaHasPaciente.php');
@@ -134,6 +134,6 @@ $contraindicaciones['diagnosticos'] = $nombreDiagnosticos;
 //Medicamentos conflictivos recetados por PA
 $contraindicaciones['medicamentosRecetadosConflictivos'] = $nombresMedicamentosRecetadosConflictivos;
 $json = array_merge($medicamento,$contraindicaciones);
-
+$json['unidadesConsumo'] = Medicamento::SeleccionarUnidadesConsumo($idMedicamento);
 echo json_encode($json);
 ?>
