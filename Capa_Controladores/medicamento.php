@@ -245,6 +245,19 @@ class Medicamento  {
 
         return $resultArray;
     }
+
+	public static function SeleccionarUnidadesConsumo($idMedicamento){
+		$queryString = "SELECT idUnidad_de_Consumo AS ID, tipo AS Nombre
+FROM Unidad_de_Consumo, Unidad_de_Consumo_has_Presentaciones_has_Medicamentos
+WHERE Presentaciones_has_Medicamentos_Medicamentos_idMedicamento =  '$idMedicamento'
+AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
+		$query = CallQuery($queryString);
+		$unidades = array();
+		while($unidad = $query->fetch_assoc()){
+			$unidades[] = $unidad;
+		}
+		return $unidades;
+	}
     
 
 }
