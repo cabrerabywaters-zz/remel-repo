@@ -45,16 +45,21 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
   </div>
    
   <div class="modal-footer">
-    <button class="btn pull-left" data-dismiss="modal" aria-hidden="true"><br><strong>Volver</strong><br><br></button>
+    <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true"><br><strong>Cancelar Emisión</strong><br><br></button>
     <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><br><strong><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
+    
+    <button class="btn btn-success terminar" style="display:none;"><br><strong>Volver al Menú<br><br></strong></button>
+    <br>
     <form method="post" action="resumenReceta.php">
           <textarea name="content" id="content" style="display:none;">
 
           </textarea>
-        <input type="submit" name="submit" id="submit" value="Imprimir Receta" class="btn btn-primary imprimir" style="display:none;"></input>
+       <center> <input type="submit" name="submit" id="submit" value="Imprimir Receta" class="btn imprimir" style="display:none;"></input>
+           
+       </center>
       </form>
-    <br>
-   <center> <button class="btn btn-primary terminar" style="display:none;"><br><strong>Volver al Menú<br><br></strong></button></center>
+      
+  
   </div>
 
 </div><!-- modal de resumen de la receta -->
@@ -247,5 +252,12 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
         });// end ajax
    }); // end click
    
+   //deberia vaciarse el modal cada vez que se cancela, ya que se deberia luego volver a generar
+   //con la informacion que se edite.
+   $('.cancelarEmision').click(function(){
+      
+      
+   
+   });
     
 </script><!-- script que genera el listado del resumen de la receta-->
