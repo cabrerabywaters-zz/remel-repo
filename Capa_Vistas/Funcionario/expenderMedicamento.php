@@ -17,6 +17,7 @@ echo '<br>';
 echo 'Precio: ' . $datosMedicamento['Precio_Referencia(CLP)'];
 echo '<br>';
 echo '<input class="btn btn-primary" disabled="disabled" id="expender" type="submit" value="Expender"></input>';
+echo '<button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Volver a Medicamentos</strong></button>';
 echo '<br>';
 echo '<div id="mensaje">';
 ?>
@@ -107,11 +108,14 @@ echo '<div id="mensaje">';
         }                   
         function disableIngresar(){
                     
-                    $('#expender').attr('disabled','disabled');
+            $('#expender').attr('disabled','disabled');
 
                     
         }
-                
+        function volverMedicamentos(){
+            window.location.href = 'recetasCliente.php#';
+        }
+
 
     </script>
 </html>
