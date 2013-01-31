@@ -403,40 +403,7 @@ y el popup que muestra el detalle del medicamento
                 var select = $('#diagnosticoAsociado')
                 select.val(jQuery('options:first', select).val());
         });
-        
-        
-        
-        
-        
-        /*
-        * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
-        * a la receta
-        * ----------------------------------------------
-        * solo para los medicamentos que requieren escribir el rp
-        */
-//       $('.detalleMedicamento').unbind('click').on('click',function(){
-//           var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
-//                   
-//           $.ajax({ 
-//               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
-//               type:"POST",
-//               data: {idMedicamento:idMedicamento},
-//               success:function(data){
-//                   /*
-//                    * en esta funcion se utilizan los valores de los campos de medicamento y
-//                    * se modifica el modal para llenar los campos relativos al medicamento
-//                    */
-//                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-//                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
-//                    
-//                   
-//                    $('#detalleMedicamento').collapse('show'); // se muestra el modal
-//                    }//end success
-//           });//ajax 
-//
-//
-//       });// end click 
-
+ 
        /*
         * funcion que elimina de favoritos el medicamento seleccionado
         * se debe primero eliminar de la bbdd vía ajax
