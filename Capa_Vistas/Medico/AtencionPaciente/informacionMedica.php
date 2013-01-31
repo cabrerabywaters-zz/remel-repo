@@ -22,19 +22,12 @@
                     </tr>
                 </thead>
    <tbody>
-             
-            
-
- 
-
-
 
 <?php 
 
 foreach ($tiposAlergias as $datos => $dato)
    {
-	   echo '<div  idTipo="'.$dato['IdTipo'].'">';
-	  echo '<tr>';
+	   echo '<tr  idTipo="'.$dato['IdTipo'].'">';
                 echo '<td  rowspan="'.$dato['Cantidad'].'">';
                 echo "<center>".$dato['Tipo']."</center>";
 				echo '</td>';
@@ -45,7 +38,7 @@ foreach ($tiposAlergias as $datos => $dato)
 		   {
 			   if($contador==0)
 			   {
-			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
+			   echo '<td idAlergias="'.$info['IdAlergia'].' idTipo="'.$dato['IdTipo'].'">';			   
 			   echo "<center>".$info['Nombre']."</center>";
 			   echo "</td>";
 			   echo"</tr>";
@@ -60,7 +53,7 @@ foreach ($tiposAlergias as $datos => $dato)
 			  }
 			    $contador++;	   	 
 		   }
-		  echo" </div>";
+		  echo" </tr>";
 	   } 
 ?>	   
 	</tbody>		   
@@ -175,7 +168,7 @@ $.ajax({
 		data: {idAlergia:idAlergia},
 		type: "post",
 		success: function(output){
-		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'">'+Tipo+'</td><td idAlergias="'+idAlergia+'"><center>'+nombreAlergia+'</center></td></tr>');
+		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'"><center>'+Tipo+'</center></td><td idAlergias="'+idAlergia+'"><center>'+nombreAlergia+'</center></td></tr>');
 		}
 
 });

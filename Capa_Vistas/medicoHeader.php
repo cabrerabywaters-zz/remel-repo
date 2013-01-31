@@ -1,3 +1,7 @@
+<?php
+var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +16,7 @@
         <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet"><!-- css jQuery UI-->
         <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"><!-- css bootstrap-->
         <link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet"><!-- css bootstrap-->
-        
+        <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
         <style> 
         /* Estilos de cargando de la barra respectiva*/
         .ui-autocomplete-loading {
@@ -69,10 +73,17 @@
   
         <!-- scripts js externos -->       
         <script src="http://code.jquery.com/jquery-latest.js"></script><!-- CDN jquery-->
-        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script></script><!-- CDN jquery tools-->
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script><!-- CDN jquery tools-->
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!-- CDN jquery UI-->
-        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script></script><!-- CDN bootstrap-->
-	<!--[if lt IE 9]>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script><!-- CDN bootstrap-->
+	<!-- script para el despliege de los datatables -->
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+                             $('#example').dataTable();
+                        });
+		</script>
+        <!--[if lt IE 9]>
 		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 	<![endif]-->
         <!-- fin script js externos -->
@@ -208,7 +219,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
 "><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
                     <li><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
-                    <li><a href="#" data-toggle="tab">Calculadoras</a></li>
+                    <li><a href="#tabCalculadora" data-toggle="tab">Calculadoras</a></li>
                     <li><a href="#" id="toggleFav"><i class="icon-star"></i>Favoritos</a></li>
                     <li class="dropdown pull-right">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">

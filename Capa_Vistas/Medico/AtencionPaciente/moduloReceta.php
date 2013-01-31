@@ -19,8 +19,13 @@ y el popup que muestra el detalle del medicamento
                         <div class="btn-group" data-toggle="buttons-radio" id="filtroArsenal">
                             <br>
                             <button type="button" class="btn" filtroarsenal="false">Todos Los Medicamentos</button>
-                            <button type="button" class="btn" filtroarsenal="true">Arsenal</button>
-                            
+<?php 
+if($_SESSION['logLugar']['rutSucursal'] == "0" || $_SESSION['logLugar']['idLugar'] == "0"){
+}
+else{
+echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."\r\n";
+}
+?>                            
                         </div><!-- filtro -->
                         <br>
                         <div class="btn-group" data-toggle="buttons-radio" id="filtro">
@@ -77,7 +82,7 @@ y el popup que muestra el detalle del medicamento
                     </div></div><!-- medicamentos seleccionados -->
                     
               </div></div><!-- row medicamentos -->
-          
+         
           </div><!-- row fluid-->
           </div><!-- contenido del acordion-->
 </div><!-- body collapsable -->
@@ -494,8 +499,6 @@ y el popup que muestra el detalle del medicamento
         $('#frecuenciaMedicamento').val('');
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
-        $('input[name="fechaInicio"]').val('');
-        $('input[name="fechaFin"]').val('');
         $('#tipoReceta').text('');
         
         var select = $('#diagnosticoAsociado')
@@ -537,11 +540,11 @@ function ClickPill()
             $(this).parent().children('strong').text()
         );
             
-            $('#idMedicamento').text(
+            /*$('#idMedicamento').text(
             $(this).parent().attr('idmedicamento')
                 );
             
-            /*$('#descripcionMedicamento').text(
+            $('#descripcionMedicamento').text(
             $(this).parent().attr('descripcionmedicamento').text()
         ); */
             
@@ -569,6 +572,11 @@ function ClickPill()
             $(this).parent().attr('diagnosticoasociado')
         );
             
+            $('input[name="fechaInicio"]').val(
+            $(this).parent().attr('fechainicio')
+        );
+               
+            
             $('#guardar_cambios_receta').show().attr('disabled',false);
             $('#agregarMedicamento').hide();
             $('#detalleMedicamento').collapse('show');
@@ -582,6 +590,8 @@ function ClickPill()
                 var tipo_receta = $('#tipoReceta').text();
                 var diagnostico_asociado = $('#diagnosticoasociado').val();
                 var id_medicamento = $('#idMedicamento').val();
+                var fecha_inicio = $('input[name="fechaInicio"]').val();
+              
                 
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
@@ -589,7 +599,8 @@ function ClickPill()
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('comentariomedicamento',comentario_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
-                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('idmedicamento',id_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
+                
                 
                 
                 $('#detalleMedicamento').collapse('hide');
