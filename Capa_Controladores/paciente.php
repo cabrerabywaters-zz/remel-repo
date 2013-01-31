@@ -253,7 +253,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     public static function R_RecetasPacienteVigentes($idPaciente, $fechaActual) {
 
         //primera query que obtiene solo escalares (nombre medico, fechas, etc)
-        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Consulta.Id_consulta 
+        $queryString = "SELECT Personas.Nombre, Personas.Apellido_Paterno, Recetas.Fecha_Emision, Recetas.idReceta as Folio, Consulta.Id_consulta 
                         FROM Consulta, Recetas, Medicamentos_Recetas, Pacientes, Personas, Medicos
 			WHERE Pacientes.idPaciente = $idPaciente
                         AND Medicos.Personas_RUN = Personas.RUN
@@ -261,7 +261,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
                         AND Pacientes.idPaciente = Consulta.Pacientes_idPaciente
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta
                         AND Recetas.idReceta = Medicamentos_Recetas.Receta_idReceta
-                        AND Recetas.Fecha_Vencimiento >= '$fechaActual'
+                        ORDER BY Recetas.Fecha_Emision DESC
                         ";
         $result = CallQuery($queryString);
         $resultArray = array();
