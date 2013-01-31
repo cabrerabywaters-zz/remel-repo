@@ -75,7 +75,7 @@ foreach ($tiposAlergias as $datos => $dato)
     
   
   foreach ($arrayAlergia as $campo=>$valor){
-    echo "<option value='".$valor['idAlergia']."'>". $valor['Nombre'] ."</option>";
+    echo "<option value='".$valor['idAlergia']."' idTipo='".$valor['Tipo_idTipo']."'>".$valor['Nombre'] ."</option>";
     
   }
 ?>  
@@ -106,8 +106,9 @@ foreach ($tiposAlergias as $datos => $dato)
    } ?>
                 </tbody>
 </table></center><center>
+    
 			<form class="form-search" method="post">
-			<select style="text-align:center;" type="text" class="inline edicion" id="Alergias">
+			<select style="text-align:center;" type="text" class="inline edicion" id="Condiciones_select">
         
         
 <?php  
@@ -117,13 +118,13 @@ foreach ($tiposAlergias as $datos => $dato)
     
   
   foreach ($arrayCondicion as $campo=>$valor){
-    echo "<option value='".$valor['idCondicion']."'>". $valor['Nombre'] ."</option>";
+    echo "<option value='".$valor['idCondiciones']."'>". $valor['Nombre'] ."</option>";
     
   }
 ?>  
         
           </select>
-                            <div class="input-append">
+                            
   				<input id="Condiciones" type="text">
   				<button class="btn" type="button" id="boton_condiciones" disabled="disabled">Añadir</button></div>
 				</form></center>
@@ -134,8 +135,29 @@ foreach ($tiposAlergias as $datos => $dato)
 <script>
 $('#Alergias').change(function(){
     var valor = $('#Alergias').val();
-       $('#alergias').attr('value',);
+    var tipo = $('#Alergias').children().attr('idTipo');
+    var alergia = $('#Alergias option=[value="'+valor+'"]').text();
+    
+    
+       $('#alergias')
+       .val(alergia)
+       .removeAttr('idAlergia').attr('idAlergia',valor).attr('idTipo',tipo);
+       $('#boton_alergias').removeAttr('disabled');
+       
 }); //end change
+
+$('#Condiciones_select').change(function(){
+    var valor = $('#Condiciones_select').val();
+    var tipo = $('#Condiciones_select').val();
+    var alergia = $('#Condiciones_select option=[value="'+valor+'"]').text();
+    
+    
+       $('#Condiciones').val(alergia).removeAttr('idCondiciones').attr('idCondiciones',valor);
+       $('#boton_condiciones').removeAttr('disabled');
+       
+}); //end change
+
+
 
 
 
