@@ -116,8 +116,17 @@
                                                          Los href hacen referencia a los tabs en paginaPaciente.php -->
                                 <li class="active img-rounded"><a href="#tabVenderMedicamentos" data-toggle="tab">Vender Medicamentos</a></li>
                                 <li><a href="#tabVerArsenal" data-toggle="tab">Ver Arsenal</a></li>
-                                        <li class="pull-right"><a href="../Medico/logout.php">Salir</a></li>
-
+                                
+				<li class="dropdown pull-right">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Volver <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <!-- links -->
+                        <li><a href="../decision.php">Volver al Menú</a></li>
+                        <li><a href="../logout.php">Salir</a></li>
+                        </ul>
+                    </li> 
 
                                         </ul>
 
