@@ -46,7 +46,7 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
    
   <div class="modal-footer">
     <button class="btn pull-left" data-dismiss="modal" aria-hidden="true"><br><strong>Volver</strong><br><br></button>
-    <button class="btn btn-primary confirmarEmision"><br><strong><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
+    <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><br><strong><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
     <form method="post" action="resumenReceta.php">
           <textarea name="content" id="content" style="display:none;">
 
@@ -218,6 +218,12 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                         }
                         //Cuando el ingreso de los datos de la receta es correcto
                         else{
+                             //Se Modifica el Label del encabezado de la receta para confirmar la emicion de la receta
+                             $('#resumenRecetaLabel').html('Receta Emitida Exitosamente');
+                             $('#resumenRecetaLabel').addClass("alert alert-success");
+                             
+                             
+                             
                             //Se esconde el boton de confirmar emision
                             $('.confirmarEmision').hide();
                             
@@ -229,6 +235,10 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                              //que se encuentra oculto 
                              //Se puede encontrar otra manera de hacerlo, ya que no es la mejor, pero funciona.
                              $('#content').html($('#contenidoReceta').html()) ;
+                             
+                            
+                            
+
                         }
                         
                       
