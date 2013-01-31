@@ -434,20 +434,6 @@
 	</tfoot>
 </table>
 			</div>
-			
-			
-			
-			
-			<
-			<style type="text/css">
-				@import "../examples_support/syntax/css/shCore.css";
-			</style>
-			<script type="text/javascript" language="javascript" src="../examples_support/syntax/js/shCore.js"></script>
-			
-			
-			
-			
-			
 
 		</div>
           
