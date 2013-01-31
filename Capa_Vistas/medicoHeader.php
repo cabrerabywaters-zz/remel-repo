@@ -96,7 +96,7 @@ var_dump($_SESSION);
             <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
                 <div class="span3 img-rounded" style="background-color: whitesmoke"> <!-- div de la informacion del medico -->
                     <img class="img-rounded pull-left" src="<?php echo $medico['Foto']; ?>" style="width: 140px; height: 140px;">
-                    <blockquote></blockquote><center>
+                    <blockquote><center>
                     <strong>Informacion Medico:<br></strong> 
                    <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
                     </center></blockquote>
