@@ -5,7 +5,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
 
 <div class="accordion-heading">
     <a class="btn btn-large btn-block active" data-toggle="collapse" data-parent="#accordion2" >
-        Arsenal de <?php echo $_SESSION['logLugar']['nombreSucursal'] ?>, área: <?php echo $_SESSION['logLugar']['nombreLugar'] ?>
+        Arsenal de <?php echo $_SESSION['logLugar']['nombreSucursal'] ?>, <?php echo $_SESSION['logLugar']['nombreLugar'] ?>
     </a>
 </div>
 <div><center>

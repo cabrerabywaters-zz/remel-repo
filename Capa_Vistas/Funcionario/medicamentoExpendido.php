@@ -12,13 +12,17 @@ $med = MedicamentoVendido::InsertarConParametros($_SESSION['logLugar']['idLugar'
                                                                 $_SESSION['recetaID'], 
                                                                 $_SESSION['cantidadMedicamentoVendido'], 
                                                                 $fechaActual, 
-                                                                $_SESSION['unidadID']);
+                                                                $_SESSION['unidadID'],
+                                                                $_SESSION['compradorRUT'])
+        ;
 if ($med){
  echo 'Medicamento Expendido Exitosamente.';   
 }
 ?>
 <center>
-        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
+        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver al Inicio</strong></button>
+        <button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Expender más Medicamentos</strong></button>
+
     </center>
 
 <script>
@@ -26,5 +30,9 @@ if ($med){
     function volver(){
         window.location.href = 'funcionarioIndex.php#';
     }
+    function volverMedicamentos(){
+        window.location.href = 'recetasCliente.php#';
+    }
+
     
 </script>
