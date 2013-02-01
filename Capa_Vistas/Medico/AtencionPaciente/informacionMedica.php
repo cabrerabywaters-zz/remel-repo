@@ -73,7 +73,7 @@ foreach ($tiposAlergias as $datos => $dato)
     
     $arrayAlergia = Alergia::Seleccionar("");
     
-  echo "<option value='0'>Ver todas las alergias</option>";  
+  echo "<option value='0' idTipo='0'>Ver todas las alergias</option>";  
   foreach ($arrayAlergia as $campo=>$valor){
     
     echo "<option value='".$valor['idAlergia']."' idTipo='".$valor['Tipo_idTipo']."'>".$valor['Nombre'] ."</option>";
@@ -84,7 +84,7 @@ foreach ($tiposAlergias as $datos => $dato)
           </select>
 
 <div class="input-append">                        
-<input id="alergias" type="text" idAlergia="0">                             
+<input id="alergias_seleccionadas" type="text" idAlergia="0">                             
 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
 </div></form>
 
@@ -136,12 +136,12 @@ foreach ($tiposAlergias as $datos => $dato)
 <script>
 $('#Alergias').change(function(){
     var valor = $('#Alergias').val();
-    var tipo = $('#Alergias').children().attr('idTipo');
+    var tipo = $('#Alergias').children(":selected").attr("idTipo");
     var alergia = $('#Alergias option=[value="'+valor+'"]').text();
-    
+    alert(valor);
     if( valor != 0){ 
-       $('#alergias').val(alergia).removeAttr('idAlergia').attr('idAlergia',valor);
-       $('#alergias').attr('idTipo',tipo);
+       $('#alergias_seleccionadas').val(alergia).removeAttr('idAlergia').attr('idAlergia',valor);
+       $('#alergias_seleccionadas').attr('idTipo',tipo);
        
        $('#boton_alergias').removeAttr('disabled');
     }
