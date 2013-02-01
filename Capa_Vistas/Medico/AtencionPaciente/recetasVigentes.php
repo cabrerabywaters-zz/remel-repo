@@ -21,7 +21,6 @@
     <th>Medicamentos</td>
     </tr></thead>
     ';
-	print_r($recetas);
         foreach ($recetas as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
