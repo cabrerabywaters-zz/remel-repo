@@ -1,6 +1,13 @@
 <?php ?>
 <body>
 <center>
+    <div class="accordion-heading">
+
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordionF1" href="#collapseOne">
+Venta de Medicamentos  
+  </a>
+  <div id="collapseOne" class="accordion-body collapse">
+
     <div class="modal-body">
         <strong><p>Ingrese el Rut del Paciente</p></strong>
         <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
@@ -19,15 +26,21 @@
                     <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> 
                 <div id="mensaje"></div>
                 <input type="hidden"  name="hID" value=""/>
-                <input type="hidden" name="hRUN" value=""/>
+                <input type="hidden" name="hRUN" value=""/> 
                 <div class="modal-footer">
-                    <button id="ingresar" class="btn btn-primary" type="submit"><strong>Ingresar</strong></button></form>
-
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Volver</button>
-        </div></form>
+                    
+                    <button id="ingresar" class="btn btn-primary" type="submit"><strong>Ingresar</strong></button>
+                </div>
+            </form>
 
     </div>
+        
 </div>
+      
+  </div>
+        
+    </div>
+    
 </center>
 
 </body>
