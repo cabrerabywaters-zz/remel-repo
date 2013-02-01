@@ -189,8 +189,19 @@
                 
            $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
            
+          /* si se agregó un favorito cuando el inicio es la información del paciente
+           * se muestra la sección correspondiente del modulo
+           */
+           if($('#collapseTwo2').is('.in')== true){
            
-
+           $('html, body').animate({
+            scrollTop: $("#moduloReceta").offset().top
+           }, 2000);
+           }
+           else{
+               $('#consultaToggle').children().click();
+               $('#moduloReceta').click();
+           }
 
        });// end click 
       });// end ready
