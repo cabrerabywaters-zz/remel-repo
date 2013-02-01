@@ -387,7 +387,13 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
             $('html, body').animate({
             scrollTop: $("#tabConsulta").offset().top
             }, 500); // animate
-        
+            
+            $('.diagnostico').each(function(){
+                var idDiagnostico = $(this).attr('idDiagnostico');
+                var nombreDiagnostico = $(this).children('strong').text();
+                $('#diagnosticoAsociado').prepend('<option value="'+idDiagnostico+'">'+nombreDiagnostico+'</option>');
+                
+            });//end each
             
     
         });//on click
@@ -483,7 +489,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         
         // se arma el pill con la informacion del medicamento
         var pill = '\
-        <div class="alert alert-success medicamentoRecetado" onClick="ClickPill()" idMedicamento="'+idMedicamento+'"\n\
+        <div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'"\n\
         cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
