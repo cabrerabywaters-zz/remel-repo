@@ -489,51 +489,9 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
             
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
-          
-        //se redirecciona la vista de la pantalla hacia receta.
-          $('html, body').animate({
-            scrollTop: $("#tabConsulta").offset().top
-          }, 1000);
-        //se limpian los campos y se esconde el modal 
-        $('#detalleMedicamento').collapse('toggle');
-        $('#Medicamentos').val('');
-        $('#warnings').html('');
-        $('#boton_medicamentos').attr('disabled','disabled');
-        $('#detalleMedicamentoLabel').text('');
-        $('#idMedicamento').text('');
-        $('#descripcionMedicamento').text('');
-        $('#cantidadMedicamento').val('');
-        $('#frecuenciaMedicamento').val('');
-        $('#periodoMedicamento').val('');
-        $('#comentarioMedicamento').val('');
-        $('#tipoReceta').text('');
-        
-        var select = $('#diagnosticoAsociado')
-        select.val(jQuery('options:first', select).val());
-        }
-        
-        
-        
-                  
-     });
-            
-                       
-        
-        
-});//end ready
-
-$("#cancelar_cambios_receta").unbind('click').on('click',function(){
-        $('#detalleMedicamento').collapse('toggle');                 
-       
-                    }); //end on
-
-
-function ClickPill()
-        {
+        $('.editMedicamento').click(function(){
             //BOTON EDITAR
         //AUTOR: MAX SILVA mit master oviedo
-        
-        $('#editarMedicamento').tooltip({title:"editar Medicamento"}).unbind('click').on('click',function(){  
             
             var idRecetaEdit = $(this).parent().attr('idMedicamento');
             
@@ -587,6 +545,11 @@ function ClickPill()
             $('#guardar_cambios_receta').show().attr('disabled',false);
             $('#agregarMedicamento').hide();
             $('#detalleMedicamento').collapse('show');
+               $('html, body').animate({
+                     scrollTop: $("#detalleMedicamento").offset().top
+                 }, 500);
+            
+            
             
             $('#guardar_cambios_receta').unbind('click').on('click',function(){
                 
@@ -632,7 +595,45 @@ function ClickPill()
                 
             });
             
-        });//FIN BOTON EDITAR    
-   }
+            
+        });//end click   
+        //se redirecciona la vista de la pantalla hacia receta.
+          $('html, body').animate({
+            scrollTop: $("#tabConsulta").offset().top
+          }, 1000);
+        //se limpian los campos y se esconde el modal 
+        $('#detalleMedicamento').collapse('toggle');
+        $('#Medicamentos').val('');
+        $('#warnings').html('');
+        $('#boton_medicamentos').attr('disabled','disabled');
+        $('#detalleMedicamentoLabel').text('');
+        $('#idMedicamento').text('');
+        $('#descripcionMedicamento').text('');
+        $('#cantidadMedicamento').val('');
+        $('#frecuenciaMedicamento').val('');
+        $('#periodoMedicamento').val('');
+        $('#comentarioMedicamento').val('');
+        $('#tipoReceta').text('');
+        
+        var select = $('#diagnosticoAsociado')
+        select.val(jQuery('options:first', select).val());
+        }
+        
+        
+        
+                  
+     });
+            
+                       
+        
+        
+});//end ready
+
+$("#cancelar_cambios_receta").unbind('click').on('click',function(){
+        $('#detalleMedicamento').collapse('toggle');                 
+       
+                    }); //end on
+
+
        
 </script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->
