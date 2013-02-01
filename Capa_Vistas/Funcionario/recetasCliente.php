@@ -43,10 +43,10 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                     echo '<td>';
                     echo $valor;
                     echo '</td><td>';
-                    $medicamentosConsulta = Paciente::R_MedicamentosReceta($valor);
-                    for ($i = 0; $i < count($medicamentosConsulta); $i++) {
-                        echo $medicamentosConsulta[$i]['Nombre_Comercial'] . '</br>';
-                        echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosConsulta[$i]['idMedicamento'] . ', ' . $medicamentosConsulta[$i]['idReceta'] . ', ' . $medicamentosConsulta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button></br>';
+                    $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
+                    for ($i = 0; $i < count($medicamentosReceta); $i++) {
+                        echo $medicamentosReceta[$i]['Nombre_Comercial'] . '</br>';
+                        echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button></br>';
                     }
                 }
                 if ($llave == 'Nombre') {
