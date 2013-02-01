@@ -588,7 +588,7 @@ function ClickPill()
                 var periodo_medicamento = $('#periodoMedicamento').val();
                 var comentario_medicamento = $('#comentarioMedicamento').val();
                 var tipo_receta = $('#tipoReceta').text();
-                var diagnostico_asociado = $('#diagnosticoasociado').val();
+                var diagnostico_asociado = $('#diagnosticoAsociado').val();
                 var id_medicamento = $('#idMedicamento').val();
                 var fecha_inicio = $('input[name="fechaInicio"]').val();
               
