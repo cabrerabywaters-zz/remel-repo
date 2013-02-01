@@ -131,7 +131,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
        else if ($(this).attr('filtro')=="false2"){ // si se seleccionó busqueda avanzada
             $('html, body').animate({
          scrollTop: $("#tituloClase").offset().top
-     }, 500);
+        }, 500);
             $("#subclase").empty(); //limpio subclase
             $("#laboratorio").empty(); //limpio laboratorio
             $('#boton_medicamentos').attr("disabled", "disabled");

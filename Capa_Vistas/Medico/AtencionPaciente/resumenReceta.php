@@ -171,13 +171,8 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                     "idDiagnostico" : idDiagnostico,
                     "tipoDiagnostico" : tipoDiagnostico,
                     "comentarioDiagnostico" : comentarioDiagnostico,
-                    "medicamentos" : medicamentos,
-                    "unidadDeConsumo" : unidadDeConsumo,
-                    "unidadFrecuencia" : unidadFrecuencia,
-                    "unidadPeriodo" : unidadPeriodo,
-                    "fechaInicio" : fechaInicio,
-                    "fechaFin" : fechaFin
-                }); // se agrega el tipoDiagnostico al arreglo de diagnostico
+                    "medicamentos" : medicamentos
+                    }); // se agrega el tipoDiagnostico al arreglo de diagnostico
         }); // end each diagnostico
 
                 var sinDiagnostico = [];
