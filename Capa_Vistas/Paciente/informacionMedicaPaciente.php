@@ -9,7 +9,7 @@
         <div class="span5" id="alergias">
 
      <center> <div style="width: 50%; ;">
-   				 <table class="table table-hover">
+   				 <table class="table table-hover table-bordered ">
   				 <thead>
                      <tr>
                      <th colspan="2"><center>Alergias</center></th>                 
@@ -57,7 +57,7 @@
                     </tr>
                 </thead>
                 <tr><td>
-   <table class="table table-hover">
+   <table class="table table-hover table-bordered">
    <tbody>
   <?php  foreach ($condicionesPaciente as $datos => $dato)
    {
