@@ -407,6 +407,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $('#tipoReceta').text('');
                 var select = $('#diagnosticoAsociado')
                 select.val(jQuery('options:first', select).val());
+                
         });
  
        /*
@@ -454,7 +455,9 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
           
         }
         else{
-            $('#diagnosticoAsociado').parent().parent().addClass('error');
+            $('#diagnosticoAsociado').parent().parent().removeClass('error'); // se quita el error y 
+            $('.popover').hide();
+            
         // se obtienen los datos correspondientes del medicamento
         var nombreComercial = $('#detalleMedicamentoLabel').text();
         var idMedicamento = $('#idMedicamento').text();
@@ -471,13 +474,17 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         var fechaFin = $('input[name="fechaFin"]').val();
         var tipoReceta = $('#tipoReceta').text();
         
+        var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
+        var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
+        var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
+        
         // se arma el pill con la informacion del medicamento
         var pill = '\
         <div class="alert alert-success medicamentoRecetado" onClick="ClickPill()" idMedicamento="'+idMedicamento+'"\n\
         cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-        <strong>'+nombreComercial+'</strong>\n\
+        <strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidadMedicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuenciaMedicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodoMedicamento+' '+porCuanto+'\n\
         </div>';
             
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
