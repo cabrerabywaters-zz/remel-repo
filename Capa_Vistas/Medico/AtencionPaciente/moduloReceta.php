@@ -11,7 +11,27 @@ y el popup que muestra el detalle del medicamento
 <div id="collapseTwo2" class="accordion-body collapse">
 
           <div class="row-fluid">
-             <div class="span7 img-rounded">
+            <div class="span5"><div class="row-fluid"> 
+              <div class="img-rounded" style="background-color: blueviolet">
+                  <div class="row-fluid">
+                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
+                            <p><strong>Medicamentos Seleccionados:</strong></p>
+                            <div id="medicamentosRecetados" class="span11">
+                            </div>
+                    </div></div><!-- medicamentos seleccionados -->
+                    
+              </div></div><!-- row medicamentos -->
+              
+              <div class="span5 img-rounded">
+                  <div class="row-fluid collapse" id="detalleMedicamento">
+                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
+                            <?php include_once 'detalleMedicamento.php'; ?>
+                    </div></div><!-- medicamentos seleccionados -->
+                    
+              </div></div><!-- row medicamentos -->
+                </div></div>
+            
+          <div class="span7 img-rounded">
                 <div class="row-fluid">
                     
                     
@@ -55,35 +75,14 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                             <select id="medicamento" multiple="multiple" class ="span10" SIZE=6></select>
                     </div></div><!-- selector de medicamento -->
                 
-                    <div class="row-fluid"><div class="span12  img-rounded">
-                            
-                    </div></div><!-- boton de añadir a la receta -->        
-                    
                     <div class="row-fluid"><div class="span11  img-rounded">
-                 <a class="btn btn-warning span4 offset9" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+                 <a class="btn btn-warning span4" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
                     </div></div><!-- boton de emitir receta -->
                 
-                </div></div>
+               
               
-              <div class="span5 img-rounded" style="background-color: blueviolet">
-                  <div class="row-fluid">
-                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
-                            <p><strong>Medicamentos Seleccionados:</strong></p>
-                            <div id="medicamentosRecetados" class="span11">
-                            </div>
-                    </div></div><!-- medicamentos seleccionados -->
-                    
-              </div></div><!-- row medicamentos -->
-              
-              <div class="span5 img-rounded">
-                  <div class="row-fluid collapse" id="detalleMedicamento">
-                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
-                            <?php include_once 'detalleMedicamento.php'; ?>
-                    </div></div><!-- medicamentos seleccionados -->
-                    
-              </div></div><!-- row medicamentos -->
-         
-          </div><!-- row fluid-->
+                </div>
+          </div></div><!-- row fluid-->
           </div><!-- contenido del acordion-->
 </div><!-- body collapsable -->
 <script>
