@@ -14,7 +14,7 @@ echo 'Cantidad: <input type="text" class="span1 search-query" id="numero" value=
 echo '<br>';
 echo 'RUT Comprador: <input type="text" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
 echo '<br>';
-echo 'Precio: ' . $datosMedicamento['Precio_Referencia(CLP)'];
+echo 'Precio: ' . $datosMedicamento['Precio_Referencia_CLP'];
 echo '<br>';
 echo '<input class="btn btn-primary" disabled="disabled" id="expender" type="submit" value="Expender"></input>';
 echo '<button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Volver a Medicamentos</strong></button>';

@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
+include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
 //buscar Recetas del cliente
 ?>
 
@@ -15,8 +15,9 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
     <div class="accordion-inner">
         <?php
         //$fechaActual = date('y-m-d');
-        $fechaActual = date("Y-m-d H:i:s");
-        $recetasPaciente = Paciente::R_RecetasPacienteVigentes($_SESSION['idPaciente'], $fechaActual);
+        $idExpendedor = intval($_SESSION['logLugar']['idLugar']);
+        $medicamentosArsenal = Arsenal::R_MedicamentosEnArsenalPorExpendedor($idExpendedor);
+        if ($medicamentosArsenal){
         echo'
   <div class="row">
 
@@ -26,42 +27,32 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
    <table class="table table-striped">
 	<thead>
     <tr>
-    <th>Medico</td>
-    <th>Fecha de Emision</td>
-    <th>Fecha de Vencimiento</td>
-    <th>Medicamentos</td>
+    <th>Nombre Medicamento</td>
+    <th>Precio</td>
     </tr></thead>
     ';
-        foreach ($recetasPaciente as $datos => $dato) {
+        foreach ($medicamentosArsenal as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
-                if ($llave == 'Id_consulta') {
-                    echo '<td>';
-                    $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
-                    for ($i = 0; $i < count($medicamentosConsulta); $i++) {
-                        echo $medicamentosConsulta[$i]['Nombre_Comercial'] . '</br>';
-                    }
-                }
                 if ($llave == 'Nombre') {
                     echo '<td>';
                     echo $valor . ' ';
-                }
-                if ($llave == 'Apellido_Paterno') {
-                    echo $valor;
                     echo '</td>';
                 }
-                if ($llave == 'Fecha_Emision' || $llave == 'Fecha_Vencimiento') {
+                if ($llave == 'Precio') {
                     echo '<td>';
-                    echo $valor;
+                    echo $valor . ' ';
                     echo '</td>';
                 }
+
             }
-            echo '<td>';
-            echo 'Expender';
-            echo '</td>';
-            echo "</tr>";
+            echo '</tr>';
         }
         echo '</table></div></table></center></div>';
+        }
+        else {
+            echo 'el arsenal no tiene medicamentos';
+        }
         ?>
     </div>
 </div>

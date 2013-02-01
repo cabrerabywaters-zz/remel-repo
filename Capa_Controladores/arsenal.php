@@ -58,7 +58,7 @@ class Arsenal  {
         
     }
     public static function R_MedicamentosEnArsenalPorExpendedor($idExpendedor){
-        $queryString = 'SELECT Medicamentos.Nombre_Comercial, Medicamentos.Precio_Referencia
+        $queryString = 'SELECT Medicamentos.Nombre_Comercial as Nombre, Medicamentos.Precio_Referencia_CLP as Precio
                         FROM Medicamentos, Arsenal, Expendedores
                         WHERE Expendedores.idExpendedores = Arsenal.Expendedores_idExpendedores 
                         AND Expendedores.idExpendedores = '.$idExpendedor.'
@@ -66,10 +66,13 @@ class Arsenal  {
                         ';
         $query = CallQuery($queryString);
         $resultArray = array();
+        if ($query){
 	    while($fila = $query->fetch_assoc()) {
 	       $resultArray[] = $fila;
 	    }
 	return $resultArray;
+        }
+        else return false;
     }
 }
 
