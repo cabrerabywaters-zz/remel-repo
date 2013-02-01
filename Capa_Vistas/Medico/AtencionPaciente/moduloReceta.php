@@ -608,9 +608,25 @@ function ClickPill()
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
                 
-                
-                
+                        //se redirecciona la vista de la pantalla hacia receta.
+                  $('html, body').animate({
+                    scrollTop: $("#tabConsulta").offset().top
+                  }, 1000);
+                //se limpian los campos y se esconde el modal 
                 $('#detalleMedicamento').collapse('hide');
+                $('#Medicamentos').val('');
+                $('#warnings').html('');
+                $('#boton_medicamentos').attr('disabled','disabled');
+                $('#detalleMedicamentoLabel').text('');
+                $('#idMedicamento').text('');
+                $('#descripcionMedicamento').text('');
+                $('#cantidadMedicamento').val('');
+                $('#frecuenciaMedicamento').val('');
+                $('#periodoMedicamento').val('');
+                $('#comentarioMedicamento').val('');
+                $('#tipoReceta').text('');
+                
+                
                 $('#guardar_cambios_receta').hide();
                 $('#agregarMedicamento').show();
                 
