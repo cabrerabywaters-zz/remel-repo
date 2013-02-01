@@ -73,8 +73,9 @@ foreach ($tiposAlergias as $datos => $dato)
     
     $arrayAlergia = Alergia::Seleccionar("");
     
-  
+  echo "<option value='0'>Ver todas las alergias</option>";  
   foreach ($arrayAlergia as $campo=>$valor){
+    
     echo "<option value='".$valor['idAlergia']."' idTipo='".$valor['Tipo_idTipo']."'>".$valor['Nombre'] ."</option>";
     
   }
@@ -116,8 +117,9 @@ foreach ($tiposAlergias as $datos => $dato)
     
     $arrayCondicion = Condicion::Seleccionar("");
     
-  
+  echo "<option value='0'>Ver todas las condiciones</option>";  
   foreach ($arrayCondicion as $campo=>$valor){
+    
     echo "<option value='".$valor['idCondiciones']."'>". $valor['Nombre'] ."</option>";
     
   }
@@ -137,11 +139,15 @@ $('#Alergias').change(function(){
     var tipo = $('#Alergias').children().attr('idTipo');
     var alergia = $('#Alergias option=[value="'+valor+'"]').text();
     
-    
-       $('#alergias')
-       .val(alergia)
-       .removeAttr('idAlergia').attr('idAlergia',valor).attr('idTipo',tipo);
+    if( valor != 0){ 
+       $('#alergias').val(alergia).removeAttr('idAlergia').attr('idAlergia',valor);
+       $('#alergias').attr('idTipo',tipo);
+       
        $('#boton_alergias').removeAttr('disabled');
+    }
+    else{
+        $('#alergias').val('').removeAttr('idAlergia idTipo');
+    }
        
 }); //end change
 
@@ -150,10 +156,13 @@ $('#Condiciones_select').change(function(){
     var tipo = $('#Condiciones_select').val();
     var alergia = $('#Condiciones_select option=[value="'+valor+'"]').text();
     
-    
+        if( valor != 0){
        $('#Condiciones').val(alergia).removeAttr('idCondiciones').attr('idCondiciones',valor);
        $('#boton_condiciones').removeAttr('disabled');
-       
+        }
+        else{
+        $('#Condiciones').val('').removeAttr('idCondiciones');
+    }
 }); //end change
 
 
