@@ -131,7 +131,6 @@ foreach ($tiposAlergias as $datos => $dato)
 		  </div> 
   		</div>
       </div>
-    </div>
 <script>
 $('#Alergias').change(function(){
     var valor = $('#Alergias').val();

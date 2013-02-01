@@ -1,13 +1,12 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion4" href="#collapseFour1">
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
         Calculadora Pestaña aun no esta lista !! Testiando tablas para despliege de datos
       </a>
     </div>
-    <div id="collapseFour1" class="accordion-body collapse">
+    <div id="collapseFour" class="accordion-body collapse">
       <div class="accordion-inner">
           <div id="container">			
 			<h1>Live example</h1>
-			<div id="demo">
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 	<thead>
 		<tr>
@@ -433,7 +432,7 @@
 		</tr>
 	</tfoot>
 </table>
-			</div>
+
 
 		</div>
           
