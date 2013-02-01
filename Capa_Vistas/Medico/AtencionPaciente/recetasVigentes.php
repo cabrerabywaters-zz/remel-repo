@@ -6,6 +6,7 @@
     <div id="collapseThree" class="accordion-body collapse">
       <div class="accordion-inner">
         <?php
+        print_r($recetas);
         echo'
   <div class="row">
 
@@ -24,12 +25,12 @@
         foreach ($recetas as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
-                if ($llave == 'Id_consulta'){
+                if ($llave == 'idReceta'){
                     echo '<td>';
 					echo $valor;
-                    $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
-                    for($i=0;$i<count($medicamentosConsulta);$i++){
-                        echo $medicamentosConsulta[$i]['Nombre_Comercial'].'</br>';
+                    $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
+                    for($i=0;$i<count($medicamentosReceta);$i++){
+                        echo $medicamentosReceta[$i]['Nombre_Comercial'].'</br>';
                     }
                 }
                 if ($llave == 'Nombre'){

@@ -39,15 +39,14 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
             foreach ($recetasPaciente as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
-                if ($llave == 'Id_consulta') {
+                if ($llave == 'Folio') {
                     echo '<td>';
-                    $medicamentosConsulta = Paciente::R_MedicamentosConsulta($valor);
+                    echo $valor;
+                    echo '</td><td>';
+                    $medicamentosConsulta = Paciente::R_MedicamentosReceta($valor);
                     for ($i = 0; $i < count($medicamentosConsulta); $i++) {
                         echo $medicamentosConsulta[$i]['Nombre_Comercial'] . '</br>';
                         echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosConsulta[$i]['idMedicamento'] . ', ' . $medicamentosConsulta[$i]['idReceta'] . ', ' . $medicamentosConsulta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button></br>';
-                    }
-                    for ($i = 0; $i < count($medicamentosConsulta); $i++) {
-                        
                     }
                 }
                 if ($llave == 'Nombre') {
@@ -58,7 +57,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                     echo $valor;
                     echo '</td>';
                 }
-                if ($llave == 'Fecha_Emision' || $llave == 'Folio') {
+                if ($llave == 'Fecha_Emision') {
                     echo '<td>';
                     echo $valor;
                     echo '</td>';
