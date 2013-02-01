@@ -488,13 +488,14 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
         
         // se arma el pill con la informacion del medicamento
+      
         var pill = '\
         <div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'"\n\
         cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-        <strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidadMedicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuenciaMedicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodoMedicamento+' '+porCuanto+'\n\
-        </div>';
+        <div class="infoMedicamento"><strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidadMedicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuenciaMedicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodoMedicamento+' '+porCuanto+'\n\
+        </div></div>';
             
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
@@ -507,7 +508,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
             $('#Medicamentos').val(
             $(this).parent().attr('medicamentos')
         );
-            
+           
             //$('#warnings').html('')
             
             $('#detalleMedicamentoLabel').text(
@@ -554,9 +555,9 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
             $('#guardar_cambios_receta').show().attr('disabled',false);
             $('#agregarMedicamento').hide();
             $('#detalleMedicamento').collapse('show');
-            $('html, body').animate({
-                scrollTop: $("#detalleMedicamento").offset().top
-            }, 500);
+               $('html, body').animate({
+                     scrollTop: $("#detalleMedicamento").offset().top
+                 }, 500);
             
             
             
@@ -570,8 +571,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 var diagnostico_asociado = $('#diagnosticoAsociado').val();
                 var id_medicamento = $('#idMedicamento').val();
                 var fecha_inicio = $('input[name="fechaInicio"]').val();
-              
-                
+             
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('periodomedicamento',periodo_medicamento);
@@ -580,6 +580,13 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
                 
+                $('.infoMedicamento').html('');
+                var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
+                var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
+                var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
+                $('.infoMedicamento').html('<strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidad_medicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia_medicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo_medicamento+' '+porCuanto)
+        
+              
                         //se redirecciona la vista de la pantalla hacia receta.
                   $('html, body').animate({
                     scrollTop: $("#tabConsulta").offset().top
@@ -597,19 +604,18 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $('#periodoMedicamento').val('');
                 $('#comentarioMedicamento').val('');
                 $('#tipoReceta').text('');
-                
-                
                 $('#guardar_cambios_receta').hide();
                 $('#agregarMedicamento').show();
                 
             });
-            
-            
+         
+                    
         });//end click   
         //se redirecciona la vista de la pantalla hacia receta.
           $('html, body').animate({
             scrollTop: $("#tabConsulta").offset().top
           }, 1000);
+          
         //se limpian los campos y se esconde el modal 
         $('#detalleMedicamento').collapse('toggle');
         $('#Medicamentos').val('');
@@ -623,9 +629,11 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
         $('#tipoReceta').text('');
-        
+       
+         
         var select = $('#diagnosticoAsociado')
         select.val(jQuery('options:first', select).val());
+        
         }
         
         
@@ -633,8 +641,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                   
      });
             
-                       
-        
+                        
         
 });//end ready
 
