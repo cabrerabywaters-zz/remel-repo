@@ -7,8 +7,7 @@ class Arsenal  {
 
     static $nombreTabla = "Alergia_has_Paciente";
     static $nombreIdTabla = "Expendedores_idExpendedores";
-    static $nombreIdTabla1 = "Expendedores_Sucursales_RUT";
-    static $nombreIdTabla2 = "Medicamentos_idMedicamento";
+    static $nombreIdTabla1 = "Medicamentos_idMedicamento";
     
     /**
      * Insertar
@@ -16,8 +15,8 @@ class Arsenal  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($id1, $id2, $id3) {
-        $id = array($id1,$id2,$id3);
+    public static function Insertar($id1, $id2) {
+        $id = array($id1,$id2);
        
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -28,8 +27,8 @@ class Arsenal  {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId($id1, $id2, $id3) {
-        $id = array($id1,$id2,$id3);
+    public static function BorrarPorId($id1, $id2) {
+        $id = array($id1,$id2);
         
         $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
         
@@ -49,17 +48,29 @@ class Arsenal  {
    public static function Actualizar() {
        
     	$id1 = $_POST['Expendedores_idExpendedores'];
-        $id2 = $_POST['Expendedores_Sucursales_RUT'];
-        $id3 = $_POST['Medicamentos_idMedicamento'];
+        $id2 = $_POST['Medicamentos_idMedicamento'];
 
-        $id = array($id1,$id2,$id3);
+        $id = array($id1,$id2);
         
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizarRelacion($where, $id, null, self::$nombreTabla);
         $query = CallQuery($queryString);
         
     }
-
+    public static function R_MedicamentosEnArsenalPorExpendedor($idExpendedor){
+        $queryString = 'SELECT Medicamentos.Nombre_Comercial, Medicamentos.Precio_Referencia
+                        FROM Medicamentos, Arsenal, Expendedores
+                        WHERE Expendedores.idExpendedores = Arsenal.Expendedores_idExpendedores 
+                        AND Expendedores.idExpendedores = '.$idExpendedor.'
+                        AND Arsenal.Medicamentos_idMedicamento = Medicamentos.idMedicamento
+                        ';
+        $query = CallQuery($queryString);
+        $resultArray = array();
+	    while($fila = $query->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	return $resultArray;
+    }
 }
 
 ?>
