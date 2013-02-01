@@ -22,7 +22,7 @@ y el popup que muestra el detalle del medicamento
                     
               </div></div><!-- row medicamentos -->
               
-              <div class="span5 img-rounded">
+              <div class="img-rounded">
                   <div class="row-fluid collapse" id="detalleMedicamento">
                     <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
                             <?php include_once 'detalleMedicamento.php'; ?>
@@ -248,9 +248,8 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 }, 2000);
              
 	 }); // change
-
-     
-       
+</script><!-- script de los cambios de subclases -->
+<script>
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
                 $.ajax({
@@ -341,7 +340,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                              * en esta funcion se utilizan los valores de los campos de medicamento y
                              * se modifica el modal para llenar los campos relativos al medicamento
                             */
-                            
+                            alert(data);
                              var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento             
 
 

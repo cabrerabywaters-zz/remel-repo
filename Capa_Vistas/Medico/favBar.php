@@ -48,6 +48,7 @@
                 WHERE Medicamentos_idMedicamento = idMedicamento
                 AND Laboratorio_idLaboratorio = Laboratorios.ID
                 AND Medicos_idMedico = '$idMedico' GROUP BY idMedicamento";
+            
             $res = CallQuery($queryString);
             while ($row = $res->fetch_assoc()) {
                 $nombre = $row['Nombre_Comercial'] . "-" . $row['Nombre'];
@@ -69,13 +70,16 @@
                             $idFav = $favRP['ID'];
                             $nombreCorto = $favRP['Nombre_Corto'];
                             $cantidad = $favRP['Cantidad'];
-                            $unidadConsumo = $favRP['Unidad_de_Consumo_idUnidad_de_consumo'];
+                            $unidadConsumo = $favRP['unidadConsumo'];
+                            $idUnidadConsumo = $favRP['idUnidadConsumo'];
                             $frecuencia = $favRP['Frecuencia'];
-                            $unidadFrecuencia = $favRP['Unidad_Frecuencia_ID'];
+                            $unidadFrecuencia = $favRP['unidadFrecuencia'];
+                            $idUnidadFrecuencia = $favRP['idUnidadFrecuencia'];
                             $periodo = $favRP['Periodo'];
-                            $unidadPeriodo = $favRP['Unidad_Periodo_ID'];
-                       echo "<li><a href='#' class='addFavRP' idFavRP='".$idFav."' cantidad='".$cantidad."' unidadConsumo='".$unidadConsumo."'
-                            frecuencia='".$frecuencia."' unidadFrecuencia='".$unidadFrecuencia."' periodo='".$periodo."' unidadPeriodo='".$unidadPeriodo."'>".$nombreCorto."</a></li>";
+                            $unidadPeriodo = $favRP['unidadPeriodo'];
+                            $idUnidadPeriodo = $favRP['idUnidadPeriodo'];
+                       echo "<li><a href='#' class='addFavRP' idFavRP='".$idFav."' cantidad='".$cantidad."' unidadConsumo='".$unidadConsumo."' idUnidadConsumo='".$idUnidadConsumo."'
+                            frecuencia='".$frecuencia."' unidadFrecuencia='".$unidadFrecuencia."' idUnidadFrecuencia='".$idUnidadFrecuencia."' periodo='".$periodo."' unidadPeriodo='".$unidadPeriodo."' idUnidadPeriodo='".$idUnidadPeriodo."'>".$nombreCorto."</a></li>";
                             
                     }
                 
@@ -172,20 +176,24 @@
            var idMedicamento = divPadre.attr('identificador');
            var nombreComercial = divPadre.children('strong').text();
            var cantidad = $(this).attr('cantidad');
-           var unidadConsumo = $(this).attr('unidadConsmo');
+           var unidadConsumo = $(this).attr('idUnidadConsmo');
            var frecuencia = $(this).attr('frecuencia');
-           var unidadFrecuencia = $(this).attr('unidadFrecuencia');
+           var unidadFrecuencia = $(this).attr('idUnidadFrecuencia');
            var periodo = $(this).attr('periodo');
-           var unidadPeriodo = $(this).attr('unidadPeriodo');
+           var unidadPeriodo = $(this).attr('idUnidadPeriodo');
            var fechaInicio = "<?php $hoy=getdate(); echo $hoy['month'].'/'.$hoy['mday'].'/'.$hoy['year'];?>";
            
+           var cuanto = $(this).attr('unidadConsumo'); // nombre de la unidad de consumo
+           var cadaCuanto = $(this).attr('unidadFrecuencia'); //nombre de la unidad de frecuencia
+           var porCuanto = $(this).attr('unidadPeriodo');
+           
            var pill = '\
-            <div class="alert alert-success medicamentoRecetado" onClick="ClickPill()" idMedicamento="'+idMedicamento+'"\n\
+            <div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'"\n\
             cantidadMedicamento="'+cantidad+'" unidadDeConsumo="'+unidadConsumo+'" frecuenciaMedicamento="'+frecuencia+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodo+'" unidadPeriodo="'+unidadPeriodo+'"\n\
             comentarioMedicamento=" " diagnosticoAsociado="0" fechaInicio="'+fechaInicio+'" fechaFin=" ">\n\
             <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-            <strong>'+nombreComercial+'</strong>\n\
-            </div>';
+            <div class="infoMedicamento"><strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidad+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo+' '+porCuanto+'\n\
+            </div></div>';
                 
            $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
            
@@ -202,6 +210,120 @@
                $('#consultaToggle').children().click();
                $('#moduloReceta').click();
            }
+
+           $('.editMedicamento').click(function(){
+            //BOTON EDITAR
+        //AUTOR: MAX SILVA mit master oviedo
+            
+            var idRecetaEdit = $(this).parent().attr('idMedicamento');
+            
+            $('#Medicamentos').val(
+            $(this).parent().attr('medicamentos')
+        );
+           
+            //$('#warnings').html('')
+            
+            $('#detalleMedicamentoLabel').text(
+            $(this).parent().children('strong').text()
+        );
+            
+            /*$('#idMedicamento').text(
+            $(this).parent().attr('idmedicamento')
+                );
+            
+            $('#descripcionMedicamento').text(
+            $(this).parent().attr('descripcionmedicamento').text()
+        ); */
+            
+            $('#cantidadMedicamento').val(
+            $(this).parent().attr('cantidadmedicamento')
+        );
+            
+            $('#frecuenciaMedicamento').val(
+            $(this).parent().attr('frecuenciamedicamento')
+        );
+            
+            $('#periodoMedicamento').val(
+            $(this).parent().attr('periodomedicamento')
+        );
+            
+            $('#comentarioMedicamento').val(
+            $(this).parent().attr('comentariomedicamento')
+        );
+            
+            $('#tipoReceta').text(
+            $(this).parent().attr('tiporeceta')
+        );
+            
+            $('#diagnosticoAsociado').val(
+            $(this).parent().attr('diagnosticoasociado')
+        );
+            
+            $('input[name="fechaInicio"]').val(
+            $(this).parent().attr('fechainicio')
+        );
+               
+            
+            $('#guardar_cambios_receta').show().attr('disabled',false);
+            $('#agregarMedicamento').hide();
+            $('#detalleMedicamento').collapse('show');
+               $('html, body').animate({
+                     scrollTop: $("#detalleMedicamento").offset().top
+                 }, 500);
+            
+            
+            
+            $('#guardar_cambios_receta').unbind('click').on('click',function(){
+                
+                var cantidad_medicamento = $('#cantidadMedicamento').val();
+                var frecuencia_medicamento = $('#frecuenciaMedicamento').val();
+                var periodo_medicamento = $('#periodoMedicamento').val();
+                var comentario_medicamento = $('#comentarioMedicamento').val();
+                var tipo_receta = $('#tipoReceta').text();
+                var diagnostico_asociado = $('#diagnosticoAsociado').val();
+                var id_medicamento = $('#idMedicamento').val();
+                var fecha_inicio = $('input[name="fechaInicio"]').val();
+             
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('periodomedicamento',periodo_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('comentariomedicamento',comentario_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
+                
+                $('.infoMedicamento').html('');
+                var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
+                var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
+                var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
+                $('.infoMedicamento').html('<strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidad_medicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia_medicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo_medicamento+' '+porCuanto)
+        
+              
+                        //se redirecciona la vista de la pantalla hacia receta.
+                  $('html, body').animate({
+                    scrollTop: $("#tabConsulta").offset().top
+                  }, 1000);
+                //se limpian los campos y se esconde el modal 
+                $('#detalleMedicamento').collapse('hide');
+                $('#Medicamentos').val('');
+                $('#warnings').html('');
+                $('#boton_medicamentos').attr('disabled','disabled');
+                $('#detalleMedicamentoLabel').text('');
+                $('#idMedicamento').text('');
+                $('#descripcionMedicamento').text('');
+                $('#cantidadMedicamento').val('');
+                $('#frecuenciaMedicamento').val('');
+                $('#periodoMedicamento').val('');
+                $('#comentarioMedicamento').val('');
+                $('#tipoReceta').text('');
+                $('#guardar_cambios_receta').hide();
+                $('#agregarMedicamento').show();
+                
+            });
+         
+                    
+        });//end click 
+    
 
        });// end click 
       });// end ready
