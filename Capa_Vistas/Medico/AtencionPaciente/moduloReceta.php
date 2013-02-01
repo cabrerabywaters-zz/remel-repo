@@ -244,9 +244,9 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $('#detalleMedicamentoLabel').html($('#medicamento :selected').text()); // set del titulo
                 $('#detalleMedicamento').collapse('show'); // se abre el div para ingresar datos
                
-                   $('html, body').animate({
-         scrollTop: $("#diagnosticoAsociado").offset().top
-     }, 2000);
+                $('html, body').animate({ // se mueve la pantalla al div para facilidad del usuario
+                scrollTop: $("#detalleMedicamento").offset().top
+                }, 2000);
              
 	 }); // change
 
@@ -384,10 +384,13 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         //funcion que reacomoda la pantalla cuando se hace click en receta
       
         $("#moduloReceta").click(function() {
-   $('html, body').animate({
-         scrollTop: $("#tabConsulta").offset().top
-     }, 500);
-});
+            $('html, body').animate({
+            scrollTop: $("#tabConsulta").offset().top
+            }, 500); // animate
+        
+            
+    
+        });//on click
       
         
         /*
@@ -545,9 +548,9 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
             $('#guardar_cambios_receta').show().attr('disabled',false);
             $('#agregarMedicamento').hide();
             $('#detalleMedicamento').collapse('show');
-               $('html, body').animate({
-                     scrollTop: $("#detalleMedicamento").offset().top
-                 }, 500);
+            $('html, body').animate({
+                scrollTop: $("#detalleMedicamento").offset().top
+            }, 500);
             
             
             
