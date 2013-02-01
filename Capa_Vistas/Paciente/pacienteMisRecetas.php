@@ -26,9 +26,7 @@
        <tbody>
        
            
-           <?php
-		   print_r($_SESSION);
-		   
+           <?php		   
                include_once(dirname(__FILE__)."/../../Capa_Controladores/paciente.php");
                
                $historialRecetas = Paciente::SeleccionarRecetaPorId($idPaciente);
