@@ -45,22 +45,18 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
   </div>
    
   <div class="modal-footer">
-    <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true"><br><strong>Cancelar Emisión</strong><br><br></button>
-    <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><br><strong><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
-    
-    <button class="btn btn-success terminar" style="display:none;"><br><strong>Volver al Menú<br><br></strong></button>
-    <br>
     <form method="post" action="resumenReceta.php">
           <textarea name="content" id="content" style="display:none;">
-
           </textarea>
-       <center> <input type="submit" name="submit" id="submit" value="Imprimir Receta" class="btn imprimir" style="display:none;"></input>
-           
-       </center>
-      </form>
-      
-  
-  </div>
+    <center><button type="submit" id="submit" class="btn imprimir" style="display:none;"><strong><br>Imprimir Receta</strong><br><i class="icon-print"></i><br></button>
+    </center>
+    </form>
+    <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong><br>Cancelar Emisión</strong><br><br></button>
+    <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><br><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
+    
+    <center><button class="btn btn-success terminar" style="display:none;"><strong><br>Volver al Menú<br><br></strong></button>
+    </center>
+  </div><!-- modal footer -->
 
 </div><!-- modal de resumen de la receta -->
 
@@ -226,6 +222,7 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                              
                             //Se esconde el boton de confirmar emision
                             $('.confirmarEmision').hide();
+                            $('.cancelarEmision').hide();
                             
                             //Se muestran los botones de terminar e imprimir
                              $('.imprimir').show();
