@@ -59,7 +59,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
       
     </div><!-- Fin del tab consulta-->
     
-	<div class="tab-pane img-rounded" id="tabCalculadora"> <!--tab calculadora-->
+	<?php /* <div class="tab-pane img-rounded" id="tabCalculadora"> <!--tab calculadora-->
 
         <div class="accordion" id="accordion4"> <!--accordion calculadora-->
   
@@ -71,7 +71,7 @@ include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezad
         
         </div>  <!--accordion calculadora-->
       
-    </div> <!--Fin del tab calculadora-->
+    </div> <!--Fin del tab calculadora--> */ ?>
     
     
     
