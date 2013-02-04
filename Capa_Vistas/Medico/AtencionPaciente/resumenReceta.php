@@ -34,9 +34,9 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
   <div class="modal-body" id="contenidoReceta">
       <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4>
       <div class="row-fluid datosResumen">
-          <div class="pull-left span4" style="background-color: #0063DC">Doctor:<br> <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div>
-          <div class="span4" style="background-color: #0063DC">Logo</div>
-          <div class="pull-right span4" style="background-color: #0063DC">Paciente:<br> <strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div>
+          <div class="span4">Doctor:<br> <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div>
+          <div class="span4"><img src="../../../imgs/clip_image002.jpg" width="120px" height="130px"></div>
+          <div class="span4">Paciente:<br> <strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div>
           
       </div><!-- en este div van los datos del doctor y del paciente que está siendo -->
       <hr>
@@ -44,7 +44,11 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
       <strong>RP:</strong><br>    
       
       </div>
-      
+      <div>
+          <hr>
+          <div class="remelLogo pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div>
+          <div style="margin-left: 10px"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div>
+      </div><!-- footer receta fisica -->
   </div>
   <div class="modal-footer">
     <form method="post" action="resumenReceta.php">
@@ -85,25 +89,31 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
+               var unidadConsumo = $(this).children('.infoMedicamento').children('.unidadConsumo').text()
                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
+               var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
+               var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
                 
-               $('#resumen').append('<h5>'+nombreComercial+'-- '+cantidadMedicamento+' cada '+frecuenciaMedicamento+' hrs, por '+periodoMedicamento+' días.</h5>'); 
+               $('#resumen').append('<h5>'+nombreComercial+' -- '+cantidadMedicamento+' '+unidadConsumo+' cada '+frecuenciaMedicamento+' '+unidadFrecuencia+', por '+periodoMedicamento+' '+unidadPeriodo+'.</h5>'); 
             })// end each medicamento
           $('#resumen').append('<hr>'); //linea  
             
         });// end each Diagnostico
         
         $('div[diagnosticoAsociado="0"]').each(function(){
-               var nombreComercial = $(this).text()
+               var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
+               var unidadConsumo = $(this).children('.infoMedicamento').children('.unidadConsumo').text()
                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
+               var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
-               $('#resumen').append('<h5>'+nombreComercial+'--'+cantidadMedicamento+' cada '+frecuenciaMedicamento+' hrs, por '+periodoMedicamento+' días.</h5>');
+               var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
+               $('#resumen').append('<h5>'+nombreComercial+' <br>-- '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>');
         }); // end each medicamento
         
-        $('#resumen').append('<hr>'); //linea
+//        $('#resumen').append('<hr>'); //linea
         $('.confirmarEmision').removeAttr('disabled');
         $('#resumen').modal('show');
        }// end if
