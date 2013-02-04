@@ -24,18 +24,21 @@ class Direccion {
     }
     
     public static function InsertarConDatos($calle, $nCalle, $Comuna) {
-    	$datosCreacion = array(
+    	/*$datosCreacion = array(
                            array('Calle',$calle),
 				array('Numero',$nCalle),
-				array('Comuna_idComuna',$Comuna)       );
+				array('Comuna_idComuna',$Comuna)       );*/
 
-        $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        //$queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
+        $queryString = 'INSERT INTO Direcciones (Calle, Numero, Comuna_idComuna) 
+                        VALUES ("'.$calle.'","'.$nCalle.'","'.$Comuna.'")';
         $query = CallQuery($queryString);
     }
     public static function BuscarIdDireccion($calle, $nCalle, $Comuna){
         $queryString = 'SELECT idDireccion FROM Direcciones WHERE Calle = "'.$calle.'" AND Numero = "'.$nCalle.'" AND Comuna_idComuna = "'.$Comuna.'"';
         $result = CallQuery($queryString);
-        if($result) return $result->fetch_assoc();
+        if($result){ return $result->fetch_assoc();}
+        else{return false;}        
     }
     /**
      * BorrarPorId

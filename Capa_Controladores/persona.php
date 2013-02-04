@@ -196,12 +196,13 @@ class Persona {
         $idSeguro = Seguro::BuscarNombreExacto($seguro);
         $idSeguro = $idSeguro['idSeguros'];
         $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $comuna);
-        $idDireccion = $idDireccion['idDireccion'];
+        if ($idDireccion) $idDireccion = $idDireccion['idDireccion'];
         $idPrevision = Prevision::BuscarIdPrevisionPorNombreExacto($prevision);
         $idPrevision = $idPrevision['rut'];
         if ($idDireccion == false) {
-            Direccion::InsertarConDatos($calle, $nCalle, $comuna);
+            $nuevaDireccion = Direccion::InsertarConDatos($calle, $nCalle, $comuna);
             $idDireccion = Direccion::BuscarIdDireccion($calle, $nCalle, $comuna);
+            if ($idDireccion) $idDireccion = $idDireccion['idDireccion'];
         }
         $datosAnteriores = Persona::BuscarDatosAnteriores($run);
         $cambios = array();
@@ -230,7 +231,7 @@ class Persona {
         foreach ($cambios as $key => $value) {
             $log = Log::InsertarModificacionDatosPaciente(date('Y-m-d H:i:s'), $key, $value[1], $value[0], $value[2], $_SESSION["RUTPaciente"], $_SESSION['idMedicoLog']);
         }
-        $actualizar = Persona::ActualizarDatos($nCelular, $nFijo, $idDireccion[0], $peso, $altura, $idPrevision, $run, $idSeguro);
+        $actualizar = Persona::ActualizarDatos($nCelular, $nFijo, $idDireccion, $peso, $altura, $idPrevision, $run, $idSeguro);
         return true;
     }
 
