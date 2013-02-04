@@ -7,16 +7,18 @@ class FavoritosRp {
 static $nombreTabla = "Favoritos_RP";
 static $nombreIdTabla = "ID";
 
- public static function Insertar() {
+ public static function Insertar($idMedicamento, $idMedico, $cantidad, $frecuencia, $unidadDeFrecuencia, $periodo, $unidadDeConsumo, $unidadDePeriodo, $via, $nombreCorto) {
     	$datosCreacion = array(
-                                array('Medicamento_idMedicamento',$_POST['idMedicamento']),
-                                array('Medicos_idMedico',$_POST['idMedico']),
-                                array('Cantidad',$_POST['cantidad']),
-                                array('Frecuencia',$_POST['frecuencia']),
-                                array('Unidad_Frecuencia_ID',$_POST['ID']),
-                                array('Periodo',$_POST['periodo']),
-                                array('Unidad_de_Consumo_idUnidad_de_Consumo',$_POST['idUnidad_de_Consumo']),
-                                array('Unidad_Periodo_ID',$_POST['ID'])
+                                array('Medicamento_idMedicamento',$idMedicamento),
+                                array('Medicos_idMedico',$idMedico),
+                                array('Cantidad',$cantidad),
+                                array('Frecuencia',$frecuencia),
+                                array('Unidad_Frecuencia_ID',$unidadDeFrecuencia),
+                                array('Periodo',$periodo,
+                                array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadDeConsumo),
+				array('Unidad_Periodo_ID',$unidadDePeriodo),
+				array('Vias_idVias',$via),
+				array('Nombre_Corto',$nombreCorto)	
                                 );
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);

@@ -6,7 +6,7 @@ include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 class DiagnosticoComun  {
 
     static $nombreTabla = "Diagnosticos_Comunes";
-    static $nombreIdTabla = "Medico_idMedico";
+    static $nombreIdTabla = "Medicos_idMedico";
     static $nombreIdTabla1 = "Diagnosticos_idDiagnostico";
     
     /**
@@ -15,15 +15,17 @@ class DiagnosticoComun  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar() {
-    	$id1 = $_POST['Medico_idMedico'];
-        $id2 = $_POST['Diagnosticos_idDiagnostico'];
-        $id = array($id1,$id2);
+    public static function Insertar($idMedico, $idDiagnostico){
+        $id = array(
+			array(self::$nombreIdTabla,$idMedico),
+			array(self::$nombreIdTabla1,$idDiagnostico)
+		);
         $datos = array(
-                            array('Fecha_creacion','NOW()')
+                            array('Fecha_creacion',date("Y-m-d H:i:s"))
                                       );
         $queryString = QueryStringCrearRelacion($id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
+	return $query;
     }
 
     /**
@@ -31,15 +33,14 @@ class DiagnosticoComun  {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId() {
-        $id1 = $_POST['Medico_idMedico'];
-        $id2 = $_POST['Diagnosticos_idDiagnostico'];
-        $id = array($id1,$id2);
+    public static function BorrarPorId($idMedico, $idDiagnostico) {
+        $id = array($idMedico,$idDiagnostico);
         
         $nombreId = array(self::$nombreIdTabla,self::$nombreIdTabla1);
         
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
         $query = CallQuery($queryString);
+	echo $query;
     }
     
     /**
@@ -54,11 +55,13 @@ class DiagnosticoComun  {
      * @param int $offset
      * @returns array $resultArray
      */
-    public static function Seleccionar($where, $limit = 0, $offset = 0) {
+    public static function Seleccionar($idMedico, $limit = 0, $offset = 0) {
     	$atributosASeleccionar = array(
+					'Diagnosticos_idDiagnostico',
                                         'Fecha_creacion'
       );
         
+	$where = "WHERE Medicos_idMedico = '$idMedico'";
         $queryString = QueryStringSeleccionarRelacion($where, $atributosASeleccionar, self::$nombreTabla);
 
 	    if($limit != 0){
@@ -99,5 +102,6 @@ class DiagnosticoComun  {
     }
 
 }
+
 
 ?>

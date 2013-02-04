@@ -63,11 +63,12 @@ function QueryStringBorrarPorIdRelacion($nombreTabla, $nombreId, $id) {
     for ($i = 0; $i < count($nombreId); $i++) {
         if ($i == 0) {
             $deleteString = $deleteString . "WHERE ";
-        } else {
+        } 
+	else {
             $deleteString = $deleteString . "AND ";
         }
-        $nombreId[$i] = $idLeft;
-        $id[$i] = $idRight;
+        $idLeft = $nombreId[$i];
+        $idRight = $id[$i];
         $deleteString = $deleteString . "$idLeft=$idRight ";
     }
     return $deleteString;
