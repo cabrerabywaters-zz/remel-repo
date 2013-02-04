@@ -47,7 +47,7 @@
 	$condiciones = Paciente::R_CondicionPaciente($idPaciente);
 	$tiposAlergias = Paciente::AlergiasTipoPaciente($idPaciente);
 	$paciente = array_merge($paciente1, $paciente2, $direccion);
-	$recetas = Paciente::RecetasPacienteMedico($idPaciente, $RUTMedico);
+	$recetas = Paciente::RecetasPacienteMedico($idPaciente);
         $seguro=$paciente1['Seguros_idSeguros'];
         $seguro = Seguro::Seleccionar("WHERE idSeguros = '$seguro'");
 	$seguro =$seguro[0];
