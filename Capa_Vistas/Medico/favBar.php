@@ -13,7 +13,8 @@
 
     <div id="diagnosticosFav" class="collapse">
         <div class="span10 offset1">
-		<?php
+		<center><input type="text" placeholder="Filtrar Diagnosticos Favoritos" id="filtrarDiagnosticosFav"></center>
+                    <?php
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnosticoComun.php");	
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnostico.php");
 	
@@ -30,6 +31,7 @@
 		<?php
 		}
 		?>
+            
         </div>
     </div>
     <!-- fin diagnosticos favoritos-->
@@ -42,7 +44,7 @@
     <div id="medicamentosFav" class="collapse in">
 
         <div class="span10 offset1">
-            <br>
+            <center><input type="text" placeholder="Filtrar Medicamentos Favoritos" id="filtrarMedicamentosFav"></center>
             <?php
             //session_start();
             include_once(dirname(__FILE__) . "/../../Capa_Datos/llamarQuery.php");
