@@ -15,6 +15,11 @@
         <link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet"><!-- css bootstrap-->
         
         <style> 
+            
+
+          
+            
+            
         /* Estilos de cargando de la barra respectiva*/
         .ui-autocomplete-loading {
         background: white url('../../img/ui-anim_basic_16x16.gif') right center no-repeat;
@@ -23,9 +28,17 @@
         <style type="text/css">
         
     body {
-        padding-top: 40px;
+        padding-top: 0px;
         padding-bottom: 40px;
-        background-color: white;
+       background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+
     }
     .dropdown-menu{
         z-index: 9999;
@@ -37,6 +50,7 @@
     ul.nav, .nav{
             
              background: whitesmoke;
+             
         }
     .tabbable-fluid{
         }
@@ -65,6 +79,12 @@
       color:white}
     .modal-body a:active {text-decoration: none;
       color:white}
+    
+    #navegador a{
+        
+      color:white;
+
+    }
         
 </style><!-- fin estilo de la pagina -->
   
@@ -87,36 +107,81 @@
         
         <div class="container-fluid"><!-- contenedor general -->
             
-            <div class="row-fluid img-rounded" style="background-color: whitesmoke"> <!--div superior-->
-                <div class="span3 img-rounded" style="background-color: whitesmoke"> <!-- div de la informacion del medico -->
+            <div class="row-fluid img-rounded" style="background-image: linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -o-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -moz-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -webkit-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -ms-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.94, rgb(28,117,189)),
+	color-stop(0.74, rgb(28,117,189)),
+	color-stop(0.87, rgb(28,117,189))
+);
+"> <!--div superior-->
+                <div class="span3 img-rounded" style=" color: white;background-image: linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -o-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -moz-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -webkit-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -ms-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.94, rgb(28,117,189)),
+	color-stop(0.74, rgb(28,117,189)),
+	color-stop(0.87, rgb(28,117,189))
+);
+"> <!-- div de la informacion del medico -->
                     <img class="img-rounded pull-left" src="<?php echo $medico['Foto']; ?>" style="width: 140px; height: 140px;">
                     <blockquote><center>
-                    <strong>Informacion Medico:<br></strong> 
+                    <strong>Información Médico<br></strong> 
                    <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
                     </center></blockquote>
                 </div> <!-- div de la informacion del medico -->
                 
-                <div class="img-rounded span6" style=" background-color:white"> <!-- informacion de la institucion  -->
+                <div class="img-rounded span6" style="color: white;"> <!-- informacion de la institucion  -->
+                     <center> <img class="img-rounded " src="../../../imgs/logo-remel.png" style="width: 230px; height: 80px;"></center>
                     <center><h2><?php 
 					$lugar=$_SESSION['logLugar']; 
-					echo $lugar['nombreLugar'].", ".$lugar['nombreSucursal'];					
+					echo "<center><h3>".$lugar['nombreLugar']."</h3></center>"."<center>".$lugar['nombreSucursal']."</center>";					
 					
                     // esto se puede eliminar si es que no van a utilizar el span para agregar algo
+                                        
                      echo   ' <span id="consulta" style="VISIBILITY:hidden;display:none">'.$_SESSION['idConsulta'].'</span>'; 
                                          ?>
+                           
                             </h2>
                     </center>
                 </div> <!-- informacion de la institucion  --> 
                 
-                <div class="span3 pull-right img-rounded" style=" background-color: whitesmoke"><!-- información del paciente -->
-                    <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 140px; height: 140px;">
-                    <blockquote><center>
+                <div class="span3 pull-right img-rounded" style=" color: white;background-image: linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -o-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -moz-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -webkit-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+background-image: -ms-linear-gradient(bottom, rgb(28,117,189) 94%, rgb(28,117,189) 74%, rgb(28,117,189) 87%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.94, rgb(28,117,189)),
+	color-stop(0.74, rgb(28,117,189)),
+	color-stop(0.87, rgb(28,117,189))
+);
+"><!-- información del paciente -->
+                    <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 140px; height: 140px; background-color: #26abe0;">
+                   <center>
                      <!-- validación del rut ingresado -->
-                    <strong>Paciente:<br></strong><table>
+                    <strong>Información Paciente<br></strong><table>
                     <tr><td><?php 
 					if($paciente['Sexo']=="1")
 					{
-					echo " Sr.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ";	
+					echo " <center>Sr.</center>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ";	
 					}
 					else
 					{
@@ -191,25 +256,25 @@
 					}
 					else
 					{ 
-					echo $valorfinal;
+					echo "<center>".$valorfinal."</center>";
 					}
 					
 					 ?></td></tr></table>
 
-                    </center></blockquote>
+                    </center>
                 </div> <!-- información del paciente -->
             </div><!-- cierre div superior-->
             
             <div class="tabbable-fluid"><!-- div contenido --> 
                 
-                <ul class="nav nav-tabs img-rounded" style="background: rgb(242,245,246); /* Old browsers */
-background: -moz-linear-gradient(45deg,  rgba(242,245,246,1) 0%, rgba(227,234,237,1) 37%, rgba(200,215,220,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(242,245,246,1)), color-stop(37%,rgba(227,234,237,1)), color-stop(100%,rgba(200,215,220,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* IE10+ */
-background: linear-gradient(45deg,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+                <ul class="nav nav-tabs img-rounded"  id="navegador" style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
 "><!-- barra de navegacion -->
                     <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
                     <li id="consultaToggle"><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
