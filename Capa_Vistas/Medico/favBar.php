@@ -39,7 +39,7 @@
         <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Medicamentos Favoritos
     </button>
 
-    <div id="medicamentosFav" class="collapse">
+    <div id="medicamentosFav" class="collapse in">
 
         <div class="span10 offset1">
             <br>
