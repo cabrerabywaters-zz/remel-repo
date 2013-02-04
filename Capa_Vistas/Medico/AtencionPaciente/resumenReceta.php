@@ -88,10 +88,9 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
     <form method="post" action="resumenReceta.php">
     <textarea name="content" id="content" style="display:none;"> </textarea>
     <center><button type="submit" id="submit" class="btn imprimir" style="display:none;"><strong>Imprimir Receta</strong> <i class="icon-print"></i></button>
-    <button class="btn btn-success terminar" style="display:none;"><strong>Volver al Menú</strong></button></center>
+    
     </form>
-    
-    
+    <button class="btn btn-success terminar" style="display:none;"><strong>Volver al Menú</strong></button></center>
     <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Cancelar Emisión</strong></button>
     <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><i class="icon-check icon-white"></i>Firmar Emisión</strong></button>
     
