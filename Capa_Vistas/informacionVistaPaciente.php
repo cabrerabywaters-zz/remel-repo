@@ -52,6 +52,7 @@ $diagnosticosPaciente = Paciente::R_DiagnosticoPaciente($idPaciente);
 $recetasPaciente = Paciente::R_RecetasPaciente($idPaciente);
 $condicionesPaciente = Paciente::R_CondicionPaciente($idPaciente);
 $alergiasPaciente= Paciente::AlergiasTipoPaciente($idPaciente);
+$historialPaciente = Paciente::SeleccionarDiagnosticosPorId($idPaciente);
 
 $paciente = array_merge($infoPaciente, $infoPersona, $direccion);
 $seguro=$infoPaciente['Seguros_idSeguros'];

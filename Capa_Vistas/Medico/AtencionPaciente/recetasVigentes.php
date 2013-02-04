@@ -5,24 +5,26 @@
     </div>
     <div id="collapseThree" class="accordion-body collapse">
       <div class="accordion-inner">
-        <?php
-        print_r($recetas);
-        echo'
+
   <div class="row">
 
   <center> <div style="width: 50%; ;">
-  <table>
-                <tr><td>
-   <table class="table table-striped">
+  <script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+                             $('#tablaRecetasVigentes').dataTable();
+                        });
+		</script>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaRecetasVigentes">
 	<thead>
-    <tr>
-    <th>Medico</td>
-    <th>Fecha de Emision</td>
-    <th>Fecha de Vencimiento</td>
-    <th>Medicamentos</td>
-    </tr></thead>
-    ';
-        foreach ($recetas as $datos => $dato) {
+		<tr>
+			<th>Medico</th>
+			<th>Fecha de Emision</th>
+			<th>Fecha de Vencimiento</th>
+			<th>Medicamentos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($recetas as $datos => $dato) {
             echo "<tr>";
             foreach ($dato as $llave => $valor) {
                 if ($llave == 'idReceta'){
@@ -49,7 +51,21 @@
             }
             echo "</tr>";
         }
-        echo '</table></div></table></center></div>';
-        ?>
-    </div>
+		?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<tr>
+			<th>Medico</th>
+			<th>Fecha de Emision</th>
+			<th>Fecha de Vencimiento</th>
+			<th>Medicamentos</th>
+		</tr>
+	</tfoot>
+</table>
+          
+</div>
+</center>
+</div>
+</div>
 </div>

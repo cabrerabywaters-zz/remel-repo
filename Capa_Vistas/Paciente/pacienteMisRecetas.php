@@ -27,12 +27,12 @@
 
 
                                         <?php
-                                        print_r($_SESSION);
+                                        
 
                                         include_once(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
 
                                         $historialRecetas = Paciente::SeleccionarRecetaPorId($idPaciente);
-
+											print_r($historialRecetas);
                                         foreach ($historialRecetas as $lineaRecetas) {
                                             echo "<tr folio='" . $lineaRecetas['folio'] . "'>";
                                             echo "<td>" . $lineaRecetas["folio"] . "</td>";
