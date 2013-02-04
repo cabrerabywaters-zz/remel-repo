@@ -14,11 +14,19 @@
  <table class="table table-bordered table-hover">
   				 <thead>
                      <tr>
-                     <th colspan="2"><center>Alergias / Intolerancias</center></th>                 
+                     <th colspan="2" style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h4>Alergias / Intolerancias</h4></center></th>                 
                     </tr>
                     <tr>
                     <th><center>Tipo</center></th>
-                    <th><center>Nombre de Alergia</center></th>
+                    <th ><center>Nombre de Alergia</center></th>
                     </tr>
                 </thead>
    <tbody>
@@ -93,7 +101,15 @@ foreach ($tiposAlergias as $datos => $dato)
   <table class="table table-bordered table-hover">
    <thead>
                      <tr>
-                     <th><center>Condiciones</center></th>                      
+                     <th style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h4>Condiciones</h4></center></th>                      
                     </tr>
                 </thead>
                 <tbody>
