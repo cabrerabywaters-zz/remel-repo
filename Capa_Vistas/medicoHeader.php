@@ -82,10 +82,30 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     
     #navegador a{
         
-      color:white;
+      color: white;
+ background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
 
+   
     }
+     #navegador a:hover{
         
+         background: #414040;
+      
+         
+    }
+    #navegador a{
+   
+        border-color: white;
+        border-style: solid;
+    } 
+   
 </style><!-- fin estilo de la pagina -->
   
         <!-- scripts js externos --> 
@@ -148,7 +168,7 @@ background-image: -webkit-gradient(
                      <center> <img class="img-rounded " src="../../../imgs/logo-remel.png" style="width: 230px; height: 80px;"></center>
                     <center><h2><?php 
 					$lugar=$_SESSION['logLugar']; 
-					echo "<center><h3>".$lugar['nombreLugar']."</h3></center>"."<center>".$lugar['nombreSucursal']."</center>";					
+					echo "</center><h2>"."<center>".$lugar['nombreSucursal']."</h2></center>";					
 					
                     // esto se puede eliminar si es que no van a utilizar el span para agregar algo
                                         
@@ -281,6 +301,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                     <li><a href="#tabCalculadora" data-toggle="tab">Calculadoras</a></li>
                     <li><a href="#" id="toggleFav"><i class="icon-star"></i>Favoritos</a></li>
                     <li class="dropdown pull-right">
+                       
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Volver <b class="caret"></b>
                         </a>
@@ -289,6 +310,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                         <li><a href="../doctorIndex.php">Volver al Menú</a></li>
                         <li><a href="../logout.php">Salir</a></li>
                         </ul>
+                       
                     </li>
-                    
+                    <li class="pull-right">  <?php
+                        $lugar=$_SESSION['logLugar']; 
+					echo "<center><h5> Lugar de Atención: ".$lugar['nombreLugar']." &nbsp &nbsp &nbsp ";
+                        ?></li>
                 </ul><!-- aquí termina lo que hay en la barra navegacion-->
