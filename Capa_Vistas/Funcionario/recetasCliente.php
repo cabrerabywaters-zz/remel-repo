@@ -6,22 +6,25 @@ include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
 //buscar Recetas del cliente
 ?>
+<div class="row-fluid">
+    <div class="tab-content"><!-- contenido del panel 1-->
+        <div class="tab-pane active img-rounded" id="tabVenderMedicamentos"><!-- tab Historial-->
 
-<div class="accordion-heading">
-    <a class="btn btn-large btn-block active" data-toggle="collapse" data-parent="#accordion1" >
-        Recetas del Cliente
-    </a>
-</div>
-<div><center>
-        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
-    </center></div><hr>
-<div class="accordion-body">
-    <div class="accordion-inner">
-        <?php
-        //$fechaActual = date('y-m-d');
-        $fechaActual = date("Y-m-d H:i:s");
-        $recetasPaciente = Paciente::R_RecetasPacienteVigentes($_SESSION['idPaciente'], $fechaActual);
-        echo'
+        <div class="accordion-heading">
+            <a class="btn btn-large btn-block in" disabled="disabled" data-toggle="collapse" data-parent="#accordion1" >
+                Recetas del Cliente
+            </a>
+        </div>
+        <div><center>
+                <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
+            </center></div><hr>
+        <div class="accordion-body">
+            <div class="accordion-inner">
+                <?php
+                //$fechaActual = date('y-m-d');
+                $fechaActual = date("Y-m-d H:i:s");
+                $recetasPaciente = Paciente::R_RecetasPacienteVigentes($_SESSION['idPaciente'], $fechaActual);
+                echo'
   <div class="row">
 
   <center> <div style="width: 50%; ;">
@@ -36,38 +39,53 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
     <th>Medicamentos</td>
     </tr></thead>
     ';
-            foreach ($recetasPaciente as $datos => $dato) {
-            echo "<tr>";
-            foreach ($dato as $llave => $valor) {
-                if ($llave == 'Folio') {
-                    echo '<td>';
-                    echo $valor;
-                    echo '</td><td>';
-                    $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
-                    for ($i = 0; $i < count($medicamentosReceta); $i++) {
-                        echo $medicamentosReceta[$i]['Nombre_Comercial'] . '</br>';
-                        echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button></br>';
+                foreach ($recetasPaciente as $datos => $dato) {
+                    echo "<tr>";
+                    foreach ($dato as $llave => $valor) {
+                        if ($llave == 'Folio') {
+                            echo '<td>';
+                            echo $valor;
+                            echo '</td><td>';
+                            $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
+                            for ($i = 0; $i < count($medicamentosReceta); $i++) {
+                                echo $medicamentosReceta[$i]['Nombre_Comercial'] . '</br>';
+                                echo '<button class="btn btn-primary" onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>Seleccionar</strong></button></br>';
+                            }
+                        }
+                        if ($llave == 'Nombre') {
+                            echo '<td>';
+                            echo $valor . ' ';
+                        }
+                        if ($llave == 'Apellido_Paterno') {
+                            echo $valor;
+                            echo '</td>';
+                        }
+                        if ($llave == 'Fecha_Emision') {
+                            echo '<td>';
+                            echo $valor;
+                            echo '</td>';
+                        }
                     }
+                    echo "</tr>";
                 }
-                if ($llave == 'Nombre') {
-                    echo '<td>';
-                    echo $valor . ' ';
-                }
-                if ($llave == 'Apellido_Paterno') {
-                    echo $valor;
-                    echo '</td>';
-                }
-                if ($llave == 'Fecha_Emision') {
-                    echo '<td>';
-                    echo $valor;
-                    echo '</td>';
-                }
-            }
-            echo "</tr>";
-        }
-        echo '</table></div></table></center></div>';
-        ?>
+                echo '</table></div></table></center></div>';
+                ?>
+            </div>
+        </div></div>
+
+        <div class="tab-pane img-rounded" id="tabVerArsenal"><!-- tab Historial-->
+
+            <!-- <div class="accordion" id="accordionF2"><!-- accordion historial -->
+            <!-- <div class="accordion-group"><!-- informacion personal del paciente-->
+            <?php
+            // muestra los detalles de paciente
+            include("verArsenal.php");
+            ?>
+        </div><!-- informacion personal del paciente-->
+        <!--   </div>
+       </div>-->
     </div>
+
 </div>
 <script>
     
