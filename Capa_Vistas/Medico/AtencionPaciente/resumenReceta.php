@@ -1,29 +1,15 @@
  <?php 
- 
+ require_once(dirname(__FILE__)."/../../../convertToPDF.php");
  //esta es la funcion que es llamada con el Submit del Boton Imprimir 
  //Del modal del Firmar Receta
  if(isset($_POST['content'])){
 //traermos el contenido del html para hacer el pdf desde el textarea del modal
-     $contenido= $_POST['content'];
-     $contenido = "<!DOCTYPE html>
-                   <html>
-                   <head>
-                   <link rel='stylesheet' type='text/css' href='../../../css/formatoReceta.css'>
-                   </head>
-                   <body>
-         ".$contenido."</body></html>";
-     //se incluye la libreria de dompdf
-     include_once '../../../dompdf/dompdf_config.inc.php';
-     //decodificamos los utf8 para evitar errores
-     $contenido = utf8_decode($contenido);
-     //se instancia el dompdf
-$dompdf = new DOMPDF();
-//cargamos el contenido del pdf
-$dompdf->load_html($contenido);
-//se renderiza el pdf
-$dompdf->render();
-// se hace estream para que comience la descarga
-$dompdf->stream(RecetaMedica_REMEL.pdf);
+     $html= $_POST['content'];
+     
+
+     $html = utf8_decode($html);
+// usamos la función doPDF para crear el pdf
+     doPDF('RecetaMedica_REMEL',$html,true,'../../../css/formatoReceta.css'); 
      
      
      
@@ -39,24 +25,32 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
   </div>
   
   <div class="modal-body" id="contenidoReceta">
-      <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4>
-      <div class="row-fluid datosResumen">
-          <div class="span4 datosDoctor">Doctor: <br><strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div>
-          <div class="span4 logoRed"><img src="../../../imgs/clip_image002.jpg" width="120px" height="110px"></div>
-          <div class="span4 datosPaciente">Paciente: <br><strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div>
-          
-      </div><!-- en este div van los datos del doctor y del paciente que está siendo -->
-      <hr>
+      <table>
+      <tr>
+      <td colspan="3"> <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4></td>
+      </tr>
+      <tr>
       
+          <td  style="width:37%"><div class="datosDoctor">Doctor: <br><strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div></td>
+          <td  style="width:26%"><div class="logoRed"><center><img src="../../../imgs/clip_image002.jpg" width="130px" height="110px"></center></div></td>
+          <td  style="width:37%"><div class="datosPaciente">Paciente: <br><strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div></td>
+          
+      <!-- en este div van los datos del doctor y del paciente que está siendo -->
+      </tr>
+      <tr><td colspan="3"><hr></td></tr>
+      <tr><td colspan="3">
       <div class="row-fluid" id="resumen">
       <strong>RP:</strong><br>    
       
-      </div><hr>
-      
-      <div class="footerReceta">
-          <div class="logoRemel pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div>
-          <div class="infoRemel"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div>
-      </div><!-- footer receta fisica -->
+      </div>
+      </td>        
+      </tr>
+      <tr><td colspan="3"><hr></td></tr>
+      <tr style="background-color: #E0E0FF">
+         <td><div class="logoRemel pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div></td>
+         <td colspan="2"><div class="infoRemel"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div></td>
+      </tr><!-- footer receta fisica -->
+      </table>
 </div>
   <div class="modal-footer">
     <form method="post" action="resumenReceta.php">
@@ -92,7 +86,9 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
             
             var idDiagnostico = $(this).attr('iddiagnostico');
             //busco todos los medicamentos asociados
+            
             $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
+               alert('achunte');
                var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
@@ -100,9 +96,8 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
-               var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
-                
-               $('#resumen').append('<h5>'+nombreComercial+' -- '+cantidadMedicamento+' '+unidadConsumo+' cada '+frecuenciaMedicamento+' '+unidadFrecuencia+', por '+periodoMedicamento+' '+unidadPeriodo+'.</h5>'); 
+               var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()  
+               $('#resumen').append('<h5> -> '+nombreComercial+'<br>    - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>'); 
             })// end each medicamento
           $('#resumen').append('<hr>'); //linea  
             
@@ -117,7 +112,7 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
                var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
-               $('#resumen').append('<h5>'+nombreComercial+' <br>-- '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>');
+               $('#resumen').append('<h5> -> '+nombreComercial+'<br>    - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>');
         }); // end each medicamento
         
 //        $('#resumen').append('<hr>'); //linea
@@ -232,7 +227,7 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
                         //Cuando el ingreso de los datos de la receta es correcto
                         else{
                              //Se Modifica el Label del encabezado de la receta para confirmar la emicion de la receta
-                             $('#resumenRecetaLabel').html('Receta Emitida Exitosamente');
+                             $('#resumenRecetaLabel').html('Receta Folio# '+output+' Emitida Exitosamente');
                              $('#resumenRecetaLabel').addClass("alert alert-success");
                              
                              
