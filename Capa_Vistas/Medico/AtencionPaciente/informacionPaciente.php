@@ -6,11 +6,33 @@
   </a>
   </div>
   <div id="collapseOne" class="accordion-body collapse">
-  <div class="accordion-inner row-fluid">
+  <div class="accordion-inner">
+      <div class="row-fluid">
    <center> <div class="span12">
            <form id="funciona" class="form-inline" method="post" >
-    
-    <div class="control-group">
+  
+               <div class="span6 img-rounded"> <!--div para datos personales-->
+                   
+                    <center> <table class="table table-bordered table-hover">
+   <thead>
+                     <tr>
+                     <th style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h5>Datos Personales</h5></center></th>                      
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <td>
+                   
+                   
+                     <div class="control-group">
     <label class="control-label" for="Nombre" ><strong>Nombre </strong> <br><input style="text-align:center;" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
     </div>
     
@@ -32,45 +54,110 @@
     <label class="control-label" for="Peso"><strong>Peso [Kg]  </strong><br> <input style="text-align:center;" type="text" class="edicion"  id="Peso" value="<?php echo $paciente['Peso']; ?>"></label>
     <label class="control-label" for="Altura"><strong>Altura [Cm] </strong><br><input style="text-align:center;" type="text" class="edicion" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
     </div>
-     <br> 
-    <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
-    </div>
-     
-    <div class="control-group">
-    <label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
-
-    
-    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
-
-    
-    
-    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
-    </div>
-    
-    <div class="control-group">
-    <label class="control-label" for="Nacionalidad"><strong>Nacionalidad  </strong><br>  <input style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
-    <label class="control-label" for="Etnia"><strong>Etnia </strong> <br> <input style="text-align:center;" type="text" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
-    </div>
-       
-    <div class="control-group">
+                   
+                    <div class="control-group">
     <label class="control-label" for="N_Celular N_Fijo"><strong>Teléfonos </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  
         <input style="text-align:center;" type="text" class="edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
     </div>
+                   
+                    </td>
+                    
+                </tbody>
+</table> </center> 
+               </div> <!--!div para datos personales-->
+               
+               
+   <div class="span6 img-rounded"> <!--div para datos informacion de dirrección-->
+       
      
-     
+      <center>   <table class="table table-bordered table-hover">
+   <thead>
+                     <tr>
+                     <th style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h5>Ubicación</h5></center></th>                      
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <td>
+                        <div class="control-group">
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+    </div>  
+                         <div class="control-group">
+
+    
+    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
+        
+    
+    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
+<label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
+
+    
+    </div>
+                        
+                         <div class="control-group">
+    <label class="control-label" for="Nacionalidad"><strong>Nacionalidad  </strong><br>  <input style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
+    <label class="control-label" for="Etnia"><strong>Etnia </strong> <br> <input style="text-align:center;" type="text" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
+    </div>
+                    </td>
+  
+	
+	   
+
+                </tbody>
+</table> </center> 
+       
+       
+   </div><!--!div para datos informacion de dirrección-->
+    
+    
+    <div class="span10 img-rounded"> <!--div para datos informacion de seguros-->
+    
+      <center>   <table class="table table-bordered table-hover">
+   <thead>
+                     <tr>
+                     <th style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h5>Información de Compañías</h5></center></th>                      
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <td>
     <div class="control-group">
-    <label class="control-label" for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
+    <label class="control-label pull-left span5" for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion span5" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
+        <label class="control-label pull-right span5" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion span5" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
+
     </div>
      
-    <div class="control-group">
-    <label class="control-label" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
-    </div> 
+    
+                        
+                          </td>
+              
+                </tbody>
+</table> </center> 
+    
+    </div>
+     
+    
      
     <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
 
-           </form></div> </center>
+           </form></div></div> </center>
     
     
   </div>
