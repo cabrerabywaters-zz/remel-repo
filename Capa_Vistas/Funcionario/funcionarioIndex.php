@@ -28,12 +28,10 @@ include(dirname(__FILE__) . "/../funcionarioHeader.php");
                     // muestra los detalles de paciente
                     include("venderMedicamento.php");
                     ?>
-                </div><!-- informacion personal del paciente-->
+        </div><!-- informacion personal del paciente-->
             <!--</div>-->
         <!--</div>-->
-    </div>
 
-        <div class="tab-content"><!-- contenido del panel 1-->
 
         <div class="tab-pane img-rounded" id="tabVerArsenal"><!-- tab Historial-->
 
@@ -44,8 +42,8 @@ include(dirname(__FILE__) . "/../funcionarioHeader.php");
                     include("verArsenal.php");
                     ?>
                 </div><!-- informacion personal del paciente-->
-            </div>
      <!--   </div>
     </div>-->
+         </div>
 
 </div>

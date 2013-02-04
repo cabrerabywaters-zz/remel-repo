@@ -3,10 +3,10 @@
 <center>
     <div class="accordion-heading">
 
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordionF1" href="#collapseOne">
+      <a class="btn btn-large btn-block" disabled="disabled" data-toggle="collapse" data-parent="#accordionF1" href="#collapseOne">
 Venta de Medicamentos  
   </a>
-  <div id="collapseOne" class="accordion-body collapse">
+  <div id="collapseOne" class="accordion-body collapse in">
 
     <div class="modal-body">
         <strong><p>Ingrese el Rut del Paciente</p></strong>
