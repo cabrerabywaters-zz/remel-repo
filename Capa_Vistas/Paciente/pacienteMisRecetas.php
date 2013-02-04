@@ -22,7 +22,6 @@
 			 <th>Folio</th>    
              <th>Nombre del Médico</th>
              <th>Fecha Emisión</th>
-             <th>Medicamentos</th>
              <th>Diagnostico</th>		
 		</tr>
 	</thead>
@@ -32,14 +31,7 @@
                                             echo "<tr folio='" . $lineaRecetas['folio'] . "'>";
                                             echo "<td>" . $lineaRecetas["folio"] . "</td>";
                                             echo "<td>" . $lineaRecetas["nombreMedico"] . " " . $lineaRecetas["apellidoMedico"] . "</td>";
-                                            echo "<td>" . $lineaRecetas["fechaEmision"] . "</td>";
-                                            echo '<td>';
-
-                                            $medicamentosReceta = Paciente::R_MedicamentosReceta($lineaRecetas["folio"]);
-                                            for ($i = 0; $i < count($medicamentosReceta); $i++) {
-                                                echo $medicamentosReceta[$i]['Nombre_Comercial'] . '</br>';
-                                            }
-                                            echo '</td>';
+											  echo "<td>" . $lineaRecetas["fechaEmision"] . "</td>";
                                             echo '<td><center><input  type="button" class="btn btn-info" value="' . $lineaRecetas["nombreDiagnostico"] . '"></center></td>';
                                             echo "</tr>";
                                         }
@@ -51,7 +43,6 @@
 			 <th>Folio</th>    
              <th>Nombre del Médico</th>
              <th>Fecha Emisión</th>
-             <th>Medicamentos</th>
              <th>Diagnostico</th>		
 		</tr>
 	</tfoot>

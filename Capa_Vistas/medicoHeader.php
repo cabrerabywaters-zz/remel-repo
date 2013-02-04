@@ -111,7 +111,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
         <!-- scripts js externos --> 
 <script src="http://code.jquery.com/jquery-latest.js"></script><!-- CDN jquery-->
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script><!-- CDN jquery tools-->
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>   
+<script type="text/javascript" charset="utf8" src="../../js/jquery.dataTables.min.js"></script> 
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script><!-- CDN jquery UI-->
 <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script><!-- CDN bootstrap-->
 	<!-- script para el despliege de los datatables -->
