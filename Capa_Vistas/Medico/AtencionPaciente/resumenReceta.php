@@ -32,22 +32,55 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
   </div>
   
   <div class="modal-body" id="contenidoReceta">
+      <style type="text/css">
+            .datosDoctor {
+                    float: left;
+                    width: 40%;
+                    border-top-color: #00F;
+                    border-right-color: #00F;
+                    border-bottom-color: #00F;
+                    border-left-color: #00F;
+                    height: 4cm;
+            }
+            .footerReceta {
+                    height: 2.5cm;
+            }
+            .footerReceta .logoRemel {
+                    float: left;
+            }
+            .logoRed {
+                    float: left;
+                    width: 20%;
+                    border-top-color: #F00;
+                    border-right-color: #F00;
+                    border-bottom-color: #F00;
+                    border-left-color: #F00;
+            }
+            .datosPaciente {
+                    float: left;
+                    width: 40%;
+                    height: 4cm;
+            }
+            .footerReceta .infoRemel {
+                    float: left;
+                    height: 2.5cm;
+            }
+        </style><!--estilo de la receta -->
       <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4>
       <div class="row-fluid datosResumen">
-          <div class="span4">Doctor:<br> <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div>
-          <div class="span4"><img src="../../../imgs/clip_image002.jpg" width="120px" height="130px"></div>
-          <div class="span4">Paciente:<br> <strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div>
+          <div class="span4 datosDoctor">Doctor:<br> <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div>
+          <div class="span4 logoRed"><img src="../../../imgs/clip_image002.jpg" width="120px" height="130px"></div>
+          <div class="span4 datosPaciente">Paciente:<br> <strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div>
           
       </div><!-- en este div van los datos del doctor y del paciente que está siendo -->
       <hr>
       <div class="row-fluid" id="resumen">
       <strong>RP:</strong><br>    
       
-      </div>
-      <div>
-          <hr>
-          <div class="remelLogo pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div>
-          <div style="margin-left: 10px"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div>
+      </div><hr>
+      <div class="footerReceta">
+          <div class="logoRemel pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div>
+          <div class="infoRemel"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div>
       </div><!-- footer receta fisica -->
   </div>
   <div class="modal-footer">
