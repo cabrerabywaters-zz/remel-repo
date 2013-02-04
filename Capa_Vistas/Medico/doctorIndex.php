@@ -129,14 +129,14 @@ verificarIP();
             <form id="verificacionClave" action="javascript:verificarClave()" method="post">
                 <br>
             <strong>Ingrese Clave :</strong> <center> 
-            <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente"></center> 
+            <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente" id="clave_paciente"></center> 
             <div id="mensaje"></div>
             </div>
             <input type="hidden"  name="hID" value=""/>
             <input type="hidden" name="hRUN" value=""/>
   	</div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="submit"><strong>Ingresar</strong></button></form>
+            <button class="btn btn-primary" type="submit" id="ingresar"><strong>Ingresar</strong></button></form>
             <button class="btn" data-dismiss="modal" aria-hidden="true">Volver</button>
         </div>
     </div>
@@ -150,6 +150,14 @@ verificarIP();
 	$('verificacionClave').validator();
         $('#myModal').on('show',function(){
             $('input[name="RUN"]').focus();
+        }).on('hide',function(){
+               $('#ingresar').hide();
+                $('#atender').html('');
+                $('input[name="RUN"]').val('');
+                 $('#clave_paciente').val('');
+                
+               
+            
         })
 	function enviar(){
                         var postData = $('#busqueda').serialize();
@@ -200,7 +208,17 @@ verificarIP();
                         });
         }
        
+       $(document).ready(function() {
+       $('#ingresar').hide();
+       });
        
+       
+       
+       $('#clave_paciente').focus(function() {
+      $('#ingresar').show();
+});
+
+    $('')
        
 </script>
 </html>
