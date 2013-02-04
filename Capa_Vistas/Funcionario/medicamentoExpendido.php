@@ -5,7 +5,12 @@ iniciarCookie();
 verificarIP();
 include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/medicamentoVendido.php");
+?>
+<div class="row-fluid">
+    <div class="tab-content"><!-- contenido del panel 1-->
+        <div class="tab-pane active img-rounded" id="tabVenderMedicamentos"><!-- tab Historial-->
 
+<?php
 $fechaActual = date("Y-m-d H:i:s");
 $med = MedicamentoVendido::InsertarConParametros($_SESSION['logLugar']['idLugar'], 
                                                                 $_SESSION['medicamentoID'],
@@ -24,7 +29,19 @@ if ($med){
         <button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Expender más Medicamentos</strong></button>
 
     </center>
+</div>
 
+    <div class="tab-pane img-rounded" id="tabVerArsenal"><!-- tab Historial-->
+
+            <!-- <div class="accordion" id="accordionF2"><!-- accordion historial -->
+            <!-- <div class="accordion-group"><!-- informacion personal del paciente-->
+            <?php
+            // muestra los detalles de paciente
+            include("verArsenal.php");
+            ?>
+        </div>
+</div>
+</div>
 <script>
     
     function volver(){

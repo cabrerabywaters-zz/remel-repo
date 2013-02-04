@@ -4,13 +4,11 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
 ?>
 
 <div class="accordion-heading">
-    <a class="btn btn-large btn-block active" data-toggle="collapse" data-parent="#accordionF2">
+    <a class="btn btn-large btn-block in" disabled="disabled" data-toggle="collapse" data-parent="#accordionF2">
         Arsenal de <?php echo $_SESSION['logLugar']['nombreSucursal'] ?>, <?php echo $_SESSION['logLugar']['nombreLugar'] ?>
     </a>
 
-<div><center>
-    <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver</strong></button>
-</center></div><hr>
+<div></div><hr>
 <div class="accordion-body">
     <div class="accordion-inner">
         <?php

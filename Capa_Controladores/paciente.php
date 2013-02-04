@@ -356,7 +356,7 @@ AND Medicos.Personas_RUN = Personas.RUN AND Consulta.Id_consulta = Recetas.Consu
     }
     
     public static function SeleccionarRecetaPorId($idPaciente){
-    $queryString = "SELECT Personas.Nombre as nombreMedico, Personas.Apellido_Paterno as apellidoMedico, Recetas.Folio_RP as folio, Recetas.Fecha_Emision as fechaEmision, 
+    $queryString = "SELECT Personas.Nombre as nombreMedico, Personas.Apellido_Paterno as apellidoMedico, Recetas.idReceta as folio, Recetas.Fecha_Emision as fechaEmision, 
                     Recetas.Fecha_eliminacion as fechaEliminacion, Diagnosticos.Nombre as nombreDiagnostico, Medicamentos_Vendidos.Fecha as fechaAdquisicion                   
                     FROM Recetas, Medicos, Personas, Diagnosticos, Consulta, Historiales_medicos, Medicamentos_Recetas, Medicamentos_Vendidos
                     WHERE Consulta.Pacientes_idPaciente =  '$idPaciente'

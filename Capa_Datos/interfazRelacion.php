@@ -10,11 +10,9 @@
 include_once(dirname(__FILE__).'/llamarQuery.php');
 
 function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreTabla) {
-    $selectString = "SELECT";
-    foreach ($atributosASeleccionar as $nombreAtributo) {
-        $selectString = $selectString . " " . $nombreAtributo;
-    }
-    $selectString = selectString . " FROM $nombreTabla $where";
+    $selectString = "SELECT ";
+    $atributos = implode(", ", $atributosASeleccionar);
+    $selectString = $selectString . $atributos . " FROM $nombreTabla $where";
     return $selectString;
 }
 
@@ -63,11 +61,12 @@ function QueryStringBorrarPorIdRelacion($nombreTabla, $nombreId, $id) {
     for ($i = 0; $i < count($nombreId); $i++) {
         if ($i == 0) {
             $deleteString = $deleteString . "WHERE ";
-        } else {
+        } 
+	else {
             $deleteString = $deleteString . "AND ";
         }
-        $nombreId[$i] = $idLeft;
-        $id[$i] = $idRight;
+        $idLeft = $nombreId[$i];
+        $idRight = $id[$i];
         $deleteString = $deleteString . "$idLeft=$idRight ";
     }
     return $deleteString;
