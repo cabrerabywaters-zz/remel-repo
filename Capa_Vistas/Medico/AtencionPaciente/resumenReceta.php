@@ -2,9 +2,16 @@
  
  //esta es la funcion que es llamada con el Submit del Boton Imprimir 
  //Del modal del Firmar Receta
- if(isset($_POST['content']))
- {//traermos el contenido del html para hacer el pdf desde el textarea del modal
+ if(isset($_POST['content'])){
+//traermos el contenido del html para hacer el pdf desde el textarea del modal
      $contenido= $_POST['content'];
+     $contenido = "<!DOCTYPE html>
+                   <html>
+                   <head>
+                   <link rel='stylesheet' type='text/css' href='../../../css/formatoReceta.css'>
+                   </head>
+                   <body>
+         ".$contenido."</body></html>";
      //se incluye la libreria de dompdf
      include_once '../../../dompdf/dompdf_config.inc.php';
      //decodificamos los utf8 para evitar errores
@@ -53,11 +60,11 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
 </div>
   <div class="modal-footer">
     <form method="post" action="resumenReceta.php">
-    <textarea name="content" id="content"> </textarea>
-    <center><button type="submit" id="submit" class="btn imprimir"><strong>Imprimir Receta</strong> <i class="icon-print"></i></button>
+    <textarea name="content" id="content" style="display:none"> </textarea>
+    <center><button type="submit" id="submit" class="btn imprimir" style="display:none"><strong>Imprimir Receta</strong> <i class="icon-print"></i></button>
     
     </form>
-    <button class="btn btn-success terminar"><strong>Volver al Menú</strong></button></center>
+    <button class="btn btn-success terminar" style="display:none"><strong>Volver al Menú</strong></button></center>
     <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Cancelar Emisión</strong></button>
     <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><i class="icon-check icon-white"></i>Firmar Emisión</strong></button>
     
