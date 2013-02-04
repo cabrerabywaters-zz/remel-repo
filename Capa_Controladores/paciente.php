@@ -209,16 +209,16 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     }
 
     public static function RecetasPacienteMedico($idPaciente) {
-        $queryString = "SELECT Personas.Nombre as Medico, Personas.Apellido_Paterno, Personas.Apellido_Materno, 
-							Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Recetas.idReceta
-						FROM Personas, Medicos, Pacientes, Consulta, Recetas
+        $queryString = "SELECT Personas.Nombre as Medico, Personas.Apellido_Paterno, Recetas.Fecha_Emision,
+						Recetas.Fecha_Vencimiento, Recetas.idReceta,Diagnosticos.Nombre as Diagnostico
+						FROM Personas, Medicos, Pacientes, Consulta, Recetas, Diagnosticos, Medicamentos_Recetas
 						WHERE Pacientes.idPaciente=".$idPaciente."
 						AND Medicos.Personas_RUN=Personas.RUN
 						AND Pacientes.idPaciente=Consulta.Pacientes_idPaciente
 						AND Medicos.idMedico=Consulta.Medicos_idMedico
-						AND Consulta.Id_consulta=Recetas.Consulta_Id_consulta ";
-					
-					echo $queryString;
+						AND Consulta.Id_consulta=Recetas.Consulta_Id_consulta
+						AND Recetas.idReceta=Medicamentos_Recetas.Receta_idReceta
+						AND Diagnosticos.idDiagnostico=Medicamentos_Recetas.Diagnosticos_idDiagnosticos ";
 
         $result = CallQuery($queryString);
         $resultArray = array();

@@ -8,7 +8,7 @@
 
   <div class="row">
 
-  <center> <div style="width: 50%; ;">
+  <center> <div style="width: 90%; ;">
   <script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
                              $('#tablaRecetasVigentes').dataTable();
@@ -28,34 +28,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Medico</th>
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
+            <th>Diagnostico</th>
+           
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($recetas as $datos => $dato) {
-            echo "<tr>";
-            foreach ($dato as $llave => $valor) {
-                if ($llave == 'idReceta'){
+
+            foreach ($dato as $llave => $valor) {   
+			        echo "<tr>";          
                     echo '<td>';
-					echo $valor;
+					echo "".$dato['Medico']." ".$dato['Apellido_Paterno']."";
 					echo '</td>';
-                  
-                }
-                if ($llave == 'Nombre'){
-                    echo '<td>';
-                    echo $valor;
+					echo '<td>';
+                    echo $dato['Fecha_Emision'];
 					echo '</td>';
-                }
-                if ($llave == 'Apellido_Paterno'){
-                    echo $valor;
+					echo '<td>';
+                    echo $dato['Fecha_Vencimiento'];
                     echo '</td>';
-                }
-                if ($llave == 'Fecha_Emision' || $llave == 'Fecha_Vencimiento'){
                     echo '<td>';
-                    echo $valor;
+                    echo '<center><input id="'.$dato['idReceta'].'" type="button" class="btn btn-info" value="'.$dato['Diagnostico'].'"></center>';
                     echo '</td>';
+					echo "</tr>";
                 }                
-            }
-            echo "</tr>";
+            
+
         }
 		?>
 	</tbody>
@@ -73,6 +70,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Medico</th>
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
+            <th>Diagnostico</th>
 		</tr>
 	</tfoot>
 </table>
