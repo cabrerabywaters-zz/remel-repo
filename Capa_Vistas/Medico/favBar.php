@@ -197,8 +197,8 @@
             cantidadMedicamento="'+cantidad+'" unidadDeConsumo="'+unidadConsumo+'" frecuenciaMedicamento="'+frecuencia+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodo+'" unidadPeriodo="'+unidadPeriodo+'"\n\
             comentarioMedicamento=" " diagnosticoAsociado="0" fechaInicio="'+fechaInicio+'" fechaFin=" ">\n\
             <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-            <div class="infoMedicamento"><strong class="nombreComercial">'+nombreComercial+'</strong><strong><br>Cantidad: </strong>'+cantidad+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo+' '+porCuanto+'\n\
-            </div></div>';
+            <div class="infoMedicamento"><strong class="nombreComercial">'+nombreComercial+'</strong><br><strong>Cantidad: </strong>'+cantidad+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo+' '+porCuanto+'\n\
+            </div></div>';<br>
                 
            $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
            
