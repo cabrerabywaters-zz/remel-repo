@@ -9,7 +9,6 @@ verificarIP();
 
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
 
-
 ?>
 
 <div class="row-fluid">

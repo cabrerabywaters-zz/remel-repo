@@ -83,7 +83,7 @@
     });
   
     $("#guardar").click(function() {
-                        var run = <?php echo $_SESSION['RUT'];   ?>;
+                        var run = <?php echo $_SESSION['RUTPaciente'];   ?>;
                         var peso = $('#Peso').val();
                         var altura = $('#Altura').val();
                         var direccion = $('#Direccion').val();
@@ -111,9 +111,8 @@
           },
                       type: 'post',
                       success: function(output){
-                                               
-                        if(output=="1")
-                            {
+                        if(output==1)
+                            { 
                                 $("#guardar").hide();
                             }
                             else{

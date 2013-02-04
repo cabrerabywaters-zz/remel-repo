@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
-class Laboratorio {
+class Log {
 
     static $nombreTabla = "Log";
-    static $nombreIdTabla = "ID";    
-    
+    static $nombreIdTabla = "ID";
+
     /**
      * Insertar
      * 
@@ -14,16 +14,16 @@ class Laboratorio {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-								array('Fecha',$_POST['fecha']),
-								array('campoModificado',$_POST['campoModificado']),
-								array('valorAnterior',$_POST['valorAnterior']),
-								array('valorNuevo',$_POST['valorNuevo']),
-								array('NombreTabla',$_POST['NombreTabla']),
-								array('Personas_RUN',$_POST['Personas_RUN']),
-								array('Medicos_idMedico',$_POST['Medicos_idMedico']),
-								array('Medicos_Personas_RUN',$_POST['Medicos_Personas_RUN']),
-                                      );
+        $datosCreacion = array(
+            array('Fecha', $_POST['fecha']),
+            array('campoModificado', $_POST['campoModificado']),
+            array('valorAnterior', $_POST['valorAnterior']),
+            array('valorNuevo', $_POST['valorNuevo']),
+            array('NombreTabla', $_POST['NombreTabla']),
+            array('Personas_RUN', $_POST['Personas_RUN']),
+            array('Medicos_idMedico', $_POST['Medicos_idMedico']),
+            array('Medicos_Personas_RUN', $_POST['Medicos_Personas_RUN']),
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -39,7 +39,7 @@ class Laboratorio {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -53,34 +53,34 @@ class Laboratorio {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                                        'Fecha',
-										'campoModificado',
-										'valorAnterior',
-										'valorNuevo',
-										'NombreTabla',
-										'Personas_RUN',
-										'Medicos_idMedico',
-										'Medicos_Personas_RUN',
-      );
+        $atributosASeleccionar = array(
+            'Fecha',
+            'campoModificado',
+            'valorAnterior',
+            'valorNuevo',
+            'NombreTabla',
+            'Personas_RUN',
+            'Medicos_idMedico',
+            'Medicos_Personas_RUN',
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -89,20 +89,27 @@ class Laboratorio {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['rut'];
-    	$datosActualizacion = array(
-                                array('Fecha',$_POST['fecha']),
-								array('campoModificado',$_POST['campoModificado']),
-								array('valorAnterior',$_POST['valorAnterior']),
-								array('valorNuevo',$_POST['valorNuevo']),
-								array('NombreTabla',$_POST['NombreTabla']),
-								array('Personas_RUN',$_POST['Personas_RUN']),
-								array('Medicos_idMedico',$_POST['Medicos_idMedico']),
-								array('Medicos_Personas_RUN',$_POST['Medicos_Personas_RUN']),
-                );
+        $id = $_POST['rut'];
+        $datosActualizacion = array(
+            array('Fecha', $_POST['fecha']),
+            array('campoModificado', $_POST['campoModificado']),
+            array('valorAnterior', $_POST['valorAnterior']),
+            array('valorNuevo', $_POST['valorNuevo']),
+            array('NombreTabla', $_POST['NombreTabla']),
+            array('Personas_RUN', $_POST['Personas_RUN']),
+            array('Medicos_idMedico', $_POST['Medicos_idMedico']),
+            array('Medicos_Personas_RUN', $_POST['Medicos_Personas_RUN']),
+        );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
+        $query = CallQuery($queryString);
+    }
+
+    public static function InsertarModificacionDatosPaciente($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico) {
+        $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
+                                VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "' . $idMedico . '")  
+                                ';
         $query = CallQuery($queryString);
     }
 

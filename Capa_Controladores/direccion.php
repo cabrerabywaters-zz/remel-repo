@@ -33,9 +33,9 @@ class Direccion {
         $query = CallQuery($queryString);
     }
     public static function BuscarIdDireccion($calle, $nCalle, $Comuna){
-        $queryString = 'SELECT idDireccion FROM Direccion WHERE Calle = '.$calle.' AND Numero = '.$nCalle.' AND Comuna_idComuna'.$Comuna.'';
+        $queryString = 'SELECT idDireccion FROM Direcciones WHERE Calle = "'.$calle.'" AND Numero = "'.$nCalle.'" AND Comuna_idComuna = "'.$Comuna.'"';
         $result = CallQuery($queryString);
-        return $result;
+        if($result) return $result->fetch_assoc();
     }
     /**
      * BorrarPorId
