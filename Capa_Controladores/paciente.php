@@ -209,7 +209,8 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     }
 
     public static function RecetasPacienteMedico($idPaciente) {
-        $queryString = "SELECT Personas.Nombre as Medico, Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Recetas.idReceta
+        $queryString = "SELECT Personas.Nombre as Medico, Personas.Apellido_Paterno, Personas.Apellido_Materno, 
+							Recetas.Fecha_Emision, Recetas.Fecha_Vencimiento, Recetas.idReceta
 						FROM Personas, Medicos, Pacientes, Consulta, Recetas
 						WHERE Pacientes.idPaciente=".$idPaciente."
 						AND Medicos.Personas_RUN=Personas.RUN

@@ -28,7 +28,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Medico</th>
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
-			<th>Medicamentos</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,14 +37,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                 if ($llave == 'idReceta'){
                     echo '<td>';
 					echo $valor;
-                    $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
-                    for($i=0;$i<count($medicamentosReceta);$i++){
-                        echo $medicamentosReceta[$i]['Nombre_Comercial'].'</br>';
-                    }
+					echo '</td>';
+                  
                 }
                 if ($llave == 'Nombre'){
                     echo '<td>';
-                    echo $valor.' ';
+                    echo $valor;
+					echo '</td>';
                 }
                 if ($llave == 'Apellido_Paterno'){
                     echo $valor;
@@ -75,7 +73,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Medico</th>
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
-			<th>Medicamentos</th>
 		</tr>
 	</tfoot>
 </table>
