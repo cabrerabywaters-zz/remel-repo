@@ -19,14 +19,14 @@
 	
 		$idMedico = $_SESSION['idMedicoLog'];
 		$diagnosticosComunes = DiagnosticoComun::Seleccionar($idMedico);
-
+		
 		foreach($diagnosticosComunes as $diagnosticoComun){
 		?>
             <div class="alert alert-info" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
-                <strong><?php echo Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico']); ?></strong>
                 <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos -->
                 <a href="#gregarFav" rel="tooltip" title="Agregar a Receta"> <i class="detalleDiagnostico icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
-            </div><!-- end pill diagnosticoFav 1-->
+            	<strong><?php echo Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico'])['Text']; ?></strong>
+	    </div><!-- end pill diagnosticoFav 1-->
 		<?php
 		}
 		?>

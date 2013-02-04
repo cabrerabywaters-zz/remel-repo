@@ -10,11 +10,9 @@
 include_once(dirname(__FILE__).'/llamarQuery.php');
 
 function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreTabla) {
-    $selectString = "SELECT";
-    foreach ($atributosASeleccionar as $nombreAtributo) {
-        $selectString = $selectString . " " . $nombreAtributo;
-    }
-    $selectString = $selectString . " FROM $nombreTabla $where";
+    $selectString = "SELECT ";
+    $atributos = implode(", ", $atributosASeleccionar);
+    $selectString = $selectString . $atributos . " FROM $nombreTabla $where";
     return $selectString;
 }
 
