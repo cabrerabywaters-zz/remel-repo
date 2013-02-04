@@ -93,7 +93,7 @@ verificarIP();
 
                 
                 
-                <button class="btn btn-large btn-block" onClick="redireccionar()" type="button">Ingresar como Paciente</button>
+                <button class="btn btn-large btn-block" onClick="redireccionar()" type="button">Perfil Paciente</button>
 
                 <div id="mensaje"></div> <!-- div para mostrar mensajes de error -->
             </form>

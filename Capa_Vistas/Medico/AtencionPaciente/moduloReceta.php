@@ -12,7 +12,7 @@ y el popup que muestra el detalle del medicamento
 
           <div class="row-fluid">
             <div class="span5"><div class="row-fluid"> 
-              <div class="img-rounded" style="background-color: blueviolet">
+              <div class="img-rounded">
                   <div class="row-fluid">
                     <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
                             <p><strong>Medicamentos Seleccionados:</strong></p>
@@ -492,7 +492,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-        <div class="infoMedicamento"><strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidadMedicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuenciaMedicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodoMedicamento+' '+porCuanto+'\n\
+        <div class="infoMedicamento"><strong class="nombreComercial">'+nombreComercial+'</strong><strong><br>Cantidad: </strong>'+cantidadMedicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuenciaMedicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodoMedicamento+' '+porCuanto+'\n\
         </div></div>';
             
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento

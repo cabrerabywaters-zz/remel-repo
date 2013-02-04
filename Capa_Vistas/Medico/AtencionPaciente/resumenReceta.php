@@ -34,29 +34,30 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
   <div class="modal-body" id="contenidoReceta">
       <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4>
       <div class="row-fluid datosResumen">
-          <p>Doctor: <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></p>
-          <p>Paciente: <strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></p>
-          <hr>
-      </div><!-- en este div van los datos del doctor y del paciente que está siendo -->
-      <div class="row-fluid" id="resumen">
+          <div class="pull-left span4" style="background-color: #0063DC">Doctor:<br> <strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div>
+          <div class="span4" style="background-color: #0063DC">Logo</div>
+          <div class="pull-right span4" style="background-color: #0063DC">Paciente:<br> <strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div>
           
+      </div><!-- en este div van los datos del doctor y del paciente que está siendo -->
+      <hr>
+      <div class="row-fluid" id="resumen">
+      <strong>RP:</strong><br>    
+      
       </div>
       
   </div>
-   
   <div class="modal-footer">
     <form method="post" action="resumenReceta.php">
-          <textarea name="content" id="content" style="display:none;">
-          </textarea>
-    <center><button type="submit" id="submit" class="btn imprimir" style="display:none;"><strong><br>Imprimir Receta</strong><br><i class="icon-print"></i><br></button>
-    </center>
+    <textarea name="content" id="content" style="display:none;"> </textarea>
+    <center><button type="submit" id="submit" class="btn imprimir" style="display:none;"><strong>Imprimir Receta</strong> <i class="icon-print"></i></button>
+    <button class="btn btn-success terminar" style="display:none;"><strong>Volver al Menú</strong></button></center>
     </form>
-    <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong><br>Cancelar Emisión</strong><br><br></button>
-    <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><br><i class="icon-check icon-white"></i>Firmar Emisión<br><br></strong></button>
     
-    <center><button class="btn btn-success terminar" style="display:none;"><strong><br>Volver al Menú<br><br></strong></button>
-    </center>
-  </div><!-- modal footer -->
+    
+    <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Cancelar Emisión</strong></button>
+    <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><i class="icon-check icon-white"></i>Firmar Emisión</strong></button>
+    
+    </div><!-- modal footer -->
 
 </div><!-- modal de resumen de la receta -->
 
@@ -81,19 +82,18 @@ $dompdf->stream(RecetaMedica_REMEL.pdf);
             var idDiagnostico = $(this).attr('iddiagnostico');
             //busco todos los medicamentos asociados
             $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
-               var nombreComercial = $(this).text()
+               var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                var periodoMedicamento = $(this).attr('periodoMedicamento');
                 
-               $('#resumen').append('<h5>'+nombreComercial+'--'+cantidadMedicamento+' cada '+frecuenciaMedicamento+' hrs, por '+periodoMedicamento+' días.</h5>'); 
+               $('#resumen').append('<h5>'+nombreComercial+'-- '+cantidadMedicamento+' cada '+frecuenciaMedicamento+' hrs, por '+periodoMedicamento+' días.</h5>'); 
             })// end each medicamento
           $('#resumen').append('<hr>'); //linea  
             
         });// end each Diagnostico
         
-        $('#resumen').append('<h4>Sin Diagnostico Asociado</h4>');
         $('div[diagnosticoAsociado="0"]').each(function(){
                var nombreComercial = $(this).text()
                var idMedicamento = $(this).attr('idMedicamento');
