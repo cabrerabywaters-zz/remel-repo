@@ -65,6 +65,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
            border: 5px solid #0b72b5;
             max-height: 600px;
       }
+      
+       .modal2{
+           border: 5px solid #0b72b5;
+           
+      }
     .modal-header, .modal-footer{
           background-color: whitesmoke;
       }

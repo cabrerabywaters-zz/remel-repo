@@ -24,7 +24,7 @@ y el popup que muestra el detalle del medicamento
               
               <div class="img-rounded">
                   <div class="row-fluid collapse" id="detalleMedicamento">
-                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
+                    <div class="modal2-body img-rounded pull-right span12"><div class="row-fluid">
                             <?php include_once 'detalleMedicamento.php'; ?>
                     </div></div><!-- medicamentos seleccionados -->
                     
