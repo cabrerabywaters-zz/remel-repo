@@ -296,10 +296,10 @@ background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1)
 background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
 "><!-- barra de navegacion -->
-                    <li class="active img-rounded"><a href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
-                    <li id="consultaToggle"><a href="#tabConsulta" data-toggle="tab">Recetar</a></li>
-                    <li><a href="#tabCalculadora" data-toggle="tab">Calculadoras</a></li>
-                    <li><a href="#" id="toggleFav"><i class="icon-star"></i>Favoritos</a></li>
+                    <li class="active img-rounded"><a id="historial" href="#tabHistorial" data-toggle="tab">Historial del Paciente</a></li>
+                    <li id="consultaToggle"><a id="recetar" href="#tabConsulta" data-toggle="tab">Recetar</a></li>
+                    <li><a href="#tabCalculadora" id="calculadoras" data-toggle="tab">Calculadoras</a></li>
+                    <li><a href="#" id="toggleFav" id="favoritos"><i class="icon-star"></i>Favoritos</a></li>
                     <li class="dropdown pull-right">
                        
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -317,3 +317,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 					echo "<center><h5> Lugar de Atención: ".$lugar['nombreLugar']." &nbsp &nbsp &nbsp ";
                         ?></li>
                 </ul><!-- aquí termina lo que hay en la barra navegacion-->
+                <script>
+                    $("#historial").click(function() {
+                            $(this).css("background", "#414040");
+                            $('#recetar').css("background", "");
+                             $('#calculadoras').css("background", "");
+                              });
+                                 $("#recetar").click(function() {
+                            $(this).css("background", "#414040");
+                            $('#historial').css("background", "");
+                             $('#calculadoras').css("background", "");
+                              });
+                    </script>
+                    
+                
