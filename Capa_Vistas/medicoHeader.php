@@ -63,6 +63,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
         
     .modal{
            border: 5px solid #0b72b5;
+            max-height: 600px;
       }
     .modal-header, .modal-footer{
           background-color: whitesmoke;
@@ -70,7 +71,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     .modal-body{
           background-color: white;
           border: 3px solid #0b72b5;
-          max-height: 600px;
+         
           overflow-y: scroll;
       }
         
