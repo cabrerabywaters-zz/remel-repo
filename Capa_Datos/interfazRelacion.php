@@ -14,7 +14,7 @@ function QueryStringSeleccionarRelacion($where, $atributosASeleccionar, $nombreT
     foreach ($atributosASeleccionar as $nombreAtributo) {
         $selectString = $selectString . " " . $nombreAtributo;
     }
-    $selectString = selectString . " FROM $nombreTabla $where";
+    $selectString = $selectString . " FROM $nombreTabla $where";
     return $selectString;
 }
 

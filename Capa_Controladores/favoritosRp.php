@@ -14,12 +14,12 @@ static $nombreIdTabla = "ID";
                                 array('Cantidad',$cantidad),
                                 array('Frecuencia',$frecuencia),
                                 array('Unidad_Frecuencia_ID',$unidadDeFrecuencia),
-                                array('Periodo',$periodo,
+                                array('Periodo',$periodo),
                                 array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadDeConsumo),
 				array('Unidad_Periodo_ID',$unidadDePeriodo),
 				array('Vias_idVias',$via),
-				array('Nombre_Corto',$nombreCorto)	
-                                );
+				array('Nombre_Corto',$nombreCorto)
+				);
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }

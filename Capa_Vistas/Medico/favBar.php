@@ -13,18 +13,23 @@
 
     <div id="diagnosticosFav" class="collapse">
         <div class="span10 offset1">
+		<?php
+		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnosticoComun.php");	
+		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnostico.php");
+	
+		$idMedico = $_SESSION['idMedicoLog'];
+		$diagnosticosComunes = DiagnosticoComun::Seleccionar($idMedico);
 
-            <div class="alert alert-info"><!-- pill diagnosticoFav 1 -->
-                <strong>Diagnostico ej</strong>
+		foreach($diagnosticosComunes as $diagnosticoComun){
+		?>
+            <div class="alert alert-info" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
+                <strong><?php echo Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico']); ?></strong>
                 <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos -->
                 <a href="#gregarFav" rel="tooltip" title="Agregar a Receta"> <i class="detalleDiagnostico icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
             </div><!-- end pill diagnosticoFav 1-->
-            <div class="alert alert-info"><!-- pill diagnosticoFav 1 -->
-                <strong>Diagnostico ej</strong>
-                <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos -->
-                <a href="#gregarFav" rel="tooltip" title="Agregar de Receta"> <i class="detalleDiagnostico icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
-            </div><!-- end pill diagnosticoFav 1-->
-
+		<?php
+		}
+		?>
         </div>
     </div>
     <!-- fin diagnosticos favoritos-->
