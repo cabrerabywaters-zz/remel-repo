@@ -225,7 +225,8 @@
                             alert('La receta no pudo ser generada');
                         }
                         //Cuando el ingreso de los datos de la receta es correcto
-                        else{
+                    else if(!isNaN(parseInt(output))){
+                            
                              //Se Modifica el Label del encabezado de la receta para confirmar la emicion de la receta
                              $('#resumenRecetaLabel').html('Receta Folio# '+output+' Emitida Exitosamente');
                              $('#resumenRecetaLabel').addClass("alert alert-success");
@@ -244,12 +245,10 @@
                              //que se encuentra oculto 
                              //Se puede encontrar otra manera de hacerlo, ya que no es la mejor, pero funciona.
                              $('#content').html($('#contenidoReceta').html()) ;
-                             
-                            
-                            
-
-                        }
-                        
+                         }
+                    else{
+                        alert('La receta no pudo ser generada');
+                    }    
                       
          }
            

@@ -24,16 +24,17 @@ background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 
 background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
 background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
-"><center><h5>Datos Personales</h5></center></th>                      
-                    </tr>
-                </thead>
-                <tbody>
+"><center><h5>Datos Personales</h5></center></th>                       
 
-                    <td>
+</tr>
+</thead>
+<tbody>
+
+    <td>
                    
                    
-                     <div class="control-group">
-    <label class="control-label" for="Nombre" ><strong>Nombre </strong> <br><input style="text-align:center;" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
+    <div class="control-group">
+        <label class="control-label" for="Nombre" ><strong>Nombre </strong> <br><input style="text-align:center;" class="input-xxlarge" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
     </div>
     
     <div class="control-group">
@@ -43,13 +44,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
     echo $fechaNac; 
     ?>" disabled></label>&nbsp
     <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" id="Sexo" value="<?php if($paciente['Sexo']=='1')
-	{
-		echo "Masculino";
-	}
+	{echo "Masculino";}
 	else
-	{
-	echo "Femenino";	
-	}; ?>" disabled></label>
+	{echo "Femenino";} ?>" disabled></label>
     <br> <br>
     <label class="control-label" for="Peso"><strong>Peso [Kg]  </strong><br> <input style="text-align:center;" type="text" class="edicion"  id="Peso" value="<?php echo $paciente['Peso']; ?>"></label>
     <label class="control-label" for="Altura"><strong>Altura [Cm] </strong><br><input style="text-align:center;" type="text" class="edicion" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
@@ -138,9 +135,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                 <tbody>
 
                     <td>
-    <div class="control-group">
-    <label class="control-label pull-left span5" for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion span5" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
-        <label class="control-label pull-right span5" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion span5" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
+    <div class="control-group row-fluid">
+    <label class="control-label pull-left" for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion input-xlarge" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
+    <label class="control-label pull-right" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
 
     </div>
      
