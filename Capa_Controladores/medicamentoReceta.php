@@ -28,10 +28,13 @@ class MedicamentoReceta  {
            $fechaInicio =trim($fechaInicio);
            $fechaTermino =trim($fechaTermino);
            $comentario =trim($comentario);
+
+
         $queryString ="Insert into Medicamentos_Recetas(Receta_idReceta,Diagnosticos_idDiagnosticos,Medicamento_idMedicamento,Cantidad,Frecuencia,Unidad_Frecuencia_ID,Periodo
 ,Unidad_Periodo_ID,Unidad_de_Consumo_idUnidad_de_Consumo,Comentario,Fecha_Inicio,Fecha_Termino)
-	Values ($idReceta,$idDiagnostico,$idMedicamento,$cantidad,$frecuencia,$unidadFrecuencia,$periodo,$unidadPeriodo,$unidadConsumo,'$comentario',$fechaInicio,$fechaTermino)";
+	Values ('$idReceta','$idDiagnostico','$idMedicamento','$cantidad','$frecuencia','$unidadFrecuencia','$periodo','$unidadPeriodo','$unidadConsumo','$comentario','$fechaInicio','$fechaTermino')";
                $query = CallQuery($queryString);
+
              if(!$query)
              {
                  echo 0;

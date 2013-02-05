@@ -15,14 +15,9 @@
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Doc Jose', 12],
-          ['Doc Leo', 5],
-          ['Doc Maria', 6],
-          ['Doc Amor', 15],
-          ['Doc Nacho', 4],
-		  ['Doc Cesar', 2]
-        ]);
+        data.addRows(<?php
+		include_once(dirname(__FILE__)."/../../ajax/obtenerCantidadVisitas.php");
+?>);
 
         // Set chart options
         var options = {'title':'Visitas de los medicos',

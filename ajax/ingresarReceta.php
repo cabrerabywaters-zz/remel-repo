@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 include_once(dirname(__FILE__)."/../Capa_Controladores/receta.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/historialMedico.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/medicamentoReceta.php");
@@ -10,8 +7,6 @@ include_once(dirname(__FILE__)."/../Capa_Controladores/medicamentoReceta.php");
 error_reporting('E_ALL');
 
 session_start();
-
-
 
 if(array_key_exists('resumenPoder', $_POST)){
     $diagnosticos = $_POST['resumenPoder'];
@@ -23,22 +18,14 @@ if(array_key_exists('sinDiagnostico', $_POST)){
 }
 else $sinDiagnostico = null;
 
-
-
 $idLugar = $_SESSION['logLugar']['idLugar'];
 $idConsulta = $_SESSION['idConsulta'];
 $idMedico = $_SESSION['idMedicoLog'][0];
 $idPaciente = $_SESSION['idPaciente'];
 $ip = $_SESSION['last_ip'];
 
-
-
-
-
-$idReceta = Receta::Insertar($idLugar, $ip, $idConsulta);
-
-$Receta= Receta::SeleccionarPorLugarIpConsulta($idLugar , $ip, $idConsulta);
-
+$idReceta = Receta::Insertar($ip, $idConsulta);
+$Receta= Receta::SeleccionarPorLugarIpConsulta($ip, $idConsulta);
 
 if($idReceta == false){ $check = 0; die("No se insertó la receta correctamente"); }
 

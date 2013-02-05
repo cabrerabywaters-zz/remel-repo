@@ -217,8 +217,7 @@
          type: 'post',
          async: true,
          success: function(output){
-            
-           
+		alert(output);            
           //Si la funcion no ingresa los datos
                     if(output=='0')
                         {

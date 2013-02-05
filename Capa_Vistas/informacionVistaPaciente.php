@@ -46,7 +46,7 @@ $etnia = Etnia::Seleccionar("WHERE idEtnias = '$etnia'");
 $etnia = $etnia[0];
 
 $idPaciente = $infoPaciente['idPaciente'];
-
+$_SESSION['idPaciente'] = $idPaciente;
 
 $diagnosticosPaciente = Paciente::R_DiagnosticoPaciente($idPaciente);
 $recetasPaciente = Paciente::R_RecetasPaciente($idPaciente);

@@ -13,15 +13,13 @@ class Receta  {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar($idLugar, $ip, $idConsulta ) {
+    public static function Insertar($ip, $idConsulta ) {
     	$datosCreacion = array(
                                 array('Fecha_Emision',date("Y-m-d H:i:s")),
-                                array('Lugar_de_Atencion_idLugar_de_Atencion',$idLugar),
                                 array('DireccionIP',$ip),
                                 array('Consulta_Id_consulta',$idConsulta),
                                 array('Estado','0'),
                                 );
-
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQueryReturnID($queryString);
 	return $query;
@@ -128,11 +126,10 @@ class Receta  {
         $query = CallQuery($queryString);
     }
 
-     public static function SeleccionarPorLugarIpConsulta($idLugar,$ip,$idConsulta) {
+     public static function SeleccionarPorLugarIpConsulta($ip,$idConsulta) {
     	
 
-        $queryString = "Select idReceta from Recetas where Lugar_de_Atencion_idLugar_de_atencion='$idLugar' 
-         and DireccionIP='$ip' and Consulta_Id_consulta='$idConsulta' ";
+        $queryString = "Select idReceta from Recetas where DireccionIP='$ip' and Consulta_Id_consulta='$idConsulta' ";
 
           
         $result = CallQuery($queryString);
