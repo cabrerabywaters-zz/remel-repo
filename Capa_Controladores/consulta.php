@@ -16,7 +16,7 @@ class Consulta  {
     public static function Insertar($idMedico, $idPaciente, $idLugar) {
     	$datosCreacion = array(
                                 array('Fecha',date("Y-m-d")),
-                                array('Hora',time()),
+                                array('Hora',date("H:i:s")),
                                 array('Medicos_idMedico',$idMedico),
                                 array('Pacientes_idPaciente',$idPaciente),
                                 array('Lugar_de_Atencion_idLugar_de_Atencion',$idLugar)
