@@ -58,9 +58,9 @@
     <center><button type="submit" id="submit" class="btn imprimir" style="display:none"><strong>Imprimir Receta</strong> <i class="icon-print"></i></button>
     
     </form>
-    <button class="btn btn-success terminar" style="display:none"><strong>Volver al Menú</strong></button></center>
-    <button class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Cancelar Emisión</strong></button>
-    <button class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><i class="icon-check icon-white"></i>Firmar Emisión</strong></button>
+    <a class="btn btn-success terminar" style="display:none"><strong>Volver al Menú</strong></a></center>
+    <a class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Cancelar Emisión</strong></a>
+    <a class="btn btn-primary confirmarEmision" data-loading-text="Cargando..."><strong><i class="icon-check icon-white"></i>Firmar Emisión</strong></a>
     
     </div><!-- modal footer -->
 
@@ -257,8 +257,8 @@
    
    //deberia vaciarse el modal cada vez que se cancela, ya que se deberia luego volver a generar
    //con la informacion que se edite.
-   $('.cancelarEmision').click(function(){
-      
+   $('.terminar').click(function(){
+      window.location = '../doctorIndex.php';
       
    
    });
