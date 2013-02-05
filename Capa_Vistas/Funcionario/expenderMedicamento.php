@@ -8,7 +8,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
 <div class="row-fluid">
     <div class="tab-content"><!-- contenido del panel 1-->
         <div class="tab-pane active img-rounded" id="tabVenderMedicamentos"><!-- tab Historial-->
-
+<center>
             <div class="accordion-heading">
                 <a class="btn btn-large btn-block in" disabled="disabled" data-toggle="collapse" data-parent="#accordion1" >
                     Expender Medicamento
@@ -37,7 +37,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     echo '<div id="mensaje">';
                     ?>
                 </div>        
-            </div><!-- fin accordion --></div>
+            </div><!-- fin accordion --></center></div>
         </div>
         <div class="tab-pane img-rounded" id="tabVerArsenal"><!-- tab Historial-->
 
