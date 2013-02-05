@@ -29,14 +29,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
             <th>Diagnostico</th>
+            <th>Medicamentos</th>
            
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($recetas as $datos => $dato) {
-
-            foreach ($dato as $llave => $valor) {   
-			        echo "<tr>";          
+					echo "<tr>";            
                     echo '<td>';
 					echo "".$dato['Medico']." ".$dato['Apellido_Paterno']."";
 					echo '</td>';
@@ -47,12 +46,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                     echo $dato['Fecha_Vencimiento'];
                     echo '</td>';
                     echo '<td>';
-                    echo '<center><input id="'.$dato['idReceta'].'" type="button" class="btn btn-info" value="'.$dato['Diagnostico'].'"></center>';
+                    echo $dato['Diagnostico'];
+                    echo '</td>';
+					echo '<td>';
+					foreach ($dato as $valor => $value)
+					{
+                    echo "".$dato['Diagnostico'].", ";
+					}
                     echo '</td>';
 					echo "</tr>";
-                }                
-            
-
         }
 		?>
 	</tbody>
@@ -71,6 +73,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
             <th>Diagnostico</th>
+            <th>Medicamentos</th>
 		</tr>
 	</tfoot>
 </table>

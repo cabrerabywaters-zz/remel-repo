@@ -218,7 +218,9 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 						AND Medicos.idMedico=Consulta.Medicos_idMedico
 						AND Consulta.Id_consulta=Recetas.Consulta_Id_consulta
 						AND Recetas.idReceta=Medicamentos_Recetas.Receta_idReceta
-						AND Diagnosticos.idDiagnostico=Medicamentos_Recetas.Diagnosticos_idDiagnosticos ";
+						AND Diagnosticos.idDiagnostico=Medicamentos_Recetas.Diagnosticos_idDiagnosticos
+						GROUP BY idReceta ";
+						echo $queryString;
 
         $result = CallQuery($queryString);
         $resultArray = array();
