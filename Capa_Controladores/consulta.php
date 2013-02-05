@@ -17,7 +17,7 @@ class Consulta  {
     	$datosCreacion = array(
                                 array('Fecha',date("Y-m-d")),
                                 array('Hora',time()),
-                                array('Medicos_idMedico',$idPaciente),
+                                array('Medicos_idMedico',$idMedico),
                                 array('Pacientes_idPaciente',$idPaciente),
                                 array('Lugar_de_Atencion_idLugar_de_Atencion',$idLugar)
                                 );

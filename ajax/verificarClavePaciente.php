@@ -28,7 +28,7 @@ if (!Persona::VerificarPIN($rut, $codigo)) {
     //insertamos la nueva consulta
     if ($_SESSION['idMedicoLog'] != false) {
 
-        $_SESSION['idConsulta'] = Consulta::Insertar($_SESSION['idMedicoLog'][0], $_SESSION['idPaciente'], $_SESSION['logLugar']['idLugar']);
+        $_SESSION['idConsulta'] = Consulta::Insertar($_SESSION['idMedicoLog'], $_SESSION['idPaciente'], $_SESSION['logLugar']['idLugar']);
     }
     if ($_SESSION['idFuncionarioLog'] != false) {
         
