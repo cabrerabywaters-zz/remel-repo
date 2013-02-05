@@ -94,10 +94,10 @@ verificarIP();
                 <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
                 <!-- Button to trigger modal -->
                 <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
-                <button class="btn btn-large btn-block" type="button">Ver Pacientes Atendidos</button>
-                <button class="btn btn-large btn-block " type="button">Consultar medicamentos</button>
-                <button class="btn btn-large btn-block" type="button">Consultar Diagnósticos</button>
-                        <a href="../decision.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
+                <button class="btn btn-large btn-block" type="button" disabled="disabled">Ver Pacientes Atendidos</button>
+                <button class="btn btn-large btn-block " type="button" disabled="disabled">Consultar medicamentos</button>
+                <button class="btn btn-large btn-block" type="button" disabled="disabled">Consultar Diagnósticos</button>
+                <a href="../decision.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
                 <a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
                 </form>
              </div>
