@@ -248,6 +248,7 @@
                          }
                     else{
                         alert('La receta no pudo ser generada');
+                        alert(output);
                     }    
                       
          }
