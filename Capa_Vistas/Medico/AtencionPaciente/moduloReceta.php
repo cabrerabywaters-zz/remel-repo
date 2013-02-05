@@ -498,56 +498,25 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
         $('.editMedicamento').click(function(){
-            //BOTON EDITAR
-        //AUTOR: MAX SILVA mit master oviedo
-            
+            /* BOTON EDITAR
+             *  AUTOR: MAX SILVA feat master oviedo
+             */
+            // se obtiene el id del pill donde se hizo el click
             var idRecetaEdit = $(this).parent().attr('idMedicamento');
             
-            $('#Medicamentos').val(
-            $(this).parent().attr('medicamentos')
-        );
-           
+            // se setean los valores del modal con los valores guardados por detras
+            $('#Medicamentos').val($(this).parent().attr('medicamentos'));
             //$('#warnings').html('')
-            
-            $('#detalleMedicamentoLabel').text(
-            $(this).parent().children('strong').text()
-        );
-            
-            /*$('#idMedicamento').text(
-            $(this).parent().attr('idmedicamento')
-                );
-            
-            $('#descripcionMedicamento').text(
-            $(this).parent().attr('descripcionmedicamento').text()
-        ); */
-            
-            $('#cantidadMedicamento').val(
-            $(this).parent().attr('cantidadmedicamento')
-        );
-            
-            $('#frecuenciaMedicamento').val(
-            $(this).parent().attr('frecuenciamedicamento')
-        );
-            
-            $('#periodoMedicamento').val(
-            $(this).parent().attr('periodomedicamento')
-        );
-            
-            $('#comentarioMedicamento').val(
-            $(this).parent().attr('comentariomedicamento')
-        );
-            
-            $('#tipoReceta').text(
-            $(this).parent().attr('tiporeceta')
-        );
-            
-            $('#diagnosticoAsociado').val(
-            $(this).parent().attr('diagnosticoasociado')
-        );
-            
-            $('input[name="fechaInicio"]').val(
-            $(this).parent().attr('fechainicio')
-        );
+            $('#detalleMedicamentoLabel').text($(this).parent().children('.nombreComercial').text());
+            //$('#idMedicamento').text($(this).parent().attr('idmedicamento'));
+            //$('#descripcionMedicamento').text($(this).parent().attr('descripcionmedicamento').text());
+            $('#cantidadMedicamento').val($(this).parent().attr('cantidadmedicamento'));
+            $('#frecuenciaMedicamento').val($(this).parent().attr('frecuenciamedicamento'));
+            $('#periodoMedicamento').val($(this).parent().attr('periodomedicamento'));
+            $('#comentarioMedicamento').val($(this).parent().attr('comentariomedicamento'));
+            $('#tipoReceta').text($(this).parent().attr('tiporeceta')        );
+            $('#diagnosticoAsociado').val($(this).parent().attr('diagnosticoasociado'));
+            $('input[name="fechaInicio"]').val($(this).parent().attr('fechainicio'));
                
             
             $('#guardar_cambios_receta').show().attr('disabled',false);
@@ -582,7 +551,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
                 var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
                 var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
-                $('.infoMedicamento').html('<strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidad_medicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia_medicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo_medicamento+' '+porCuanto)
+                $('.infoMedicamento').html('<strong class="nombreComercial">'+nombreComercial+'</strong><br><strong>Cantidad: </strong>'+cantidad_medicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuencia_medicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodo_medicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>')
         
               
                         //se redirecciona la vista de la pantalla hacia receta.

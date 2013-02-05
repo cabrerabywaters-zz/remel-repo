@@ -88,7 +88,7 @@
             //busco todos los medicamentos asociados
             
             $('div[diagnosticoAsociado="'+idDiagnostico+'"]').each(function(){//para cada medicamento
-               alert('achunte');
+               
                var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
@@ -104,6 +104,7 @@
         });// end each Diagnostico
         
         $('div[diagnosticoAsociado="0"]').each(function(){
+               
                var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
@@ -112,6 +113,7 @@
                var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
                var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
+               alert(nombreComercial+idMedicamento+cantidadMedicamento+unidadConsumo)
                $('#resumen').append('<h5> -> '+nombreComercial+'<br>    - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>');
         }); // end each medicamento
         
@@ -124,7 +126,7 @@
            $('.confirmarEmision').attr('disabled','disabled');
        }
        
-   }); // end click
+   }); // end click ver resumen
    
    /*
     *Funcion que se ejecuta al hacer click en "Firmar Emisión"
@@ -253,14 +255,13 @@
                         alert(output);
                     }    
                       
-         }
+         }//end success
            
         });// end ajax 
         }//end contador breaker
       }); // end click
    
-   //deberia vaciarse el modal cada vez que se cancela, ya que se deberia luego volver a generar
-   //con la informacion que se edite.
+   //redireccion al hacer click en terminar
    $('.terminar').click(function(){
       window.location = '../doctorIndex.php';
       
