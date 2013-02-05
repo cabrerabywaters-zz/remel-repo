@@ -132,7 +132,10 @@
     *correspondientes y escribir el JSON que los contenga para ser enviados
     *[{diagnostico1: [{medicamento1:[{}], medicamento2:[{}]...}], diagnostico2:{medicamento3:{},medicamento4:{}} 
     */
+    var contador = false;
    $('.confirmarEmision').click(function(){
+        
+        $(this).attr('disabled','disabled');
         var resumenPoder = [];
         
             $('.diagnostico').each(function(){// para cada diagnostico
@@ -210,14 +213,14 @@
             }) // end push sinDiagnostico
         
         })//end each medicamento sin diagnostico asociado
-                
+        if(!contador){        
         $.ajax({
          data: {'resumenPoder' : resumenPoder, 'sinDiagnostico': sinDiagnostico},
          url: '../../../ajax/ingresarReceta.php',
          type: 'post',
          async: true,
          success: function(output){
-		alert(output);            
+		            
           //Si la funcion no ingresa los datos
                     if(output=='0')
                         {
@@ -225,7 +228,7 @@
                         }
                         //Cuando el ingreso de los datos de la receta es correcto
                     else if(!isNaN(parseInt(output))){
-                            
+                            contador = true;
                              //Se Modifica el Label del encabezado de la receta para confirmar la emicion de la receta
                              $('#resumenRecetaLabel').html('Receta Folio# '+output+' Emitida Exitosamente');
                              $('#resumenRecetaLabel').addClass("alert alert-success");
@@ -252,8 +255,9 @@
                       
          }
            
-        });// end ajax
-   }); // end click
+        });// end ajax 
+        }//end contador breaker
+      }); // end click
    
    //deberia vaciarse el modal cada vez que se cancela, ya que se deberia luego volver a generar
    //con la informacion que se edite.
