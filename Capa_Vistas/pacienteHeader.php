@@ -131,7 +131,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', end
                         <ul class="dropdown-menu">
                         <!-- links -->
                         <li><a href="../decision.php">Volver al Menú</a></li>
-                        <li><a href="../logout.php">Salir</a></li>
+                        <li><a href="../Medico/logout.php">Salir</a></li>
                         </ul>
                     </li> 
                       
