@@ -188,7 +188,7 @@
            var unidadFrecuencia = $(this).attr('idUnidadFrecuencia');
            var periodo = $(this).attr('periodo');
            var unidadPeriodo = $(this).attr('idUnidadPeriodo');
-           var fechaInicio = "<?php $hoy=getdate(); echo $hoy['month'].'/'.$hoy['mday'].'/'.$hoy['year'];?>";
+           var fechaInicio = "<?php $hoy=getdate(); echo $hoy['mon'].'/'.$hoy['mday'].'/'.$hoy['year'];?>";
            
            var cuanto = $(this).attr('unidadConsumo'); // nombre de la unidad de consumo
            var cadaCuanto = $(this).attr('unidadFrecuencia'); //nombre de la unidad de frecuencia
@@ -303,7 +303,7 @@
                 var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
                 var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
                 var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
-                $('.infoMedicamento').html('<strong>'+nombreComercial+'<br>Cantidad: </strong>'+cantidad_medicamento+' '+cuanto+' <strong>Frecuencia: </strong>'+frecuencia_medicamento+' '+cadaCuanto+'<br><strong>Periodo: </strong>'+periodo_medicamento+' '+porCuanto)
+                $('.infoMedicamento').html('<strong class="nombreComercial">'+nombreComercial+'</strong><br><strong>Cantidad: </strong>'+cantidad_medicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuencia_medicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodo_medicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>')
         
               
                         //se redirecciona la vista de la pantalla hacia receta.

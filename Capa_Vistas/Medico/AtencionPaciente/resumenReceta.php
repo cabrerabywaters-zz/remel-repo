@@ -97,8 +97,9 @@
                var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
                var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
-               var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()  
-               $('#resumen').append('<h5> -> '+nombreComercial+'<br>    - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>'); 
+               var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
+               var comentario = $(this).attr('comentarioMedicamento');
+               $('#resumen').append('<h5> -> '+nombreComercial+'<br> </h5>   - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.<br>Comentarios: <i>'+comentario+'</i>'); 
             })// end each medicamento
           $('#resumen').append('<hr>'); //linea  
             
@@ -114,8 +115,8 @@
                var unidadFrecuencia = $(this).children('.infoMedicamento').children('.unidadFrecuencia').text()
                var periodoMedicamento = $(this).attr('periodoMedicamento');
                var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
-               alert(nombreComercial+idMedicamento+cantidadMedicamento+unidadConsumo)
-               $('#resumen').append('<h5> -> '+nombreComercial+'<br>    - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.</h5>');
+               var comentario = $(this).attr('comentarioMedicamento');
+               $('#resumen').append('<h5> -> '+nombreComercial+'<br> </h5>   - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.<br>Comentarios: <i>'+comentario+'</i>');
         }); // end each medicamento
         
 //        $('#resumen').append('<hr>'); //linea

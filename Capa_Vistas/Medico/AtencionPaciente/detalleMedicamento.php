@@ -23,17 +23,17 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                    
                    <table class="table table-hover table-condensed">
                        <tr>
-                           <td>Cantidad :</td>
+                           <td>Cantidad</td>
                            <td><input class="span11" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></td>
                            <td><select class="span11" name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
                        </tr>
                        <tr>
-                           <td>Frecuencia :</td>
+                           <td>Frecuencia</td>
                            <td><input class="span11" type="text" placeholder="frequencia" id="frecuenciaMedicamento" value="8"></td>
                            <td><select class="span11" name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
                        </tr>
                        <tr>
-                            <td>Duración :</td>
+                            <td>Duración</td>
                             <td><input class="span11" type="text" placeholder="periodo" id="periodoMedicamento"></td>
                             <td><select class="span11" name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
                         </tr>
@@ -49,7 +49,7 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                             <td colspan="2"><input class="span11 datepicker" type="text" name="fechaFin" ></td>
                         </tr>
                         <tr>
-                            <td>Comentario:</td>
+                            <td>Comentario</td>
                             <td colspan="2"><textarea width="100%" id="comentarioMedicamento"></textarea></td>
                         </tr>
                        
