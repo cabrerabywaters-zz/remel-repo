@@ -112,6 +112,13 @@ class Log {
                                 ';
         $query = CallQuery($queryString);
     }
+    
+    public static function InsertarModificacionDatosPacientePropia($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run) {
+        $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
+                                VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "")  
+                                ';
+        $query = CallQuery($queryString);
+    }
 
 }
 

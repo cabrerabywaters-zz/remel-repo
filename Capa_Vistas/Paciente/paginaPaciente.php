@@ -14,7 +14,7 @@ include('./../pacienteHeader.php');
       
         <div class="accordion" id="accordion1"><!-- accordion info personal -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
-                 <?php 
+                 <?php
 		  // muestra los detalles de paciente
 		  include ("informacionPacientePaciente.php"); 
                   ?>

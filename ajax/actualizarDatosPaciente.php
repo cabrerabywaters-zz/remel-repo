@@ -18,10 +18,9 @@ $comuna = Comuna::BuscarComunaPorNombre($comuna);
 $comuna = $comuna['idComuna'];
 
 $actualizado = Persona::MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo, $prevision, $seguro);
-
-if ($actualizado){
+if ($actualizado==1){
     
-    echo "1";
+    echo '1';
 }
 else
 {
