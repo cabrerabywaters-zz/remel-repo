@@ -492,7 +492,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-        <div class="infoMedicamento"><strong class="nombreComercial">'+nombreComercial+'</strong><strong><br>Cantidad: </strong>'+cantidadMedicamento+' <span class="unidadConsumo">'+cuanto+'</span><strong>Frecuencia: </strong>'+frecuenciaMedicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodoMedicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>\n\
+        <div class="infoMedicamento"><strong class="nombreComercial">'+nombreComercial+'</strong><strong><br>Cantidad: </strong>'+cantidadMedicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuenciaMedicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodoMedicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>\n\
         </div></div>';
             
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento

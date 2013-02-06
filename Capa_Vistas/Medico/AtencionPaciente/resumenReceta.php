@@ -38,8 +38,9 @@
       </tr>
       <tr><td colspan="3"><hr></td></tr>
       <tr><td colspan="3">
+      <strong>RP:</strong><br>
       <div class="row-fluid" id="resumen">
-      <strong>RP:</strong><br>    
+          
       
       </div>
       </td>        
@@ -99,7 +100,7 @@
                var periodoMedicamento = $(this).attr('periodoMedicamento');
                var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
                var comentario = $(this).attr('comentarioMedicamento');
-               $('#resumen').append('<h5> -> '+nombreComercial+'<br> </h5>   - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.<br>Comentarios: <i>'+comentario+'</i>'); 
+               $('#resumen').append('<h5> -> '+nombreComercial+'<br> </h5>   - <b>'+cantidadMedicamento+' '+unidadConsumo+'</b> <small>cada</small> <b>'+frecuenciaMedicamento+' '+unidadFrecuencia+'</b><small>, por</small> <b>'+periodoMedicamento+' '+unidadPeriodo+'</b>.<br>Comentarios: <i>'+comentario+'</i>'); 
             })// end each medicamento
           $('#resumen').append('<hr>'); //linea  
             
@@ -116,7 +117,7 @@
                var periodoMedicamento = $(this).attr('periodoMedicamento');
                var unidadPeriodo = $(this).children('.infoMedicamento').children('.unidadPeriodo').text()
                var comentario = $(this).attr('comentarioMedicamento');
-               $('#resumen').append('<h5> -> '+nombreComercial+'<br> </h5>   - '+cantidadMedicamento+' '+unidadConsumo+' <small>cada</small> '+frecuenciaMedicamento+' '+unidadFrecuencia+'<small>, por</small> '+periodoMedicamento+' '+unidadPeriodo+'.<br>Comentarios: <i>'+comentario+'</i>');
+               $('#resumen').append('<h5> -> '+nombreComercial+'<br> </h5>   - <b>'+cantidadMedicamento+' '+unidadConsumo+'</b> <small>cada</small> <b>'+frecuenciaMedicamento+' '+unidadFrecuencia+'</b><small>, por</small> <b>'+periodoMedicamento+' '+unidadPeriodo+'</b>.<br>Comentarios: <i>'+comentario+'</i>');
         }); // end each medicamento
         
 //        $('#resumen').append('<hr>'); //linea
