@@ -20,8 +20,7 @@
 <div id="resumenReceta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="resumenRecetaLabel" aria-hidden="true">
   
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-   <center> <h3 id="resumenRecetaLabel">Resumen de la Receta</h3></center>
+    <center> <h3 id="resumenRecetaLabel">Resumen de la Receta</h3></center>
   </div>
   
   <div class="modal-body" id="contenidoReceta">
@@ -46,6 +45,8 @@
       </td>        
       </tr>
       <tr><td colspan="3"><hr></td></tr>
+      </table>
+      <table>
       <tr style="background-color: #E0E0FF">
          <td><div class="logoRemel pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div></td>
          <td colspan="2"><div class="infoRemel"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div></td>
