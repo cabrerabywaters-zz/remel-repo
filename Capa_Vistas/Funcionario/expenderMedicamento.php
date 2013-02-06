@@ -33,7 +33,13 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     //echo 'Precio: ' . $datosMedicamento['Precio_Referencia_CLP'];
                     $_SESSION['precio'] = $datosMedicamento['Precio_Referencia_CLP'];
                     echo '<br>';
+                    $existeMedicamento = Arsenal::R_BuscarMedicamentoEnArsenalPorId($_SESSION['medicamentoID'], $_SESSION['logLugar']['idLugar']);
+                    if ($existeMedicamento){
                     echo '<input class="btn btn-primary" id="expender" type="submit" value="Expender"></input></br>';
+                    }
+                    else{
+                        echo 'El medicamento no existe en el arsenal';
+                    }
                     echo '<button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Volver a Medicamentos</strong></button>';
                     echo '<br>';
                     echo '<div id="mensaje">';

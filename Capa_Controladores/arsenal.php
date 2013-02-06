@@ -74,6 +74,16 @@ class Arsenal  {
         }
         else return false;
     }
+    public static function R_BuscarMedicamentoEnArsenalPorId($idMedicamento, $idExpendedor){
+        $queryString = 'SELECT *
+                        FROM Arsenal
+                        WHERE Medicamentos_idMedicamento = '.$idMedicamento.'
+                        AND Expendedores_idExpendedores = '.$idExpendedor.'
+                        ';
+        $query = CallQuery($queryString);
+        if ($query!=false){ return true;}
+        else{ return false;}
+    }
 }
 
 ?>

@@ -4,6 +4,7 @@ iniciarCookie();
 verificarIP();
 include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
+include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
 //buscar Recetas del cliente
 ?>
 <div class="row-fluid">
@@ -59,7 +60,14 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                                     $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
                                     for ($i = 0; $i < count($medicamentosReceta); $i++) {
                                         //echo $medicamentosReceta[$i]['Nombre_Comercial'] . '</br>';
-                                        echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>'.$medicamentosReceta[$i]['Nombre_Comercial'].'</strong></button></br>';
+                                        if ($medicamentosReceta[$i]['tipo'] == 0) {
+                                            echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>' . $medicamentosReceta[$i]['Nombre_Comercial'] . '</strong></button></br>';
+                                        }
+                                        else{
+                                            $datosMedicamento = Medicamento::R_CantidadDisponibleMedicamento($medicamentosReceta[$i]['idMedicamento']);
+                                            $cantidadDisponible = (($datosMedicamento['cantidad'] * 24/$datosMedicamento['frecuencia'] * $datosMedicamento['periodo'])/$datosMedicamento['cantidadPresentacion']) - $datosMedicamento['cantidadVendida'];
+                                            echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>' . $medicamentosReceta[$i]['Nombre_Comercial'] .' - '. $cantidadDisponible . ' Disponibles</strong></button></br>';                                            
+                                        }
                                     }
                                 }
                                 if ($llave == 'Nombre') {

@@ -258,7 +258,19 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
 		}
 		return $unidades;
 	}
-    
+        public static function R_CantidadDisponibleMedicamento($idMedicamento){
+            $queryString = 'SELECT COUNT(Medicamentos_Vendidos.Medicamentos_Recetas_Medicamento_idMedicamento) as cantidadVendida,
+                                   Medicamentos_Recetas.Cantidad as cantidad, Medicamentos_Recetas.Frecuencia as frecuencia, Medicamentos_Recetas.Periodo as periodo, Presentaciones.Cantidad_Unitaria as cantidadPresentacion
+                            FROM Medicamentos, Medicamentos_Recetas, Medicamentos_Vendidos, Presentaciones_has_Medicamentos, Presentaciones
+                            WHERE Medicamentos.idMedicamento = '.$idMedicamento.'
+                            AND Medicamentos.idMedicamento = Medicamentos_Recetas.Medicamento_idMedicamento
+                            AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos_Vendidos.Medicamentos_Recetas_Medicamento_idMedicamento
+                            AND Medicamentos.idMedicamento = Presentaciones_has_Medicamentos.Medicamentos_idMedicamento
+                            AND Presentaciones_has_Medicamentos.Presentaciones_idPresentacion = Presentaciones.idPresentacion
+                            ';
+            $query = CallQuery($queryString);
+            return $query->fetch_assoc();
+        }
 
 }
 
