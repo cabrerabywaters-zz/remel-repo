@@ -270,7 +270,7 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
         return $query->fetch_assoc();
     }
     public static function R_NumeroVentaMedicamento($idMedicamento, $idReceta){
-        $queryString = 'SELECT COUNT(*) as cantidadVendida
+        $queryString = 'SELECT SUM(Cantidad) as cantidadVendida
                         FROM Medicamentos_Vendidos
                         WHERE Medicamentos_Recetas_Medicamento_idMedicamento = '.$idMedicamento.'
                         AND Medicamentos_Recetas_Receta_idReceta = '.$idReceta.'
