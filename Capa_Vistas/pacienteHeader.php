@@ -118,7 +118,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 <!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
                          Los href hacen referencia a los tabs en paginaPaciente.php -->
                     <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
-                    <li><a href="#tabDiagnosticos" data-toggle="tab">Mis Diagnósticos Históricos</a></li>
                      <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas Históricas</a></li>
                       <li><a href="#tabHistorialMedico" data-toggle="tab">Mis Médicos</a></li>
                       	<li><a href="#infoRelevante" data-toggle="tab">Mis Estadisticas</a></li>

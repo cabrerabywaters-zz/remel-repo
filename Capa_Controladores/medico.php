@@ -143,6 +143,17 @@ class Medico {
 	}
 	return $especialidades;
     }
+	 public static function especialidadMedicoPaciente($id) {
+	$queryString = "SELECT Nombre
+			FROM Especialidades
+			WHERE idEspecialidad= $id";
+	$query = CallQuery($queryString);
+	$especialidades = array();
+	while($especialidad = $query->fetch_assoc()){
+		$especialidades[] = $especialidad['Nombre'];
+	}
+	return $especialidades;
+    }
 
     public static function EncontrarMedico($rut) {
         $queryString = "SELECT idMedico FROM Medicos WHERE Personas_RUN = '$rut';";

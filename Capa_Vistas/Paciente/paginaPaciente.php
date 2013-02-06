@@ -30,26 +30,13 @@ include('./../pacienteHeader.php');
     
     </div><!-- Fin tab info personal-->
     
-	<div class="tab-pane img-rounded" id="tabDiagnosticos"><!-- tab Diagnostico-->
-      
-        <div class="accordion" id="accordion2"><!-- accordion info Diagnostico -->
-            <div class="accordion-group"><!-- Diagnosticos del paciente-->
-                 <?php 
-		  // muestra los detalles de paciente
-		  include ("diagnosticosPaciente.php"); 
-                  ?>
-            </div><!-- fin diagnosticos del paciente-->
-        </div><!-- fin acordion info Diagnostico-->
-    
-    </div><!-- Fin tab Diagnostico--> 
-
     <div class="tab-pane img-rounded" id="tabRecetas"><!-- tab info personal-->
       
         <div class="accordion" id="accordion3"><!-- accordion info personal -->
             <div class="accordion-group"><!-- informacion personal del paciente-->
                <?php 
 		  // muestra los detalles de paciente
-		  include ("pacienteMisRecetas.php"); 
+		  include ("recetasHistorial.php"); 
                   ?>
             </div><!-- informacion personal del paciente-->
         </div><!-- fin acordion info personal-->

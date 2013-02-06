@@ -49,11 +49,9 @@ $idPaciente = $infoPaciente['idPaciente'];
 $_SESSION['idPaciente'] = $idPaciente;
 
 $diagnosticosPaciente = Paciente::R_DiagnosticoPaciente($idPaciente);
-$recetasPaciente = Paciente::R_RecetasPaciente($idPaciente);
+$recetas = Paciente::RecetasPacienteMedico($idPaciente);
 $condicionesPaciente = Paciente::R_CondicionPaciente($idPaciente);
 $alergiasPaciente= Paciente::AlergiasTipoPaciente($idPaciente);
-$historialPaciente = Paciente::SeleccionarDiagnosticosPorId($idPaciente);
-$historialRecetas = Paciente::SeleccionarRecetaPorId($idPaciente);
 
 $paciente = array_merge($infoPaciente, $infoPersona, $direccion);
 $seguro=$infoPaciente['Seguros_idSeguros'];
