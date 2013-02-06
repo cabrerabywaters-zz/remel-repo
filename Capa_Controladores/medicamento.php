@@ -260,7 +260,7 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
 	}
         public static function R_CantidadDisponibleMedicamento($idMedicamento){
             $queryString = 'SELECT COUNT(Medicamentos_Vendidos.Medicamentos_Recetas_Medicamento_idMedicamento) as cantidadVendida,
-                                   Medicamentos_Recetas.Cantidad as cantidad, Medicamentos_Recetas.Frecuencia as frecuencia, Medicamentos_Recetas.Periodo as periodo, Presentaciones.Cantidad_Unitaria as cantidadPresentacion
+                                   Medicamentos_Recetas.Cantidad as cantidad, Medicamentos_Recetas.Frecuencia as frecuencia, Medicamentos_Recetas.Periodo as periodo, Presentaciones.Cantidad_Elementos as cantidadPresentacion
                             FROM Medicamentos, Medicamentos_Recetas, Medicamentos_Vendidos, Presentaciones_has_Medicamentos, Presentaciones
                             WHERE Medicamentos.idMedicamento = '.$idMedicamento.'
                             AND Medicamentos.idMedicamento = Medicamentos_Recetas.Medicamento_idMedicamento
