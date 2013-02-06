@@ -8,11 +8,19 @@
         <div class="row">
         <div class="span5" id="alergias">
 
-     <center> <div style="width: 50%; ;">
+     <center> <div style="width: 70%; ;">
    				 <table class="table table-hover table-bordered ">
   				 <thead>
                      <tr>
-                     <th colspan="2"><center>Alergias</center></th>                 
+                     <th colspan="2" style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h4>Alergias / Intolerancias</h4></center></th>                
                     </tr>
                     <tr>
                     <th><center>Tipo de Alergia</center></th>
@@ -49,15 +57,21 @@
 			   
 </tbody>
 </table></div></center></div>  
-		<div class="span5 offset2"><center><div style="width: 50%; ;">
-  <table>
+		<div class="span5 offset2"><center><div style="width: 70%; ;">
+  <table class="table table-hover table-bordered">
    <thead>
                      <tr>
-                     <th>Condiciones</th>                      
+                     <th style="background: rgb(176,212,227); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+"><center><h4>Condiciones</h4></center></th>                   
                     </tr>
                 </thead>
-                <tr><td>
-   <table class="table table-hover table-bordered">
    <tbody>
   <?php  foreach ($condicionesPaciente as $datos => $dato)
    {
@@ -68,8 +82,8 @@
    }
 ?>
                 </tbody>
-            </table>
-            </td></tr></table></div></center></div>
+
+</table></div></center></div>
 
 		</div>
         </div>
