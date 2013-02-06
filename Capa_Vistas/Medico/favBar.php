@@ -23,7 +23,7 @@
 		
 		foreach($diagnosticosComunes as $diagnosticoComun){
 		?>
-            <div class="alert alert-info" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
+            <div class="alert alert-info diagFav" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
                 <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos -->
                 <a href="#gregarFav" rel="tooltip" title="Agregar a Receta"> <i class="detalleDiagnostico icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
             	<strong><?php $nombre = Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico']); echo $nombre['Text']; ?></strong>
@@ -105,6 +105,45 @@
      * de favoritos
      * @author: Cesar González
      */
+
+		$('#filtrarDiagnosticosFav').keydown(function(){
+                            var filtroDiag = $(this).val();
+                            if( filtroDiag == ''){
+                                    $('#diagnosticosFav').children('div').children('div.diagFav').each(function(index, domEle){
+                                            $(domEle).show();
+                                    });
+                            }
+                            else {
+                                    $('#diagnosticosFav').children('div').children('div.diagFav').each(function(index, domEle){
+                                            if( $(domEle).children('strong').text().indexOf(filtroMed) !== -1){
+                                                    $(domEle).show();
+                                            } 
+                                            else {
+                                                    $(domEle).hide();
+                                            }
+                                    });
+                            }
+        });
+
+	
+		    $('#filtrarMedicamentosFav').keydown(function(){
+			    var filtroMed = $(this).val();
+			    if( filtroMed == ''){
+				    $('#medicamentosFav').children('div').children('div.favRP').each(function(index, domEle){
+					    $(domEle).show();
+				    });
+			    }
+			    else {
+				    $('#medicamentosFav').children('div').children('div.favRP').each(function(index, domEle){
+					    if( $(domEle).children('strong').text().indexOf(filtroMed) !== -1){
+						    $(domEle).show();
+					    } 
+					    else {
+						    $(domEle).hide();
+					    }
+				    });
+			    }
+	});
 
     $('#diagnosticosFav').on('hide',function(){
         $('button[data-target="#diagnosticosFav"] i')
