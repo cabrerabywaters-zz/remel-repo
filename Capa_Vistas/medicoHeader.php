@@ -112,7 +112,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
    
         border-color: white;
         border-style: solid;
-    } 
+    }
+    input{text-transform:uppercase;}
    
 </style><!-- fin estilo de la pagina -->
   

@@ -44,9 +44,9 @@
       </div>
       </td>        
       </tr>
-      <tr><td colspan="3"><hr></td></tr>
       </table>
       <table class="recetaFooter">
+      <tr><td colspan="3"><hr></td></tr>    
       <tr>
          <td><div class="logoRemel pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div></td>
          <td colspan="2"><div class="infoRemel"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div></td>

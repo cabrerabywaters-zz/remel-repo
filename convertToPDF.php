@@ -39,6 +39,7 @@ function doPDF($path='',$content='',$body=false,$style='',$mode=false,$paper_1='
         <!doctype html> 
         <html> 
         <head> 
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
             <link rel="stylesheet" href="'.$style.'" type="text/css" /> 
         </head> 
         <body>' 
