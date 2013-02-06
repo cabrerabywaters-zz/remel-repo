@@ -105,7 +105,6 @@
           },
                       type: 'post',
                       success: function(output){
-                          alert(output);
                         if(output==1)
                             {                                   
 
