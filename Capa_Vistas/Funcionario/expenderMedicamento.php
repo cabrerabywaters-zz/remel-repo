@@ -4,6 +4,7 @@ iniciarCookie();
 verificarIP();
 include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
+include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
 ?>
 <div class="row-fluid">
     <div class="tab-content"><!-- contenido del panel 1-->
@@ -26,6 +27,8 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     echo '<br>';
                     echo '<img src="' . $datosMedicamento['Foto_Presentacion'] . '" width="200" height="200"></img>';
                     echo '<br>';
+                    $existeMedicamento = Arsenal::R_BuscarMedicamentoEnArsenalPorId($_SESSION['medicamentoID'], $_SESSION['logLugar']['idLugar']);
+                    if ($existeMedicamento){
                     echo 'Cantidad: <input type="text" class="span1 search-query" id="numero" value="1">';
                     echo '<br>';
                     echo 'Confirma retiro, RUT:<input type="text" value="'.$_SESSION['RUTPaciente'].'" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
@@ -33,12 +36,10 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     //echo 'Precio: ' . $datosMedicamento['Precio_Referencia_CLP'];
                     $_SESSION['precio'] = $datosMedicamento['Precio_Referencia_CLP'];
                     echo '<br>';
-                    $existeMedicamento = Arsenal::R_BuscarMedicamentoEnArsenalPorId($_SESSION['medicamentoID'], $_SESSION['logLugar']['idLugar']);
-                    if ($existeMedicamento){
                     echo '<input class="btn btn-primary" id="expender" type="submit" value="Expender"></input></br>';
                     }
                     else{
-                        echo 'El medicamento no existe en el arsenal';
+                        echo 'El medicamento no existe en el arsenal</br>';
                     }
                     echo '<button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Volver a Medicamentos</strong></button>';
                     echo '<br>';
