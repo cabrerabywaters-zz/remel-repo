@@ -25,7 +25,7 @@
 		?>
             <div class="alert alert-info diagFav" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
                 <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos -->
-                <a href="#gregarFav" rel="tooltip" title="Agregar a Receta"> <i class="detalleDiagnostico icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
+                <a href="#" rel="tooltip" title="Agregar a Receta" class="addFavReceta"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
             	<strong><?php $nombre = Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico']); echo $nombre['Text']; ?></strong>
 	    </div><!-- end pill diagnosticoFav 1-->
 		<?php
@@ -213,7 +213,7 @@
 
 <script>
        /*
-        * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
+        * funcionalidad de los botones de agregar un medicamento desde favoritos
         * a la receta
         */
      $(document).ready(function(){ 
@@ -256,6 +256,7 @@
                $('#consultaToggle').children().click();
                $('#moduloReceta').click();
            }
+           
 
            $('.editMedicamento').click(function(){
             //BOTON EDITAR
@@ -345,8 +346,8 @@
                 $('.infoMedicamento').html('<strong class="nombreComercial">'+nombreComercial+'</strong><br><strong>Cantidad: </strong>'+cantidad_medicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuencia_medicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodo_medicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>')
         
               
-                        //se redirecciona la vista de la pantalla hacia receta.
-                  $('html, body').animate({
+                //se redirecciona la vista de la pantalla hacia receta.
+                $('html, body').animate({
                     scrollTop: $("#tabConsulta").offset().top
                   }, 1000);
                 //se limpian los campos y se esconde el modal 
@@ -374,3 +375,83 @@
        });// end click 
       });// end ready
 </script>
+<script>
+  $(document).ready(function(){ 
+   
+   $('.addFav').click(function(){
+      var idDiagnostico = $('#id_diagnostico').text();
+      $.ajax({
+          url:'../../../ajax/agregarDiagnosticoComun.php',
+          type: "post",
+          data: {"idDiagnostico":idDiagnostico},
+          success: function(output){
+              if(output== 1){
+                  $('.addFav').attr('disabled','disabled');
+              }
+              else{
+                  $('.addFav').attr('disabled','disabled');
+              }
+          }//end success
+          
+          
+      }); // end ajax
+      
+      
+       
+       
+       
+   }); //end click      
+    
+}); // end ready
+</script><!-- agregar un diagnostico A favoritos -->
+<script>
+   $('#modalDiagnostico').collapse({toggle:false});
+   
+   $(document).ready(function(){
+        $('.addFavReceta').click(function(){
+        var idDiagnostico= $(this).parent().attr('idDiagnosticoFav');
+        
+                    $.ajax({ 
+                    url: '../../../ajax/informacionDiagnostico.php',
+                    data: {"diagnostico":idDiagnostico},
+                    type: 'post',
+                    async: true,
+                    success: function(output) {
+                        var data = jQuery.parseJSON(output);
+                      $('#modalDiagnosticoLabel').text(data['Nombre']) ; //nombre de la enfermedad
+                      $('#id_diagnostico').html(data['idDiagnostico']);// id de la enfermedad
+
+//                        if(data['Es_Ges'] != null){ // el diagnostico es ges se informa con un pill y un
+//                            $('#modalDiagnosticoLabel').append('<span class="badge badge-success">Considerado GES por MINSAL</span>')
+//                            $('#esGES').html('1');
+//                        } // end if
+                      //resto de la informacion que se busca desplegar en el popup
+                      $('#guardar_cambios').hide();
+                      $('#guardar_diagnostico').removeAttr('disabled');
+                      $('.addFav').attr('disabled','disabled');
+                      if($('#consultaToggle').is('.active')==false){
+                        $('#consultaToggle').children().click();
+                        $('html, body').animate({
+                        scrollTop: $('a[href="#collapseOne1"]').offset().top}, 2000);
+                       }// end if
+                      else{
+                          if($('#collapseOne1').is('.in')==false){
+                             $('#collapseOne1').click(); 
+                          }// end if
+                      
+                      }//end else
+                      
+                      $('#modalDiagnostico').collapse('show');  
+                    }//end success
+                 });// end ajax
+                 
+       });//end click
+   });//end ready    
+</script><!-- agregar un diagnostico DESDE favoritos -->
+<script>
+   $(document).ready(function(){
+       $('')
+       
+       
+   }); // 
+</script><!-- agregar un medicamento A favoritos -->

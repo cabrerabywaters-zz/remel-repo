@@ -5,8 +5,6 @@
  if(isset($_POST['content'])){
 //traermos el contenido del html para hacer el pdf desde el textarea del modal
      $html= $_POST['content'];
-     
-
      $html = utf8_decode($html);
 // usamos la función doPDF para crear el pdf
      doPDF('RecetaMedica_REMEL',$html,true,'../../../css/formatoReceta.css'); 
@@ -25,7 +23,7 @@
   </div>
   
   <div class="modal-body" id="contenidoReceta">
-      <table class="recetaContenido">
+      <table class="recetaHeader">
       <tr>
       <td colspan="3"> <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4></td>
       </tr>
@@ -37,6 +35,8 @@
           
       <!-- en este div van los datos del doctor y del paciente que está siendo -->
       </tr>
+      </table>
+      <table class="recetaContenido">
       <tr><td colspan="3"><hr></td></tr>
       <tr><td colspan="3">
       <strong>RP:</strong><br>
