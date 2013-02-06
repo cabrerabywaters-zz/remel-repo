@@ -34,7 +34,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($recetas as $datos => $dato) {
+		<?php 
+		$contador=0;
+		foreach ($recetas as $datos => $dato) {
+			if($contador==0)
+			{
+				
+			}
+			if($contador==0)
+			{
 					echo "<tr>";            
                     echo '<td>';
 					echo "".$dato['Medico']." ".$dato['Apellido_Paterno']."";
@@ -49,12 +57,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                     echo $dato['Diagnostico'];
                     echo '</td>';
 					echo '<td>';
-					foreach ($dato as $valor => $value)
+					$contador2=1;
+					$medicamentoReceta = Paciente::medicamentosByIdReceta($dato['idReceta']);					
+					foreach ($medicamentoReceta as $valor => $value)
 					{
-                    echo "".$dato['Diagnostico'].", ";
+						$cantidad=count($medicamentoReceta);
+						if($contador2!=$cantidad)
+						{
+                    echo "".$value['Nombre_Comercial'].", ";
+						}
+						else
+						{
+					echo $value['Nombre_Comercial'];
+						}
+						$contador2++;					
 					}
                     echo '</td>';
 					echo "</tr>";
+			}
         }
 		?>
 	</tbody>

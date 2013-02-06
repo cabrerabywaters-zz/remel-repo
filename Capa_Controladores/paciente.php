@@ -220,7 +220,6 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
 						AND Recetas.idReceta=Medicamentos_Recetas.Receta_idReceta
 						AND Diagnosticos.idDiagnostico=Medicamentos_Recetas.Diagnosticos_idDiagnosticos
 						GROUP BY idReceta ";
-						echo $queryString;
 
         $result = CallQuery($queryString);
         $resultArray = array();
@@ -229,6 +228,19 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
         }
         return $resultArray;
     }
+	 public static function medicamentosByIdReceta($idReceta) {
+        $queryString = "SELECT Medicamentos.Nombre_Comercial
+                        FROM Medicamentos_Recetas, Medicamentos
+						WHERE Medicamentos_Recetas.Receta_idReceta = $idReceta
+                        AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento
+						";
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+	 }
 
     public static function R_RecetasPaciente($idPaciente) {
 
