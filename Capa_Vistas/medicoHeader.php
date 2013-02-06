@@ -206,19 +206,18 @@ background-image: -webkit-gradient(
                     <img class="img-rounded pull-right" src="<?php echo $paciente['Foto']; ?>"  style="width: 180px; height: 180px; background-color: #26abe0;">
                    <center>
                      <!-- validación del rut ingresado -->
-                    <strong>Información Paciente<br></strong><table>
-                    <tr><td><?php 
-					if($paciente['Sexo']=="1")
-					{
-					echo " <center>Sr.</center>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ";	
+                    <strong><br>Información Paciente<br></strong>
+                    <table>
+                    <tr><td><center><?php 
+					if($paciente['Sexo']=="1"){
+					echo "Sr.".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ";	
 					}
-					else
-					{
-						echo " Sra.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']."";
+					else{
+                                        echo " Sra.<br>".$paciente['Nombre']." ".$paciente['Apellido_Paterno']."";
 					}
 				echo '</td></tr><tr><td>';
                                        $cadena=$_SESSION['RUTPaciente'];
-                  include("Medico/AtencionPaciente/recomponerRUT.php");				
+                  include_once("Medico/AtencionPaciente/recomponerRUT.php");				
  
 					$array_rut_sin_guion = explode('-',$valor); // separamos el la cadena del digito verificador.
 					$rut_sin_guion = $array_rut_sin_guion[0]; // la primera cadena
@@ -279,7 +278,7 @@ background-image: -webkit-gradient(
 								$lugar=(strlen($cadena)-7);
 								$insertar = ".";
 								$resultado = substr($cadena, 0, $lugar) . $insertar . substr($cadena, $lugar); 
-						 echo "".$resultado."-K";
+						 echo $resultado."-K";
 						 }
 
 					}
@@ -288,7 +287,7 @@ background-image: -webkit-gradient(
 					echo "<center>".$valorfinal."</center>";
 					}
 					
-					 ?></td></tr></table>
+					 ?></center></td></tr></table>
 
                     </center>
                 </div> <!-- información del paciente -->
