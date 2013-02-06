@@ -24,7 +24,7 @@
   </div>
   
   <div class="modal-body" id="contenidoReceta">
-      <table>
+      <table class="recetaContenido">
       <tr>
       <td colspan="3"> <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4></td>
       </tr>
@@ -46,8 +46,8 @@
       </tr>
       <tr><td colspan="3"><hr></td></tr>
       </table>
-      <table>
-      <tr style="background-color: #E0E0FF">
+      <table class="recetaFooter">
+      <tr>
          <td><div class="logoRemel pull-left"><img src="../../../imgs/logo-remel-principal.png" height="90px" width="150px"></div></td>
          <td colspan="2"><div class="infoRemel"><strong>www.remel.cl</strong><br><strong>Dirección:</strong> Arzobispo Larraín Gandarillas 119, Providencia, Santiago. <br><strong>Telefonos:</strong> 562-23282153</div></td>
       </tr><!-- footer receta fisica -->
