@@ -65,7 +65,8 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                                         }
                                         else{
                                             $datosMedicamento = Medicamento::R_CantidadDisponibleMedicamento($medicamentosReceta[$i]['idMedicamento']);
-                                            $cantidadDisponible = (($datosMedicamento['cantidad'] * 24/$datosMedicamento['frecuencia'] * $datosMedicamento['periodo'])/$datosMedicamento['cantidadPresentacion']) - $datosMedicamento['cantidadVendida'];
+                                            $ventaMedicamento = Medicamento::R_NumeroVentaMedicamento($medicamentosReceta[$i]['idMedicamento'], $medicamentosReceta[$i]['idReceta']);
+                                            $cantidadDisponible = (($datosMedicamento['cantidad'] * 24/$datosMedicamento['frecuencia'] * $datosMedicamento['periodo'])/$datosMedicamento['cantidadPresentacion']) - $ventaMedicamento['cantidadVendida'];
                                             $cantidadDisponible = round($cantidadDisponible);
                                             echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>' . $medicamentosReceta[$i]['Nombre_Comercial'] .' - '. $cantidadDisponible . ' Disponibles</strong></button></br>';                                            
                                         }
