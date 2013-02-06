@@ -28,10 +28,10 @@ class MedicamentoVendido {
         $query = CallQuery($queryString);
     }
 
-    public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $idUnidad, $rutComprador) {
+    public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $idUnidad, $rutComprador, $precio) {
         $queryString = 'INSERT INTO Medicamentos_Vendidos (Expendedores_idExpendedores,Medicamentos_Recetas_Medicamento_idMedicamento,Medicamentos_Recetas_Receta_idReceta,
                                                            Cantidad,Fecha, Unidades_idUnidade, RUT_Comprador) 
-                                                           VALUES ("'.$idExpendedor.'","'.$idMedicamento.'","'.$idReceta.'","'.$cantidad.'","'.$fecha.'","'.$idUnidad.'","'.$rutComprador.'")';
+                                                           VALUES ("'.$idExpendedor.'","'.$idMedicamento.'","'.$idReceta.'","'.$cantidad.'","'.$fecha.'","'.$idUnidad.'","'.$rutComprador.'","'.$precio.'")';
         $query = CallQuery($queryString);
         return true;
     }

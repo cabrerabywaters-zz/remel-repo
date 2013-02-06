@@ -8,12 +8,13 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
 <div class="row-fluid">
     <div class="tab-content"><!-- contenido del panel 1-->
         <div class="tab-pane active img-rounded" id="tabVenderMedicamentos"><!-- tab Historial-->
-<center>
             <div class="accordion-heading">
+                
                 <a class="btn btn-large btn-block in" disabled="disabled" data-toggle="collapse" data-parent="#accordion1" >
                     Expender Medicamento
                 </a>
             </div>
+            <center>
             <div class="accordion-body">
                 <div class="accordion-inner">
 
@@ -21,24 +22,24 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     <?php
 //buscar datos del medicamento
                     $datosMedicamento = Medicamento::BuscarMedicamentoPorId($_SESSION['medicamentoID']);
-                    echo $datosMedicamento['Nombre_Comercial'];
+                    echo '<strong>'.$datosMedicamento['Nombre_Comercial'].'</strong>';
                     echo '<br>';
                     echo '<img src="' . $datosMedicamento['Foto_Presentacion'] . '" width="200" height="200"></img>';
                     echo '<br>';
                     echo 'Cantidad: <input type="text" class="span1 search-query" id="numero" value="1">';
                     echo '<br>';
-                    echo 'RUT Comprador: <input type="text" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
+                    echo 'Confirma retiro, RUT:<input type="text" value="'.$_SESSION['RUTPaciente'].'" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
                     echo '<br>';
-                    echo 'Precio: ' . $datosMedicamento['Precio_Referencia_CLP'];
+                    //echo 'Precio: ' . $datosMedicamento['Precio_Referencia_CLP'];
+                    $_SESSION['precio'] = $datosMedicamento['Precio_Referencia_CLP'];
                     echo '<br>';
-                    echo '<input class="btn btn-primary" disabled="disabled" id="expender" type="submit" value="Expender"></input>';
+                    echo '<input class="btn btn-primary" id="expender" type="submit" value="Expender"></input></br>';
                     echo '<button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Volver a Medicamentos</strong></button>';
                     echo '<br>';
                     echo '<div id="mensaje">';
                     ?>
                 </div>        
-            </div><!-- fin accordion --></center></div>
-        </div>
+            </center><!-- fin accordion --></div>
         <div class="tab-pane img-rounded" id="tabVerArsenal"><!-- tab Historial-->
 
             <!-- <div class="accordion" id="accordionF2"><!-- accordion historial -->

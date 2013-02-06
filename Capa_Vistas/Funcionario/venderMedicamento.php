@@ -72,7 +72,7 @@ Venta de Medicamentos
         /**
          * función que verifica la clave del paciente
          */
-        var rut = $("input[name='RUN']").val();
+        var rut = $("input[name='hRUN']").val();
         var clave = $("input[name='clave']").val();
         var id = $("input[name='hID']").val();
         $.ajax({ url: '../../ajax/verificarClavePaciente.php',

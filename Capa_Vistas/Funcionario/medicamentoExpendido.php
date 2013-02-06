@@ -18,7 +18,8 @@ $med = MedicamentoVendido::InsertarConParametros($_SESSION['logLugar']['idLugar'
                                                                 $_SESSION['cantidadMedicamentoVendido'], 
                                                                 $fechaActual, 
                                                                 $_SESSION['unidadID'],
-                                                                $_SESSION['compradorRUT'])
+                                                                $_SESSION['compradorRUT'],
+                                                                $_SESSION['precio'])
         ;
 if ($med){
  echo 'Medicamento Expendido Exitosamente.';   
