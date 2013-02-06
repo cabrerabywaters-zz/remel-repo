@@ -17,7 +17,6 @@ $med = MedicamentoVendido::InsertarConParametros($_SESSION['logLugar']['idLugar'
                                                                 $_SESSION['recetaID'], 
                                                                 $_SESSION['cantidadMedicamentoVendido'], 
                                                                 $fechaActual, 
-                                                                $_SESSION['unidadID'],
                                                                 $_SESSION['compradorRUT'],
                                                                 $_SESSION['precio'])
         ;

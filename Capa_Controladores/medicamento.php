@@ -278,6 +278,16 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
         $query = CallQuery($queryString);
         return $query->fetch_assoc();
     }
+    public static function R_BuscarMedicamentoEnArsenalPorId($idMedicamento, $idExpendedor){
+        $queryString = 'SELECT *
+                        FROM Arsenal
+                        WHERE Medicamentos_idMedicamento = '.$idMedicamento.'
+                        AND Expendedores_idExpendedores = '.$idExpendedor.'
+                        ';
+        $query = CallQuery($queryString);
+        if ($query!=false){ return true;}
+        else{ return false;}
+    }
 
 }
 

@@ -4,7 +4,6 @@ iniciarCookie();
 verificarIP();
 include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
-include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
 ?>
 <div class="row-fluid">
     <div class="tab-content"><!-- contenido del panel 1-->
@@ -27,7 +26,8 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
                     echo '<br>';
                     echo '<img src="' . $datosMedicamento['Foto_Presentacion'] . '" width="200" height="200"></img>';
                     echo '<br>';
-                    $existeMedicamento = Arsenal::R_BuscarMedicamentoEnArsenalPorId($_SESSION['medicamentoID'], $_SESSION['logLugar']['idLugar']);
+                    $idLugar = intval($_SESSION['logLugar']['idLugar']);
+                    $existeMedicamento = Medicamento::R_BuscarMedicamentoEnArsenalPorId($_SESSION['medicamentoID'], $idLugar);
                     if ($existeMedicamento){
                     echo 'Cantidad: <input type="text" class="span1 search-query" id="numero" value="1">';
                     echo '<br>';
@@ -62,7 +62,6 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
 
 </div>
 <script>
-    
     $('#expender').click(function(){
         var cantidad = document.getElementById('numero').value;
         var compradorRUT = document.getElementById('RUN').value;
