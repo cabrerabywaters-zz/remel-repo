@@ -107,7 +107,7 @@
      */
 
 		$('#filtrarDiagnosticosFav').keydown(function(){
-                            var filtroDiag = $(this).val();
+                            var filtroDiag = $(this).val().toUpperCase();
                             if( filtroDiag == ''){
                                     $('#diagnosticosFav').children('div').children('div.diagFav').each(function(index, domEle){
                                             $(domEle).show();
@@ -115,7 +115,7 @@
                             }
                             else {
                                     $('#diagnosticosFav').children('div').children('div.diagFav').each(function(index, domEle){
-                                            if( $(domEle).children('strong').text().indexOf(filtroMed) !== -1){
+                                            if( $(domEle).children('strong').text().indexOf(filtroDiag) !== -1){
                                                     $(domEle).show();
                                             } 
                                             else {
@@ -127,7 +127,7 @@
 
 	
 		    $('#filtrarMedicamentosFav').keydown(function(){
-			    var filtroMed = $(this).val();
+			    var filtroMed = $(this).val().toUpperCase();
 			    if( filtroMed == ''){
 				    $('#medicamentosFav').children('div').children('div.favRP').each(function(index, domEle){
 					    $(domEle).show();
