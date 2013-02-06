@@ -17,15 +17,15 @@ class PacienteHasCondicion {
         $query = CallQuery($queryString);
     }
 
-    public static function BorrarPorId() {
-        $id1 = $_POST['Condiciones_idCondiciones'];
-        $id2 = $_POST['Paciente_idPaciente'];
+    public static function BorrarPorId($id1, $id2) {
+
         $id = array($id1, $id2);
 
         $nombreId = array(self::$nombreIdTabla, self::$nombreIdTabla1);
 
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
         $query = CallQuery($queryString);
+		return true;
     }
 
     public static function BuscarCondicionesPorPacienteId($idPaciente) {

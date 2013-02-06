@@ -166,7 +166,8 @@ background-image: -webkit-gradient(
 );
 "> <!-- div de la informacion del medico -->
                     <img class="img-rounded pull-left" src="<?php echo $medico['Foto']; ?>" style="width: 180px; height: 180px;">
-                    <blockquote><center>
+                    <blockquote><center><br>
+
                     <strong>Información Médico<br></strong> 
                    <?php echo "Dr.<br> ".$medico['Nombre']." ".$medico['Apellido_Paterno'];?>
                     </center></blockquote>

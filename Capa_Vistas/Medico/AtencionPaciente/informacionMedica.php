@@ -36,7 +36,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 foreach ($tiposAlergias as $datos => $dato)
    {
 	   echo '<tr  idTipo="'.$dato['IdTipo'].'">';
-                echo '<td  rowspan="'.$dato['Cantidad'].'">';
+                echo '<td  class="tipoAlergia" rowspan="'.$dato['Cantidad'].'">';
                 echo "<center>".$dato['Tipo']."</center>";
 				echo '</td>';
 			$idTipo=$dato['IdTipo'];
@@ -46,8 +46,8 @@ foreach ($tiposAlergias as $datos => $dato)
 		   {
 			   if($contador==0)
 			   {
-			   echo '<td idAlergias="'.$info['IdAlergia'].' idTipo="'.$dato['IdTipo'].'">';			   
-			   echo "<center>".$info['Nombre']."</center>";
+			   echo '<td idAlergias="'.$info['IdAlergia'].'" idTipo="'.$dato['IdTipo'].'">';			   
+			   echo "<button type='button' class='close' data-dismiss='alert'>×</button><center>".$info['Nombre']."</center>";
 			   echo "</td>";
 			   echo"</tr>";
 			   }
@@ -55,7 +55,7 @@ foreach ($tiposAlergias as $datos => $dato)
 			  {
 			   echo"<tr>";
 			   echo '<td idAlergias="'.$info['IdAlergia'].'">';			   
-			   echo "<center>".$info['Nombre']."</center>";
+			   echo "<button type='button' class='close' data-dismiss='alert'>×</button><center>".$info['Nombre']."</center>";
 			   echo "</td>";
 			   echo"</tr>";
 			  }
@@ -79,12 +79,12 @@ foreach ($tiposAlergias as $datos => $dato)
 <?php  
   include_once("../../../Capa_Controladores/alergia.php");
     
-    $arrayAlergia = Alergia::Seleccionar("");
+    $arrayAlergia = Alergia::BuscarAlergia($_SESSION['idPaciente']);
     
   echo "<option value='0' idTipo='0'>Ver todas las alergias</option>";  
   foreach ($arrayAlergia as $campo=>$valor){
     
-    echo "<option value='".$valor['idAlergia']."' idTipo='".$valor['Tipo_idTipo']."'>".$valor['Nombre'] ."</option>";
+    echo "<option tipo='".$valor['Tipo']."' value='".$valor['idAlergia']."' idTipo='".$valor['idTipo']."'>".$valor['Nombre'] ."</option>";
     
   }
 ?>  
@@ -117,7 +117,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
   <?php foreach ($condiciones as $datos => $dato)
    {
 	echo '<tr idCondicion="'.$dato['idCondiciones'].'">';
-	echo "<td><center>".$dato['Nombre']."</center></td>";
+	echo "<td><button type='button' class='close' data-dismiss='alert'>×</button><center>".$dato['Nombre']."</center></td>";
 	echo "</tr>";   
 	   
    } ?>
@@ -154,11 +154,12 @@ $('#Alergias').change(function(){
     var valor = $('#Alergias').val();
     var tipo = $('#Alergias').children(":selected").attr("idTipo");
     var alergia = $('#Alergias option=[value="'+valor+'"]').text();
-    alert(valor);
+	var nombreTipo = $('#Alergias').children(":selected").attr("Tipo");
+    
     if( valor != 0){ 
        $('#alergias_seleccionadas').val(alergia).removeAttr('idAlergia').attr('idAlergia',valor);
        $('#alergias_seleccionadas').attr('idTipo',tipo);
-       
+       $('#alergias_seleccionadas').attr('Tipo',nombreTipo);
        $('#boton_alergias').removeAttr('disabled');
     }
     else{
@@ -186,7 +187,7 @@ $('#Condiciones_select').change(function(){
 
 
 
-$( "#alergias" ).autocomplete({
+$( "#alergias_seleccionadas" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
                              * al seleccionar y escribir 2 letras se ejecuta el ajax
@@ -225,12 +226,13 @@ $( "#alergias" ).autocomplete({
                                 });//end ajax 
 							}, // end source
                            select: function(event, ui){
+							   
                             var ID = ui.item.idAlergia
 							var idTipo = ui.item.idTipo
 							var Tipo = ui.item.Tipo
 							var Sintomas = ui.item.Tipo
 							$("#boton_alergias").removeAttr('disabled');
-							$("#alergias").removeAttr('idAlergia').removeAttr('idTipo').removeAttr('nombreTipo').attr('idAlergia',ID).attr('idTipo',idTipo).attr('Tipo',Tipo).attr('Sintomas',Sintomas);
+							$("#alergias_seleccionadas").removeAttr('idAlergia').removeAttr('idTipo').removeAttr('nombreTipo').attr('idAlergia',ID).attr('idTipo',idTipo).attr('Tipo',Tipo).attr('Sintomas',Sintomas);
 							},
                            minLength: 2,
                            open: function() {
@@ -244,23 +246,78 @@ $( "#alergias" ).autocomplete({
 
 							//autocompleteDiagnosticos
 $("#boton_alergias").click(function(){
-var idAlergia = $("#alergias").attr('idAlergia');
-var idTipo = $("#alergias").attr('idTipo');
-var Tipo = $("#alergias").attr('Tipo');
-var Sintomas = $("#alergias").attr('Sintomas');
-var nombreAlergia = $("#alergias").val()
+var idAlergia = $("#alergias_seleccionadas").attr('idAlergia');
+var idTipo = $("#alergias_seleccionadas").attr('idTipo');
+var Tipo = $("#alergias_seleccionadas").attr('Tipo');
+var Sintomas = $("#alergias_seleccionadas").attr('Sintomas');
+var nombreAlergia = $("#alergias_seleccionadas").val()
 $.ajax({
 		url: "../../../ajax/agregarAlergia.php",
 		data: {idAlergia:idAlergia},
 		type: "post",
+		async:false,
 		success: function(output){
-		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'"><center>'+Tipo+'</center></td><td idAlergias="'+idAlergia+'"><center>'+nombreAlergia+'</center></td></tr>');
-		}
+		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'"><center>'+Tipo+'</center></td><td idAlergias="'+idAlergia+'"><button type="button" class="close" data-dismiss="alert">×</button><center>'+nombreAlergia+'</center></td></tr>');
+		
+	   /*
+		* Funcion que asigna el comportamiento de borrado del elemento
+		*/
+					$("#divAlergias .close").click(function(){
+			   var idAlergia = $(this).parent().attr('idAlergias');
+			   var tr = $(this).parent().parent();
+			   
+			   //ajax que borra la alergia respectiva del paciente
+			   $.ajax({
+				 url: '../../../ajax/eliminarAlergia.php',
+				 type:'post',
+				 data: { "idAlergia" : idAlergia},
+				 success: function(output){
+					
+					if(tr.children('.tipoAlergia').attr('rowspan')==1){
+						tr.remove();
+						}
+					else{
+						var cantidad = tr.children('.tipoAlergia').attr('rowspan')
+						tr.children('.tipoAlergia').removeAttr('rowspan').attr('rowspan',cantidad-1)
+						}	
+					
+					
+				 
+				 }//end success
+			   });//end ajax
+			});//end click
+		}//end succes
 
-});
+});//end ajax
 $("#boton_alergias").attr('disabled',"disable");
-$("#alergias").attr("value","");
-});
+$("#alergias_seleccionadas").attr("value","");
+});//end click
+
+
+$("#divAlergias .close").click(function(){
+   var idAlergia = $(this).parent().attr('idAlergias');
+   var tr = $(this).parent().parent();
+   
+   //ajax que borra la alergia respectiva del paciente
+   $.ajax({
+     url: '../../../ajax/eliminarAlergia.php',
+     type:'post',
+     data: { "idAlergia" : idAlergia},
+     success: function(output){
+        
+		if(tr.children('.tipoAlergia').attr('rowspan')==1){
+			tr.remove();
+			}
+		else{
+			var cantidad = tr.children('.tipoAlergia').attr('rowspan')
+			tr.children('.tipoAlergia').removeAttr('rowspan').attr('rowspan',cantidad-1)
+			}	
+		
+		
+     
+     }//end success
+   });//end ajax
+});//end click
 $( "#Condiciones" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -325,4 +382,16 @@ $.ajax({
 $("#boton_condiciones").attr('disabled',"disable");
 $("#Condiciones").attr("value","");
 });
+$("#condiciones .close").click(function(){
+   var idCondicion = $(this).parent().parent().attr('idCondicion');  
+   //ajax que borra la alergia respectiva del paciente
+   $.ajax({
+     url: '../../../ajax/eliminarCondicion.php',
+     type:'post',
+     data: { "idCondicion" : idCondicion},
+	 success: function(output){
+		 
+	 }
+   });//end ajax
+});//end click
 </script>

@@ -30,14 +30,14 @@ class PacienteHasCondicion {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
-    public static function BorrarPorId() {
-        $id1 = $_POST['Paciente_idPaciente'];
-        $id2 = $_POST['Condiciones_idCondiciones'];
+    public static function BorrarPorId($id1, $id2) {
+
         $id = array($id1, $id2);
 
         $nombreId = array(self::$nombreIdTabla, self::$nombreIdTabla1);
 
         $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
+		echo $queryString;
         $query = CallQuery($queryString);
     }
 

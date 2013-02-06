@@ -129,6 +129,35 @@ class Alergia {
        $result = CallQuery($queryString);
        return $result;
    }
+   public static function BuscarAlergia($idPaciente) {
+
+      		        $queryString = "SELECT Alergias.Nombre as Nombre, Alergias.idAlergia, Alergias.Sintomas, 	
+										
+									Tipo_Alergia.idTipo, Tipo_Alergia.Nombre as Tipo
+									 
+									FROM Alergias, Tipo_Alergia
+
+									WHERE Alergias.Tipo_idTipo=Tipo_Alergia.idTipo
+									
+									AND idAlergia NOT IN (SELECT idAlergia
+
+                     				FROM Alergias, Alergia_has_Paciente, Pacientes
+
+                       				WHERE Pacientes.idPaciente= ".$idPaciente."
+									 
+									AND Pacientes.idPaciente=Alergia_has_Paciente.Paciente_idPaciente
+									 
+									AND Alergia_has_Paciente.Alergia_idAlergia=Alergias.idAlergia)
+
+                       				ORDER BY  Alergias.Nombre ASC";
+									
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+   }
 }
 
 ?>
