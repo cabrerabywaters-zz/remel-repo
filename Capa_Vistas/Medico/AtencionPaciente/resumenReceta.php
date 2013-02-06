@@ -11,8 +11,9 @@
 // usamos la función doPDF para crear el pdf
      doPDF('RecetaMedica_REMEL',$html,true,'../../../css/formatoReceta.css'); 
      
-     
-     
+     echo '<scrip>
+            window.location = "../doctorIndex.php" 
+           </script>';
  }
  
  ?>
