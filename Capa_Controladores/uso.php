@@ -61,7 +61,7 @@ class Uso  {
         $query = CallQuery($queryString);
         
     }
-
+    //busca todo de Uso, Medicamentos y Sucursales segun el id de diagnostico entregado
     public static function SeleccionarPorIdDiagnostico($id){
 	$rows = array();
 	$queryString = "SELECT * FROM Uso, Medicamentos, Sucursales WHERE Uso.Medicamento_idMedicamento = Medicamentos.idMedicamento 

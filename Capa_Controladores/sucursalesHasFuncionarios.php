@@ -58,7 +58,7 @@ class SucursalesHasFuncionarios {
         $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca todo de Uso, Medicamentos y Sucursales segun el id del diagnostico
     public static function SeleccionarPorIdDiagnostico($id) {
         $rows = array();
         $queryString = "SELECT * FROM Uso, Medicamentos, Sucursales WHERE Uso.Medicamento_idMedicamento = Medicamentos.idMedicamento 
@@ -69,7 +69,7 @@ class SucursalesHasFuncionarios {
 
         return $rows;
     }
-
+    //busca los ruts, nombres y lugares de atencion de las sucursales en que trabaja un funcionario segun su id
     public static function SucursalesPorIdFuncionario($idFuncionario) {
         $atributosASeleccionar = array(
             'Sucursales_RUT',

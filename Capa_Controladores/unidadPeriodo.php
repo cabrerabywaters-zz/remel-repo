@@ -67,7 +67,7 @@ class UnidadPeriodo {
 	    }
 	    return $resultArray;
     }
-
+    //busca el nombre de la unidad segun el id
     public static function SeleccionarPorId($idUnidadPeriodo) {
 	$atributosASeleccionar = array(
 					'Nombre'
@@ -75,6 +75,7 @@ class UnidadPeriodo {
 	$where = "WHERE ID = '$idUnidadPeriodo'";
 	$queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 	$query = CallQuery($queryString);
+        //esta parte esta bien, ignorar el error
 	$unidadPeriodo = $query->fetch_assoc()['Nombre'];
 	return $unidadPeriodo;
     }

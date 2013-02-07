@@ -83,7 +83,7 @@ class Tipo_Alergia{
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca el nombre y el id del tipo de alergia segun una fraccion de texto
     public static function BuscarAlergiaLike($nombre) {
 
       		        $queryString = 'SELECT Nombre,  idTipo
