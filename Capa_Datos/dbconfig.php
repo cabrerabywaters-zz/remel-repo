@@ -1,4 +1,9 @@
 <?php
+
+/*
+ * Descripcion: Archivo de configuracion de MySQL
+ */
+
 /*
 DEFINE ('servidor', 'localhost');
 DEFINE ('nombreUsuario', 'root');

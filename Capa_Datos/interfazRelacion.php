@@ -3,6 +3,7 @@
 /**
  *
  * FUNCIONES DE RETIRADA/ACTUALIZACION/BORRADO/CREACION
+ * (GERMAN) Leer QueryString para entender las funciones
  * 
  * input: datos de tablas, nombres de tablas
  * output: strings de queries varias

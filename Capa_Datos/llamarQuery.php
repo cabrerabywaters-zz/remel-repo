@@ -1,5 +1,12 @@
 <?php
 
+
+/*
+ * Descripcion: Funcion para llamar query
+ * Input
+ * 	string $queryString
+ * Output: objeto result de MySQLi
+ */
 function CallQuery($queryString){
 		include('dbconfig.php');
 		$mysqlCon = new mysqli($servidor,$nombre_usuario,$contrasena,$base_de_datos);
@@ -19,6 +26,15 @@ function CallQuery($queryString){
 			return false;
 		}  
 }
+
+/*
+ * Descripcion: Funcion para llamar query y obtener el ultimo autoinsertado
+ * de la conexion.
+ * Input
+ *      string $queryString
+ * Output: id de autoinsertado
+ */
+
 
 function CallQueryReturnID($queryString){
     include('dbconfig.php');
