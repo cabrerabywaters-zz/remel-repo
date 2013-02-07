@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Descripcion: Se verifica la combinacion clave/rut/id del paciente 
+ * y si son correctos se ingresan a la sesion. Luego se muestra estado.
+ * Input (POST)
+ * 	int clave
+ *	int hRUN
+ *	int hID
+ * Output: estado final de verificacion
+ */
+
 include_once(dirname(__FILE__) . "/../Capa_Controladores/persona.php");
 include_once('../Capa_Controladores/consulta.php');
 

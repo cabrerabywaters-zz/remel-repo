@@ -1,4 +1,15 @@
 <?php
+
+	/* 
+	 * Descripcion: Verifica la clave de un usuario y verifica
+	 * el nivel de credenciales, las guarda en sesion y entrega
+	 * estado
+	 * Input (POST)
+	 * 	int rutUsuario
+	 *	int passUsuario
+	 * Output: int de estado 
+	 */
+
 	include_once(dirname(__FILE__).'/utilidades.php');
         include_once(dirname(__FILE__).'/../Capa_Controladores/persona.php');
 	include_once(dirname(__FILE__).'/../Capa_Controladores/medico.php');
@@ -8,7 +19,7 @@
 	session_start();
 	session_unset();
 
-	rut = validadorRUT($_POST['rutUsuario']);
+	$rut = validadorRUT($_POST['rutUsuario']);
 	$pass = $_POST['passUsuario'];
 	
 	if(!Persona::VerificarClave($rut,$pass)){
