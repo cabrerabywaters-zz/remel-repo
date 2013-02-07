@@ -1,4 +1,9 @@
 <?php
+/*
+ * inicio del sistema. muestra login
+ * input: ninguno
+ * output: rut del usuario
+ */
 session_start();
 if (!empty($_SESSION))
     header("Location: ajax/comprobadorDoctor.php");
