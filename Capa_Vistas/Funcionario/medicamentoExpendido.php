@@ -1,5 +1,10 @@
 <?php
-
+/*
+ * Muestra mensaje de exito e ingresa el medicamento vendido a la BDD
+ * Input: Ninguno
+ * Output: Ingreso de la venta a la BDD
+ * 
+ */
 include_once(dirname(__FILE__) . '/../../ajax/sessionCheck.php');
 iniciarCookie();
 verificarIP();

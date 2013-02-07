@@ -1,4 +1,14 @@
-<?php ?>
+<?php 
+/*
+ * Pagina de ingreso del paciente para expender sus medicamentos
+ * 
+ * Input: RUT del paciente y su Clave
+ * 
+ * Output: Datos del Paciente (Nombre, ID)
+ *  
+ * 
+*/
+?>
 <body>
 <center>
     <div class="accordion-heading">

@@ -1,4 +1,13 @@
 <?php
+/*
+ * Muestra los datos del medicamento: foto y nombre y da la posibilidad de expender 1 o más del mismo medicamento
+ * Se puede entregar el mismo rut del paciente u otro. Se obtiene el precio, pero no se muestra
+ * 
+ * Input: Información del medicamento
+ * Output: Cantidad de medicamento y RUT del retirante. Tambien el precio, pero no se muestra
+ * 
+ */
+
 include_once(dirname(__FILE__) . '/../../ajax/sessionCheck.php');
 iniciarCookie();
 verificarIP();

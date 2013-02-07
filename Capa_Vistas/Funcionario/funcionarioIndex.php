@@ -8,6 +8,10 @@ _________                    __   .__  ____  __.
                         \/                    \/        
  josegonzalez@alumnos.uai.cl +56984641608
 
+Incluye el header de funcionario, la página inicial de vender medicamento y el arsenal de la sucursal que
+ * seleccionó el usuario
+
+
 */
 
 

@@ -1,4 +1,9 @@
 <?php
+/*
+ * Muestra la lista de medicamentos del arsenal del lugar de expension, sea una farmacia u hospital
+ * Input: ID del lugar
+ * Output: lista de medicamentos
+ */
 include(dirname(__FILE__) . "/../../Capa_Controladores/arsenal.php");
 //buscar Recetas del cliente
 ?>
