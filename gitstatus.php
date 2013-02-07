@@ -1,5 +1,0 @@
-<?php
-
-passthru("git status");
-
-?>
