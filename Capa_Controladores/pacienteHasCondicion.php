@@ -58,7 +58,8 @@ class PacienteHasCondicion {
         $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca las condiciones de un paciente
+    //devuelve sus id
     public static function BuscarCondicionesPorPacienteId($idPaciente) {
         $queryString = 'SELECT Paciente_has_Condiciones.Condiciones_idCondiciones as ID FROM Pacientes, Paciente_has_Condiciones
                                    WHERE ' . $idPaciente . ' = Paciente_has_Condiciones.Paciente_idPaciente

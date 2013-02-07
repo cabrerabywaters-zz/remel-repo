@@ -84,7 +84,7 @@ class Prevision {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca nombres previsionses segun una fraccion de texto
     public static function BuscarPrevisionLike($nombre) {
 
         $queryString = 'SELECT Previsiones.Nombre
@@ -98,7 +98,7 @@ class Prevision {
         }
         return $previsiones;
     }
-
+    //busca el id de una prevision segun su nombre
     public static function BuscarIdPrevisionPorNombreExacto($nombre) {
         $queryString = 'SELECT rut FROM Previsiones WHERE Nombre = "'.$nombre.'"';
         $query = CallQuery($queryString);
