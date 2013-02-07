@@ -1,5 +1,5 @@
 <?php
-
+//las queries especificas de este controladorm están documentadas más abajo
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Persona {
@@ -119,7 +119,8 @@ class Persona {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //verifica la clave del usuario con su rut y clave ingresada
+    //devuelve verdadero o falso
     public static function VerificarClave($rut, $pass) {
         $pass = md5($pass);
         $queryString = "SELECT * FROM Personas WHERE RUN = '$rut' AND Clave = '$pass';";
@@ -129,7 +130,8 @@ class Persona {
         else
             return true;
     }
-
+    //verifica el codigo de seguridad del usuario con su rut y codigo ingresado
+    //devuelve verdadero o falso
     public static function VerificarPIN($rut, $pin) {
         $pin = md5($pin);
         $queryString = "SELECT RUN FROM Personas WHERE RUN = '$rut' AND Codigo_Seguridad = '$pin';";
@@ -139,7 +141,8 @@ class Persona {
         else
             return true;
     }
-
+    //busca el nombre del usuario a partir del rut
+    //devuelve un arreglo asociativo con el nombre y apellidos paterno y materno separados
     public static function BuscarNombre($rut) {
         $queryString = "SELECT Nombre, Apellido_Paterno, Apellido_Materno, RUN FROM Personas WHERE RUN = '$rut';";
         $query = CallQuery($queryString);
@@ -149,7 +152,8 @@ class Persona {
         else
             return false;
     }
-
+    //cambia la foto del usuario por una ingresada por el usuario
+    //devuelve el resultado de la query
     public static function ActualizarFoto($rut, $url) {
         $datosActualizacion = array(
             array('Foto', $url)
@@ -160,7 +164,8 @@ class Persona {
         $query = CallQuery($queryString);
         return $query;
     }
-
+    //busca los datos de la persona anteriores a ser modificados segun el rut
+    //devuelve un arreglo asociativo con el numero de celular, el numero fijo, la direccion, el peso, la altura, la prevision y el seguro
     public static function BuscarDatosAnteriores($run) {
         $queryString = 'SELECT Personas.n_celular as n_celular, Personas.n_fijo as n_fijo, Personas. Direccion_idDireccion as id_direccion,
                                Pacientes.Peso as peso, Pacientes.altura as altura, Personas.Prevision_rut as prevision, Pacientes.Seguros_idSeguros as seguro
@@ -176,7 +181,9 @@ class Persona {
         else
             return false;
     }
-
+    //actualiza datos del usuario: numero de celular, numero fijo, direccion, peso, altura, prevision y seguro
+    //**se usa para modificar los datos del usuario en su pagina de informacion
+    //no devuelve nada
     public static function ActualizarDatos($nCelular, $nFijo, $idDireccion, $peso, $altura, $prevision, $run, $seguro) {
         $queryString = 'UPDATE Personas, Pacientes
                         SET Personas.n_celular = "' . $nCelular . '", Personas.n_fijo = "' . $nFijo . '", Personas.Direccion_idDireccion = "' . $idDireccion . '", 
@@ -187,7 +194,8 @@ class Persona {
                         ';
         $resultado = CallQuery($queryString);
     }
-
+    //permite al medico editar los datos del paciente
+    //siempre devuelve verdadero porque siempre funciona
     public static function MedicoEditarDatosPaciente($run, $peso, $altura, $calle, $comuna, $nCalle, $nCelular, $nFijo, $prevision, $seguro) {
         include_once(dirname(__FILE__) . '/direccion.php');
         include_once(dirname(__FILE__) . '/log.php');
