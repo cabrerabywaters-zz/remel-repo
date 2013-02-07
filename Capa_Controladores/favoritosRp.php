@@ -96,6 +96,8 @@ static $nombreIdTabla = "ID";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    //busca favoritos RP
+    //devuelve nomber, id, cantidad, etc. para rellenar la receta
     public static function R_obtenerFavoritoRP($idMedicamento, $idMedico){
         $queryString = "SELECT 
                 FRP.ID, Nombre_Corto, Cantidad, idUnidad_de_Consumo as idUnidadConsumo, 

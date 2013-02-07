@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Expendedor {
 
     static $nombreTabla = "Expendedores";
-    static $nombreIdTabla = "idExpendedores";    
-    
+    static $nombreIdTabla = "idExpendedores";
+
     /**
      * Insertar
      * 
@@ -14,12 +14,12 @@ class Expendedor {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-                                array('Nombre',$_POST['nombre_expendedor']),
-                                array('Encargado',$_POST['encargado_expendedor']),
-                                array('Telefono_expendedor',$_POST['telefono_expendedor']),
-                                array('Sucursales_RUT',$_POST['RUT'])
-            );
+        $datosCreacion = array(
+            array('Nombre', $_POST['nombre_expendedor']),
+            array('Encargado', $_POST['encargado_expendedor']),
+            array('Telefono_expendedor', $_POST['telefono_expendedor']),
+            array('Sucursales_RUT', $_POST['RUT'])
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -35,7 +35,7 @@ class Expendedor {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -49,29 +49,29 @@ class Expendedor {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'Encargado',
-                                        'Telefono_expendedor',
-                                        'Sucursales_RUT'
-);
+        $atributosASeleccionar = array(
+            'Nombre',
+            'Encargado',
+            'Telefono_expendedor',
+            'Sucursales_RUT'
+        );
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -80,32 +80,32 @@ class Expendedor {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
-    	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_expendedor']),
-                                array('Encargado',$_POST['encargado_expendedor']),
-                                array('Telefono_expendedor',$_POST['telefono_expendedor']),
-                                array('Sucursales_RUT',$_POST['RUT'])
-            );
+        $id = $_POST['id_condiciones'];
+        $datosActualizacion = array(
+            array('Nombre', $_POST['nombre_expendedor']),
+            array('Encargado', $_POST['encargado_expendedor']),
+            array('Telefono_expendedor', $_POST['telefono_expendedor']),
+            array('Sucursales_RUT', $_POST['RUT'])
+        );
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-    
-        public static function SeleccionarPorRutSucursal($RUT) {
-	$nombreTabla = self::$nombreTabla;
-	$queryString = "SELECT Nombre, idExpendedores FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";
-	
-	$result = CallQuery($queryString);
+    //busca las sucursales por su rut
+    //devuelve nombre e id
+    public static function SeleccionarPorRutSucursal($RUT) {
+        $nombreTabla = self::$nombreTabla;
+        $queryString = "SELECT Nombre, idExpendedores FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";
+
+        $result = CallQuery($queryString);
         $resultArray = array();
-        while($fila = $result->fetch_assoc()) {
-               $resultArray[] = $fila;
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
         }
 
         return $resultArray;
     }
-
 
 }
 

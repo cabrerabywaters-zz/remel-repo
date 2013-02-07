@@ -65,7 +65,8 @@ class HistorialMedico  {
         $query = CallQuery($queryString);
         
     }
-
+    //busca datos de una consulta
+    //devuelve id de diagnostico, tipo y comentario
     public static function SeleccionarPorConsulta($idConsulta){
 	$datosASeleccionar = array(
 					'Diagnosticos_idDiagnostico',

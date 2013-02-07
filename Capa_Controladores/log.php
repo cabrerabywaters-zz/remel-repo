@@ -105,14 +105,14 @@ class Log {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //inserta en log un cambio hecho por un medico
     public static function InsertarModificacionDatosPaciente($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico) {
         $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
                                 VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "' . $idMedico . '")  
                                 ';
         $query = CallQuery($queryString);
     }
-    
+    //inserta en log un cambio hecho por un paciente a si mismo
     public static function InsertarModificacionDatosPacientePropia($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run) {
         $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
                                 VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "")  

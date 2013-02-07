@@ -94,7 +94,8 @@ class Funcionario {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca datos de funcionario por su rut
+    //devuelve su id y categoria
     public static function EncontrarFuncionario($rut) {
         $queryString = "SELECT idFuncionario, Categoria_Funcionario_idCategoria_Funcionario FROM Funcionarios WHERE Persona_RUN = " . $rut . "";
         $res = CallQuery($queryString);
@@ -104,7 +105,8 @@ class Funcionario {
         else
             return false;
     }
-
+    //selecciona id de categoria segun rut del funcionario
+    //devuelve el id de la categoria
     public static function SeleccionarIdCategoria($rut) {
         $queryString = "SELECT Categoria_Funcionario_idCategoria_Funcionario FROM Funcionarios WHERE Persona_RUN = '$rut'";
         $res = CallQuery($queryString);

@@ -96,7 +96,8 @@ class LugarAtencion {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca los datos de una red
+    //devuelve nombre de sucursales, lugares y red, direccion, correo y telefono
     public static function SeleccionarDatosRed($idLugar){
 	$nombreTabla = self::$nombreTabla;
 	$queryString = "SELECT Lugar_de_Atencion.Nombre as lugarNombre, Sucursales.Nombre as sucursalNombre, RED.Nombre as redNombre,
