@@ -89,7 +89,8 @@ class Alergia {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca una alergia segun una fraccion de su nombre y el id del paciente
+    //devuelve nombre, id y sintomas de alergia
     public static function BuscarAlergiaLike($Nombre,$id) {
 
       		        $queryString = "SELECT Alergias.Nombre as Nombre, Alergias.idAlergia, Alergias.Sintomas, 	
@@ -123,12 +124,15 @@ class Alergia {
 	    }
 	    return $resultArray;
    }	     
- 
+   //busca el nombre de una alergia segun su id
+   //devuelve el nombre COMO OBJETO
    public static function BuscarNombreAlergiaPorId($idAlergia){
        $queryString = 'SELECT Nombre as Text FROM Alergias WHERE idAlergia = ' . $idAlergia . ';';
        $result = CallQuery($queryString);
        return $result;
    }
+   //busca alergias de un paciente segun su id
+   //devuelve los nombres, los id, los sintomas y los tipos de alergia (id y nombre)
    public static function BuscarAlergia($idPaciente) {
 
       		        $queryString = "SELECT Alergias.Nombre as Nombre, Alergias.idAlergia, Alergias.Sintomas, 	

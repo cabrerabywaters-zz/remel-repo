@@ -96,7 +96,8 @@ class Diagnostico {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca nombre e id de diagnostico segun una fraccion de su nombre
+    //devuelve id y nombre
     public static function BuscarDiagnosticoLike($nombre) {
 
         $diagnosticos = array();
@@ -118,7 +119,8 @@ class Diagnostico {
 	    }
 	    return $resultArray;
     }
-
+    //busca un diagnosticon segun su id
+    //devuelve todos sus atributos en un arreglo asociativo
     public static function BuscarDiagnosticoExacto($idDiagnostico) {
 
         $diagnosticos = array();
