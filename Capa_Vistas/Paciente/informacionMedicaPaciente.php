@@ -3,6 +3,7 @@
         Información Médica Registrada
     </a>
 </div>
+<!-- se despliegan las alergias del paciente y las condiciones del paciente -->
 <div id="collapseone2" class="accordion-body collapse">
     	<div class="accordion-inner">
         <div class="row">

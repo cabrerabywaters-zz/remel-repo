@@ -2,6 +2,7 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
+          // script que le establece datos al grafico del paciente 
         var data = google.visualization.arrayToDataTable([
           ['Año', 'Visitas Personales', 'Visitas Totales'],
           ['2004',  1000,      400],

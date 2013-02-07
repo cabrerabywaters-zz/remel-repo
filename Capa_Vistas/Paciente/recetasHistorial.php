@@ -9,6 +9,7 @@
 
   <center> <div style="width: 90%; ;">
   <script type="text/javascript" charset="utf-8">
+      // script del datatables que transforma las tablas comunes y les agrega autocompletar y la cantidad de datos a desplegar y aun buscador y paginacion -->
 			$(document).ready(function(){
                              $('#tablaHistorialRecetas').dataTable();
                         });
@@ -34,14 +35,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 	</thead>
 	<tbody>
 		<?php 
-		$contador=0;
 		foreach ($recetas as $datos => $dato) {
-			if($contador==0)
-			{
-				
-			}
-			if($contador==0)
-			{
+
 					echo "<tr>";            
                     echo '<td>';
 					echo "".$dato['Medico']." ".$dato['Apellido_Paterno']."";
@@ -57,25 +52,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                     echo $dato['Diagnostico'];
                     echo '</td>';
 					echo '<td>';
-					$contador2=1;
+					$contador=1;
 					$medicamentoReceta = Paciente::medicamentosByIdReceta($dato['idReceta']);					
 					foreach ($medicamentoReceta as $valor => $value)
 					{
 						$cantidad=count($medicamentoReceta);
-						if($contador2!=$cantidad)
+                                                // se despliegan los datos del medicamento , si la variable contador es igual a la cnatidad de datos del array se termina el archivo sin la coma(,)
+						if($contador!=$cantidad)
 						{
-                    echo "".$value['Nombre_Comercial'].", ";
+                                        echo "".$value['Nombre_Comercial'].", ";
 						}
 						else
 						{
 					echo $value['Nombre_Comercial'];
 						}
-						$contador2++;					
+                                                
+						$contador++;					
 					}
                     echo '</td>';
 					echo "</tr>";
 			}
-        }
+
 		?>
 	</tbody>
 	<tfoot style="background: rgb(176,212,227); /* Old browsers */
@@ -92,8 +89,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Medico</th>
 			<th>Fecha de Emision</th>
 			<th>Fecha de Vencimiento</th>
-            <th>Diagnostico</th>
-            <th>Medicamentos</th>
+                        <th>Diagnostico</th>
+                        <th>Medicamentos</th>
 		</tr>
 	</tfoot>
 </table>

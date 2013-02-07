@@ -17,6 +17,7 @@
     <div class="control-group">
     <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="span3 uneditable-input" id="Fecha" value="<?php
     $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
+    // se conrta la datetime a solo date
     $fechaNac = $fechaNac[0]; 
     echo $fechaNac; 
     ?>" disabled></label>&nbsp
@@ -24,7 +25,7 @@
 	{
 		echo "Masculino";
 	}
-	else
+	else // se despliega el sexo de la persona 1=hombre 0=mujer 
 	{
 	echo "Femenino";	
 	}; ?>"disabled></label>
@@ -90,6 +91,7 @@
                        
                 $.ajax({
                       url:'../../ajax/actualizarDatosPaciente.php',
+                      // se le entregan los valores de la tabla y se recibe los nuevos valores
                       data: {
                             'RUN':run,
                             'Peso':peso, 
@@ -109,6 +111,8 @@
                             {                                   
 
                                 $("#guardar").hide();
+                                //si se guardan manda 1 y no se guardan devuelve 0 que indica 
+                                //que no se pudo guardar
                             }
                             else{
                                 alert('No se pudo insertar el campo');

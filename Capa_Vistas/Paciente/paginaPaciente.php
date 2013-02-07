@@ -5,6 +5,7 @@ iniciarCookie();
 verificarIP();
 include('./../pacienteHeader.php');
 ?>
+<!-- esta es la pagina principal del paciente donde se incluyen todos los demas archivos -->
     <body>
   
     <div class="tab-content"><!-- contenido del panel 1-->
