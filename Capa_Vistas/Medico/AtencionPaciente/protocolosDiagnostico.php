@@ -1,4 +1,5 @@
 <?php
+// despliega los protocolos del diagnostico 
 ?>
 <div class="accordion span5" id="protocolos"><!-- accordion de protocolos -->
   

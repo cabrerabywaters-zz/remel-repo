@@ -15,12 +15,13 @@
         <div class="span10 offset1">
 		<center><input type="text" placeholder="Filtrar Diagnosticos Favoritos" id="filtrarDiagnosticosFav"></center>
                     <?php
+                    // se llaman los diagnosticos comunes segun el medico
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnosticoComun.php");	
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnostico.php");
 	
 		$idMedico = $_SESSION['idMedicoLog'];
 		$diagnosticosComunes = DiagnosticoComun::Seleccionar($idMedico);
-		
+		// despliega los datos de medicamentos favoritos egun el id del medico dede la base de datos
 		foreach($diagnosticosComunes as $diagnosticoComun){
 		?>
             <div class="alert alert-info diagFav" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
@@ -47,6 +48,7 @@
             <center><input type="text" placeholder="Filtrar Medicamentos Favoritos" id="filtrarMedicamentosFav"></center>
             <?php
             //session_start();
+            // se llaman los medicamentos a la bbdd buscando por laboratorio y datos contenentes a ella
             include_once(dirname(__FILE__) . "/../../Capa_Datos/llamarQuery.php");
             include_once(dirname(__FILE__)."/../../Capa_Controladores/favoritosRp.php");
             $idMedico = $_SESSION['idMedicoLog'];
@@ -70,7 +72,7 @@
                                 </a>
                                 <ul class='dropdown-menu'>";
                 echo "<!-- nombres cortos	-->";
-                
+                //se obtiene los datos a traves de un foreach llamando a loa favoritos en la base de datos
                 $favoritos = FavoritosRp::R_obtenerFavoritoRP($idMedicamento, $idMedico);
                 
                      foreach($favoritos as $favRP){

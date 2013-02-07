@@ -4,6 +4,7 @@
         Diagnóstico
     </a>
 </div>
+<!-- modulo donde se diagnosticas los diagnosticos del pacinte desplegando los datos existentes y enlazarlos a uno -->
 <div id="collapseOne1" class="accordion-body collapse in">
     <div class="accordion-inner"><!-- contenido del modulo diagnostico -->
 

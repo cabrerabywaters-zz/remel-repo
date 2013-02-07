@@ -14,7 +14,7 @@ verificarIP();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-      
+      <!-- se llaman los scripts para que funciones jquery y bootstrap en la parte del medico CDN-->
         <script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
@@ -85,6 +85,7 @@ verificarIP();
             
             <div class="row-fluid">
                 <center><h5 class="form-signin-heading">Atendiendo en:</h5>
+                    <!-- se agregan a la session los nombres de la sucursal y lso datos de esta -->
                 <div class="alert alert-info"><strong><?php echo $_SESSION['logLugar']['nombreLugar'];?></strong></div>
                 <div class='alert alert-info'><strong><?php echo $_SESSION['logLugar']['nombreSucursal'];?></strong></div>
                 </center>
@@ -93,6 +94,7 @@ verificarIP();
                 <h3 class="form-signin-heading"><center>Opciones</center>   </h3>
                 <h5 class="form-signin-heading"><center>Seleccione que desea hacer</center>   </h5>
                 <!-- Button to trigger modal -->
+                <!-- opciones para el medico cuando ingresa -->
                 <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
                 <button class="btn btn-large btn-block" type="button" disabled="disabled">Ver Pacientes Atendidos</button>
                 <button class="btn btn-large btn-block " type="button" disabled="disabled">Consultar medicamentos</button>
@@ -107,7 +109,7 @@ verificarIP();
    
 
  
-
+<!-- desplega el modal del login -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -115,6 +117,7 @@ verificarIP();
         </div>
         <div class="modal-body">
             <strong><p>Ingrese el Rut del Paciente</p></strong>
+            <!-- se llama al llava script para que busque a traves de ajax los datos -->
             <form class="form-search" id="busqueda" method="post" action="javascript:enviar()">
                 <div class="input-append">
                 <input type="text" class="span2 search-query" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">
@@ -126,7 +129,7 @@ verificarIP();
             <div id="atender" class="atender">
                 <!-- aqui se muestra el paciente obtenido -->
             </div>
-            <div id="clave" class="collapse" >
+            <div id="clave" class="collapse" ><!-- se verifica la clave del paciente atravez de ajax -->
             <form id="verificacionClave" action="javascript:verificarClave()" method="post">
                 <br>
             <strong>Ingrese Clave :</strong> <center> 
@@ -164,6 +167,7 @@ verificarIP();
                         var postData = $('#busqueda').serialize();
                         $.ajax({ 
                         url: '../../ajax/jsonPaciente.php',
+                        //entrega la clave del paciente y la verifica si esque esta bien escrita
                         data: postData,
                         type: 'post',
                         success: function(output) {

@@ -13,7 +13,7 @@
             window.location = "../doctorIndex.php" 
            </script>';
  }
- 
+ // el archivo que genera el pdf del mpaciente al emitir su receta 
  ?>
 <!-- Modal de resumen de la receta-->
 <div id="resumenReceta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="resumenRecetaLabel" aria-hidden="true">

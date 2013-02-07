@@ -1,5 +1,5 @@
 <?php
-
+// agarra el rut y le inserta el guion y los puntos cada 3 digitos
 $lugar=(strlen($cadena)-1);
 $insertar = "-"; 
 $resultado = substr($cadena, 0, $lugar) . $insertar . substr($cadena, $lugar); 

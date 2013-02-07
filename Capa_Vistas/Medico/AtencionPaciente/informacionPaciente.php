@@ -4,6 +4,7 @@
   Información Personal del Paciente
   
   </a>
+   <!-- despliega la informacion medica de la persona pacient econ al posbilidad de editar datos y queen registrados en un registro -->
   </div>
   <div id="collapseOne" class="accordion-body collapse">
   <div class="accordion-inner">

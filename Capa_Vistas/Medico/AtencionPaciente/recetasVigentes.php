@@ -3,6 +3,7 @@
         Recetas Anteriores
       </a>
     </div>
+<!-- despleiga als recetas que esten vigentes con el medico para que este pueda ver que se le harecetado al paciente -->
     <div id="collapseThree" class="accordion-body collapse">
       <div class="accordion-inner">
 

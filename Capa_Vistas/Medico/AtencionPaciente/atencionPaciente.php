@@ -10,7 +10,7 @@ verificarIP();
 include('../../medicoHeader.php'); // elementos visuales, navegacion y encabezado
 
 ?>
-
+<!-- donde se despliegan todos los datos de los paciente medico y donde se puede recetar -->
 <div class="row-fluid">
   <div class="tab-content"><!-- contenido del panel 1-->
     

@@ -3,6 +3,7 @@
   Información Personal del Paciente
   
   </a>
+    <!-- backup-->
   </div>
   <div id="collapseOne" class="accordion-body collapse">
   <div class="accordion-inner row-fluid">

@@ -4,7 +4,10 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
  $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
  $unidadFrecuencia = UnidadFrecuencia::Seleccionar('where 1=1');
  $unidadPeriodo = UnidadPeriodo::Seleccionar('where 1=1');
-  
+  // variable s ausar para elmodel del medicamento
+ // una trae las cantidad de pastillas,comprimidos,etc
+ //trae la cantidad de veces al dia 
+ // trae durante cuanto tiempo se consumira
 ?>
 <!-- modalDetalleMedicamento-->
 <div class="popover-title"> <!-- titulo del modal (nombre del medicamento) -->
@@ -40,7 +43,8 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                         <tr>
                             <td>Inicio</td>
                             <td colspan="2"><input class="span11 datepicker" type="text" name="fechaInicio" value="<?php 
-                                                   $hoy = getdate();
+                            //despliega la fehca del dia de hoy     
+                            $hoy = getdate();
                                                    $hoy = $hoy['mon']."/".$hoy['mday']."/".$hoy['year'];
                                                    echo $hoy;?>"></td>
                         </tr>

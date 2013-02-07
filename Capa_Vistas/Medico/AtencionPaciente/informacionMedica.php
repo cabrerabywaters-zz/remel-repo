@@ -2,6 +2,7 @@
       <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
         Información Médica Registrada
       </a>
+        <!-- despliega los datos medicos del paciente alergias y condiciones con la posibilidad de ingresar nuevas alergias y condiciones-->
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
