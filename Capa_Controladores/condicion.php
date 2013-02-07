@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Condicion {
 
     static $nombreTabla = "Condiciones";
-    static $nombreIdTabla = "idCondiciones";    
-    
+    static $nombreIdTabla = "idCondiciones";
+
     /**
      * Insertar
      * 
@@ -14,9 +14,9 @@ class Condicion {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-            array('Nombre',$_POST['nombre_condicion'])
-            );
+        $datosCreacion = array(
+            array('Nombre', $_POST['nombre_condicion'])
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -32,7 +32,7 @@ class Condicion {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -46,28 +46,28 @@ class Condicion {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                                        'Nombre',
-                                        'idCondiciones'
-      );
+        $atributosASeleccionar = array(
+            'Nombre',
+            'idCondiciones'
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -76,27 +76,29 @@ class Condicion {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_condiciones'];
-    	$datosActualizacion = array(
-                              array('Nombre',$_POST['nombre_condicion'])
-            );
+        $id = $_POST['id_condiciones'];
+        $datosActualizacion = array(
+            array('Nombre', $_POST['nombre_condicion'])
+        );
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-	 public static function BuscarCondicionLike($Nombre,$id) {
+    //busca condiciones segun su nombre y el id del paciente
+    //devuelve el id y el nombre
+    public static function BuscarCondicionLike($Nombre, $id) {
 
-      		        $queryString = 'SELECT Nombre,idCondiciones
+        $queryString = 'SELECT Nombre,idCondiciones
 									 
 									FROM Condiciones
 
-									WHERE Nombre LIKE "%'.$Nombre.'%"
+									WHERE Nombre LIKE "%' . $Nombre . '%"
 									
 									AND idCondiciones NOT IN (SELECT Condiciones.idCondiciones
 
                      				FROM Condiciones, Paciente_has_Condiciones, Pacientes
 
-                       				WHERE Pacientes.idPaciente= '.$id.'
+                       				WHERE Pacientes.idPaciente= ' . $id . '
 									 
 									AND Pacientes.idPaciente=Paciente_has_Condiciones.Paciente_idPaciente
 									 
@@ -105,20 +107,21 @@ class Condicion {
                        				ORDER BY  Condiciones.Nombre ASC 
 									
 									LIMIT 5';
-									 
-		 $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
-   }
-   
-   public static function BuscarNombreCondicionPorId($idCondicion){
+
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
+    //busca condiciones por su id
+    //devuelve el nombre
+    public static function BuscarNombreCondicionPorId($idCondicion) {
         $queryString = 'SELECT Nombre as Text FROM Condiciones WHERE idCondiciones = ' . $idCondicion . ';';
         $result = CallQuery($queryString);
         return $result;
-   }
+    }
 
 }
 

@@ -92,6 +92,9 @@ class Consulta  {
     
     // lo generé de forma rapida para salir del problema, hay que hacerlo de manera correcta con el 
     //seleccionar query que está arriba de este
+    //
+    //busca el id de una consulta
+    //devuelve el id
      public static function SeleccionarID($idMedico,$hora,$idPaciente,$fecha,$idLugar) {
     	
 

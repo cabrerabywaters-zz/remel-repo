@@ -57,6 +57,8 @@ class Arsenal  {
         $query = CallQuery($queryString);
         
     }
+    //busca los medicamentos del arsenal segun el id de expendedor
+    //devuelve el nombre y el precio de los medicamentos
     public static function R_MedicamentosEnArsenalPorExpendedor($idExpendedor){
         $queryString = 'SELECT Medicamentos.Nombre_Comercial as Nombre, Medicamentos.Precio_Referencia_CLP as Precio
                         FROM Medicamentos, Arsenal, Expendedores

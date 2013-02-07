@@ -86,6 +86,8 @@ class Comuna {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    //busca comuna por nombre
+    //devuelve su id
     public static function BuscarComunaPorNombre($nombre){
         $queryString = 'SELECT idComuna FROM Comuna WHERE Nombre '.$nombre.'';
         $result = CallQuery($queryString);
@@ -94,7 +96,8 @@ class Comuna {
         }
         else return false;
     }
-    
+    //busca comuna segun una fraccion de texto
+    //devuelve su nombre e id
     public static function BuscarComunaLike($nombre,$idRegion){
                 $queryString = 'SELECT Comunas.Nombre, Comunas.idComuna
                                 
@@ -122,7 +125,8 @@ class Comuna {
 	    return $resultArray;
    }
    
-   
+   //busca una comuna segun su region y fraccion de texto
+   //devuelve el id y el nombre
    public static function BuscarComunaPorRegionYNombre($idRegion,$letra){
                 $queryString = "Select idComuna, Nombre from Comunas where 
        	Provincias_idProvincia In(SELECT idProvincia from Provincias where  Regiones_idRegion='$idRegion') and Nombre like '%$letra%'"                              

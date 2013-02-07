@@ -84,7 +84,8 @@ class CategoriaFuncionario {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //encuentra el nombre de categoria de un funcionario segun su id
+    //devuelve el nombre de la categoria
     public static function EncontrarNombrePorId($id) {
         $queryString = "SELECT Nombre FROM Categorias_Funcionarios WHERE idCategoria_Funcionario = '$id'";
         $res = CallQuery($queryString);

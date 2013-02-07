@@ -97,6 +97,8 @@ class ComposicionMedicamento {
         $queryString = QueryStringActualizarRelacion($where, $id, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+    //busca los principios activos de un medicamento segun su id
+    //devuelve los id de principio activo
     public static function BuscarPrincipiosActivosPorMedicamentoId($idMedicamento){
         $queryString = 'SELECT Principio_Activo_idPrincipio_Activo
                                          FROM Composicion_Medicamento

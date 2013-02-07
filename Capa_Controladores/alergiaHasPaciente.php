@@ -59,7 +59,8 @@ class AlergiaHasPaciente {
         $queryString = QueryStringActualizarRelacion($where, $id, $datos, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca las alergias de un paciente
+    //devuelve los ids de alergia
     public static function BuscarAlergiasPorPacienteId($idPaciente) {
         $queryString = 'SELECT Alergia_has_Paciente.Alergia_idAlergia as ID FROM Pacientes, Alergia_has_Paciente 
                                 WHERE ' . "$idPaciente" . ' = Alergia_has_Paciente.Paciente_idPaciente
