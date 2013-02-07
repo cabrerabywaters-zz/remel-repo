@@ -1,9 +1,17 @@
 <?php
-session_start();
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+
+/* Descripcion: Guarda una nueva asociacion Paciente-Alergia en la base de 
+ * datos y luego devuelve el estado.
+ *
+ * Input (POST):
+ *	int idAlergia
+ * Input (SESSION):
+ *	int idPaciente
+ * Output: Boolean de estado.
  */
+
+session_start();
+
 
 include_once(dirname(__FILE__) . '/../Capa_Controladores/alergiaHasPaciente.php');
 

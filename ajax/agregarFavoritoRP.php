@@ -1,5 +1,21 @@
 <?php
 
+/* 
+ * Descripcion: Inserta un nuevo medicamento favorito con todos los valores
+ * asociados y devuelve el estado.
+ * Input (POST):
+ * 	int idMedicamento
+ *	string nombreCorto
+ *	int cantidad (Opcional)
+ *	int unidadDeConsumo (Opcional)
+ *	int frecuencia (Opcional)
+ *	int unidadDeFrecuencia (Opcional)
+ *	int periodo (Opcional)
+ *	int unidadDeFrecuencia (Opcional)
+ * Input (SESSION):
+ *	int idMedico
+ */
+
 include_once(dirname(__FILE__)."/../Capa_Controladores/favoritosRp.php");
 
 $idMedicamento = $_POST['idMedicamento'];

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * Descripcion: Entrega informacion de diagnostico segun id.
+ * Input (POST)
+ * 	int diagnostico
+ * Output: json con datos de diagnostico
+ */
+
 include_once('../Capa_Controladores/diagnostico.php');
 $diagnostico = $_REQUEST['diagnostico'];
 

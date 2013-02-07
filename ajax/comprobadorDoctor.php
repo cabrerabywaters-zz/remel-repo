@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Descripcion: Comprobar si el usuario es doctor/funcionario, y en caso 
+ * de que sea guardar informacion en SESSION y manejar las instituciones
+ * correspondientes
+ * Input (SESSION):
+ * 	int idMedicoLog
+ *	int idFuncionarioLog
+ * Output: No hay, redireccion según ruteo correspondiente.
+ */
+
 include_once(dirname(__FILE__) . '/sessionCheck.php');
 include_once(dirname(__FILE__) . '/../Capa_Controladores/medicoHasSucursal.php');
 include_once(dirname(__FILE__) . '/../Capa_Controladores/sucursalesHasFuncionarios.php');

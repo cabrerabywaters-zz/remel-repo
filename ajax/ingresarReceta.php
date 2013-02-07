@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Descripcion: Ingresar la receta y todas las entradas hijas correspondientes
+ * (historialMedico, MedicamentoReceta) a la base de datos y devolver
+ * estado/folio segun el exito de la operacion
+ * Input (POST):
+ * 	array resumenPoder
+ * Output: Estado negativo si sale mal, numero de folio si la operacion
+ * es correcta
+ */
+
 include_once(dirname(__FILE__)."/../Capa_Controladores/receta.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/historialMedico.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/medicamentoReceta.php");

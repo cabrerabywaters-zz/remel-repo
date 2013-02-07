@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * Descripcion: Recibe un string y entrega entradas de Medicamento que contengan
+ * informacion similar y relevante para autocompletar. 
+ * Filtra segun principioActivo y/o arsenal.
+ * Input (POST):
+ *      string name_startsWith
+ *	bool filtro (filtro principioActivo)
+ *	bool filtro2 (filtro Arsenal)
+ * Output: json con entradas relevantes de Medicamento.
+ */
+
 include_once(dirname(__FILE__).'/../Capa_Controladores/medicamento.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/principioActivo.php');
 session_start();
