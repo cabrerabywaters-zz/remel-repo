@@ -132,7 +132,8 @@ class Medicamento {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca medicamento segun nombre con un trozo de texto
+    //devuelve el nombre
     public static function BuscarMedicamentoLike($nombre) {
         $limit = 5;
         $offset = 0;
@@ -160,7 +161,8 @@ class Medicamento {
 
         return $resultArray;
     }
-
+    //busca datos de un medicamento segun su id
+    //devuelve todos sus datos
     public static function BuscarMedicamentoPorId($id) {
         $queryString = "SELECT *
 
@@ -171,7 +173,8 @@ class Medicamento {
         $resultado = CallQuery($queryString);
         return $resultado->fetch_assoc();
     }
-
+    //busca el nombre de un medicamento segun su id
+    //devuelve el nombre
     public static function BuscarNombreMedicamentoPorId($id) {
         $queryString = "SELECT Nombre_Comercial
 
@@ -183,7 +186,7 @@ class Medicamento {
         $res = $resultado->fetch_assoc();
         return $res['Nombre_Comercial'];
     }
-
+    
     public static function SeleccionarLaboratorioPorIdMedicamento($id) {
         $queryString = "SELECT ID, Nombre as laboratorio FROM Laboratorios WHERE ID in (SELECT DISTINCT (
                         Laboratorio_idLaboratorio
@@ -194,7 +197,7 @@ class Medicamento {
         $resultado = CallQuery($queryString);
         return $resultado->fetch_assoc();
     }
-
+    
     public static function SeleccionarMedicamentoPorIDyLab($idMedicamentoB, $idLabB) {
         $queryString = "SELECT * 
                     FROM Medicamentos
@@ -204,7 +207,8 @@ class Medicamento {
         $resultado = CallQuery($queryString);
         return $resultado->fetch_assoc();
     }
-
+    //busca medicamentos por id de principio activo
+    //devuelve los id y nombre de los medicamentos que tengan el principio activo
     public static function BuscarMedicamentoPorIdPrincipioActivo($idPrincipioActivo) {
 
 
@@ -222,7 +226,8 @@ class Medicamento {
 
         return $resultArray;
     }
-
+    //busca medicamento en un arsenal segun un trozo de texto y el id del arsenal
+    //devuelve el nombre y el id
     public static function BuscarMedicamentoArsenalLike($nombre, $idSucursal) {
 
 
@@ -241,7 +246,8 @@ class Medicamento {
 
         return $resultArray;
     }
-
+    //busca unidades de consumo de un medicamento segun su id
+    //devuelve la unidad de consumo
     public static function SeleccionarUnidadesConsumo($idMedicamento) {
         $queryString = "SELECT idUnidad_de_Consumo AS ID, tipo AS Nombre
 FROM Unidad_de_Consumo, Unidad_de_Consumo_has_Presentaciones_has_Medicamentos
@@ -254,7 +260,8 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
         }
         return $unidades;
     }
-
+    //busca la cantidad disponible de un medicamento recetado
+    //devuelve la cantidad, frecuencia, cantidad de presentacion y periodo del medicamento
     public static function R_CantidadDisponibleMedicamento($idMedicamento) {
         $queryString = '    SELECT 
                                    Medicamentos_Recetas.Cantidad as cantidad, Medicamentos_Recetas.Frecuencia as frecuencia, Medicamentos_Recetas.Periodo as periodo, Presentaciones.Cantidad_Elementos as cantidadPresentacion
@@ -269,6 +276,8 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
         $query = CallQuery($queryString);
         return $query->fetch_assoc();
     }
+    //busca la cantidad de veces que ha sido vendido un medicamento de cierta receta
+    //devuelve la suma de veces que se ha vendido
     public static function R_NumeroVentaMedicamento($idMedicamento, $idReceta){
         $queryString = 'SELECT SUM(Cantidad) as cantidadVendida
                         FROM Medicamentos_Vendidos
@@ -278,6 +287,8 @@ AND idUnidad_de_Consumo = 	Unidad_de_Consumo_idUnidad_de_Consumo";
         $query = CallQuery($queryString);
         return $query->fetch_assoc();
     }
+    //busca un medicamento en el arsenal segun ambos id
+    //devuelve verdadero o falso, si existe o no
     public static function R_BuscarMedicamentoEnArsenalPorId($idMedicamento, $idExpendedor){
         $queryString = 'SELECT *
                         FROM Arsenal

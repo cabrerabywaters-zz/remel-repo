@@ -109,7 +109,8 @@ class LugarAtencion {
 	$query = CallQuery($queryString);
 	return $query->fetch_assoc();
     }
-
+    //busca datos del lugar de atencion segun el rut ingresado
+    //devuelve nombre e id
     public static function SeleccionarPorRutSucursal($RUT) {
 	$nombreTabla = self::$nombreTabla;
 	$queryString = "SELECT Nombre, idLugar_de_Atencion FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";
