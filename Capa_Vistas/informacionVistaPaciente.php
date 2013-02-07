@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * informacion del paciente cuando el mismo es el usuario
+ * input: rut del usuario
+ * output: direccion, nombre, prevision, seguro, alergias, condiciones, recetas, diagnosticos, etc, del paciente
+ */
 include(dirname(__FILE__) . "/../Capa_Controladores/alergia.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/condicion.php");
 include(dirname(__FILE__) . "/../Capa_Controladores/paciente.php");

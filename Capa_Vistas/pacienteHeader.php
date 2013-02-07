@@ -1,4 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+/*
+ * header del paciente, que incluye su nombre y foto. tambien todas las opciones de navegacion y la informacionVistaPaciente.php,
+ * que acumula toda la info
+ * input: informacionVistaPaciente
+ * output: nombre y foto del usuario, inclusive menu de navegacion
+ */
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

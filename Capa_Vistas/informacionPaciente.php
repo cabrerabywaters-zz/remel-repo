@@ -1,4 +1,9 @@
 <?php
+/*
+ * consigue la info del paciente
+ * input: rut del usuario y rut del paciente
+ * output: info del medico (nombre, foto, etc)y del paciente (nombre, direccion, etnia, prevision, condiciones, alegias, recetas y seguro)
+ */
 	// consulta a Realizar a la base de datos del usuario 
 	include_once(dirname(__FILE__)."/../Capa_Controladores/alergia.php");
 	include_once(dirname(__FILE__)."/../Capa_Controladores/condicion.php");

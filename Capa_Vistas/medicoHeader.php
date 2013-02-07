@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+/*
+ * header del medico, incluye su nombre, el del paciente, el lugar donde se atiende y las barras de navegacion
+ * input: informacionPaciente.php
+ * output: nombre del medico y del paciente, lugar de atencion
+ */
+?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

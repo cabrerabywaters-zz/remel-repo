@@ -1,3 +1,10 @@
+<?php
+/*
+ * muestra las alternativas de ingreso de lugares del funcionario
+ * input: id del usuario
+ * output: nombre y id de las opciones disponibles de lugares
+ */
+?>
 <button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#funcionario"><i class="icon-chevron-down icon-white"></i> Perfil Institucional</button>
 <div id="funcionario" class="collapse" data-parent="#ingresoFuncionario">
     <div id="contenedor_lugares_funcionario">    

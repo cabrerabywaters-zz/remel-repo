@@ -1,4 +1,10 @@
-
+<?php
+/*
+ * muestra las opciones de lugares de atencion del medico
+ * input: id del medico
+ * output: nombre y lugar de los lugares de atencion
+ */
+?>
 <button type="button" class="btn btn-block btn-large" data-toggle="collapse" data-target="#demo"><i class="icon-chevron-down icon-white"></i> Perfil Médico o Profesional</button>
 <div id="demo" class="collapse" data-parent="#ingresoMedico">
     <div id="contenedor_lugares">    

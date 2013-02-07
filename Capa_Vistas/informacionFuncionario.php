@@ -1,4 +1,9 @@
 <?php
+/*
+ * consigue la info del funcionario
+ * input: rut del usuario
+ * output: nombre de la persona y categoria de funcionario
+ */
 	// consulta a Realizar a la base de datos del usuario 
 	include(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 	include(dirname(__FILE__)."/../Capa_Controladores/funcionario.php");
