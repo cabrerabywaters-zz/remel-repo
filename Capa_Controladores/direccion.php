@@ -22,7 +22,7 @@ class Direccion {
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-    
+    //insert alternativo de datos
     public static function InsertarConDatos($calle, $nCalle, $Comuna) {
     	/*$datosCreacion = array(
                            array('Calle',$calle),
@@ -34,6 +34,8 @@ class Direccion {
                         VALUES ("'.$calle.'","'.$nCalle.'","'.$Comuna.'")';
         $query = CallQuery($queryString);
     }
+    //busca la id de una direccion existente segun sus atributos (los atributos son irrepetibles)
+    //devuelve el id en un arreglo asociativo
     public static function BuscarIdDireccion($calle, $nCalle, $Comuna){
         $queryString = 'SELECT idDireccion FROM Direcciones WHERE Calle = "'.$calle.'" AND Numero = "'.$nCalle.'" AND Comuna_idComuna = "'.$Comuna.'"';
         $result = CallQuery($queryString);
@@ -45,6 +47,7 @@ class Direccion {
      * 
      * Borra una entrada segun su id, pasada por POST.
      */
+    
     public static function BorrarPorId() {
         $id = $_POST['id'];
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
@@ -106,7 +109,8 @@ class Direccion {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca los datos de direccion segun id
+    //devuelve calle, numero y nombre de comuna en un arreglo asociativo
     public static function SeleccionarStringDireccion($idDireccion) {
 	$queryString = "SELECT Direcciones.Calle as Calle, Direcciones.Numero as Numero, Comunas.Nombre as Comuna
 			FROM Direcciones, Comunas
