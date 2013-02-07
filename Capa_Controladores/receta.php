@@ -125,7 +125,7 @@ class Receta  {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca id de receta segun direccion IP e id de consulta
      public static function SeleccionarPorLugarIpConsulta($ip,$idConsulta) {
     	
 
