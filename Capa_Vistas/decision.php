@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <?php
+/*
+ * Pagina de decision de un usuario a elegir su perfil de entrada. se ignora si el usuario es solo paciente
+ * input: id de Medico o Funcionario en caso de existir
+ * output: ninguno, se traslada a otra pagina
+ */
+
 include '../ajax/sessionCheck.php';
 include_once(dirname(__FILE__) . '/../Capa_Controladores/sucursalesHasFuncionarios.php');
 include_once(dirname(__FILE__) . '/../Capa_Controladores/funcionario.php');
