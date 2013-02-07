@@ -1,6 +1,7 @@
 <?php include_once '../../Capa_Controladores/unidadDeConsumo.php';
 include_once '../../Capa_Controladores/unidadFrecuencia.php';
 include_once '../../Capa_Controladores/unidadPeriodo.php';
+// se llaman a las tablas unidad de consumo , unidad de frecuencia, unidad de periodo y se despliegan todos los datos de ellas
  $unidadDeConsumo = UnidadDeConsumo::Seleccionar('where 1=1');
  $unidadFrecuencia = UnidadFrecuencia::Seleccionar('where 1=1');
  $unidadPeriodo = UnidadPeriodo::Seleccionar('where 1=1');

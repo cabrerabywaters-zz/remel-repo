@@ -1,8 +1,12 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Descripcion: Entrega los medicamentos segun subClase y Laboratorio para
+ * la funcionalidad de multiselect.
+ * Input: 
+ *	int subClase
+ *	int laboratorio
+ * Output: json con los medicamentos
  */
 
 

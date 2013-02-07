@@ -1,4 +1,14 @@
 <?php
+
+ /*
+  * Descripcion: Busca los datos y el nombre de un paciente segun su rut.
+  * NO PERMITE ATENDERSE A SI MISMO
+  * Input (POST)
+  * 	int RUN (a atender)
+  * Input (SESSION)
+  *	int RUT (atendiendo)
+  * Output: json con datos de paciente o un error. 
+  */
 session_start();
 include_once(dirname(__FILE__)."/../Capa_Controladores/persona.php");
 include_once(dirname(__FILE__)."/../Capa_Controladores/paciente.php");

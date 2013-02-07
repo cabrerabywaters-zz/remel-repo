@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * Descripcion: Entrega el TOP 5 de visitas a doctores segun un idPaciente
+ * dado por sesion
+ * Input (SESSION)
+ *	int idPaciente
+ * Output: json con nombres y cantidad de visitas del TOP 5
+ */
+
 include_once(dirname(__FILE__)."/../Capa_Datos/llamarQuery.php");
 
 $idPaciente = $_SESSION['idPaciente'];

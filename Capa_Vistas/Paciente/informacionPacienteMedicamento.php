@@ -29,8 +29,10 @@
            
            <?php
                include_once(dirname(__FILE__)."/../../Capa_Controladores/paciente.php");
+               // se incluye el controlador
                
                $historialRecetas = Paciente::SeleccionarRecetaPorId($idPaciente);
+               // se llama al controlador del paciente
                
            foreach($historialRecetas as $lineaRecetas){
               echo "<tr>";

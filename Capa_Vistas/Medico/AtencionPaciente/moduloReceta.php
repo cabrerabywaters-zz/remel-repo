@@ -92,9 +92,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         /*
          * el filtro correspondiente al buscador 
          */
-        
-        
-         var filtro2 = 'false';
+        var filtro2 = 'false';
         $('#filtroArsenal button').click(function(){
           filtro2 = $(this).attr('filtroarsenal');
           $("#medicamento").empty();
@@ -390,11 +388,8 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 var idDiagnostico = $(this).attr('idDiagnostico');
                 var nombreDiagnostico = $(this).children('strong').text();
                 $('#diagnosticoAsociado').prepend('<option value="'+idDiagnostico+'">'+nombreDiagnostico+'</option>');
-                
-            });//end each
-            
-    
-        });//on click
+             });//end each
+         });//on click
       
         
         /*

@@ -1,4 +1,13 @@
 <?php
+/*
+ * Muestra los datos del medicamento: foto y nombre y da la posibilidad de expender 1 o más del mismo medicamento
+ * Se puede entregar el mismo rut del paciente u otro. Se obtiene el precio, pero no se muestra
+ * 
+ * Input: Información del medicamento
+ * Output: Cantidad de medicamento y RUT del retirante. Tambien el precio, pero no se muestra
+ * 
+ */
+
 include_once(dirname(__FILE__) . '/../../ajax/sessionCheck.php');
 iniciarCookie();
 verificarIP();
@@ -26,6 +35,9 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     echo '<br>';
                     echo '<img src="' . $datosMedicamento['Foto_Presentacion'] . '" width="200" height="200"></img>';
                     echo '<br>';
+                    $idLugar = intval($_SESSION['logLugar']['idLugar']);
+                    $existeMedicamento = Medicamento::R_BuscarMedicamentoEnArsenalPorId($_SESSION['medicamentoID'], $idLugar);
+                    if ($existeMedicamento){
                     echo 'Cantidad: <input type="text" class="span1 search-query" id="numero" value="1">';
                     echo '<br>';
                     echo 'Confirma retiro, RUT:<input type="text" value="'.$_SESSION['RUTPaciente'].'" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
@@ -34,6 +46,10 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     $_SESSION['precio'] = $datosMedicamento['Precio_Referencia_CLP'];
                     echo '<br>';
                     echo '<input class="btn btn-primary" id="expender" type="submit" value="Expender"></input></br>';
+                    }
+                    else{
+                        echo 'El medicamento no existe en el arsenal</br>';
+                    }
                     echo '<button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Volver a Medicamentos</strong></button>';
                     echo '<br>';
                     echo '<div id="mensaje">';
@@ -55,7 +71,6 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
 
 </div>
 <script>
-    
     $('#expender').click(function(){
         var cantidad = document.getElementById('numero').value;
         var compradorRUT = document.getElementById('RUN').value;

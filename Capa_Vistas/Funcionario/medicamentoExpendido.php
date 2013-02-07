@@ -1,5 +1,10 @@
 <?php
-
+/*
+ * Muestra mensaje de exito e ingresa el medicamento vendido a la BDD
+ * Input: Ninguno
+ * Output: Ingreso de la venta a la BDD
+ * 
+ */
 include_once(dirname(__FILE__) . '/../../ajax/sessionCheck.php');
 iniciarCookie();
 verificarIP();
@@ -17,7 +22,6 @@ $med = MedicamentoVendido::InsertarConParametros($_SESSION['logLugar']['idLugar'
                                                                 $_SESSION['recetaID'], 
                                                                 $_SESSION['cantidadMedicamentoVendido'], 
                                                                 $fechaActual, 
-                                                                $_SESSION['unidadID'],
                                                                 $_SESSION['compradorRUT'],
                                                                 $_SESSION['precio'])
         ;

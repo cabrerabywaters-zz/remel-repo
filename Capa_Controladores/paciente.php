@@ -316,7 +316,7 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     }
         public static function R_MedicamentosReceta($idReceta) {
         $queryString = "SELECT Medicamentos.Nombre_Comercial, Medicamentos.idMedicamento, Recetas.idReceta, 
-                               Medicamentos_Recetas.Unidad_de_Consumo_idUnidad_de_Consumo as unidad
+                               Medicamentos_Recetas.Unidad_de_Consumo_idUnidad_de_Consumo as unidad, Medicamentos.Tipo_de_Receta_Id as tipo
                         FROM Consulta, Recetas, Medicamentos_Recetas, Medicamentos
 			WHERE Recetas.idReceta = $idReceta
                         AND Consulta.Id_consulta = Recetas.Consulta_Id_consulta

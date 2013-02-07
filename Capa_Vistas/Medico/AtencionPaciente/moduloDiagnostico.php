@@ -42,7 +42,7 @@
                             <p>Comentario: </p>
                             <center> <textarea id="comentario_diagnostico" rows="2" style="width:90%" placeholder="Puede Ingresar un comentario para su diagnostico"></textarea></center>
                             <span id="mensaje"></span>
-
+                                <a class="addFav btn btn-inverse pull-right" href="#" title="Añadir a Favoritos"><i class="icon-star icon-white"></i></a>
                                 <button class="btn btn-info"  id="guardar_diagnostico" disabled="disabled">Añadir <i class="icon-ok"></i></button>
                                 <button class="btn btn-info" id="guardar_cambios" disabled="disabled">Guardar <i class="icon-ok"></i></button>  
                                 <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" id="cancelar_modal">Cancelar</button>
@@ -146,7 +146,7 @@
                                    var postData = $("#diagnostico").attr('iddiagnostico');
                                    $.ajax({ 
                                         url: '../../../ajax/informacionDiagnostico.php',
-                                        data: {diagnostico:postData},
+                                        data: {"diagnostico":postData},
                                         type: 'post',
                                         async: false,
                                         success: function(output) {
@@ -156,11 +156,12 @@
                                             $('#id_diagnostico').html(data['idDiagnostico']);// id de la enfermedad
 
                                             if(data['Es_Ges'] != null){ // el diagnostico es ges se informa con un pill y un
-                                                $('#modalDiagnosticoLabel').append('    <span class="badge badge-success">Considerado GES por MINSAL</span>')
+                                                $('#modalDiagnosticoLabel').append('<span class="badge badge-success">Considerado GES por MINSAL</span>')
                                                 $('#esGES').html('1');
                                             } // end if
                                             //resto de la informacion que se busca desplegar en el popup
                                           $('#modalDiagnostico').collapse('show');  
+                                        $('.addFav').removeAttr('disabled');
                                         }//end success
 
 
@@ -225,7 +226,6 @@
                         var pill = '\
                         <div class="alert alert-info diagnostico" idDiagnostico="'+id_diagnostico+'" esGES="'+esGES+'" tipoDiagnostico="'+id_tipo+'" comentarioDiagnostico="'+comentarioDiagnostico+'">\n\
                         <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editar pull-right" data-target="#modalDiagnostico" id="editarDiagnostico" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
-                        <a href=# class="protocolo pull-right" rel="tooltip" title="Ver Guias"><i class="icon-th-list"></i></a>\n\
                         <strong>'+nombre_diagnostico+'</strong>\n\
                         </div>';
                         
@@ -245,21 +245,14 @@
             
             var idDiagnosticoEdit = $(this).parent().attr('iddiagnostico');
          
-            $('#modalDiagnosticoLabel').text(
-                $(this).parent().children('strong').text()
-            );
-            $('#comentario_diagnostico').val(
-                $(this).parent().attr('comentariodiagnostico')
-            );
-            $('#tipo_diagnostico').val(
-                $(this).parent().attr('tipodiagnostico')
-            );
-            $('#esGES').text(
-                $(this).parent().attr('esges')
-            );
+            $('#modalDiagnosticoLabel').text($(this).parent().children('strong').text());
+            $('#comentario_diagnostico').val($(this).parent().attr('comentariodiagnostico'));
+            $('#tipo_diagnostico').val($(this).parent().attr('tipodiagnostico'));
+            $('#esGES').text($(this).parent().attr('esges'));
                 
             $('#guardar_cambios').show().attr('disabled',false);
             $('#guardar_diagnostico').hide();
+            $('.addFav').removeAttr('disabled')
             $('#modalDiagnostico').collapse('show');
                      
                      
@@ -271,15 +264,10 @@
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('comentariodiagnostico',comentario);
                        $('.diagnostico[iddiagnostico="'+ idDiagnosticoEdit +'"]').attr('tipodiagnostico',tipo_diagnostico);
                          
-                        $('#modalDiagnostico').collapse('hide');
+                       $('#modalDiagnostico').collapse('hide');
                          
                      });
-                     
-            });              
-            
-            
-                       
-      //FIN BOTON EDITAR                      
+                 });//FIN BOTON EDITAR                      
       
       
                      $('.protocolo').tooltip({title:"Ver Guías del diagnostico"}).unbind("click")
@@ -318,8 +306,6 @@
                             // se setea el dialogo
                             $('#titleGuias').append(nombreDiagnostico);
                             $("#medicamentosAsociados").dialog('open');
-
-                         
                         })); // end click del tooltip
                     }); // end click guardar_diagnostico   
                   
@@ -327,11 +313,7 @@
                 * comportamiento de los paneles colapsables
                 * @author: Cesar González
                 */ 
-
-              
-              
-              
-              $('#recomendadosInstitucion').on('hide',function(){
+               $('#recomendadosInstitucion').on('hide',function(){
                    $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-up").addClass("icon-circle-arrow-down");});
                $('#recomendadosInstitucion').on('show',function(){
                    $('button[data-target="#recomendadosInstitucion"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");});
@@ -340,34 +322,7 @@
                $('#recomendadosFav').on('show',function(){
                    $('button[data-target="#recomendadosFav"] i').removeClass("icon-circle-arrow-down").addClass("icon-circle-arrow-up");});
                                          
-//                      
-               
-//                      
-//                      la siguiente función guarda en la bbdd un diagnostico
-//                      especifico 
-//                      
-//                        $.ajax({ url: '../../../ajax/agregarHistorialMedico.php',
-//                            data: { diagnostico: id_diagnostico, consulta:  id_consulta, tipo: id_tipo },
-//                            type: 'post',
-//                            success: function(output) {
-//                                if(output == '1') {
-//                                    $('#modalDiagnosticol').modal('hide'); //se esconde el modal
-//                                    $('#diagnostico').val(''); // se borra el buscador
-//                                    $('select>option:eq(0)').attr('selected', true); //se deja seleccionada la opcion 0
-//                                    $('#comentario_diagnostico').val(''); // se borra el comentario
-//                                    
-//                                    //se agrega el pill correspondiente al div "log_diagnostico"
-//                                    
-//                                    
-//                                    $('#log_diagnostico').html()
-//                                    
-//                                 
-//                                }
-//                                else{
-//                                    $('#mensaje').html("<span style='color: red'>No se pudo insertar el disgnóstico</span>");
-//                                }
-//                            }
-//                        });
+
 
     
             

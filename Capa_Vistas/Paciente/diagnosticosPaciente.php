@@ -11,6 +11,7 @@
 
   <center> <div style="width: 90%; ;">
     		<script type="text/javascript" charset="utf-8">
+                    //funcion que llama al script de data table de jquery 
 			$(document).ready(function(){
                              $('#tablaDignosticosPaciente').dataTable();
                         });
@@ -27,6 +28,7 @@
 	</thead>
 	<tbody>
     <?php
+    //despliega el historial medico del paciente  y los despliega en un data table
 		    foreach ($historialPaciente as $lineaHistorial) {
             echo "<tr>";
             echo "<td>".$lineaHistorial['nombreDiagnostico']."</td>";

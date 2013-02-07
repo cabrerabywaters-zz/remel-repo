@@ -1,6 +1,19 @@
 <?php
 
-//error_reporting(0);
+
+
+ /*
+  * Descripcion: Modulo gigante ajax que comprueba absolutamente TODAS
+  * las contraindicaciones, y ademas obtiene todos los datos de composicion
+  * de un medicamento dado y entrega la informacion por json.
+  * Input (POST)
+  *     int idMedicamento
+  * 	array MedicamentosRecetados
+  * Input (SESSION)
+  * 	int idPaciente  
+  * Output: json con datos medicamento, PAs y contraindicaciones
+  * TODO: Contraindicaciones por recetas historicas
+  */
 
 include_once(dirname(__FILE__)."/../Capa_Controladores/medicamento.php");
 include_once(dirname(__FILE__).'/../Capa_Controladores/alergiaHasPaciente.php');

@@ -1,9 +1,25 @@
 <?php
+
+/*
+ * Tabla de recetas del cliente con botones para expender los medicamentos. Muestra la disponibilidad de los
+ * medicamentos en las recetas. Muestra 1 o más medicamentos por receta
+ * 
+ * Input: id del Paciente, fecha actual
+ * 
+ * Output: Nombre del medico, fecha de emision, numero de folio y medicamentos y su disponibilidad de cada receta
+ *         hecha al paciente.
+ *         Al seleccionar un medicamento, se entrega su id de medicamento, receta y unidad
+ * 
+ * 
+ */
+
+
 include_once(dirname(__FILE__) . '/../../ajax/sessionCheck.php');
 iniciarCookie();
 verificarIP();
 include(dirname(__FILE__) . "/../funcionarioHeader.php");
 include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
+include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
 //buscar Recetas del cliente
 ?>
 <div class="row-fluid">
@@ -59,7 +75,24 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/paciente.php");
                                     $medicamentosReceta = Paciente::R_MedicamentosReceta($valor);
                                     for ($i = 0; $i < count($medicamentosReceta); $i++) {
                                         //echo $medicamentosReceta[$i]['Nombre_Comercial'] . '</br>';
-                                        echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>'.$medicamentosReceta[$i]['Nombre_Comercial'].'</strong></button></br>';
+                                        if ($medicamentosReceta[$i]['tipo'] == 0) {
+                                            echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>' . $medicamentosReceta[$i]['Nombre_Comercial'] . '</strong></button></br>';
+                                        }
+                                        else{
+                                            //datosMedicamento indica la frecuencia, el periodo y la cantidad consumida de cada medicamento
+                                            $datosMedicamento = Medicamento::R_CantidadDisponibleMedicamento($medicamentosReceta[$i]['idMedicamento']);
+                                            //ventaMedicamento indica cuantas veces se ha vendido el medicamento
+                                            $ventaMedicamento = Medicamento::R_NumeroVentaMedicamento($medicamentosReceta[$i]['idMedicamento'], $medicamentosReceta[$i]['idReceta']);
+                                            //ambas variables calculan la disponibilidad del medicamento redondeado hacia arriba
+                                            $cantidadDisponible = (($datosMedicamento['cantidad'] * 24/$datosMedicamento['frecuencia'] * $datosMedicamento['periodo'])/$datosMedicamento['cantidadPresentacion']) - $ventaMedicamento['cantidadVendida'];
+                                            $cantidadDisponible = ceil($cantidadDisponible);
+                                            if ($cantidadDisponible != 0){
+                                                echo '<button class="btn btn-block " onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>' . $medicamentosReceta[$i]['Nombre_Comercial'] .' - '. $cantidadDisponible . ' Disponibles</strong></button></br>';                                            
+                                            }
+                                            else {
+                                                echo '<button class="btn btn-block " disabled="disabled" onClick="seleccionar(' . $medicamentosReceta[$i]['idMedicamento'] . ', ' . $medicamentosReceta[$i]['idReceta'] . ', ' . $medicamentosReceta[$i]['unidad'] . ')" type="submit"><strong>' . $medicamentosReceta[$i]['Nombre_Comercial'] .'</br> Sin expensiones disponibles</strong></button></br>';                                            
+                                            }
+                                        }
                                     }
                                 }
                                 if ($llave == 'Nombre') {

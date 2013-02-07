@@ -1,8 +1,11 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Descripcion: Entrega todos los medicamentos con un principio activo
+ * asociado.
+ * Input (POST)
+ *	int idPrincipio
+ * Output: json con los medicamentos
  */
 
   include_once('../Capa_Controladores/medicamento.php');

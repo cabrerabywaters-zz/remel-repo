@@ -11,6 +11,7 @@
         <div class="row">
 
             <center> <div style="width: 90%; ;">
+                    <!-- script del data table -->
                        		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
                              $('#tablaMisRecetas').dataTable();
@@ -27,6 +28,7 @@
 	</thead>
 	<tbody>
      <?php 
+     // la variable historial recetas trae todas las recetas del paciente filtrada por su id
                                         foreach ($historialRecetas as $lineaRecetas) {
                                             echo "<tr folio='" . $lineaRecetas['folio'] . "'>";
                                             echo "<td>" . $lineaRecetas["folio"] . "</td>";
@@ -53,9 +55,3 @@
 </div>
 </div>
 </div>
-                <script>
-                    var folio = $(this).parent('tr').attr('folio');
-                    var RUTPAciente = <?php echo $_SESSION['RUT']; ?>
-  
-  
-                </script>

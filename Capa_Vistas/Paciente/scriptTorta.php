@@ -17,6 +17,7 @@
         data.addColumn('number', 'Slices');
         data.addRows(<?php
 		include_once(dirname(__FILE__)."/../../ajax/obtenerCantidadVisitas.php");
+                // recive los datos de cantidad de visitas del medico y medicos 
 ?>);
 
         // Set chart options

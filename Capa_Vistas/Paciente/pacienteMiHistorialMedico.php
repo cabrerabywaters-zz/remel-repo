@@ -9,6 +9,7 @@
   <div class="row">
 
   <center> <div style="width: 90%; ;">
+          <!-- script del data table que transformala tabla convencional a una tabla con paginacion etc -->
   <script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
                              $('#tablaMisMedicos').dataTable();

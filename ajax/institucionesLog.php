@@ -1,5 +1,14 @@
 <?php
 
+ /*
+  * Descripcion: Se ingresa la eleccion de institucion a la sesion y se
+  * devuelve estado.
+  * Input (POST)
+  * 	int idPlaza
+  *	int nombre
+  * Output: int de estado final.
+  */
+
  session_start();
 
  $id_plaza_log = $_POST['idPlaza'];
