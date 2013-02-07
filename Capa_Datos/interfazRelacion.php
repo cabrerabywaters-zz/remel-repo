@@ -1,8 +1,11 @@
 <?php
 
 /**
- * 
+ *
  * FUNCIONES DE RETIRADA/ACTUALIZACION/BORRADO/CREACION
+ * 
+ * input: datos de tablas, nombres de tablas
+ * output: strings de queries varias
  * 
  * @ author José-Fco. González
  * créditos a Germán Oviedo por funciones originales de interfazDatos.php
