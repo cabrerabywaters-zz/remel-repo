@@ -6,7 +6,6 @@
         <a href="#" class="closeBar"><i class="icon-remove pull-right"></i></a>
     </button>
 
-    <!-- diagnosticos Favoritos -->
     <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
         <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Diagnosticos
     </button>
@@ -15,7 +14,13 @@
         <div class="span10 offset1">
 		<center><input type="text" placeholder="Filtrar Diagnosticos Favoritos" id="filtrarDiagnosticosFav"></center>
                     <?php
-                    // se llaman los diagnosticos comunes segun el medico
+                       /**
+     * Include_once(Diagnosticos)
+     * 
+     * Esta funcion incluye los archivos de los controladores 
+	 * que despliegan la informacion de un diagnostico 
+	 *
+     */
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnosticoComun.php");	
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnostico.php");
 	
@@ -27,7 +32,15 @@
             <div class="alert alert-info diagFav" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
                 <a href="#borrarFav" rel="tooltip" title="Eliminar de Favoritos"> <i class="icon-remove pull-right"></i></a><!-- eliminar de favoritos -->
                 <a href="#" rel="tooltip" title="Agregar a Receta" class="addFavReceta"> <i class="icon-plus pull-right"></i></a><!-- agregar favorito seleccionado -->
-            	<strong><?php $nombre = Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico']); echo $nombre['Text']; ?></strong>
+            	<strong><?php
+				 /**
+     * BuscarNombreDiagnosticoPorId(Diagnosticos_idDiagnostico)
+     * 
+     * Esta funcion llama a el controlador y despliega los
+	 * datos del medico segun su diagnostico favorito
+	 *
+     */
+				 $nombre = Diagnostico::BuscarNombreDiagnosticoPorId($diagnosticoComun['Diagnosticos_idDiagnostico']); echo $nombre['Text']; ?></strong>
 	    </div><!-- end pill diagnosticoFav 1-->
 		<?php
 		}
@@ -48,7 +61,14 @@
             <center><input type="text" placeholder="Filtrar Medicamentos Favoritos" id="filtrarMedicamentosFav"></center>
             <?php
             //session_start();
-            // se llaman los medicamentos a la bbdd buscando por laboratorio y datos contenentes a ella
+ /**
+     * Include_once(Diagnosticos)
+     * 
+     * Esta funcion incluye los archivos de los controladores 
+	 * que despliegan la informacion de un diagnostico 
+	 * y la agrupa por id del medicamento
+	 *
+     */
             include_once(dirname(__FILE__) . "/../../Capa_Datos/llamarQuery.php");
             include_once(dirname(__FILE__)."/../../Capa_Controladores/favoritosRp.php");
             $idMedico = $_SESSION['idMedicoLog'];
@@ -72,7 +92,7 @@
                                 </a>
                                 <ul class='dropdown-menu'>";
                 echo "<!-- nombres cortos	-->";
-                //se obtiene los datos a traves de un foreach llamando a loa favoritos en la base de datos
+
                 $favoritos = FavoritosRp::R_obtenerFavoritoRP($idMedicamento, $idMedico);
                 
                      foreach($favoritos as $favRP){
@@ -379,6 +399,15 @@
 </script>
 <script>
   $(document).ready(function(){ 
+  /**
+  * Ajax que agrega los diagnosticos favoritos del medico
+  *
+  * se envia el id diagnostico 
+  * devuelve 1 si se agrego
+  * y 0 si no se agrego
+  * @retuns output
+  *
+  * @param idDiagnotico
    
    $('.addFav').click(function(){
       var idDiagnostico = $('#id_diagnostico').text();
