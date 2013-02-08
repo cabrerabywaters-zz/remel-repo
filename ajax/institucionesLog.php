@@ -1,6 +1,6 @@
 <?php
 
- /*
+ /**
   * Descripcion: Se ingresa la eleccion de institucion a la sesion y se
   * devuelve estado.
   * Input (POST)

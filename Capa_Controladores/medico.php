@@ -1,16 +1,35 @@
 <?php
 
+/**
+ * Clase Medico
+ * @package TableFunctions
+ */
+
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
+/**
+ * Clase que maneja la tabla Medico
+ * @package TableFunctions
+ */
 class Medico {
-
+    /**
+     * Nombre de la tabla
+     * @static
+     * @var string
+     */
     static $nombreTabla = "Medicos";
+    /**
+     * Nombre del Id de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idMedico";
 
     /**
-     * Insertar
-     * 
      * Inserta una nueva entrada
+     * 
+     * @access public
+     * @static
      * 
      */
     public static function Insertar() {

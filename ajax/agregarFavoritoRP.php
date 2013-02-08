@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/** 
  * Descripcion: Inserta un nuevo medicamento favorito con todos los valores
  * asociados y devuelve el estado.
  * Input (POST):

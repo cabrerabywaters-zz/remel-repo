@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega el TOP 5 de visitas a doctores segun un idPaciente
  * dado por sesion
  * Input (SESSION)

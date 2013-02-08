@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Borra una combinacion Medico-Diagnostico (diagnosticoComun) y
  * entrega el estado final de la operacion
  * Input (POST):

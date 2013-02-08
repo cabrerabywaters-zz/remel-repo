@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Ingresar la receta y todas las entradas hijas correspondientes
  * (historialMedico, MedicamentoReceta) a la base de datos y devolver
  * estado/folio segun el exito de la operacion

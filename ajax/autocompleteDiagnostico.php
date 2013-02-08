@@ -1,7 +1,7 @@
 <?php
 
-/*
- * Descripcion: Recibe un string y entrega entradas de Diagnostico que contengan
+ /**
+  * Descripcion: Recibe un string y entrega entradas de Diagnostico que contengan
   * informacion similar y relevante.
   * Input (POST):
   *      string name_startsWith

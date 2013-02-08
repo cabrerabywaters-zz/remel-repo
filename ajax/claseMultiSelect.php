@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entregar las clases terapeuticas para completar la funcionalidad
  * de multiselect.
  * Output: json con las clases terapeuticas.

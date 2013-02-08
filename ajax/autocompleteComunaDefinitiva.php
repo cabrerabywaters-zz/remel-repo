@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Recibe un string y la region, para entregar entradas de Comuna a * que contengan informacion similar y relevante.
  * Input (POST):
  *      string name_startsWith

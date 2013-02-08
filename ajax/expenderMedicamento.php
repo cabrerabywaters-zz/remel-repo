@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Guardar movimiento de expender en sesion.
  * Input (POST):
  *	int cantidad

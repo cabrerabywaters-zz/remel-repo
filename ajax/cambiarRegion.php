@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entregar la region donde pertenece una comuna dada
  * Input (POST):
  *	int idComuna

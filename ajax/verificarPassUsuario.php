@@ -1,6 +1,6 @@
 <?php
 
-	/* 
+	/*+ 
 	 * Descripcion: Verifica la clave de un usuario y verifica
 	 * el nivel de credenciales, las guarda en sesion y entrega
 	 * estado

@@ -1,7 +1,8 @@
 <?php
 
 
-/* Function iniciarCookie
+/** 
+ * Function iniciarCookie
  * Cambia la configuracion php para setear cookies solo por http
  */
 function iniciarCookie() {

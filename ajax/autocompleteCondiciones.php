@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Recibe un string y entrega entradas de Condicion que contengan
  * informacion similar y relevante.
  * Input (POST):

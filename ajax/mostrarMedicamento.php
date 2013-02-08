@@ -2,7 +2,7 @@
 
 
 
- /*
+ /**
   * Descripcion: Modulo gigante ajax que comprueba absolutamente TODAS
   * las contraindicaciones, y ademas obtiene todos los datos de composicion
   * de un medicamento dado y entrega la informacion por json.

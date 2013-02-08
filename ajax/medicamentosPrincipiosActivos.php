@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega todos los medicamentos con un principio activo
  * asociado.
  * Input (POST)

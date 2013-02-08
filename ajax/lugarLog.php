@@ -1,6 +1,6 @@
 <?php
 
- /* Descripcion: Se guardan los datos de sucursal elegida en sesion y luego
+ /** Descripcion: Se guardan los datos de sucursal elegida en sesion y luego
   * se devuelve el estado de la operacion
   * Input (POST):
   * 	int idLugar

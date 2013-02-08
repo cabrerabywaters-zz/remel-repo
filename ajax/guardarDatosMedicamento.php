@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Guardar datos medicamento en sesion.
  * Input (POST):
  *      int idMedicamento

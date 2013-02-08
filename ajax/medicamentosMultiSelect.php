@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega laboratorios que presentan medicamentos
  * en una subclase dada para la funcion de multiselect
  * Input (POST)

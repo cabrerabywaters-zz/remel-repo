@@ -1,6 +1,6 @@
 <?php
 
- /*
+ /**
   * Descripcion: Busca los datos y el nombre de un paciente segun su rut.
   * NO PERMITE ATENDERSE A SI MISMO
   * Input (POST)

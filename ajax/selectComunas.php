@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: WORK IN PROGRESS
  * Creador: Descondico
  * Mantenedor: Desconocido

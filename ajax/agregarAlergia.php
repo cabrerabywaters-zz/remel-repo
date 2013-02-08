@@ -1,6 +1,5 @@
 <?php
-
-/* Descripcion: Guarda una nueva asociacion Paciente-Alergia en la base de 
+/** Descripcion: Guarda una nueva asociacion Paciente-Alergia en la base de 
  * datos y luego devuelve el estado.
  *
  * Input (POST):

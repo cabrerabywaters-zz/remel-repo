@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Recibe un string y entrega entradas de Medicamento que contengan
  * informacion similar y relevante para autocompletar. 
  * Filtra segun principioActivo y/o arsenal.

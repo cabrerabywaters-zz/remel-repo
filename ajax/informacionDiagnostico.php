@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega informacion de diagnostico segun id.
  * Input (POST)
  * 	int diagnostico

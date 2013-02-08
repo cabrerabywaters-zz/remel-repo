@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega las subclases de una clase dada para la funcionalidad
  * de multiselect
  * Input (POST)

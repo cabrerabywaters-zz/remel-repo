@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega tod
  * FALSE DONT KNOW WHAT THE FUCK HAPPENS HERE
  * TODO: Explicar porque para obtener Favoritos se necesita idMedicamento

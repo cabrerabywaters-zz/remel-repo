@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega los medicamentos segun subClase y Laboratorio para
  * la funcionalidad de multiselect.
  * Input: 

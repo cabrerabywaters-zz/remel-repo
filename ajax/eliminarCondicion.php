@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Elimina una relacion Condicion-Paciente, y devuelve estado.
  * Input (POST):
  *      int idCondicion

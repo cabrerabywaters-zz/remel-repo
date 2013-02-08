@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/** 
  * Descripcion: Insertar una nueva asociacion Paciente-Condicion en la base de
  * datos y devolver el estado final de la insercion.
  * Input (POST)

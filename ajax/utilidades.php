@@ -1,17 +1,14 @@
 <?php
 
-/*
- * Descripcion: set de utilidades varias
+/**
+ * Set de utilidades varias
+ * @package ajaxController
  */
-
-/*
- * Function validadorRUT
- * Descripcion: Formatea el rut a como se utiliza en la base de datos
- * Input
- * 	int $rut
- * Output: rut formateado correctamente
+/**
+ * Formatea el rut a como se utiliza en la base de datos
+ * @param int $rut RUT a formatear
+ * @return string RUT formateado
  */
-
 function validadorRUT($rut){
 	$rut=str_replace(".","",$rut);//elimina puntos del rut
         $rut=str_replace("-","",$rut);//elimina guiones del rut

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Entrega medicamentos asociados a un diagnostico
  * Input (POST)
  *	int idDiagnostico

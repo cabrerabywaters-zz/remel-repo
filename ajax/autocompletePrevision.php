@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Recibe un string y entrega entradas de Prevision que contengan
  * informacion similar y relevante para autocompletar.
  * Input (POST):

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Descripcion: Comprobar si el usuario es doctor/funcionario, y en caso 
  * de que sea guardar informacion en SESSION y manejar las instituciones
  * correspondientes
