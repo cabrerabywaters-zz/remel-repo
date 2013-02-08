@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Condicion {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Condiciones";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idCondiciones";
 
     /**
@@ -117,6 +126,13 @@ class Condicion {
     }
     //busca condiciones por su id
     //devuelve el nombre
+    /*
+     * Busca el nombre de la condicion segun su id
+     * @static
+     * @access public
+     * @param int $idCondicion ID de la condicion
+     * @return array asociativo
+     */
     public static function BuscarNombreCondicionPorId($idCondicion) {
         $queryString = 'SELECT Nombre as Text FROM Condiciones WHERE idCondiciones = ' . $idCondicion . ';';
         $result = CallQuery($queryString);

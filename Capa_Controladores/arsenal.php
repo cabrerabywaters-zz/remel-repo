@@ -4,9 +4,23 @@ include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
 class Arsenal  {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Alergia_has_Paciente";
+    /**
+     * Nombre del id de expendedor
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Expendedores_idExpendedores";
+    /**
+     * Nombre del id de medicamento
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Medicamentos_idMedicamento";
     
     /**
@@ -59,6 +73,13 @@ class Arsenal  {
     }
     //busca los medicamentos del arsenal segun el id de expendedor
     //devuelve el nombre y el precio de los medicamentos
+    /*
+     * Busca medicamentos en un arsenal segun ID de expendedor
+     * @static
+     * @access public
+     * @param int $idExpendedor ID del expendedor
+     * @return array asociativo
+     */
     public static function R_MedicamentosEnArsenalPorExpendedor($idExpendedor){
         $queryString = 'SELECT Medicamentos.Nombre_Comercial as Nombre, Medicamentos.Precio_Referencia_CLP as Precio
                         FROM Medicamentos, Arsenal, Expendedores

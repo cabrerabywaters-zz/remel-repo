@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class Consulta  {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Consulta";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Id_consulta";    
     
     /**
@@ -95,6 +104,16 @@ class Consulta  {
     //
     //busca el id de una consulta
     //devuelve el id
+    /*
+     * Busca el ID de la consulta segun varios parametros
+     * @static
+     * @access public
+     * @param int $idMedico ID del Medico
+     * @param string $hora Hora de la consulta
+     * @param int $idPaciente ID del Paciente
+     * @param int $idLugar ID del lugar de atencion
+     * @return array asociativo
+     */
      public static function SeleccionarID($idMedico,$hora,$idPaciente,$fecha,$idLugar) {
     	
 

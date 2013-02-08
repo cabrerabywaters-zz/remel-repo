@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class Comuna {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Comunas";
+    /**
+     * Nombre del id de comuna
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idComuna";    
     
     /**
@@ -98,6 +107,14 @@ class Comuna {
     }
     //busca nombre e id de comuna segun una fraccion de su nombre
     //devuelve nombre e id de comuna
+    /*
+     * Busca comuna segun una fraccion de su nombre y el id de la region
+     * @static
+     * @access public
+     * @param string $nombre trozo de texto del nombre
+     * @param int $idRegion id de la region
+     * @return array asociativo
+     */
     public static function BuscarComunaLike($nombre,$idRegion){
                 $queryString = 'SELECT Comunas.Nombre, Comunas.idComuna
                                 
@@ -127,6 +144,13 @@ class Comuna {
    
    //busca id y nombre de comuna segun una fraccion de su nombre
    //devuelve id y nombre
+   /*
+     * Busca comuna segun una fraccion de su nombre
+     * @static
+     * @access public
+     * @param string $letra trozo de texto del nombre
+     * @return array asociativo
+     */
    public static function BuscarComunaPorRegionYNombre($letra){
                 $queryString = "Select idComuna, Nombre 
                                  from Comunas

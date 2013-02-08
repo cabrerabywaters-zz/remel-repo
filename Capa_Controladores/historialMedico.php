@@ -6,8 +6,23 @@ include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 class HistorialMedico  {
 
     static $nombreTabla = "Historiales_medicos";
+        /**
+     * Nombre del id de diagnostico
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Diagnosticos_idDiagnostico";
+        /**
+     * Nombre del id de consulta
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Consulta_Id_consulta";
+        /**
+     * Nombre del id de tipo
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla2 = "Tipo_idTipo";
     
     /**
@@ -67,6 +82,13 @@ class HistorialMedico  {
     }
     //busca datos de una consulta
     //devuelve id de diagnostico, tipo y comentario
+        /*
+     * Busca datos de la consulta segun su id
+     * @static
+     * @access public
+     * @param int $idConsulta ID del consulta
+     * @return array asociativo
+     */
     public static function SeleccionarPorConsulta($idConsulta){
 	$datosASeleccionar = array(
 					'Diagnosticos_idDiagnostico',

@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Funcionario {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Funcionarios";
+        /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idFuncionario";
 
     /**
@@ -96,6 +105,13 @@ class Funcionario {
     }
     //busca datos de funcionario por su rut
     //devuelve su id y categoria
+        /*
+     * Busca datos de funcionario segun su rut
+     * @static
+     * @access public
+     * @param int $rut rut del funcionario
+     * @return array asociativo
+     */
     public static function EncontrarFuncionario($rut) {
         $queryString = "SELECT idFuncionario, Categoria_Funcionario_idCategoria_Funcionario FROM Funcionarios WHERE Persona_RUN = " . $rut . "";
         $res = CallQuery($queryString);
@@ -107,6 +123,13 @@ class Funcionario {
     }
     //selecciona id de categoria segun rut del funcionario
     //devuelve el id de la categoria
+        /*
+     * Busca categoria del funcionario segun su rut
+     * @static
+     * @access public
+     * @param int $rut rut del funcionario
+     * @return array asociativo
+     */
     public static function SeleccionarIdCategoria($rut) {
         $queryString = "SELECT Categoria_Funcionario_idCategoria_Funcionario FROM Funcionarios WHERE Persona_RUN = '$rut'";
         $res = CallQuery($queryString);

@@ -4,9 +4,23 @@ include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
 
 class ComposicionSecundaria {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Composicion_Secundaria";
+    /**
+     * Nombre del id de medicamento
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Medicamentos_idMedicamento";
+    /**
+     * Nombre del id de compuesto
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Otros_Compuestos_ID";
 
     /**

@@ -4,9 +4,23 @@ include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
 class Equivalente  {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Equivalentes";
+    /**
+     * Nombre del id de medicamento 1
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Medicamentos_idMedicamento";
+    /**
+     * Nombre del id de medicamento 2
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Medicamentos_idMedicamento1";
     
     /**

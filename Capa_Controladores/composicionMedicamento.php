@@ -4,9 +4,23 @@ include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__) . '/../Capa_Datos/interfazRelacion.php');
 
 class ComposicionMedicamento {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Composicion_Medicamento";
+    /**
+     * Nombre del id de medicamento
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Medicamentos_idMedicamento";
+    /**
+     * Nombre del id de principio activo
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Principio_Activo_idPrincipio_Activo";
 
     /**
@@ -99,6 +113,13 @@ class ComposicionMedicamento {
     }
     //busca los principios activos de un medicamento segun su id
     //devuelve los id de principio activo
+    /*
+     * Busca principios activos por ID del medicamento
+     * @static
+     * @access public
+     * @param int $idMedicamento ID del medicamento
+     * @return array asociativo
+     */
     public static function BuscarPrincipiosActivosPorMedicamentoId($idMedicamento){
         $queryString = 'SELECT Principio_Activo_idPrincipio_Activo
                                          FROM Composicion_Medicamento

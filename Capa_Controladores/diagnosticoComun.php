@@ -4,9 +4,23 @@ include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
 class DiagnosticoComun  {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Diagnosticos_Comunes";
+    /**
+     * Nombre del id de medico
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Medicos_idMedico";
+    /**
+     * Nombre del id de diagnostico
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Diagnosticos_idDiagnostico";
     
     /**

@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Log {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Log";
+        /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "ID";
 
     /**
@@ -106,6 +115,19 @@ class Log {
         $query = CallQuery($queryString);
     }
     //inserta en log un cambio hecho por un medico
+        /*
+     * Inserta un Log por el medico
+     * @static
+     * @access public
+     * @param string $fecha fecha
+     * @param string $campo campo cambiado
+     * @param string $valorAnterior valor anterior
+     * @param string $valorNuevo valor nuevo
+     * @param string $nombreTabla nombre de la tabla donde esta el atributo
+     * @param int $run run del paciente
+     * @param int $idMedico ID del medico
+     * @return nothing
+     */
     public static function InsertarModificacionDatosPaciente($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico) {
         $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
                                 VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "' . $idMedico . '")  
@@ -113,6 +135,18 @@ class Log {
         $query = CallQuery($queryString);
     }
     //inserta en log un cambio hecho por un paciente a si mismo
+            /*
+     * Inserta un Log por el mismo paciente
+     * @static
+     * @access public
+     * @param string $fecha fecha
+     * @param string $campo campo cambiado
+     * @param string $valorAnterior valor anterior
+     * @param string $valorNuevo valor nuevo
+     * @param string $nombreTabla nombre de la tabla donde esta el atributo
+     * @param int $run run del paciente
+     * @return nothing
+     */
     public static function InsertarModificacionDatosPacientePropia($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run) {
         $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
                                 VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "")  

@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class MedicamentoVendido {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Medicamentos_Vendidos";
+        /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idMedicamentos_Vendidos";
 
     /**
@@ -27,7 +36,19 @@ class MedicamentoVendido {
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    /*
+     * Inserta una venta de medicamento con los parametros entregados
+     * @static
+     * @access public
+     * @param int $idExpendedor ID del expendedor
+     * @param int $idMedicamento ID del medicamento
+     * @param int $idReceta ID del receta
+     * @param int $cantidad cantidad vendida
+     * @param string $fecha fecha de venta
+     * @param int $rutComprador rut del comprador
+     * @param int $precio precio de venta del medicamento
+     * @return array asociativo
+     */
     public static function InsertarConParametros($idExpendedor, $idMedicamento, $idReceta, $cantidad, $fecha, $rutComprador, $precio) {
         $idExpendedor = intval($idExpendedor);
         $queryString = 'INSERT INTO Medicamentos_Vendidos (Expendedores_idExpendedores,Medicamentos_Recetas_Medicamento_idMedicamento,Medicamentos_Recetas_Receta_idReceta,

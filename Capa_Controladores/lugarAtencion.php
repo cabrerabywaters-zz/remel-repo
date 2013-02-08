@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class LugarAtencion {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Lugar_de_Atencion";
+        /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idLugar_de_Atencion";    
     
     /**
@@ -98,6 +107,13 @@ class LugarAtencion {
     }
     //busca los datos de una red
     //devuelve nombre de sucursales, lugares y red, direccion, correo y telefono
+        /*
+     * Busca datos de la red segun el id de lugar de atencion
+     * @static
+     * @access public
+     * @param int $idLugar ID del lugar
+     * @return array asociativo
+     */
     public static function SeleccionarDatosRed($idLugar){
 	$nombreTabla = self::$nombreTabla;
 	$queryString = "SELECT Lugar_de_Atencion.Nombre as lugarNombre, Sucursales.Nombre as sucursalNombre, RED.Nombre as redNombre,
@@ -111,6 +127,13 @@ class LugarAtencion {
     }
     //busca datos del lugar de atencion segun el rut ingresado
     //devuelve nombre e id
+            /*
+     * Busca datos de una sucursal segun su rut
+     * @static
+     * @access public
+     * @param int $RUT rut de la sucursal
+     * @return array asociativo
+     */
     public static function SeleccionarPorRutSucursal($RUT) {
 	$nombreTabla = self::$nombreTabla;
 	$queryString = "SELECT Nombre, idLugar_de_Atencion FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";

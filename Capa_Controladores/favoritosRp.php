@@ -1,31 +1,53 @@
 <?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class FavoritosRp {
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
+    static $nombreTabla = "Favoritos_RP";
 
-static $nombreTabla = "Favoritos_RP";
-static $nombreIdTabla = "ID";
-
- public static function Insertar($idMedicamento, $idMedico, $cantidad, $frecuencia, $unidadDeFrecuencia, $periodo, $unidadDeConsumo, $unidadDePeriodo, $via, $nombreCorto) {
-    	$datosCreacion = array(
-                                array('Medicamento_idMedicamento',$idMedicamento),
-                                array('Medicos_idMedico',$idMedico),
-                                array('Cantidad',$cantidad),
-                                array('Frecuencia',$frecuencia),
-                                array('Unidad_Frecuencia_ID',$unidadDeFrecuencia),
-                                array('Periodo',$periodo),
-                                array('Unidad_de_Consumo_idUnidad_de_Consumo',$unidadDeConsumo),
-				array('Unidad_Periodo_ID',$unidadDePeriodo),
-				array('Vias_idVias',$via),
-				array('Nombre_Corto',$nombreCorto)
-				);
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
+    static $nombreIdTabla = "ID";
+    /*
+     * Inserta un favorito segun parametros
+     * @static
+     * @access public
+     * @param int $idMedicamento ID del medicamento
+     * @param int $idMedico ID del medico
+     * @param int $cantidad numero de cantidad
+     * @param int $frecuencia frecuencia entregada
+     * @param int $unidadDeFrecuencia ID del unidad de frecuencia
+     * @param int $periodo ID del unidad de periodo
+     * @param int $via ID del via de ingestion
+     * @param string $nombreCorto nombre del favorito
+     * @return nothing
+     */
+    public static function Insertar($idMedicamento, $idMedico, $cantidad, $frecuencia, $unidadDeFrecuencia, $periodo, $unidadDeConsumo, $unidadDePeriodo, $via, $nombreCorto) {
+        $datosCreacion = array(
+            array('Medicamento_idMedicamento', $idMedicamento),
+            array('Medicos_idMedico', $idMedico),
+            array('Cantidad', $cantidad),
+            array('Frecuencia', $frecuencia),
+            array('Unidad_Frecuencia_ID', $unidadDeFrecuencia),
+            array('Periodo', $periodo),
+            array('Unidad_de_Consumo_idUnidad_de_Consumo', $unidadDeConsumo),
+            array('Unidad_Periodo_ID', $unidadDePeriodo),
+            array('Vias_idVias', $via),
+            array('Nombre_Corto', $nombreCorto)
+        );
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
 
-    
-      /**
+    /**
      * BorrarPorId
      * 
      * Borra una entrada segun su id, pasada por POST.
@@ -35,7 +57,7 @@ static $nombreIdTabla = "ID";
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -49,34 +71,34 @@ static $nombreIdTabla = "ID";
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-					'Medicamento_idMedicamento',
-                                        'Medicos_idMedico',
-                                        'Cantidad',
-                                        'Frecuencia',
-                                        'Unidad_Frecuencia_ID',
-                                        'Periodo',
-                                        'Unidad_de_Consumo_idUnidad_de_Consumo',
-                                        'Unidad_Periodo_ID'
-      );
+        $atributosASeleccionar = array(
+            'Medicamento_idMedicamento',
+            'Medicos_idMedico',
+            'Cantidad',
+            'Frecuencia',
+            'Unidad_Frecuencia_ID',
+            'Periodo',
+            'Unidad_de_Consumo_idUnidad_de_Consumo',
+            'Unidad_Periodo_ID'
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -85,20 +107,29 @@ static $nombreIdTabla = "ID";
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['RUT'];
-    	$datosActualizacion = array(
-                                array('Cantidad',$_POST['cantidad']),
-                                array('Frecuencia',$_POST['frecuencia']),
-                                array('Periodo',$_POST['periodo']),
-            );
-        
+        $id = $_POST['RUT'];
+        $datosActualizacion = array(
+            array('Cantidad', $_POST['cantidad']),
+            array('Frecuencia', $_POST['frecuencia']),
+            array('Periodo', $_POST['periodo']),
+        );
+
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
+
     //busca favoritos RP
     //devuelve nomber, id, cantidad, etc. para rellenar la receta
-    public static function R_obtenerFavoritoRP($idMedicamento, $idMedico){
+        /*
+     * Busca favoritos segun medicamento y medico
+     * @static
+     * @access public
+     * @param int $idMedicamento ID del medicamento
+     * @param int $idMedico ID del medico
+     * @return array asociativo
+     */
+    public static function R_obtenerFavoritoRP($idMedicamento, $idMedico) {
         $queryString = "SELECT 
                 FRP.ID, Nombre_Corto, Cantidad, idUnidad_de_Consumo as idUnidadConsumo, 
                 UC.tipo as unidadConsumo, Frecuencia, Unidad_Frecuencia_ID as idUnidadFrecuencia, UF.Nombre as unidadFrecuencia,
@@ -109,18 +140,15 @@ static $nombreIdTabla = "ID";
                 AND Unidad_Frecuencia_ID = UF.ID
                 AND Unidad_de_Consumo_idUnidad_de_Consumo = UC.idUnidad_de_Consumo
                 AND Unidad_Periodo_ID = UP.ID";
-               
-                
-                $res = CallQuery($queryString);
-                while($row = $res->fetch_assoc()){
-                    $resultArray[] = $row;
-                   
-                }
-                return $resultArray;
-        
-        
+
+
+        $res = CallQuery($queryString);
+        while ($row = $res->fetch_assoc()) {
+            $resultArray[] = $row;
+        }
+        return $resultArray;
     }
-    
+
 }
 
 ?>

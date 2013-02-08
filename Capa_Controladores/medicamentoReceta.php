@@ -4,10 +4,30 @@ include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
 class MedicamentoReceta  {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Medicamentos_Recetas";
+        /**
+     * Nombre del id de medicamento
+     * @static  
+     * @var string
+     */
+
     static $nombreIdTabla = "Medicamento_idMedicamento";
-    static $nombreIdTabla1 = "Receta_idReceta";
+        /**
+     * Nombre del id de receta
+     * @static  
+     * @var string
+     */
+    static $nombreIdTabla1 = "Receta_idReceta";   
+    /**
+     * Nombre del id de diagnostico
+     * @static  
+     * @var string
+     */
 	static $nombreIdTabla2 = "Diagnosticos_idDiagnostico";
     /**
      * Insertar
@@ -95,7 +115,14 @@ class MedicamentoReceta  {
 	    }
 	    return $resultArray;
     }
-
+    /*
+     * Busca medicamentos en el historial medico
+     * @static
+     * @access public
+     * @param int $idReceta ID del receta
+     * @param int $idDiagnostico ID del diagnostico
+     * @return array asociativo
+     */
     public static function SeleccionarPorHistorialMedico($idReceta, $idDiagnostico) {
         $atributosASeleccionar = array(
 				 	'Medicamento_idMedicamento',

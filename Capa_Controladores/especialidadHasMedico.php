@@ -4,9 +4,23 @@ include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 include_once(dirname(__FILE__).'/../Capa_Datos/interfazRelacion.php');
 
 class EspecialidadHasMedico  {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Especialidades_has_Medicos";
+        /**
+     * Nombre del id de especialidad
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "Especialidad_idEspecialidad";
+        /**
+     * Nombre del id de RUN del medico
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla1 = "Medico_RUN";
     
     /**

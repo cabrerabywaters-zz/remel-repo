@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class DescripcionConsumo {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Descripcion_consumo";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idDescripcion_consumo";    
     
     /**

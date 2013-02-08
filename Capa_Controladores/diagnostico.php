@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Diagnostico {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Diagnosticos";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idDiagnostico";
 
     /**
@@ -98,6 +107,13 @@ class Diagnostico {
     }
     //busca nombre e id de diagnostico segun una fraccion de su nombre
     //devuelve id y nombre
+    /*
+     * Busca diagnostico segun una fraccion de su nombre
+     * @static
+     * @access public
+     * @param string $nombre fraccion de texto
+     * @return array asociativo
+     */
     public static function BuscarDiagnosticoLike($nombre) {
 
         $diagnosticos = array();
@@ -121,6 +137,13 @@ class Diagnostico {
     }
     //busca un diagnosticon segun su id
     //devuelve todos sus atributos en un arreglo asociativo
+    /*
+     * Busca diagnostico segun su ID
+     * @static
+     * @access public
+     * @param int $idDiagnostico ID del diagnostico
+     * @return array asociativo
+     */
     public static function BuscarDiagnosticoExacto($idDiagnostico) {
 
         $diagnosticos = array();
@@ -136,7 +159,14 @@ class Diagnostico {
 
 	    return $resultado->fetch_assoc();
      }
-
+     //ya no me acuerdo por qué hay 2 de lo mismo
+    /*
+     * Busca diagnostico segun su ID
+     * @static
+     * @access public
+     * @param int $idDiagnostico ID del diagnostico
+     * @return array asociativo
+     */
      public static function BuscarNombreDiagnosticoPorId($idDiagnostico) {
          $queryString = 'SELECT Nombre as Text FROM Diagnosticos WHERE idDiagnostico = '.$idDiagnostico.'';
          $result = CallQuery($queryString);

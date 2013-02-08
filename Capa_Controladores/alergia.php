@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class Alergia {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Alergias";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idAlergia";    
     
     /**
@@ -12,6 +21,11 @@ class Alergia {
      * 
      * Inserta una nueva entrada
      * 
+     */
+    /**
+     * Inserta una nueva entrada
+     * @static
+     * @access public
      */
     public static function Insertar() {
     	$datosCreacion = array(
@@ -91,6 +105,14 @@ class Alergia {
     }
     //busca una alergia segun una fraccion de su nombre y el id del paciente
     //devuelve nombre, id y sintomas de alergia
+    /*
+     * Busca una Alergia con una fraccion de texto
+     * @static
+     * @access public
+     * @param string $Nombre Fraccion de nombre de la alergia
+     * @param int $id ID del paciente que se busca la alergia
+     * @return array asociativo
+     */
     public static function BuscarAlergiaLike($Nombre,$id) {
 
       		        $queryString = "SELECT Alergias.Nombre as Nombre, Alergias.idAlergia, Alergias.Sintomas, 	
@@ -126,6 +148,13 @@ class Alergia {
    }	     
    //busca el nombre de una alergia segun su id
    //devuelve el nombre COMO OBJETO
+   /*
+     * Busca una Alergia por su ID
+     * @static
+     * @access public
+     * @param int $id ID de la alergia
+     * @return array asociativo
+     */
    public static function BuscarNombreAlergiaPorId($idAlergia){
        $queryString = 'SELECT Nombre as Text FROM Alergias WHERE idAlergia = ' . $idAlergia . ';';
        $result = CallQuery($queryString);
@@ -133,6 +162,13 @@ class Alergia {
    }
    //busca alergias de un paciente segun su id
    //devuelve los nombres, los id, los sintomas y los tipos de alergia (id y nombre)
+      /*
+     * Busca Alergias de un Paciente
+     * @static
+     * @access public
+     * @param int $id ID del Paciente
+     * @return array asociativo
+     */
    public static function BuscarAlergia($idPaciente) {
 
       		        $queryString = "SELECT Alergias.Nombre as Nombre, Alergias.idAlergia, Alergias.Sintomas, 	

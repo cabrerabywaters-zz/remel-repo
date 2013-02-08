@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Expendedor {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Expendedores";
+        /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idExpendedores";
 
     /**
@@ -94,6 +103,13 @@ class Expendedor {
     }
     //busca las sucursales por su rut
     //devuelve nombre e id
+        /*
+     * Busca datos del expendedor segun su RUT
+     * @static
+     * @access public
+     * @param int $RUT ID del expendedor
+     * @return array asociativo
+     */
     public static function SeleccionarPorRutSucursal($RUT) {
         $nombreTabla = self::$nombreTabla;
         $queryString = "SELECT Nombre, idExpendedores FROM $nombreTabla WHERE Sucursales_RUT = '$RUT'";

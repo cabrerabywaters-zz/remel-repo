@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
 
 class Direccion {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Direcciones";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idDireccion";    
     
     /**
@@ -23,6 +32,15 @@ class Direccion {
         $query = CallQuery($queryString);
     }
     //insert alternativo de datos
+    /*
+     * Inserta una direccion nueva con sus parametros
+     * @static
+     * @access public
+     * @param string $calle nombre de la calle
+     * @param int $nCalle numero de calle
+     * @param int $idComuna ID de la comuna
+     * @return nothing
+     */
     public static function InsertarConDatos($calle, $nCalle, $Comuna) {
     	/*$datosCreacion = array(
                            array('Calle',$calle),
@@ -36,6 +54,15 @@ class Direccion {
     }
     //busca la id de una direccion existente segun sus atributos (los atributos son irrepetibles)
     //devuelve el id en un arreglo asociativo
+    /*
+     * Busca el ID de direccion segun parametros
+     * @static
+     * @access public
+     * @param string $calle nombre de la calle
+     * @param int $nCalle numero de calle
+     * @param int $Comuna ID de la comuna
+     * @return array asociativo
+     */
     public static function BuscarIdDireccion($calle, $nCalle, $Comuna){
         $queryString = 'SELECT idDireccion FROM Direcciones WHERE Calle = "'.$calle.'" AND Numero = "'.$nCalle.'" AND Comuna_idComuna = "'.$Comuna.'"';
         $result = CallQuery($queryString);
@@ -111,6 +138,13 @@ class Direccion {
     }
     //busca los datos de direccion segun id
     //devuelve calle, numero y nombre de comuna en un arreglo asociativo
+    /*
+     * Busca datos de la direccion segun su ID
+     * @static
+     * @access public
+     * @param int $idDireccion ID de la direccion
+     * @return array asociativo
+     */
     public static function SeleccionarStringDireccion($idDireccion) {
 	$queryString = "SELECT Direcciones.Calle as Calle, Direcciones.Numero as Numero, Comunas.Nombre as Comuna
 			FROM Direcciones, Comunas

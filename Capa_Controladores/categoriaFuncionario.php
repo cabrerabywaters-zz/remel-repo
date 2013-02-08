@@ -3,8 +3,17 @@
 include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class CategoriaFuncionario {
-
+    /**
+     * Nombre de la tabla
+     * @static  
+     * @var string
+     */
     static $nombreTabla = "Categorias_Funcionarios";
+    /**
+     * Nombre del id de tabla
+     * @static  
+     * @var string
+     */
     static $nombreIdTabla = "idCategoria_Funcionario";
 
     /**
@@ -86,6 +95,13 @@ class CategoriaFuncionario {
     }
     //encuentra el nombre de categoria de un funcionario segun su id
     //devuelve el nombre de la categoria
+    /*
+     * Busca nombre de la categoria segun su ID
+     * @static
+     * @access public
+     * @param int $id ID de la categoria
+     * @return array asociativo
+     */
     public static function EncontrarNombrePorId($id) {
         $queryString = "SELECT Nombre FROM Categorias_Funcionarios WHERE idCategoria_Funcionario = '$id'";
         $res = CallQuery($queryString);
