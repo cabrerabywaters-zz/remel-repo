@@ -67,7 +67,7 @@ class UnidadDeConsumo {
 	    }
 	    return $resultArray;
     }
-
+    //busca el tipo de consumo segun el id
     public static function SeleccionarPorId($idConsumo) {
 	$atributosASeleccionar = array(
 					'tipo'

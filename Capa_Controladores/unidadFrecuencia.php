@@ -67,7 +67,7 @@ class UnidadFrecuencia {
 	    }
 	    return $resultArray;
     }
-	
+    //busca el nombre de la unidad segun el id
     public static function SeleccionarPorId($idUnidadFrecuencia){
 	$atributosASeleccionar = array(
 					'Nombre'

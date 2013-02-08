@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-include_once(dirname(__FILE__).'/../Capa_Datos/generadorStringQuery.php');
+include_once(dirname(__FILE__) . '/../Capa_Datos/generadorStringQuery.php');
 
 class Region {
 
     static $nombreTabla = "Regiones";
-    static $nombreIdTabla = "idRegion";    
-    
+    static $nombreIdTabla = "idRegion";
+
     /**
      * Insertar
      * 
@@ -14,10 +14,10 @@ class Region {
      * 
      */
     public static function Insertar() {
-    	$datosCreacion = array(
-                            array('Nombre',$_POST['nombre_region']),
-                            array('Numero',$_POST['numero_region'])
-                                      );
+        $datosCreacion = array(
+            array('Nombre', $_POST['nombre_region']),
+            array('Numero', $_POST['numero_region'])
+        );
 
         $queryString = QueryStringAgregar($datosCreacion, self::$nombreTabla);
         $query = CallQuery($queryString);
@@ -33,7 +33,7 @@ class Region {
         $queryString = QueryStringBorrarPorId(self::$nombreTabla, self::$nombreIdTabla, $this->_id);
         $query = CallQuery($queryString);
     }
-    
+
     /**
      * Seleccionar
      * 
@@ -47,29 +47,29 @@ class Region {
      * @returns array $resultArray
      */
     public static function Seleccionar($where, $limit = 0, $offset = 0) {
-    	$atributosASeleccionar = array(
-                                        'idRegion',
-                                        'Nombre',
-                                        'Numero'
-      );
+        $atributosASeleccionar = array(
+            'idRegion',
+            'Nombre',
+            'Numero'
+        );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
 
-	    if($limit != 0){
-	       $queryString = $queryString." LIMIT $limit";
-	    }
-	    if($offset != 0){
-		  $queryString = $queryString." OFFSET $offset ";
-	    }
+        if ($limit != 0) {
+            $queryString = $queryString . " LIMIT $limit";
+        }
+        if ($offset != 0) {
+            $queryString = $queryString . " OFFSET $offset ";
+        }
 
         $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
     }
-    
+
     /**
      * Actualizar
      * 
@@ -78,59 +78,54 @@ class Region {
      * por POST desde AJAX
      */
     public static function Actualizar() {
-    	$id = $_POST['id_region'];
-    	$datosActualizacion = array(
-                                array('Nombre',$_POST['nombre_region']),
-				array('Numero',$_POST['numero_region'])    );
+        $id = $_POST['id_region'];
+        $datosActualizacion = array(
+            array('Nombre', $_POST['nombre_region']),
+            array('Numero', $_POST['numero_region']));
 
         $where = "WHERE " . self::$nombreIdTabla . " = '$id'";
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
-        
     }
-    
-   public static function BuscarRegionPorNombre($Nombre) {
-        
-        $queryString = 'SELECT idRegion FROM Regiones WHERE Nombre = "'.$Nombre.'"';
-        $result = CallQuery($queryString);
-   if ($result != false){
-        return $result;
-        }
-        else return false;
-   }
-   
-   public static function BuscarRegionPorID($idRegion) {
-           
-           $queryString = 'SELECT Nombre FROM Regiones WHERE idRegion = "'.$idRegion.'"';
-            
-                 $result = CallQuery($queryString);
-	    $resultArray = array();
-	    while($fila = $result->fetch_assoc()) {
-	       $resultArray[] = $fila;
-	    }
-	    return $resultArray;
-   }
+    //busca id region por nombre
+    public static function BuscarRegionPorNombre($Nombre) {
 
-   public static function BuscarRegionPorIDComuna($idComuna){
-       
-       $queryString = 'SELECT Regiones.Nombre, Regiones.idRegion
+        $queryString = 'SELECT idRegion FROM Regiones WHERE Nombre = "' . $Nombre . '"';
+        $result = CallQuery($queryString);
+        if ($result != false) {
+            return $result;
+        }
+        else
+            return false;
+    }
+    //busca nombre de region por id
+    public static function BuscarRegionPorID($idRegion) {
+
+        $queryString = 'SELECT Nombre FROM Regiones WHERE idRegion = "' . $idRegion . '"';
+
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
+    //busca nombre e id de region segun el id de comuna
+    public static function BuscarRegionPorIDComuna($idComuna) {
+
+        $queryString = 'SELECT Regiones.Nombre, Regiones.idRegion
                         FROM Comunas, Provincias, Regiones
                         WHERE Regiones.idRegion = Provincias.Regiones_idRegion
                         AND Provincias.idProvincia = Comunas.Provincias_idProvincia
-                        AND Comunas.idComuna = "'.$idComuna.'" ';
-       $query = Callquery($queryString);
-      $resultArray = array();
-       while($fila = $query->fetch_assoc()){
-          $resultArray[] = $fila;
-       }
-       return $resultArray;
-   }
-   
-   
-   
-   
-   
-}
+                        AND Comunas.idComuna = "' . $idComuna . '" ';
+        $query = Callquery($queryString);
+        $resultArray = array();
+        while ($fila = $query->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
 
+}
 
 ?>

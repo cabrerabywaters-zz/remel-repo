@@ -84,7 +84,7 @@ class Seguro {
         $queryString = QueryStringActualizar($where, $datosActualizacion, self::$nombreTabla);
         $query = CallQuery($queryString);
     }
-
+    //busca nombre de seguro segun una fraccion de texto
     public static function BuscarSeguroLike($nombre) {
 
         $queryString = 'SELECT Seguros.Nombre
@@ -98,7 +98,7 @@ class Seguro {
         }
         return $seguros;
     }
-
+    //busca el id de un seguro segun su nombre exacto
     public static function BuscarNombreExacto($nombre) {
         $queryString = 'SELECT idSeguros FROM Seguros WHERE Nombre = "'.$nombre.'"';
         $result = CallQuery($queryString);
