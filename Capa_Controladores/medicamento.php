@@ -215,7 +215,7 @@ class Medicamento {
         $res = $resultado->fetch_assoc();
         return $res['Nombre_Comercial'];
     }
-    /*
+    
     public static function SeleccionarLaboratorioPorIdMedicamento($id) {
         $queryString = "SELECT ID, Nombre as laboratorio FROM Laboratorios WHERE ID in (SELECT DISTINCT (
                         Laboratorio_idLaboratorio
@@ -235,7 +235,8 @@ class Medicamento {
 
         $resultado = CallQuery($queryString);
         return $resultado->fetch_assoc();
-    }*/
+    }
+    
     //busca medicamentos por id de principio activo
     //devuelve los id y nombre de los medicamentos que tengan el principio activo
         /*

@@ -1,5 +1,5 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" id="infomedica">
         Información Médica Registrada
       </a>
         <!-- despliega los datos medicos del paciente alergias y condiciones con la posibilidad de ingresar nuevas alergias y condiciones-->
@@ -132,7 +132,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 <?php  
   include_once("../../../Capa_Controladores/condicion.php");
     
-    $arrayCondicion = Condicion::Seleccionar("");
+    $arrayCondicion = Condicion::Seleccionar("order by Nombre ASC");
     
   echo "<option value='0'>Ver todas las condiciones</option>";  
   foreach ($arrayCondicion as $campo=>$valor){
@@ -151,6 +151,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
   		</div>
       </div>
 <script>
+     $('#infomedica').click(function(){
+        
+      
+         $('html, body').animate({
+            scrollTop: $("#infomedica").offset().top
+            }, 500); // animate
+    })
 $('#Alergias').change(function(){
     var valor = $('#Alergias').val();
     var tipo = $('#Alergias').children(":selected").attr("idTipo");
@@ -172,14 +179,14 @@ $('#Alergias').change(function(){
 $('#Condiciones_select').change(function(){
     var valor = $('#Condiciones_select').val();
     var tipo = $('#Condiciones_select').val();
-    var alergia = $('#Condiciones_select option=[value="'+valor+'"]').text();
+    var condicion = $('#Condiciones_select option=[value="'+valor+'"]').text();
     
         if( valor != 0){
-       $('#Condiciones').val(alergia).removeAttr('idCondiciones').attr('idCondiciones',valor);
+       $('#Condiciones').val(condicion).removeAttr('idCondicion').attr('idCondicion',valor);
        $('#boton_condiciones').removeAttr('disabled');
         }
         else{
-        $('#Condiciones').val('').removeAttr('idCondiciones');
+        $('#Condiciones').val('').removeAttr('idCondicion');
     }
 }); //end change
 
@@ -368,15 +375,22 @@ $( "#Condiciones" ).autocomplete({
 								
 
 							//autocompleteDiagnosticos
+                                                        
+                                                        
+                                                        
+               
 $("#boton_condiciones").click(function(){
 var idCondicion = $("#Condiciones").attr('idcondicion')
 var nombreCondicion = $("#Condiciones").val()
+
 $.ajax({
 		url: "../../../ajax/agregarCondicion.php",
+                type: "post",
 		data: {"idCondicion":idCondicion},
-		type: "post",
+		async:false,
 		success: function(output){ 
-		$('#condiciones tbody').append('<tr><td idCondicion="'+idCondicion+'"><center>'+nombreCondicion+'</center></td></tr>');
+                   
+		$('#condiciones tbody').append('<tr idCondicion="'+idCondicion+'"><td><button type="button" class="close" data-dismiss="alert">×</button><center>'+nombreCondicion+'</center></td></tr>');
 		}
 
 });
@@ -384,12 +398,15 @@ $("#boton_condiciones").attr('disabled',"disable");
 $("#Condiciones").attr("value","");
 });
 $("#condiciones .close").click(function(){
+
+
    var idCondicion = $(this).parent().parent().attr('idCondicion');  
    //ajax que borra la alergia respectiva del paciente
    $.ajax({
      url: '../../../ajax/eliminarCondicion.php',
      type:'post',
-     data: { "idCondicion" : idCondicion},
+  
+          data: { "idCondicion" : idCondicion},
 	 success: function(output){
 		 
 	 }

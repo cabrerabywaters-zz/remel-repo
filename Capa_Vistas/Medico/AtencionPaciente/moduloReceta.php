@@ -206,6 +206,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 data: {subclase: idSubclase,
                 idLaboratorio: idLab},
                 success: function(output){
+                   
                        var output = jQuery.parseJSON(output);
                         $("#medicamento").empty();
                         $.each(output,function(i,el){
@@ -243,7 +244,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                
                 $('html, body').animate({ // se mueve la pantalla al div para facilidad del usuario
                 scrollTop: $("#detalleMedicamento").offset().top
-                }, 2000);
+                }, 500);
              
 	 }); // change
 </script><!-- script de los cambios de subclases -->
@@ -253,7 +254,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $.ajax({
                     url: "../../../ajax/autocompleteMedicamento.php",
                     data: {
-                        name_startsWith: request.term,
+                        name_startsWith: request.term.toUpperCase(),
 
                         filtro: filtro,
                         filtro2: filtro2

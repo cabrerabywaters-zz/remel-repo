@@ -342,11 +342,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                              $('#calculadoras').css("background", "");
                               });
                      //redefinir fondo al hacer click en receta
+                     
+                    
                                  $("#recetar").click(function() {
                             $(this).css("background", "#414040");
                             $('#historial').css("background", "");
                              $('#calculadoras').css("background", "");
-                              });
+                             
+                              
+                           
                               
                                  //redefinir fondo al hacer click en favoritos
                            $("#favoritos").click(function() {

@@ -1,6 +1,6 @@
 
 <div class="accordion-heading">
-    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1">
+    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseOne1" id="tabdiagnostico">
         Diagnóstico
     </a>
 </div>
@@ -90,6 +90,9 @@
 <script>
           $('a[href="#tabConsulta"]').click(function(){
               $('#diagnostico').focus();
+              $('html, body').animate({ // se mueve la pantalla al div para facilidad del usuario
+                scrollTop: $("#tabdiagnostico").offset().top
+                }, 500);
               
           })
           
@@ -113,7 +116,8 @@
                                 $.ajax({
                                     url: "../../../ajax/autocompleteDiagnostico.php",
                                     data: {
-                                        name_startsWith: request.term,
+                                     
+                                        name_startsWith: request.term.toUpperCase(),
                                         "diagnosticados": diagnosticados
                                     },
                                     type: "post",

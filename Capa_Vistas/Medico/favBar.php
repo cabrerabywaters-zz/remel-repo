@@ -24,9 +24,9 @@
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnosticoComun.php");	
 		include_once(dirname(__FILE__)."/../../Capa_Controladores/diagnostico.php");
 	
-		$idMedico = $_SESSION['idMedicoLog'];
+		$idMedico = $_SESSION['idMedicoLog'][0];
 		$diagnosticosComunes = DiagnosticoComun::Seleccionar($idMedico);
-		// despliega los datos de medicamentos favoritos egun el id del medico dede la base de datos
+		// despliega los datos de medicamentos favoritos Segun el id del medico dede la base de datos
 		foreach($diagnosticosComunes as $diagnosticoComun){
 		?>
             <div class="alert alert-info diagFav" idDiagnosticoFav="<?php echo $diagnosticoComun['Diagnosticos_idDiagnostico']; ?>"><!-- pill diagnosticoFav 1 -->
@@ -71,7 +71,7 @@
      */
             include_once(dirname(__FILE__) . "/../../Capa_Datos/llamarQuery.php");
             include_once(dirname(__FILE__)."/../../Capa_Controladores/favoritosRp.php");
-            $idMedico = $_SESSION['idMedicoLog'];
+            $idMedico = $_SESSION['idMedicoLog'][0];
             $queryString = "SELECT Nombre_Comercial, idMedicamento, Laboratorios.Nombre
                 FROM Laboratorios, Medicamentos, Favoritos_RP
                 WHERE Medicamentos_idMedicamento = idMedicamento
@@ -408,7 +408,7 @@
   * @retuns output
   *
   * @param idDiagnotico
-   
+   **/
    $('.addFav').click(function(){
       var idDiagnostico = $('#id_diagnostico').text();
       $.ajax({
@@ -440,6 +440,7 @@
    
    $(document).ready(function(){
         $('.addFavReceta').click(function(){
+       
         var idDiagnostico= $(this).parent().attr('idDiagnosticoFav');
         
                     $.ajax({ 
@@ -463,7 +464,7 @@
                       if($('#consultaToggle').is('.active')==false){
                         $('#consultaToggle').children().click();
                         $('html, body').animate({
-                        scrollTop: $('a[href="#collapseOne1"]').offset().top}, 2000);
+                        scrollTop: $('a[href="#collapseOne1"]').offset().top}, 500);
                        }// end if
                       else{
                           if($('#collapseOne1').is('.in')==false){

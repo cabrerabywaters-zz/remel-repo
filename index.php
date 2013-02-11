@@ -184,7 +184,7 @@ if (!empty($_SESSION))
                         data: postData,
                         type: 'post',
                         success: function(output) {
-                        
+                                              
                             if(output == '1') {
                                 window.location.href = "ajax/comprobadorDoctor.php";
                             }

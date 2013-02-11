@@ -4,17 +4,50 @@ incluyendo el buscador predictivo de medicamento
 y el popup que muestra el detalle del medicamento
 -->
 <div class="accordion-heading">
-    <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
-        Medicamentos
+    <a id="moduloReceta" class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo2">
+   Medicamentos
     </a>
 </div>
 <div id="collapseTwo2" class="accordion-body collapse">
 
           <div class="row-fluid">
-             <div class="span7 img-rounded">
+            <div class="span5"><div class="row-fluid"> 
+              <div class="img-rounded">
+                  <div class="row-fluid">
+                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
+                            <p><strong>Medicamentos Seleccionados:</strong></p>
+                            <div id="medicamentosRecetados" class="span11">
+                            </div>
+                    </div></div><!-- medicamentos seleccionados -->
+                    
+              </div></div><!-- row medicamentos -->
+              
+              <div class="img-rounded">
+                  <div class="row-fluid collapse" id="detalleMedicamento">
+                    <div class="modal2-body img-rounded pull-right span12"><div class="row-fluid">
+                            <?php include_once '../Medico/detalleMedicamento.php'; ?>
+                    </div></div><!-- medicamentos seleccionados -->
+                    
+              </div></div><!-- row medicamentos -->
+                </div></div>
+            
+          <div class="span7 img-rounded">
                 <div class="row-fluid">
                     
+                    
                     <div class="span12 modal-body img-rounded">
+                        <div class="btn-group" data-toggle="buttons-radio" id="filtroArsenal">
+                            <br>
+                            <button type="button" class="btn" filtroarsenal="false">Todos Los Medicamentos</button>
+<?php 
+if($_SESSION['logLugar']['rutSucursal'] == "0" || $_SESSION['logLugar']['idLugar'] == "0"){
+}
+else{
+echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."\r\n";
+}
+?>                            
+                        </div><!-- filtro -->
+                        <br>
                         <div class="btn-group" data-toggle="buttons-radio" id="filtro">
                             <br>
                             <button type="button" class="btn" filtro="true">Principio Activo</button>
@@ -29,7 +62,7 @@ y el popup que muestra el detalle del medicamento
                     </div><!-- ROW DEL BUSCADOR -->
                     
                     <div class="collapse row-fluid" id="busqueda_avanzada"><div class="span12 modal-body img-rounded">
-                                    <strong><p>Categorias ATC</p></strong>
+                            <span id="tituloClase"><strong><p>Categorias ATC</p></strong></span>
                                     <select id="clase" multiple="multiple" class ="span10" SIZE=6></select>
                                     <strong><p>Sub Categorias ATC</p></strong>
                                     <select id="subclase" multiple="multiple" class ="span10" SIZE=6></select>
@@ -42,28 +75,14 @@ y el popup que muestra el detalle del medicamento
                             <select id="medicamento" multiple="multiple" class ="span10" SIZE=6></select>
                     </div></div><!-- selector de medicamento -->
                 
-                   
-                </div></div>
+                    <div class="row-fluid"><div class="span11  img-rounded">
+                 <a class="btn btn-warning span4" id="verResumen" href="#resumenReceta" role="button" data-toggle="modal"><br><h4><strong><i class="icon-check icon-white"></i> Emitir Receta</strong></h4><br></a>
+                    </div></div><!-- boton de emitir receta -->
+                
+               
               
-              <div class="span5 img-rounded" style="background-color: blueviolet">
-                  <div class="row-fluid">
-                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
-                            <p><strong>Medicamentos Seleccionados:</strong></p>
-                            <div id="medicamentosRecetados" class="span11">
-                            </div>
-                    </div></div><!-- medicamentos seleccionados -->
-                    
-              </div></div><!-- row medicamentos -->
-              
-              <div class="span5 img-rounded">
-                  <div class="row-fluid collapse" id="detalleMedicamento">
-                    <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
-                            <?php include_once 'detalleMedicamento.php'; ?>
-                    </div></div><!-- medicamentos seleccionados -->
-                    
-              </div></div><!-- row medicamentos -->
-          
-          </div><!-- row fluid-->
+                </div>
+          </div></div><!-- row fluid-->
           </div><!-- contenido del acordion-->
 </div><!-- body collapsable -->
 <script>
@@ -73,6 +92,13 @@ y el popup que muestra el detalle del medicamento
         /*
          * el filtro correspondiente al buscador 
          */
+        var filtro2 = 'false';
+        $('#filtroArsenal button').click(function(){
+          filtro2 = $(this).attr('filtroarsenal');
+          $("#medicamento").empty();
+          $("#Medicamentos").removeAttr('value')
+        });
+        
         var filtro = 'true';
         $('#filtro button').click(function(){
           filtro = $(this).attr('filtro'); // se modifica el filtro correspondiente  
@@ -100,6 +126,9 @@ y el popup que muestra el detalle del medicamento
          }//end elseif
         
        else if ($(this).attr('filtro')=="false2"){ // si se seleccionó busqueda avanzada
+            $('html, body').animate({
+         scrollTop: $("#tituloClase").offset().top
+        }, 500);
             $("#subclase").empty(); //limpio subclase
             $("#laboratorio").empty(); //limpio laboratorio
             $('#boton_medicamentos').attr("disabled", "disabled");
@@ -165,6 +194,10 @@ y el popup que muestra el detalle del medicamento
         
         // Pasa los medicamentos dado el laboratorio seleccionado
         $('#laboratorio').change(function() {
+        
+          //hacemos scroll para que podamos ver los medicamentos
+   
+
                 var idSubclase = $("#subclase").attr("value");
                 var idLab=$("#laboratorio").attr("value");
                 $.ajax({
@@ -185,14 +218,14 @@ y el popup que muestra el detalle del medicamento
 
 	$('#medicamento').change(function() { 
                 
-                $('button[filtro="true"]').removeClass('active'); //quito active del boton prinipio activo
-                $('button[filtro="false2"]').removeClass('active'); //quito active del boton busqueda avanzafa
-                $('button[filtro="false"]').addClass('active'); // hago active el boton nombre comercial
+              //  $('button[filtro="true"]').removeClass('active'); //quito active del boton prinipio activo
+              //  $('button[filtro="false2"]').removeClass('active'); //quito active del boton busqueda avanzafa
+              //  $('button[filtro="false"]').addClass('active'); // hago active el boton nombre comercial
             
             
                 $("#Medicamentos")
                 .removeAttr('value')
-                .attr('value',$('#medicamento :selected').text()) // paso el medicamento seleccionado al input
+               .attr('value',$('#medicamento :selected').text()) // paso el medicamento seleccionado al input
                 .removeAttr('identificador')
                 .attr('identificador',$('#medicamento :selected').attr('value')); // paso el id al input
 		$("#boton_medicamentos").removeAttr('disabled');
@@ -208,23 +241,29 @@ y el popup que muestra el detalle del medicamento
                 $('#detalleMedicamentoLabel').html($('#medicamento :selected').text()); // set del titulo
                 $('#detalleMedicamento').collapse('show'); // se abre el div para ingresar datos
                
-                               
+                $('html, body').animate({ // se mueve la pantalla al div para facilidad del usuario
+                scrollTop: $("#detalleMedicamento").offset().top
+                }, 2000);
+             
 	 }); // change
-
-</script><!-- filtro de la busqueda avanzada -->
-<script>       
-       
+</script><!-- script de los cambios de subclases -->
+<script>
         $("#Medicamentos").autocomplete({
             source: function( request, response ) {
                 $.ajax({
                     url: "../../ajax/autocompleteMedicamento.php",
                     data: {
                         name_startsWith: request.term,
-                        filtro: filtro
+
+                        filtro: filtro,
+                        filtro2: filtro2
+                        
                     },
                     type: "post",
                     success: function( data ) {
-                        var output = jQuery.parseJSON(data);
+                        
+                            var output = jQuery.parseJSON(data);
+
                             $("#medicamento").empty();
                         response( $.map( output, function( item ) {
                             if(filtro == "true"){
@@ -234,16 +273,14 @@ y el popup que muestra el detalle del medicamento
                             }
                             } // end if
                             else {
-                                return {
-                                label: item.Nombre_Comercial,
-                                id2: item.idMedicamento
-                                      }; //end else
-                
+                                
                 //Se agregan todos los medicamentos al multiselect
-                            
-                var string = "<option value='" + item.idMedicamento + "'> " + item.Nombre_Comercial + "</option>";
+                 $("#medicamento").empty();
+                        $.each(output,function(i,el){
+                                var string = "<option value='" + el['idMedicamento'] + "'> " + el['Nombre_Comercial'] + "</option>";
                                 $("#medicamento").append(string);
-                
+                                });//end each
+             
                         }
                         }));
                     }//end success
@@ -301,7 +338,7 @@ y el popup que muestra el detalle del medicamento
                              * en esta funcion se utilizan los valores de los campos de medicamento y
                              * se modifica el modal para llenar los campos relativos al medicamento
                             */
-                            
+                            alert(data);
                              var datos = $.parseJSON(data); //arreglo asociativo con los datos del medicamento             
 
 
@@ -319,7 +356,7 @@ y el popup que muestra el detalle del medicamento
                              var contraPrincipiosRecetados = datos.medicamentosRecetadosConflictivos;
                                  if(contraPrincipiosRecetados != ""){  $('#warnings').prepend('<div class="alert alert-danger">Contraindicado con los siguientes medicamentos en esta receta: <strong>'+contraPrincipiosRecetados+'</strong></div>');}
 
-
+                             
                              $('#detalleMedicamento').collapse('show'); // se muestra el modal
                         }//end success
                         });//ajax
@@ -335,9 +372,26 @@ y el popup que muestra el detalle del medicamento
                 $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
             }
         }); //autocomplete
+        $('#guardar_cambios_receta').hide();
  </script><!-- autocomplete de medicamentos -->               
 <script>       
     $(document).ready(function(){ 
+        
+        //funcion que reacomoda la pantalla cuando se hace click en receta
+      
+        $("#moduloReceta").click(function() {
+            $('html, body').animate({
+            scrollTop: $("#tabConsulta").offset().top
+            }, 500); // animate
+            
+            $('.diagnostico').each(function(){
+                var idDiagnostico = $(this).attr('idDiagnostico');
+                var nombreDiagnostico = $(this).children('strong').text();
+                $('#diagnosticoAsociado').prepend('<option value="'+idDiagnostico+'">'+nombreDiagnostico+'</option>');
+             });//end each
+         });//on click
+      
+        
         /*
          *funcion que maneja el modal detalleMedicamento cuando este se encuentra escondido
          */
@@ -352,43 +406,12 @@ y el popup que muestra el detalle del medicamento
                 $('#frecuenciaMedicamento').val('');
                 $('#periodoMedicamento').val('');
                 $('#comentarioMedicamento').val('');
+                $('#tipoReceta').text('');
                 var select = $('#diagnosticoAsociado')
                 select.val(jQuery('options:first', select).val());
-        })
-        
-        
-        
-        
-        
-        /*
-        * funcionalidad de los botones de agregar un medicamento desde favoritos o desde arsenal
-        * a la receta
-        * ----------------------------------------------
-        * solo para los medicamentos que requieren escribir el rp
-        */
-//       $('.detalleMedicamento').unbind('click').on('click',function(){
-//           var idMedicamento = $(this).parent().attr('identificador'); // id del medicamento a agregar
-//                   
-//           $.ajax({ 
-//               url: "../../../ajax/mostrarMedicamento.php", //agregar la ../ajax/mostrarMedicamento.php
-//               type:"POST",
-//               data: {idMedicamento:idMedicamento},
-//               success:function(data){
-//                   /*
-//                    * en esta funcion se utilizan los valores de los campos de medicamento y
-//                    * se modifica el modal para llenar los campos relativos al medicamento
-//                    */
-//                    var medicamento = $.parseJSON(data); //arreglo asociativo con los datos del medicamento
-//                    $('#detalleMedicamentoLabel').text(medicamento['Nombre_Comercial']);
-//                    
-//                   
-//                    $('#detalleMedicamento').collapse('show'); // se muestra el modal
-//                    }//end success
-//           });//ajax 
-//
-//
-//       });// end click 
-
+                
+        });
+ 
        /*
         * funcion que elimina de favoritos el medicamento seleccionado
         * se debe primero eliminar de la bbdd vía ajax
@@ -420,12 +443,23 @@ y el popup que muestra el detalle del medicamento
         */      
         $('#agregarMedicamento').unbind('click').on('click', function(){
         if($('#diagnosticoAsociado').val()== -1){ // si no se le ha asociado un diagnostico al medicamento
-          $('#diagnosticoAsociado')
-            .focus()
-            .addClass('error')  
-        $('body').scrollTo('#diagnosticoAsociado');
+          $('#diagnosticoAsociado').focus();
+          $('#diagnosticoAsociado').parent().parent().addClass('error');
+          $('html, body').animate({ // se hace scrolling a la pagina para hacer enfasis
+            scrollTop: $("#diagnosticoAsociado").offset().top
+          }, 2000);
+          $('#diagnosticoAsociado').popover({
+              content: 'Debe Seleccionar Diagnostico',
+              placement: 'top',
+              trigger: 'manual'
+          }).popover('show')
+            
+          
         }
         else{
+            $('#diagnosticoAsociado').parent().parent().removeClass('error'); // se quita el error y 
+            $('.popover').hide();
+            
         // se obtienen los datos correspondientes del medicamento
         var nombreComercial = $('#detalleMedicamentoLabel').text();
         var idMedicamento = $('#idMedicamento').text();
@@ -440,22 +474,114 @@ y el popup que muestra el detalle del medicamento
         var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
         var fechaInicio = $('input[name="fechaInicio"]').val();
         var fechaFin = $('input[name="fechaFin"]').val();
+        var tipoReceta = $('#tipoReceta').text();
+        
+        var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
+        var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
+        var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
         
         // se arma el pill con la informacion del medicamento
-        var pill = '<div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'" descripcionMedicamento="'+descripcionMedicamento+'\
-        " cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
+      
+        var pill = '\
+        <div class="alert alert-success medicamentoRecetado" idMedicamento="'+idMedicamento+'"\n\
+        cantidadMedicamento="'+cantidadMedicamento+'" unidadDeConsumo="'+unidadDeConsumo+'" frecuenciaMedicamento="'+frecuenciaMedicamento+'" unidadFrecuencia="'+unidadFrecuencia+'" periodoMedicamento="'+periodoMedicamento+'" unidadPeriodo="'+unidadPeriodo+'"\n\
         comentarioMedicamento="'+comentarioMedicamento+'" diagnosticoAsociado="'+diagnosticoAsociado+'" fechaInicio="'+fechaInicio+'" fechaFin="'+fechaFin+'">\n\
-        <button type="button" class="close" data-dismiss="alert">×</button><strong>'+nombreComercial+'</strong>\n\
-        <a href=# class="editMedicamento pull-right" rel="tooltip" title="Editar Medicamento"><i class="icon-edit"></i> </a>'
-        
+        <button type="button" class="close" data-dismiss="alert">×</button><a href=# class="editMedicamento pull-right" data-target="#detalleMedicamento" id="editarMedicamento" rel="tooltip" title="Editar Diagnostico"><i class="icon-pencil"></i> </a>\n\
+        <div class="infoMedicamento"><strong class="nombreComercial">'+nombreComercial+'</strong><strong><br>Cantidad: </strong>'+cantidadMedicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuenciaMedicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodoMedicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>\n\
+        </div></div>';
+            
         $('#medicamentosRecetados').prepend(pill); // se agrega el pill del medicamento
         
-        //se limpian los campos y se esconde el modal   
+        $('.editMedicamento').click(function(){
+            /* BOTON EDITAR
+             *  AUTOR: MAX SILVA feat master oviedo
+             */
+            // se obtiene el id del pill donde se hizo el click
+            var idRecetaEdit = $(this).parent().attr('idMedicamento');
+            
+            // se setean los valores del modal con los valores guardados por detras
+            $('#Medicamentos').val($(this).parent().attr('medicamentos'));
+            //$('#warnings').html('')
+            $('#detalleMedicamentoLabel').text($(this).parent().children('.nombreComercial').text());
+            //$('#idMedicamento').text($(this).parent().attr('idmedicamento'));
+            //$('#descripcionMedicamento').text($(this).parent().attr('descripcionmedicamento').text());
+            $('#cantidadMedicamento').val($(this).parent().attr('cantidadmedicamento'));
+            $('#frecuenciaMedicamento').val($(this).parent().attr('frecuenciamedicamento'));
+            $('#periodoMedicamento').val($(this).parent().attr('periodomedicamento'));
+            $('#comentarioMedicamento').val($(this).parent().attr('comentariomedicamento'));
+            $('#tipoReceta').text($(this).parent().attr('tiporeceta')        );
+            $('#diagnosticoAsociado').val($(this).parent().attr('diagnosticoasociado'));
+            $('input[name="fechaInicio"]').val($(this).parent().attr('fechainicio'));
+               
+            
+            $('#guardar_cambios_receta').show().attr('disabled',false);
+            $('#agregarMedicamento').hide();
+            $('#detalleMedicamento').collapse('show');
+               $('html, body').animate({
+                     scrollTop: $("#detalleMedicamento").offset().top
+                 }, 500);
+            
+            
+            
+            $('#guardar_cambios_receta').unbind('click').on('click',function(){
+                
+                var cantidad_medicamento = $('#cantidadMedicamento').val();
+                var frecuencia_medicamento = $('#frecuenciaMedicamento').val();
+                var periodo_medicamento = $('#periodoMedicamento').val();
+                var comentario_medicamento = $('#comentarioMedicamento').val();
+                var tipo_receta = $('#tipoReceta').text();
+                var diagnostico_asociado = $('#diagnosticoAsociado').val();
+                var id_medicamento = $('#idMedicamento').val();
+                var fecha_inicio = $('input[name="fechaInicio"]').val();
+             
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('periodomedicamento',periodo_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('comentariomedicamento',comentario_medicamento);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
+                
+                $('.infoMedicamento').html('');
+                var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
+                var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
+                var porCuanto = $('select[name="unidadPeriodo"] :selected').text();
+                $('.infoMedicamento').html('<strong class="nombreComercial">'+nombreComercial+'</strong><br><strong>Cantidad: </strong>'+cantidad_medicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuencia_medicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodo_medicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>')
         
-        
-        $('#detalleMedicamento').collapse('hide');
+              
+                        //se redirecciona la vista de la pantalla hacia receta.
+                  $('html, body').animate({
+                    scrollTop: $("#tabConsulta").offset().top
+                  }, 1000);
+                //se limpian los campos y se esconde el modal 
+                $('#detalleMedicamento').collapse('hide');
+                $('#Medicamentos').val('');
+                $('#warnings').html('');
+                $('#boton_medicamentos').attr('disabled','disabled');
+                $('#detalleMedicamentoLabel').text('');
+                $('#idMedicamento').text('');
+                $('#descripcionMedicamento').text('');
+                $('#cantidadMedicamento').val('');
+                $('#frecuenciaMedicamento').val('');
+                $('#periodoMedicamento').val('');
+                $('#comentarioMedicamento').val('');
+                $('#tipoReceta').text('');
+                $('#guardar_cambios_receta').hide();
+                $('#agregarMedicamento').show();
+                
+            });
+         
+                    
+        });//end click   
+        //se redirecciona la vista de la pantalla hacia receta.
+          $('html, body').animate({
+            scrollTop: $("#tabConsulta").offset().top
+          }, 1000);
+          
+        //se limpian los campos y se esconde el modal 
+        $('#detalleMedicamento').collapse('toggle');
         $('#Medicamentos').val('');
-        $('#warnings').html('')
+        $('#warnings').html('');
         $('#boton_medicamentos').attr('disabled','disabled');
         $('#detalleMedicamentoLabel').text('');
         $('#idMedicamento').text('');
@@ -464,19 +590,28 @@ y el popup que muestra el detalle del medicamento
         $('#frecuenciaMedicamento').val('');
         $('#periodoMedicamento').val('');
         $('#comentarioMedicamento').val('');
+        $('#tipoReceta').text('');
+       
+         
         var select = $('#diagnosticoAsociado')
         select.val(jQuery('options:first', select).val());
+        
         }
-        });
         
         
-      
-
-        $('.editMedicamento').tooltip().click(function(){
+        
+                  
+     });
             
-            
-            
-        });// end click a edit medicamento
+                        
         
 });//end ready
+
+$("#cancelar_cambios_receta").unbind('click').on('click',function(){
+        $('#detalleMedicamento').collapse('toggle');                 
+       
+                    }); //end on
+
+
+       
 </script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->

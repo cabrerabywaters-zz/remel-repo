@@ -20,6 +20,8 @@
 	session_start();
 	session_unset();
 
+        
+         
 	$rut = validadorRUT($_POST['rutUsuario']);
 	$pass = $_POST['passUsuario'];
 	

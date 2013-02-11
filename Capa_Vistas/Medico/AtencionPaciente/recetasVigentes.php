@@ -1,5 +1,5 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" id="recetas">
         Recetas Anteriores
       </a>
     </div>
@@ -11,6 +11,17 @@
 
   <center> <div style="width: 90%; ;">
   <script type="text/javascript" charset="utf-8">
+       $('#recetas').click(function(){
+        
+      
+         $('html, body').animate({
+            scrollTop: $("#recetas").offset().top
+            }, 500); // animate
+    })   
+      
+      
+      
+      
 			$(document).ready(function(){
                              $('#tablaRecetasVigentes').dataTable();
                         });

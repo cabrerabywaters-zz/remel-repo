@@ -1,6 +1,6 @@
   
 <div class="accordion-heading">
-  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="infopaciente">
   Información Personal del Paciente
   
   </a>
@@ -12,7 +12,7 @@
    <center> <div class="span12">
            <form id="funciona" class="form-inline" method="post" >
   
-               <div class="span6 img-rounded"> <!--div para datos personales-->
+               <div class="span6 img-rounded fluid"> <!--div para datos personales-->
                    
                     <center> <table class="table table-bordered table-hover">
    <thead>
@@ -34,11 +34,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
     <td>
                    
                    
-    <div class="control-group">
+    <center><div class="control-group">
         <label class="control-label" for="Nombre" ><strong>Nombre </strong> <br><input style="text-align:center;" class="input-xxlarge" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
-    </div>
+    </div></center>
     
-    <div class="control-group">
+   <center> <div class="control-group">
     <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="uneditable-input" id="Fecha" value="<?php 
     $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
     $fechaNac = $fechaNac[0]; 
@@ -51,12 +51,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
     <br> <br>
     <label class="control-label" for="Peso"><strong>Peso [Kg]  </strong><br> <input style="text-align:center;" type="text" class="edicion"  id="Peso" value="<?php echo $paciente['Peso']; ?>"></label>
     <label class="control-label" for="Altura"><strong>Altura [Cm] </strong><br><input style="text-align:center;" type="text" class="edicion" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
-    </div>
+    </div></center>
                    
-                    <div class="control-group">
-    <label class="control-label" for="N_Celular N_Fijo"><strong>Teléfonos </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  
-        <input style="text-align:center;" type="text" class="edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
-    </div>
+                   <center> <div class="control-group">
+    <label class="control-label" ><strong>Teléfono Móvil </strong><br><input style="text-align:center;" type="text" class="edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  </label>
+       <label class="control-label"><strong>Teléfono Fijo </strong> <br>  <input style="text-align:center;" type="text" class="edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
+    </div></center>
                    
                     </td>
                     
@@ -65,7 +65,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                </div> <!--!div para datos personales-->
                
                
-   <div class="span6 img-rounded"> <!--div para datos informacion de dirrección-->
+   <div class="span6 img-rounded fluid"> <!--div para datos informacion de dirrección-->
        
      
       <center>   <table class="table table-bordered table-hover">
@@ -85,14 +85,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                 <tbody>
 
                     <td>
-                        <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <label class="control-label" for="Numero"><strong>Numero</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
-    </div>  
+                      <center>  <div class="control-group">
+    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion input-xxlarge" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
+    <br><br>
+    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
+     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
+     
+                          </div>  
                          <div class="control-group">
 
     
-    <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
+   
         
     
     <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
@@ -104,7 +107,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                          <div class="control-group">
     <label class="control-label" for="Nacionalidad"><strong>Nacionalidad  </strong><br>  <input style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
     <label class="control-label" for="Etnia"><strong>Etnia </strong> <br> <input style="text-align:center;" type="text" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
-    </div>
+    </div></center>
                     </td>
   
 	
@@ -117,7 +120,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
    </div><!--!div para datos informacion de dirrección-->
     
     
-    <div class="span10 img-rounded"> <!--div para datos informacion de seguros-->
+    <div class="span11 img-rounded"> <!--div para datos informacion de seguros-->
     
       <center>   <table class="table table-bordered table-hover">
    <thead>
@@ -130,14 +133,14 @@ background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 
 background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
 background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
-"><center><h5>Información de Compañías</h5></center></th>                      
+"><center><h5>Otros</h5></center></th>                      
                     </tr>
                 </thead>
                 <tbody>
 
                     <td>
     <div class="control-group row-fluid">
-    <label class="control-label pull-left" for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion input-xlarge" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
+    <label class="control-label pull-left " for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion input-xlarge" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
     <label class="control-label pull-right" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
 
     </div>
@@ -166,6 +169,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
     $('.edicion').change(function() {
                 $('#guardar').show();
     });
+    
+    $('#infopaciente').click(function(){
+        
+      
+         $('html, body').animate({
+            scrollTop: $("#infopaciente").offset().top
+            }, 500); // animate
+    })
   
     $("#guardar").click(function() {
                         var run = <?php echo $_SESSION['RUTPaciente'];   ?>;
@@ -196,7 +207,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
           },
                       type: 'post',
                       success: function(output){
-                          alert(output);
+                          
                         if(output==1)
                             { 
                                 $("#guardar").hide();

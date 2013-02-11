@@ -16,10 +16,10 @@ $eliminarCondicionesPaciente = PacienteHasCondicion::BorrarPorId($idCondicion,$_
 
 if($eliminarCondicionesPaciente)
 {
-echo $idCondicion;	
+echo $idCondicion."borrado";	
 }
 else
 {
-	echo -1;
+	echo 0;
 }
 ?>

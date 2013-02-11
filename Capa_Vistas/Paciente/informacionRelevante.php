@@ -3,7 +3,7 @@
   Información Estadistica del Paciente
   </a>
   </div>
-  <div id="collapseFive" class="accordion-body collapse">
+  <div id="collapseFive" class="accordion-body collapse in">
   <div class="accordion-inner">
   <!-- esta pagina despliega la informacion en graficos desde google Chrats-->
         <!--Div that will hold the pie chart-->
@@ -17,8 +17,8 @@
     </td><td>
     <div id="Barra"></div>
     </td><td>
-    <div id="Lineas"></div>
-    </td></tr>
+   
+ 
     </table>
     </div>
     </div>
