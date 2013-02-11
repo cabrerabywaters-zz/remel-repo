@@ -34,7 +34,7 @@
                     $_SESSION['idPacienteLog'] = $idPaciente;
                 }
 
-		$idMedico = Medico::EncontrarMedico($rut)[0];
+		$idMedico = Medico::EncontrarMedico($rut);
                 if($idMedico != false){
                     $_SESSION['idMedicoLog'] = $idMedico;
                 } else $_SESSION['idMedicoLog'] = false;
@@ -47,5 +47,5 @@
 
 		echo "1";
 	}
-        print_r($_SESSION);
+       // print_r($_SESSION);
 ?>

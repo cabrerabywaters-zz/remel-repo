@@ -99,7 +99,7 @@ verificarIP();
                 <button class="btn btn-large btn-block" type="button" disabled="disabled">Ver Pacientes Atendidos</button>
                 <button class="btn btn-large btn-block " type="button" disabled="disabled">Consultar medicamentos</button>
                 <button class="btn btn-large btn-block" type="button" disabled="disabled">Consultar Diagnósticos</button>
-                <a href="../decision.php" class="btn btn-large btn-block" role="button">Cambiar insitucion</a>
+                <a href="../decision.php" class="btn btn-large btn-block" role="button">Cambiar de Perfil</a>
                 <a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>
                 </form>
              </div>
@@ -130,17 +130,17 @@ verificarIP();
                 <!-- aqui se muestra el paciente obtenido -->
             </div>
             <div id="clave" class="collapse" ><!-- se verifica la clave del paciente atravez de ajax -->
-            <form id="verificacionClave" action="javascript:verificarClave()" method="post">
+            <div id="verificacionClave" action="javascript:verificarClave()" method="post">
                 <br>
             <strong>Ingrese Clave :</strong> <center> 
             <input type="password" name="clave" required placeholder="Ingrese Clave Del Paciente" id="clave_paciente"></center> 
             <div id="mensaje"></div>
             </div>
-            <input type="hidden"  name="hID" value=""/>
-            <input type="hidden" name="hRUN" value=""/>
+            <input type="hidden" id="hID" value=""/>
+            <input type="hidden" id="hRUN" value=""/>
   	</div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="submit" id="ingresar"><strong>Ingresar</strong></button></form>
+            <button class="btn btn-primary"  id="ingresar"><strong>Ingresar</strong></button></form>
             <button class="btn" data-dismiss="modal" aria-hidden="true">Volver</button>
         </div>
     </div>
@@ -153,11 +153,11 @@ verificarIP();
 	$('busqueda').validator();
 	$('verificacionClave').validator();
         $('#myModal').on('show',function(){
-            $('input[name="RUN"]').focus();
+            $('input[id="RUN"]').focus();
         }).on('hide',function(){
                $('#ingresar').hide();
                 $('#atender').html('');
-                $('input[name="RUN"]').val('');
+                $('input[id="RUN"]').val('');
                  $('#clave_paciente').val('');
                 
                
@@ -175,8 +175,8 @@ verificarIP();
                                     var data = jQuery.parseJSON(output);
                                     nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
                                     $("#atender").html("<a class='label label-info' id='"+data['Nombre']+"'>"+nombre+"</a>");
-                                    $('input[name=hID]').val(data['idPaciente']);
-                                    $('input[name=hRUN]').val(data['RUN']);
+                                    $('input[id=hID]').val(data['idPaciente']);
+                                    $('input[id=hRUN]').val(data['RUN']);
                                     $('#clave').collapse('show');
                                     $('input[name="clave"]').focus();
                                     $('#error').html('');
@@ -188,20 +188,31 @@ verificarIP();
 
                   	});// end ajax
 	} // end funcion enviar
-	function verificarClave(){
-        /**
+        
+        
+1
+2
+3
+$("#ingresar").click(function() {
+  
+  /**
          * función que verifica la clave del paciente
          */
-                        var postData = $("#verificacionClave").serialize();
+                      
                         $.ajax({ url: '../../ajax/verificarClavePaciente.php',
-                        data: postData,
+                        data: {hID:$('#hID').val(),
+                            hRUN:$('#hRUN').val(),
+                         clave:$('#clave_paciente').val()
+                        },
                         type: 'post',
                         success: function(output) {
-                                        if(output == 1){// redireccion a atencionPaciente
+                            
+                          
+                                        if(output == "1"){// redireccion a atencionPaciente
                                             
 						window.location.href = "AtencionPaciente/atencionPaciente.php#";
 					}
-					else if(output == 0){ //mensaje de error
+					else if(output == "0"){ //mensaje de error
                                             $("#mensaje").html("<div class='alert alert-error'>La Clave no es correcta</div>"); }
                                 else
                                     {    
@@ -211,7 +222,12 @@ verificarIP();
                             
                         }
                         });
-        }
+  
+  
+});
+	
+        
+      
        
        $(document).ready(function() {
        $('#ingresar').hide();

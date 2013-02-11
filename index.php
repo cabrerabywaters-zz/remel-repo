@@ -39,7 +39,7 @@ if (!empty($_SESSION))
 
                 font-color:#ffffff;
 
-                font-family: ;
+              
 
 
                 max-width: 300px;
@@ -92,7 +92,7 @@ if (!empty($_SESSION))
                         <input type="checkbox" value="remember-me"> Recordarme
                     </label>
                     <center>   <button class="btn btn-large" disabled="disabled" id="ingresar" type="submit"><strong>Ingresar</strong></button></center>
-                    <p><span id="mensaje"></span></p>
+                    <p><span id="mensaje" class="alert-danger"></span></p>
                 </fieldset>
             </form>
 
@@ -119,7 +119,7 @@ if (!empty($_SESSION))
                         largo = crut.length;
                         if ( largo <2 )
                         {
-                            $('#mensaje').html("<span class='alert alert-danger'><small><strong>El rut ingresado no es válido</strong></small></span>");
+                            $('#mensaje').html("<small><h4>El rut ingresado no es válido</h4></small>");
                             Objeto.focus()
                             return false;
                         }
@@ -167,7 +167,7 @@ if (!empty($_SESSION))
                         }
                         if ( dvr != dv.toLowerCase() )
                         {
-                            $('#mensaje').html("<span class='alert alert-danger'>El rut ingresado no es válido</span>");
+                            $('#mensaje').html("<small><h4>El rut ingresado no es válido</h4></small>");
                             Objeto.focus();
                             return false;
                         }
@@ -184,11 +184,12 @@ if (!empty($_SESSION))
                         data: postData,
                         type: 'post',
                         success: function(output) {
-                            if(output = '1') {
+                        
+                            if(output == '1') {
                                 window.location.href = "ajax/comprobadorDoctor.php";
                             }
                             else{
-                                $('#mensaje').html("<span class='alert alert-danger'>Nombre de Usuario o Constraseña Incorrecto </span>");
+                                $('#mensaje').html("<small><h4>Nombre de Usuario o constraseña incorrectos</h4></small>");
                             }
                         }
                     });
