@@ -15,7 +15,7 @@ y el popup que muestra el detalle del medicamento
               <div class="img-rounded">
                   <div class="row-fluid">
                     <div class="modal-body img-rounded pull-right span12"><div class="row-fluid">
-                            <p><strong>Medicamentos Seleccionados:</strong></p>
+                            <p><strong>Medicamentos a Prescribir:</strong></p>
                             <div id="medicamentosRecetados" class="span11">
                             </div>
                     </div></div><!-- medicamentos seleccionados -->

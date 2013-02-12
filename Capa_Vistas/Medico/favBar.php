@@ -7,7 +7,7 @@
     </button>
 
     <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#diagnosticosFav">
-        <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Diagnosticos
+        <i class="icon-circle-arrow-down icon-white" rel="tooltip" title="Ocultar"></i> Diagnósticos Frecuentes
     </button>
 
     <div id="diagnosticosFav" class="collapse">

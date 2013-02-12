@@ -97,7 +97,7 @@ verificarIP();
                 <!-- opciones para el medico cuando ingresa -->
                 <a href="#myModal" role="button" class="btn btn-large btn-block" data-toggle="modal">Recetar</a>
                 <button class="btn btn-large btn-block" type="button" disabled="disabled">Ver Pacientes Atendidos</button>
-                <button class="btn btn-large btn-block " type="button" disabled="disabled">Consultar medicamentos</button>
+                <button class="btn btn-large btn-block " type="button" disabled="disabled">Consultar Medicamentos</button>
                 <button class="btn btn-large btn-block" type="button" disabled="disabled">Consultar Diagnósticos</button>
                 <a href="../decision.php" class="btn btn-large btn-block" role="button">Cambiar de Perfil</a>
                 <a href="logout.php" role="button" class="btn btn-large btn-block btn-danger">Salir</a>

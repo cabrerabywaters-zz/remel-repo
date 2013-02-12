@@ -39,7 +39,7 @@
       <table class="recetaContenido">
       <tr><td colspan="3"><hr></td></tr>
       <tr><td colspan="3">
-      <strong>RP:</strong><br>
+      <strong>Receta Médica Electrónica:</strong><br>
       <div class="row-fluid" id="resumen">
           
       
@@ -85,7 +85,7 @@
         if($('.medicamentoRecetado').length != 0){ // si hay medicamentos recetados
         $('.diagnostico').each(function(){// para cada diagnostico
             var nombreDiagnostico = $(this).children('strong').text()
-            $('#resumen').append('<h4>'+nombreDiagnostico+'</h4>'); //agrego el nombre del diagnostico
+            $('#resumen').append('<h4> Diagnóstico: '+nombreDiagnostico+'</h4>'); //agrego el nombre del diagnostico
             
             var idDiagnostico = $(this).attr('iddiagnostico');
             //busco todos los medicamentos asociados
@@ -108,7 +108,7 @@
         });// end each Diagnostico
         
         $('div[diagnosticoAsociado="2"]').each(function(){
-               
+                $('#resumen').append('<h4> Diagnóstico: Sin Diagnóstico Asociado</h4>'); //agrego el nombre del diagnostico
                var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
                var cantidadMedicamento = $(this).attr('cantidadMedicamento');
