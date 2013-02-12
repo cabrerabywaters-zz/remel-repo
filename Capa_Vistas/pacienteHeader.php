@@ -196,9 +196,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                          Los href hacen referencia a los tabs en paginaPaciente.php -->
                     <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
                      <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas Históricas</a></li>
-                      <li><a href="#tabHistorialMedico" data-toggle="tab">Mis Médicos</a></li>
+                      <li><a href="" data-toggle="tab">Mis Médicos</a></li> 
                       	<li><a href="#infoRelevante" data-toggle="tab">Mis Estadisticas</a></li>
-                      	<li><a href="#calendario" data-toggle="tab">Calendario</a></li>
+                      <li><a href="" data-toggle="tab">Calendario</a></li>
                         <li><a href="#medicamentos" data-toggle="tab">Vademecum</a></li>
                       	<li><a href="#alternativos" data-toggle="tab">Mis Medicamentos Alternativos</a></li>
 			<li class="dropdown pull-right">

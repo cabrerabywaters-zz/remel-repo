@@ -19,18 +19,23 @@
 <div id="resumenReceta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="resumenRecetaLabel" aria-hidden="true">
   
   <div class="modal-header">
-    <center> <h3 id="resumenRecetaLabel">Resumen de la Receta</h3></center>
+    <center> <h3 id="resumenRecetaLabelE">Resumen de la Receta</h3></center>
   </div>
   
   <div class="modal-body" id="contenidoReceta">
       <table class="recetaHeader">
       <tr>
-      <td colspan="3"> <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4></td>
+         
+      <td colspan="2"> 
+        <div class="logoRed"><img src="../../../imgs/clip_image002.jpg" width="110px" height="90px"></div>
+          <h4><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></h4>
+       
+      </td>
       </tr>
       <tr>
       
           <td  style="width:37%"><div class="datosDoctor">Doctor: <br><strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div></td>
-          <td  style="width:26%"><div class="logoRed"><center><img src="../../../imgs/clip_image002.jpg" width="130px" height="110px"></center></div></td>
+          
           <td  style="width:37%"><div class="datosPaciente">Paciente: <br><strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div></td>
           
       <!-- en este div van los datos del doctor y del paciente que está siendo -->
@@ -256,7 +261,7 @@
                     else if(!isNaN(parseInt(output))){
                             contador = true;
                              //Se Modifica el Label del encabezado de la receta para confirmar la emicion de la receta
-                             $('#resumenRecetaLabel').html('Receta Folio# '+output+' Emitida Exitosamente');
+                             $('#resumenRecetaLabelE').html('<span class="alert alert-success">Receta Folio# '+output+' Emitida Exitosamente </span>');
                              $('#resumenRecetaLabel').addClass("alert alert-success");
                              
                              

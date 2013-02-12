@@ -349,7 +349,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                             $('#historial').css("background", "");
                              $('#calculadoras').css("background", "");
                              
-                              
+                                 });
                            
                               
                                  //redefinir fondo al hacer click en favoritos
@@ -361,6 +361,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                               $(document).ready(function() {
  $('#historial').css("background", "#414040");
 });
-                    </script>
+ </script>
                     
                 

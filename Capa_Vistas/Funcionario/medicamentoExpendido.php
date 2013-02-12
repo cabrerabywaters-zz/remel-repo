@@ -26,12 +26,12 @@ $med = MedicamentoVendido::InsertarConParametros($_SESSION['logLugar']['idLugar'
                                                                 $_SESSION['precio'])
         ;
 if ($med){
- echo 'Medicamento Expendido Exitosamente.';   
+ echo '<div class="alert alert-success"><center><strong>Medicamento Expendido Exitosamente.</strong></center></div>';   
 }
 ?>
 <center>
-        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Volver al Inicio</strong></button>
-        <button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Expender más Medicamentos</strong></button>
+        <button id="volver" class="btn btn-primary" onClick="volver()" type="submit"><strong>Expender a Otro Paciente</strong></button>
+        <button id="volverMedicamentos" class="btn btn-primary" onClick="volverMedicamentos()" type="submit"><strong>Continuar Venta</strong></button>
 
     </center>
 </div>

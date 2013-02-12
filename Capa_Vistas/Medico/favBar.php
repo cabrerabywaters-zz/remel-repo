@@ -249,7 +249,7 @@
            var unidadFrecuencia = $(this).attr('idUnidadFrecuencia');
            var periodo = $(this).attr('periodo');
            var unidadPeriodo = $(this).attr('idUnidadPeriodo');
-           var fechaInicio = "<?php $hoy=getdate(); echo $hoy['mon'].'/'.$hoy['mday'].'/'.$hoy['year'];?>";
+           var fechaInicio = "<?php echo date("d-m-Y") ;?>";
            
            var cuanto = $(this).attr('unidadConsumo'); // nombre de la unidad de consumo
            var cadaCuanto = $(this).attr('unidadFrecuencia'); //nombre de la unidad de frecuencia

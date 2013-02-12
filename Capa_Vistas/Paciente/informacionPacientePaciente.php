@@ -155,7 +155,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
      
     
      
-    <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
+  <!--  <input id="guardar" type="button" class="btn btn-danger" value="Guardar">-->
 
            </form></div></div> </center>
     

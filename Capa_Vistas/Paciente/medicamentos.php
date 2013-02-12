@@ -8,7 +8,7 @@ y el popup que muestra el detalle del medicamento
    Medicamentos
     </a>
 </div>
-<div id="collapseTwo2" class="accordion-body collapse">
+<div id="collapseTwo2" class="accordion-body collapse in">
 
           <div class="row-fluid">
             <div class="span5"><div class="row-fluid"> 

@@ -174,6 +174,7 @@ background-image: -webkit-gradient(
                                         </h2>
                                     </center>
                                 </div><!-- cierre despliege del nombre del usuario -->
+                            <img class="img-rounded pull-right" src="../../imgs/logo-remel.png" style="width: 233px; height: 140px;">
                             </div><!-- cierre div superior -->
 
                             <!-- stilos de diseño de la bara de navegacion y la pagina -->
