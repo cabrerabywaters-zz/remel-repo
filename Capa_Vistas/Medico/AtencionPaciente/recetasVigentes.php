@@ -38,9 +38,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 ">
 		<tr>
 			<th>Medico</th>
-			<th>Fecha de Emision</th>
-			<th>Fecha de Vencimiento</th>
-            <th>Diagnostico</th>
+			<th>Fecha de Emisión</th>
+			<th>Fecha Estimada Fin de Tratamiento</th>
+            <th>Diagnóstico</th>
             <th>Medicamentos</th>
            
 		</tr>
@@ -57,10 +57,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			{
 					echo "<tr>";            
                     echo '<td>';
-					echo "".$dato['Medico']." ".$dato['Apellido_Paterno']."";
+					echo $dato['Nombre']." ".$dato['Apellido_Paterno']." ".$dato['Apellido_Materno'];
 					echo '</td>';
 					echo '<td>';
-                    echo $dato['Fecha_Emision'];
+                    echo $dato['Fecha'];
 					echo '</td>';
 					echo '<td>';
                     echo $dato['Fecha_Vencimiento'];
@@ -76,7 +76,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 						$cantidad=count($medicamentoReceta);
 						if($contador2!=$cantidad)
 						{
-                    echo "".$value['Nombre_Comercial'].", ";
+                    echo "".$value['Nombre_Comercial']."<br> ";
 						}
 						else
 						{
@@ -101,10 +101,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 ">
 		<tr>
 			<tr>
-			<th>Medico</th>
+			<th>Médico</th>
 			<th>Fecha de Emision</th>
-			<th>Fecha de Vencimiento</th>
-            <th>Diagnostico</th>
+			<th>Fecha estimada Fin de Tramiento</th>
+            <th>Diagnóstico</th>
             <th>Medicamentos</th>
 		</tr>
 	</tfoot>

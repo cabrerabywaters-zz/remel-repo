@@ -107,7 +107,7 @@
             
         });// end each Diagnostico
         
-        $('div[diagnosticoAsociado="0"]').each(function(){
+        $('div[diagnosticoAsociado="2"]').each(function(){
                
                var nombreComercial = $(this).children('.infoMedicamento').children('.nombreComercial').text()
                var idMedicamento = $(this).attr('idMedicamento');
@@ -166,7 +166,15 @@
                     var unidadFrecuencia = $(this).attr('unidadFrecuencia');
                     var unidadPeriodo = $(this).attr('unidadPeriodo');
                     var fechaInicio = $(this).attr('fechaInicio');
+                    var dd= fechaInicio.substring(0, 2);
+                       var mm=fechaInicio.substring(3,5);
+                             var yy=fechaInicio.substring(6,10);
+                                fechaInicio= yy+"-"+mm+"-"+dd;
                     var fechaFin = $(this).attr('fechaFin');
+                     var dd= fechaFin.substring(0, 2);
+                       var mm=fechaFin.substring(3,5);
+                             var yy=fechaFin.substring(6,10);
+                                fechaFin= yy+"-"+mm+"-"+dd;
 
                     medicamentos
                     .push({
@@ -193,7 +201,7 @@
         }); // end each diagnostico
 
                 var sinDiagnostico = [];
-        $('div[diagnosticoAsociado="0"]').each(function(){//para cada medicamento sin diagnostico asociado
+        $('div[diagnosticoAsociado="2"]').each(function(){//para cada medicamento sin diagnostico asociado
                 var idMedicamento = $(this).attr('idMedicamento');
                 var cantidadMedicamento = $(this).attr('cantidadMedicamento');
                 var frecuenciaMedicamento = $(this).attr('frecuenciaMedicamento');
@@ -203,7 +211,19 @@
                 var unidadFrecuencia = $(this).attr('unidadFrecuencia');
                 var unidadPeriodo = $(this).attr('unidadPeriodo');
                 var fechaInicio = $(this).attr('fechaInicio');
+                var dd= fechaInicio.substring(0, 2);
+                       var mm=fechaInicio.substring(3,5);
+                             var yy=fechaInicio.substring(6,10);
+                                fechaInicio= yy+"-"+mm+"-"+dd;
+                
                 var fechaFin = $(this).attr('fechaFin');
+                var dd= fechaFin.substring(0, 2);
+                       var mm=fechaFin.substring(3,5);
+                             var yy=fechaFin.substring(6,10);
+                                fechaFin= yy+"-"+mm+"-"+dd;
+                
+                
+                
             
             sinDiagnostico.push({
                 "idMedicamento": idMedicamento,

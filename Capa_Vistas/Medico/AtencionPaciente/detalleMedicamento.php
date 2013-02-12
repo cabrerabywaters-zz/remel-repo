@@ -44,8 +44,8 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                             <td>Inicio</td>
                             <td colspan="2"><input class="span11 datepicker" type="text" name="fechaInicio" value="<?php 
                             //despliega la fehca del dia de hoy     
-                            $hoy = getdate();
-                                                   $hoy = $hoy['mon']."/".$hoy['mday']."/".$hoy['year'];
+                            $hoy = date("d-m-Y");   
+                                                  
                                                    echo $hoy;?>"></td>
                         </tr>
                         <tr>
@@ -70,8 +70,8 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
         <div class="control-group pull-left">
             <div class="controls">
             <select id="diagnosticoAsociado">
-                <option value="-1" label="Seleccionar Diagnostico">Seleccionar Diagnostico</option>
-                <option value="0">Sin Diagnostico Asociado</option>
+                <option value="-1" label="Seleccionar Diagnostico">Seleccionar Diagnóstico</option>
+                <option value="2">Sin Diagnóstico Asociado</option>
             </select>
             </div>
         </div>
@@ -82,38 +82,110 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
         </div>
     </div>   
 <script>
- function dayofyear(d) {   // d is a Date object
-        var yn = d.getFullYear();
-        var mn = d.getMonth();
-        var dn = d.getDate();
-        var d1 = new Date(yn,0,1,12,0,0); // noon on Jan. 1
-        var d2 = new Date(yn,mn,dn,12,0,0); // noon on input date
-        var ddiff = Math.round((d2-d1)/864e5);
-        return ddiff+1; }   // funcion que calcula el día del año con la fecha
- function dateFromDay(year, day){
-   var date = new Date(year, 0); // initialize a date in `year-01-01`
-   return new Date(date.setDate(day)); // add the number of days
- } // funcion que calcula la fecha con el día del año
-
-$('#periodoMedicamento, input[name="fechaInicio"]').change(function(){
-   var inicio = $('input[name="fechaInicio"]').val();
-   var fecha = new Date(inicio);
-   fecha = parseInt(dayofyear(fecha));
-   var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
+  
+ $('#periodoMedicamento, select[name="unidadPeriodo"]').change(function(){
+     var inicio = $('input[name="fechaInicio"]').val();
+   
+     var dd= inicio.substring(0, 2);
+ 
+     var mm=inicio.substring(3,5);
+    
+     var yy=inicio.substring(6,10);
+    
+   
+     inicio= yy+"-"+mm+"-"+dd;
+ 
+     
+    var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
    var periodo = parseInt($('#periodoMedicamento').val());
    
    if(unidadPeriodo == 1){
-       fecha = fecha+periodo     // se suman los días
+       dias = periodo     // se suman los días
     }
    else if(unidadPeriodo == 2){ // se suman las semanas *7 días
-       fecha = fecha + periodo*7
+       dias =  periodo*7
    }
    else if(unidadPeriodo == 3){// se suman los meses por 30(30días por mes) ERROR!
-       fecha = fecha + periodo*30
+       dias = periodo*30
    }
+      
+    var sumarDias=parseInt(dias);
+ 
+  var fecha= inicio;
+ 
+  fecha=fecha.replace("-", "/").replace("-", "/");    
+ 
+  fecha= new Date(fecha);
+  fecha.setDate(fecha.getDate()+sumarDias);
+ 
+  var anio=fecha.getFullYear();
+  var mes= fecha.getMonth()+1;
+  var dia= fecha.getDate();
+ 
+  if(mes.toString().length<2){
+    mes="0".concat(mes);        
+  }    
+ 
+  if(dia.toString().length<2){
+    dia="0".concat(dia);        
+  }
+ 
+  fecha = dia+"-"+mes+"-"+anio; 
+   
+   $('input[name="fechaFin"]').val(fecha);
+     
+     
+ })
 
-   fecha = dateFromDay(<?php $hoy=getdate(); echo $hoy['year'];?>, fecha)
-   fecha = fecha.getMonth()+1+"/"+fecha.getDate()+"/"+fecha.getFullYear();   
+$('#periodoMedicamento, input[name="fechaInicio"]').change(function(){
+   var inicio = $('input[name="fechaInicio"]').val();
+   
+     var dd= inicio.substring(0, 2);
+ 
+     var mm=inicio.substring(3,5);
+    
+     var yy=inicio.substring(6,10);
+    
+   
+     inicio= yy+"-"+mm+"-"+dd;
+ 
+     
+    var unidadPeriodo = $('select[name="unidadPeriodo"]').val();
+   var periodo = parseInt($('#periodoMedicamento').val());
+   
+   if(unidadPeriodo == 1){
+       dias = periodo     // se suman los días
+    }
+   else if(unidadPeriodo == 2){ // se suman las semanas *7 días
+       dias =  periodo*7
+   }
+   else if(unidadPeriodo == 3){// se suman los meses por 30(30días por mes) ERROR!
+       dias = periodo*30
+   }
+      
+    var sumarDias=parseInt(dias);
+ 
+  var fecha= inicio;
+ 
+  fecha=fecha.replace("-", "/").replace("-", "/");    
+ 
+  fecha= new Date(fecha);
+  fecha.setDate(fecha.getDate()+sumarDias);
+ 
+  var anio=fecha.getFullYear();
+  var mes= fecha.getMonth()+1;
+  var dia= fecha.getDate();
+ 
+  if(mes.toString().length<2){
+    mes="0".concat(mes);        
+  }    
+ 
+  if(dia.toString().length<2){
+    dia="0".concat(dia);        
+  }
+ 
+  fecha = dia+"-"+mes+"-"+anio; 
+   
    $('input[name="fechaFin"]').val(fecha);
 })
 

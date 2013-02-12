@@ -137,7 +137,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 	<![endif]-->
         <!-- fin script js externos -->
-        <script> $(document).ready(function(){$('.datepicker').datepicker({ dateFormat: "mm/dd/yy" });});</script>   
+        <script> $(document).ready(function(){$('.datepicker').datepicker({ dateFormat: "dd-mm-yy" });});</script>   
     </head>
     <body>
         

@@ -46,16 +46,18 @@ if($diagnosticos != null){
             if($check == false){ echo '0'; die("No se insertó el historial médico"); }
 
             foreach($diagnostico['medicamentos'] as $medicamento) {
-                                $check = MedicamentoReceta::Insertar(end(end($Receta)),$idDiagnostico, $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], $medicamento['unidadDeConsumo'], $medicamento['frecuenciaMedicamento'],$medicamento['unidadFrecuencia'], $medicamento['periodoMedicamento'], $medicamento['unidadPeriodo'], $medicamento['fechaInicio'], $medicamento['fechaFin'], $medicamento['comentarioMedicamento']);
+                    
+                                $check = MedicamentoReceta::Insertar(end(end($Receta)),$idDiagnostico, $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], $medicamento['unidadDeConsumo'], $medicamento['frecuenciaMedicamento'],$medicamento['unidadFrecuencia'], $medicamento['periodoMedicamento'], $medicamento['unidadPeriodo'],$medicamento['fechaInicio'], $medicamento['fechaFin'], $medicamento['comentarioMedicamento']);
             if( $check=0 ){ echo'0'; die("No se puede insertar este medicamento SD".end(end($Receta))); }
             }
     }
 }
 if($sinDiagnostico != null){
     foreach($sinDiagnostico as $medicamento) {
-        
        
-            $check = MedicamentoReceta::Insertar(end(end($Receta)),"0", $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], $medicamento['unidadDeConsumo'], $medicamento['frecuenciaMedicamento'],$medicamento['unidadFrecuencia'], $medicamento['periodoMedicamento'], $medicamento['unidadPeriodo'], $medicamento['fechaInicio'], $medicamento['fechaFin'], $medicamento['comentarioMedicamento']);
+        $check = HistorialMedico::Insertar($idConsulta,"2","3","N/A");
+          if($check == false){ echo '0'; die("No se insertó el historial médico"); }
+            $check = MedicamentoReceta::Insertar(end(end($Receta)),"2", $medicamento['idMedicamento'], $medicamento['cantidadMedicamento'], $medicamento['unidadDeConsumo'], $medicamento['frecuenciaMedicamento'],$medicamento['unidadFrecuencia'], $medicamento['periodoMedicamento'], $medicamento['unidadPeriodo'], $medicamento['fechaInicio'], $medicamento['fechaFin'], $medicamento['comentarioMedicamento']);
             if( $check=0 ){ echo'0'; die("No se puede insertar este medicamento SD".end(end($Receta))); }
             
     }

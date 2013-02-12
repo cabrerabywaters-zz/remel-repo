@@ -221,18 +221,30 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     //busca las recetas del paciente segun id
     //devuelve un arreglo asociativo con la especialidad, el nombre y el apellido del medico, la fecha de emision de la receta, su fecha de vencimiento, el nombre del diagnostico asociado
     public static function RecetasPacienteMedico($idPaciente) {
-        $queryString = "SELECT Personas.Nombre as Medico, Personas.Apellido_Paterno, Recetas.Fecha_Emision,
-						Recetas.Fecha_Vencimiento, Recetas.idReceta,Diagnosticos.Nombre as Diagnostico, Especialidades_has_Medicos.Especialidad_idEspecialidad as idEspecialidad
-						FROM Personas, Medicos, Pacientes, Consulta, Recetas, Diagnosticos, Medicamentos_Recetas, Especialidades_has_Medicos
-						WHERE Pacientes.idPaciente=" . $idPaciente . "
-						AND Medicos.Personas_RUN=Personas.RUN
-						AND Medicos.idMedico=Especialidades_has_Medicos.Medico_idMedico
-						AND Pacientes.idPaciente=Consulta.Pacientes_idPaciente
-						AND Medicos.idMedico=Consulta.Medicos_idMedico
-						AND Consulta.Id_consulta=Recetas.Consulta_Id_consulta
-						AND Recetas.idReceta=Medicamentos_Recetas.Receta_idReceta
-						AND Diagnosticos.idDiagnostico=Medicamentos_Recetas.Diagnosticos_idDiagnosticos
-						GROUP BY idReceta ";
+        $queryString = "Select Id_consulta,Fecha, Nombre,Apellido_Paterno, Apellido_Materno, Nombre_Diagnostico, Nombre_Comercial,idReceta from
+(select Id_consulta, Fecha,Doctores.Nombre, Apellido_Paterno,Apellido_Materno,Diagnosticos_idDiagnostico, DiagnosticosB.Nombre as Nombre_Diagnostico from
+
+(Select Consulta.Id_consulta, Consulta.Fecha, Personas.Nombre, 
+Personas.Apellido_Paterno, Personas.Apellido_Materno 
+from Consulta, Medicos, Personas
+ where Pacientes_idPaciente='$idPaciente' and Consulta.Medicos_idMedico= Medicos.idMedico and 
+ Personas.RUN= Medicos.Personas_RUN) as Doctores , 
+(SELECT  Diagnosticos_idDiagnostico, Diagnosticos.Nombre, Historiales_medicos.Consulta_Id_consulta
+from  Historiales_medicos, Diagnosticos
+where Historiales_medicos.Diagnosticos_idDiagnostico =Diagnosticos.idDiagnostico
+and Historiales_medicos.Consulta_Id_consulta in (Select Consulta.Id_consulta from Consulta where Pacientes_idPaciente='$idPaciente')
+)as DiagnosticosB
+where Doctores.Id_consulta = DiagnosticosB.Consulta_Id_consulta) as A,
+(Select  Medicamentos.Nombre_Comercial, RecetasConsultas.idReceta, RecetasConsultas.Consulta_Id_consulta 
+from Medicamentos_Recetas,Medicamentos,
+(Select Recetas.Consulta_Id_consulta, Recetas.idReceta from
+ Recetas where
+  Recetas.Consulta_Id_consulta In 
+  (Select Consulta.Id_consulta from Consulta where Pacientes_idPaciente='$idPaciente')) as RecetasConsultas
+ where  Medicamentos_Recetas.Receta_idReceta= RecetasConsultas.idReceta and
+  Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento) as B
+  
+ Where A.Id_Consulta = B.Consulta_Id_consulta order by Id_consulta";
         $result = CallQuery($queryString);
         $resultArray = array();
         while ($fila = $result->fetch_assoc()) {
