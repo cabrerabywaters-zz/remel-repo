@@ -192,9 +192,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
       </tr>
       <tr>
       
-          <td  style="width:37%"><div class="datosDoctor">Doctor: <br><strong><?php echo $medico['Nombre']." ".$medico['Apellido_Paterno'];?> </strong></div></td>
+          <td  style="width:37%"><div class="datosDoctor">Doctor: <strong><span id="doctorI"></span> </strong></div></td>
           <td  style="width:26%"><div class="logoRed"><center><img src="../../../imgs/clip_image002.jpg" width="130px" height="110px"></center></div></td>
-          <td  style="width:37%"><div class="datosPaciente">Paciente: <br><strong><?php echo $paciente['Nombre']." ".$paciente['Apellido_Paterno'];?> </strong></div></td>
+          <td  style="width:37%"><div class="datosPaciente">Paciente:<strong> <span id="pacienteI"></span> </strong></div></td>
           
       <!-- en este div van los datos del doctor y del paciente que está siendo -->
       </tr>
@@ -252,7 +252,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
          type: 'post',
          async: true,
          success: function(output){
-		            
+		      
           //Se maneja el error 
                     if(output=='0')
                         {
@@ -260,8 +260,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                         }
                         //Cuando el ingreso de los datos de la receta es correcto
                    else{
+                         output = jQuery.parseJSON(output) ;
+                       $.each(output, function(index, value) {
+                            
+                               $('#folioReceta').html(value);
+                         });
                         
-                        $('#folioReceta').html(output);
+                     
                    }
                       
          }//end success

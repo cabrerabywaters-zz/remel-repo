@@ -7,7 +7,8 @@
 
 session_start();
 include_once('../Capa_Controladores/receta.php');
-   
+   //tomando el id de consulta se arma el arreglo con todas las caracteristicas de la receta
+// y luego se devuelve a RecetasVigentes.php
    $consulta=$_REQUEST['consulta'];
    $tipo = $_REQUEST['tipo'];
    
@@ -16,9 +17,11 @@ include_once('../Capa_Controladores/receta.php');
    
    $recetas = receta::SeleccionarDatosReimpresionxidConsulta($consulta);
   foreach($recetas as $receta){
-      echo $receta['idReceta'];
+     $arreglo[] =  $receta['idReceta'];
       
   }
+      echo json_encode($arreglo);
+ 
    }
 
 ?>
