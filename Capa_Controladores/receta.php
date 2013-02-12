@@ -168,6 +168,20 @@ class Receta  {
     }
     
     
+      public static function SeleccionarDatosReimpresionxidConsulta($idConsulta) {
+    	
+
+        $queryString = "Select idReceta from Recetas where Consulta_Id_consulta='$idConsulta' ";
+
+          
+        $result = CallQuery($queryString);
+	    $resultArray = array();
+	    while($fila = $result->fetch_assoc()) {
+	       $resultArray[] = $fila;
+	    }
+	    return $resultArray;
+    }
+    
     
 }
 ?>

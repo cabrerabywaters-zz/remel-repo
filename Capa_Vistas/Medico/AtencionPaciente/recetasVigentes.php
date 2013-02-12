@@ -1,4 +1,23 @@
-    <div class="accordion-heading">
+   
+ <?php 
+ require_once(dirname(__FILE__)."/../../../convertToPDF.php");
+ //esta es la funcion que es llamada con el Submit del Boton Imprimir 
+ //Del modal del Firmar Receta
+ if(isset($_POST['content'])){
+//traermos el contenido del html para hacer el pdf desde el textarea del modal
+     $html= $_POST['content'];
+     $html = utf8_decode($html);
+// usamos la función doPDF para crear el pdf
+     doPDF('RecetaMedica_REMEL',$html,true,'../../../css/formatoReceta.css'); 
+     
+     echo '<scrip>
+            window.location = "../doctorIndex.php" 
+           </script>';
+ }
+ // el archivo que genera el pdf del mpaciente al emitir su receta 
+ ?>
+
+<div class="accordion-heading">
       <a class="btn btn-large btn-block" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" id="recetas">
         Recetas Históricas
       </a>
@@ -117,9 +136,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                         echo'<td>';
                         
                       
-                                 echo '<a class="btn btn-block" href="#verReceta" role="button" data-toggle="modal" idreceta="';         
+                                 echo '<a class="btn btn-block imprimirreceta" href="#verReceta" role="button" data-toggle="modal" idconsulta="';         
                                       echo $dato['Id_consulta']; 
-                        echo '" >Emitir Receta</a> ';
+                        echo '" >Ver Receta</a> ';
                         
                         
                     
@@ -163,10 +182,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 <div id="verReceta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="resumenRecetaLabel" aria-hidden="true">
   
   <div class="modal-header">
-    <center> <h3 id="resumenRecetaLabel">Resumen de la Receta</h3></center>
+      <center> <h3 id="resumenRecetaLabel">Reimpresión Receta N°  <span id="folioReceta"></span></h3></center>
   </div>
   
-  <div class="modal-body" id="contenidoReceta">
+  <div class="modal-body" id="contenidoRecetaI">
       <table class="recetaHeader">
       <tr>
       <td colspan="3"> <h4><center><?php echo $_SESSION['logLugar']['nombreSucursal'] ?></center></h4></td>
@@ -184,7 +203,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
       <tr><td colspan="3"><hr></td></tr>
       <tr><td colspan="3">
       <strong>Receta Médica Electrónica:</strong><br>
-      <div class="row-fluid" id="resumen">
+      <div class="row-fluid" id="resumenI">
           
       
       </div>
@@ -201,14 +220,57 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 </div>
   <div class="modal-footer">
     <form method="post" action="resumenReceta.php">
-    <textarea name="content" id="content" style="display:none"> </textarea>
+    <textarea name="content" id="contentI" style="display:none"> </textarea>
    <button type="submit" id="submit" class="btn imprimir pull-right" ><strong>Re-imprimir Receta</strong> <i class="icon-print"></i></button>
     
     </form>
    
-    <a class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Volver</strong></a>
+    <center><a class="btn btn-danger pull-left cancelarEmision" data-dismiss="modal" aria-hidden="true" ><strong>Volver</strong></a></center>
     
     
     </div><!-- modal footer -->
 
 </div><!-- modal de resumen de la receta -->
+<script>
+    /*
+     *Funcion que maneja el modal Resumen Receta cuando está escondido. (se borran los elementos puestos
+     */
+    $('#verReceta').on('hide',function(){
+        $('#resumen').html('');
+    });
+    /*
+     * Función que al hacer click en el boton "ver receta" hace el resumen completo de la 
+     * receta. es necesario mostrar los diagnosticos con sus medicamentos asociados 
+     * como listado
+     */
+    $('.imprimirreceta').click(function(){
+         $.ajax({
+         data: {'consulta' : $(this).attr('idconsulta'),
+         
+                   'tipo':"a"},
+         url: '../../../ajax/reImprimirReceta.php',
+         type: 'post',
+         async: true,
+         success: function(output){
+		            
+          //Se maneja el error 
+                    if(output=='0')
+                        {
+                            alert('La receta no pudo ser desplegada');
+                        }
+                        //Cuando el ingreso de los datos de la receta es correcto
+                   else{
+                        
+                        $('#folioReceta').html(output);
+                   }
+                      
+         }//end success
+       
+       
+       
+   
+   }); 
+      
+      $('#contentI').html($('#contenidoRecetaI').html());
+    });
+</script>
