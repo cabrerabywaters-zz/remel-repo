@@ -220,31 +220,13 @@ AND Pacientes.idPaciente=" . $idPaciente . "";
     }
     //busca las recetas del paciente segun id
     //devuelve un arreglo asociativo con la especialidad, el nombre y el apellido del medico, la fecha de emision de la receta, su fecha de vencimiento, el nombre del diagnostico asociado
-    public static function RecetasPacienteMedico($idPaciente) {
-        $queryString = "Select Id_consulta,Fecha, Nombre,Apellido_Paterno, Apellido_Materno, Nombre_Diagnostico, Nombre_Comercial,idReceta from
-(select Id_consulta, Fecha,Doctores.Nombre, Apellido_Paterno,Apellido_Materno,Diagnosticos_idDiagnostico, DiagnosticosB.Nombre as Nombre_Diagnostico from
-
-(Select Consulta.Id_consulta, Consulta.Fecha, Personas.Nombre, 
-Personas.Apellido_Paterno, Personas.Apellido_Materno 
-from Consulta, Medicos, Personas
+    public static function ConsultasPaciente($idPaciente) {
+        $queryString = "Select Consulta.Id_consulta, Consulta.Fecha, Personas.Nombre, 
+Personas.Apellido_Paterno, Personas.Apellido_Materno, idReceta 
+from Consulta, Medicos, Personas, Recetas
  where Pacientes_idPaciente='$idPaciente' and Consulta.Medicos_idMedico= Medicos.idMedico and 
- Personas.RUN= Medicos.Personas_RUN) as Doctores , 
-(SELECT  Diagnosticos_idDiagnostico, Diagnosticos.Nombre, Historiales_medicos.Consulta_Id_consulta
-from  Historiales_medicos, Diagnosticos
-where Historiales_medicos.Diagnosticos_idDiagnostico =Diagnosticos.idDiagnostico
-and Historiales_medicos.Consulta_Id_consulta in (Select Consulta.Id_consulta from Consulta where Pacientes_idPaciente='$idPaciente')
-)as DiagnosticosB
-where Doctores.Id_consulta = DiagnosticosB.Consulta_Id_consulta) as A,
-(Select  Medicamentos.Nombre_Comercial, RecetasConsultas.idReceta, RecetasConsultas.Consulta_Id_consulta 
-from Medicamentos_Recetas,Medicamentos,
-(Select Recetas.Consulta_Id_consulta, Recetas.idReceta from
- Recetas where
-  Recetas.Consulta_Id_consulta In 
-  (Select Consulta.Id_consulta from Consulta where Pacientes_idPaciente='$idPaciente')) as RecetasConsultas
- where  Medicamentos_Recetas.Receta_idReceta= RecetasConsultas.idReceta and
-  Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento) as B
-  
- Where A.Id_Consulta = B.Consulta_Id_consulta order by Id_consulta";
+ Personas.RUN= Medicos.Personas_RUN and Recetas.Consulta_Id_consulta =Consulta.Id_Consulta
+ order by Consulta.Id_consulta DESC";
         $result = CallQuery($queryString);
         $resultArray = array();
         while ($fila = $result->fetch_assoc()) {
@@ -344,6 +326,64 @@ from Medicamentos_Recetas,Medicamentos,
         }
         return $resultArray;
     }
+    
+     public static function R_IdMedicamentosConsulta($idConsulta) {
+        $queryString = "Select Medicamentos_Recetas.Medicamento_idMedicamento from Medicamentos_Recetas where Medicamentos_Recetas.Receta_idReceta in
+(Select Recetas.idReceta from Recetas where Recetas.Consulta_Id_consulta='$idConsulta')  ";
+        $result = CallQuery($queryString);
+        $resultArray = array();
+        while ($fila = $result->fetch_assoc()) {
+            $resultArray[] = $fila;
+        }
+        return $resultArray;
+    }
+    
+    
+     public static function SeleccionarDiagnosticoXIdConsulta($idconsulta) {
+          
+           
+        $queryString = "
+Select Diagnosticos.Nombre from Diagnosticos where Diagnosticos.idDiagnostico IN
+(Select Diagnosticos_idDiagnostico from Historiales_medicos where Historiales_medicos.Consulta_Id_consulta='$idconsulta')";
+        $query = CallQuery($queryString);
+        $diagnosticos = array();
+        while ($fila = $query->fetch_assoc()) {
+            $diagnosticos[] = $fila;
+        }
+        return $diagnosticos;
+    }
+    
+    
+    
+    
+      public static function SeleccionarRecetasxConsulta($idconsulta) {
+          
+           
+        $queryString = "Select idReceta from Recetas where Consulta_Id_consulta='$idconsulta'";
+        $query = CallQuery($queryString);
+        $diagnosticos = array();
+        while ($fila = $query->fetch_assoc()) {
+            $diagnosticos[] = $fila;
+        }
+        return $diagnosticos;
+    }
+    
+     public static function SeleccionarFechaVencimientoxidConsulta($idconsulta) {
+          
+           
+        $queryString = " 
+Select Fecha_Termino from Medicamentos_Recetas where Receta_idReceta in
+(Select idReceta from Recetas where Consulta_Id_consulta='$idconsulta')";
+        $query = CallQuery($queryString);
+        $diagnosticos = array();
+        while ($fila = $query->fetch_assoc()) {
+            $diagnosticos[] = $fila;
+        }
+        return $diagnosticos;
+    }
+   
+    
+    
     //busca los mediicamentos de una receta segun el id receta
     //deuelve un arreglo asociativo con el nombre, el id, la unidad de consumo, el tipo de receta del medicamento y el id de receta
     public static function R_MedicamentosReceta($idReceta) {
