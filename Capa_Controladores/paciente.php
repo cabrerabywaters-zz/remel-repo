@@ -237,10 +237,11 @@ from Consulta, Medicos, Personas, Recetas
     //busca los medicamentos de cada receta
     //devuelve los nombres de los medicamentos de cada receta en un arreglo asociativo
     public static function medicamentosByIdReceta($idReceta) {
-        $queryString = "SELECT Medicamentos.Nombre_Comercial
+        $queryString = "SELECT Medicamentos.Nombre_Comercial, Medicamentos_Recetas.Fecha_Termino
                         FROM Medicamentos_Recetas, Medicamentos
-						WHERE Medicamentos_Recetas.Receta_idReceta = $idReceta
+						WHERE Medicamentos_Recetas.Receta_idReceta ='$idReceta'
                         AND Medicamentos_Recetas.Medicamento_idMedicamento = Medicamentos.idMedicamento
+                        order by Fecha_Termino ASC
 						";
         $result = CallQuery($queryString);
         $resultArray = array();
@@ -373,7 +374,7 @@ Select Diagnosticos.Nombre from Diagnosticos where Diagnosticos.idDiagnostico IN
            
         $queryString = " 
 Select Fecha_Termino from Medicamentos_Recetas where Receta_idReceta in
-(Select idReceta from Recetas where Consulta_Id_consulta='$idconsulta')";
+(Select idReceta from Recetas where Consulta_Id_consulta='$idconsulta') order by Fecha_Termino ASC";
         $query = CallQuery($queryString);
         $diagnosticos = array();
         while ($fila = $query->fetch_assoc()) {
