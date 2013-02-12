@@ -53,7 +53,7 @@ $idPaciente = $infoPaciente['idPaciente'];
 $_SESSION['idPaciente'] = $idPaciente;
 
 $diagnosticosPaciente = Paciente::R_DiagnosticoPaciente($idPaciente);
-$recetas = Paciente::RecetasPacienteMedico($idPaciente);
+$consultas=Paciente::ConsultasPaciente($idPaciente);
 $condicionesPaciente = Paciente::R_CondicionPaciente($idPaciente);
 $alergiasPaciente= Paciente::AlergiasTipoPaciente($idPaciente);
 

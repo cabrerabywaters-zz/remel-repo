@@ -1,20 +1,34 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block active" data-toggle="collapse" data-parent="#accordion2">
-        Recetas Historicas
+      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" id="recetas">
+        Recetas Anteriores
       </a>
     </div>
+<!-- despleiga als recetas que esten vigentes con el medico para que este pueda ver que se le harecetado al paciente -->
+    <div id="collapseThree" class="accordion-body collapse">
       <div class="accordion-inner">
 
   <div class="row">
 
   <center> <div style="width: 90%; ;">
   <script type="text/javascript" charset="utf-8">
-      // script del datatables que transforma las tablas comunes y les agrega autocompletar y la cantidad de datos a desplegar y aun buscador y paginacion -->
+       $('#recetas').click(function(){
+        
+      
+         $('html, body').animate({
+            scrollTop: $("#recetas").offset().top
+            }, 500); // animate
+    })   
+      
+      
+      
+      
 			$(document).ready(function(){
-                             $('#tablaHistorialRecetas').dataTable();
+                             $('#tablaRecetasVigentes').dataTable();
                         });
 		</script>
-<table class="table table-bordered"  border="2" id="tablaHistorialRecetas">
+                
+             
+<table class="table table-bordered"  border="2" id="tablaRecetasVigentes">
 	<thead style="background: rgb(176,212,227); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
@@ -25,54 +39,81 @@ background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
 ">
 		<tr>
-			<th>Medico</th>
-			<th>Fecha de Emision</th>
-			<th>Fecha de Vencimiento</th>
-            <th>Diagnostico</th>
+			<th>Médico</th>
+                        <th>Folio Receta</th>
+			<th>Fecha de Emisión</th>
+			<th>Fecha Estimada Fin de Tratamiento</th>
+            <th>Diagnósticos</th>
             <th>Medicamentos</th>
            
 		</tr>
 	</thead>
 	<tbody>
 		<?php 
-		foreach ($recetas as $datos => $dato) {
-
+		$contador=0;
+		foreach ($consultas as $consulta => $dato) {
+			if($contador==0)
+			{
+				
+			}
+			if($contador==0)
+			{
 					echo "<tr>";            
                     echo '<td>';
-					echo "".$dato['Medico']." ".$dato['Apellido_Paterno']."";
+					echo $dato['Nombre']." ".$dato['Apellido_Paterno']." ".$dato['Apellido_Materno'];
+					echo '</td>';
+                                         echo '<td>';
+                                         $receta=Paciente::SeleccionarRecetasxConsulta($dato['Id_consulta']);
+                                         
+                                        foreach($receta as $recp)
+                                        {
+                                            echo $recp['idReceta']."<br>";
+                                            
+                                        }
+                                       
+                                          echo '</td>';
+                                        
+					echo '<td>';
+                    echo $dato['Fecha'];
 					echo '</td>';
 					echo '<td>';
-					$fecha = explode(" ",$dato['Fecha_Emision']);
-                    echo $fecha[0];
-					echo '</td>';
-					echo '<td>';
-                    echo $dato['Fecha_Vencimiento'];
+                                        
+                               $fechaV = Paciente::SeleccionarFechaVencimientoxidConsulta($dato['Id_consulta']);
+                               foreach($fechaV as $vencimiento)
+                               {
+                                   echo "-".$vencimiento['Fecha_Termino']."<br>";
+                                   
+                               }
+                    
                     echo '</td>';
                     echo '<td>';
-                    echo $dato['Diagnostico'];
+                  
+                    $diagnos = Paciente::SeleccionarDiagnosticoXIdConsulta($dato['Id_consulta']);
+                    foreach($diagnos as $diagnostico){
+                         
+                        echo "-".$diagnostico['Nombre']."<br>";
+                        
+                    }
+                    
                     echo '</td>';
-					echo '<td>';
-					$contador=1;
-					$medicamentoReceta = Paciente::medicamentosByIdReceta($dato['idReceta']);					
-					foreach ($medicamentoReceta as $valor => $value)
-					{
-						$cantidad=count($medicamentoReceta);
-                                                // se despliegan los datos del medicamento , si la variable contador es igual a la cnatidad de datos del array se termina el archivo sin la coma(,)
-						if($contador!=$cantidad)
-						{
-                                        echo "".$value['Nombre_Comercial'].", ";
-						}
-						else
-						{
-					echo $value['Nombre_Comercial'];
-						}
+                      echo '<td>';
+                      $receta=Paciente::SeleccionarRecetasxConsulta($dato['Id_consulta']);
+                      foreach($receta as $recp)
+                                        {
+                                           $medica= Paciente::medicamentosByIdReceta($recp['idReceta']);
+                                            foreach($medica as $medicamentos)
+                                            {
+                                                echo "-".$medicamentos['Nombre_Comercial']."<br>";
                                                 
-						$contador++;					
-					}
+                                            }
+                                        }
+                     
+                        echo '</td>';
+				
                     echo '</td>';
 					echo "</tr>";
 			}
-
+        }
 		?>
 	</tbody>
 	<tfoot style="background: rgb(176,212,227); /* Old browsers */
@@ -86,11 +127,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 ">
 		<tr>
 			<tr>
-			<th>Medico</th>
+			<th>Médico</th>
+                        <th>Folio Receta</th>
 			<th>Fecha de Emision</th>
-			<th>Fecha de Vencimiento</th>
-                        <th>Diagnostico</th>
-                        <th>Medicamentos</th>
+			<th>Fecha estimada Fin de Tramiento</th>
+            <th>Diagnóstico</th>
+            <th>Medicamentos</th>
 		</tr>
 	</tfoot>
 </table>
@@ -99,4 +141,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 </center>
 </div>
 </div>
-
+</div>
