@@ -21,5 +21,5 @@ $array2 = Persona::BuscarNombre($rut);
 
 $arrayFinal = array_merge($array1, $array2);
 echo json_encode($arrayFinal);
-} else echo 'error';
+} else{ echo 'error';}
 ?>

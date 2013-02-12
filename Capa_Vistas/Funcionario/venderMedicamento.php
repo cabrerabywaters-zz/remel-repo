@@ -67,13 +67,18 @@ Venta de Medicamentos
             data: postData,
             type: 'post',
             success: function(output) {
+               
+                if(output=="error"){
+                    alert('El rut del Paciente no puede coincidir con el del Vendedor')
+                }
+                else{
                 var data = jQuery.parseJSON(output);
                 nombre = data['Nombre'] + ' ' + data['Apellido_Paterno'] + ' ' + data['Apellido_Materno'];
                 $("#atender").html("<a class='label label-info' id='"+data['Nombre']+"'>"+nombre+"</a>");
                 $('input[name=hID]').val(data['idPaciente']);
                 $('input[name=hRUN]').val(data['RUN']);
                 $('#clave').collapse('show');
-                $('input[name="clave"]').focus();
+                $('input[name="clave"]').focus();}
             }
 
         });// end ajax

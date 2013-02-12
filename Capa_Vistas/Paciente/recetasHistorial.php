@@ -42,7 +42,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 			<th>Médico</th>
                         <th>Folio Receta</th>
 			<th>Fecha de Emisión</th>
-			<th>Fecha Estimada Fin de Tratamiento</th>
+			<th>Fecha Estimada fin de Tratamiento</th>
             <th>Diagnósticos</th>
             <th>Medicamentos</th>
            

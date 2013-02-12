@@ -40,7 +40,7 @@ include(dirname(__FILE__) . "/../../Capa_Controladores/medicamento.php");
                     if ($existeMedicamento){
                     echo 'Cantidad: <input type="text" class="span1 search-query" id="numero" value="1">';
                     echo '<br>';
-                    echo 'Confirma retiro, RUT:<input type="text" value="'.$_SESSION['RUTPaciente'].'" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
+                    echo 'Confirmar Rut de retiro:<input type="text" value="'.$_SESSION['RUTPaciente'].'" id="RUN" class="span2 search-query" onfocus="disableIngresar()" onblur="verificarRut(RUN)" name="RUN" required  maxlength="15" pattern="^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$">';
                     echo '<br>';
                     //echo 'Precio: ' . $datosMedicamento['Precio_Referencia_CLP'];
                     $_SESSION['precio'] = $datosMedicamento['Precio_Referencia_CLP'];

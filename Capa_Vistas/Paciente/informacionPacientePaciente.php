@@ -1,11 +1,11 @@
 <div class="accordion-heading">
-  <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+  <a class="btn btn-large btn-block" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
   Información Personal del Paciente
   
   </a>
    <!-- despliega la informacion medica de la persona pacient econ al posbilidad de editar datos y queen registrados en un registro -->
   </div>
-  <div id="collapseOne" class="accordion-body collapse">
+  <div id="collapseOne" class="accordion-body collapse in">
   <div class="accordion-inner">
       <div class="row-fluid">
    <center> <div class="span12">

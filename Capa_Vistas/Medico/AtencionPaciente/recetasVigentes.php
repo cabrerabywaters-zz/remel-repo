@@ -1,10 +1,10 @@
     <div class="accordion-heading">
-      <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" id="recetas">
-        Recetas Anteriores
+      <a class="btn btn-large btn-block" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" id="recetas">
+        Recetas Históricas
       </a>
     </div>
 <!-- despleiga als recetas que esten vigentes con el medico para que este pueda ver que se le harecetado al paciente -->
-    <div id="collapseThree" class="accordion-body collapse">
+    <div id="collapseThree" class="accordion-body collapse in">
       <div class="accordion-inner">
 
   <div class="row">
