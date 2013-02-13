@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title><!-- styles -->
-		<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
         <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
 
@@ -128,15 +128,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
         // donde estan ubicadas las variables que se despliegan en la base del proyecto
         include(dirname(__FILE__) . "/informacionVistaPaciente.php");
         ?>
-			<!-- scripts de google con php -->
-			<?php include(dirname(__FILE__)."/Paciente/scriptTorta.php"); 
-	 			  include(dirname(__FILE__)."/Paciente/scriptLinea.php");
-				  include(dirname(__FILE__)."/Paciente/scriptBarra.php");
-			?>
+        <!-- scripts de google con php -->
+        <?php include(dirname(__FILE__)."/Paciente/scriptTorta.php"); 
+                  include(dirname(__FILE__)."/Paciente/scriptLinea.php");
+                  include(dirname(__FILE__)."/Paciente/scriptBarra.php");
+        ?>
+        <!-- scripts de google con php -->
     	</head>
-    
-    
-    <!--de aqui en adelante es pura prueba-->
+
     
     <div class="container-fluid"><!-- contenedor general -->
             
@@ -194,14 +193,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 "><!-- barra de navegacion -->
 <!-- Acá se redirige a distintos tabs colapsables, de los cuales solo historial está listo 
                          Los href hacen referencia a los tabs en paginaPaciente.php -->
-                    <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
-                     <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas Históricas</a></li>
+                      <li class="active img-rounded"><a href="#tabInfoPersonal" data-toggle="tab">Información Personal</a></li>
+                      <li><a href="#tabRecetas" data-toggle="tab">Mis Recetas Históricas</a></li>
                       <li><a href="" data-toggle="tab">Mis Médicos</a></li> 
-                      	<li><a href="#infoRelevante" data-toggle="tab">Mis Estadisticas</a></li>
+                      <li><a href="#infoRelevante" data-toggle="tab">Mis Estadisticas</a></li>
                       <li><a href="" data-toggle="tab">Calendario</a></li>
-                        <li><a href="#medicamentos" data-toggle="tab">Vademecum</a></li>
-                      	<li><a href="#alternativos" data-toggle="tab">Mis Medicamentos Alternativos</a></li>
-			<li class="dropdown pull-right">
+                      <li><a href="#medicamentos" data-toggle="tab">Vademecum</a></li>
+                      <li><a href="#alternativos" data-toggle="tab">Mis Medicamentos Alternativos</a></li>
+                      <li class="dropdown pull-right">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Volver <b class="caret"></b>
                         </a>

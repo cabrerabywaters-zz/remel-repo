@@ -7,16 +7,21 @@
   <div class="accordion-inner">
   <!-- esta pagina despliega la informacion en graficos desde google Chrats-->
         <!--Div that will hold the pie chart-->
-         <div class="row">
-         <table>
+     <div class="row">
+       <table>
          <tr>
-         <td>
+            <td>
              <!-- despliega losgraficos 
              los datos de los graficos los agarra en el header -->
-    <div id="Torta"></div>
-    </td><td>
-    <div id="Barra"></div>
-    </td><td>
+                <div id="Torta"></div>
+            </td>
+            <td>
+                <div id="Barra"></div>
+            </td>
+            <td>
+                <div id="Lineas"></div>
+            </td>    
+        
    
  
     </table>
