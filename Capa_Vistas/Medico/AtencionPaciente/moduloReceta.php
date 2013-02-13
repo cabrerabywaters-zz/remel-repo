@@ -534,7 +534,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 var diagnostico_asociado = $('#diagnosticoAsociado').val();
                 var id_medicamento = $('#idMedicamento').val();
                 var fecha_inicio = $('input[name="fechaInicio"]').val();
-             
+                var fechaFin = $('input[name="fechaFin"]').val();
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('periodomedicamento',periodo_medicamento);
@@ -542,6 +542,7 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechafin',fechaFin);
                 
                 $('.infoMedicamento').html('');
                 var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
@@ -550,10 +551,10 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
                 $('.infoMedicamento').html('<strong class="nombreComercial">'+nombreComercial+'</strong><br><strong>Cantidad: </strong>'+cantidad_medicamento+' <span class="unidadConsumo">'+cuanto+'</span><br><strong>Frecuencia: </strong>'+frecuencia_medicamento+' <span class="unidadFrecuencia">'+cadaCuanto+'</span><br><strong>Periodo: </strong>'+periodo_medicamento+' <span class="unidadPeriodo">'+porCuanto+'</span>')
         
               
-                        //se redirecciona la vista de la pantalla hacia receta.
-                  $('html, body').animate({
-                    scrollTop: $("#tabConsulta").offset().top
-                  }, 1000);
+                //se redirecciona la vista de la pantalla hacia receta.
+                $('html, body').animate({
+                  scrollTop: $("#tabConsulta").offset().top
+                }, 1000);
                 //se limpian los campos y se esconde el modal 
                 $('#detalleMedicamento').collapse('hide');
                 $('#Medicamentos').val('');
@@ -602,17 +603,11 @@ echo '<button type="button" class="btn" filtroarsenal="true">Arsenal</button>'."
         
         
                   
-     });
+     }); //end agregar medicamento desde favBar
             
-                        
-        
-});//end ready
-
 $("#cancelar_cambios_receta").unbind('click').on('click',function(){
         $('#detalleMedicamento').collapse('toggle');                 
-       
-                    }); //end on
-
-
-       
+}); //end on                        
+        
+});//end ready
 </script><!-- agregacion del pill medicamento y triggers de favoritos y arsenal (pueden ser movidos de aquí) -->

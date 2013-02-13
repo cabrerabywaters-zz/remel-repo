@@ -352,7 +352,8 @@
                 var diagnostico_asociado = $('#diagnosticoAsociado').val();
                 var id_medicamento = $('#idMedicamento').val();
                 var fecha_inicio = $('input[name="fechaInicio"]').val();
-             
+                var fechaFin = $('input[name="fechaFin"]').val();
+                
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('cantidadmedicamento',cantidad_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('frecuenciamedicamento',frecuencia_medicamento);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('periodomedicamento',periodo_medicamento);
@@ -360,7 +361,7 @@
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('tiporeceta',tipo_receta);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('diagnosticoasociado',diagnostico_asociado);
                 $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechainicio',fecha_inicio);
-                
+                $('.medicamentoRecetado[idMedicamento="'+ idRecetaEdit +'"]').attr('fechafin',fechaFin);
                 $('.infoMedicamento').html('');
                 var cuanto = $('select[name="unidadDeConsumo"] :selected').text(); // nombre de la unidad de consumo
                 var cadaCuanto = $('select[name="unidadFrecuencia"] :selected').text(); //nombre de la unidad de frecuencia
