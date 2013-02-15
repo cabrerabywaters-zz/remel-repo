@@ -10,11 +10,12 @@
   <div class="accordion-inner">
       <div class="row-fluid">
            <div class="span12">
+               <div id="estado"></div>     
            <form id="funciona" class="form-inline" method="post" >
   
                <div class="span6 img-rounded fluid"> <!--div para datos personales-->
                    
-   <table class="table table-bordered table-hover">
+   <table class="table table-hover table-bordered">
    <thead>
    <tr>
    <th style="background: rgb(176,212,227); /* Old browsers */
@@ -25,7 +26,7 @@
         background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
         background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
-"><center><h5>Datos Personales</h5></center></th>                       
+   "><center><h4>Datos Personales</h4></center></th>                       
    </tr>
    </thead>
    <tbody>
@@ -33,59 +34,72 @@
    <td>
                    
   <div class="row-fluid">                 
-    <div class="span12">
-        <center><strong>Nombre </strong></center>
+    <div class="span12 control-group">
+        <center><label class="control-label" for="Nombre"><strong>Nombre </strong></label></center>
+        <div class="controls">
         <input style="text-align:center;" class="span12" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled>
-        <br>
-    </div><!-- end nombre -->
+        </div><!-- controls -->
+    </div><!-- end nombre control-group -->
   </div><!-- end row-->
-  <br>     
+       
   <div class="row-fluid">  
     
-    <div class="span6">
-    <center><strong>Fecha de Nacimiento </strong></center>
+    <div class="span6 control-group">
+    <center><label class="control-label" for="Fecha"><strong>Fecha de Nacimiento</strong></label></center>
+    <div class="controls">
     <input style="text-align:center;" class="span12" type="text" id="Fecha" value="<?php 
     $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
     $fechaNac = $fechaNac[0]; 
     echo $fechaNac; 
-    ?>" disabled>&nbsp
-    </div><!-- fecha de nacimiento -->
+    ?>" disabled>
+    </div><!-- controls -->
+    </div><!-- fecha de nacimiento control-group -->
       
-    <div class="span6">
-    <center><strong>Sexo</strong></center>
+    <div class="span6 control-group">
+    <center><label class="control-label" for="Sexo"><strong>Sexo</strong></label></center>
+    <div class="controls">
     <input style="text-align:center;" class="span12" type="text" id="Sexo" value="<?php if($paciente['Sexo']=='1')
 	{echo "Masculino";}
 	else
 	{echo "Femenino";} ?>" disabled>
-    </div><!-- sexo -->
+    </div><!-- controls -->
+    </div><!-- sexo control-group -->
     
   </div><!-- end row -->
   
   <div class="row-fluid">
       
-      <div class="span6">
-          <center><strong>Peso [Kg]</strong></center>
+      <div class="span6 control-group">
+          <center><label class="control-label" for="Peso"><strong>Peso [Kg]</strong></label></center>
+          <div class="controls">
           <input style="text-align:center;" type="text" class="span12 edicion int"  id="Peso" value="<?php echo trim($paciente['Peso']); ?>">
-      </div><!-- peso -->
+          </div><!-- controls -->
+      </div><!-- control-group peso -->
       
-      <div class="span6">
-          <center><strong>Altura [Cm] </strong></center>
-          <input style="text-align:center;" type="text" class="span12 edicion int" id="Altura" value="<?php echo trim($paciente['altura']); ?>"></label>
-      </div><!-- altura -->
+      <div class="span6 control-group">
+          <center><label class="control-label" for="Altura"><strong>Altura [Cm] </strong></label></center>
+          <div class="controls">
+          <input style="text-align:center;" type="text" class="span12 edicion int" id="Altura" value="<?php echo trim($paciente['altura']); ?>">
+          </div><!-- controls -->
+      </div><!-- altura control-group-->
       
   </div><!-- end row -->
-  <br>                 
+                
   <div class="row-fluid">
       
-      <div class="span6">
-          <center><strong>Teléfono Móvil </strong></center>
+      <div class="span6 control-group">
+          <center><label class="control-label" for="N_Celular"><strong>Teléfono Móvil </strong></label></center>
+          <div class="controls">
           <input style="text-align:center;" type="text" class="span12 edicion int" id="N_Celular" value="<?php echo trim($paciente['N_Celular']); ?>">
-      </div><!-- fono movil -->
+          </div><!-- controls -->
+      </div><!-- fono movil controlgroup-->
       
-      <div class="span6">
-          <center><strong>Teléfono Fijo </strong></center>
+      <div class="span6 control-group">
+          <center><label class="control-label" for="N_Fijo"><strong>Teléfono Fijo</strong></label></center>
+          <div class="controls">
           <input style="text-align:center;" type="text" class="span12 edicion int" id="N_Fijo" value="<?php echo trim($paciente['n_fijo']); ?>">
-      </div><!-- fono fijo -->
+          </div><!-- controls -->
+      </div><!-- fono fijo control group-->
       
   </div><!-- end row -->       
     
@@ -100,7 +114,7 @@
    <div class="span6 img-rounded fluid"> <!--div para datos informacion de dirección-->
        
      
-   <table class="table table-bordered table-hover">
+   <table class="table table-hover table-bordered">
    <thead>
    <tr>
    <th style="background: rgb(176,212,227); /* Old browsers */
@@ -111,51 +125,64 @@
         background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
         background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
-"><center><h5>Ubicación</h5></center></th>                      
+"><center><h4>Ubicación</h4></center></th>                      
    </tr>
    </thead>
    <tbody>
    <tr>
    <td>
-    <div class="row-fluid">
-        <center><strong>Dirección</strong></center>
+    <div class="row-fluid control-group">
+        <center><label class="control-label" for="Direccion"><strong>Dirección</strong></label></center>
+        <div class="controls">
         <input style="text-align:center;" type="text" class="edicion span12 varChar" id="Direccion" value="<?php echo trim($paciente['Calle']);?>">
-    </div><!-- end row nombre calle-->
-    <br>  
+        </div><!-- controls -->
+    </div><!-- end row direccion control group-->
      
     <div class="row-fluid">
-        <div class="span6">
-        <center><strong>Número</strong></center>
-        <input style="text-align:center;" type="text" class="span12  int" id="Numero" value=" <?php echo trim($paciente['Numero']); ?>">
-        </div><!-- calle numero -->
+        <div class="span6 control-group">
+        <center><label class="control-label" for="Numero"><strong>Número</strong></label></center>
+        <div class="controls">
+        <input style="text-align:center;" type="text" class="span12 edicion int" id="Numero" value="<?php echo trim($paciente['Numero']); ?>">
+        </div><!-- controls -->
+        </div><!-- calle numero control.group-->
          
-        <div class="span6">
-        <center><strong>Comuna</strong></center>
+        <div class="span6 control-group">
+        <center><label class="control-label" for="Comuna"><strong>Comuna</strong></label></center>
+        <div class="controls">
         <input style="text-align:center;" type="text" class="span12 edicion varChar" id="Comuna" value="<?php echo trim($comuna['Nombre']); ?>">
-        </div><!-- comuna -->
+        </div><!-- controls -->
+        </div><!-- comuna control-group-->
     </div>
-    <br>
+   
     <div class="row-fluid">
-        <div class="span6">
-             <center><strong>Región </strong></center>
+        <div class="span6 control-group">
+             <center><label class="control-label" for="Region"><strong>Región</strong></label></center>
+             <div class="controls">
              <input style="text-align:center;" type="text" class="span12 edicion varChar" id="Region" value="<?php echo trim($region['Nombre']); ?>" disabled>
+             </div><!--controls -->
         </div><!-- region -->
          
-        <div class="span6">
-             <center><strong>País </strong></center>
+        <div class="span6 control-group">
+             <center><label class="control-label" for="Pais"><strong>País</strong></label></center>
+             <div class="controls">
              <input class="span12" style="text-align:center;" type="text" id="Pais" value="Chile" disabled>
+             </div><!--controls-->
         </div><!-- pais -->
     </div><!-- end row -->
-    <br>
+    
     <div class="row-fluid">
-        <div class="span6">
-        <center><strong>Nacionalidad</strong></center>
+        <div class="span6 control-group">
+        <center><label class="control-label" for="Nacionalidad"><strong>Nacionalidad</strong></label></center>
+            <div class="controls"> 
             <input class="span12" style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo trim($paciente['Nacionalidad']); ?>" disabled>
+            </div><!--controls -->
         </div><!-- nacionalidad -->
         
-        <div class="span6">
-            <center><strong>Etnia </strong></center>
+        <div class="span6 control-group">
+            <center><label class="control-label" for="Etnia"><strong>Etnia </strong></label></center>
+            <div class="controls">
             <input class="span12" style="text-align:center;" type="text" id="Etnia" value="<?php echo trim($etnia['Nombre']); ?>" disabled>
+            </div><!--controls-->
         </div><!-- etnia -->
     </div>
    </td>
@@ -167,7 +194,7 @@
   <div class="row-fluid">
     <div class="span12 img-rounded"> <!--div para datos informacion de seguros-->
     
-   <table class="table table-bordered table-hover">
+   <table class="table table-hover table-bordered">
    <thead>
    <tr>
    <th style="background: rgb(176,212,227); /* Old browsers */
@@ -178,7 +205,7 @@
             background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
             background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
-   "><center><h5>Otros</h5></center>
+   "><center><h4>Otros</h4></center>
    </th>                      
    </tr>
    </thead>
@@ -186,14 +213,18 @@
    <tr>    
    <td>
     <div class="row-fluid">
-        <div class="span6">
-            <center><strong>Previsión de Salud</strong></center>
+        <div class="span6 control-group">
+            <center><label class="control-label" for="Prevision"><strong>Previsión de Salud</strong></label></center>
+            <div class="controls">
             <input style="text-align:center;" type="text" class="edicion span12 varChar" id="Prevision" value="<?php echo $prevision['Nombre']; ?>">
+            </div><!-- controls -->
         </div><!-- prevision de salud -->
         
-        <div class="span6">
-            <center><strong>Compañía de Seguro</strong></center>
+        <div class="span6 control-group">
+            <center><label class="control-label" for="Seguro"><strong>Compañía de Seguro</strong></label></center>
+            <div class="controls">
             <input style="text-align:center;" type="text" class="edicion span12 varChar" id="Seguro" value="<?php echo $seguro['Nombre']; ?>">
+            </div>
         </div><!-- seguro -->
     </div><!-- row otros -->
     </td>
@@ -214,9 +245,40 @@
 
 <script>
     $('.edicion').change(function(){
-        $('#guardar').show();
-    }); // se muestra el boton guadar al modificar algun campo (modificable)
-    
+        if($(this).is('.int')){
+           if(!$.isNumeric($(this).val())){
+             $(this).popover({
+                 title: 'Este campo solo debe contener Números!',
+                 html: 'false',
+                 placement: 'top',
+                 trigger: 'manual'
+             }).popover('show');
+             $(this).parent().parent().removeClass('success').addClass('error');
+             $('#guardar').hide();}//if
+           else{
+             $(this).parent().parent().removeClass('error').addClass('success');  
+             $(this).popover('hide');
+             $('#guardar').show();} // else
+            
+        }// if
+        else if($(this).is('.varChar')){ // si el campo es varChar
+            if($(this).val()==""){
+                $(this).popover({
+                 title: 'Este campo es obligatorio!',
+                 html: 'false',
+                 placement: 'top',
+                 trigger: 'manual'
+             }).popover('show');
+             $(this).parent().parent().removeClass('success').addClass('error');
+             $('#guardar').hide(); }// if
+            else{
+             $(this).parent().parent().removeClass('error').addClass('success');  
+             $(this).popover('hide');
+             $('#guardar').show(); } //else
+        }//else if
+    }); // verificacion de modificaciones previas a guardar)
+</script><!-- verificacion de tipos de dato en modificacion-->
+<script>
     $('#infopaciente').click(function(){
         $('html, body').animate({
             scrollTop: $("#infopaciente").offset().top
@@ -228,6 +290,16 @@
      *Funcion que guarda los datos de paciente modificados
      */
     $("#guardar").click(function(){
+        var errores = 0;
+        var success = 0;
+        $.each($('#collapseOne .edicion'),function(){
+            
+            if($(this).parent().parent().is('.error')){
+                errores ++;
+            }else if($(this).parent().parent().is('.success')){ success++;}
+        })// end each
+        
+        if(errores == 0){
                         var run = <?php echo trim($_SESSION['RUTPaciente']);?>;
                         var peso = $.trim($('#Peso').val());
                         
@@ -261,12 +333,29 @@
                            */
                         if(output==1){ 
                             $("#guardar").hide();
-                            }
+                            $('#estado').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>'+success+' Campos modificados exitosamente!</strong></center></div>');
+                            $('html, body').animate({
+                            scrollTop: $("#infopaciente").offset().top
+                            }, 500); // animate
+                            
+                            $.each($('#collapseOne .edicion'),function(){
+                                $(this).parent().parent().removeClass('success')
+                            });
+                        
+                        }
                         else{
                             alert('No se pudo insertar el campo');
                             }
                         }//success
             });//end ajax
+            }//si no hay errores
+            else{
+                $('#estado').html('').html('<div class="alert alert-error"><center><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Debe Corregir '+errores+' Campos!</strong></center></div>');
+                $('html, body').animate({
+                scrollTop: $("#infopaciente").offset().top
+                }, 500); // animate
+            }
+            
 });//end click
 </script><!-- guardar cambios infoPaciente -->    
 <script>    
