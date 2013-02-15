@@ -10,8 +10,16 @@ include_once(dirname(__FILE__) . '/../Capa_Controladores/persona.php');
 include_once(dirname(__FILE__).'/../Capa_Controladores/comuna.php');
 session_start();
 
-actualizarDatosPaciente($_POST['RUN'],$_POST['Peso'],$_POST['Altura'],$_POST['Direccion'],$_POST['Comuna'],$_POST['Numero'],$_POST['N_celular'],$_POST['N_fijo'],$_POST['Prevision'],$_POST['Seguro']);
-
+actualizarDatosPaciente($_POST['RUN'],
+                        $_POST['Peso'],
+                        $_POST['Altura'],
+                        $_POST['Direccion'],
+                        $_POST['Comuna'],
+                        $_POST['Numero'],
+                        $_POST['N_celular'],
+                        $_POST['N_fijo'],
+                        $_POST['Prevision'],
+                        $_POST['Seguro']);
 /**
  *
  * @param int $run
