@@ -30,37 +30,69 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 </tr>
 </thead>
 <tbody>
-
+   <tr> 
     <td>
                    
-                   
-    <center><div class="control-group">
-        <label class="control-label" for="Nombre" ><strong>Nombre </strong> <br><input style="text-align:center;" class="input-xxlarge" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled></label>
-    </div></center>
+  <div class="row-fluid">                 
+    <div class="span12">
+        <center><strong>Nombre </strong></center>
+        <input style="text-align:center;" class="span12" type="text" id="Nombre" value="<?php echo"".$paciente['Nombre']." ".$paciente['Apellido_Paterno']." ".$paciente['Apellido_Materno'].""; ?>" disabled>
+        <br>
+    </div><!-- end nombre -->
+  </div><!-- end row-->
+  <br>     
+  <div class="row-fluid">  
     
-   <center> <div class="control-group">
-    <label class="control-label" for="Fecha" > <strong>Fecha de Nacimiento </strong> <br> <input style="text-align:center;" type="datetime" class="uneditable-input" id="Fecha" value="<?php 
+    <div class="span6">
+    <center><strong>Fecha de Nacimiento </strong></center>
+    <input style="text-align:center;" class="span12" type="text" id="Fecha" value="<?php 
     $fechaNac = explode(" ",$paciente['Fecha_Nac']); 
     $fechaNac = $fechaNac[0]; 
     echo $fechaNac; 
-    ?>" disabled></label>&nbsp
-    <label class="control-label" for="Sexo"><strong>Sexo </strong> <br>  <input style="text-align:center;" type="text" id="Sexo" value="<?php if($paciente['Sexo']=='1')
+    ?>" disabled>&nbsp
+    </div><!-- fecha de nacimiento -->
+      
+    <div class="span6">
+    <center><strong>Sexo</strong></center>
+    <input style="text-align:center;" class="span12" type="text" id="Sexo" value="<?php if($paciente['Sexo']=='1')
 	{echo "Masculino";}
 	else
-	{echo "Femenino";} ?>" disabled></label>
-    <br> <br>
-    <label class="control-label" for="Peso"><strong>Peso [Kg]  </strong><br> <input style="text-align:center;" type="text" class="edicion"  id="Peso" value="<?php echo $paciente['Peso']; ?>"></label>
-    <label class="control-label" for="Altura"><strong>Altura [Cm] </strong><br><input style="text-align:center;" type="text" class="edicion" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
-    </div></center>
-                   
-                   <center> <div class="control-group">
-    <label class="control-label" ><strong>Teléfono Móvil </strong><br><input style="text-align:center;" type="text" class="edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">  </label>
-       <label class="control-label"><strong>Teléfono Fijo </strong> <br>  <input style="text-align:center;" type="text" class="edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">  </label>
-    </div></center>
-                   
-                    </td>
-                    
-                </tbody>
+	{echo "Femenino";} ?>" disabled>
+    </div><!-- sexo -->
+    
+  </div><!-- end row -->
+  
+  <div class="row-fluid">
+      
+      <div class="span6">
+          <center><strong>Peso [Kg]</strong></center>
+          <input style="text-align:center;" type="text" class="span12 edicion"  id="Peso" value="<?php echo $paciente['Peso']; ?>">
+      </div><!-- peso -->
+      
+      <div class="span6">
+          <center><strong>Altura [Cm] </strong></center>
+          <input style="text-align:center;" type="text" class="span12 edicion" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
+      </div><!-- altura -->
+      
+  </div><!-- end row -->
+  <br>                 
+  <div class="row-fluid">
+      
+      <div class="span6">
+          <center><strong>Teléfono Móvil </strong></center>
+          <input style="text-align:center;" type="text" class="span12 edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">
+      </div><!-- fono movil -->
+      
+      <div class="span6">
+          <center><strong>Teléfono Fijo </strong></center>
+          <input style="text-align:center;" type="text" class="span12 edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">
+      </div><!-- fono fijo -->
+      
+  </div><!-- end row -->       
+    
+    </td>
+   </tr>                 
+</tbody>
 </table> </center> 
                </div> <!--!div para datos personales-->
                

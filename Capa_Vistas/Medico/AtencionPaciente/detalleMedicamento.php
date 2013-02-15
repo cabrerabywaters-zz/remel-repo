@@ -24,25 +24,29 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                
                   <div class="span12 img-rounded">
                    
-                   <table class="table table-hover table-condensed">
+                   <table class="table table-hover table-condensed table-bordered">
+                      <thead>
+                           
+                      </thead>
+                      <tbody> 
                        <tr>
                            <td>Cantidad</td>
-                           <td><input class="span11" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></td>
-                           <td><select class="span11" name="unidadDeConsumo"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
+                           <td><div class="controls"><input class="span12" type="text" placeholder="Indique Cantidad"  id="cantidadMedicamento" value="1"></div></td>
+                           <td><select name="unidadDeConsumo" class="span12"><?php foreach($unidadDeConsumo as $unidad){echo "<option value='".$unidad['idUnidad_de_Consumo']."'>".$unidad['tipo']."</option>";}?></select></td>
                        </tr>
                        <tr>
                            <td>Frecuencia</td>
-                           <td><input class="span11" type="text" placeholder="frequencia" id="frecuenciaMedicamento" value="8"></td>
-                           <td><select class="span11" name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
+                           <td><div class="controls"><input class="span12" type="text" placeholder="frequencia" id="frecuenciaMedicamento" value="8"></div></td>
+                           <td><select class="span12" name="unidadFrecuencia"><?php foreach($unidadFrecuencia as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
                        </tr>
                        <tr>
                             <td>Duración</td>
-                            <td><input class="span11" type="text" placeholder="periodo" id="periodoMedicamento"></td>
-                            <td><select class="span11" name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
+                            <td><div class="controls"><input class="span12" type="text" placeholder="periodo" id="periodoMedicamento"></div></td>
+                            <td><select class="span12" name="unidadPeriodo"><?php foreach($unidadPeriodo as $unidad){echo "<option value='".$unidad['ID']."'>".$unidad['Nombre']."</option>";}?></select></td>
                         </tr>
                         <tr>
                             <td>Inicio</td>
-                            <td colspan="2"><input class="span11 datepicker" type="text" name="fechaInicio" value="<?php 
+                            <td colspan="2"><input class="span12 datepicker" type="text" name="fechaInicio" value="<?php 
                             //despliega la fehca del dia de hoy     
                             $hoy = date("d-m-Y");   
                                                   
@@ -50,13 +54,13 @@ include_once '../../../Capa_Controladores/unidadPeriodo.php';
                         </tr>
                         <tr>
                             <td>Fin</td>
-                            <td colspan="2"><input class="span11 datepicker" type="text" name="fechaFin" ></td>
+                            <td colspan="2"><input class="span12 datepicker" type="text" name="fechaFin" ></td>
                         </tr>
                         <tr>
                             <td>Comentario</td>
-                            <td colspan="2"><textarea width="100%" id="comentarioMedicamento"></textarea></td>
+                            <td colspan="2"><textarea class="span12" id="comentarioMedicamento"></textarea></td>
                         </tr>
-                       
+                      </tbody> 
                    </table>
                </div> 
         
