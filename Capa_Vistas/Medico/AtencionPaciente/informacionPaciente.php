@@ -9,29 +9,28 @@
   <div id="collapseOne" class="accordion-body collapse">
   <div class="accordion-inner">
       <div class="row-fluid">
-   <center> <div class="span12">
+           <div class="span12">
            <form id="funciona" class="form-inline" method="post" >
   
                <div class="span6 img-rounded fluid"> <!--div para datos personales-->
                    
-                    <center> <table class="table table-bordered table-hover">
+   <table class="table table-bordered table-hover">
    <thead>
-                     <tr>
-                     <th style="background: rgb(176,212,227); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+   <tr>
+   <th style="background: rgb(176,212,227); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
 "><center><h5>Datos Personales</h5></center></th>                       
-
-</tr>
-</thead>
-<tbody>
+   </tr>
+   </thead>
+   <tbody>
    <tr> 
-    <td>
+   <td>
                    
   <div class="row-fluid">                 
     <div class="span12">
@@ -66,12 +65,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
       
       <div class="span6">
           <center><strong>Peso [Kg]</strong></center>
-          <input style="text-align:center;" type="text" class="span12 edicion"  id="Peso" value="<?php echo $paciente['Peso']; ?>">
+          <input style="text-align:center;" type="text" class="span12 edicion int"  id="Peso" value="<?php echo trim($paciente['Peso']); ?>">
       </div><!-- peso -->
       
       <div class="span6">
           <center><strong>Altura [Cm] </strong></center>
-          <input style="text-align:center;" type="text" class="span12 edicion" id="Altura" value="<?php echo $paciente['altura']; ?>"></label>
+          <input style="text-align:center;" type="text" class="span12 edicion int" id="Altura" value="<?php echo trim($paciente['altura']); ?>"></label>
       </div><!-- altura -->
       
   </div><!-- end row -->
@@ -80,147 +79,166 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
       
       <div class="span6">
           <center><strong>Teléfono Móvil </strong></center>
-          <input style="text-align:center;" type="text" class="span12 edicion" id="N_Celular" value="<?php echo $paciente['N_Celular']; ?>">
+          <input style="text-align:center;" type="text" class="span12 edicion int" id="N_Celular" value="<?php echo trim($paciente['N_Celular']); ?>">
       </div><!-- fono movil -->
       
       <div class="span6">
           <center><strong>Teléfono Fijo </strong></center>
-          <input style="text-align:center;" type="text" class="span12 edicion" id="N_Fijo" value="<?php echo $paciente['n_fijo']; ?>">
+          <input style="text-align:center;" type="text" class="span12 edicion int" id="N_Fijo" value="<?php echo trim($paciente['n_fijo']); ?>">
       </div><!-- fono fijo -->
       
   </div><!-- end row -->       
     
-    </td>
+   </td>
    </tr>                 
 </tbody>
-</table> </center> 
+</table>
+                    </center> 
                </div> <!--!div para datos personales-->
                
                
-   <div class="span6 img-rounded fluid"> <!--div para datos informacion de dirrección-->
+   <div class="span6 img-rounded fluid"> <!--div para datos informacion de dirección-->
        
      
-      <center>   <table class="table table-bordered table-hover">
+   <table class="table table-bordered table-hover">
    <thead>
-                     <tr>
-                     <th style="background: rgb(176,212,227); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+   <tr>
+   <th style="background: rgb(176,212,227); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
 "><center><h5>Ubicación</h5></center></th>                      
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <td>
-                      <center>  <div class="control-group">
-    <label class="control-label" for="Direccion"><strong>Dirección  </strong> <br> <input style="text-align:center;" type="text" class="edicion input-xxlarge" id="Direccion" value="<?php echo "".$paciente['Calle']." ";?>"></label>
-    <br><br>
-    <label class="control-label" for="Numero"><strong>Número</strong><br><input style="text-align:center;" type="text" class="edicion" id="Numero" value=" <?php echo " ".$paciente['Numero']." "; ?>"></label>
-     <label class="control-label" for="Comuna"><strong>Comuna </strong> <br> <input style="text-align:center;" type="text" class="inline edicion" id="Comuna" value="<?php echo $comuna['Nombre']; ?>"></label>
+   </tr>
+   </thead>
+   <tbody>
+   <tr>
+   <td>
+    <div class="row-fluid">
+        <center><strong>Dirección</strong></center>
+        <input style="text-align:center;" type="text" class="edicion span12 varChar" id="Direccion" value="<?php echo trim($paciente['Calle']);?>">
+    </div><!-- end row nombre calle-->
+    <br>  
      
-                          </div>  
-                         <div class="control-group">
-
-    
-   
+    <div class="row-fluid">
+        <div class="span6">
+        <center><strong>Número</strong></center>
+        <input style="text-align:center;" type="text" class="span12  int" id="Numero" value=" <?php echo trim($paciente['Numero']); ?>">
+        </div><!-- calle numero -->
+         
+        <div class="span6">
+        <center><strong>Comuna</strong></center>
+        <input style="text-align:center;" type="text" class="span12 edicion varChar" id="Comuna" value="<?php echo trim($comuna['Nombre']); ?>">
+        </div><!-- comuna -->
+    </div>
+    <br>
+    <div class="row-fluid">
+        <div class="span6">
+             <center><strong>Región </strong></center>
+             <input style="text-align:center;" type="text" class="span12 edicion varChar" id="Region" value="<?php echo trim($region['Nombre']); ?>" disabled>
+        </div><!-- region -->
+         
+        <div class="span6">
+             <center><strong>País </strong></center>
+             <input class="span12" style="text-align:center;" type="text" id="Pais" value="Chile" disabled>
+        </div><!-- pais -->
+    </div><!-- end row -->
+    <br>
+    <div class="row-fluid">
+        <div class="span6">
+        <center><strong>Nacionalidad</strong></center>
+            <input class="span12" style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo trim($paciente['Nacionalidad']); ?>" disabled>
+        </div><!-- nacionalidad -->
         
-    
-    <label class="control-label" for="Region"><strong>Región </strong><br> <input style="text-align:center;" type="text" class="inline edicion" id="Region" value="<?php echo $region['Nombre']; ?>" disabled></label>
-<label class="control-label" for="Pais"><strong>País </strong> <br><input style="text-align:center;" type="text" id="Pais" value="Chile" disabled></label>
-
-    
+        <div class="span6">
+            <center><strong>Etnia </strong></center>
+            <input class="span12" style="text-align:center;" type="text" id="Etnia" value="<?php echo trim($etnia['Nombre']); ?>" disabled>
+        </div><!-- etnia -->
     </div>
-                        
-                         <div class="control-group">
-    <label class="control-label" for="Nacionalidad"><strong>Nacionalidad  </strong><br>  <input style="text-align:center;" type="text" id="Nacionalidad" value="<?php echo $paciente['Nacionalidad']; ?>" disabled></label>
-    <label class="control-label" for="Etnia"><strong>Etnia </strong> <br> <input style="text-align:center;" type="text" id="Etnia" value="<?php echo $etnia['Nombre']; ?>" disabled></label>
-    </div></center>
-                    </td>
-  
-	
-	   
-
-                </tbody>
-</table> </center> 
-       
-       
-   </div><!--!div para datos informacion de dirrección-->
+   </td>
+   </tr>                
+   </tbody>
+   </table>
+  </div><!--!div para datos informacion de dirrección-->
     
+  <div class="row-fluid">
+    <div class="span12 img-rounded"> <!--div para datos informacion de seguros-->
     
-    <div class="span11 img-rounded"> <!--div para datos informacion de seguros-->
-    
-      <center>   <table class="table table-bordered table-hover">
+   <table class="table table-bordered table-hover">
    <thead>
-                     <tr>
-                     <th style="background: rgb(176,212,227); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
-"><center><h5>Otros</h5></center></th>                      
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <td>
-    <div class="control-group row-fluid">
-    <label class="control-label pull-left " for="Prevision"><strong>Previsión de Salud</strong><br>  <input style="text-align:center;" type="text" class="edicion input-xlarge" id="Prevision" value="<?php echo $prevision['Nombre']; ?>"></label>
-    <label class="control-label pull-right" for="Seguro"><strong>Compañía de Seguro</strong> <br> <input style="text-align:center;" type="text" class="edicion" id="Seguro" value="<?php echo $seguro['Nombre']; ?>"></label>
-
-    </div>
-     
+   <tr>
+   <th style="background: rgb(176,212,227); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(176,212,227,1) 0%, rgba(136,186,207,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,212,227,1)), color-stop(100%,rgba(136,186,207,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+   "><center><h5>Otros</h5></center>
+   </th>                      
+   </tr>
+   </thead>
+   <tbody>
+   <tr>    
+   <td>
+    <div class="row-fluid">
+        <div class="span6">
+            <center><strong>Previsión de Salud</strong></center>
+            <input style="text-align:center;" type="text" class="edicion span12 varChar" id="Prevision" value="<?php echo $prevision['Nombre']; ?>">
+        </div><!-- prevision de salud -->
+        
+        <div class="span6">
+            <center><strong>Compañía de Seguro</strong></center>
+            <input style="text-align:center;" type="text" class="edicion span12 varChar" id="Seguro" value="<?php echo $seguro['Nombre']; ?>">
+        </div><!-- seguro -->
+    </div><!-- row otros -->
+    </td>
+    </tbody>
+    </table> 
     
-                        
-                          </td>
-              
-                </tbody>
-</table> </center> 
+    </div><!-- div informacion seguros y prevision -->
+  </div> <!-- end row -->  
     
-    </div>
-     
-    
-     
-    <input id="guardar" type="button" class="btn btn-danger" value="Guardar">
-
-           </form></div></div> </center>
-    
-    
-  </div>
-  </div>
+    <div class="row-fluid">
+        <center><a id="guardar" class="btn btn-danger" style="display:none"><strong>Guardar Cambios <i class="icon-lock icon-white"></i></strong></a></center>
+    </div><!-- row del boton guardar cambios -->
+    </form>
+    </div><!-- end div span12 -->
+    </div><!-- end row-fluid --> 
+  </div><!-- accordion inner -->
+  </div><!-- body .collapse-->
 
 <script>
-    $('#guardar').hide();
-    $('.edicion').change(function() {
-                $('#guardar').show();
-    });
+    $('.edicion').change(function(){
+        $('#guardar').show();
+    }); // se muestra el boton guadar al modificar algun campo (modificable)
     
     $('#infopaciente').click(function(){
-        
-      
-         $('html, body').animate({
+        $('html, body').animate({
             scrollTop: $("#infopaciente").offset().top
             }, 500); // animate
-    })
-  
-    $("#guardar").click(function() {
-                        var run = <?php echo $_SESSION['RUTPaciente'];   ?>;
-                        var peso = $('#Peso').val();
-                        var altura = $('#Altura').val();
-                        var direccion = $('#Direccion').val();
-                        var numero = $('#Numero').val();
-                        var comuna = $('#Comuna').val();
-                        var n_celular = $('#N_Celular').val();
-                        var n_fijo = $('#N_Fijo').val();
-                        var prevision = $('#Prevision').val();
-                        var seguro = $('#Seguro').val();
+    });// focus visual de la seccion de informaciòn paciente
+</script>    
+<script>    
+    /*
+     *Funcion que guarda los datos de paciente modificados
+     */
+    $("#guardar").click(function(){
+                        var run = <?php echo trim($_SESSION['RUTPaciente']);?>;
+                        var peso = $.trim($('#Peso').val());
+                        
+                        var altura = $.trim($('#Altura').val());
+                        var direccion = $.trim($('#Direccion').val());
+                        var numero = $.trim($('#Numero').val());
+                        var comuna = $.trim($('#Comuna').val());
+                        var n_celular = $.trim($('#N_Celular').val());
+                        var n_fijo = $.trim($('#N_Fijo').val());
+                        var prevision = $.trim($('#Prevision').val());
+                        var seguro = $.trim($('#Seguro').val());
                        
                 $.ajax({
                       url:'../../../ajax/actualizarDatosPaciente.php',
@@ -235,26 +253,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                             "N_fijo":n_fijo,
                             "Prevision":prevision,
                             "Seguro":seguro
-                            
-          },
+                            },
                       type: 'post',
                       success: function(output){
-                          
-                        if(output==1)
-                            { 
-                                $("#guardar").hide();
+                          /*
+                           *se verifica la actualizacion correcta
+                           */
+                        if(output==1){ 
+                            $("#guardar").hide();
                             }
-                            else{
-                                alert('No se pudo insertar el campo');
+                        else{
+                            alert('No se pudo insertar el campo');
                             }
-                            
-        
-                        
-                      }
-            });
-});
-    
-    
+                        }//success
+            });//end ajax
+});//end click
+</script><!-- guardar cambios infoPaciente -->    
+<script>    
                     /*new Array(document.getElementById('Peso'),document.getElementById('Altura'),document.getElementById('Region').document.getElementById('Comuna'));
                 for($i=0;editado[$i]<editado.lenght;$i++){
                 alert(editado[$i].value);
@@ -289,7 +304,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                 });
            });
            */
-
+</script>
+<script>
  $( "#Comuna" ).autocomplete({
                              /**
                              * esta función genera el autocomplete para el campo de comuna (input)
@@ -344,7 +360,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 
 
 //CAMBIAR LA QUERY PARA GUARDAR LOS DATOS!
-
+</script><!-- autocomplete comuna -->
+<script>
  $( "#Prevision" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de comuna (input)
@@ -383,7 +400,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                                    $('#guardar').show();
                                 }
                             });//autocompletePrevision
-                            
+</script><!-- autocomplete prevision -->
+<script>
 $( "#Seguro" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de comuna (input)
@@ -422,4 +440,4 @@ $( "#Seguro" ).autocomplete({
                                    $('#guardar').show();
                                 }
                             });//autocompleteSeguro
-</script>
+</script><!-- autocomplete seguro -->
