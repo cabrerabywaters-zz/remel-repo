@@ -11,7 +11,7 @@ session_start();
 
 include_once(dirname(__FILE__)."/../Capa_Controladores/favoritosRp.php");
 
-$idMedico = $_SESSION['idMedicoLog'];
+$idMedico = $_SESSION['idMedicoLog'][0];
 $idMedicamento = $_POST['idMedicamento'];
 
 $favoritos = FavoritosRp::R_obtenerFavoritoRP($idMedicamento, $idMedico);

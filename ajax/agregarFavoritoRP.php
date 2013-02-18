@@ -19,7 +19,7 @@
 include_once(dirname(__FILE__)."/../Capa_Controladores/favoritosRp.php");
 
 $idMedicamento = $_POST['idMedicamento'];
-$idMedico = $_SESSION['idMedicoLog'];
+$idMedico = $_SESSION['idMedicoLog'][0];
 $nombreCorto = $_POST['nombreCorto'];
 $cantidad = null; $unidadDeConsumo = null;
 $frecuencia = null; $unidadDeFrecuencia = null;

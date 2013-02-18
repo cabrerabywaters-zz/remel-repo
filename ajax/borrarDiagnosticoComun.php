@@ -12,7 +12,7 @@
 
 include_once(dirname(__FILE__)."/../Capa_Controladores/diagnosticoComun.php");
 
-$idMedico = $_SESSION['idMedicoLog'];
+$idMedico = $_SESSION['idMedicoLog'][0];
 $idDiagnostico = $_POST['idDiagnostico'];
 
 $output = DiagnosticoComun::BorrarPorId($idMedico, $idDiagnostico);

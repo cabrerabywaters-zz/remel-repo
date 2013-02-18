@@ -331,6 +331,7 @@
                           /*
                            *se verifica la actualizacion correcta
                            */
+                        alert(output);
                         if(output==1){ 
                             $("#guardar").hide();
                             $('#estado').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>'+success+' Campos modificados exitosamente!</strong></center></div>');

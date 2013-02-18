@@ -237,8 +237,8 @@ class Persona {
             $cambios['idDireccion'] = array($idDireccion, $datosAnteriores['id_direccion'], 'Personas');
         }
         foreach ($cambios as $key => $value) {
-            if (isset($_SESSION['RUTPaciente'])==false){
-                $log = Log::InsertarModificacionDatosPaciente(date('Y-m-d H:i:s'), $key, $value[1], $value[0], $value[2], $_SESSION["RUTPaciente"], $_SESSION['idMedicoLog']);
+            if (isset($_SESSION['RUTPaciente'])==true){
+                $log = Log::InsertarModificacionDatosPaciente(date('Y-m-d H:i:s'), $key, $value[1], $value[0], $value[2], $_SESSION["RUTPaciente"], $_SESSION['idMedicoLog'][0]);
             }
             else{
                 $log = Log::InsertarModificacionDatosPacientePropia(date('Y-m-d H:i:s'), $key, $value[1], $value[0], $value[2], $_SESSION["RUT"]);
