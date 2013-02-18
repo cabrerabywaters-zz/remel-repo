@@ -22,9 +22,9 @@ class Log {
      * Inserta una nueva entrada
      * 
      */
-    public static function Insertar() {
+    public static function Insertar($fecha = 'NOW()') {
         $datosCreacion = array(
-            array('Fecha', $_POST['fecha']),
+            array('Fecha', $fecha),
             array('campoModificado', $_POST['campoModificado']),
             array('valorAnterior', $_POST['valorAnterior']),
             array('valorNuevo', $_POST['valorNuevo']),
@@ -128,7 +128,7 @@ class Log {
      * @param int $idMedico ID del medico
      * @return nothing
      */
-    public static function InsertarModificacionDatosPaciente($fecha, $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico) {
+    public static function InsertarModificacionDatosPaciente($fecha , $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico) {
         $queryString = 'INSERT  INTO Log (Fecha, campoModificado, valorAnterior, valorNuevo, NombreTabla, Personas_RUN, Medicos_idMedico)
                                 VALUES ("' . $fecha . '", "' . $campo . '","' . $valorAnterior . '", "' . $valorNuevo . '","' . $nombreTabla . '", "' . $run . '", "' . $idMedico . '")  
                                 ';

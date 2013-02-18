@@ -6,8 +6,13 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-  	<div class="row-fluid">
- 		 <div class="span6" id="divAlergias">
+          <div class="alert alert-info"><small>Ultima Actualizacion: 
+                    <strong><span id="ultimoLogInfoMedica">
+                 <?php include_once(dirname(__FILE__) . '/../../../ajax/mostrarUltimoLogInfoMedica.php'); ?>              
+                    </span></strong></small></div>
+          <div id="estadoInfoMedica"></div>
+          <div class="row-fluid">
+ 		<div class="span6" id="divAlergias">
  			 <center>
              
              
@@ -34,8 +39,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 
 <?php 
 
-foreach ($tiposAlergias as $datos => $dato)
-   {
+foreach ($tiposAlergias as $datos => $dato){
 	   echo '<tr  idTipo="'.$dato['IdTipo'].'">';
                 echo '<td  class="tipoAlergia" rowspan="'.$dato['Cantidad'].'">';
                 echo "<center>".$dato['Tipo']."</center>";
@@ -82,10 +86,12 @@ foreach ($tiposAlergias as $datos => $dato)
     
     $arrayAlergia = Alergia::BuscarAlergia($_SESSION['idPaciente']);
     
-  echo "<option value='0' idTipo='0'>Ver todas las alergias</option>";  
+  echo "
+      <option value='0' idTipo='0'>Ver todas las alergias</option>";  
   foreach ($arrayAlergia as $campo=>$valor){
     
-    echo "<option tipo='".$valor['Tipo']."' value='".$valor['idAlergia']."' idTipo='".$valor['idTipo']."'>".$valor['Nombre'] ."</option>";
+    echo "
+        <option tipo='".$valor['Tipo']."' value='".$valor['idAlergia']."' idTipo='".$valor['idTipo']."'>".$valor['Nombre'] ."</option>";
     
   }
 ?>  
@@ -95,7 +101,8 @@ foreach ($tiposAlergias as $datos => $dato)
 <div class="input-append">                        
 <input id="alergias_seleccionadas" type="text" idAlergia="0">                             
 <button class="btn" type="button" id="boton_alergias" disabled="disabled">Añadir</button>
-</div></form>
+</div>
+                                </form>
 
 </center></div>
 <div class="span6" id="condiciones"> <center>
@@ -115,49 +122,57 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
                 </thead>
                 <tbody>
 
-  <?php foreach ($condiciones as $datos => $dato)
-   {
+  <?php 
+  if(empty($condiciones)){
+      echo "<tr class='sinCondiciones warning'><td><center>El paciente no tiene Condiciones registradas</center></td></tr>";
+  }
+  else{
+  foreach ($condiciones as $datos => $dato){
 	echo '<tr idCondicion="'.$dato['idCondiciones'].'">';
 	echo "<td><button type='button' class='close' data-dismiss='alert'>×</button><center>".$dato['Nombre']."</center></td>";
 	echo "</tr>";   
 	   
-   } ?>
+   }} ?>
                 </tbody>
 </table></center><center>
     
 			<form class="form-search" method="post">
-			<select style="text-align:center;" type="text" class="inline edicion" id="Condiciones_select">
+			<select style="text-align:center;" type="text" class="edicion" id="Condiciones_select">
+                        
+                        <?php  
+                          include_once("../../../Capa_Controladores/condicion.php");
+
+                            $arrayCondicion = Condicion::Seleccionar("order by Nombre ASC");
+
+                          echo "
+                              <option value='0'>Ver todas las condiciones</option>";  
+                          foreach ($arrayCondicion as $campo=>$valor){
+
+                          echo "
+                              <option value='".$valor['idCondiciones']."'>". $valor['Nombre'] ."</option>";
+
+                          }
+                        ?>  
         
-        
-<?php  
-  include_once("../../../Capa_Controladores/condicion.php");
-    
-    $arrayCondicion = Condicion::Seleccionar("order by Nombre ASC");
-    
-  echo "<option value='0'>Ver todas las condiciones</option>";  
-  foreach ($arrayCondicion as $campo=>$valor){
-    
-    echo "<option value='".$valor['idCondiciones']."'>". $valor['Nombre'] ."</option>";
-    
-  }
-?>  
-        
-          </select>
-                            
+                        </select>
+                            <div class="input-append">
   				<input id="Condiciones" type="text">
-  				<button class="btn" type="button" id="boton_condiciones" disabled="disabled">Añadir</button></div>
-				</form></center>
-		  </div> 
+  				<button class="btn" type="button" id="boton_condiciones" disabled="disabled">Añadir</button>
+                            </div>
+                        </form></center>
+		  </div></div> 
   		</div>
       </div>
 <script>
-     $('#infomedica').click(function(){
-        
-      
-         $('html, body').animate({
-            scrollTop: $("#infomedica").offset().top
-            }, 500); // animate
-    })
+$('#infomedica').click(function(){
+
+
+ $('html, body').animate({
+    scrollTop: $("#infomedica").offset().top
+    }, 500); // animate
+})
+</script>
+<script>
 $('#Alergias').change(function(){
     var valor = $('#Alergias').val();
     var tipo = $('#Alergias').children(":selected").attr("idTipo");
@@ -175,7 +190,8 @@ $('#Alergias').change(function(){
     }
        
 }); //end change
-
+</script><!-- droptlist alergias -->
+<script>
 $('#Condiciones_select').change(function(){
     var valor = $('#Condiciones_select').val();
     var tipo = $('#Condiciones_select').val();
@@ -189,12 +205,8 @@ $('#Condiciones_select').change(function(){
         $('#Condiciones').val('').removeAttr('idCondicion');
     }
 }); //end change
-
-
-
-
-
-
+</script><!-- droplist condiciones -->
+<script>
 $( "#alergias_seleccionadas" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -249,10 +261,9 @@ $( "#alergias_seleccionadas" ).autocomplete({
                            close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 } //end close
-		                        });
-								
-
-							//autocompleteDiagnosticos
+		                        });//autocomplete ALergias
+</script><!-- autocomplete Alergias -->
+<script>
 $("#boton_alergias").click(function(){
 var idAlergia = $("#alergias_seleccionadas").attr('idAlergia');
 var idTipo = $("#alergias_seleccionadas").attr('idTipo');
@@ -261,19 +272,30 @@ var Sintomas = $("#alergias_seleccionadas").attr('Sintomas');
 var nombreAlergia = $("#alergias_seleccionadas").val()
 $.ajax({
 		url: "../../../ajax/agregarAlergia.php",
-		data: {idAlergia:idAlergia},
+		data: {"idAlergia":idAlergia},
 		type: "post",
 		async:false,
 		success: function(output){
 		$("#divAlergias tbody").append('<tr><td idtipo"'+idTipo+'"><center>'+Tipo+'</center></td><td idAlergias="'+idAlergia+'"><button type="button" class="close" data-dismiss="alert">×</button><center>'+nombreAlergia+'</center></td></tr>');
-		
-	   /*
+		$('#estadoInfoMedica').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>Alergia añadida correctamente!</strong></center></div>');
+                /*
+                *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                */
+                $.ajax({
+                                url: '../../../ajax/mostrarUltimoLogInfoMedica.php',
+                                type: 'post',
+                                success:function(output){
+                                   $('#ultimoLogInfoMedica').html('').html(output); 
+                                }//end success
+                            })// end ajax
+                
+                /*
 		* Funcion que asigna el comportamiento de borrado del elemento
 		*/
-					$("#divAlergias .close").click(function(){
+		$("#divAlergias .close").click(function(){
 			   var idAlergia = $(this).parent().attr('idAlergias');
 			   var tr = $(this).parent().parent();
-			   
+			  
 			   //ajax que borra la alergia respectiva del paciente
 			   $.ajax({
 				 url: '../../../ajax/eliminarAlergia.php',
@@ -289,6 +311,19 @@ $.ajax({
 						tr.children('.tipoAlergia').removeAttr('rowspan').attr('rowspan',cantidad-1)
 						}	
 					
+                                        
+                                        $('#estadoInfoMedica').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>Alergia eliminada correctamente!</strong></center></div>');
+                                        /*
+                                        *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                                        */
+                                        $.ajax({
+                                            url: '../../../ajax/mostrarUltimoLogInfoMedica.php',
+                                            type: 'post',
+                                            success:function(output){
+                                               $('#ultimoLogInfoMedica').html('').html(output); 
+                                            }//end success
+                                        })// end ajax
+                                        
 					
 				 
 				 }//end success
@@ -300,8 +335,8 @@ $.ajax({
 $("#boton_alergias").attr('disabled',"disable");
 $("#alergias_seleccionadas").attr("value","");
 });//end click
-
-
+</script><!-- agregar alergias -->
+<script>
 $("#divAlergias .close").click(function(){
    var idAlergia = $(this).parent().attr('idAlergias');
    var tr = $(this).parent().parent();
@@ -320,12 +355,24 @@ $("#divAlergias .close").click(function(){
 			var cantidad = tr.children('.tipoAlergia').attr('rowspan')
 			tr.children('.tipoAlergia').removeAttr('rowspan').attr('rowspan',cantidad-1)
 			}	
-		
+		$('#estadoInfoMedica').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>Alergia eliminada correctamente!</strong></center></div>');
+                /*
+                *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                */
+                $.ajax({
+                    url: '../../../ajax/mostrarUltimoLogInfoMedica.php',
+                    type: 'post',
+                    success:function(output){
+                       $('#ultimoLogInfoMedica').html('').html(output); 
+                    }//end success
+                })// end ajax
 		
      
      }//end success
    });//end ajax
 });//end click
+</script><!-- Eliminar Alergia-->
+<script>
 $( "#Condiciones" ).autocomplete({
                                 /**
                              * esta función genera el autocomplete para el campo de diagnostico (input)
@@ -371,45 +418,104 @@ $( "#Condiciones" ).autocomplete({
                            close: function() {
                                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                                 } //end close
-		                        });
-								
-
-							//autocompleteDiagnosticos
-                                                        
-                                                        
-                                                        
-               
+		                        });//autocompleteDiagnosticos
+</script><!-- autocomplete condiciones -->
+<script>
 $("#boton_condiciones").click(function(){
 var idCondicion = $("#Condiciones").attr('idcondicion')
 var nombreCondicion = $("#Condiciones").val()
 
-$.ajax({
+            $.ajax({
 		url: "../../../ajax/agregarCondicion.php",
                 type: "post",
 		data: {"idCondicion":idCondicion},
 		async:false,
 		success: function(output){ 
-                   
+                if($('.sinCondiciones').length == 1){
+                    $('.sinCondiciones').remove();
+                }   
 		$('#condiciones tbody').append('<tr idCondicion="'+idCondicion+'"><td><button type="button" class="close" data-dismiss="alert">×</button><center>'+nombreCondicion+'</center></td></tr>');
-		}
+		$('#estadoInfoMedica').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>Condición añadida correctamente!</strong></center></div>');
+                
+                /*
+                *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                */
+                $.ajax({
+                                url: '../../../ajax/mostrarUltimoLogInfoMedica.php',
+                                type: 'post',
+                                success:function(output){
+                                   $('#ultimoLogInfoMedica').html('').html(output); 
+                                }//end success
+                            })// end ajax
+        
+              }//end success
+            });//end ajax
 
-});
-$("#boton_condiciones").attr('disabled',"disable");
+        $("#boton_condiciones").attr('disabled',"disabled");
+        
+        $("#condiciones .close").unbind('').on("click", function(){
+        var idCondicion = $(this).parent().parent().attr('idCondicion');  
+           //ajax que borra la condicion respectiva del paciente
+           $.ajax({
+             url: '../../../ajax/eliminarCondicion.php',
+             type:'post',
+             data: { "idCondicion" : idCondicion},
+             success: function(output){
+                 
+                $(this).parent().parent().remove(); 
+                if($('#condiciones .close').length == 0){ // si ya no quedan condiciones
+                    $('#condiciones tbody').prepend("<tr class='sinCondiciones warning'><td><center>El paciente no tiene Condiciones registradas</center></td></tr>")  
+                }        
+                $('#estadoInfoMedica').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>Condición eliminada correctamente!</strong></center></div>');
+                        /*
+                        *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                        */
+                        $.ajax({
+                                url: '../../../ajax/mostrarUltimoLogInfoMedica.php',
+                                type: 'post',
+                                success:function(output){
+                                   $('#ultimoLogInfoMedica').html('').html(output); 
+                                }//end success
+                            })// end ajax
+              
+      
+  
+              }//end success
+           });//end ajax
+});//end click
+
 $("#Condiciones").attr("value","");
-});
-$("#condiciones .close").click(function(){
-
-
+});//end click
+</script><!-- agregar condiciones -->
+<script>
+$("#condiciones .close").unbind('').on("click", function(){
    var idCondicion = $(this).parent().parent().attr('idCondicion');  
    //ajax que borra la alergia respectiva del paciente
    $.ajax({
      url: '../../../ajax/eliminarCondicion.php',
      type:'post',
-  
-          data: { "idCondicion" : idCondicion},
-	 success: function(output){
-		 
-	 }
+     data: { "idCondicion" : idCondicion},
+     success: function(output){
+        
+        $(this).parent().parent().remove(); 
+        if($('#condiciones .close').length == 0){ // si ya no quedan condiciones
+          
+          $('#condiciones tbody').prepend("<tr class='sinCondiciones'><td><center>El paciente no tiene Condiciones registradas</center></td></tr>")  
+        }        
+        $('#estadoInfoMedica').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>Condición eliminada correctamente!</strong></center></div>');
+        
+               /*
+                *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                */
+                $.ajax({
+                                url: '../../../ajax/mostrarUltimoLogInfoMedica.php',
+                                type: 'post',
+                                success:function(output){
+                                   $('#ultimoLogInfoMedica').html('').html(output); 
+                                }//end success
+                            })// end ajax
+        
+	 }//end success
    });//end ajax
 });//end click
-</script>
+</script><!-- eliminar condicion -->

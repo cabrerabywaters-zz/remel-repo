@@ -11,10 +11,7 @@
  */
 
 session_start();
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 include_once(dirname(__FILE__) . '/../Capa_Controladores/pacienteHasCondicion.php');
 
@@ -25,10 +22,10 @@ $idCondicion = $_POST['idCondicion'];
 $insercion = PacienteHasCondicion::Insertar($idPaciente,$idCondicion);
   
 
-    if($insercion)
-    {echo '0';}
+    if($insercion){
+        echo '1';}
     else{
-        echo '1';
+        echo '0';
     }
 
 

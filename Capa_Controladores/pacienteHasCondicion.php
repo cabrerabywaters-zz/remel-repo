@@ -20,9 +20,20 @@ class PacienteHasCondicion {
         $id[0][1] = $idPaciente;
         $id[1][0] = 'Condiciones_idCondiciones';
         $id[1][1] = $idCondicion;
-
+        include_once(dirname(__FILE__) . '/log.php');
+        
         $queryString = QueryStringCrearRelacion($id, NULL, self::$nombreTabla);
         $query = CallQuery($queryString);
+        
+        $idMedico = $_SESSION['idMedicoLog'][0]; // id del medico que realizó la insercion
+        $run = $_SESSION['RUTPaciente']; // Rut del paciente al que se le modificaron los datos
+        $nombreTabla = "Paciente_has_Condiciones";
+        $campo = "Condiciones_idCondiciones";
+        $valorAnterior = "null";
+        $valorNuevo = $idCondicion;
+        
+        $log = Log::InsertarModificacionDatosPaciente(date('Y-m-d H:i:s'), $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico);
+        
     }
 
     /**
@@ -32,13 +43,25 @@ class PacienteHasCondicion {
      */
     public static function BorrarPorId($id1, $id2) {
 
-        $id = array($id1, $id2);
+        $id = array($id1, $id2); //entrego los valores que voy a borrar
+        
+        $nombreId = array(self::$nombreIdTabla, self::$nombreIdTabla1); //los nombres de los campos
 
-        $nombreId = array(self::$nombreIdTabla, self::$nombreIdTabla1);
-
-        $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id);
-		echo $queryString;
+        $queryString = QueryStringBorrarPorIdRelacion(self::$nombreTabla, $nombreId, $id); // query que borra 
+	//echo $queryString;
         $query = CallQuery($queryString);
+        
+        include_once(dirname(__FILE__) . '/log.php');
+        
+        $idMedico = $_SESSION['idMedicoLog'][0]; // id del medico que realizó la insercion
+        $run = $_SESSION['RUTPaciente']; // Rut del paciente al que se le modificaron los datos
+        $nombreTabla = "Paciente_has_Condiciones";
+        $campo = "Condiciones_idCondiciones";
+        $valorAnterior = $id2;
+        $valorNuevo = 'null';
+        
+        $log = Log::InsertarModificacionDatosPaciente(date('Y-m-d H:i:s'), $campo, $valorAnterior, $valorNuevo, $nombreTabla, $run, $idMedico);
+        if(!$log){return false;}
     }
 
     /**

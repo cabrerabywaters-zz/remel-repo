@@ -1,7 +1,7 @@
 <?php
 /*
  * Descripcion: Toma el RUT del paciente logeado y retorna la fecha de ultima actualización de sus 
- * datos personales
+ * datos medicos
  * Input (SESSION):
  *	int RUTPersona
  *      int RUT
@@ -22,7 +22,8 @@ if(isset($_SESSION['RUTPaciente'])){ // si se encuentra en la seccion de atenci�
 else if(isset($_SESSION['RUT'])){// si se encuentra en la seccion de paciente el rut es el del logueado
     $personaRUN = trim($_SESSION['RUT']);
 }
-$where = 'WHERE Personas_RUN = '.$personaRUN.' AND (NombreTabla = "Pacientes" OR NombreTabla = "Personas")';
+
+$where = 'WHERE Personas_RUN = '.$personaRUN.' AND (NombreTabla = "Alergia_has_Paciente" OR NombreTabla = "Paciente_has_Condiciones")';
 $ultimoLog = Log::Seleccionar($where,1); // información del ultimo log
 
 if($ultimoLog != null){ // si hay resultados

@@ -10,7 +10,7 @@
  * @package ajaxController
  */
 
-include_once(dirname(__FILE__).'../../Capa_Controladores/R_alergiaPaciente.php');
+include_once(dirname(__FILE__).'../../Capa_Controladores/alergiaHasPaciente.php');
 
 session_start();
 eliminarAlergiaPaciente($_POST['idAlergia'],$_SESSION['idPaciente']);
@@ -25,10 +25,10 @@ eliminarAlergiaPaciente($_POST['idAlergia'],$_SESSION['idPaciente']);
 function eliminarAlergiaPaciente($idAlergia, $idPaciente){
 	$eliminarAlergiasPaciente = AlergiaHasPaciente::BorrarPorId($idAlergia,$idPaciente);
 	if($eliminarAlergiasPaciente==true){
-		echo $idAlergia;
+		echo -1;
 	}
 	else{
-		echo -1;
+		echo $idAlergia;
 	}
 }
 

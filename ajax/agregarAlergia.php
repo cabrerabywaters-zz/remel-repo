@@ -15,14 +15,15 @@ session_start();
 include_once(dirname(__FILE__) . '/../Capa_Controladores/alergiaHasPaciente.php');
 
 
+
 $idPaciente = $_SESSION['idPaciente'];
 $idAlergia = $_POST['idAlergia'];
-echo $idAlergia;
-$insercion = AlergiaHasPaciente::Insertar($idAlergia, $idPaciente);
-  
 
-    if($insercion)
-    {echo '0';}
+//echo $idAlergia;
+$insercion = AlergiaHasPaciente::Insertar($idAlergia, $idPaciente);
+    
+    if($insercion){//se guarda el log
+        echo '0';}
     else{
         echo '1';
     }

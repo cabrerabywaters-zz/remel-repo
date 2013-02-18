@@ -10,16 +10,14 @@
  */
 
 session_start();
-include_once('../Capa_Controladores/R_condicionesPaciente.php');
+include_once('../Capa_Controladores/pacienteHasCondicion.php');
 $idCondicion=$_POST['idCondicion'];
-$eliminarCondicionesPaciente = PacienteHasCondicion::BorrarPorId($idCondicion,$_SESSION['idPaciente']);
+$eliminarCondicionesPaciente = PacienteHasCondicion::BorrarPorId($_SESSION['idPaciente'],$idCondicion);
 
-if($eliminarCondicionesPaciente)
-{
-echo $idCondicion."borrado";	
+if($eliminarCondicionesPaciente){
+echo 0;	
 }
-else
-{
-	echo 0;
+else{
+echo 1;
 }
 ?>

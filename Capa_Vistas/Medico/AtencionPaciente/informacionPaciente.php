@@ -11,10 +11,10 @@
       <div class="row-fluid">
            <div class="span12">
                <div class="alert alert-info"><small>Ultima Actualizacion: 
-                    <strong><span id="ultimoLog">
-                 <?php include_once(dirname(__FILE__) . '/../../../ajax/mostrarUltimoLog.php'); ?>              
+                    <strong><span id="ultimoLogInfoPaciente">
+                 <?php include_once(dirname(__FILE__) . '/../../../ajax/mostrarUltimoLogInfoPaciente.php'); ?>              
                     </span></strong></small></div>
-               <div id="estado"></div>     
+               <div id="estadoInfoPaciente"></div>     
            <form id="funciona" class="form-inline" method="post" >
   
                <div class="span6 img-rounded fluid"> <!--div para datos personales-->
@@ -338,7 +338,7 @@
                         
                         if(output==1){ 
                             $("#guardar").hide();
-                            $('#estado').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>'+success+' Campos modificados exitosamente!</strong></center></div>');
+                            $('#estadoInfoPaciente').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>'+success+' Campos modificados exitosamente!</strong></center></div>');
                             $('html, body').animate({
                             scrollTop: $("#infopaciente").offset().top
                             }, 500); // animate
@@ -350,10 +350,10 @@
                              *AJAX que retorna la fecha de la ultima modificación hecha al paciente
                              */
                             $.ajax({
-                                url: '../../../ajax/mostrarUltimoLog.php',
+                                url: '../../../ajax/mostrarUltimoLogInfoPaciente.php',
                                 type: 'post',
                                 success:function(output){
-                                   $('#ultimoLog').html('').html(output); 
+                                   $('#ultimoLogInfoPaciente').html('').html(output); 
                                 }//end success
                             })// end ajax
                         }//end if (output = 1)
@@ -364,7 +364,7 @@
             });//end ajax
             }//si no hay errores
             else{
-                $('#estado').html('').html('<div class="alert alert-error"><center><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Debe Corregir '+errores+' Campos!</strong></center></div>');
+                $('#estadoInfoPaciente').html('').html('<div class="alert alert-error"><center><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Debe Corregir '+errores+' Campos!</strong></center></div>');
                 $('html, body').animate({
                 scrollTop: $("#infopaciente").offset().top
                 }, 500); // animate
