@@ -26,7 +26,7 @@ actualizarDatosPaciente($_POST['RUN'],
  * @param int $run
  * @
  */
-function actualizarDatosPaciente($run,$peso,$altura,$calle,$comuna,$nCalle,$nCelular,$nFijo,$prevision,$seguro    ) {
+function actualizarDatosPaciente($run,$peso,$altura,$calle,$comuna,$nCalle,$nCelular,$nFijo,$prevision,$seguro) {
 
 	$comuna = Comuna::BuscarComunaPorNombre($comuna);
 	$comuna = $comuna['idComuna'];

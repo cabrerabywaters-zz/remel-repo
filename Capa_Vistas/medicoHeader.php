@@ -334,6 +334,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', end
 					echo "<center><h5> Lugar de Atención: ".$lugar['nombreLugar']." &nbsp &nbsp &nbsp ";
                         ?></li>
                 </ul><!-- aquí termina lo que hay en la barra navegacion-->
+                
                 <script>
                     //redefinir fondo al hacer click en historial
                     $("#historial").click(function() {

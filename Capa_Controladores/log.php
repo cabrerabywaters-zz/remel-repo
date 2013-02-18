@@ -61,7 +61,7 @@ class Log {
      * @param int $offset
      * @returns array $resultArray
      */
-    public static function Seleccionar($where, $limit = 0, $offset = 0) {
+    public static function Seleccionar($where, $limit = 0, $offset = 0, $orderBy = 'Fecha DESC') {
         $atributosASeleccionar = array(
             'Fecha',
             'campoModificado',
@@ -69,19 +69,19 @@ class Log {
             'valorNuevo',
             'NombreTabla',
             'Personas_RUN',
-            'Medicos_idMedico',
-            'Medicos_Personas_RUN',
+            'Medicos_idMedico'
         );
 
         $queryString = QueryStringSeleccionar($where, $atributosASeleccionar, self::$nombreTabla);
-
+        
+        $queryString = $queryString . " ORDER BY $orderBy";
         if ($limit != 0) {
             $queryString = $queryString . " LIMIT $limit";
         }
         if ($offset != 0) {
             $queryString = $queryString . " OFFSET $offset ";
         }
-
+        
         $result = CallQuery($queryString);
         $resultArray = array();
         while ($fila = $result->fetch_assoc()) {

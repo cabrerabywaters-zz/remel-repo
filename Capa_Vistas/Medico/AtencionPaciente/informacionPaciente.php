@@ -2,14 +2,18 @@
 <div class="accordion-heading">
   <a class="btn btn-large btn-block " data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="infopaciente">
   Información Personal del Paciente
-  
   </a>
-   <!-- despliega la informacion medica de la persona pacient econ al posbilidad de editar datos y queen registrados en un registro -->
+  
+  <!-- despliega la informacion medica de la persona pacient econ al posbilidad de editar datos y queen registrados en un registro -->
   </div>
   <div id="collapseOne" class="accordion-body collapse">
   <div class="accordion-inner">
       <div class="row-fluid">
            <div class="span12">
+               <div class="alert alert-info"><small>Ultima Actualizacion: 
+                    <strong><span id="ultimoLog">
+                 <?php include_once(dirname(__FILE__) . '/../../../ajax/mostrarUltimoLog.php'); ?>              
+                    </span></strong></small></div>
                <div id="estado"></div>     
            <form id="funciona" class="form-inline" method="post" >
   
@@ -331,7 +335,7 @@
                           /*
                            *se verifica la actualizacion correcta
                            */
-                        alert(output);
+                        
                         if(output==1){ 
                             $("#guardar").hide();
                             $('#estado').html('').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a><center><strong>'+success+' Campos modificados exitosamente!</strong></center></div>');
@@ -342,8 +346,17 @@
                             $.each($('#collapseOne .edicion'),function(){
                                 $(this).parent().parent().removeClass('success')
                             });
-                        
-                        }
+                            /*
+                             *AJAX que retorna la fecha de la ultima modificación hecha al paciente
+                             */
+                            $.ajax({
+                                url: '../../../ajax/mostrarUltimoLog.php',
+                                type: 'post',
+                                success:function(output){
+                                   $('#ultimoLog').html('').html(output); 
+                                }//end success
+                            })// end ajax
+                        }//end if (output = 1)
                         else{
                             alert('No se pudo insertar el campo');
                             }
